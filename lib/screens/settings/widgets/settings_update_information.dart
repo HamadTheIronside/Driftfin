@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,6 +13,7 @@ import 'package:driftfin/util/list_padding.dart';
 import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/util/theme_extensions.dart';
 import 'package:driftfin/util/update_checker.dart';
+import 'package:driftfin/util/windows_updater.dart';
 
 class SettingsUpdateInformation extends ConsumerStatefulWidget {
   const SettingsUpdateInformation({super.key});
@@ -76,7 +79,7 @@ class _SettingsUpdateInformationState extends ConsumerState<SettingsUpdateInform
   }
 }
 
-class UpdateInformation extends StatelessWidget {
+class UpdateInformation extends StatefulWidget {
   final ReleaseInfo releaseInfo;
   final bool expanded;
   const UpdateInformation({
@@ -84,6 +87,70 @@ class UpdateInformation extends StatelessWidget {
     this.expanded = false,
     super.key,
   });
+
+  @override
+  State<UpdateInformation> createState() => _UpdateInformationState();
+}
+
+class _UpdateInformationState extends State<UpdateInformation> {
+  ReleaseInfo get releaseInfo => widget.releaseInfo;
+
+  bool _installing = false;
+  double _progress = 0;
+
+  /// Whether the in-app installer can update to this release. Only the Windows
+  /// portable build supports self-updating.
+  bool get _canSelfInstall =>
+      WindowsUpdater.isSupported && releaseInfo.downloadUrlFor('windows_portable') != null;
+
+  Future<void> _installUpdate() async {
+    final downloadUrl = releaseInfo.downloadUrlFor('windows_portable');
+    if (downloadUrl == null) return;
+
+    final confirmed = await showDialog<bool>(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(context.localized.installUpdateConfirmTitle(releaseInfo.version)),
+            content: Text(context.localized.installUpdateConfirmBody),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text(context.localized.cancel),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: Text(context.localized.installUpdate),
+              ),
+            ],
+          ),
+        ) ??
+        false;
+
+    if (!confirmed || !mounted) return;
+
+    setState(() {
+      _installing = true;
+      _progress = 0;
+    });
+
+    try {
+      await WindowsUpdater.downloadAndInstall(
+        downloadUrl,
+        onProgress: (progress) {
+          if (mounted) setState(() => _progress = progress);
+        },
+      );
+      // Hand off to the detached helper, which waits for us to exit before
+      // overwriting the install directory and relaunching.
+      exit(0);
+    } catch (error) {
+      if (!mounted) return;
+      setState(() => _installing = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.localized.updateInstallFailed(error.toString()))),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +161,7 @@ class UpdateInformation extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       collapsedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       title: Text(releaseInfo.version),
-      initiallyExpanded: expanded,
+      initiallyExpanded: widget.expanded,
       childrenPadding: const EdgeInsets.all(16),
       expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -107,6 +174,22 @@ class UpdateInformation extends StatelessWidget {
             ),
           ),
         ),
+        if (_canSelfInstall)
+          FilledButton.icon(
+            onPressed: _installing ? null : _installUpdate,
+            icon: _installing
+                ? SizedBox.square(
+                    dimension: 18,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      value: _progress == 0 ? null : _progress,
+                    ),
+                  )
+                : const Icon(Icons.system_update_alt_rounded),
+            label: Text(
+              _installing ? context.localized.downloadingUpdate : context.localized.installUpdate,
+            ),
+          ),
         ...releaseInfo.preferredDownloads.entries.map(
           (entry) {
             return FilledButton(

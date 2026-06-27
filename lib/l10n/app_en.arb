@@ -1544,6 +1544,25 @@
   "playbackTypeTV": "TV",
   "latestReleases": "Latest releases",
   "autoCheckForUpdates": "Periodically check for updates",
+  "installUpdate": "Install update",
+  "installUpdateConfirmTitle": "Install {version}?",
+  "@installUpdateConfirmTitle": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "installUpdateConfirmBody": "Driftfin will download this version, close, update itself and restart automatically. Any unsaved playback may be interrupted.",
+  "downloadingUpdate": "Downloading update…",
+  "updateInstallFailed": "Update failed: {error}",
+  "@updateInstallFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "newReleaseFoundTitle": "Update {newRelease} available!",
   "@newReleaseFoundTitle": {
     "placeholders": {
