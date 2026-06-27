@@ -5,20 +5,20 @@ import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/models/items/images_models.dart';
-import 'package:fladder/models/seerr/seerr_dashboard_model.dart';
-import 'package:fladder/providers/seerr_user_provider.dart';
-import 'package:fladder/routes/auto_router.gr.dart';
-import 'package:fladder/screens/seerr/widgets/download_status_label.dart';
-import 'package:fladder/screens/seerr/widgets/seerr_request_popup.dart';
-import 'package:fladder/screens/seerr/widgets/seerr_user_label.dart';
-import 'package:fladder/seerr/seerr_models.dart';
-import 'package:fladder/theme.dart';
-import 'package:fladder/util/fladder_image.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/widgets/shared/item_actions.dart';
-import 'package:fladder/widgets/shared/modal_bottom_sheet.dart';
+import 'package:driftfin/models/items/images_models.dart';
+import 'package:driftfin/models/seerr/seerr_dashboard_model.dart';
+import 'package:driftfin/providers/seerr_user_provider.dart';
+import 'package:driftfin/routes/auto_router.gr.dart';
+import 'package:driftfin/screens/seerr/widgets/download_status_label.dart';
+import 'package:driftfin/screens/seerr/widgets/seerr_request_popup.dart';
+import 'package:driftfin/screens/seerr/widgets/seerr_user_label.dart';
+import 'package:driftfin/seerr/seerr_models.dart';
+import 'package:driftfin/theme.dart';
+import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/widgets/shared/item_actions.dart';
+import 'package:driftfin/widgets/shared/modal_bottom_sheet.dart';
 
 class SeerrRequestBannerCard extends ConsumerWidget {
   final SeerrDashboardPosterModel poster;

@@ -4,11 +4,11 @@ import 'package:flutter/material.dart' hide ConnectionState;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:window_manager/window_manager.dart';
 
-import 'package:fladder/providers/arguments_provider.dart';
-import 'package:fladder/providers/connectivity_provider.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/widgets/full_screen_helpers/full_screen_wrapper.dart';
-import 'package:fladder/widgets/shared/offline_banner.dart';
+import 'package:driftfin/providers/arguments_provider.dart';
+import 'package:driftfin/providers/connectivity_provider.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/widgets/full_screen_helpers/full_screen_wrapper.dart';
+import 'package:driftfin/widgets/shared/offline_banner.dart';
 
 class DefaultTitleBar extends ConsumerStatefulWidget {
   final String? label;

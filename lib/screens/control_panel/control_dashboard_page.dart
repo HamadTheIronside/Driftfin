@@ -4,22 +4,22 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/providers/control_panel/control_active_tasks_provider.dart';
-import 'package:fladder/providers/control_panel/control_activity_provider.dart';
-import 'package:fladder/providers/control_panel/control_dashboard_provider.dart';
-import 'package:fladder/routes/auto_router.gr.dart';
-import 'package:fladder/screens/control_panel/widgets/control_panel_activity_card.dart';
-import 'package:fladder/screens/control_panel/widgets/control_panel_card.dart';
-import 'package:fladder/screens/control_panel/widgets/control_panel_info_item.dart';
-import 'package:fladder/screens/settings/settings_scaffold.dart';
-import 'package:fladder/screens/shared/default_alert_dialog.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/widgets/shared/ensure_visible.dart';
-import 'package:fladder/widgets/shared/pull_to_refresh.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/providers/control_panel/control_active_tasks_provider.dart';
+import 'package:driftfin/providers/control_panel/control_activity_provider.dart';
+import 'package:driftfin/providers/control_panel/control_dashboard_provider.dart';
+import 'package:driftfin/routes/auto_router.gr.dart';
+import 'package:driftfin/screens/control_panel/widgets/control_panel_activity_card.dart';
+import 'package:driftfin/screens/control_panel/widgets/control_panel_card.dart';
+import 'package:driftfin/screens/control_panel/widgets/control_panel_info_item.dart';
+import 'package:driftfin/screens/settings/settings_scaffold.dart';
+import 'package:driftfin/screens/shared/default_alert_dialog.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/widgets/shared/ensure_visible.dart';
+import 'package:driftfin/widgets/shared/pull_to_refresh.dart';
 
 @RoutePage()
 class ControlDashboardPage extends ConsumerStatefulWidget {

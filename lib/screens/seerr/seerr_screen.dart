@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/seerr/seerr_dashboard_model.dart';
-import 'package:fladder/providers/seerr_dashboard_provider.dart';
-import 'package:fladder/providers/seerr_user_provider.dart';
-import 'package:fladder/routes/auto_router.gr.dart';
-import 'package:fladder/screens/home_screen.dart';
-import 'package:fladder/screens/seerr/widgets/seerr_poster_row.dart';
-import 'package:fladder/screens/seerr/widgets/seerr_request_banner_row.dart';
-import 'package:fladder/screens/seerr/widgets/seerr_request_popup.dart';
-import 'package:fladder/screens/shared/nested_scaffold.dart';
-import 'package:fladder/screens/shared/nested_sliver_appbar.dart';
-import 'package:fladder/seerr/seerr_models.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/sliver_list_padding.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/background_image.dart';
-import 'package:fladder/widgets/shared/pull_to_refresh.dart';
+import 'package:driftfin/models/seerr/seerr_dashboard_model.dart';
+import 'package:driftfin/providers/seerr_dashboard_provider.dart';
+import 'package:driftfin/providers/seerr_user_provider.dart';
+import 'package:driftfin/routes/auto_router.gr.dart';
+import 'package:driftfin/screens/home_screen.dart';
+import 'package:driftfin/screens/seerr/widgets/seerr_poster_row.dart';
+import 'package:driftfin/screens/seerr/widgets/seerr_request_banner_row.dart';
+import 'package:driftfin/screens/seerr/widgets/seerr_request_popup.dart';
+import 'package:driftfin/screens/shared/nested_scaffold.dart';
+import 'package:driftfin/screens/shared/nested_sliver_appbar.dart';
+import 'package:driftfin/seerr/seerr_models.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/sliver_list_padding.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/background_image.dart';
+import 'package:driftfin/widgets/shared/pull_to_refresh.dart';
 
 @RoutePage()
 class SeerrScreen extends ConsumerStatefulWidget {

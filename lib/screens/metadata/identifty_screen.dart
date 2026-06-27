@@ -4,15 +4,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/providers/items/identify_provider.dart';
-import 'package:fladder/screens/shared/adaptive_dialog.dart';
-import 'package:fladder/screens/shared/animated_fade_size.dart';
-import 'package:fladder/screens/shared/fladder_notification_overlay.dart';
-import 'package:fladder/screens/shared/focused_outlined_text_field.dart';
-import 'package:fladder/util/custom_cache_manager.dart';
-import 'package:fladder/util/list_padding.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/providers/items/identify_provider.dart';
+import 'package:driftfin/screens/shared/adaptive_dialog.dart';
+import 'package:driftfin/screens/shared/animated_fade_size.dart';
+import 'package:driftfin/screens/shared/fladder_notification_overlay.dart';
+import 'package:driftfin/screens/shared/focused_outlined_text_field.dart';
+import 'package:driftfin/util/custom_cache_manager.dart';
+import 'package:driftfin/util/list_padding.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 Future<void> showIdentifyScreen(BuildContext context, ItemBaseModel item) async {
   return showDialogAdaptive(

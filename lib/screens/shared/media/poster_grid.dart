@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/providers/settings/client_settings_provider.dart';
-import 'package:fladder/screens/shared/media/poster_widget.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/sticky_header_text.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/providers/settings/client_settings_provider.dart';
+import 'package:driftfin/screens/shared/media/poster_widget.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/sticky_header_text.dart';
 
 class PosterGrid extends ConsumerWidget {
   final String? name;

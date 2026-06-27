@@ -5,18 +5,18 @@ import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/models/settings/client_settings_model.dart';
-import 'package:fladder/providers/settings/client_settings_provider.dart';
-import 'package:fladder/routes/auto_router.dart';
-import 'package:fladder/routes/auto_router.gr.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/adaptive_fab.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/background_image.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/destination_model.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/navigation_button.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/settings_user_icon.dart';
+import 'package:driftfin/models/settings/client_settings_model.dart';
+import 'package:driftfin/providers/settings/client_settings_provider.dart';
+import 'package:driftfin/routes/auto_router.dart';
+import 'package:driftfin/routes/auto_router.gr.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/adaptive_fab.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/background_image.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/destination_model.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/navigation_button.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/settings_user_icon.dart';
 
 final topBarNode = FocusScopeNode(debugLabel: 'topBarScope');
 

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/jellyfin/enum_models.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/screens/settings/settings_list_tile.dart';
-import 'package:fladder/screens/shared/fladder_notification_overlay.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/widgets/shared/enum_selection.dart';
-import 'package:fladder/widgets/shared/item_actions.dart';
+import 'package:driftfin/jellyfin/enum_models.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/screens/settings/settings_list_tile.dart';
+import 'package:driftfin/screens/shared/fladder_notification_overlay.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/widgets/shared/enum_selection.dart';
+import 'package:driftfin/widgets/shared/item_actions.dart';
 
 Future<void> showRefreshPopup(BuildContext context, String itemId, String itemName) async {
   return showDialog(

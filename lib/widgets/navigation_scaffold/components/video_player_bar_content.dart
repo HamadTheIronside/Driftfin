@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:overflow_view/overflow_view.dart';
 
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/media_playback_model.dart';
-import 'package:fladder/providers/video_player_provider.dart';
-import 'package:fladder/util/duration_extensions.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/shared/player_bar_shared.dart';
-import 'package:fladder/widgets/shared/item_actions.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/media_playback_model.dart';
+import 'package:driftfin/providers/video_player_provider.dart';
+import 'package:driftfin/util/duration_extensions.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/shared/player_bar_shared.dart';
+import 'package:driftfin/widgets/shared/item_actions.dart';
 
 class VideoFloatingPlayerBarContent extends ConsumerWidget {
   const VideoFloatingPlayerBarContent({

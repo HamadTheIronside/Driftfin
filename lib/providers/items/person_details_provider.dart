@@ -1,18 +1,18 @@
 import 'package:chopper/chopper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/models/items/item_shared_models.dart';
-import 'package:fladder/models/items/movie_model.dart';
-import 'package:fladder/models/items/person_model.dart';
-import 'package:fladder/models/items/series_model.dart';
-import 'package:fladder/models/seerr/seerr_dashboard_model.dart';
-import 'package:fladder/providers/api_provider.dart';
-import 'package:fladder/providers/seerr_api_provider.dart';
-import 'package:fladder/providers/seerr_service_provider.dart';
-import 'package:fladder/providers/service_provider.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/seerr/seerr_models.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/models/items/item_shared_models.dart';
+import 'package:driftfin/models/items/movie_model.dart';
+import 'package:driftfin/models/items/person_model.dart';
+import 'package:driftfin/models/items/series_model.dart';
+import 'package:driftfin/models/seerr/seerr_dashboard_model.dart';
+import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/providers/seerr_api_provider.dart';
+import 'package:driftfin/providers/seerr_service_provider.dart';
+import 'package:driftfin/providers/service_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/seerr/seerr_models.dart';
 
 final personDetailsProvider =
     StateNotifierProvider.autoDispose.family<PersonDetailsNotifier, PersonModel?, String>((ref, id) {

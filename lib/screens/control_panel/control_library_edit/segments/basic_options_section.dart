@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/models/collection_types.dart';
-import 'package:fladder/providers/control_panel/control_libraries_provider.dart';
-import 'package:fladder/screens/settings/settings_list_tile.dart';
-import 'package:fladder/screens/settings/widgets/settings_label_divider.dart';
-import 'package:fladder/screens/settings/widgets/settings_list_group.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/models/collection_types.dart';
+import 'package:driftfin/providers/control_panel/control_libraries_provider.dart';
+import 'package:driftfin/screens/settings/settings_list_tile.dart';
+import 'package:driftfin/screens/settings/widgets/settings_label_divider.dart';
+import 'package:driftfin/screens/settings/widgets/settings_list_group.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 class BasicOptionsSection extends ConsumerWidget {
   final VirtualFolderInfo selectedFolder;

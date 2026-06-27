@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart' as p;
 
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/media_playback_model.dart';
-import 'package:fladder/models/playback/playback_model.dart';
-import 'package:fladder/models/playback/playback_queue_state.dart';
-import 'package:fladder/providers/settings/client_settings_provider.dart';
-import 'package:fladder/providers/settings/video_player_settings_provider.dart';
-import 'package:fladder/wrappers/media_control_wrapper.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/media_playback_model.dart';
+import 'package:driftfin/models/playback/playback_model.dart';
+import 'package:driftfin/models/playback/playback_queue_state.dart';
+import 'package:driftfin/providers/settings/client_settings_provider.dart';
+import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
+import 'package:driftfin/wrappers/media_control_wrapper.dart';
 
 final mediaPlaybackProvider = StateProvider<MediaPlaybackModel>((ref) => MediaPlaybackModel());
 

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 
-import 'package:fladder/models/video_stream_model.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/models/video_stream_model.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 Future<PlaybackType?> showPlaybackTypeSelection({
   required BuildContext context,

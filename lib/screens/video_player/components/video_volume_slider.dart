@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/providers/settings/video_player_settings_provider.dart';
-import 'package:fladder/util/list_padding.dart';
-import 'package:fladder/widgets/shared/fladder_slider.dart';
+import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
+import 'package:driftfin/util/list_padding.dart';
+import 'package:driftfin/widgets/shared/fladder_slider.dart';
 
 class VideoVolumeSlider extends ConsumerStatefulWidget {
   final double? width;

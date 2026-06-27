@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/providers/api_provider.dart';
-import 'package:fladder/providers/service_provider.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/providers/service_provider.dart';
 
 part 'control_tuner_edit_provider.freezed.dart';
 part 'control_tuner_edit_provider.g.dart';

@@ -5,13 +5,13 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/providers/settings/client_settings_provider.dart';
-import 'package:fladder/screens/shared/animated_fade_size.dart';
-import 'package:fladder/theme.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/widgets/keyboard/slide_in_keyboard.dart';
-import 'package:fladder/widgets/shared/ensure_visible.dart';
+import 'package:driftfin/providers/settings/client_settings_provider.dart';
+import 'package:driftfin/screens/shared/animated_fade_size.dart';
+import 'package:driftfin/theme.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/widgets/keyboard/slide_in_keyboard.dart';
+import 'package:driftfin/widgets/shared/ensure_visible.dart';
 
 class OutlinedTextField extends ConsumerStatefulWidget {
   final String? label;

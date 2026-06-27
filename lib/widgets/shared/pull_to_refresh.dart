@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/util/refresh_state.dart';
+import 'package:driftfin/util/refresh_state.dart';
 
 class PullToRefresh extends ConsumerStatefulWidget {
   final GlobalKey<RefreshIndicatorState>? refreshKey;

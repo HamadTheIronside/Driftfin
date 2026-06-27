@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:fladder/screens/shared/flat_button.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/widgets/shared/ensure_visible.dart';
-import 'package:fladder/widgets/shared/enum_selection.dart';
-import 'package:fladder/widgets/shared/item_actions.dart';
-import 'package:fladder/widgets/shared/modal_bottom_sheet.dart';
+import 'package:driftfin/screens/shared/flat_button.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/widgets/shared/ensure_visible.dart';
+import 'package:driftfin/widgets/shared/enum_selection.dart';
+import 'package:driftfin/widgets/shared/item_actions.dart';
+import 'package:driftfin/widgets/shared/modal_bottom_sheet.dart';
 
 class SettingsListTileCheckbox extends StatelessWidget {
   final Widget label;

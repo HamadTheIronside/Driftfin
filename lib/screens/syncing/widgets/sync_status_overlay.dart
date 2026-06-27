@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/models/syncing/sync_item.dart';
-import 'package:fladder/util/list_padding.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/models/syncing/sync_item.dart';
+import 'package:driftfin/util/list_padding.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 class SyncStatusOverlay extends ConsumerWidget {
   final SyncedItem syncedItem;

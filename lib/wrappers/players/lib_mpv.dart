@@ -11,17 +11,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:media_kit/media_kit.dart' as mpv;
 import 'package:media_kit_video/media_kit_video.dart';
 
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/audio_model.dart';
-import 'package:fladder/models/items/media_streams_model.dart';
-import 'package:fladder/models/playback/playback_model.dart';
-import 'package:fladder/models/settings/subtitle_settings_model.dart';
-import 'package:fladder/models/settings/video_player_settings.dart';
-import 'package:fladder/providers/settings/subtitle_settings_provider.dart';
-import 'package:fladder/screens/video_player/video_player.dart' as video_screen;
-import 'package:fladder/util/subtitle_position_calculator.dart';
-import 'package:fladder/wrappers/players/base_player.dart';
-import 'package:fladder/wrappers/players/player_states.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/audio_model.dart';
+import 'package:driftfin/models/items/media_streams_model.dart';
+import 'package:driftfin/models/playback/playback_model.dart';
+import 'package:driftfin/models/settings/subtitle_settings_model.dart';
+import 'package:driftfin/models/settings/video_player_settings.dart';
+import 'package:driftfin/providers/settings/subtitle_settings_provider.dart';
+import 'package:driftfin/screens/video_player/video_player.dart' as video_screen;
+import 'package:driftfin/util/subtitle_position_calculator.dart';
+import 'package:driftfin/wrappers/players/base_player.dart';
+import 'package:driftfin/wrappers/players/player_states.dart';
 
 class LibMPV extends BasePlayer {
   mpv.Player? _player;

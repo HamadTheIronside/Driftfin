@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/screens/shared/animated_fade_size.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/widgets/keyboard/alpha_numeric_keyboard.dart';
+import 'package:driftfin/screens/shared/animated_fade_size.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/widgets/keyboard/alpha_numeric_keyboard.dart';
 
 ValueNotifier<bool> isKeyboardOpen = ValueNotifier<bool>(false);
 

@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 
 import 'package:auto_route/auto_route.dart';
 
-import 'package:fladder/screens/shared/default_title_bar.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/screens/shared/default_title_bar.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 
 class FladderAppBar extends StatelessWidget implements PreferredSize {
   final double height;

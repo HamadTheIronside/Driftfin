@@ -5,21 +5,21 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/models/collection_types.dart';
-import 'package:fladder/models/view_model.dart';
-import 'package:fladder/providers/settings/client_settings_provider.dart';
-import 'package:fladder/routes/auto_router.gr.dart';
-import 'package:fladder/screens/metadata/refresh_metadata.dart';
-import 'package:fladder/screens/shared/animated_fade_size.dart';
-import 'package:fladder/theme.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/fladder_image.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/adaptive_fab.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/destination_model.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/drawer_list_button.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/settings_user_icon.dart';
-import 'package:fladder/widgets/shared/item_actions.dart';
+import 'package:driftfin/models/collection_types.dart';
+import 'package:driftfin/models/view_model.dart';
+import 'package:driftfin/providers/settings/client_settings_provider.dart';
+import 'package:driftfin/routes/auto_router.gr.dart';
+import 'package:driftfin/screens/metadata/refresh_metadata.dart';
+import 'package:driftfin/screens/shared/animated_fade_size.dart';
+import 'package:driftfin/theme.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/adaptive_fab.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/destination_model.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/drawer_list_button.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/settings_user_icon.dart';
+import 'package:driftfin/widgets/shared/item_actions.dart';
 
 class NestedNavigationDrawer extends ConsumerWidget {
   final bool isExpanded;

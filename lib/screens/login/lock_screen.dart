@@ -5,16 +5,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/models/account_model.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/routes/auto_router.gr.dart';
-import 'package:fladder/screens/login/widgets/login_icon.dart';
-import 'package:fladder/screens/shared/fladder_notification_overlay.dart';
-import 'package:fladder/screens/shared/passcode_input.dart';
-import 'package:fladder/screens/shared/route_wrapper.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/auth_service.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/models/account_model.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/routes/auto_router.gr.dart';
+import 'package:driftfin/screens/login/widgets/login_icon.dart';
+import 'package:driftfin/screens/shared/fladder_notification_overlay.dart';
+import 'package:driftfin/screens/shared/passcode_input.dart';
+import 'package:driftfin/screens/shared/route_wrapper.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/auth_service.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 final lockScreenActiveProvider = StateProvider<bool>((ref) => false);
 

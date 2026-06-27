@@ -1,15 +1,15 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart' as dto;
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/episode_model.dart';
-import 'package:fladder/models/items/images_models.dart';
-import 'package:fladder/models/items/item_shared_models.dart';
-import 'package:fladder/models/items/media_streams_model.dart';
-import 'package:fladder/models/items/movie_model.dart';
-import 'package:fladder/models/items/overview_model.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart' as dto;
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/episode_model.dart';
+import 'package:driftfin/models/items/images_models.dart';
+import 'package:driftfin/models/items/item_shared_models.dart';
+import 'package:driftfin/models/items/media_streams_model.dart';
+import 'package:driftfin/models/items/movie_model.dart';
+import 'package:driftfin/models/items/overview_model.dart';
 
 part 'item_stream_model.mapper.dart';
 

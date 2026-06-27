@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/items/special_feature_model.dart';
-import 'package:fladder/models/syncing/sync_item.dart';
-import 'package:fladder/providers/sync/sync_provider_helpers.dart';
-import 'package:fladder/screens/syncing/sync_button.dart';
-import 'package:fladder/theme.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/fladder_image.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/item_base_model/item_base_model_extensions.dart';
-import 'package:fladder/util/item_base_model/play_item_helpers.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/refresh_state.dart';
-import 'package:fladder/widgets/shared/clickable_text.dart';
-import 'package:fladder/widgets/shared/horizontal_list.dart';
-import 'package:fladder/widgets/shared/item_actions.dart';
-import 'package:fladder/widgets/shared/modal_bottom_sheet.dart';
-import 'package:fladder/widgets/shared/status_card.dart';
+import 'package:driftfin/models/items/special_feature_model.dart';
+import 'package:driftfin/models/syncing/sync_item.dart';
+import 'package:driftfin/providers/sync/sync_provider_helpers.dart';
+import 'package:driftfin/screens/syncing/sync_button.dart';
+import 'package:driftfin/theme.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/item_base_model/item_base_model_extensions.dart';
+import 'package:driftfin/util/item_base_model/play_item_helpers.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/refresh_state.dart';
+import 'package:driftfin/widgets/shared/clickable_text.dart';
+import 'package:driftfin/widgets/shared/horizontal_list.dart';
+import 'package:driftfin/widgets/shared/item_actions.dart';
+import 'package:driftfin/widgets/shared/modal_bottom_sheet.dart';
+import 'package:driftfin/widgets/shared/status_card.dart';
 
 class SpecialFeaturesRow extends ConsumerWidget {
   final List<SpecialFeatureModel> specialFeatures;

@@ -5,20 +5,20 @@ import 'package:background_downloader/background_downloader.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/models/items/episode_model.dart';
-import 'package:fladder/models/syncing/sync_item.dart';
-import 'package:fladder/providers/sync/sync_provider_helpers.dart';
-import 'package:fladder/providers/sync_provider.dart';
-import 'package:fladder/screens/shared/default_alert_dialog.dart';
-import 'package:fladder/screens/shared/flat_button.dart';
-import 'package:fladder/screens/shared/media/episode_posters.dart';
-import 'package:fladder/screens/syncing/sync_widgets.dart';
-import 'package:fladder/screens/syncing/widgets/sync_file_button.dart';
-import 'package:fladder/screens/syncing/widgets/sync_item_poster.dart';
-import 'package:fladder/util/list_padding.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/size_formatting.dart';
-import 'package:fladder/widgets/shared/icon_button_await.dart';
+import 'package:driftfin/models/items/episode_model.dart';
+import 'package:driftfin/models/syncing/sync_item.dart';
+import 'package:driftfin/providers/sync/sync_provider_helpers.dart';
+import 'package:driftfin/providers/sync_provider.dart';
+import 'package:driftfin/screens/shared/default_alert_dialog.dart';
+import 'package:driftfin/screens/shared/flat_button.dart';
+import 'package:driftfin/screens/shared/media/episode_posters.dart';
+import 'package:driftfin/screens/syncing/sync_widgets.dart';
+import 'package:driftfin/screens/syncing/widgets/sync_file_button.dart';
+import 'package:driftfin/screens/syncing/widgets/sync_item_poster.dart';
+import 'package:driftfin/util/list_padding.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/size_formatting.dart';
+import 'package:driftfin/widgets/shared/icon_button_await.dart';
 
 class SyncedEpisodeItem extends ConsumerStatefulWidget {
   const SyncedEpisodeItem({

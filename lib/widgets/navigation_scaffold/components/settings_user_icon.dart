@@ -4,14 +4,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/providers/update_provider.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/routes/auto_router.gr.dart';
-import 'package:fladder/screens/shared/flat_button.dart';
-import 'package:fladder/screens/shared/user_icon.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/theme_extensions.dart';
+import 'package:driftfin/providers/update_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/routes/auto_router.gr.dart';
+import 'package:driftfin/screens/shared/flat_button.dart';
+import 'package:driftfin/screens/shared/user_icon.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/theme_extensions.dart';
 
 class SettingsUserIcon extends ConsumerWidget {
   const SettingsUserIcon({super.key});

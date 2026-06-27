@@ -5,15 +5,15 @@ import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/providers/seerr_search_provider.dart';
-import 'package:fladder/screens/seerr/widgets/seerr_filter_dialogs.dart';
-import 'package:fladder/screens/shared/chips/category_chip.dart';
-import 'package:fladder/seerr/seerr_models.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/map_bool_helper.dart';
-import 'package:fladder/util/position_provider.dart';
-import 'package:fladder/util/refresh_state.dart';
-import 'package:fladder/widgets/shared/button_group.dart';
+import 'package:driftfin/providers/seerr_search_provider.dart';
+import 'package:driftfin/screens/seerr/widgets/seerr_filter_dialogs.dart';
+import 'package:driftfin/screens/shared/chips/category_chip.dart';
+import 'package:driftfin/seerr/seerr_models.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/map_bool_helper.dart';
+import 'package:driftfin/util/position_provider.dart';
+import 'package:driftfin/util/refresh_state.dart';
+import 'package:driftfin/widgets/shared/button_group.dart';
 
 class SeerrFilterChips extends ConsumerWidget {
   const SeerrFilterChips({super.key});

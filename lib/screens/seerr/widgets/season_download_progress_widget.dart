@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:fladder/seerr/seerr_models.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/string_extensions.dart';
+import 'package:driftfin/seerr/seerr_models.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/string_extensions.dart';
 
 class SeasonDownloadProgressWidget extends StatelessWidget {
   final List<SeerrDownloadStatus> downloads;

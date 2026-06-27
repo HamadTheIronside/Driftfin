@@ -3,8 +3,8 @@ import 'package:flutter/material.dart' hide ConnectionState;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/providers/connectivity_provider.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/providers/connectivity_provider.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 class OfflineBanner extends ConsumerWidget {
   const OfflineBanner({super.key});

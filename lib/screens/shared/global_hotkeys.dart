@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/settings/client_settings_model.dart';
-import 'package:fladder/providers/settings/client_settings_provider.dart';
-import 'package:fladder/routes/auto_router.gr.dart';
-import 'package:fladder/screens/shared/fladder_notification_overlay.dart';
-import 'package:fladder/util/focus_helper.dart';
-import 'package:fladder/util/input_handler.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/window_actions.dart';
+import 'package:driftfin/models/settings/client_settings_model.dart';
+import 'package:driftfin/providers/settings/client_settings_provider.dart';
+import 'package:driftfin/routes/auto_router.gr.dart';
+import 'package:driftfin/screens/shared/fladder_notification_overlay.dart';
+import 'package:driftfin/util/focus_helper.dart';
+import 'package:driftfin/util/input_handler.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/window_actions.dart';
 
 class GlobalHotkeys extends ConsumerWidget {
   final Widget child;

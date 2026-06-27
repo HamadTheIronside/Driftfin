@@ -8,28 +8,28 @@ import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:fladder/fake/fake_jellyfin_open_api.dart';
-import 'package:fladder/jellyfin/enum_models.dart';
-import 'package:fladder/jellyfin/jellyfin_open_api.enums.swagger.dart' as enums;
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/models/account_model.dart';
-import 'package:fladder/models/credentials_model.dart';
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/episode_model.dart';
-import 'package:fladder/models/items/item_shared_models.dart';
-import 'package:fladder/models/items/media_segments_model.dart';
-import 'package:fladder/models/items/photos_model.dart';
-import 'package:fladder/models/items/trick_play_model.dart';
-import 'package:fladder/providers/api_provider.dart';
-import 'package:fladder/providers/auth_provider.dart';
-import 'package:fladder/providers/connectivity_provider.dart';
-import 'package:fladder/providers/image_provider.dart';
-import 'package:fladder/providers/sync_provider.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/util/jellyfin_extension.dart';
+import 'package:driftfin/fake/fake_jellyfin_open_api.dart';
+import 'package:driftfin/jellyfin/enum_models.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.enums.swagger.dart' as enums;
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/models/account_model.dart';
+import 'package:driftfin/models/credentials_model.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/episode_model.dart';
+import 'package:driftfin/models/items/item_shared_models.dart';
+import 'package:driftfin/models/items/media_segments_model.dart';
+import 'package:driftfin/models/items/photos_model.dart';
+import 'package:driftfin/models/items/trick_play_model.dart';
+import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/providers/auth_provider.dart';
+import 'package:driftfin/providers/connectivity_provider.dart';
+import 'package:driftfin/providers/image_provider.dart';
+import 'package:driftfin/providers/sync_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/util/jellyfin_extension.dart';
 
 const _userSettings = "usersettings";
-const _client = "fladder";
+const _client = "driftfin";
 
 class ServerQueryResult {
   final List<BaseItemDto> original;

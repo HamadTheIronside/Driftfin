@@ -4,19 +4,19 @@ import 'package:chopper/chopper.dart';
 import 'package:logging/logging.dart' as logging;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/media_streams_model.dart';
-import 'package:fladder/models/items/movie_model.dart';
-import 'package:fladder/models/items/special_feature_model.dart';
-import 'package:fladder/models/seerr/seerr_dashboard_model.dart';
-import 'package:fladder/providers/api_provider.dart';
-import 'package:fladder/providers/related_provider.dart';
-import 'package:fladder/providers/seerr_api_provider.dart';
-import 'package:fladder/providers/service_provider.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/seerr/seerr_models.dart';
-import 'package:fladder/util/item_base_model/item_base_model_extensions.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/media_streams_model.dart';
+import 'package:driftfin/models/items/movie_model.dart';
+import 'package:driftfin/models/items/special_feature_model.dart';
+import 'package:driftfin/models/seerr/seerr_dashboard_model.dart';
+import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/providers/related_provider.dart';
+import 'package:driftfin/providers/seerr_api_provider.dart';
+import 'package:driftfin/providers/service_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/seerr/seerr_models.dart';
+import 'package:driftfin/util/item_base_model/item_base_model_extensions.dart';
 
 part 'movies_details_provider.g.dart';
 

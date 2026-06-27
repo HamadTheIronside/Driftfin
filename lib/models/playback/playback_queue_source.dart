@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/audio_model.dart';
-import 'package:fladder/models/library_search/library_search_model.dart';
-import 'package:fladder/providers/api_provider.dart';
-import 'package:fladder/util/map_bool_helper.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/audio_model.dart';
+import 'package:driftfin/models/library_search/library_search_model.dart';
+import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/util/map_bool_helper.dart';
 
 typedef ProviderReader = T Function<T>(ProviderListenable<T> provider);
 

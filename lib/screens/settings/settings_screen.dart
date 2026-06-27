@@ -5,20 +5,20 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/providers/arguments_provider.dart';
-import 'package:fladder/providers/auth_provider.dart';
-import 'package:fladder/providers/update_provider.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/routes/auto_router.gr.dart';
-import 'package:fladder/screens/settings/quick_connect_window.dart';
-import 'package:fladder/screens/settings/settings_list_tile.dart';
-import 'package:fladder/screens/settings/settings_scaffold.dart';
-import 'package:fladder/screens/shared/default_alert_dialog.dart';
-import 'package:fladder/screens/shared/fladder_icon.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/theme_extensions.dart';
-import 'package:fladder/util/window_actions.dart';
+import 'package:driftfin/providers/arguments_provider.dart';
+import 'package:driftfin/providers/auth_provider.dart';
+import 'package:driftfin/providers/update_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/routes/auto_router.gr.dart';
+import 'package:driftfin/screens/settings/quick_connect_window.dart';
+import 'package:driftfin/screens/settings/settings_list_tile.dart';
+import 'package:driftfin/screens/settings/settings_scaffold.dart';
+import 'package:driftfin/screens/shared/default_alert_dialog.dart';
+import 'package:driftfin/screens/shared/fladder_icon.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/theme_extensions.dart';
+import 'package:driftfin/util/window_actions.dart';
 
 @RoutePage()
 class SettingsScreen extends ConsumerStatefulWidget {

@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/settings/home_settings_model.dart';
-import 'package:fladder/providers/arguments_provider.dart';
-import 'package:fladder/providers/settings/home_settings_provider.dart';
-import 'package:fladder/screens/home_screen.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout_model.dart';
-import 'package:fladder/util/debug_banner.dart';
-import 'package:fladder/util/input_detector.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/poster_defaults.dart';
-import 'package:fladder/util/resolution_checker.dart';
-import 'package:fladder/widgets/keyboard/slide_in_keyboard.dart';
+import 'package:driftfin/models/settings/home_settings_model.dart';
+import 'package:driftfin/providers/arguments_provider.dart';
+import 'package:driftfin/providers/settings/home_settings_provider.dart';
+import 'package:driftfin/screens/home_screen.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout_model.dart';
+import 'package:driftfin/util/debug_banner.dart';
+import 'package:driftfin/util/input_detector.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/poster_defaults.dart';
+import 'package:driftfin/util/resolution_checker.dart';
+import 'package:driftfin/widgets/keyboard/slide_in_keyboard.dart';
 
 enum InputDevice {
   touch,

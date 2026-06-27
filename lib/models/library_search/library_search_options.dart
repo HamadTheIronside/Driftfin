@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.enums.swagger.dart';
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.enums.swagger.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 enum SortingOptions {
   sortName([ItemSortBy.sortname]),

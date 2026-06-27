@@ -6,15 +6,15 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/chapters_model.dart';
-import 'package:fladder/models/items/images_models.dart';
-import 'package:fladder/models/items/media_streams_model.dart';
-import 'package:fladder/models/items/trick_play_model.dart';
-import 'package:fladder/models/syncing/sync_item.dart';
-import 'package:fladder/providers/sync_provider.dart';
-import 'package:fladder/screens/shared/fladder_notification_overlay.dart';
-import 'package:fladder/util/string_extensions.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/chapters_model.dart';
+import 'package:driftfin/models/items/images_models.dart';
+import 'package:driftfin/models/items/media_streams_model.dart';
+import 'package:driftfin/models/items/trick_play_model.dart';
+import 'package:driftfin/models/syncing/sync_item.dart';
+import 'package:driftfin/providers/sync_provider.dart';
+import 'package:driftfin/screens/shared/fladder_notification_overlay.dart';
+import 'package:driftfin/util/string_extensions.dart';
 
 extension SyncMediaHelpers on SyncNotifier {
   Future<List<SubStreamModel>> saveExternalSubtitles(List<SubStreamModel>? subtitles, SyncedItem item) async {

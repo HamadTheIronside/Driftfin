@@ -5,15 +5,15 @@ import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/models/items/chapters_model.dart';
-import 'package:fladder/models/items/item_stream_model.dart';
-import 'package:fladder/models/items/media_segments_model.dart';
-import 'package:fladder/models/items/media_streams_model.dart';
-import 'package:fladder/models/syncing/sync_item.dart';
-import 'package:fladder/providers/api_provider.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/models/items/chapters_model.dart';
+import 'package:driftfin/models/items/item_stream_model.dart';
+import 'package:driftfin/models/items/media_segments_model.dart';
+import 'package:driftfin/models/items/media_streams_model.dart';
+import 'package:driftfin/models/syncing/sync_item.dart';
+import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 enum PlaybackType {
   directStream,

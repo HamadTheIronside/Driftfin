@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/models/items/artist_model.dart';
-import 'package:fladder/providers/items/artist_details_provider.dart';
-import 'package:fladder/providers/video_player_provider.dart';
-import 'package:fladder/screens/shared/detail_scaffold.dart';
-import 'package:fladder/screens/shared/fladder_notification_overlay.dart';
-import 'package:fladder/screens/shared/media/poster_row.dart';
-import 'package:fladder/screens/shared/media/track_list.dart';
-import 'package:fladder/util/fladder_image.dart';
-import 'package:fladder/util/item_base_model/item_base_model_extensions.dart';
-import 'package:fladder/util/item_base_model/play_item_helpers.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/models/items/artist_model.dart';
+import 'package:driftfin/providers/items/artist_details_provider.dart';
+import 'package:driftfin/providers/video_player_provider.dart';
+import 'package:driftfin/screens/shared/detail_scaffold.dart';
+import 'package:driftfin/screens/shared/fladder_notification_overlay.dart';
+import 'package:driftfin/screens/shared/media/poster_row.dart';
+import 'package:driftfin/screens/shared/media/track_list.dart';
+import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/item_base_model/item_base_model_extensions.dart';
+import 'package:driftfin/util/item_base_model/play_item_helpers.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 class ArtistDetailScreen extends ConsumerStatefulWidget {
   final ArtistModel item;

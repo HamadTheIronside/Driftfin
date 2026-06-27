@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/seerr/seerr_dashboard_model.dart';
-import 'package:fladder/providers/arguments_provider.dart';
-import 'package:fladder/screens/seerr/widgets/seerr_poster_card.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/widgets/shared/ensure_visible.dart';
-import 'package:fladder/widgets/shared/horizontal_list.dart';
+import 'package:driftfin/models/seerr/seerr_dashboard_model.dart';
+import 'package:driftfin/providers/arguments_provider.dart';
+import 'package:driftfin/screens/seerr/widgets/seerr_poster_card.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/widgets/shared/ensure_visible.dart';
+import 'package:driftfin/widgets/shared/horizontal_list.dart';
 
 class SeerrPosterRow extends ConsumerWidget {
   final List<SeerrDashboardPosterModel> posters;

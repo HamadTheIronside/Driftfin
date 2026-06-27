@@ -3,11 +3,11 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
-import 'package:fladder/models/items/media_streams_model.dart';
-import 'package:fladder/models/playback/playback_model.dart';
-import 'package:fladder/models/settings/subtitle_settings_model.dart';
-import 'package:fladder/models/settings/video_player_settings.dart';
-import 'package:fladder/wrappers/players/player_states.dart';
+import 'package:driftfin/models/items/media_streams_model.dart';
+import 'package:driftfin/models/playback/playback_model.dart';
+import 'package:driftfin/models/settings/subtitle_settings_model.dart';
+import 'package:driftfin/models/settings/video_player_settings.dart';
+import 'package:driftfin/wrappers/players/player_states.dart';
 
 const libassFallbackFont = "assets/mp-font.ttf";
 

@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:async/async.dart';
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/providers/api_provider.dart';
-import 'package:fladder/providers/auth_provider.dart';
-import 'package:fladder/screens/shared/media/external_urls.dart' as ext;
-import 'package:fladder/util/clipboard_helper.dart';
-import 'package:fladder/util/list_padding.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/providers/auth_provider.dart';
+import 'package:driftfin/screens/shared/media/external_urls.dart' as ext;
+import 'package:driftfin/util/clipboard_helper.dart';
+import 'package:driftfin/util/list_padding.dart';
+import 'package:driftfin/util/localization_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';

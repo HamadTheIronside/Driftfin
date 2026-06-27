@@ -5,9 +5,9 @@ import 'package:flutter/foundation.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/settings/subtitle_settings_model.dart';
-import 'package:fladder/providers/shared_provider.dart';
-import 'package:fladder/src/video_player_helper.g.dart' as pigeon;
+import 'package:driftfin/models/settings/subtitle_settings_model.dart';
+import 'package:driftfin/providers/shared_provider.dart';
+import 'package:driftfin/src/video_player_helper.g.dart' as pigeon;
 
 final subtitleSettingsProvider = StateNotifierProvider<SubtitleSettingsNotifier, SubtitleSettingsModel>((ref) {
   return SubtitleSettingsNotifier(ref);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:fladder/screens/home_screen.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/poster_defaults.dart';
+import 'package:driftfin/screens/home_screen.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/poster_defaults.dart';
 
 class LayoutPoints {
   final double start;

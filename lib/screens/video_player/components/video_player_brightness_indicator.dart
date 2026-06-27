@@ -4,8 +4,8 @@ import 'package:async/async.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/providers/settings/video_player_settings_provider.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 class VideoPlayerBrightnessIndicator extends ConsumerStatefulWidget {
   const VideoPlayerBrightnessIndicator({super.key});

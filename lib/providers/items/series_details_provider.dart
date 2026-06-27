@@ -4,21 +4,21 @@ import 'package:chopper/chopper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart' as logging;
 
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/episode_model.dart';
-import 'package:fladder/models/items/item_shared_models.dart';
-import 'package:fladder/models/items/season_model.dart';
-import 'package:fladder/models/items/series_model.dart';
-import 'package:fladder/models/items/special_feature_model.dart';
-import 'package:fladder/models/seerr/seerr_dashboard_model.dart';
-import 'package:fladder/providers/api_provider.dart';
-import 'package:fladder/providers/related_provider.dart';
-import 'package:fladder/providers/seerr_api_provider.dart';
-import 'package:fladder/providers/service_provider.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/seerr/seerr_models.dart';
-import 'package:fladder/util/item_base_model/item_base_model_extensions.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/episode_model.dart';
+import 'package:driftfin/models/items/item_shared_models.dart';
+import 'package:driftfin/models/items/season_model.dart';
+import 'package:driftfin/models/items/series_model.dart';
+import 'package:driftfin/models/items/special_feature_model.dart';
+import 'package:driftfin/models/seerr/seerr_dashboard_model.dart';
+import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/providers/related_provider.dart';
+import 'package:driftfin/providers/seerr_api_provider.dart';
+import 'package:driftfin/providers/service_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/seerr/seerr_models.dart';
+import 'package:driftfin/util/item_base_model/item_base_model_extensions.dart';
 
 final seriesDetailsProvider =
     StateNotifierProvider.autoDispose.family<SeriesDetailViewNotifier, SeriesModel?, String>((ref, id) {

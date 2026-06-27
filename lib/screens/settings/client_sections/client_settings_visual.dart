@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/l10n/generated/app_localizations.dart';
-import 'package:fladder/models/settings/client_settings_model.dart';
-import 'package:fladder/providers/settings/client_settings_provider.dart';
-import 'package:fladder/screens/settings/settings_list_tile.dart';
-import 'package:fladder/screens/settings/widgets/settings_label_divider.dart';
-import 'package:fladder/screens/settings/widgets/settings_list_group.dart';
-import 'package:fladder/screens/shared/input_fields.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/widgets/shared/fladder_slider.dart';
-import 'package:fladder/widgets/shared/item_actions.dart';
+import 'package:driftfin/l10n/generated/app_localizations.dart';
+import 'package:driftfin/models/settings/client_settings_model.dart';
+import 'package:driftfin/providers/settings/client_settings_provider.dart';
+import 'package:driftfin/screens/settings/settings_list_tile.dart';
+import 'package:driftfin/screens/settings/widgets/settings_label_divider.dart';
+import 'package:driftfin/screens/settings/widgets/settings_list_group.dart';
+import 'package:driftfin/screens/shared/input_fields.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/widgets/shared/fladder_slider.dart';
+import 'package:driftfin/widgets/shared/item_actions.dart';
 
 List<Widget> buildClientSettingsVisual(
   BuildContext context,

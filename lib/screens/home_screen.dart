@@ -5,22 +5,22 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/models/settings/client_settings_model.dart';
-import 'package:fladder/providers/dashboard_mode_provider.dart';
-import 'package:fladder/providers/sync_provider.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/providers/window_title_provider.dart';
-import 'package:fladder/routes/auto_router.gr.dart';
-import 'package:fladder/screens/shared/fladder_notification_overlay.dart';
-import 'package:fladder/screens/shared/global_hotkeys.dart';
-import 'package:fladder/seerr/seerr_models.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/string_extensions.dart';
-import 'package:fladder/widgets/keyboard/slide_in_keyboard.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/adaptive_fab.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/destination_model.dart';
-import 'package:fladder/widgets/navigation_scaffold/navigation_scaffold.dart';
-import 'package:fladder/widgets/shared/modal_bottom_sheet.dart';
+import 'package:driftfin/models/settings/client_settings_model.dart';
+import 'package:driftfin/providers/dashboard_mode_provider.dart';
+import 'package:driftfin/providers/sync_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/providers/window_title_provider.dart';
+import 'package:driftfin/routes/auto_router.gr.dart';
+import 'package:driftfin/screens/shared/fladder_notification_overlay.dart';
+import 'package:driftfin/screens/shared/global_hotkeys.dart';
+import 'package:driftfin/seerr/seerr_models.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/string_extensions.dart';
+import 'package:driftfin/widgets/keyboard/slide_in_keyboard.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/adaptive_fab.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/destination_model.dart';
+import 'package:driftfin/widgets/navigation_scaffold/navigation_scaffold.dart';
+import 'package:driftfin/widgets/shared/modal_bottom_sheet.dart';
 
 enum HomeTabs {
   dashboard,

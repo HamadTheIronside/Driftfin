@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/items/channel_model.dart';
-import 'package:fladder/models/items/channel_program.dart';
-import 'package:fladder/models/playback/playback_model.dart';
-import 'package:fladder/models/playback/tv_playback_model.dart';
-import 'package:fladder/providers/video_player_provider.dart';
-import 'package:fladder/screens/live_tv/live_tv_guide.dart';
-import 'package:fladder/screens/shared/default_alert_dialog.dart';
-import 'package:fladder/screens/video_player/tv_player_controls.dart';
-import 'package:fladder/theme.dart';
-import 'package:fladder/util/fladder_image.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/models/items/channel_model.dart';
+import 'package:driftfin/models/items/channel_program.dart';
+import 'package:driftfin/models/playback/playback_model.dart';
+import 'package:driftfin/models/playback/tv_playback_model.dart';
+import 'package:driftfin/providers/video_player_provider.dart';
+import 'package:driftfin/screens/live_tv/live_tv_guide.dart';
+import 'package:driftfin/screens/shared/default_alert_dialog.dart';
+import 'package:driftfin/screens/video_player/tv_player_controls.dart';
+import 'package:driftfin/theme.dart';
+import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 class VideoPlayerGuideWrapper extends StatefulWidget {
   final Widget child;

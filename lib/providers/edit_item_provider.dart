@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:chopper/chopper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/models/api_result.dart';
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/item_editing_model.dart';
-import 'package:fladder/providers/api_provider.dart';
-import 'package:fladder/screens/metadata/edit_item.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/models/api_result.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/item_editing_model.dart';
+import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/screens/metadata/edit_item.dart';
 
 final editItemProvider =
     StateNotifierProvider.autoDispose<EditItemNotifier, ItemEditingModel>((ref) => EditItemNotifier(ref));

@@ -10,16 +10,16 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:path/path.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/chapters_model.dart';
-import 'package:fladder/models/items/images_models.dart';
-import 'package:fladder/models/items/item_shared_models.dart';
-import 'package:fladder/models/items/media_segments_model.dart';
-import 'package:fladder/models/items/media_streams_model.dart';
-import 'package:fladder/models/items/trick_play_model.dart';
-import 'package:fladder/models/syncing/transcode_download_model.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/chapters_model.dart';
+import 'package:driftfin/models/items/images_models.dart';
+import 'package:driftfin/models/items/item_shared_models.dart';
+import 'package:driftfin/models/items/media_segments_model.dart';
+import 'package:driftfin/models/items/media_streams_model.dart';
+import 'package:driftfin/models/items/trick_play_model.dart';
+import 'package:driftfin/models/syncing/transcode_download_model.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 part 'sync_item.freezed.dart';
 

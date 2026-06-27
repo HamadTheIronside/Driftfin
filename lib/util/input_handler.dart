@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/settings/key_combinations.dart';
-import 'package:fladder/screens/settings/widgets/key_listener.dart';
-import 'package:fladder/util/focus_helper.dart';
+import 'package:driftfin/models/settings/key_combinations.dart';
+import 'package:driftfin/screens/settings/widgets/key_listener.dart';
+import 'package:driftfin/util/focus_helper.dart';
 
 class InputHandler<T> extends ConsumerStatefulWidget {
   final bool autoFocus;

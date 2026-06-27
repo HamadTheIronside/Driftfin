@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:fladder/jellyfin/jellyfin_open_api.enums.swagger.dart' as enums;
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/photos_model.dart';
-import 'package:fladder/models/recommended_model.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.enums.swagger.dart' as enums;
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/photos_model.dart';
+import 'package:driftfin/models/recommended_model.dart';
 
 class LibraryModel {
   final bool loading;

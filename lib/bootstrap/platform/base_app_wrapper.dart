@@ -8,20 +8,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workmanager/workmanager.dart';
 
-import 'package:fladder/background/update_notifications_worker.dart' as update_worker;
-import 'package:fladder/models/account_model.dart';
-import 'package:fladder/providers/arguments_provider.dart';
-import 'package:fladder/providers/settings/client_settings_provider.dart';
-import 'package:fladder/providers/shared_provider.dart';
-import 'package:fladder/providers/update_notifications_provider.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/providers/video_player_provider.dart';
-import 'package:fladder/routes/auto_router.dart';
-import 'package:fladder/routes/auto_router.gr.dart';
-import 'package:fladder/screens/login/lock_screen.dart';
-import 'package:fladder/services/notification_service.dart';
-import 'package:fladder/util/deep_link_helper.dart';
-import 'package:fladder/wrappers/players/native_player.dart';
+import 'package:driftfin/background/update_notifications_worker.dart' as update_worker;
+import 'package:driftfin/models/account_model.dart';
+import 'package:driftfin/providers/arguments_provider.dart';
+import 'package:driftfin/providers/settings/client_settings_provider.dart';
+import 'package:driftfin/providers/shared_provider.dart';
+import 'package:driftfin/providers/update_notifications_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/providers/video_player_provider.dart';
+import 'package:driftfin/routes/auto_router.dart';
+import 'package:driftfin/routes/auto_router.gr.dart';
+import 'package:driftfin/screens/login/lock_screen.dart';
+import 'package:driftfin/services/notification_service.dart';
+import 'package:driftfin/util/deep_link_helper.dart';
+import 'package:driftfin/wrappers/players/native_player.dart';
 
 typedef PlatformAppBuilder = Widget Function(
   BuildContext context,

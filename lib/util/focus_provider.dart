@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:fladder/screens/shared/flat_button.dart';
-import 'package:fladder/theme.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/navigation_body.dart';
+import 'package:driftfin/screens/shared/flat_button.dart';
+import 'package:driftfin/theme.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/navigation_body.dart';
 
 final acceptKeys = {
   LogicalKeyboardKey.enter,

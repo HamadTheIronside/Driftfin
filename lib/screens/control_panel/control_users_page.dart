@@ -5,24 +5,24 @@ import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/models/account_model.dart';
-import 'package:fladder/providers/control_panel/control_users_provider.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/routes/auto_router.gr.dart';
-import 'package:fladder/screens/control_panel/widgets/auth_link_dialog.dart';
-import 'package:fladder/screens/control_panel/widgets/control_users_create.dart';
-import 'package:fladder/screens/settings/settings_scaffold.dart';
-import 'package:fladder/screens/settings/widgets/settings_label_divider.dart';
-import 'package:fladder/screens/shared/default_alert_dialog.dart';
-import 'package:fladder/screens/shared/user_icon.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/humanize_duration.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/refresh_state.dart';
-import 'package:fladder/widgets/shared/item_actions.dart';
-import 'package:fladder/widgets/shared/modal_bottom_sheet.dart';
-import 'package:fladder/widgets/shared/pull_to_refresh.dart';
+import 'package:driftfin/models/account_model.dart';
+import 'package:driftfin/providers/control_panel/control_users_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/routes/auto_router.gr.dart';
+import 'package:driftfin/screens/control_panel/widgets/auth_link_dialog.dart';
+import 'package:driftfin/screens/control_panel/widgets/control_users_create.dart';
+import 'package:driftfin/screens/settings/settings_scaffold.dart';
+import 'package:driftfin/screens/settings/widgets/settings_label_divider.dart';
+import 'package:driftfin/screens/shared/default_alert_dialog.dart';
+import 'package:driftfin/screens/shared/user_icon.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/humanize_duration.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/refresh_state.dart';
+import 'package:driftfin/widgets/shared/item_actions.dart';
+import 'package:driftfin/widgets/shared/modal_bottom_sheet.dart';
+import 'package:driftfin/widgets/shared/pull_to_refresh.dart';
 
 @RoutePage()
 class ControlUsersPage extends ConsumerWidget {

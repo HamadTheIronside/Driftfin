@@ -1,12 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:fladder/l10n/generated/app_localizations.dart';
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/episode_model.dart';
-import 'package:fladder/models/items/series_model.dart';
-import 'package:fladder/models/seerr/seerr_dashboard_model.dart';
-import 'package:fladder/seerr/seerr_models.dart';
-import 'package:fladder/util/notification_helpers.dart';
+import 'package:driftfin/l10n/generated/app_localizations.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/episode_model.dart';
+import 'package:driftfin/models/items/series_model.dart';
+import 'package:driftfin/models/seerr/seerr_dashboard_model.dart';
+import 'package:driftfin/seerr/seerr_models.dart';
+import 'package:driftfin/util/notification_helpers.dart';
 
 part 'notification_model.freezed.dart';
 part 'notification_model.g.dart';
@@ -40,7 +40,7 @@ abstract class NotificationModel with _$NotificationModel {
     final mediaTypeRaw = (media?.mediaType ?? '').toLowerCase();
     final mediaType = mediaTypeRaw.contains('tv') ? 'tvshow' : 'movie';
     final payload = detailedPayload ??
-        (tmdbId != null ? NotificationHelpers.buildSeerrDeepLink(mediaType, tmdbId) : 'fladder:///seerr');
+        (tmdbId != null ? NotificationHelpers.buildSeerrDeepLink(mediaType, tmdbId) : 'driftfin:///seerr');
 
     String defaultTitle() {
       if (media?.tmdbId != null) {

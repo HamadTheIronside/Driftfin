@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart' as dto;
-import 'package:fladder/l10n/generated/app_localizations.dart';
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/artist_model.dart';
-import 'package:fladder/models/items/audio_model.dart';
-import 'package:fladder/models/items/images_models.dart';
-import 'package:fladder/models/items/item_shared_models.dart';
-import 'package:fladder/models/items/overview_model.dart';
-import 'package:fladder/screens/details_screens/album_detail_screen.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart' as dto;
+import 'package:driftfin/l10n/generated/app_localizations.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/artist_model.dart';
+import 'package:driftfin/models/items/audio_model.dart';
+import 'package:driftfin/models/items/images_models.dart';
+import 'package:driftfin/models/items/item_shared_models.dart';
+import 'package:driftfin/models/items/overview_model.dart';
+import 'package:driftfin/screens/details_screens/album_detail_screen.dart';
 
 part 'album_model.mapper.dart';
 

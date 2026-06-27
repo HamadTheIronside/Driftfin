@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:chinese_font_library/chinese_font_library.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 
-import 'package:fladder/theme/fonts.dart';
-import 'package:fladder/util/custom_color_themes.dart';
+import 'package:driftfin/theme/fonts.dart';
+import 'package:driftfin/util/custom_color_themes.dart';
 
 ColorScheme? generateDynamicColourSchemes(ColorScheme? theme, DynamicSchemeVariant dynamicSchemeVariant) {
   if (theme == null) return null;

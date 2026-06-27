@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/providers/arguments_provider.dart';
-import 'package:fladder/screens/shared/media/poster_widget.dart';
-import 'package:fladder/screens/shared/media/tv_poster_row.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/item_base_model/item_base_model_extensions.dart';
-import 'package:fladder/widgets/shared/ensure_visible.dart';
-import 'package:fladder/widgets/shared/horizontal_list.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/providers/arguments_provider.dart';
+import 'package:driftfin/screens/shared/media/poster_widget.dart';
+import 'package:driftfin/screens/shared/media/tv_poster_row.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/item_base_model/item_base_model_extensions.dart';
+import 'package:driftfin/widgets/shared/ensure_visible.dart';
+import 'package:driftfin/widgets/shared/horizontal_list.dart';
 
 class PosterRow extends ConsumerWidget {
   final List<ItemBaseModel> posters;

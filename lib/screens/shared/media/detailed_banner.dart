@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/screens/details_screens/components/overview_header.dart';
-import 'package:fladder/screens/shared/media/poster_row.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/fladder_image.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/widgets/shared/custom_shader_mask.dart';
-import 'package:fladder/widgets/shared/ensure_visible.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/screens/details_screens/components/overview_header.dart';
+import 'package:driftfin/screens/shared/media/poster_row.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/widgets/shared/custom_shader_mask.dart';
+import 'package:driftfin/widgets/shared/ensure_visible.dart';
 
 class DetailedBanner extends ConsumerStatefulWidget {
   final List<ItemBaseModel> posters;

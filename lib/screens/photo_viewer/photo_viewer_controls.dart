@@ -8,22 +8,22 @@ import 'package:square_progress_indicator/square_progress_indicator.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:window_manager/window_manager.dart';
 
-import 'package:fladder/models/items/photos_model.dart';
-import 'package:fladder/models/settings/video_player_settings.dart';
-import 'package:fladder/providers/settings/photo_view_settings_provider.dart';
-import 'package:fladder/providers/settings/video_player_settings_provider.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/screens/shared/flat_button.dart';
-import 'package:fladder/screens/shared/input_fields.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/input_handler.dart';
-import 'package:fladder/util/list_padding.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/throttler.dart';
-import 'package:fladder/widgets/full_screen_helpers/full_screen_wrapper.dart';
-import 'package:fladder/widgets/shared/elevated_icon.dart';
-import 'package:fladder/widgets/shared/progress_floating_button.dart';
-import 'package:fladder/widgets/shared/selectable_icon_button.dart';
+import 'package:driftfin/models/items/photos_model.dart';
+import 'package:driftfin/models/settings/video_player_settings.dart';
+import 'package:driftfin/providers/settings/photo_view_settings_provider.dart';
+import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/screens/shared/flat_button.dart';
+import 'package:driftfin/screens/shared/input_fields.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/input_handler.dart';
+import 'package:driftfin/util/list_padding.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/throttler.dart';
+import 'package:driftfin/widgets/full_screen_helpers/full_screen_wrapper.dart';
+import 'package:driftfin/widgets/shared/elevated_icon.dart';
+import 'package:driftfin/widgets/shared/progress_floating_button.dart';
+import 'package:driftfin/widgets/shared/selectable_icon_button.dart';
 
 class PhotoViewerControls extends ConsumerStatefulWidget {
   final EdgeInsets padding;

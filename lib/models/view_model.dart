@@ -6,15 +6,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.enums.swagger.dart';
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart' as dto;
-import 'package:fladder/models/collection_types.dart';
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/images_models.dart';
-import 'package:fladder/models/library_filter_model.dart';
-import 'package:fladder/routes/auto_router.gr.dart';
-import 'package:fladder/widgets/navigation_scaffold/components/navigation_button.dart';
-import 'package:fladder/widgets/shared/item_actions.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.enums.swagger.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart' as dto;
+import 'package:driftfin/models/collection_types.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/images_models.dart';
+import 'package:driftfin/models/library_filter_model.dart';
+import 'package:driftfin/routes/auto_router.gr.dart';
+import 'package:driftfin/widgets/navigation_scaffold/components/navigation_button.dart';
+import 'package:driftfin/widgets/shared/item_actions.dart';
 
 class ViewModel {
   final String name;

@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 
-import 'package:fladder/models/settings/arguments_model.dart';
-import 'package:fladder/src/application_menu.g.dart';
+import 'package:driftfin/models/settings/arguments_model.dart';
+import 'package:driftfin/src/application_menu.g.dart';
 
 class ApplicationMenuImp extends ApplicationMenu {
   @override

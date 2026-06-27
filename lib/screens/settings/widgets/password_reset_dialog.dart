@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/providers/control_panel/control_users_provider.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/screens/shared/fladder_notification_overlay.dart';
-import 'package:fladder/screens/shared/outlined_text_field.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/widgets/shared/filled_button_await.dart';
+import 'package:driftfin/providers/control_panel/control_users_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/screens/shared/fladder_notification_overlay.dart';
+import 'package:driftfin/screens/shared/outlined_text_field.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/widgets/shared/filled_button_await.dart';
 
 Future<void> openPasswordResetDialog(BuildContext context) {
   return showAdaptiveDialog(

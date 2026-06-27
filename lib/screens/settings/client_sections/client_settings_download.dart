@@ -5,20 +5,20 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/providers/settings/client_settings_provider.dart';
-import 'package:fladder/providers/sync/background_download_provider.dart';
-import 'package:fladder/providers/sync_provider.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/screens/settings/settings_list_tile.dart';
-import 'package:fladder/screens/settings/widgets/settings_label_divider.dart';
-import 'package:fladder/screens/settings/widgets/settings_list_group.dart';
-import 'package:fladder/screens/settings/widgets/transcode_music_settings_popup.dart';
-import 'package:fladder/screens/settings/widgets/transcode_settings_popup.dart';
-import 'package:fladder/screens/shared/default_alert_dialog.dart';
-import 'package:fladder/screens/shared/input_fields.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/size_formatting.dart';
+import 'package:driftfin/providers/settings/client_settings_provider.dart';
+import 'package:driftfin/providers/sync/background_download_provider.dart';
+import 'package:driftfin/providers/sync_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/screens/settings/settings_list_tile.dart';
+import 'package:driftfin/screens/settings/widgets/settings_label_divider.dart';
+import 'package:driftfin/screens/settings/widgets/settings_list_group.dart';
+import 'package:driftfin/screens/settings/widgets/transcode_music_settings_popup.dart';
+import 'package:driftfin/screens/settings/widgets/transcode_settings_popup.dart';
+import 'package:driftfin/screens/shared/default_alert_dialog.dart';
+import 'package:driftfin/screens/shared/input_fields.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/size_formatting.dart';
 
 List<Widget> buildClientSettingsDownload(BuildContext context, WidgetRef ref, Function setState) {
   final clientSettings = ref.watch(clientSettingsProvider);

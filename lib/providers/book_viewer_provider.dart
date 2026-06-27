@@ -8,11 +8,11 @@ import 'package:chopper/chopper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/models/book_model.dart';
-import 'package:fladder/providers/api_provider.dart';
-import 'package:fladder/providers/service_provider.dart';
-import 'package:fladder/providers/user_provider.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/models/book_model.dart';
+import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/providers/service_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
 
 class BookViewerModel {
   final BookModel? book;

@@ -4,18 +4,18 @@ import 'package:auto_route/auto_route.dart';
 import 'package:background_downloader/background_downloader.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/items/album_model.dart';
-import 'package:fladder/models/items/audio_model.dart';
-import 'package:fladder/models/syncing/sync_item.dart';
-import 'package:fladder/providers/sync/sync_provider_helpers.dart';
-import 'package:fladder/screens/shared/flat_button.dart';
-import 'package:fladder/screens/syncing/sync_widgets.dart';
-import 'package:fladder/screens/syncing/widgets/sync_options_button.dart';
-import 'package:fladder/screens/syncing/widgets/sync_progress_builder.dart';
-import 'package:fladder/screens/syncing/widgets/synced_audio_item.dart';
-import 'package:fladder/util/fladder_image.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/size_formatting.dart';
+import 'package:driftfin/models/items/album_model.dart';
+import 'package:driftfin/models/items/audio_model.dart';
+import 'package:driftfin/models/syncing/sync_item.dart';
+import 'package:driftfin/providers/sync/sync_provider_helpers.dart';
+import 'package:driftfin/screens/shared/flat_button.dart';
+import 'package:driftfin/screens/syncing/sync_widgets.dart';
+import 'package:driftfin/screens/syncing/widgets/sync_options_button.dart';
+import 'package:driftfin/screens/syncing/widgets/sync_progress_builder.dart';
+import 'package:driftfin/screens/syncing/widgets/synced_audio_item.dart';
+import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/size_formatting.dart';
 
 class SyncedAlbumItem extends ConsumerStatefulWidget {
   const SyncedAlbumItem({

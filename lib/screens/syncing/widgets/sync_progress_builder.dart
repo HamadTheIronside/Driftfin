@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/syncing/download_stream.dart';
-import 'package:fladder/models/syncing/sync_item.dart';
-import 'package:fladder/providers/sync/sync_provider_helpers.dart';
+import 'package:driftfin/models/syncing/download_stream.dart';
+import 'package:driftfin/models/syncing/sync_item.dart';
+import 'package:driftfin/providers/sync/sync_provider_helpers.dart';
 
 class SyncProgressBuilder extends ConsumerWidget {
   final SyncedItem item;

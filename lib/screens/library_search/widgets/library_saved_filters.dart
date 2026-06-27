@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/providers/library_search_provider.dart';
-import 'package:fladder/screens/shared/default_alert_dialog.dart';
-import 'package:fladder/screens/shared/outlined_text_field.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/providers/library_search_provider.dart';
+import 'package:driftfin/screens/shared/default_alert_dialog.dart';
+import 'package:driftfin/screens/shared/outlined_text_field.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 Future<void> showSavedFilters(
   BuildContext context,

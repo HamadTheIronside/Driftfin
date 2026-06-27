@@ -2,12 +2,12 @@ import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:fladder/models/api_result.dart';
-import 'package:fladder/models/seerr/seerr_dashboard_model.dart';
-import 'package:fladder/providers/seerr_api_provider.dart';
-import 'package:fladder/providers/seerr_user_provider.dart';
-import 'package:fladder/seerr/seerr_models.dart';
-import 'package:fladder/util/seerr_helpers.dart';
+import 'package:driftfin/models/api_result.dart';
+import 'package:driftfin/models/seerr/seerr_dashboard_model.dart';
+import 'package:driftfin/providers/seerr_api_provider.dart';
+import 'package:driftfin/providers/seerr_user_provider.dart';
+import 'package:driftfin/seerr/seerr_models.dart';
+import 'package:driftfin/util/seerr_helpers.dart';
 
 part 'seerr_request_provider.freezed.dart';
 part 'seerr_request_provider.g.dart';

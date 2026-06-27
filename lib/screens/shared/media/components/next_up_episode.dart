@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
-import 'package:fladder/models/items/episode_model.dart';
-import 'package:fladder/screens/details_screens/components/media_stream_information.dart';
-import 'package:fladder/screens/shared/media/episode_posters.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/sticky_header_text.dart';
-import 'package:fladder/util/string_extensions.dart';
-import 'package:fladder/widgets/shared/ensure_visible.dart';
+import 'package:driftfin/models/items/episode_model.dart';
+import 'package:driftfin/screens/details_screens/components/media_stream_information.dart';
+import 'package:driftfin/screens/shared/media/episode_posters.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/sticky_header_text.dart';
+import 'package:driftfin/util/string_extensions.dart';
+import 'package:driftfin/widgets/shared/ensure_visible.dart';
 
 class NextUpEpisode extends ConsumerWidget {
   final EpisodeModel nextEpisode;

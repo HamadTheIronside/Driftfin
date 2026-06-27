@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart' as dto;
-import 'package:fladder/jellyfin/jellyfin_open_api.swagger.dart';
-import 'package:fladder/models/items/media_streams_model.dart';
-import 'package:fladder/screens/shared/flat_button.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart' as dto;
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
+import 'package:driftfin/models/items/media_streams_model.dart';
+import 'package:driftfin/screens/shared/flat_button.dart';
 
 enum Resolution {
   sd("SD"),

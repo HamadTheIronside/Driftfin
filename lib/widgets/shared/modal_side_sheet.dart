@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:fladder/theme.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/theme.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 
 Future<void> showModalSideSheet(
   BuildContext context, {

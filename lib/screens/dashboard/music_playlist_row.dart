@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/playlist_model.dart';
-import 'package:fladder/theme.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/fladder_image.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/item_base_model/item_base_model_extensions.dart';
-import 'package:fladder/util/sticky_header_text.dart';
-import 'package:fladder/widgets/shared/ensure_visible.dart';
-import 'package:fladder/widgets/shared/item_actions.dart';
-import 'package:fladder/widgets/shared/modal_bottom_sheet.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/playlist_model.dart';
+import 'package:driftfin/theme.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/item_base_model/item_base_model_extensions.dart';
+import 'package:driftfin/util/sticky_header_text.dart';
+import 'package:driftfin/widgets/shared/ensure_visible.dart';
+import 'package:driftfin/widgets/shared/item_actions.dart';
+import 'package:driftfin/widgets/shared/modal_bottom_sheet.dart';
 
 class MusicPlaylistRow extends ConsumerWidget {
   const MusicPlaylistRow({

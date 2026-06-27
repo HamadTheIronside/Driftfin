@@ -4,13 +4,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/providers/settings/subtitle_settings_provider.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/list_padding.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/util/widget_extensions.dart';
-import 'package:fladder/widgets/shared/fladder_slider.dart';
+import 'package:driftfin/providers/settings/subtitle_settings_provider.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/list_padding.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/widget_extensions.dart';
+import 'package:driftfin/widgets/shared/fladder_slider.dart';
 
 Future<void> showSubtitleControls({
   required BuildContext context,

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/view_model.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/providers/views_provider.dart';
-import 'package:fladder/screens/shared/outlined_text_field.dart';
-import 'package:fladder/util/list_padding.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/widgets/shared/filled_button_await.dart';
+import 'package:driftfin/models/view_model.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/providers/views_provider.dart';
+import 'package:driftfin/screens/shared/outlined_text_field.dart';
+import 'package:driftfin/util/list_padding.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/widgets/shared/filled_button_await.dart';
 
 Future<void> openUserCreateDialog(BuildContext context) {
   return showAdaptiveDialog(

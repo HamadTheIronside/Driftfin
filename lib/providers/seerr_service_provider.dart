@@ -5,12 +5,12 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:chopper/chopper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/items/images_models.dart';
-import 'package:fladder/models/seerr/seerr_dashboard_model.dart';
-import 'package:fladder/models/seerr/seerr_item_models.dart';
-import 'package:fladder/providers/user_provider.dart';
-import 'package:fladder/seerr/seerr_chopper_service.dart';
-import 'package:fladder/seerr/seerr_models.dart';
+import 'package:driftfin/models/items/images_models.dart';
+import 'package:driftfin/models/seerr/seerr_dashboard_model.dart';
+import 'package:driftfin/models/seerr/seerr_item_models.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/seerr/seerr_chopper_service.dart';
+import 'package:driftfin/seerr/seerr_models.dart';
 
 const tmbdUrl = 'https://image.tmdb.org/t/p/original';
 const kBrowserManagedCookie = '__browser_managed__';

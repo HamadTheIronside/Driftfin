@@ -1,8 +1,8 @@
 import 'dart:math' show Random;
 
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/media_playback_model.dart';
-import 'package:fladder/util/list_extensions.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/media_playback_model.dart';
+import 'package:driftfin/util/list_extensions.dart';
 
 enum AudioQueueSection {
   nextUp,

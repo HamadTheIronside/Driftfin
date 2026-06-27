@@ -2,13 +2,13 @@ import 'package:chopper/chopper.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/episode_model.dart';
-import 'package:fladder/models/items/item_shared_models.dart';
-import 'package:fladder/models/items/series_model.dart';
-import 'package:fladder/providers/api_provider.dart';
-import 'package:fladder/providers/service_provider.dart';
-import 'package:fladder/providers/sync_provider.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/episode_model.dart';
+import 'package:driftfin/models/items/item_shared_models.dart';
+import 'package:driftfin/models/items/series_model.dart';
+import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/providers/service_provider.dart';
+import 'package:driftfin/providers/sync_provider.dart';
 
 class EpisodeDetailModel {
   final SeriesModel? series;

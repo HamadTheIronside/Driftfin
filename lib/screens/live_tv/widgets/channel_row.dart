@@ -4,14 +4,14 @@ import 'package:collection/collection.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/items/channel_model.dart';
-import 'package:fladder/models/items/channel_program.dart';
-import 'package:fladder/providers/live_tv_provider.dart';
-import 'package:fladder/screens/live_tv/widgets/guide_constants.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/fladder_image.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/models/items/channel_model.dart';
+import 'package:driftfin/models/items/channel_program.dart';
+import 'package:driftfin/providers/live_tv_provider.dart';
+import 'package:driftfin/screens/live_tv/widgets/guide_constants.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 class ChannelRow extends ConsumerStatefulWidget {
   final ChannelProgram? selectedProgram;

@@ -5,12 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:reorderable_grid/reorderable_grid.dart';
 
-import 'package:fladder/models/account_model.dart';
-import 'package:fladder/providers/auth_provider.dart';
-import 'package:fladder/screens/shared/user_icon.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/list_padding.dart';
+import 'package:driftfin/models/account_model.dart';
+import 'package:driftfin/providers/auth_provider.dart';
+import 'package:driftfin/screens/shared/user_icon.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/list_padding.dart';
 
 class LoginUserGrid extends ConsumerWidget {
   final List<AccountModel> users;

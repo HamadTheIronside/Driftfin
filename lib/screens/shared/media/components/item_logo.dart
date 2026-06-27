@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/util/fladder_image.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/util/fladder_image.dart';
 
 class ItemLogo extends StatelessWidget {
   final ItemBaseModel item;

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-import 'package:fladder/providers/control_panel/control_activity_provider.dart';
-import 'package:fladder/screens/shared/user_icon.dart';
-import 'package:fladder/theme.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/fladder_image.dart';
-import 'package:fladder/util/focus_provider.dart';
-import 'package:fladder/util/humanize_duration.dart';
-import 'package:fladder/util/localization_helper.dart';
-import 'package:fladder/widgets/shared/ensure_visible.dart';
-import 'package:fladder/widgets/shared/trick_play_image.dart';
+import 'package:driftfin/providers/control_panel/control_activity_provider.dart';
+import 'package:driftfin/screens/shared/user_icon.dart';
+import 'package:driftfin/theme.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/focus_provider.dart';
+import 'package:driftfin/util/humanize_duration.dart';
+import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/widgets/shared/ensure_visible.dart';
+import 'package:driftfin/widgets/shared/trick_play_image.dart';
 
 class ControlPanelActivityCard extends StatefulWidget {
   final ControlActivityModel activity;

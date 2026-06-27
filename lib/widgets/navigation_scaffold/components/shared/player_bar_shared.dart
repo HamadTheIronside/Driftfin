@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:overflow_view/overflow_view.dart';
 
-import 'package:fladder/models/media_playback_model.dart';
-import 'package:fladder/providers/video_player_provider.dart';
-import 'package:fladder/screens/shared/flat_button.dart';
-import 'package:fladder/util/adaptive_layout/adaptive_layout.dart';
-import 'package:fladder/util/duration_extensions.dart';
-import 'package:fladder/widgets/shared/fladder_slider.dart';
-import 'package:fladder/widgets/shared/item_actions.dart';
+import 'package:driftfin/models/media_playback_model.dart';
+import 'package:driftfin/providers/video_player_provider.dart';
+import 'package:driftfin/screens/shared/flat_button.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/duration_extensions.dart';
+import 'package:driftfin/widgets/shared/fladder_slider.dart';
+import 'package:driftfin/widgets/shared/item_actions.dart';
 
 const videoPlayerHeroTag = "HeroPlayer";
 

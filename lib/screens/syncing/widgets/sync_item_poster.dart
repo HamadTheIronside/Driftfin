@@ -4,9 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:path/path.dart' as path;
 
-import 'package:fladder/models/syncing/sync_item.dart';
-import 'package:fladder/theme.dart';
-import 'package:fladder/util/localization_helper.dart';
+import 'package:driftfin/models/syncing/sync_item.dart';
+import 'package:driftfin/theme.dart';
+import 'package:driftfin/util/localization_helper.dart';
 
 class SyncItemPoster extends ConsumerWidget {
   final SyncedItem item;

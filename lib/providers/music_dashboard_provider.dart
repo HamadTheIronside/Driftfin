@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/jellyfin/jellyfin_open_api.enums.swagger.dart';
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/items/audio_model.dart';
-import 'package:fladder/models/items/playlist_model.dart';
-import 'package:fladder/providers/api_provider.dart';
-import 'package:fladder/providers/service_provider.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.enums.swagger.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/audio_model.dart';
+import 'package:driftfin/models/items/playlist_model.dart';
+import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/providers/service_provider.dart';
 
 final musicDashboardProvider = StateNotifierProvider<MusicDashboardNotifier, MusicDashboardModel>((ref) {
   return MusicDashboardNotifier(ref);

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:fladder/models/item_base_model.dart';
-import 'package:fladder/models/settings/home_settings_model.dart';
-import 'package:fladder/providers/settings/home_settings_provider.dart';
-import 'package:fladder/screens/shared/media/carousel_banner.dart';
-import 'package:fladder/screens/shared/media/detailed_banner.dart';
-import 'package:fladder/screens/shared/media/media_banner.dart';
-import 'package:fladder/screens/shared/media/tv_slider_banner.dart';
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/settings/home_settings_model.dart';
+import 'package:driftfin/providers/settings/home_settings_provider.dart';
+import 'package:driftfin/screens/shared/media/carousel_banner.dart';
+import 'package:driftfin/screens/shared/media/detailed_banner.dart';
+import 'package:driftfin/screens/shared/media/media_banner.dart';
+import 'package:driftfin/screens/shared/media/tv_slider_banner.dart';
 
 class HomeBannerWidget extends ConsumerWidget {
   final List<ItemBaseModel> posters;
