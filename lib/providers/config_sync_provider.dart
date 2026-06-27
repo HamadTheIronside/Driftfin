@@ -84,13 +84,23 @@ class ConfigSync {
     _debouncer.run(_pushNow);
   }
 
-  Future<void> _pushNow() async {
+  /// Forces an immediate upload of the current local config, regardless of the
+  /// enabled flag or whether anything changed. Used by the manual "Sync now".
+  Future<void> syncNow() => _pushNow(force: true);
+
+  /// When this device last uploaded its config to the server.
+  DateTime? get lastSyncedAt {
+    final raw = ref.read(userProvider)?.userSettings?.syncedAt;
+    return raw == null ? null : DateTime.tryParse(raw);
+  }
+
+  Future<void> _pushNow({bool force = false}) async {
     final account = ref.read(userProvider);
-    if (account == null || !_enabled) return;
+    if (account == null || (!_enabled && !force)) return;
     final current = account.userSettings ?? UserSettings();
     final built = _buildFrom(current);
     // Nothing actually changed -> skip (also breaks the apply -> push loop).
-    if (built == current) return;
+    if (!force && built == current) return;
     final stamped = built.copyWith(syncedAt: DateTime.now().toIso8601String());
     await ref.read(userProvider.notifier).updateCustomConfig(stamped);
   }

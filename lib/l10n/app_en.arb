@@ -32,6 +32,18 @@
   "@syncSettingsTitle": {},
   "syncSettingsDesc": "Store appearance, home layout, pinned collections and your Seerr URL on the Jellyfin server so they follow your account across devices.",
   "@syncSettingsDesc": {},
+  "syncNow": "Sync now",
+  "@syncNow": {},
+  "syncedNever": "Not synced yet",
+  "@syncedNever": {},
+  "syncedAtLabel": "Last synced: {time}",
+  "@syncedAtLabel": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "addToCollection": "Add to collection",
   "@addToCollection": {},
   "addToPlaylist": "Add to playlist",

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:intl/intl.dart';
 
 import 'package:driftfin/providers/config_sync_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/screens/settings/settings_list_tile.dart';
 import 'package:driftfin/screens/settings/widgets/settings_label_divider.dart';
 import 'package:driftfin/screens/settings/widgets/settings_list_group.dart';
@@ -27,6 +29,19 @@ List<Widget> buildClientSettingsAdvanced(BuildContext context, WidgetRef ref) {
           onChanged: (value) => ref.read(syncSettingsEnabledProvider.notifier).set(value),
         ),
       ),
+      if (ref.watch(syncSettingsEnabledProvider))
+        SettingsListTile(
+          label: Text(context.localized.syncNow),
+          subLabel: Builder(builder: (context) {
+            final syncedAt = ref.watch(userProvider.select((value) => value?.userSettings?.syncedAt));
+            final parsed = syncedAt == null ? null : DateTime.tryParse(syncedAt);
+            return Text(parsed == null
+                ? context.localized.syncedNever
+                : context.localized.syncedAtLabel(DateFormat.yMd().add_jm().format(parsed.toLocal())));
+          }),
+          onTap: () => ref.read(configSyncProvider).syncNow(),
+          trailing: const Icon(Icons.cloud_sync_outlined),
+        ),
       SettingsListTile(
         label: Text(context.localized.settingsLayoutSizesTitle),
         subLabel: Text(context.localized.settingsLayoutSizesDesc),
