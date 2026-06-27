@@ -128,8 +128,81 @@ jobs:
           name: ios
           path: Driftfin-iOS-*.ipa
 
+  # Debug APK: verifies the Android package rename compiles without needing the
+  # release keystore secrets. Debug-signed, so it's installable for testing.
+  android:
+    needs: version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .fvmrc
+          cache: true
+      - run: flutter pub get
+      - name: Build Android APKs (debug)
+        run: flutter build apk --debug --split-per-abi --flavor production --build-number=${{ github.run_number }}
+      - name: Collect APKs
+        run: |
+          mkdir -p dist-apk
+          for abi in armeabi-v7a arm64-v8a x86_64; do
+            cp "build/app/outputs/flutter-apk/app-${abi}-production-debug.apk" \
+               "dist-apk/Driftfin-Android-${{ needs.version.outputs.version }}-${abi}.apk" || true
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android
+          path: dist-apk/*.apk
+
+  macos_desktop:
+    needs: version
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .fvmrc
+          cache: true
+      - run: flutter pub get
+      - run: flutter build macos --release --flavor production --build-number=${{ github.run_number }}
+      - name: Zip .app
+        run: |
+          APP=$(find build/macos/Build/Products -maxdepth 2 -name "*.app" | head -1)
+          echo "Packaging: $APP"
+          ditto -c -k --keepParent "$APP" "Driftfin-macOS-${{ needs.version.outputs.version }}.zip"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: macos
+          path: Driftfin-macOS-*.zip
+
+  linux:
+    needs: version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .fvmrc
+          cache: true
+      - name: Install Linux build deps
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ninja-build libgtk-3-dev libmpv-dev patchelf cmake clang libfuse2
+      - run: flutter pub get
+      - run: flutter build linux --release --build-number=${{ github.run_number }}
+      - name: Zip bundle
+        run: cd build/linux/x64/release/bundle && zip -r "$GITHUB_WORKSPACE/Driftfin-Linux-${{ needs.version.outputs.version }}.zip" .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux
+          path: Driftfin-Linux-*.zip
+
   release:
-    needs: [version, web, windows, ios]
+    needs: [version, web, windows, ios, android, macos_desktop, linux]
     # Publish even if one platform fails, but only for real tag pushes.
     if: always() && startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
@@ -158,3 +231,6 @@ jobs:
             - **Windows installer** (`Driftfin-Windows-*-Setup.exe`) — recommended; installs to your user profile with Start Menu shortcuts.
             - **Windows portable** (`Driftfin-Windows-*.zip`) — unzip and run `driftfin.exe`; supports in-app self-update.
             - **iOS** (`Driftfin-iOS-*-unsigned.ipa`) — **unsigned** (no Apple Developer cert in CI); sideload with AltStore / Sideloadly or re-sign yourself.
+            - **Android** (`Driftfin-Android-*.apk`) — **debug-signed** build (no release keystore in CI); install the APK matching your device's ABI.
+            - **macOS** (`Driftfin-macOS-*.zip`) — unsigned `.app`; unzip and run (you may need to allow it in Gatekeeper).
+            - **Linux** (`Driftfin-Linux-*.zip`) — portable bundle; needs `libmpv` (`sudo apt install libmpv-dev`). Unzip and run `driftfin`.
