@@ -183,7 +183,10 @@ class SeerrDetailsScreen extends ConsumerWidget {
                         state.genres.map((e) => GenreItems(id: e.id?.toString() ?? "", name: e.name ?? "")).toList(),
                     mainButton: Builder(
                       builder: (context) {
-                        return FocusButton(
+                        final showStatus = currentPoster.hasDisplayStatus ||
+                            (currentPoster.mediaInfo?.downloadStatus?.isNotEmpty ?? false) ||
+                            (currentPoster.mediaInfo?.downloadStatus4k?.isNotEmpty ?? false);
+                        final requestButton = FocusButton(
                           autoFocus: AdaptiveLayout.inputDeviceOf(context) == InputDevice.dPad,
                           onTap: canRequestMore ? () => openSeerrRequestPopup(context, currentPoster) : null,
                           borderRadius: radius,
@@ -227,6 +230,16 @@ class SeerrDetailsScreen extends ConsumerWidget {
                               ),
                             ),
                           ),
+                        );
+                        if (!showStatus) return requestButton;
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            requestButton,
+                            const SizedBox(height: 8),
+                            Center(child: DownloadStatusLabel(poster: currentPoster)),
+                          ],
                         );
                       },
                     ),
