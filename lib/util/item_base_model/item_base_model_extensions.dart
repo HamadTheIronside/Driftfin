@@ -16,6 +16,7 @@ import 'package:driftfin/models/items/item_shared_models.dart';
 import 'package:driftfin/models/items/movie_model.dart';
 import 'package:driftfin/models/items/photos_model.dart';
 import 'package:driftfin/models/items/series_model.dart';
+import 'package:driftfin/providers/settings/home_settings_provider.dart';
 import 'package:driftfin/providers/sync_provider.dart';
 import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/routes/auto_router.gr.dart';
@@ -100,6 +101,8 @@ enum ItemActions {
   markPlayed,
   markUnplayed,
   setFavorite,
+  favoriteShow,
+  addToHome,
   refreshMetaData,
   editMetaData,
   mediaInfo,
@@ -311,6 +314,35 @@ extension ItemBaseModelExtensions on ItemBaseModel {
             }
           },
           label: Text(userData.isFavourite ? context.localized.removeAsFavorite : context.localized.addAsFavorite),
+        ),
+      if (this is EpisodeModel &&
+          (this as EpisodeModel).parentId != null &&
+          !exclude.contains(ItemActions.favoriteShow))
+        ItemActionButton(
+          icon: const Icon(IconsaxPlusLinear.heart_add),
+          action: () async {
+            final seriesId = (this as EpisodeModel).parentId!;
+            try {
+              await ref.read(userProvider.notifier).setAsFavorite(true, seriesId);
+              if (context.mounted) FladderSnack.show(context.localized.addedShowToFavorites);
+            } finally {
+              context.refreshData();
+            }
+          },
+          label: Text(context.localized.addShowToFavorites),
+        ),
+      if (type == FladderItemType.boxset && !exclude.contains(ItemActions.addToHome))
+        ItemActionButton(
+          icon: Icon(ref.read(homeSettingsProvider).pinnedCollectionIds.contains(id)
+              ? Icons.home_filled
+              : Icons.home_outlined),
+          action: () async {
+            ref.read(homeSettingsProvider.notifier).toggleHomeCollection(id);
+            context.refreshData();
+          },
+          label: Text(ref.read(homeSettingsProvider).pinnedCollectionIds.contains(id)
+              ? context.localized.removeFromHome
+              : context.localized.addToHome),
         ),
       ...otherActions,
       ItemActionDivider(),

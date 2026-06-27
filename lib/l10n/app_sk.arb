@@ -1,691 +1,691 @@
 {
-    "active": "Aktívne",
-    "amoledBlack": "Amoled čierna",
-    "actor": "{count, plural, other{Herci} one{Herec/Herečka}}",
-    "@actor": {
-        "description": "actor",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "addAsFavorite": "Pridať ako obľúbené",
-    "addToCollection": "Pridať do kolekcie",
-    "addToPlaylist": "Pridať do playlistu",
-    "advanced": "Pokročilé",
-    "all": "Všetko",
-    "appLockAutoLogin": "Automatické prihlásenie",
-    "appLockBiometrics": "Biometrika",
-    "appLockPasscode": "Prístupový kód",
-    "accept": "Prijať",
-    "about": "O appke",
-    "appLockTitle": "Nastavenie metódy prihlásenia pre {userName}",
-    "@appLockTitle": {
-        "description": "Pop-up to pick a login method",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            }
-        }
-    },
-    "ascending": "Vzostupne",
-    "audio": "Zvuk",
-    "autoPlay": "Automatické prehrávanie",
-    "backgroundBlur": "Rozmazanie pozadia",
-    "backgroundOpacity": "Priehľadnosť pozadia",
-    "biometricsFailedCheckAgain": "Biometria zlyhala. Skontrolujte nastavenia a skúste to znova.",
-    "bold": "Hrubý",
-    "cancel": "Zrušiť",
-    "change": "Zmeniť",
-    "clearAllSettings": "Vyčistiť všetky nastavenia",
-    "clearAllSettingsQuestion": "Vynulovať všetky nastavenia?",
-    "clearChanges": "Vynulovanie zmien",
-    "clearSelection": "Vynulovať výber",
-    "close": "Zatvoriť",
-    "code": "Kód",
-    "collectionFolder": "Zložka kolekcie",
-    "color": "Farba",
-    "combined": "Kombinované",
-    "communityRating": "Hodnotenie komunity",
-    "continuePage": "Pokračovať - strana {page}",
-    "@continuePage": {
-        "description": "Continue - page 1",
-        "placeholders": {
-            "page": {
-                "type": "int"
-            }
-        }
-    },
-    "controls": "Ovládanie",
-    "dashboard": "Ovládací panel",
-    "dashboardContinue": "Pokračovať",
-    "dashboardContinueListening": "Pokračovať v počúvaní",
-    "dashboardContinueReading": "Pokračovať v čítaní",
-    "dashboardContinueWatching": "Pokračovať v sledovaní",
-    "nextUp": "Ďalej",
-    "dashboardRecentlyAdded": "Nedávno pridané v {name}",
-    "@dashboardRecentlyAdded": {
-        "description": "Recently added on home screen",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "dateAdded": "Dátum pridania",
-    "dateLastContentAdded": "Dátum posledného pridania obsahu",
-    "datePlayed": "Dátum prehrania",
-    "days": "Dni",
-    "delete": "Odstrániť",
-    "clear": "Vyčistiť",
-    "chapter": "{count, plural, other{Chapters} one{Chapter}}",
-    "@chapter": {
-        "description": "chapter",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "nativeName": "Slovenčina",
-    "deleteFileFromSystem": "Odstránením tejto položky {item} ju vymažete zo súborového systému aj z vašej knižnice médií. Naozaj chcete pokračovať?",
-    "@deleteFileFromSystem": {
-        "description": "Delete file from system",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "deleteItem": "Odstrániť {item}?",
-    "@deleteItem": {
-        "description": "deleteItem",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "descending": "Zostupne",
-    "director": "{count, plural, other{Režisér} two{Režiséri} one{Režisér}}",
-    "@director": {
-        "description": "director",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "disableFilters": "Vypnúť filtre",
-    "disabled": "Vypnuté",
-    "discovered": "Objavené",
-    "displayLanguage": "Jazyk zobrazenia",
-    "downloadsClearDesc": "Odstrániť všetky synchronizované dáta a vymazať všetky dáta pre každého synchronizovaného používateľa?",
-    "downloadsClearTitle": "Vymazať synchronizované dáta",
-    "downloadsPath": "Cesta",
-    "downloadsSyncedData": "Synchronizované dáta",
-    "downloadsTitle": "Stiahnuté",
-    "dynamicText": "Dynamický",
-    "editMetadata": "Upraviť metadata",
-    "empty": "Prázdne",
-    "enabled": "Zapnuté",
-    "endsAt": "končí v {date}",
-    "@endsAt": {
-        "description": "endsAt",
-        "placeholders": {
-            "date": {
-                "type": "DateTime",
-                "format": "jm"
-            }
-        }
-    },
-    "episode": "{count, plural, other{Epizódy} one{Epizóda} few{Epizódy}}",
-    "@episode": {
-        "description": "episode",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "error": "Chyba",
-    "failedToLoadImage": "Nepodarilo sa načítať obrázok",
-    "favorite": "Obľúbené",
-    "favorites": "Obľúbené",
-    "fetchingLibrary": "Načítavam položky knižnice…",
-    "filter": "{count, plural, other{Filtre} one{Filter} few{Filtre}}",
-    "@filter": {
-        "description": "filter",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "folders": "Priečinky",
-    "fontColor": "Farba písma",
-    "fontSize": "Veľkosť písma",
-    "forceRefresh": "Vynútiť obnovenie",
-    "genre": "{count, plural, other{Žánre} one{Žáner} few{Žánre}}",
-    "@genre": {
-        "description": "genre",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "goTo": "Prejsť na",
-    "grid": "Mriežka",
-    "group": "Skupina",
-    "groupBy": "Zoskupuť podľa",
-    "heightOffset": "Výškový posun",
-    "hide": "Skryť",
-    "hideEmpty": "Skryť prázdne",
-    "home": "Domov",
-    "homeBannerSlideshow": "Prezentácia",
-    "homeBannerCarousel": "Kolotoč",
-    "identify": "Identifikovať",
-    "immediately": "Ihneď",
-    "incorrectPinTryAgain": "Nesprávny PIN. Skúste to znova.",
-    "info": "Info",
-    "invalidUrl": "Neplatná URL",
-    "invalidUrlDesc": "URL musí začínať http(s)://",
-    "itemCount": "Počet položiek: {count}",
-    "@itemCount": {
-        "description": "Item count",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "label": "{count, plural, other{Označenia} one{Označenie}}",
-    "@label": {
-        "description": "label",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "library": "{count, plural, other{Knižnice} one{Knižnica}}",
-    "@library": {
-        "description": "Plural",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "libraryFetchNoItemsFound": "Nenašli sa žiadne položky. Skúste iné nastavenia.",
-    "libraryPageSizeDesc": "Nastavte množstvo položiek, ktoré sa majú načítať naraz. Hodnota 0 vypne stránkovanie.",
-    "libraryPageSizeTitle": "Veľkosť stránky knižnice",
-    "light": "Svetlý",
-    "list": "List",
-    "lockscreen": "Obrazovka uzamknutia",
-    "loggedIn": "Prihlásený/á",
-    "login": "Prihlásiť sa",
-    "logout": "Odhlásiť sa",
-    "logoutUserPopupContent": "Týmto odhlásite používateľa {userName} a používateľ sa zmaže z aplikácie.\nBudete sa musieť znova prihlásiť na server {serverName}.",
-    "@logoutUserPopupContent": {
-        "description": "Pop-up for logging out the user description",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            },
-            "serverName": {
-                "type": "String"
-            }
-        }
-    },
-    "logoutUserPopupTitle": "Odhlásiť používateľa {userName}?",
-    "@logoutUserPopupTitle": {
-        "description": "Pop-up for logging out the user",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            }
-        }
-    },
-    "loop": "Opakovať",
-    "markAsUnwatched": "Označiť ako nepozreté",
-    "markAsWatched": "Označiť ako pozreté",
-    "masonry": "Dlaždice",
-    "mediaTypeBase": "Typ základne",
-    "mediaTypeBook": "Kniha",
-    "mediaTypeBoxset": "Médiá",
-    "mediaTypeEpisode": "Epizóda",
-    "mediaTypeFolder": "Priečinok",
-    "mediaTypeMovie": "Film",
-    "mediaTypePerson": "Osoba",
-    "mediaTypePhoto": "Fotka",
-    "mediaTypePhotoAlbum": "Foto album",
-    "mediaTypePlaylist": "Playlist",
-    "mediaTypeSeason": "Séria",
-    "mediaTypeSeries": "Seriál",
-    "metaDataSavedFor": "Metadáta uložené pre {item}",
-    "@metaDataSavedFor": {
-        "description": "metaDataSavedFor",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "metadataRefreshDefault": "Vyhľadať nové a aktualizované súbory",
-    "metadataRefreshFull": "Nahradiť všetky metadata",
-    "metadataRefreshValidation": "Nájsť chýbajúce metadáta",
-    "minutes": "{count, plural, other{Minúty} one{Minúta} }",
-    "@minutes": {
-        "description": "minute",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "mode": "Mód",
-    "moreFrom": "Viac od {info}",
-    "@moreFrom": {
-        "description": "More from",
-        "placeholders": {
-            "info": {
-                "type": "String"
-            }
-        }
-    },
-    "moreOptions": "Viac nastavení",
-    "mouseDragSupport": "Presuňte pomocou myši",
-    "musicAlbum": "Album",
-    "name": "Názov",
-    "navigation": "Navigácia",
-    "navigationDashboard": "Dashboard",
-    "navigationFavorites": "Obľúbené",
-    "navigationSync": "Synchronizované",
-    "never": "Nikdy",
-    "noItemsSynced": "Žiadne synchronizované položky",
-    "noItemsToShow": "Žiadne položky na zobrazenie",
-    "noRating": "Žiadne hodnotenie",
-    "noResults": "Žiadne výsledky",
-    "noServersFound": "Nenájdené žiadne nové servery",
-    "noSuggestionsFound": "Nenájdené žiadne návrhy",
-    "none": "Žiadny",
-    "normal": "Normálny",
-    "notPartOfAlbum": "Nie je súčasťou albumu",
-    "openParent": "Otvoriť rodiča",
-    "openShow": "Otvoriť seriál",
-    "openWebLink": "Otvoriť webový odkaz",
-    "options": "Možnosti",
-    "other": "Ostatné",
-    "outlineColor": "Farba obrysu",
-    "outlineSize": "Veľkosť obrysu",
-    "overview": "Prehľad",
-    "page": "Strana {index}",
-    "@page": {
-        "description": "page",
-        "placeholders": {
-            "index": {
-                "type": "int"
-            }
-        }
-    },
-    "parentalRating": "Rodičovské hodnotenie",
-    "password": "Heslo",
-    "pathClearTitle": "Vymazať cestu k stiahnutým",
-    "pathEditDesc": "Táto adresa je nastavená pre všetkých používateľov. Synchronizované údaje už nebudú prístupné, ale zostanú uložené na vašom disku.",
-    "pathEditSelect": "Vybrať adresu pre stiahnuté",
-    "pathEditTitle": "Zmeň adresu",
-    "play": "Prehrať {item}",
-    "@play": {
-        "description": "Play with",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "playCount": "Počet prehratí",
-    "playFrom": "Prehrať z {name}",
-    "@playFrom": {
-        "description": "playFrom",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "playFromStart": "Prehrať {name} od začiatku",
-    "@playFromStart": {
-        "description": "speel vanaf het begin",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "playLabel": "Prehrať",
-    "playVideos": "Prehrať videá",
-    "played": "Prehrané",
-    "quickConnectAction": "Zadajte kód rýchleho pripojenia pre",
-    "quickConnectInputACode": "Zadejte kód",
-    "quickConnectTitle": "Rýchle pripojenie",
-    "quickConnectWrongCode": "Zlý kód",
-    "random": "Náhodne",
-    "rating": "{count, plural, other{Hodnotenia} one{Hodnotenie}}",
-    "@rating": {
-        "description": "rating",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "reWatch": "Znovu pozrieť",
-    "read": "Prečítať {item}",
-    "@read": {
-        "description": "read",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "readFromStart": "Prečítať {item} od začiatku",
-    "@readFromStart": {
-        "description": "Read book from start",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "recursive": "Rekurzívne",
-    "refresh": "Obnoviť",
-    "refreshMetadata": "Obnoviť metadáta",
-    "refreshPopup": "Obnoviť - {name}",
-    "@refreshPopup": {
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "refreshPopupContentMetadata": "Metadáta sa obnovujú podľa nastavení a internetových služieb zapnutých v dashboarde.",
-    "related": "Súvisiace",
-    "releaseDate": "Dátum vydania",
-    "removeAsFavorite": "Odstrániť z obľúbených",
-    "removeFromCollection": "Odstrániť z kolekcie",
-    "removeFromPlaylist": "Odstrániť z playlistu",
-    "replaceAllImages": "Nahradiť všetky obrázky",
-    "addToNewPlaylist": "Nový playlist",
-    "addItemsToPlaylist": "Pridať {itemLength} položku(y) do playlistu",
-    "@addItemsToPlaylist": {
-        "placeholders": {
-            "itemLength": {
-                "type": "int"
-            }
-        }
-    },
-    "addedToPlaylist": "Pridané do {playlistName} playlistu",
-    "@addedToPlaylist": {
-        "placeholders": {
-            "playlistName": {
-                "type": "String"
-            }
-        }
-    },
-    "replaceExistingImages": "Nahradiť existujúce obrázky",
-    "restart": "Reštart",
-    "result": "Výsledok",
-    "resumable": "Možno pokračovať",
-    "resume": "Pokračovať {item}",
-    "@resume": {
-        "description": "resume",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "retrievePublicListOfUsers": "Načítať verejný zoznam používateľov",
-    "retry": "Skúsiť znova",
-    "runTime": "Dĺžka trvania",
-    "save": "Uložiť",
-    "saved": "Uložené",
-    "scanBiometricHint": "Overiť totožnosť",
-    "scanLibrary": "Skenovať knižnicu",
-    "scanYourFingerprintToAuthenticate": "Naskenuj svoj odtlačok pre overenie {user}",
-    "@scanYourFingerprintToAuthenticate": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "scanningName": "Skenovanie - {name}…",
-    "@scanningName": {
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "scrollToTop": "Prejsť hore",
-    "search": "Hľadať",
-    "season": "{count, plural, other{Série} one{Séria} }",
-    "@season": {
-        "description": "season",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "seconds": "{count, plural, other{Sekundy} one{Sekunda }}",
-    "@seconds": {
-        "description": "second",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "selectAll": "Označiť všetko",
-    "selectTime": "Vyber čas",
-    "selectViewType": "Vyber typ zobrazenia",
-    "selected": "Označené",
-    "selectedWith": "Označené {info}",
-    "@selectedWith": {
-        "description": "selected",
-        "placeholders": {
-            "info": {
-                "type": "String"
-            }
-        }
-    },
-    "separate": "Oddelený",
-    "server": "Server",
-    "set": "Nastaviť",
-    "@set": {
-        "description": "Use for setting a certain value",
-        "context": "Set 'time'"
-    },
-    "setIdentityTo": "Zmeniť identitu na {name}",
-    "@setIdentityTo": {
-        "description": "setIdentityTo",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "settingSecurityApplockTitle": "Zámok aplikácie",
-    "settings": "Nastavenia",
-    "settingsBlurEpisodesDesc": "Rozmazať všetky nasledujúce epizódy",
-    "settingsBlurEpisodesTitle": "Rozmazať nasledujúce epizódy",
-    "settingsBlurredPlaceholderDesc": "Zobraziť rozmazané pozadie pri načítavaní plagátov",
-    "settingsBlurredPlaceholderTitle": "Rozmazané placeholdery",
-    "settingsClientDesc": "Všeobecné, Časový limit, Rozloženie, Téma",
-    "settingsClientTitle": "Fladder",
-    "settingsContinue": "Pokračovať",
-    "settingsEnableOsMediaControls": "Povoliť systémové ovládanie médií",
-    "settingsEnableOsMediaControlsDesc": "Povoliť ovládanie prehrávania pomocou mediálnych tlačidiel a ukázať aktuálne prehrávané v systéme",
-    "settingsHomeBannerDescription": "Zobraziť ako prezentáciu, kolotoč alebo skryť baner",
-    "settingsHomeBannerTitle": "Domovský baner",
-    "settingsHomeBannerInformationDesc": "Informácie, které sa majú zobraziť na domovskom baneri",
-    "settingsHomeBannerInformationTitle": "Informácie na baneri",
-    "settingsHomeNextUpDesc": "Typ plagátov zobrazených na dashboarde",
-    "settingsHomeNextUpTitle": "Nasledujúce plagáty",
-    "settingsNextUpCutoffDays": "Limit dní pre „Ďalšie“",
-    "settingsPlayerCustomSubtitlesDesc": "Prispôsobiť veľkosť, farbu, polohu, obrys",
-    "settingsPlayerCustomSubtitlesTitle": "Prispôsobenie titulkov",
-    "settingsPlayerDesc": "Pomer strán, Pokročilý",
-    "settingsPlayerMobileWarning": "Zapnutie hardvérovej akcelerácie a natívnych titulkov libass v systéme Android môže spôsobiť, že niektoré titulky sa nebudú zobrazovať.",
-    "settingsPlayerNativeLibassAccelDesc": "Použiť vykresľovanie titulkov libass z video prehrávača",
-    "settingsPlayerNativeLibassAccelTitle": "Natívne libass titulky",
-    "settingsPlayerBufferSizeTitle": "Veľkosť vyrovnávacej pamäti videa",
-    "settingsPlayerBufferSizeDesc": "Nakonfigurovať veľkosť vyrovnávacej pamäte pre prehrávanie videa a určiť, koľko údajov sa načíta do medzipamäte.",
-    "settingsPlayerTitle": "Prehrávač",
-    "settingsPlayerVideoHWAccelDesc": "Použiť GPU na vykresľovanie videa (odporúčané)",
-    "settingsPlayerVideoHWAccelTitle": "Hardwarová akcelerácia",
-    "settingsPosterPinch": "Zväčšenie plagátov pomocou priblíženia prstami",
-    "settingsPosterSize": "Veľkosť plagátu",
-    "settingsPosterSlider": "Zobraziť posúvač mierky",
-    "settingsProfileDesc": "Obrazovka uzamknutia",
-    "settingsProfileTitle": "Profil",
-    "settingsQuickConnectTitle": "Rýchle pripojenie",
-    "settingsSecurity": "Bezpečnosť",
-    "settingsShowScaleSlider": "Zobraziť posúvač na zmenu veľkosti plagátu",
-    "settingsVisual": "Vizuál",
-    "shadow": "Tieň",
-    "showAlbum": "Zobraziť album",
-    "showDetails": "Zobraziť detaily",
-    "showEmpty": "Zobraziť prázdne",
-    "shuffleGallery": "Zamiešaj galériu",
-    "shuffleVideos": "Zamiešaj videá",
-    "somethingWentWrong": "Niečo sa pokazilo",
-    "somethingWentWrongPasswordCheck": "Niečo sa pokazilo. Skontroluj si heslo.",
-    "sortBy": "Zoradiť podľa",
-    "sortName": "Názov",
-    "sortOrder": "Poradie zoradenia",
-    "start": "Začiatok",
-    "studio": "{count, plural, other{Štúdia} one{Štúdio}}",
-    "@studio": {
-        "description": "studio",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "subtitleConfigurator": "Konfigurátor titulkov",
-    "subtitleConfiguratorPlaceHolder": "Nie je tu nič, len placeholder",
-    "subtitles": "Titulky",
-    "switchUser": "Prepnúť používateľa",
-    "sync": "Synchronizácia",
-    "syncDeleteItemDesc": "Zmazať všetky synchronizované dáta pre {item}?",
-    "@syncDeleteItemDesc": {
-        "description": "Sync delete item pop-up window",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "syncDeleteItemTitle": "Odstrániť synchronizovanú položku",
-    "syncDeletePopupPermanent": "Táto akcia je trvalá a odstráni všetky lokálne synchronizované súbory",
-    "syncDetails": "Podrobnosti synchronizácie",
-    "syncOpenParent": "Otvoriť nadradený",
-    "syncRemoveDataDesc": "Odstrániť synchronizované video dáta? Toto je trvalé a súbory budete musieť znova synchronizovať",
-    "syncRemoveDataTitle": "Odstrániť synchronizované dáta?",
-    "syncedItems": "Synchronizované položky",
-    "tag": "{count, plural, one{Tag} other{Tagy}}",
-    "@tag": {
-        "description": "tag",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "theme": "Téma",
-    "themeColor": "Farba témy",
-    "themeModeDark": "Tmavé",
-    "themeModeLight": "Svetlé",
-    "themeModeSystem": "Systémové",
-    "timeAndAnnotation": "{minutes} a {seconds}",
-    "@timeAndAnnotation": {
-        "description": "timeAndAnnotation",
-        "placeholders": {
-            "minutes": {
-                "type": "String"
-            },
-            "seconds": {
-                "type": "String"
-            }
-        }
-    },
-    "timeOut": "Časový limit",
-    "totalSize": "Celková veľkosť: {size}",
-    "@totalSize": {
-        "placeholders": {
-            "size": {
-                "type": "String"
-            }
-        }
-    },
-    "type": "{count, plural, other{Typy} one{Typ}}",
-    "@type": {
-        "description": "type",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "unPlayed": "Neprehrané",
-    "unableToConnectHost": "Nie je možné sa pripojiť k hostiteľovi",
-    "unableToReverseAction": "Túto akciu nie je možné vrátiť späť. Odstráni všetky nastavenia.",
-    "unknown": "Neznámy",
-    "useDefaults": "Použiť predvolené nastavenia",
-    "userName": "Meno používateľa",
-    "video": "Video",
-    "videoScaling": "Škálovanie videa",
-    "videoScalingContain": "Obsahuje",
-    "videoScalingCover": "Vyplniť",
-    "videoScalingFill": "Vyplniť",
-    "videoScalingFillScreenDesc": "Vyplniť navigačnú a stavovú lištu",
-    "videoScalingFillScreenTitle": "Vyplniť obrazovku",
-    "videoScalingFitHeight": "Prispôsobiť výške",
-    "videoScalingFitWidth": "Prispôsobiť šírke",
-    "videoScalingScaleDown": "Zmenšiť",
-    "viewPhotos": "Zobraziť fotografie",
-    "generateLoginLink": "Kód pre {userName}",
-    "@generateLoginLink": {
-        "description": "Code for a user to share",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            }
-        }
-    },
-    "shareLoginLink": "Zdieľať odkaz na prihlásenie",
-    "shareQRCode": "Zdieľať QR kód"
+  "active": "Aktívne",
+  "amoledBlack": "Amoled čierna",
+  "actor": "{count, plural, other{Herci} one{Herec/Herečka}}",
+  "@actor": {
+    "description": "actor",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "addAsFavorite": "Pridať ako obľúbené",
+  "addToCollection": "Pridať do kolekcie",
+  "addToPlaylist": "Pridať do playlistu",
+  "advanced": "Pokročilé",
+  "all": "Všetko",
+  "appLockAutoLogin": "Automatické prihlásenie",
+  "appLockBiometrics": "Biometrika",
+  "appLockPasscode": "Prístupový kód",
+  "accept": "Prijať",
+  "about": "O appke",
+  "appLockTitle": "Nastavenie metódy prihlásenia pre {userName}",
+  "@appLockTitle": {
+    "description": "Pop-up to pick a login method",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      }
+    }
+  },
+  "ascending": "Vzostupne",
+  "audio": "Zvuk",
+  "autoPlay": "Automatické prehrávanie",
+  "backgroundBlur": "Rozmazanie pozadia",
+  "backgroundOpacity": "Priehľadnosť pozadia",
+  "biometricsFailedCheckAgain": "Biometria zlyhala. Skontrolujte nastavenia a skúste to znova.",
+  "bold": "Hrubý",
+  "cancel": "Zrušiť",
+  "change": "Zmeniť",
+  "clearAllSettings": "Vyčistiť všetky nastavenia",
+  "clearAllSettingsQuestion": "Vynulovať všetky nastavenia?",
+  "clearChanges": "Vynulovanie zmien",
+  "clearSelection": "Vynulovať výber",
+  "close": "Zatvoriť",
+  "code": "Kód",
+  "collectionFolder": "Zložka kolekcie",
+  "color": "Farba",
+  "combined": "Kombinované",
+  "communityRating": "Hodnotenie komunity",
+  "continuePage": "Pokračovať - strana {page}",
+  "@continuePage": {
+    "description": "Continue - page 1",
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "controls": "Ovládanie",
+  "dashboard": "Ovládací panel",
+  "dashboardContinue": "Pokračovať",
+  "dashboardContinueListening": "Pokračovať v počúvaní",
+  "dashboardContinueReading": "Pokračovať v čítaní",
+  "dashboardContinueWatching": "Pokračovať v sledovaní",
+  "nextUp": "Ďalej",
+  "dashboardRecentlyAdded": "Nedávno pridané v {name}",
+  "@dashboardRecentlyAdded": {
+    "description": "Recently added on home screen",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dateAdded": "Dátum pridania",
+  "dateLastContentAdded": "Dátum posledného pridania obsahu",
+  "datePlayed": "Dátum prehrania",
+  "days": "Dni",
+  "delete": "Odstrániť",
+  "clear": "Vyčistiť",
+  "chapter": "{count, plural, other{Chapters} one{Chapter}}",
+  "@chapter": {
+    "description": "chapter",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "nativeName": "Slovenčina",
+  "deleteFileFromSystem": "Odstránením tejto položky {item} ju vymažete zo súborového systému aj z vašej knižnice médií. Naozaj chcete pokračovať?",
+  "@deleteFileFromSystem": {
+    "description": "Delete file from system",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteItem": "Odstrániť {item}?",
+  "@deleteItem": {
+    "description": "deleteItem",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "descending": "Zostupne",
+  "director": "{count, plural, other{Režisér} two{Režiséri} one{Režisér}}",
+  "@director": {
+    "description": "director",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "disableFilters": "Vypnúť filtre",
+  "disabled": "Vypnuté",
+  "discovered": "Objavené",
+  "displayLanguage": "Jazyk zobrazenia",
+  "downloadsClearDesc": "Odstrániť všetky synchronizované dáta a vymazať všetky dáta pre každého synchronizovaného používateľa?",
+  "downloadsClearTitle": "Vymazať synchronizované dáta",
+  "downloadsPath": "Cesta",
+  "downloadsSyncedData": "Synchronizované dáta",
+  "downloadsTitle": "Stiahnuté",
+  "dynamicText": "Dynamický",
+  "editMetadata": "Upraviť metadata",
+  "empty": "Prázdne",
+  "enabled": "Zapnuté",
+  "endsAt": "končí v {date}",
+  "@endsAt": {
+    "description": "endsAt",
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "jm"
+      }
+    }
+  },
+  "episode": "{count, plural, other{Epizódy} one{Epizóda} few{Epizódy}}",
+  "@episode": {
+    "description": "episode",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "error": "Chyba",
+  "failedToLoadImage": "Nepodarilo sa načítať obrázok",
+  "favorite": "Obľúbené",
+  "favorites": "Obľúbené",
+  "fetchingLibrary": "Načítavam položky knižnice…",
+  "filter": "{count, plural, other{Filtre} one{Filter} few{Filtre}}",
+  "@filter": {
+    "description": "filter",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "folders": "Priečinky",
+  "fontColor": "Farba písma",
+  "fontSize": "Veľkosť písma",
+  "forceRefresh": "Vynútiť obnovenie",
+  "genre": "{count, plural, other{Žánre} one{Žáner} few{Žánre}}",
+  "@genre": {
+    "description": "genre",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "goTo": "Prejsť na",
+  "grid": "Mriežka",
+  "group": "Skupina",
+  "groupBy": "Zoskupuť podľa",
+  "heightOffset": "Výškový posun",
+  "hide": "Skryť",
+  "hideEmpty": "Skryť prázdne",
+  "home": "Domov",
+  "homeBannerSlideshow": "Prezentácia",
+  "homeBannerCarousel": "Kolotoč",
+  "identify": "Identifikovať",
+  "immediately": "Ihneď",
+  "incorrectPinTryAgain": "Nesprávny PIN. Skúste to znova.",
+  "info": "Info",
+  "invalidUrl": "Neplatná URL",
+  "invalidUrlDesc": "URL musí začínať http(s)://",
+  "itemCount": "Počet položiek: {count}",
+  "@itemCount": {
+    "description": "Item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "label": "{count, plural, other{Označenia} one{Označenie}}",
+  "@label": {
+    "description": "label",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "library": "{count, plural, other{Knižnice} one{Knižnica}}",
+  "@library": {
+    "description": "Plural",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "libraryFetchNoItemsFound": "Nenašli sa žiadne položky. Skúste iné nastavenia.",
+  "libraryPageSizeDesc": "Nastavte množstvo položiek, ktoré sa majú načítať naraz. Hodnota 0 vypne stránkovanie.",
+  "libraryPageSizeTitle": "Veľkosť stránky knižnice",
+  "light": "Svetlý",
+  "list": "List",
+  "lockscreen": "Obrazovka uzamknutia",
+  "loggedIn": "Prihlásený/á",
+  "login": "Prihlásiť sa",
+  "logout": "Odhlásiť sa",
+  "logoutUserPopupContent": "Týmto odhlásite používateľa {userName} a používateľ sa zmaže z aplikácie.\nBudete sa musieť znova prihlásiť na server {serverName}.",
+  "@logoutUserPopupContent": {
+    "description": "Pop-up for logging out the user description",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      },
+      "serverName": {
+        "type": "String"
+      }
+    }
+  },
+  "logoutUserPopupTitle": "Odhlásiť používateľa {userName}?",
+  "@logoutUserPopupTitle": {
+    "description": "Pop-up for logging out the user",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      }
+    }
+  },
+  "loop": "Opakovať",
+  "markAsUnwatched": "Označiť ako nepozreté",
+  "markAsWatched": "Označiť ako pozreté",
+  "masonry": "Dlaždice",
+  "mediaTypeBase": "Typ základne",
+  "mediaTypeBook": "Kniha",
+  "mediaTypeBoxset": "Médiá",
+  "mediaTypeEpisode": "Epizóda",
+  "mediaTypeFolder": "Priečinok",
+  "mediaTypeMovie": "Film",
+  "mediaTypePerson": "Osoba",
+  "mediaTypePhoto": "Fotka",
+  "mediaTypePhotoAlbum": "Foto album",
+  "mediaTypePlaylist": "Playlist",
+  "mediaTypeSeason": "Séria",
+  "mediaTypeSeries": "Seriál",
+  "metaDataSavedFor": "Metadáta uložené pre {item}",
+  "@metaDataSavedFor": {
+    "description": "metaDataSavedFor",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "metadataRefreshDefault": "Vyhľadať nové a aktualizované súbory",
+  "metadataRefreshFull": "Nahradiť všetky metadata",
+  "metadataRefreshValidation": "Nájsť chýbajúce metadáta",
+  "minutes": "{count, plural, other{Minúty} one{Minúta} }",
+  "@minutes": {
+    "description": "minute",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "mode": "Mód",
+  "moreFrom": "Viac od {info}",
+  "@moreFrom": {
+    "description": "More from",
+    "placeholders": {
+      "info": {
+        "type": "String"
+      }
+    }
+  },
+  "moreOptions": "Viac nastavení",
+  "mouseDragSupport": "Presuňte pomocou myši",
+  "musicAlbum": "Album",
+  "name": "Názov",
+  "navigation": "Navigácia",
+  "navigationDashboard": "Dashboard",
+  "navigationFavorites": "Obľúbené",
+  "navigationSync": "Synchronizované",
+  "never": "Nikdy",
+  "noItemsSynced": "Žiadne synchronizované položky",
+  "noItemsToShow": "Žiadne položky na zobrazenie",
+  "noRating": "Žiadne hodnotenie",
+  "noResults": "Žiadne výsledky",
+  "noServersFound": "Nenájdené žiadne nové servery",
+  "noSuggestionsFound": "Nenájdené žiadne návrhy",
+  "none": "Žiadny",
+  "normal": "Normálny",
+  "notPartOfAlbum": "Nie je súčasťou albumu",
+  "openParent": "Otvoriť rodiča",
+  "openShow": "Otvoriť seriál",
+  "openWebLink": "Otvoriť webový odkaz",
+  "options": "Možnosti",
+  "other": "Ostatné",
+  "outlineColor": "Farba obrysu",
+  "outlineSize": "Veľkosť obrysu",
+  "overview": "Prehľad",
+  "page": "Strana {index}",
+  "@page": {
+    "description": "page",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "parentalRating": "Rodičovské hodnotenie",
+  "password": "Heslo",
+  "pathClearTitle": "Vymazať cestu k stiahnutým",
+  "pathEditDesc": "Táto adresa je nastavená pre všetkých používateľov. Synchronizované údaje už nebudú prístupné, ale zostanú uložené na vašom disku.",
+  "pathEditSelect": "Vybrať adresu pre stiahnuté",
+  "pathEditTitle": "Zmeň adresu",
+  "play": "Prehrať {item}",
+  "@play": {
+    "description": "Play with",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "playCount": "Počet prehratí",
+  "playFrom": "Prehrať z {name}",
+  "@playFrom": {
+    "description": "playFrom",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playFromStart": "Prehrať {name} od začiatku",
+  "@playFromStart": {
+    "description": "speel vanaf het begin",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playLabel": "Prehrať",
+  "playVideos": "Prehrať videá",
+  "played": "Prehrané",
+  "quickConnectAction": "Zadajte kód rýchleho pripojenia pre",
+  "quickConnectInputACode": "Zadejte kód",
+  "quickConnectTitle": "Rýchle pripojenie",
+  "quickConnectWrongCode": "Zlý kód",
+  "random": "Náhodne",
+  "rating": "{count, plural, other{Hodnotenia} one{Hodnotenie}}",
+  "@rating": {
+    "description": "rating",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "reWatch": "Znovu pozrieť",
+  "read": "Prečítať {item}",
+  "@read": {
+    "description": "read",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "readFromStart": "Prečítať {item} od začiatku",
+  "@readFromStart": {
+    "description": "Read book from start",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "recursive": "Rekurzívne",
+  "refresh": "Obnoviť",
+  "refreshMetadata": "Obnoviť metadáta",
+  "refreshPopup": "Obnoviť - {name}",
+  "@refreshPopup": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "refreshPopupContentMetadata": "Metadáta sa obnovujú podľa nastavení a internetových služieb zapnutých v dashboarde.",
+  "related": "Súvisiace",
+  "releaseDate": "Dátum vydania",
+  "removeAsFavorite": "Odstrániť z obľúbených",
+  "removeFromCollection": "Odstrániť z kolekcie",
+  "removeFromPlaylist": "Odstrániť z playlistu",
+  "replaceAllImages": "Nahradiť všetky obrázky",
+  "addToNewPlaylist": "Nový playlist",
+  "addItemsToPlaylist": "Pridať {itemLength} položku(y) do playlistu",
+  "@addItemsToPlaylist": {
+    "placeholders": {
+      "itemLength": {
+        "type": "int"
+      }
+    }
+  },
+  "addedToPlaylist": "Pridané do {playlistName} playlistu",
+  "@addedToPlaylist": {
+    "placeholders": {
+      "playlistName": {
+        "type": "String"
+      }
+    }
+  },
+  "replaceExistingImages": "Nahradiť existujúce obrázky",
+  "restart": "Reštart",
+  "result": "Výsledok",
+  "resumable": "Možno pokračovať",
+  "resume": "Pokračovať {item}",
+  "@resume": {
+    "description": "resume",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "retrievePublicListOfUsers": "Načítať verejný zoznam používateľov",
+  "retry": "Skúsiť znova",
+  "runTime": "Dĺžka trvania",
+  "save": "Uložiť",
+  "saved": "Uložené",
+  "scanBiometricHint": "Overiť totožnosť",
+  "scanLibrary": "Skenovať knižnicu",
+  "scanYourFingerprintToAuthenticate": "Naskenuj svoj odtlačok pre overenie {user}",
+  "@scanYourFingerprintToAuthenticate": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "scanningName": "Skenovanie - {name}…",
+  "@scanningName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "scrollToTop": "Prejsť hore",
+  "search": "Hľadať",
+  "season": "{count, plural, other{Série} one{Séria} }",
+  "@season": {
+    "description": "season",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "seconds": "{count, plural, other{Sekundy} one{Sekunda }}",
+  "@seconds": {
+    "description": "second",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "selectAll": "Označiť všetko",
+  "selectTime": "Vyber čas",
+  "selectViewType": "Vyber typ zobrazenia",
+  "selected": "Označené",
+  "selectedWith": "Označené {info}",
+  "@selectedWith": {
+    "description": "selected",
+    "placeholders": {
+      "info": {
+        "type": "String"
+      }
+    }
+  },
+  "separate": "Oddelený",
+  "server": "Server",
+  "set": "Nastaviť",
+  "@set": {
+    "description": "Use for setting a certain value",
+    "context": "Set 'time'"
+  },
+  "setIdentityTo": "Zmeniť identitu na {name}",
+  "@setIdentityTo": {
+    "description": "setIdentityTo",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "settingSecurityApplockTitle": "Zámok aplikácie",
+  "settings": "Nastavenia",
+  "settingsBlurEpisodesDesc": "Rozmazať všetky nasledujúce epizódy",
+  "settingsBlurEpisodesTitle": "Rozmazať nasledujúce epizódy",
+  "settingsBlurredPlaceholderDesc": "Zobraziť rozmazané pozadie pri načítavaní plagátov",
+  "settingsBlurredPlaceholderTitle": "Rozmazané placeholdery",
+  "settingsClientDesc": "Všeobecné, Časový limit, Rozloženie, Téma",
+  "settingsClientTitle": "Driftfin",
+  "settingsContinue": "Pokračovať",
+  "settingsEnableOsMediaControls": "Povoliť systémové ovládanie médií",
+  "settingsEnableOsMediaControlsDesc": "Povoliť ovládanie prehrávania pomocou mediálnych tlačidiel a ukázať aktuálne prehrávané v systéme",
+  "settingsHomeBannerDescription": "Zobraziť ako prezentáciu, kolotoč alebo skryť baner",
+  "settingsHomeBannerTitle": "Domovský baner",
+  "settingsHomeBannerInformationDesc": "Informácie, které sa majú zobraziť na domovskom baneri",
+  "settingsHomeBannerInformationTitle": "Informácie na baneri",
+  "settingsHomeNextUpDesc": "Typ plagátov zobrazených na dashboarde",
+  "settingsHomeNextUpTitle": "Nasledujúce plagáty",
+  "settingsNextUpCutoffDays": "Limit dní pre „Ďalšie“",
+  "settingsPlayerCustomSubtitlesDesc": "Prispôsobiť veľkosť, farbu, polohu, obrys",
+  "settingsPlayerCustomSubtitlesTitle": "Prispôsobenie titulkov",
+  "settingsPlayerDesc": "Pomer strán, Pokročilý",
+  "settingsPlayerMobileWarning": "Zapnutie hardvérovej akcelerácie a natívnych titulkov libass v systéme Android môže spôsobiť, že niektoré titulky sa nebudú zobrazovať.",
+  "settingsPlayerNativeLibassAccelDesc": "Použiť vykresľovanie titulkov libass z video prehrávača",
+  "settingsPlayerNativeLibassAccelTitle": "Natívne libass titulky",
+  "settingsPlayerBufferSizeTitle": "Veľkosť vyrovnávacej pamäti videa",
+  "settingsPlayerBufferSizeDesc": "Nakonfigurovať veľkosť vyrovnávacej pamäte pre prehrávanie videa a určiť, koľko údajov sa načíta do medzipamäte.",
+  "settingsPlayerTitle": "Prehrávač",
+  "settingsPlayerVideoHWAccelDesc": "Použiť GPU na vykresľovanie videa (odporúčané)",
+  "settingsPlayerVideoHWAccelTitle": "Hardwarová akcelerácia",
+  "settingsPosterPinch": "Zväčšenie plagátov pomocou priblíženia prstami",
+  "settingsPosterSize": "Veľkosť plagátu",
+  "settingsPosterSlider": "Zobraziť posúvač mierky",
+  "settingsProfileDesc": "Obrazovka uzamknutia",
+  "settingsProfileTitle": "Profil",
+  "settingsQuickConnectTitle": "Rýchle pripojenie",
+  "settingsSecurity": "Bezpečnosť",
+  "settingsShowScaleSlider": "Zobraziť posúvač na zmenu veľkosti plagátu",
+  "settingsVisual": "Vizuál",
+  "shadow": "Tieň",
+  "showAlbum": "Zobraziť album",
+  "showDetails": "Zobraziť detaily",
+  "showEmpty": "Zobraziť prázdne",
+  "shuffleGallery": "Zamiešaj galériu",
+  "shuffleVideos": "Zamiešaj videá",
+  "somethingWentWrong": "Niečo sa pokazilo",
+  "somethingWentWrongPasswordCheck": "Niečo sa pokazilo. Skontroluj si heslo.",
+  "sortBy": "Zoradiť podľa",
+  "sortName": "Názov",
+  "sortOrder": "Poradie zoradenia",
+  "start": "Začiatok",
+  "studio": "{count, plural, other{Štúdia} one{Štúdio}}",
+  "@studio": {
+    "description": "studio",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "subtitleConfigurator": "Konfigurátor titulkov",
+  "subtitleConfiguratorPlaceHolder": "Nie je tu nič, len placeholder",
+  "subtitles": "Titulky",
+  "switchUser": "Prepnúť používateľa",
+  "sync": "Synchronizácia",
+  "syncDeleteItemDesc": "Zmazať všetky synchronizované dáta pre {item}?",
+  "@syncDeleteItemDesc": {
+    "description": "Sync delete item pop-up window",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "syncDeleteItemTitle": "Odstrániť synchronizovanú položku",
+  "syncDeletePopupPermanent": "Táto akcia je trvalá a odstráni všetky lokálne synchronizované súbory",
+  "syncDetails": "Podrobnosti synchronizácie",
+  "syncOpenParent": "Otvoriť nadradený",
+  "syncRemoveDataDesc": "Odstrániť synchronizované video dáta? Toto je trvalé a súbory budete musieť znova synchronizovať",
+  "syncRemoveDataTitle": "Odstrániť synchronizované dáta?",
+  "syncedItems": "Synchronizované položky",
+  "tag": "{count, plural, one{Tag} other{Tagy}}",
+  "@tag": {
+    "description": "tag",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "theme": "Téma",
+  "themeColor": "Farba témy",
+  "themeModeDark": "Tmavé",
+  "themeModeLight": "Svetlé",
+  "themeModeSystem": "Systémové",
+  "timeAndAnnotation": "{minutes} a {seconds}",
+  "@timeAndAnnotation": {
+    "description": "timeAndAnnotation",
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      },
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "timeOut": "Časový limit",
+  "totalSize": "Celková veľkosť: {size}",
+  "@totalSize": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "type": "{count, plural, other{Typy} one{Typ}}",
+  "@type": {
+    "description": "type",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "unPlayed": "Neprehrané",
+  "unableToConnectHost": "Nie je možné sa pripojiť k hostiteľovi",
+  "unableToReverseAction": "Túto akciu nie je možné vrátiť späť. Odstráni všetky nastavenia.",
+  "unknown": "Neznámy",
+  "useDefaults": "Použiť predvolené nastavenia",
+  "userName": "Meno používateľa",
+  "video": "Video",
+  "videoScaling": "Škálovanie videa",
+  "videoScalingContain": "Obsahuje",
+  "videoScalingCover": "Vyplniť",
+  "videoScalingFill": "Vyplniť",
+  "videoScalingFillScreenDesc": "Vyplniť navigačnú a stavovú lištu",
+  "videoScalingFillScreenTitle": "Vyplniť obrazovku",
+  "videoScalingFitHeight": "Prispôsobiť výške",
+  "videoScalingFitWidth": "Prispôsobiť šírke",
+  "videoScalingScaleDown": "Zmenšiť",
+  "viewPhotos": "Zobraziť fotografie",
+  "generateLoginLink": "Kód pre {userName}",
+  "@generateLoginLink": {
+    "description": "Code for a user to share",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      }
+    }
+  },
+  "shareLoginLink": "Zdieľať odkaz na prihlásenie",
+  "shareQRCode": "Zdieľať QR kód"
 }

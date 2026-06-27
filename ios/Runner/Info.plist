@@ -54,7 +54,7 @@
 			<string>fetch</string>
 		</array>
 
-		<!-- URL scheme for deep linking (example: fladder://details?id=xyz) -->
+		<!-- URL scheme for deep linking (example: driftfin://details?id=xyz) -->
 		<key>CFBundleURLTypes</key>
 		<array>
 			<dict>

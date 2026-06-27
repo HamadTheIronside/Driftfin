@@ -16,4 +16,7 @@ Interest in contributing? Here are a couple of ways you can help:
 <img src="https://hosted.weblate.org/widget/fladder/fladder/multi-auto.svg" alt="Translation status" />
 </a>
 
+> [!NOTE]
+> This Weblate project belongs to the upstream **Fladder** project; Driftfin does not yet host its own translation project.
+
 Thank you for helping to make this project better! 🙌

@@ -1,802 +1,802 @@
 {
-    "nativeName": "Magyar",
-    "about": "A Fladderről",
-    "actor": "{count, plural, other{Színészek} one{Színész}}",
-    "@actor": {
-        "description": "actor",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "addAsFavorite": "Hozzáadás a kedvencekhez",
-    "addToCollection": "Hozzáadás gyűjteményhez",
-    "addToPlaylist": "Hozzáadás lejátszási listához",
-    "advanced": "Haladó",
-    "all": "Mind",
-    "amoledBlack": "AMOLED fekete",
-    "appLockAutoLogin": "Automatikus belépés",
-    "appLockBiometrics": "Biometria",
-    "appLockPasscode": "Belépő kód",
-    "appLockTitle": "Bejelentkezési mód választása {userName} fiókjához",
-    "@appLockTitle": {
-        "description": "Pop-up to pick a login method",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            }
-        }
-    },
-    "ascending": "Növekvő",
-    "audio": "{count, plural, one{Hang} other{Hang}}",
-    "autoPlay": "Automatikus lejátszás",
-    "backgroundBlur": "Homályosított háttér",
-    "backgroundOpacity": "Háttér láthatósága",
-    "biometricsFailedCheckAgain": "Sikertelen biometrikus azonosítás. Ellenőrizze a beállításokat és próbálja meg újra.",
-    "bold": "Félkövér",
-    "cancel": "Mégse",
-    "change": "Megváltoztatás",
-    "chapter": "{count, plural, other{Fejezetek} one{Fejezet}}",
-    "@chapter": {
-        "description": "chapter",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "clear": "Törlés",
-    "clearAllSettings": "Beállítások törlése",
-    "clearAllSettingsQuestion": "Összes beállítás törlése?",
-    "clearChanges": "Változtatások törlése",
-    "clearSelection": "Kijelölés törlése",
-    "close": "Bezárás",
-    "code": "Kód",
-    "collectionFolder": "{count, plural, one{Gyűjtemény} other{Gyűjtemények}}",
-    "color": "Szín",
-    "combined": "Kombinált",
-    "communityRating": "Közösségi értékelés",
-    "continuePage": "Tovább - {page}. oldal",
-    "@continuePage": {
-        "description": "Continue - page 1",
-        "placeholders": {
-            "page": {
-                "type": "int"
-            }
-        }
-    },
-    "controls": "Vezérlés",
-    "dashboard": "Főoldal",
-    "dashboardContinue": "Folytatás",
-    "dashboardContinueListening": "Hallgatás folytatása",
-    "dashboardContinueReading": "Olvasás folytatása",
-    "dashboardContinueWatching": "Megtekintés folytatása",
-    "nextUp": "Következő",
-    "dateAdded": "Hozzáadás dátuma",
-    "dateLastContentAdded": "Legújabb tartalom hozzáadásának dátuma",
-    "datePlayed": "Lejátszás dátuma",
-    "days": "Napok",
-    "delete": "Törlés",
-    "deleteFileFromSystem": "A kiválasztott {item} elem törlése a fájlrendszerből és a médiakönyvtárból is törölni fogja. Biztosan folytatja?",
-    "@deleteFileFromSystem": {
-        "description": "Delete file from system",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "deleteItem": "{item} törlése?",
-    "@deleteItem": {
-        "description": "deleteItem",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "descending": "Csökkenő",
-    "director": "{count, plural, other{Rendezők} one{Rendező}}",
-    "@director": {
-        "description": "director",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "disableFilters": "Szűrők kikapcsolása",
-    "disabled": "Ki",
-    "discovered": "Felfedezett",
-    "displayLanguage": "Megjelenítés nyelve",
-    "downloadsClearDesc": "Összes szinkronizált adat törlése minden szinkronizált felhasználótól?",
-    "downloadsClearTitle": "Szinkronizált adatok törlése",
-    "downloadsPath": "Elérési útvonal",
-    "downloadsSyncedData": "Szinkronizált adat",
-    "downloadsTitle": "Letöltések",
-    "dynamicText": "Dinamikus",
-    "editMetadata": "Metaadatok szerkesztése",
-    "empty": "Üres",
-    "enabled": "Be",
-    "endsAt": "{date}-kor ér véget",
-    "@endsAt": {
-        "description": "endsAt",
-        "placeholders": {
-            "date": {
-                "type": "DateTime",
-                "format": "jm"
-            }
-        }
-    },
-    "episode": "{count, plural, other{Epizódok} one{Epizód}}",
-    "@episode": {
-        "description": "episode",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "error": "Hiba",
-    "failedToLoadImage": "Kép betöltése sikertelen",
-    "favorite": "Kedvenc",
-    "favorites": "Kedvencek",
-    "fetchingLibrary": "Könyvtár elemeinek betöltése…",
-    "filter": "{count, plural, other{Szűrők} one{Szűrő}}",
-    "@filter": {
-        "description": "filter",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "folders": "Mappák",
-    "fontColor": "Betűszín",
-    "fontSize": "Betűméret",
-    "forceRefresh": "Kényszerfrissítés",
-    "genre": "{count, plural, other{Műfajok} one{Műfaj}}",
-    "@genre": {
-        "description": "genre",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "goTo": "Ugrás",
-    "grid": "Rács",
-    "group": "Csoport",
-    "groupBy": "Csoportosítás",
-    "heightOffset": "Függőleges eltolás",
-    "hide": "Elrejtés",
-    "hideEmpty": "Üresek elrejtése",
-    "homeBannerSlideshow": "Diavetítés",
-    "identify": "Azonosítás",
-    "immediately": "Azonnal",
-    "incorrectPinTryAgain": "Hibás PIN. Próbálja újra.",
-    "info": "Infó",
-    "invalidUrl": "Érvénytelen URL",
-    "invalidUrlDesc": "Az URL http(s):// résszel kell kezdődjön",
-    "itemCount": "Elemek száma: {count}",
-    "@itemCount": {
-        "description": "Item count",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "label": "{count, plural, other{Címkék} one{Címke}}",
-    "@label": {
-        "description": "label",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "library": "{count, plural, other{Könyvtárak} one{Könyvtár}}",
-    "@library": {
-        "description": "Plural",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "libraryFetchNoItemsFound": "Ilyen elem nem található. Próbálja újra.",
-    "libraryPageSizeDesc": "Állítsa be az egyszerre mutatott elemek számát. A 0 kikapcsolja az oldalakra bontást.",
-    "libraryPageSizeTitle": "Könyvtár oldal mérete",
-    "light": "Világos",
-    "list": "Lista",
-    "lockscreen": "Zárolt képernyő",
-    "loggedIn": "Bejelentkezve",
-    "login": "Bejelentkezés",
-    "logout": "Kijelentkezés",
-    "logoutUserPopupContent": "Ez kijelentkezteti a {userName} fiókból, és törli azt az alkalmazásból.\nÚjra be kell jelentkeznie a {serverName} szerverre.",
-    "@logoutUserPopupContent": {
-        "description": "Pop-up for logging out the user description",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            },
-            "serverName": {
-                "type": "String"
-            }
-        }
-    },
-    "logoutUserPopupTitle": "{userName} kijelentkeztetése?",
-    "@logoutUserPopupTitle": {
-        "description": "Pop-up for logging out the user",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            }
-        }
-    },
-    "loop": "Ismétlés",
-    "markAsUnwatched": "Megjelölés nem megtekintettként",
-    "markAsWatched": "Megjelölés megtekintettként",
-    "masonry": "Mozaik",
-    "mediaTypeBase": "Alaptípus",
-    "mediaTypeBook": "{count, plural, one{Könyv} other{Könyvek}}",
-    "accept": "Elfogadás",
-    "active": "Aktív",
-    "dashboardRecentlyAdded": "Nemrég hozzáadott a {name} kategóriában",
-    "@dashboardRecentlyAdded": {
-        "description": "Recently added on home screen",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "mediaTypeEpisode": "{count, plural, one{Epizód} other{Epizódok}}",
-    "mediaTypeFolder": "{count, plural, one{Mappa} other{Mappák}}",
-    "mediaTypeMovie": "{count, plural, one{Film} other{Filmek}}",
-    "mediaTypePerson": "{count, plural, one{Személy} other{Személyek}}",
-    "mediaTypePhoto": "{count, plural, one{Fotó} other{Fotók}}",
-    "mediaTypePhotoAlbum": "{count, plural, one{Fotóalbum} other{Fotóalbumok}}",
-    "mediaTypePlaylist": "{count, plural, one{Lejátszási lista} other{Lejátszási listák}}",
-    "mediaTypeSeason": "{count, plural, one{Évad} other{Évadok}}",
-    "mediaTypeSeries": "{count, plural, one{Sorozat} other{Sorozatok}}",
-    "metaDataSavedFor": "Metaadatok elmentve {item} elemhez",
-    "@metaDataSavedFor": {
-        "description": "metaDataSavedFor",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "metadataRefreshDefault": "Új vagy megváltoztatott fájlok keresése",
-    "metadataRefreshFull": "Összes metaadat cseréje",
-    "metadataRefreshValidation": "Hiányzó metaadatok keresése",
-    "minutes": "{count, plural, other{Percek} one{Perc}}",
-    "@minutes": {
-        "description": "minute",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "mode": "Mód",
-    "moreFrom": "Több ettől: {info}",
-    "@moreFrom": {
-        "description": "More from",
-        "placeholders": {
-            "info": {
-                "type": "String"
-            }
-        }
-    },
-    "moreOptions": "Több lehetőség",
-    "mouseDragSupport": "Egér használata elhúzásra",
-    "musicAlbum": "{count, plural, one{Album} other{Albumok}}",
-    "name": "Név",
-    "navigation": "Navigáció",
-    "navigationDashboard": "Gyorspanel",
-    "navigationFavorites": "Kedvencek",
-    "navigationSync": "Szinkronizálva",
-    "never": "Soha",
-    "noItemsSynced": "Nincsenek szinkronizált elemek",
-    "noItemsToShow": "Nincsenek mutatható elemek",
-    "noRating": "Nincs értékelés",
-    "noResults": "Nincs találat",
-    "noServersFound": "Nem található új szerver",
-    "noSuggestionsFound": "Nem található javaslat",
-    "none": "Nincs",
-    "normal": "Normál",
-    "notPartOfAlbum": "Nem része albumnak",
-    "openParent": "Szülő megnyitása",
-    "openShow": "Műsor megnyitása",
-    "openWebLink": "Web link megnyitása",
-    "options": "Beállítások",
-    "other": "Más",
-    "outlineColor": "Körvonal színe",
-    "outlineSize": "Körvonal vastagsága",
-    "overview": "Áttekintés",
-    "page": "{index}. oldal",
-    "@page": {
-        "description": "page",
-        "placeholders": {
-            "index": {
-                "type": "int"
-            }
-        }
-    },
-    "parentalRating": "Korhatár-besorolás",
-    "password": "Jelszó",
-    "pathClearTitle": "Letöltési útvonal törlése",
-    "pathEditDesc": "Ez az útvonal minden felhasználóra közösen van beállítva, a szinkronizált adatok nem lesznek elérhetőek, viszont a tárhelyen maradnak.",
-    "pathEditSelect": "Letöltési útvonal kiválasztása",
-    "pathEditTitle": "Helyzet megváltoztatása",
-    "play": "{item} lejátszása",
-    "@play": {
-        "description": "Play with",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "playCount": "Lejátszások száma",
-    "playFrom": "Lejátszás innen: {name}",
-    "@playFrom": {
-        "description": "playFrom",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "playFromStart": "{name} lejátszása elölről",
-    "@playFromStart": {
-        "description": "speel vanaf het begin",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "playLabel": "Lejátszás",
-    "playVideos": "Videók lejátszása",
-    "played": "Lejátszva",
-    "quickConnectInputACode": "Adja meg a kódot",
-    "quickConnectWrongCode": "Hibás kód",
-    "random": "Véletlenszerű",
-    "rating": "{count, plural, other{Értékelések} one{Értékelés}}",
-    "@rating": {
-        "description": "rating",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "reWatch": "Újranézés",
-    "read": "{item} elolvasása",
-    "@read": {
-        "description": "read",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "readFromStart": "{item} elolvasása elölről",
-    "@readFromStart": {
-        "description": "Read book from start",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "recursive": "Rekurzív",
-    "refresh": "Frissítés",
-    "refreshMetadata": "Metaadatok frissítése",
-    "refreshPopup": "Frissítés - {name}",
-    "@refreshPopup": {
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "home": "Kezdőlap",
-    "homeBannerCarousel": "Galéria",
-    "mediaTypeBoxset": "{count, plural, one{Gyűjtemény} other{Gyűjtemények}}",
-    "@mediaTypeBoxset": {
-        "description": "Boxset (plural)",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "quickConnectAction": "Add meg a gyorscsatlakozási kódot a",
-    "quickConnectTitle": "Gyors csatlakozás",
-    "popularity": "Népszerűség",
-    "refreshPopupContentMetadata": "A metadatok a kezelőpulton bekapcsolt internetes szolgáltatók és a beállítások alapján frissülnek.",
-    "related": "Kapcsolódó",
-    "releaseDate": "Kiadás dátuma",
-    "contentRating": "Tartalmi besorolás",
-    "removeAsFavorite": "Eltávolítás a kedvencekból",
-    "removeFromCollection": "Eltávolítás a gyűjteményből",
-    "removeFromPlaylist": "Eltávolítás a lejátszási listáról",
-    "replaceAllImages": "Az összes kép cseréje",
-    "replaceExistingImages": "A létező képek cseréje",
-    "restart": "Újraindítás",
-    "result": "Eredmény",
-    "resumable": "Folytatható",
-    "resume": "{item} folytatása",
-    "@resume": {
-        "description": "resume",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "retrievePublicListOfUsers": "A nyilvános felhasználói lista letöltése",
-    "retry": "Újra",
-    "runTime": "Lejátszási idő",
-    "runtimeMinutesTitle": "Lejátszási idő (perc)",
-    "runtimeRangeMinutes": "{min} - {max} perc",
-    "@runtimeRangeMinutes": {
-        "placeholders": {
-            "min": {
-                "type": "int"
-            },
-            "max": {
-                "type": "int"
-            }
-        }
-    },
-    "minutesShort": "{count} perc",
-    "@minutesShort": {
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "5"
-            }
-        }
-    },
-    "streamingServices": "Szolgáltatók ({count})",
-    "@streamingServices": {
-        "description": "Streaming providers (Netflix,HBO, etc.)",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "2"
-            }
-        }
-    },
-    "save": "Mentés",
-    "saved": "Mentve",
-    "scanBiometricHint": "Azonosító ellenőrzése",
-    "scanLibrary": "Könyvtár vizsgálata",
-    "scanYourFingerprintToAuthenticate": "A {user} azonosításához olvassa be az ujjlenyomatát",
-    "@scanYourFingerprintToAuthenticate": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "scanningName": "Elemzés - {name} …",
-    "@scanningName": {
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "scrollToTop": "List elejére",
-    "search": "Keresés",
-    "season": "{count, plural, other{Évadok} one{Évad} }",
-    "@season": {
-        "description": "season",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "seconds": "{count, plural, other{Másodperc} one{Másodperc}}",
-    "@seconds": {
-        "description": "second",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "selectAll": "Összes kijelölése",
-    "selectTime": "Idő kiválasztása",
-    "selectViewType": "Lejátszási típus kiválasztása",
-    "selected": "Kiválasztva",
-    "selectedWith": "{info} kiválasztva",
-    "@selectedWith": {
-        "description": "selected",
-        "placeholders": {
-            "info": {
-                "type": "String"
-            }
-        }
-    },
-    "separate": "Elkülönít",
-    "server": "Kiszolgáló",
-    "set": "Adja meg",
-    "@set": {
-        "description": "Use for setting a certain value",
-        "context": "Set 'time'"
-    },
-    "setIdentityTo": "Új azonosító beállítása: {name}",
-    "@setIdentityTo": {
-        "description": "setIdentityTo",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "settingSecurityApplockTitle": "Alkalmzás lezárása",
-    "settings": "Beállítások",
-    "settingsBlurEpisodesDesc": "A várható epizódok elhomályosítása",
-    "settingsBlurEpisodesTitle": "A következő epizód elhomályosítása",
-    "settingsBlurredPlaceholderDesc": "Háttér elhomályosítása a poszterek betöltése közben",
-    "settingsBlurredPlaceholderTitle": "Elhomályosított helyörző",
-    "settingsClientDesc": "Általános, Idő túllépés, Elrendezés, Téma",
-    "settingsClientTitle": "Fladder",
-    "settingsContinue": "Folytatás",
-    "settingsEnableOsMediaControls": "Rendszer média vezérlők bekapcsolása",
-    "settingsEnableOsMediaControlsDesc": "A lejátszás vezérlésének engedélyezése média gombok segítségével és az aktuális lejátszás megjelenítése a rendszerben",
-    "settingsHomeBannerDescription": "Lejátszás diasorként, galériaként vagy a fedőkép elrejtése",
-    "settingsHomeBannerTitle": "Kezdőlap fedőképe",
-    "settingsHomeBannerInformationDesc": "A kezdőlap fedőképén mutatandó információ",
-    "settingsHomeBannerInformationTitle": "Fedőlap információ",
-    "settingsHomeNextUpDesc": "A kezelőfelületen mutatot poszterek típusai",
-    "settingsHomeNextUpTitle": "Következő rész poszterei",
-    "settingsNextUpCutoffDays": "Következő rész szükséges napok",
-    "settingsPlayerCustomSubtitlesDesc": "A méret, szín, pozíció és körvonal testre szabása",
-    "settingsPlayerCustomSubtitlesTitle": "A feliratok személyre szabása",
-    "settingsPlayerDesc": "Képarány, haladó",
-    "settingsPlayerMobileWarning": "Néhány felirat nem fog megjelenni, ha Androidon a hardveres gyorsítás vagy a natív libass feliratok bekapcsolásra kerülnek.",
-    "settingsPlayerNativeLibassAccelDesc": "A videó lejátszó libass felirat megjelenítőjének használata",
-    "settingsPlayerNativeLibassAccelTitle": "Natív libass feliratok",
-    "settingsPlayerBufferSizeTitle": "Videó puffer mérete",
-    "settingsPlayerBufferSizeDesc": "Adja meg, hogy mennyi adat kerüljön a gyorsítótárba, hogy beállíthassa a videó lejátszáshoz szükséges puffer méretet.",
-    "settingsPlayerTitle": "Lejátszó",
-    "settingsPlayerVideoHWAccelDesc": "Használja a videókártyát a videó megjelenítéséhez (ajánlott)",
-    "settingsPlayerVideoHWAccelTitle": "Hardveres gyorsítás",
-    "settingsPosterPinch": "A poszterek méretezéséhez használja a kétujjas nagyítást",
-    "settingsPosterSize": "Poszter mérete",
-    "settingsProfileDesc": "Záróképernyű, helyi elérési út, Seer",
-    "settingsProfileTitle": "Profil",
-    "settingsProfileSubtitleLanguage": "Preferált felirat-nyelv",
-    "settingsProfileSubtitleMode": "Felirat mód",
-    "subtitlePlaybackModeDefault": "Alapértelmezett",
-    "subtitlePlaybackModeAlways": "Mindig megjelenít",
-    "subtitlePlaybackModeOnlyForced": "Csak a kényszerített",
-    "subtitlePlaybackModeNone": "Semelyik",
-    "subtitlePlaybackModeSmart": "Okos",
-    "settingsQuickConnectTitle": "Gyors csatlakozás",
-    "settingsSecurity": "Biztonság",
-    "settingsShowScaleSlider": "A poszter görgető mutatása",
-    "settingsVisual": "Vizuális",
-    "shadow": "Árnyék",
-    "showAlbum": "Album megjelenítése",
-    "showDetails": "Részletek megjelenítése",
-    "showEmpty": "Üres megjelenítése",
-    "shuffleVideos": "Videók keverése",
-    "somethingWentWrong": "Valami nem sikerült",
-    "somethingWentWrongPasswordCheck": "Valami nem sikerült. Ellenőrizze a jelszavát.",
-    "sortBy": "Rendezés",
-    "sortName": "Név",
-    "sortOrder": "Rendezési irány",
-    "start": "Kezdés",
-    "studio": "{count, plural, other{Stúdiók} one{Stúdió}}",
-    "@studio": {
-        "description": "studio",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "subtitleConfigurator": "Felirat beállítás",
-    "subtitleConfiguratorPlaceHolder": "Ez csak egy minta felirat, semmi fontos ...",
-    "subtitles": "Feliratok",
-    "switchUser": "Felhasználó váltása",
-    "sync": "Szinkronizálás",
-    "syncDeleteItemDesc": "A {item} összes szinkonizált adatát törli?",
-    "@syncDeleteItemDesc": {
-        "description": "Sync delete item pop-up window",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "syncDeleteItemTitle": "Szinkonizált elem törlése",
-    "syncDeletePopupPermanent": "A törlés végleges és minden helyben szinkronizált fájlt eltávolít",
-    "syncDetails": "Szinkonizálás részletei",
-    "syncOpenParent": "Szülő megnyitása",
-    "syncRemoveDataDesc": "Töli a szinkronizált videó adatokat? Ez végleges és újra kell szinkronizálnia a fájlokat",
-    "syncRemoveDataTitle": "Eltávolítja a szinkronizált adatokat?",
-    "syncedItems": "Szinkronizált elemek",
-    "tag": "{count, plural, one{Jelölő} other{Jelölők}}",
-    "@tag": {
-        "description": "tag",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "theme": "Téma",
-    "themeColor": "Téma színe",
-    "themeModeDark": "Sötét",
-    "themeModeLight": "Világos",
-    "themeModeSystem": "Rendszer",
-    "timeAndAnnotation": "{minutes} és {seconds}",
-    "@timeAndAnnotation": {
-        "description": "timeAndAnnotation",
-        "placeholders": {
-            "minutes": {
-                "type": "String"
-            },
-            "seconds": {
-                "type": "String"
-            }
-        }
-    },
-    "timeOut": "Időtúllépés",
-    "totalSize": "Teljes méret: {size}",
-    "@totalSize": {
-        "placeholders": {
-            "size": {
-                "type": "String"
-            }
-        }
-    },
-    "type": "{count, plural, other{Típusok} one{Típus}}",
-    "@type": {
-        "description": "type",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "unPlayed": "Nem lejátszott",
-    "unableToConnectHost": "Nem lehet a kiszolgálóhoz csatlakozni",
-    "unableToReverseAction": "Ez a lépés nem fordítható vissza. Minden beállítás el lesz távolítva.",
-    "unknown": "Ismeretlen",
-    "useDefaults": "Alapértelmezettek használata",
-    "userName": "Felhasználó neve",
-    "video": "{count, plural, one{Videó} other{Videók}}",
-    "@video": {
-        "description": "Video (plural)",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "videoScaling": "Videó méretezés",
-    "videoScalingContain": "Befoglal",
-    "videoScalingCover": "Borító",
-    "videoScalingFill": "Kitölt",
-    "videoScalingFillScreenDesc": "A navigáció és az állapotsor kitöltése",
-    "videoScalingFillScreenNotif": "A kitöltés felülbírálja a videó illesztést, horizontális elforgatásban",
-    "videoScalingFillScreenTitle": "Képernyőre illesztés",
-    "videoScalingFitHeight": "Magasság illesztése",
-    "videoScalingFitWidth": "Szélesség illesztése",
-    "videoScalingScaleDown": "Kicsinyítés",
-    "viewPhotos": "Képek megjelenítése",
-    "writer": "{count, plural, other{Író} two{Írók}}",
-    "@writer": {
-        "description": "writer",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "year": "{count, plural, other{Évek} one{Év}}",
-    "@year": {
-        "description": "year",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "addToNewCollection": "Új gyűjtemény",
-    "addItemsToCollection": "{itemLength} elem hozzáadása a gyűjteményhez",
-    "@addItemsToCollection": {
-        "placeholders": {
-            "itemLength": {
-                "type": "int"
-            }
-        }
-    },
-    "addedToCollection": "Hozzáadja a {collectionName} gyűjteményhez",
-    "@addedToCollection": {
-        "placeholders": {
-            "collectionName": {
-                "type": "String"
-            }
-        }
-    },
-    "removedFromCollection": "Eltávolítja a {collectionName} gyűjteményből",
-    "@removedFromCollection": {
-        "placeholders": {
-            "collectionName": {
-                "type": "String"
-            }
-        }
-    },
-    "addToNewPlaylist": "Új lejátszási lista",
-    "addItemsToPlaylist": "{itemLength} elem hozzáadása a lejátszási listához",
-    "@addItemsToPlaylist": {
-        "placeholders": {
-            "itemLength": {
-                "type": "int"
-            }
-        }
-    },
-    "addedToPlaylist": "A {playlistName} listához hozzáadva",
-    "@addedToPlaylist": {
-        "placeholders": {
-            "playlistName": {
-                "type": "String"
-            }
-        }
-    },
-    "syncStatusEnqueued": "Sorba állítva",
-    "syncStatusRunning": "Lejátszás",
-    "syncStatusNotFound": "Nem található",
-    "syncStatusFailed": "Hibás",
-    "syncStatusCanceled": "Megszakítva",
-    "syncStatusWaitingToRetry": "Újrapróbálkozásra vár",
-    "syncStatusPaused": "Megállítva",
-    "syncStatusSynced": "Szinkronizálva",
-    "syncOverlayDeleting": "Szinkonizált elem eltávolítva",
-    "mediaTypeTV": "{count, plural, one{TV Csatorna} other{TV Csatornák}}",
-    "@mediaTypeTV": {
-        "description": "TV Channel (plural)",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "syncOverlaySyncing": "Adatok szinkronizálása"
+  "nativeName": "Magyar",
+  "about": "A Driftfinről",
+  "actor": "{count, plural, other{Színészek} one{Színész}}",
+  "@actor": {
+    "description": "actor",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "addAsFavorite": "Hozzáadás a kedvencekhez",
+  "addToCollection": "Hozzáadás gyűjteményhez",
+  "addToPlaylist": "Hozzáadás lejátszási listához",
+  "advanced": "Haladó",
+  "all": "Mind",
+  "amoledBlack": "AMOLED fekete",
+  "appLockAutoLogin": "Automatikus belépés",
+  "appLockBiometrics": "Biometria",
+  "appLockPasscode": "Belépő kód",
+  "appLockTitle": "Bejelentkezési mód választása {userName} fiókjához",
+  "@appLockTitle": {
+    "description": "Pop-up to pick a login method",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      }
+    }
+  },
+  "ascending": "Növekvő",
+  "audio": "{count, plural, one{Hang} other{Hang}}",
+  "autoPlay": "Automatikus lejátszás",
+  "backgroundBlur": "Homályosított háttér",
+  "backgroundOpacity": "Háttér láthatósága",
+  "biometricsFailedCheckAgain": "Sikertelen biometrikus azonosítás. Ellenőrizze a beállításokat és próbálja meg újra.",
+  "bold": "Félkövér",
+  "cancel": "Mégse",
+  "change": "Megváltoztatás",
+  "chapter": "{count, plural, other{Fejezetek} one{Fejezet}}",
+  "@chapter": {
+    "description": "chapter",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "clear": "Törlés",
+  "clearAllSettings": "Beállítások törlése",
+  "clearAllSettingsQuestion": "Összes beállítás törlése?",
+  "clearChanges": "Változtatások törlése",
+  "clearSelection": "Kijelölés törlése",
+  "close": "Bezárás",
+  "code": "Kód",
+  "collectionFolder": "{count, plural, one{Gyűjtemény} other{Gyűjtemények}}",
+  "color": "Szín",
+  "combined": "Kombinált",
+  "communityRating": "Közösségi értékelés",
+  "continuePage": "Tovább - {page}. oldal",
+  "@continuePage": {
+    "description": "Continue - page 1",
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "controls": "Vezérlés",
+  "dashboard": "Főoldal",
+  "dashboardContinue": "Folytatás",
+  "dashboardContinueListening": "Hallgatás folytatása",
+  "dashboardContinueReading": "Olvasás folytatása",
+  "dashboardContinueWatching": "Megtekintés folytatása",
+  "nextUp": "Következő",
+  "dateAdded": "Hozzáadás dátuma",
+  "dateLastContentAdded": "Legújabb tartalom hozzáadásának dátuma",
+  "datePlayed": "Lejátszás dátuma",
+  "days": "Napok",
+  "delete": "Törlés",
+  "deleteFileFromSystem": "A kiválasztott {item} elem törlése a fájlrendszerből és a médiakönyvtárból is törölni fogja. Biztosan folytatja?",
+  "@deleteFileFromSystem": {
+    "description": "Delete file from system",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteItem": "{item} törlése?",
+  "@deleteItem": {
+    "description": "deleteItem",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "descending": "Csökkenő",
+  "director": "{count, plural, other{Rendezők} one{Rendező}}",
+  "@director": {
+    "description": "director",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "disableFilters": "Szűrők kikapcsolása",
+  "disabled": "Ki",
+  "discovered": "Felfedezett",
+  "displayLanguage": "Megjelenítés nyelve",
+  "downloadsClearDesc": "Összes szinkronizált adat törlése minden szinkronizált felhasználótól?",
+  "downloadsClearTitle": "Szinkronizált adatok törlése",
+  "downloadsPath": "Elérési útvonal",
+  "downloadsSyncedData": "Szinkronizált adat",
+  "downloadsTitle": "Letöltések",
+  "dynamicText": "Dinamikus",
+  "editMetadata": "Metaadatok szerkesztése",
+  "empty": "Üres",
+  "enabled": "Be",
+  "endsAt": "{date}-kor ér véget",
+  "@endsAt": {
+    "description": "endsAt",
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "jm"
+      }
+    }
+  },
+  "episode": "{count, plural, other{Epizódok} one{Epizód}}",
+  "@episode": {
+    "description": "episode",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "error": "Hiba",
+  "failedToLoadImage": "Kép betöltése sikertelen",
+  "favorite": "Kedvenc",
+  "favorites": "Kedvencek",
+  "fetchingLibrary": "Könyvtár elemeinek betöltése…",
+  "filter": "{count, plural, other{Szűrők} one{Szűrő}}",
+  "@filter": {
+    "description": "filter",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "folders": "Mappák",
+  "fontColor": "Betűszín",
+  "fontSize": "Betűméret",
+  "forceRefresh": "Kényszerfrissítés",
+  "genre": "{count, plural, other{Műfajok} one{Műfaj}}",
+  "@genre": {
+    "description": "genre",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "goTo": "Ugrás",
+  "grid": "Rács",
+  "group": "Csoport",
+  "groupBy": "Csoportosítás",
+  "heightOffset": "Függőleges eltolás",
+  "hide": "Elrejtés",
+  "hideEmpty": "Üresek elrejtése",
+  "homeBannerSlideshow": "Diavetítés",
+  "identify": "Azonosítás",
+  "immediately": "Azonnal",
+  "incorrectPinTryAgain": "Hibás PIN. Próbálja újra.",
+  "info": "Infó",
+  "invalidUrl": "Érvénytelen URL",
+  "invalidUrlDesc": "Az URL http(s):// résszel kell kezdődjön",
+  "itemCount": "Elemek száma: {count}",
+  "@itemCount": {
+    "description": "Item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "label": "{count, plural, other{Címkék} one{Címke}}",
+  "@label": {
+    "description": "label",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "library": "{count, plural, other{Könyvtárak} one{Könyvtár}}",
+  "@library": {
+    "description": "Plural",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "libraryFetchNoItemsFound": "Ilyen elem nem található. Próbálja újra.",
+  "libraryPageSizeDesc": "Állítsa be az egyszerre mutatott elemek számát. A 0 kikapcsolja az oldalakra bontást.",
+  "libraryPageSizeTitle": "Könyvtár oldal mérete",
+  "light": "Világos",
+  "list": "Lista",
+  "lockscreen": "Zárolt képernyő",
+  "loggedIn": "Bejelentkezve",
+  "login": "Bejelentkezés",
+  "logout": "Kijelentkezés",
+  "logoutUserPopupContent": "Ez kijelentkezteti a {userName} fiókból, és törli azt az alkalmazásból.\nÚjra be kell jelentkeznie a {serverName} szerverre.",
+  "@logoutUserPopupContent": {
+    "description": "Pop-up for logging out the user description",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      },
+      "serverName": {
+        "type": "String"
+      }
+    }
+  },
+  "logoutUserPopupTitle": "{userName} kijelentkeztetése?",
+  "@logoutUserPopupTitle": {
+    "description": "Pop-up for logging out the user",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      }
+    }
+  },
+  "loop": "Ismétlés",
+  "markAsUnwatched": "Megjelölés nem megtekintettként",
+  "markAsWatched": "Megjelölés megtekintettként",
+  "masonry": "Mozaik",
+  "mediaTypeBase": "Alaptípus",
+  "mediaTypeBook": "{count, plural, one{Könyv} other{Könyvek}}",
+  "accept": "Elfogadás",
+  "active": "Aktív",
+  "dashboardRecentlyAdded": "Nemrég hozzáadott a {name} kategóriában",
+  "@dashboardRecentlyAdded": {
+    "description": "Recently added on home screen",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "mediaTypeEpisode": "{count, plural, one{Epizód} other{Epizódok}}",
+  "mediaTypeFolder": "{count, plural, one{Mappa} other{Mappák}}",
+  "mediaTypeMovie": "{count, plural, one{Film} other{Filmek}}",
+  "mediaTypePerson": "{count, plural, one{Személy} other{Személyek}}",
+  "mediaTypePhoto": "{count, plural, one{Fotó} other{Fotók}}",
+  "mediaTypePhotoAlbum": "{count, plural, one{Fotóalbum} other{Fotóalbumok}}",
+  "mediaTypePlaylist": "{count, plural, one{Lejátszási lista} other{Lejátszási listák}}",
+  "mediaTypeSeason": "{count, plural, one{Évad} other{Évadok}}",
+  "mediaTypeSeries": "{count, plural, one{Sorozat} other{Sorozatok}}",
+  "metaDataSavedFor": "Metaadatok elmentve {item} elemhez",
+  "@metaDataSavedFor": {
+    "description": "metaDataSavedFor",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "metadataRefreshDefault": "Új vagy megváltoztatott fájlok keresése",
+  "metadataRefreshFull": "Összes metaadat cseréje",
+  "metadataRefreshValidation": "Hiányzó metaadatok keresése",
+  "minutes": "{count, plural, other{Percek} one{Perc}}",
+  "@minutes": {
+    "description": "minute",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "mode": "Mód",
+  "moreFrom": "Több ettől: {info}",
+  "@moreFrom": {
+    "description": "More from",
+    "placeholders": {
+      "info": {
+        "type": "String"
+      }
+    }
+  },
+  "moreOptions": "Több lehetőség",
+  "mouseDragSupport": "Egér használata elhúzásra",
+  "musicAlbum": "{count, plural, one{Album} other{Albumok}}",
+  "name": "Név",
+  "navigation": "Navigáció",
+  "navigationDashboard": "Gyorspanel",
+  "navigationFavorites": "Kedvencek",
+  "navigationSync": "Szinkronizálva",
+  "never": "Soha",
+  "noItemsSynced": "Nincsenek szinkronizált elemek",
+  "noItemsToShow": "Nincsenek mutatható elemek",
+  "noRating": "Nincs értékelés",
+  "noResults": "Nincs találat",
+  "noServersFound": "Nem található új szerver",
+  "noSuggestionsFound": "Nem található javaslat",
+  "none": "Nincs",
+  "normal": "Normál",
+  "notPartOfAlbum": "Nem része albumnak",
+  "openParent": "Szülő megnyitása",
+  "openShow": "Műsor megnyitása",
+  "openWebLink": "Web link megnyitása",
+  "options": "Beállítások",
+  "other": "Más",
+  "outlineColor": "Körvonal színe",
+  "outlineSize": "Körvonal vastagsága",
+  "overview": "Áttekintés",
+  "page": "{index}. oldal",
+  "@page": {
+    "description": "page",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "parentalRating": "Korhatár-besorolás",
+  "password": "Jelszó",
+  "pathClearTitle": "Letöltési útvonal törlése",
+  "pathEditDesc": "Ez az útvonal minden felhasználóra közösen van beállítva, a szinkronizált adatok nem lesznek elérhetőek, viszont a tárhelyen maradnak.",
+  "pathEditSelect": "Letöltési útvonal kiválasztása",
+  "pathEditTitle": "Helyzet megváltoztatása",
+  "play": "{item} lejátszása",
+  "@play": {
+    "description": "Play with",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "playCount": "Lejátszások száma",
+  "playFrom": "Lejátszás innen: {name}",
+  "@playFrom": {
+    "description": "playFrom",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playFromStart": "{name} lejátszása elölről",
+  "@playFromStart": {
+    "description": "speel vanaf het begin",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playLabel": "Lejátszás",
+  "playVideos": "Videók lejátszása",
+  "played": "Lejátszva",
+  "quickConnectInputACode": "Adja meg a kódot",
+  "quickConnectWrongCode": "Hibás kód",
+  "random": "Véletlenszerű",
+  "rating": "{count, plural, other{Értékelések} one{Értékelés}}",
+  "@rating": {
+    "description": "rating",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "reWatch": "Újranézés",
+  "read": "{item} elolvasása",
+  "@read": {
+    "description": "read",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "readFromStart": "{item} elolvasása elölről",
+  "@readFromStart": {
+    "description": "Read book from start",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "recursive": "Rekurzív",
+  "refresh": "Frissítés",
+  "refreshMetadata": "Metaadatok frissítése",
+  "refreshPopup": "Frissítés - {name}",
+  "@refreshPopup": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "home": "Kezdőlap",
+  "homeBannerCarousel": "Galéria",
+  "mediaTypeBoxset": "{count, plural, one{Gyűjtemény} other{Gyűjtemények}}",
+  "@mediaTypeBoxset": {
+    "description": "Boxset (plural)",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "quickConnectAction": "Add meg a gyorscsatlakozási kódot a",
+  "quickConnectTitle": "Gyors csatlakozás",
+  "popularity": "Népszerűség",
+  "refreshPopupContentMetadata": "A metadatok a kezelőpulton bekapcsolt internetes szolgáltatók és a beállítások alapján frissülnek.",
+  "related": "Kapcsolódó",
+  "releaseDate": "Kiadás dátuma",
+  "contentRating": "Tartalmi besorolás",
+  "removeAsFavorite": "Eltávolítás a kedvencekból",
+  "removeFromCollection": "Eltávolítás a gyűjteményből",
+  "removeFromPlaylist": "Eltávolítás a lejátszási listáról",
+  "replaceAllImages": "Az összes kép cseréje",
+  "replaceExistingImages": "A létező képek cseréje",
+  "restart": "Újraindítás",
+  "result": "Eredmény",
+  "resumable": "Folytatható",
+  "resume": "{item} folytatása",
+  "@resume": {
+    "description": "resume",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "retrievePublicListOfUsers": "A nyilvános felhasználói lista letöltése",
+  "retry": "Újra",
+  "runTime": "Lejátszási idő",
+  "runtimeMinutesTitle": "Lejátszási idő (perc)",
+  "runtimeRangeMinutes": "{min} - {max} perc",
+  "@runtimeRangeMinutes": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count} perc",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "streamingServices": "Szolgáltatók ({count})",
+  "@streamingServices": {
+    "description": "Streaming providers (Netflix,HBO, etc.)",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "save": "Mentés",
+  "saved": "Mentve",
+  "scanBiometricHint": "Azonosító ellenőrzése",
+  "scanLibrary": "Könyvtár vizsgálata",
+  "scanYourFingerprintToAuthenticate": "A {user} azonosításához olvassa be az ujjlenyomatát",
+  "@scanYourFingerprintToAuthenticate": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "scanningName": "Elemzés - {name} …",
+  "@scanningName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "scrollToTop": "List elejére",
+  "search": "Keresés",
+  "season": "{count, plural, other{Évadok} one{Évad} }",
+  "@season": {
+    "description": "season",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "seconds": "{count, plural, other{Másodperc} one{Másodperc}}",
+  "@seconds": {
+    "description": "second",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "selectAll": "Összes kijelölése",
+  "selectTime": "Idő kiválasztása",
+  "selectViewType": "Lejátszási típus kiválasztása",
+  "selected": "Kiválasztva",
+  "selectedWith": "{info} kiválasztva",
+  "@selectedWith": {
+    "description": "selected",
+    "placeholders": {
+      "info": {
+        "type": "String"
+      }
+    }
+  },
+  "separate": "Elkülönít",
+  "server": "Kiszolgáló",
+  "set": "Adja meg",
+  "@set": {
+    "description": "Use for setting a certain value",
+    "context": "Set 'time'"
+  },
+  "setIdentityTo": "Új azonosító beállítása: {name}",
+  "@setIdentityTo": {
+    "description": "setIdentityTo",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "settingSecurityApplockTitle": "Alkalmzás lezárása",
+  "settings": "Beállítások",
+  "settingsBlurEpisodesDesc": "A várható epizódok elhomályosítása",
+  "settingsBlurEpisodesTitle": "A következő epizód elhomályosítása",
+  "settingsBlurredPlaceholderDesc": "Háttér elhomályosítása a poszterek betöltése közben",
+  "settingsBlurredPlaceholderTitle": "Elhomályosított helyörző",
+  "settingsClientDesc": "Általános, Idő túllépés, Elrendezés, Téma",
+  "settingsClientTitle": "Driftfin",
+  "settingsContinue": "Folytatás",
+  "settingsEnableOsMediaControls": "Rendszer média vezérlők bekapcsolása",
+  "settingsEnableOsMediaControlsDesc": "A lejátszás vezérlésének engedélyezése média gombok segítségével és az aktuális lejátszás megjelenítése a rendszerben",
+  "settingsHomeBannerDescription": "Lejátszás diasorként, galériaként vagy a fedőkép elrejtése",
+  "settingsHomeBannerTitle": "Kezdőlap fedőképe",
+  "settingsHomeBannerInformationDesc": "A kezdőlap fedőképén mutatandó információ",
+  "settingsHomeBannerInformationTitle": "Fedőlap információ",
+  "settingsHomeNextUpDesc": "A kezelőfelületen mutatot poszterek típusai",
+  "settingsHomeNextUpTitle": "Következő rész poszterei",
+  "settingsNextUpCutoffDays": "Következő rész szükséges napok",
+  "settingsPlayerCustomSubtitlesDesc": "A méret, szín, pozíció és körvonal testre szabása",
+  "settingsPlayerCustomSubtitlesTitle": "A feliratok személyre szabása",
+  "settingsPlayerDesc": "Képarány, haladó",
+  "settingsPlayerMobileWarning": "Néhány felirat nem fog megjelenni, ha Androidon a hardveres gyorsítás vagy a natív libass feliratok bekapcsolásra kerülnek.",
+  "settingsPlayerNativeLibassAccelDesc": "A videó lejátszó libass felirat megjelenítőjének használata",
+  "settingsPlayerNativeLibassAccelTitle": "Natív libass feliratok",
+  "settingsPlayerBufferSizeTitle": "Videó puffer mérete",
+  "settingsPlayerBufferSizeDesc": "Adja meg, hogy mennyi adat kerüljön a gyorsítótárba, hogy beállíthassa a videó lejátszáshoz szükséges puffer méretet.",
+  "settingsPlayerTitle": "Lejátszó",
+  "settingsPlayerVideoHWAccelDesc": "Használja a videókártyát a videó megjelenítéséhez (ajánlott)",
+  "settingsPlayerVideoHWAccelTitle": "Hardveres gyorsítás",
+  "settingsPosterPinch": "A poszterek méretezéséhez használja a kétujjas nagyítást",
+  "settingsPosterSize": "Poszter mérete",
+  "settingsProfileDesc": "Záróképernyű, helyi elérési út, Seer",
+  "settingsProfileTitle": "Profil",
+  "settingsProfileSubtitleLanguage": "Preferált felirat-nyelv",
+  "settingsProfileSubtitleMode": "Felirat mód",
+  "subtitlePlaybackModeDefault": "Alapértelmezett",
+  "subtitlePlaybackModeAlways": "Mindig megjelenít",
+  "subtitlePlaybackModeOnlyForced": "Csak a kényszerített",
+  "subtitlePlaybackModeNone": "Semelyik",
+  "subtitlePlaybackModeSmart": "Okos",
+  "settingsQuickConnectTitle": "Gyors csatlakozás",
+  "settingsSecurity": "Biztonság",
+  "settingsShowScaleSlider": "A poszter görgető mutatása",
+  "settingsVisual": "Vizuális",
+  "shadow": "Árnyék",
+  "showAlbum": "Album megjelenítése",
+  "showDetails": "Részletek megjelenítése",
+  "showEmpty": "Üres megjelenítése",
+  "shuffleVideos": "Videók keverése",
+  "somethingWentWrong": "Valami nem sikerült",
+  "somethingWentWrongPasswordCheck": "Valami nem sikerült. Ellenőrizze a jelszavát.",
+  "sortBy": "Rendezés",
+  "sortName": "Név",
+  "sortOrder": "Rendezési irány",
+  "start": "Kezdés",
+  "studio": "{count, plural, other{Stúdiók} one{Stúdió}}",
+  "@studio": {
+    "description": "studio",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "subtitleConfigurator": "Felirat beállítás",
+  "subtitleConfiguratorPlaceHolder": "Ez csak egy minta felirat, semmi fontos ...",
+  "subtitles": "Feliratok",
+  "switchUser": "Felhasználó váltása",
+  "sync": "Szinkronizálás",
+  "syncDeleteItemDesc": "A {item} összes szinkonizált adatát törli?",
+  "@syncDeleteItemDesc": {
+    "description": "Sync delete item pop-up window",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "syncDeleteItemTitle": "Szinkonizált elem törlése",
+  "syncDeletePopupPermanent": "A törlés végleges és minden helyben szinkronizált fájlt eltávolít",
+  "syncDetails": "Szinkonizálás részletei",
+  "syncOpenParent": "Szülő megnyitása",
+  "syncRemoveDataDesc": "Töli a szinkronizált videó adatokat? Ez végleges és újra kell szinkronizálnia a fájlokat",
+  "syncRemoveDataTitle": "Eltávolítja a szinkronizált adatokat?",
+  "syncedItems": "Szinkronizált elemek",
+  "tag": "{count, plural, one{Jelölő} other{Jelölők}}",
+  "@tag": {
+    "description": "tag",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "theme": "Téma",
+  "themeColor": "Téma színe",
+  "themeModeDark": "Sötét",
+  "themeModeLight": "Világos",
+  "themeModeSystem": "Rendszer",
+  "timeAndAnnotation": "{minutes} és {seconds}",
+  "@timeAndAnnotation": {
+    "description": "timeAndAnnotation",
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      },
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "timeOut": "Időtúllépés",
+  "totalSize": "Teljes méret: {size}",
+  "@totalSize": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "type": "{count, plural, other{Típusok} one{Típus}}",
+  "@type": {
+    "description": "type",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "unPlayed": "Nem lejátszott",
+  "unableToConnectHost": "Nem lehet a kiszolgálóhoz csatlakozni",
+  "unableToReverseAction": "Ez a lépés nem fordítható vissza. Minden beállítás el lesz távolítva.",
+  "unknown": "Ismeretlen",
+  "useDefaults": "Alapértelmezettek használata",
+  "userName": "Felhasználó neve",
+  "video": "{count, plural, one{Videó} other{Videók}}",
+  "@video": {
+    "description": "Video (plural)",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "videoScaling": "Videó méretezés",
+  "videoScalingContain": "Befoglal",
+  "videoScalingCover": "Borító",
+  "videoScalingFill": "Kitölt",
+  "videoScalingFillScreenDesc": "A navigáció és az állapotsor kitöltése",
+  "videoScalingFillScreenNotif": "A kitöltés felülbírálja a videó illesztést, horizontális elforgatásban",
+  "videoScalingFillScreenTitle": "Képernyőre illesztés",
+  "videoScalingFitHeight": "Magasság illesztése",
+  "videoScalingFitWidth": "Szélesség illesztése",
+  "videoScalingScaleDown": "Kicsinyítés",
+  "viewPhotos": "Képek megjelenítése",
+  "writer": "{count, plural, other{Író} two{Írók}}",
+  "@writer": {
+    "description": "writer",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "year": "{count, plural, other{Évek} one{Év}}",
+  "@year": {
+    "description": "year",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "addToNewCollection": "Új gyűjtemény",
+  "addItemsToCollection": "{itemLength} elem hozzáadása a gyűjteményhez",
+  "@addItemsToCollection": {
+    "placeholders": {
+      "itemLength": {
+        "type": "int"
+      }
+    }
+  },
+  "addedToCollection": "Hozzáadja a {collectionName} gyűjteményhez",
+  "@addedToCollection": {
+    "placeholders": {
+      "collectionName": {
+        "type": "String"
+      }
+    }
+  },
+  "removedFromCollection": "Eltávolítja a {collectionName} gyűjteményből",
+  "@removedFromCollection": {
+    "placeholders": {
+      "collectionName": {
+        "type": "String"
+      }
+    }
+  },
+  "addToNewPlaylist": "Új lejátszási lista",
+  "addItemsToPlaylist": "{itemLength} elem hozzáadása a lejátszási listához",
+  "@addItemsToPlaylist": {
+    "placeholders": {
+      "itemLength": {
+        "type": "int"
+      }
+    }
+  },
+  "addedToPlaylist": "A {playlistName} listához hozzáadva",
+  "@addedToPlaylist": {
+    "placeholders": {
+      "playlistName": {
+        "type": "String"
+      }
+    }
+  },
+  "syncStatusEnqueued": "Sorba állítva",
+  "syncStatusRunning": "Lejátszás",
+  "syncStatusNotFound": "Nem található",
+  "syncStatusFailed": "Hibás",
+  "syncStatusCanceled": "Megszakítva",
+  "syncStatusWaitingToRetry": "Újrapróbálkozásra vár",
+  "syncStatusPaused": "Megállítva",
+  "syncStatusSynced": "Szinkronizálva",
+  "syncOverlayDeleting": "Szinkonizált elem eltávolítva",
+  "mediaTypeTV": "{count, plural, one{TV Csatorna} other{TV Csatornák}}",
+  "@mediaTypeTV": {
+    "description": "TV Channel (plural)",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "syncOverlaySyncing": "Adatok szinkronizálása"
 }

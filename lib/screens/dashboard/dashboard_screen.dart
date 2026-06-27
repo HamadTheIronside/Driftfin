@@ -15,6 +15,7 @@ import 'package:driftfin/models/settings/home_settings_model.dart';
 import 'package:driftfin/providers/dashboard_mode_provider.dart';
 import 'package:driftfin/providers/dashboard_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
+import 'package:driftfin/providers/home_collections_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
 import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/providers/views_provider.dart';
@@ -85,6 +86,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     final bannerType = ref.watch(homeSettingsProvider.select((value) => value.homeBanner));
     final dashboardData = ref.watch(dashboardProvider);
     final views = ref.watch(viewsProvider);
+    final pinnedCollections = ref.watch(homeCollectionsProvider).valueOrNull ?? [];
     final homeSettings = ref.watch(homeSettingsProvider);
     final homeBanner = ref.watch(homeSettingsProvider.select((value) => value.homeBanner)) != HomeBanner.hide;
     final resumeVideo = dashboardData.resumeVideo;
@@ -212,6 +214,17 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                     label: context.localized.dashboardContinue,
                     posters: [...allResume, ...dashboardData.nextUp],
                   ),
+                ...pinnedCollections
+                    .where((collection) => collection.items.isNotEmpty)
+                    .map(
+                      (collection) => PosterRow(
+                        tvMode: useTVExpandedLayout,
+                        contentPadding: padding,
+                        label: collection.name,
+                        posters: collection.items,
+                        onLabelClick: () => collection.navigateTo(context),
+                      ),
+                    ),
                 ...views.dashboardViews
                     .where(
                       (element) => element.recentlyAdded.isNotEmpty && element.collectionType != CollectionType.livetv,

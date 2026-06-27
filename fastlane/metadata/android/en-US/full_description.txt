@@ -1,4 +1,4 @@
-Fladder is a modern, cross-platform Jellyfin client built with Flutter. Connect to your self-hosted Jellyfin server and enjoy your personal media library with a clean, responsive interface on any device.
+Driftfin is a modern, cross-platform Jellyfin client built with Flutter. Connect to your self-hosted Jellyfin server and enjoy your personal media library with a clean, responsive interface on any device.
 
 <b>Playback</b>
 * Stream movies, TV shows, music, and more directly from your Jellyfin server
@@ -36,4 +36,6 @@ Fladder is a modern, cross-platform Jellyfin client built with Flutter. Connect 
 * Next-up overview when watching a queue
 * Background update notifications
 
-Fladder requires a running Jellyfin server to connect to. It does not include any media content of its own.
+Driftfin requires a running Jellyfin server to connect to. It does not include any media content of its own.
+
+Driftfin is a fork of Fladder by DonutWare, released under the GPL-3.0 license.

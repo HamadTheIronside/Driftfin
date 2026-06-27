@@ -19,6 +19,7 @@ abstract class HomeSettingsModel with _$HomeSettingsModel {
     @Default(HomeBanner.carousel) HomeBanner homeBanner,
     @Default(HomeCarouselSettings.combined) HomeCarouselSettings carouselSettings,
     @Default(HomeNextUp.separate) HomeNextUp nextUp,
+    @Default(<String>[]) List<String> pinnedCollectionIds,
   }) = _HomeSettingsModel;
 
   static HomeSettingsModel defaultModel() {

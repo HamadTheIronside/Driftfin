@@ -31,8 +31,8 @@ class NotificationService {
     final darwin = const DarwinInitializationSettings();
     final linux = const LinuxInitializationSettings(defaultActionName: 'Open notification');
     final windows = const WindowsInitializationSettings(
-      appName: 'Fladder',
-      appUserModelId: 'nl.jknaapen.fladder',
+      appName: 'Driftfin',
+      appUserModelId: 'io.github.hamadtheironside.driftfin',
       guid: 'd49b0314-ee7a-4626-bf79-97cdb8a991bb',
     );
 

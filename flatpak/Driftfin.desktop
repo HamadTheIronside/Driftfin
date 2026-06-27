@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Driftfin
+StartupWMClass=io.github.hamadtheironside.driftfin
+Comment=A Simple Jellyfin Frontend built on top of Flutter.
+Exec=driftfin
+Icon=io.github.hamadtheironside.driftfin
+Terminal=false
+Type=Application
+Categories=AudioVideo;Video;Player;

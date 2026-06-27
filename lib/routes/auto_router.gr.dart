@@ -26,7 +26,8 @@ import 'package:driftfin/screens/control_panel/control_dashboard_page.dart'
 import 'package:driftfin/screens/control_panel/control_libraries_page.dart'
     as _i5;
 import 'package:driftfin/screens/control_panel/control_livetv_page.dart' as _i6;
-import 'package:driftfin/screens/control_panel/control_panel_screen.dart' as _i7;
+import 'package:driftfin/screens/control_panel/control_panel_screen.dart'
+    as _i7;
 import 'package:driftfin/screens/control_panel/control_panel_selection_screen.dart'
     as _i8;
 import 'package:driftfin/screens/control_panel/control_server_page.dart' as _i9;

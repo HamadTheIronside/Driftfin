@@ -74,7 +74,7 @@ String encodeAuthLink(AuthLinkData data) {
 
 String buildAuthUrl(AuthLinkData data) {
   final payload = encodeAuthLink(data);
-  return 'fladder:///login?authLink=$payload';
+  return 'driftfin:///login?authLink=$payload';
 }
 
 PageRouteInfo? payloadToRoute(Uri? payload) {

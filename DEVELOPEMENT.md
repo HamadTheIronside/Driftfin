@@ -1,4 +1,4 @@
-# 🚀 Fladder Dev Setup
+# 🚀 Driftfin Dev Setup
 
 ## 🔧 Requirements
 
@@ -20,8 +20,8 @@ flutter doctor
 
 ```bash
 # Clone the repository
-git clone https://github.com/DonutWare/Fladder.git
-cd Fladder
+git clone https://github.com/HamadTheIronside/Driftfin.git
+cd Driftfin
 
 # Install dependencies
 flutter pub get

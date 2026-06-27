@@ -23,9 +23,9 @@ import workmanager_apple
     WorkmanagerDebug.setCurrent(NotificationDebugHandler())
 
     WorkmanagerPlugin.registerBGProcessingTask(
-      withIdentifier: "nl.jknaapen.fladder.update_notifications_check_debug")
+      withIdentifier: "io.github.hamadtheironside.driftfin.update_notifications_check_debug")
     WorkmanagerPlugin.registerPeriodicTask(
-      withIdentifier: "nl.jknaapen.fladder.update_notifications_check",
+      withIdentifier: "io.github.hamadtheironside.driftfin.update_notifications_check",
       frequency: NSNumber(value: 20 * 60))
 
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)

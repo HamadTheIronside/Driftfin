@@ -1,1961 +1,1961 @@
 {
-    "@@locale": "de",
-    "clearAllSettingsQuestion": "Alle Einstellungen zurücksetzen?",
-    "clearChanges": "Änderungen verwerfen",
-    "clearSelection": "Auswahl aufheben",
-    "collectionFolder": "{count, plural, one{Sammlung Ordner} other{Sammlungen Ordner}}",
-    "color": "Farbe",
-    "deleteItem": "{item} löschen?",
-    "@deleteItem": {
-        "description": "deleteItem",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "disabled": "Deaktiviert",
-    "downloadsTitle": "Downloads",
-    "enabled": "Aktiviert",
-    "endsAt": "Endet um {date}",
-    "@endsAt": {
-        "description": "endsAt",
-        "placeholders": {
-            "date": {
-                "type": "DateTime",
-                "format": "jm"
-            }
-        }
-    },
-    "mediaTypePhoto": "{count, plural, one{Foto} other{Fotos}}",
-    "mediaTypePlaylist": "{count, plural, one{Playlist} other{Playlists}}",
-    "mediaTypePhotoAlbum": "{count, plural, one{Foto Album} other{Foto Alben}}",
-    "mediaTypeSeries": "{count, plural, one{Serie} other{Serien}}",
-    "minutes": "{count, plural, other{Minuten} one{Minute} }",
-    "@minutes": {
-        "description": "minute",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "moreFrom": "Mehr erfahren über {info}",
-    "@moreFrom": {
-        "description": "More from",
-        "placeholders": {
-            "info": {
-                "type": "String"
-            }
-        }
-    },
-    "noResults": "Keine Ergebnisse",
-    "noItemsToShow": "Keine Elemente hier zum Anzeigen",
-    "noRating": "Keine Bewertung",
-    "noServersFound": "Keine neuen Server gefunden",
-    "noSuggestionsFound": "Keine Empfehlungen gefunden",
-    "normal": "Normal",
-    "notPartOfAlbum": "Nicht zum Album dazugehörend",
-    "parentalRating": "Altersfreigabe",
-    "none": "Keine",
-    "openParent": "Übergeordnetes Element öffnen",
-    "openShow": "Serie öffnen",
-    "overview": "Überblick",
-    "page": "Seite {index}",
-    "@page": {
-        "description": "page",
-        "placeholders": {
-            "index": {
-                "type": "int"
-            }
-        }
-    },
-    "quickConnectAction": "Quick connect code eingeben für",
-    "playLabel": "Abspielen",
-    "playVideos": "Videos abspielen",
-    "played": "Abgespielt",
-    "reWatch": "Nochmal anschauen",
-    "random": "Zufällig",
-    "rating": "{count, plural, other{Bewertungen} one{Bewertung}}",
-    "@rating": {
-        "description": "rating",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "read": "{item} lesen",
-    "@read": {
-        "description": "read",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "addAsFavorite": "Als Favorit hinzufügen",
-    "addToCollection": "Zu Sammlung hinzufügen",
-    "addToPlaylist": "Zu Playlist hinzufügen",
-    "advanced": "Erweitert",
-    "all": "Alles",
-    "amoledBlack": "Amoled Schwarz",
-    "appLockBiometrics": "Biometrische Daten",
-    "appLockPasscode": "Passcode",
-    "autoPlay": "Autoplay",
-    "backgroundBlur": "Hintergrundverschwommenheit",
-    "backgroundOpacity": "Hintergrundtransparenz",
-    "biometricsFailedCheckAgain": "Biometrische Anmeldung fehlgeschlagen. Überprüfe die Einstellungen oder probiere es nochmal.",
-    "bold": "Fett",
-    "change": "Ändern",
-    "chapter": "{count, plural, other{Kapitel} one{Kapitel}}",
-    "@chapter": {
-        "description": "chapter",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "clear": "löschen",
-    "clearAllSettings": "Alle Einstellungen zurücksetzen",
-    "close": "Schließen",
-    "code": "Code",
-    "combined": "Kombiniert",
-    "communityRating": "Community-Bewertung",
-    "continuePage": "Weiter - Seite {page}",
-    "@continuePage": {
-        "description": "Continue - page 1",
-        "placeholders": {
-            "page": {
-                "type": "int"
-            }
-        }
-    },
-    "controls": "Steuerelemente",
-    "dashboard": "Dashboard",
-    "dashboardContinue": "Weiter",
-    "dashboardContinueListening": "Weiterhören",
-    "dashboardContinueReading": "Weiterlesen",
-    "dashboardContinueWatching": "Weiterschauen",
-    "dashboardNextUp": "Als Nächstes",
-    "dashboardRecentlyAdded": "Zuletzt hinzugefügt in {name}",
-    "@dashboardRecentlyAdded": {
-        "description": "Recently added on home screen",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "dateAdded": "Hinzugefügt am",
-    "dateLastContentAdded": "Inhalt zuletzt hinzugefügt am",
-    "datePlayed": "Abgespielt am",
-    "days": "{count, plural, one{Tag} other{Tage}}",
-    "delete": "Löschen",
-    "deleteFileFromSystem": "Das Element {item} wird sowohl vom Dateisystem als auch aus der Bibliothek entfernt. Sind Sie sicher, dass sie Fortfahren möchten?",
-    "@deleteFileFromSystem": {
-        "description": "Delete file from system",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "descending": "Absteigend",
-    "director": "{count, plural, other{Regisseur} two{Regisseure}}",
-    "@director": {
-        "description": "director",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "disableFilters": "Filter deaktivieren",
-    "discovered": "Entdeckt",
-    "displayLanguage": "Anzeigesprache",
-    "downloadsClearDesc": "Alle synchronisierten Daten für jeden synchronisierten Benutzer entfernen?",
-    "downloadsClearTitle": "Synchronisierte Daten löschen",
-    "downloadsPath": "Pfad",
-    "downloadsSyncedData": "Synchronisierte Daten",
-    "dynamicText": "Dynamisch",
-    "editMetadata": "Metadaten bearbeiten",
-    "empty": "Leer",
-    "episode": "{count, plural, other{Folgen} one{Folge} }",
-    "@episode": {
-        "description": "episode",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "error": "Fehler",
-    "failedToLoadImage": "Bild konnte nicht geladen werden",
-    "favorite": "Favorit",
-    "favorites": "Favoriten",
-    "fetchingLibrary": "Elemte aus den Bibliotheken werden geladen…",
-    "filter": "{count, plural, other{Filter} one{Filter}}",
-    "@filter": {
-        "description": "filter",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "folders": "Ordner",
-    "fontColor": "Schriftfarbe",
-    "fontSize": "Schriftgröße",
-    "forceRefresh": "Neu laden erzwingen",
-    "genre": "{count, plural, other{Genres} one{Genre}}",
-    "@genre": {
-        "description": "genre",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "goTo": "Gehe zu",
-    "grid": "Tabelle",
-    "group": "Gruppe",
-    "groupBy": "Gruppieren nach",
-    "heightOffset": "Höhenversetzung",
-    "hide": "Ausblenden",
-    "hideEmpty": "Leere Elemente ausblenden",
-    "home": "Home",
-    "identify": "Identifizieren",
-    "immediately": "Unverzüglich",
-    "incorrectPinTryAgain": "Falsche PIN. Erneute Eingabe erforderlich.",
-    "info": "Information",
-    "invalidUrl": "Ungültige URL",
-    "invalidUrlDesc": "Adresse muss mit http(s):// beginnen",
-    "itemCount": "Anzahl der Elemente: {count}",
-    "@itemCount": {
-        "description": "Item count",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "label": "{count, plural, other{Label} one{Label}}",
-    "@label": {
-        "description": "label",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "library": "{count, plural, other{Bibliotheken} one{Bibliothek}}",
-    "@library": {
-        "description": "Plural",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "libraryFetchNoItemsFound": "Keine Elemente gefunden.",
-    "libraryPageSizeDesc": "Anzahl der zu ladenden Elemente festlegen, 0 schaltet das Anlegen von Seiten aus.",
-    "libraryPageSizeTitle": "Größe der Bibliothekseiten",
-    "light": "Dünn",
-    "list": "Liste",
-    "lockscreen": "Sperrbildschirm",
-    "loggedIn": "Eingeloggt",
-    "login": "Einloggen",
-    "logout": "Ausloggen",
-    "logoutUserPopupContent": "Dieser Vorgang wird {userName} ausloggen und dessen Daten aus der App löschen. \nEin neuer Login für {serverName} wird daraufhin erforderlich sein.",
-    "@logoutUserPopupContent": {
-        "description": "Pop-up for loging out the user description",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            },
-            "serverName": {
-                "type": "String"
-            }
-        }
-    },
-    "logoutUserPopupTitle": "{userName} ausloggen?",
-    "@logoutUserPopupTitle": {
-        "description": "Pop-up for loging out the user",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            }
-        }
-    },
-    "loop": "Endlosschleife",
-    "markAsUnwatched": "Als nicht angeschaut markieren",
-    "markAsWatched": "Als angeschaut markieren",
-    "mediaTypeEpisode": "{count, plural, one{Folge} other{Folgen}}",
-    "mediaTypeFolder": "{count, plural, one{Ordner} other{Ordner}}",
-    "mediaTypeMovie": "{count, plural, one{Film} other{Filme}}",
-    "mediaTypePerson": "{count, plural, one{Person} other{Personen}}",
-    "mediaTypeBook": "{count, plural, one{Buch} other{Bücher}}",
-    "mediaTypeSeason": "{count, plural, one{Staffel} other{Staffeln}}",
-    "metaDataSavedFor": "Metadaten für {item} gespeichert",
-    "@metaDataSavedFor": {
-        "description": "metaDataSavedFor",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "metadataRefreshDefault": "Nach neuen und aktualisierten Dateien suchen",
-    "metadataRefreshFull": "Alle Metadaten ersetzen",
-    "metadataRefreshValidation": "Nach fehlenden Metadaten suchen",
-    "mode": "Modus",
-    "moreOptions": "Mehr Optionen",
-    "mouseDragSupport": "Mit der Maus ziehen",
-    "musicAlbum": "{count, plural, one{Album} other{Alben}}",
-    "name": "Name",
-    "navigation": "Navigation",
-    "navigationDashboard": "Dashboard",
-    "navigationFavorites": "Favoriten",
-    "navigationSync": "Synchronisiert",
-    "never": "Niemals",
-    "nextUp": "Als nächstes",
-    "noItemsSynced": "Keine synchronisierten Elemente",
-    "openWebLink": "Weblink öffnen",
-    "options": "Optionen",
-    "other": "Andere",
-    "outlineColor": "Randlinie",
-    "outlineSize": "Randgröße",
-    "password": "Passwort",
-    "pathClearTitle": "Downloadpfad verwerfen",
-    "pathEditSelect": "Downloadordner ausählen",
-    "pathEditTitle": "Pfad ändern",
-    "play": "{item} abspielen",
-    "@play": {
-        "description": "Play with",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "playCount": "Abgespielte Elemente",
-    "playFrom": "Aus {name} abspielen",
-    "@playFrom": {
-        "description": "playFrom",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "playFromStart": "{name} vom Anfang abspielen",
-    "@playFromStart": {
-        "description": "speel vanaf het begin",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "quickConnectInputACode": "Einen Code eingeben",
-    "quickConnectTitle": "Quick Connect",
-    "quickConnectWrongCode": "Falscher Code",
-    "readFromStart": "{item} vom Anfang an lesen",
-    "@readFromStart": {
-        "description": "Read book from start",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "recursive": "Rekursiv",
-    "refresh": "Neu laden",
-    "refreshMetadata": "Metadaten neu laden",
-    "refreshPopup": "{name} neu laden",
-    "@refreshPopup": {
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "refreshPopupContentMetadata": "Metadaten werden basierend auf den Einstellungen und im Dashboard festgelegten Werten aktualisiert.",
-    "related": "Ähnlich",
-    "releaseDate": "Veröffentlicht am",
-    "removeAsFavorite": "Favorit entfernen",
-    "removeFromCollection": "Aus Sammlung entfernen",
-    "removeFromPlaylist": "Aus Playlist entfernen",
-    "replaceAllImages": "Alle Bilder ersetzen",
-    "replaceExistingImages": "Bereist exisitierende Bilder ersetzen",
-    "restart": "Neu starten",
-    "result": "Ergebnis",
-    "retrievePublicListOfUsers": "Öffentliche Benutzerliste laden",
-    "retry": "Neu versuchen",
-    "runTime": "Laufzeit",
-    "save": "Speichern",
-    "saved": "Gespreichert",
-    "scanYourFingerprintToAuthenticate": "Fingerabdruck scannen um als {user} anmelden zu können",
-    "@scanYourFingerprintToAuthenticate": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "scanningName": "{name} wird gescannt…",
-    "@scanningName": {
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "search": "Suchen",
-    "seconds": "{count, plural, other{Sekunden} one{Sekunde}}",
-    "@seconds": {
-        "description": "second",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "selectAll": "Alle auswählen",
-    "selectTime": "Zeit auswählen",
-    "selected": "Augewählt",
-    "setIdentityTo": "Identität zu {name} festlegen",
-    "@setIdentityTo": {
-        "description": "setIdentityTo",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "settings": "Einstellungen",
-    "settingsBlurEpisodesDesc": "Alle anstehenden Folgen verschwommen anzeigen",
-    "settingsClientTitle": "Fladder",
-    "settingsContinue": "Weiter",
-    "settingsEnableOsMediaControls": "Betriebssystemweite Mediensteuerung aktivieren",
-    "settingsHomeCarouselDesc": "Zeigt ein Karusell auf dem Dashboard an",
-    "settingsHomeCarouselTitle": "Dashboardkarusell",
-    "settingsPlayerCustomSubtitlesTitle": "Untertitelstil ändern",
-    "settingsPlayerDesc": "Bildschirmformat, erweitert",
-    "nativeName": "Deutsch",
-    "settingsPlayerMobileWarning": "Durch das Aktivieren von Hardwarebeschleunigung und nativer Untertitelanzeige können Untertitel eventuell nicht gerendert werden.",
-    "settingsPlayerVideoHWAccelTitle": "Hardwarebeschleunigung",
-    "settingsPlayerVideoHWAccelDesc": "GPU zum Rendern von Videos verwenden (empfohlen)",
-    "settingsProfileDesc": "Sperrbildschirm, Lokale URL, Seerr",
-    "settingsProfileTitle": "Profil",
-    "settingsQuickConnectTitle": "Quick Connect",
-    "shadow": "Schatten",
-    "showAlbum": "Album anzeigen",
-    "somethingWentWrong": "Etwas ist fehlgeschlagen",
-    "somethingWentWrongPasswordCheck": "Etwas ist fehlgeschlagen. Überprüfe dein Passwort.",
-    "sortBy": "Sortieren nach",
-    "sortName": "Name",
-    "subtitles": "Untertitel",
-    "about": "Über",
-    "active": "Aktiv",
-    "accept": "Akzeptieren",
-    "actor": "{count, plural, other{Schauspieler} one{Schauspieler}}",
-    "@actor": {
-        "description": "actor",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "appLockAutoLogin": "Automatischer Login",
-    "appLockTitle": "Anmeldemethode für {userName} auswählen",
-    "@appLockTitle": {
-        "description": "Pop-up to pick a login method",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            }
-        }
-    },
-    "ascending": "Aufsteigend",
-    "audio": "{count, plural, one{Audio} other{Audio}}",
-    "cancel": "Abbrechen",
-    "settingsSecurity": "Sicherheit",
-    "showDetails": "Details anzeigen",
-    "sync": "Synchronisierung",
-    "switchUser": "Benutzer wechseln",
-    "theme": "Design",
-    "themeModeLight": "Hell",
-    "themeColor": "Akzentfarbe",
-    "themeModeDark": "Dunkel",
-    "themeModeSystem": "System",
-    "scanBiometricHint": "Identität überprüfen",
-    "scanLibrary": "Bibliothek scannen",
-    "season": "{count, plural, other{Staffeln} one{Staffel} }",
-    "@season": {
-        "description": "season",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "scrollToTop": "Zum Anfang scrollen",
-    "set": "Festlegen",
-    "@set": {
-        "description": "Use for setting a certain value",
-        "context": "Set 'time'"
-    },
-    "settingSecurityApplockTitle": "App sperren",
-    "settingsBlurEpisodesTitle": "Nächste Folgen verschwommen anzeigen",
-    "mediaTypeBase": "Basistyp",
-    "pathEditDesc": "Dieser Speicherort ist für alle Benutzer festgelegt. Alle synchronisierten Daten sind dann nicht mehr zugänglich, verbleiben jedoch auf deinem Speicher.",
-    "resume": "Wiedergabe von {item} fortsetzen",
-    "@resume": {
-        "description": "resume",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "resumable": "Fortführbar",
-    "selectViewType": "Ansicht wählen",
-    "selectedWith": "{info} Ausgewählt",
-    "@selectedWith": {
-        "description": "selected",
-        "placeholders": {
-            "info": {
-                "type": "String"
-            }
-        }
-    },
-    "separate": "Trennen",
-    "server": "Server",
-    "settingsBlurredPlaceholderDesc": "Verschwommenen Hintergrund beim Laden von Postern anzeigen",
-    "settingsClientDesc": "Allgemein, Time-out, Layout, Design",
-    "settingsBlurredPlaceholderTitle": "Verschwommener Platzhalter",
-    "settingsHomeNextUpTitle": "Nächste Poster",
-    "settingsPlayerCustomSubtitlesDesc": "Größe, Farbe, Position, Randlinie anpassen",
-    "settingsPlayerTitle": "Wiedergabe",
-    "settingsPosterSlider": "Skalierungs-Slider anzeigen",
-    "settingsVisual": "Visuelles",
-    "shuffleGallery": "Gallerie zufällig anordnen",
-    "shuffleVideos": "Videos zufällig anordnen",
-    "showEmpty": "Leere Objekte anzeigen",
-    "subtitleConfigurator": "Untertitel konfigurieren",
-    "start": "Start",
-    "studio": "{count, plural, other{Studios} one{Studio}}",
-    "@studio": {
-        "description": "studio",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "sortOrder": "Sortierungsreihenfolge",
-    "subtitleConfiguratorPlaceHolder": "Dies ist Platzhaltertext, hier gibt es nichts zu sehen.",
-    "syncDeleteItemTitle": "Synchronisiertes Element löschen",
-    "syncOpenParent": "Übergeordnetes Element öffnen",
-    "tag": "{count, plural, one{Label} other{Labels}}",
-    "@tag": {
-        "description": "tag",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "syncedItems": "Synchronisierte Elemente",
-    "syncRemoveDataTitle": "Synchronisierte Daten löschen?",
-    "timeOut": "Zeitüberschreitung",
-    "unableToReverseAction": "Diese Aktion ist unumkehrbar und wird alle Einstellungen zurücksetzen.",
-    "unPlayed": "Nicht abgespielt",
-    "video": "{count, plural, one{Video} other{Videos}}",
-    "videoScaling": "Videoskalierung",
-    "videoScalingContain": "Beinhalten",
-    "videoScalingCover": "Bildschrim abdecken",
-    "videoScalingFill": "Bildschirm füllen",
-    "videoScalingFillScreenDesc": "Navigations -und Statusleiste füllen",
-    "userName": "Benutzername",
-    "watchOn": "Anschauen auf",
-    "year": "{count, plural, other{Jahre} one{Jahr}}",
-    "@year": {
-        "description": "year",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "syncDetails": "Details zur Synronsierung",
-    "syncDeletePopupPermanent": "Diese Aktion ist endgültig und entfernt alle lokal synchronisierten Dateien",
-    "unableToConnectHost": "Verbindung zum Host nicht möglich",
-    "type": "{count, plural, other{Typen} one{Typ}}",
-    "@type": {
-        "description": "type",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "homeBannerSlideshow": "Diashow",
-    "homeBannerCarousel": "Karussell",
-    "settingsHomeBannerDescription": "Als Diashow oder Karussell anzeigen oder das Banner ausblenden",
-    "settingsHomeBannerInformationDesc": "Informationen zur Anzeige im Home-Banner",
-    "settingsHomeBannerInformationTitle": "Banner Information",
-    "settingsHomeBannerTitle": "Home-Banner",
-    "settingsHomeNextUpDesc": "Art der auf der Dashboard Seite angezeigten Poster",
-    "settingsPlayerNativeLibassAccelDesc": "Nutze den libass-Untertitel-Renderer im Videoplayer",
-    "settingsPlayerNativeLibassAccelTitle": "Native libass-Untertitel",
-    "settingsPosterPinch": "Mit Zwei-Finger-Zoom Poster skalieren",
-    "settingsShowScaleSlider": "Postergrößen-Slide anzeigen",
-    "videoScalingFillScreenNotif": "Fill-Screen überschreibt Video fit, in horizontaler Rotation",
-    "syncDeleteItemDesc": "Alle für {item} synchronisierten Daten löschen?",
-    "@syncDeleteItemDesc": {
-        "description": "Sync delete item pop-up window",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "settingsNextUpCutoffDays": "Nächste Folge wird nicht mehr vorgeschlagen ab",
-    "settingsPosterSize": "Postergröße",
-    "syncRemoveDataDesc": "Gelöschte Videodaten löschen? Dies ist permanent und Sie müssen die Dateien neu synchronisieren",
-    "timeAndAnnotation": "{minutes} und {seconds}",
-    "@timeAndAnnotation": {
-        "description": "timeAndAnnotation",
-        "placeholders": {
-            "minutes": {
-                "type": "String"
-            },
-            "seconds": {
-                "type": "String"
-            }
-        }
-    },
-    "totalSize": "Gesamtgröße: {size}",
-    "@totalSize": {
-        "placeholders": {
-            "size": {
-                "type": "String"
-            }
-        }
-    },
-    "unknown": "Unbekannt",
-    "useDefaults": "Standardeinstellungen verwenden",
-    "videoScalingFitHeight": "Passende Größe",
-    "syncStatusWaitingToRetry": "Warte auf erneuten Versuch",
-    "syncOverlaySyncing": "Elementdetails werden synchronisiert",
-    "videoScalingFillScreenTitle": "Bildschirm ausfüllen",
-    "addedToPlaylist": "Zu Playlist {playlistName} hinzugefügt",
-    "@addedToPlaylist": {
-        "placeholders": {
-            "playlistName": {
-                "type": "String"
-            }
-        }
-    },
-    "syncStatusEnqueued": "Zur Warteschlange hinzugefügt",
-    "syncStatusRunning": "Läuft",
-    "syncStatusComplete": "Abgeschlossen",
-    "syncStatusFailed": "Fehlgeschlagen",
-    "syncStatusPaused": "Pausiert",
-    "syncOverlayDeleting": "Synchronisiertes Element wird entfernt",
-    "syncStatusCanceled": "Abgebrochen",
-    "videoScalingScaleDown": "Herunterskalieren",
-    "addToNewCollection": "Neue Kollektion",
-    "addItemsToCollection": "{itemLength} Artikel zur Sammlung hinzufügen",
-    "@addItemsToCollection": {
-        "placeholders": {
-            "itemLength": {
-                "type": "int"
-            }
-        }
-    },
-    "addedToCollection": "Hinzugefügt zu {collectionName} Sammlung",
-    "@addedToCollection": {
-        "placeholders": {
-            "collectionName": {
-                "type": "String"
-            }
-        }
-    },
-    "removedFromCollection": "Von {collectionName} Sammlung entfernt",
-    "@removedFromCollection": {
-        "placeholders": {
-            "collectionName": {
-                "type": "String"
-            }
-        }
-    },
-    "addToNewPlaylist": "Neue Playlist",
-    "addItemsToPlaylist": "{itemLength} Artikel zur Wiedergabeliste hinzufügen",
-    "@addItemsToPlaylist": {
-        "placeholders": {
-            "itemLength": {
-                "type": "int"
-            }
-        }
-    },
-    "syncStatusNotFound": "Nicht gefunden",
-    "syncStatusPartially": "Teilweise",
-    "syncSelectDownloadsFolder": "Wählen Sie den Downloads-Ordner",
-    "writer": "{count, plural, other{Writer}}",
-    "@writer": {
-        "description": "writer",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "viewPhotos": "Fotos ansehen",
-    "videoScalingFitWidth": "An Breite anpassen",
-    "syncStatusSynced": "Synchronisiert",
-    "syncNoFolderSetup": "Kein Synchronisationsordner eingerichtet",
-    "defaultFilterForLibrary": "Standardfilter für Bibliothek",
-    "libraryFiltersLimitReached": "Filterlimit erreicht (10). Entferne Filter",
-    "aboutCreatedBy": "Erstellt von DonutWare",
-    "aboutLicenses": "Lizenzen",
-    "subtitle": "Untertitel",
-    "off": "Aus",
-    "screenBrightness": "Bildschirmhelligkeit",
-    "playBackSettings": "Playback-Einstellungen",
-    "speed": "Geschwindigkeit",
-    "deleteFilterConfirmation": "Sind Sie sicher, dass Sie diesen Filter löschen möchten?",
-    "playbackRate": "Wiedergaberate",
-    "unableToPlayMedia": "Es gab einen Fehler, einen kompatiblen Medientyp zu finden",
-    "updateFilterForLibrary": "Filter aktualisieren",
-    "aboutSocials": "Socials",
-    "unableToSyncItem": "{item} kann nicht synchronisiert werden, es ist ein Fehler aufgetreten",
-    "@unableToSyncItem": {
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "syncRemoveUnableToDeleteItem": "Synchronisiertes Element kann nicht entfernt werden, es ist ein Fehler aufgetreten",
-    "syncAddItemForSyncing": "{item} zur Synchronisation hinzugefügt",
-    "@syncAddItemForSyncing": {
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "startedSyncingItem": "Synchronisation von {item} gestartet",
-    "@startedSyncingItem": {
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "aboutVersion": "Version: {version}",
-    "@aboutVersion": {
-        "placeholders": {
-            "version": {
-                "type": "String"
-            }
-        }
-    },
-    "aboutBuild": "Build: {buildNumber}",
-    "@aboutBuild": {
-        "placeholders": {
-            "buildNumber": {
-                "type": "String"
-            }
-        }
-    },
-    "scale": "Skalierung",
-    "subtitleConfiguration": "Untertitelkonfiguration",
-    "removeFilterForLibrary": "{filter} entfernen?",
-    "@removeFilterForLibrary": {
-        "description": "removeFilterForLibrary",
-        "placeholders": {
-            "filter": {
-                "type": "String"
-            }
-        }
-    },
-    "settingsAutoNextDesc": "Zeigt eine Vorschau des nächsten Elements gegen Ende an, wenn ein weiteres Element in der Warteschlange ist",
-    "autoNextOffSmartDesc": "Zeigt den Als Nächstes-Bildschirm an, wenn der Abspann beginnt, sofern danach nicht mehr als 10 Sekunden verbleiben. Andernfalls wird der Als Nächstes-Bildschirm 30 Sekunden vor dem Ende der Wiedergabe angezeigt",
-    "autoNextOffStaticTitle": "Statisch",
-    "autoNextOffStaticDesc": "Zeige den Als Nächstes-Bildschirm, wenn 30 Sekunden Wiedergabezeit verbleiben",
-    "errorOpeningMedia": "Beim Abspielen dieses Mediums ist ein Fehler aufgetreten",
-    "unableToPlayBooksOnWeb": "Bücher werden derzeit im Web nicht unterstützt",
-    "clientSettingsShowAllCollectionsTitle": "Alle Kollektionstypen anzeigen",
-    "skipButtonLabel": "{segment} überspringen",
-    "@skipButtonLabel": {
-        "placeholders": {
-            "segment": {
-                "type": "String"
-            }
-        }
-    },
-    "mediaSegmentUnknown": "Unbekannt",
-    "mediaSegmentIntro": "Intro",
-    "noVideoPlayerOptions": "Das ausgewählte Backend hat keine Optionen",
-    "settingsLayoutSizesTitle": "Layout Größen",
-    "settingsLayoutModesTitle": "Layout-Modi",
-    "phone": "Telefon",
-    "settingsLayoutSizesDesc": "Wählen Sie, welche Layoutgrößen die App basierend auf der Fenstergröße verwenden kann",
-    "episodeAvailable": "Verfügbar",
-    "libraryFiltersRemoveAllConfirm": "Dies wird alle gespeicherten Filter für jede Bibliothek löschen",
-    "libraryFiltersRemoveAll": "Alle Filter entfernen",
-    "errorLogs": "Fehlerprotokolle",
-    "clientSettingsSchemeVariantTitle": "Schemavariante",
-    "schemeSettingsMonochrome": "Monochrom",
-    "schemeSettingsNeutral": "Neutral",
-    "schemeSettingsRainbow": "Regenbogen",
-    "schemeSettingsFruitSalad": "Fruchtsalat",
-    "playerSettingsBackendDesc": "Wählen Sie Ihren bevorzugten Mediaplayer für optimale Wiedergabeerfahrung",
-    "mdkExperimental": "MDK ist noch in einer experimentellen Phase",
-    "internetStreamingQualityTitle": "Internet-Qualität",
-    "internetStreamingQualityDesc": "Maximale Streaming-Qualität über das Internet (mobile)",
-    "homeStreamingQualityDesc": "Maximale Streaming-Qualität, wenn mit Heimnetz verbunden",
-    "qualityOptionsTitle": "Qualitätsoptionen",
-    "qualityOptionsOriginal": "Original",
-    "qualityOptionsAuto": "Auto",
-    "version": "Version",
-    "mediaSegmentActions": "Mediensegment Aktionen",
-    "segmentActionNone": "Keine",
-    "closeVideo": "Video schließen",
-    "autoNextOffSmartTitle": "Smart",
-    "clientSettingsRequireWifiDesc": "Nur herunterladen, wenn Sie mit einem Wlan-Netzwerk verbunden sind",
-    "clientSettingsShowAllCollectionsDesc": "Wenn aktiviert, werden alle Sammlungstypen angezeigt, einschließlich derjenigen, die von Fladder nicht unterstützt werden",
-    "downloadFile": "{type} herunterladen",
-    "@downloadFile": {
-        "placeholders": {
-            "type": {
-                "type": "String"
-            }
-        }
-    },
-    "copyStreamUrl": "Stream-Url kopieren",
-    "mediaSegmentCommercial": "Werbung",
-    "mediaSegmentPreview": "Vorschau",
-    "mediaSegmentRecap": "Rückblick",
-    "mediaSegmentOutro": "Outro",
-    "masonry": "Masonry",
-    "settingsLayoutModesDesc": "Steuere, ob die App ein Einzelfenster- oder Zweifenster-Layout verwenden kann",
-    "tablet": "Tablet",
-    "desktop": "Desktop",
-    "layoutModeSingle": "Einzeln",
-    "layoutModeDual": "Doppelt",
-    "playerSettingsOrientationTitle": "Player-Ausrichtung",
-    "playerSettingsOrientationDesc": "Den Videoplayer auf bestimmte Ausrichtungen festlegen",
-    "deviceOrientationPortraitUp": "Hochformat (oben)",
-    "deviceOrientationPortraitDown": "Hochformat (unten)",
-    "deviceOrientationLandscapeLeft": "Querformat (links)",
-    "deviceOrientationLandscapeRight": "Querformat (rechts)",
-    "mediaTypeBoxset": "{count, plural, one{Boxset} other{Boxsets}}",
-    "defaultLabel": "Standard",
-    "@defaultLabel": {
-        "description": "To indicate a default value, default video player backend"
-    },
-    "schemeSettingsTonalSpot": "Tonaler Akzent",
-    "schemeSettingsFidelity": "Detailtreue",
-    "schemeSettingsContent": "Inhaltsbezogen",
-    "schemeSettingsVibrant": "Lebendig",
-    "schemeSettingsExpressive": "Ausdrucksstark",
-    "playerSettingsBackendTitle": "Videoplayer-Backend",
-    "copiedToClipboard": "In die Zwischenablage kopiert",
-    "libraryShuffleAndPlayItems": "Elemente zufällig abspielen",
-    "libraryPlayItems": "Elemente abspielen",
-    "homeStreamingQualityTitle": "Qualität für Zuhause",
-    "segmentActionAskToSkip": "Zum Überspringen fragen",
-    "segmentActionSkip": "Überspringen",
-    "loading": "Wird geladen",
-    "stop": "Stopp",
-    "resumeVideo": "Video fortsetzen",
-    "playNextVideo": "Nächstes Video abspielen",
-    "external": "Extern",
-    "settingsAutoNextTitle": "Vorschau des nächsten Titels",
-    "clientSettingsRequireWifiTitle": "Wlan erforderlich",
-    "episodeUnaired": "Unveröffentlicht",
-    "episodeMissing": "Fehlt",
-    "castAndCrew": "Besetzung & Crew",
-    "guestActor": "{count, plural, other{Gastschauspieler} one{Gastschauspieler}}",
-    "@guestActor": {
-        "description": "Guest actors",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "settingsPlayerBufferSizeTitle": "Videopuffergröße",
-    "settingsPlayerBufferSizeDesc": "Konfiguriere die Puffergröße für die Videowiedergabe und lege fest, wie viele Daten in den Cache geladen werden.",
-    "exitFladderTitle": "Fladder Beenden",
-    "maxConcurrentDownloadsTitle": "Maximale Anzahl gleichzeitiger Downloads",
-    "maxConcurrentDownloadsDesc": "Legt die maximale Anzahl gleichzeitig laufender Downloads fest. Setze den Wert auf 0, um die Begrenzung zu deaktivieren.",
-    "rememberSubtitleSelections": "Untertitelspur basierend auf vorherigem Element einstellen",
-    "rememberAudioSelections": "Audiospur basierend auf vorherigem Element einstellen",
-    "similarToRecentlyPlayed": "Ähnlich wie kürzlich gespielt",
-    "similarToLikedItem": "Ähnlich zu gefallenem Element",
-    "hasActorFromRecentlyPlayed": "Hat Schauspieler aus vor kurzem gespielt",
-    "hasLikedActor": "Hat Schauspieler der gefällt",
-    "latest": "Neueste",
-    "recommended": "Empfohlen",
-    "hasLikedDirector": "Hat Regisseur der gefällt",
-    "hasDirectorFromRecentlyPlayed": "Hat Regisseur von vor kurzem gespielt",
-    "playbackType": "Wiedergabetyp",
-    "playbackTypeDirect": "Direkt",
-    "playbackTypeTranscode": "Transkodieren",
-    "playbackTypeOffline": "Offline",
-    "latestReleases": "Aktuelle Veröffentlichungen",
-    "newReleaseFoundTitle": "Aktualisierung {newRelease} verfügbar!",
-    "@newReleaseFoundTitle": {
-        "placeholders": {
-            "newRelease": {
-                "type": "String"
-            }
-        }
-    },
-    "autoCheckForUpdates": "Regelmäßig auf Aktualisierungen prüfen",
-    "newUpdateFoundOnGithub": "Neue Aktualisierung auf Github gefunden",
-    "rememberSubtitleSelectionsDesc": "Versucht die Untertitelspur so einzustellen, dass sie dem letzten Video am nächsten kommt.",
-    "rememberAudioSelectionsDesc": "Versucht die Audiospur so einzustellen, dass sie dem letzten Video am nächsten kommt.",
-    "playbackTrackSelection": "Auswahl der Wiedergabespur",
-    "enableBackgroundPostersDesc": "Zufällige Poster in den entsprechenden Bildschirmen anzeigen",
-    "settingsEnableOsMediaControlsDesc": "Ermöglicht die Wiedergabesteuerung mithilfe von Medientasten und zeigt die aktuell wiedergegebenen Medien im Betriebssystem an",
-    "enableBackgroundPostersTitle": "Hintergrundposter aktivieren",
-    "syncDeleteAll": "Alle Dateien löschen",
-    "syncAllFiles": "Alle Dateien synchronisieren",
-    "usePostersForLibraryIconsTitle": "Poster für Bibliothekssymbole anzeigen",
-    "usePostersForLibraryIconsDesc": "Poster anstelle von Symbolen für Bibliotheken anzeigen",
-    "offline": "Offline",
-    "nextVideo": "Nächstes Video",
-    "prevVideo": "Vorheriges Video",
-    "nextChapter": "Nächstes Kapitel",
-    "prevChapter": "Vorheriges Kapitel",
-    "fullScreen": "Vollbild",
-    "blurred": "Unscharf",
-    "volumeIndicator": "Lautstärke: {volume}",
-    "@volumeIndicator": {
-        "placeholders": {
-            "volume": {
-                "type": "int"
-            }
-        }
-    },
-    "notificationDownloadingDownloading": "Wird heruntergeladen",
-    "notificationDownloadingPaused": "Herunterladen pausiert",
-    "notificationDownloadingFinished": "Herunterladen abgeschlossen",
-    "notificationDownloadingError": "Fehler beim Herunterladen",
-    "syncAllItemsTitle": "Alle Elemente aus {itemName} synchronisieren?",
-    "@syncAllItemsTitle": {
-        "description": "syncAllItemsFrom",
-        "placeholders": {
-            "itemName": {
-                "type": "String"
-            }
-        }
-    },
-    "syncPauseAll": "Alles pausieren",
-    "syncResumeAll": "Alles fortsetzen",
-    "syncStopAll": "Alles stoppen",
-    "playPause": "Wiedergabe/Pause",
-    "mute": "Stummschalten",
-    "volumeUp": "Lautstärke erhöhen",
-    "volumeDown": "Lautstärke verringern",
-    "skipMediaSegment": "Medienbereich überspringen",
-    "exit": "Beenden",
-    "syncDeleteAllItemsDesc": "Dies wird alle synchronisierten Elemente aus '{itemName}' löschen.\nDies ist permanent und Sie müssen ({itemCount}) Dateien erneut synchronisieren.",
-    "@syncDeleteAllItemsDesc": {
-        "description": "syncDeleteAllitemsFromDesc",
-        "placeholders": {
-            "itemName": {
-                "type": "String"
-            },
-            "itemCount": {
-                "type": "int"
-            }
-        }
-    },
-    "shortCuts": "Shortcuts",
-    "keyboardShortCuts": "Tastenkombinationen",
-    "clientSettingsUseSystemIMETitle": "Systemtastatur verwenden",
-    "clientSettingsUseSystemIMEDesc": "Verwende die vom System bereitgestellte integrierte Tastatur",
-    "television": "Fernsehen",
-    "exitFladderDesc": "Möchten Sie Fladder wirklich beenden?",
-    "syncAllItemsDesc": "Dies synchronisiert ({itemCount}) Elemente von '{itemName}' zu Ihrem Gerät.\nDies kann eine Weile dauern, abhängig von der Menge der Elemente.",
-    "@syncAllItemsDesc": {
-        "description": "syncAllitemsFromDesc",
-        "placeholders": {
-            "itemName": {
-                "type": "String"
-            },
-            "itemCount": {
-                "type": "int"
-            }
-        }
-    },
-    "syncDeleteAllItemsTitle": "Alle synchronisierten Elemente aus {itemName} löschen?",
-    "@syncDeleteAllItemsTitle": {
-        "description": "syncDeleteAllitemsFrom",
-        "placeholders": {
-            "itemName": {
-                "type": "String"
-            }
-        }
-    },
-    "skipForwardLength": "Länge zum Überspringen",
-    "skipBackLength": "Länge zum Zurückspringen",
-    "seekForward": "Vorwärts suchen",
-    "seekBack": "Rückwärts suchen",
-    "speedUp": "Beschleunigen",
-    "speedDown": "Verlangsamen",
-    "shortCutAlreadyAssigned": "Die Tastenkombination '{hotKey}' ist bereits belegt",
-    "@shortCutAlreadyAssigned": {
-        "placeholders": {
-            "hotKey": {
-                "type": "String"
-            }
-        }
-    },
-    "speedIndicator": "Wiedergabegeschwindigkeit: {speed}",
-    "@speedIndicator": {
-        "placeholders": {
-            "speed": {
-                "type": "double"
-            }
-        }
-    },
-    "quickConnectPostFailed": "Quick Connect-Code konnte nicht abgerufen werden",
-    "quickConnectLoginUsingCode": "Quick Connect verwenden",
-    "quickConnectEnterCodeDescription": "Gib den folgenden Code ein, um dich anzumelden",
-    "showMore": "Mehr anzeigen",
-    "itemColorsTitle": "Item Farben",
-    "itemColorsDesc": "Verwende die Hauptfarbe des Items als Thema für die Detailseite",
-    "mediaTunnelingTitle": "Medientunneling",
-    "mediaTunnelingDesc": "Medientunneling für nativen Player aktivieren",
-    "nextUpInCount": "Als Nächstes in {seconds}",
-    "@nextUpInCount": {
-        "placeholders": {
-            "seconds": {
-                "type": "int"
-            }
-        }
-    },
-    "formattedTime": "{time}",
-    "@formattedTime": {
-        "description": "Formatted time",
-        "placeholders": {
-            "time": {
-                "type": "DateTime",
-                "format": "jm"
-            }
-        }
-    },
-    "openImeKeyboard": "IME Tastatur öffnen",
-    "playerSettingsScreensaverDesc": "Wähle einen Bildschirmschoner aus, der bei Inaktivität angezeigt wird",
-    "screensaverDvd": "DVD",
-    "screensaverLogo": "Logo",
-    "screensaverTime": "Zeit",
-    "screensaverBlack": "Schwarz",
-    "playerSettingsScreensaverTitle": "Bildschirmschoner",
-    "settingsLocalUrlSetTitle": "Konfiguriere lokale Jellyfin URL",
-    "settingsLocalUrlSetDesc": "Geben Sie die lokale Jellyfinadresse an. Fladder wird diese URL automatisch verwenden, wenn Ihr Gerät im selben Netzwerk ist.",
-    "takeScreenshot": "Screenshot aufnehmen",
-    "takeScreenshotClean": "Screenshot aufnehmen (ohne Untertitel)",
-    "screenshots": "Screenshots",
-    "screenshotTaken": "Screenshot gespeichert!",
-    "screenshotCleanTaken": "Screenshot ohne Untertitel gespeichert!",
-    "errorTakingScreenshot": "Beim Erstellen des Screenshots ist ein Fehler aufgetreten",
-    "settingsLocalUrlTitle": "Lokale Jellyfin URL",
-    "regenerateTrickplayImages": "Trickplay-Bilder neu generieren",
-    "segmentActionSkipOnce": "Einmalig überspringen",
-    "serverVersion": "Server Version",
-    "webVersion": "Web Version",
-    "devices": "Geräte",
-    "storagePaths": "Speicherpfade",
-    "web": "Web",
-    "cache": "Cache",
-    "logs": "Logs",
-    "count": "Anzahl",
-    "scanAllLibraries": "Alle Bibliotheken scannen",
-    "restartServer": "Server neustarten",
-    "shutDownServer": "Server herunterfahren",
-    "lastActivity": "Letzte Aktivität",
-    "timeAgo": "vor {time}",
-    "@timeAgo": {
-        "description": "timeAgo",
-        "placeholders": {
-            "time": {
-                "type": "String"
-            }
-        }
-    },
-    "lessThenAMinute": "Weniger als eine Minute",
-    "plannedTasks": "Geplante Aufgaben",
-    "taskTriggerTypeInterval": "Intervall",
-    "taskTriggerTypeDaily": "Täglich",
-    "taskTriggerTypeWeekly": "Wöchentlich",
-    "create": "Erstellen",
-    "time": "Zeit",
-    "interval": "Intervall",
-    "taskTimeLimitInHours": "Zeitlimit (Stunden)",
-    "taskTriggerDailyDesc": "Täglich um {time}",
-    "@taskTriggerDailyDesc": {
-        "description": "taskTriggerDailyDesc",
-        "placeholders": {
-            "time": {
-                "type": "String"
-            }
-        }
-    },
-    "taskTriggerWeeklyDesc": "Wöchentlich am {day} um {time}",
-    "@taskTriggerWeeklyDesc": {
-        "description": "taskTriggerWeeklyDesc",
-        "placeholders": {
-            "day": {
-                "type": "String"
-            },
-            "time": {
-                "type": "String"
-            }
-        }
-    },
-    "taskTriggerTimeLimitSub": "Zeitlimit: {time}",
-    "@taskTriggerTimeLimitSub": {
-        "description": "taskTriggerTimeLimit",
-        "placeholders": {
-            "time": {
-                "type": "String"
-            }
-        }
-    },
-    "serverNameLabel": "Servername",
-    "cachePath": "Cache Pfad",
-    "metadataPath": "Metadaten Pfad",
-    "maxConcurrentLibraryScanLabel": "Max gleichzeitige Bibliotheken Scans",
-    "controlPanelServerDesc": "Servername, Quick Connect, Leistung",
-    "deleteUserTitle": "Benutzer {user} löschen?",
-    "@deleteUserTitle": {
-        "description": "deleteUserTitle",
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "deleteUserDesc": "Hiermit wird der Benutzer {user} und alle zugehörigen Einstellungen gelöscht.",
-    "@deleteUserDesc": {
-        "description": "deleteUserDesc",
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "userInformation": "Benutzerinformation",
-    "allowManageServer": "Erlaube diesem Nutzer die Serververwaltung",
-    "allowEditSubtitles": "Erlaube diesem Benutzer Untertitel zu bearbeiten",
-    "mediaPlayback": "Medienwiedergabe",
-    "allowMediaPlayback": "Medienwiedergabe erlauben",
-    "allowVideoTranscoding": "Video-Wiedergabe, die Transkodierung benötigt, zulassen",
-    "allowAudioTranscoding": "Audio-Wiedergabe, die Transkodierung benötigt, zulassen",
-    "allowMediaDeletion": "Erlaube Medienlöschung von",
-    "allLibraries": "Alle Bibliotheken",
-    "libraryAccess": "Bibliothekszugriff",
-    "enableAllLibraries": "Zugriff auf alle Bibliotheken zulassen",
-    "parentalControl": "Kindersicherung",
-    "blockedItemsNoRating": "Blockiere Inhalte mit keiner oder nicht erkannter Altersfreigabe",
-    "maxParentalRating": "Maximal erlaubte Altersfreigabe",
-    "allowItemsTags": "Erlaube Einträge mit Tags",
-    "blockItemsTags": "Blockiere Inhalte mit Tags",
-    "newLibrary": "Neue Bibliothek",
-    "extractChapterImagesDuringLibraryScan": "Erzeuge Kapitelbilder während des Bibliothekscans",
-    "enableChapterImageExtraction": "Extraktion von Kapitelbildern aktivieren",
-    "chapterImages": "Kapitelbilder",
-    "saveTrickplayImagesNextToMedia": "Trickplay-Bilder bei den Medien speichern",
-    "extractTrickplayImagesDuringLibraryScan": "Extrahieren von Trickplay-Bildern beim Scannen der Bibliothek",
-    "enableTrickplayImageExtraction": "Extrahieren von Trickplay-Bildern aktivieren",
-    "enableAndRankImageFetchers": "Aktiviere und ordne deine bevorzugten Bildquellen nach Präferenzen.",
-    "imageFetchers": "Bildquellen ({type})",
-    "@imageFetchers": {
-        "placeholders": {
-            "type": {
-                "type": "String"
-            }
-        }
-    },
-    "enableAndRankImagesFetchers": "Aktiviere und ordne deine bevorzugten Bildquellen nach Präferenzen.",
-    "enableAndRankMetadataFetchers": "Aktiviere und ordne deine bevorzugten Metadatendownloader nach Präferenzen.",
-    "metadataFetchers": "Metadatendienst ({type})",
-    "@metadataFetchers": {
-        "placeholders": {
-            "type": {
-                "type": "String"
-            }
-        }
-    },
-    "used": "Belegt",
-    "metadataImageLongPressTouch": "Lange Drücken um Bild zu löschen",
-    "metadataImageLongPressClick": "Rechtsklicken um Bild zu löschen",
-    "controlDashboard": "System Dashboard",
-    "serverName": "Servername",
-    "dashboardDesc": "Server, Anzahl, Geräte, Speicher",
-    "lastRunTaking": "Letzte Ausführung {date}, Dauer {time}",
-    "@lastRunTaking": {
-        "description": "lastRunTaking",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            },
-            "time": {
-                "type": "String"
-            }
-        }
-    },
-    "taskTriggerTypeName": "Auslöser-Typ",
-    "taskTriggerTypeStartup": "Start",
-    "newTaskTrigger": "Neuer Aufgabenauslöser",
-    "dayOfTheWeek": "Wochentag",
-    "maxConcurrentLibraryScanDesc": "Anzahl der Maximalen parallelen Aufgaben während des Bibliotheksscans. Wenn Sie diesen Wert auf 0 lassen, wird ein Limit auf Grundlage der Kernanzahl Ihres Systems festgelegt. WARNUNG: Wenn Sie diese Zahl zu hoch einstellen, kann es zu Problemen mit Bibliotheken, die über das Netzwerk verbunden sind, kommen; wenn dies der Fall ist, senken Sie diese Zahl.",
-    "maxImageDecodingThreadsLabel": "Max Bild-Dekodierungsthreads",
-    "maxImageDecodingThreadsDesc": "Maximale Anzahl von Bildkodierungen, die parallel ausgeführt werden dürfen. Lässt Du diesen Wert leer, wird ein Limit auf Grundlage der Kernanzahl deines Systems festgelegt.",
-    "transcodingTemp": "Transkodierung Temp",
-    "taskTriggerIntervalDesc": "Alle {time}",
-    "@taskTriggerIntervalDesc": {
-        "description": "Task trigger interval desc",
-        "placeholders": {
-            "time": {
-                "type": "String"
-            }
-        }
-    },
-    "allowCollections": "Dieser Benutzer darf Sammlungen verwalten",
-    "featureAccess": "Funktionszugriff",
-    "allowLiveTVAccess": "Live-TV Zugriff zulassen",
-    "allowLiveTVRecording": "Live-TV Aufnahmeplanung zulassen",
-    "forceRemoteTranscoding": "Transkodieren von externen Medienquellen erzwingen",
-    "accessSchedule": "Zugangsplan",
-    "accessSchedules": "Zeitbeschränkung",
-    "addAccessSchedule": "Zeitbeschränkung hinzufügen",
-    "dayOfWeek": "Wochentag",
-    "addTag": "Tag hinzufügen",
-    "editUser": "Benutzer bearbeiten",
-    "general": "Allgemein",
-    "access": "Zugriff",
-    "endTimeMustBeAfter": "Endzeit muss nach Startzeit liegen",
-    "assignLibraries": "Bibliotheken zuordnen",
-    "resetPassword": "Passwort zurücksetzen",
-    "passwordResetSuccess": "Passwort erfolgreich zurückgesetzt",
-    "passwordMismatch": "Neues Passwort und Bestätigung stimmen nicht überein",
-    "passwordChangeSuccess": "Passwort erfolgreich geändert",
-    "passwordChangeFailed": "Passwort konnte nicht geändert werden",
-    "enabledLUFSScan": "LUFS Scan aktivieren",
-    "automaticRefreshInterval": "Automatisches Refresh Intervall",
-    "autoRefreshIntervalNote": "Wenn aktiviert, könnten Bibliotheksaktualisierungen länger dauern.",
-    "preferredDownloadLanguage": "Bevorzugte Sprache für Downloads",
-    "mediaSegmentProviders": "Mediensegmentanbieter",
-    "enableAndRankMediaSegmentProviders": "Aktiviere und ordne die Mediensegmentanbieter in einer benutzerdefinierten Reihenfolge.",
-    "contentType": "Inhaltsart",
-    "controlPanelDesc": "Server, Aktivität, Benutzer, Bibliothek",
-    "activeTasks": "Aktive Aufgaben",
-    "newTrigger": "Neuer Auslöser",
-    "controlPanel": "Systemsteuerung",
-    "performance": "Leistung",
-    "allowMediaConversion": "Videowiedergabe zulassen, die Medienkonvertierung erfordert",
-    "syncplayAccess": "Syncplay Zugriff",
-    "enableAllDevices": "Zugriff auf alle Geräte aktivieren",
-    "startTime": "Startzeit",
-    "endTime": "Endzeit",
-    "createNewUser": "Neue Benutzer erstellen",
-    "createUser": "Benutzer erstellen",
-    "users": "Benutzer",
-    "passwordSettingsComing": "Passwort-Einstellungen kommen bald",
-    "enableAccessAllLibraries": "Zugriff auf alle Bibliotheken aktivieren",
-    "currentPassword": "Aktuelles Passwort",
-    "newPassword": "Neues Passwort",
-    "confirmPassword": "Passwort bestätigen",
-    "passwordResetFailed": "Fehler beim Zurücksetzen des Passworts",
-    "savePassword": "Passwort speichern",
-    "deleteLibraryConfirmTitle": "Bibliothek löschen?",
-    "deleteLibraryConfirmMessage": "Sind Sie sicher, dass Sie {libraryName} löschen möchten?\nDiese Aktion kann nicht rückgängig gemacht werden.",
-    "@deleteLibraryConfirmMessage": {
-        "placeholders": {
-            "libraryName": {
-                "type": "String"
-            }
-        }
-    },
-    "noLibrarySelected": "Keine Bibliothek ausgewählt",
-    "enabledPhotos": "Fotos aktivieren",
-    "enabledRealtimeMonitoring": "Realtime-Monitoring aktivieren",
-    "automaticallyAddToCollection": "Automatisch zur Sammlung hinzufügen",
-    "enabledEmbeddedTitles": "Aktivierte eingebettete Titel",
-    "enabledEmbeddedExtrasTitles": "Aktivierte Extras eingebettete Titel",
-    "countryRegion": "Land/Region",
-    "saveMetadata": "Metadaten speichern",
-    "saveArtWorkNextToMedia": "Artwork neben Mediendateien speichern",
-    "select": "Wählen",
-    "systemRootFolder": "System Wurzelordner",
-    "selectedPath": "Ausgewählter Pfad: {path}",
-    "@selectedPath": {
-        "placeholders": {
-            "path": {
-                "type": "String"
-            }
-        }
-    },
-    "subtitleDownloads": "Untertitel-Downloads",
-    "downloadLanguages": "Herunterzuladende Sprachen",
-    "subtitleDownloaders": "Untertitel-Downloader",
-    "onlyPerfectSubtitleMatch": "Nur Untertitel herunterladen, die perfekt zum Medium passen",
-    "perfectSubtitleMatchDescription": "Wenn eine perfekte Übereinstimmung vorausgesetzt wird, werden nur Untertitel heruntergeladen die mit der vorhandenen Videodatei getestet und verifiziert wurden. Das Entfernen dieses Hakens erhöht die Wahrscheinlichkeit von Untertitel-Downloads, aber erhöht gleichzeitig auch die Chance auf schlecht synchronisierte oder falsche Untertitel.",
-    "skipSubtitlesIfAudioMatches": "Überspringen, falls der Ton bereits der herunterladbaren Sprache entspricht",
-    "skipSubtitlesIfEmbedded": "Überspringen, falls das Video bereits eingebettete Untertitel enthält",
-    "saveSubtitlesNextToMedia": "Untertitel neben Mediendateien speichern",
-    "saveArtWorkNextToMediaDesc": "Durch das Speichern von Bildmaterial direkt in den Medienverzeichnissen befinden sich diese an einem Ort, wo sie sehr leicht bearbeitet werden können.",
-    "primary": "Primär",
-    "selectFolderToAdd": "Ordner auswählen, der hinzugefügt werden soll",
-    "syncplay": "Syncplay",
-    "logo": "{count, plural, other{Logos} one{Logo}}",
-    "@logo": {
-        "description": "logo",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "trickplay": "Trickplay",
-    "programData": "Program Data",
-    "hours": "{count, plural, one{Stunde} other{Stunden}}",
-    "@hours": {
-        "description": "Pluralization for hours",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "3"
-            }
-        }
-    },
-    "weeks": "{count, plural, one{Woche} other{Wochen}}",
-    "@weeks": {
-        "description": "Pluralization for weeks",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "2"
-            }
-        }
-    },
-    "months": "{count, plural, one{Monat} other{Monate}}",
-    "@months": {
-        "description": "Pluralization for months",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "5"
-            }
-        }
-    },
-    "years": "{count, plural, one{Jahr} other{Jahre}}",
-    "@years": {
-        "description": "Pluralization for years",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "backdrop": "{count, plural, other{Backdrops} one{Backdrop}}",
-    "@backdrop": {
-        "description": "backdrop",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "deleteRequestConfirmation": "Sind Sie sicher, dass Sie diese Anfrage löschen möchten?",
-    "recentlyAdded": "Kürzlich hinzugefügt",
-    "recentRequests": "Kürzlich angefragt",
-    "trending": "Im Trend",
-    "popularMovies": "Beliebte Filme",
-    "expectedSeries": "Erwartete Serien",
-    "selectFolder": "Ordner auswählen",
-    "tags": "Tags",
-    "noTags": "Keine Tags",
-    "requestAs": "Anfordern als",
-    "requestQuotaTitle": "Kontingent anfordern",
-    "requestQuotaStatus": "{remaining} von {limit} übrig (Wird alle {days} Tage zurückgesetzt)",
-    "@requestQuotaStatus": {
-        "placeholders": {
-            "remaining": {
-                "type": "int"
-            },
-            "limit": {
-                "type": "int"
-            },
-            "days": {
-                "type": "int"
-            }
-        }
-    },
-    "submitRequest": "Anfrage senden",
-    "viewRequest": "Anfrage einsehen",
-    "email": "E-Mail",
-    "ok": "OK",
-    "seerrNotConfigured": "Nicht eingerichtet",
-    "loggedInAs": "Angemeldet als {displayName}",
-    "@loggedInAs": {
-        "placeholders": {
-            "displayName": {
-                "type": "String"
-            }
-        }
-    },
-    "seerrSessionSaved": "Seerr Sitzung gespeichert",
-    "seerrStatusVersion": "Seerr: {version}",
-    "@seerrStatusVersion": {
-        "placeholders": {
-            "version": {
-                "type": "String"
-            }
-        }
-    },
-    "seerrAuthenticateLocal": "Seerr Authentifizierung (lokal)",
-    "seerrAuthenticateJellyfin": "Seerr Authentifizierung (Jellyfin)",
-    "seerrSessionConfigured": "Session konfiguriert",
-    "seerrTestConnection": "Seerr Verbindung testen",
-    "seerrAutoApproveNotice": "Von Ihnen gesendete Anfragen werden automatisch genehmigt.",
-    "seerrPermissionDenied": "Sie haben keine Berechtigung diesen Medientyp anzufordern.",
-    "seerrAuthLocal": "Lokal",
-    "seerrUserFetchFailed": "Benutzer konnte von Seerr nicht abgeholt werden",
-    "seerrEnterServerUrlFirst": "Geben Sie zuerst eine Seerr Server URL ein",
-    "seerrLoggedIn": "Bei Seerr angemeldet",
-    "seerrConnectedToServer": "Mit Seerr Server verbunden: {serverUrl}",
-    "@seerrConnectedToServer": {
-        "placeholders": {
-            "serverUrl": {
-                "type": "String"
-            }
-        }
-    },
-    "emailUsername": "E-Mail/Benutzername",
-    "expectedMovies": "Erwartete Filme",
-    "requestConfiguration": "Konfiguration anfordern",
-    "qualityProfile": "Qualitätsprofil",
-    "selectProfile": "Profil auswählen",
-    "rootFolder": "Wurzelverzeichnis",
-    "requestQuotaLimitReached": "Anforderungslimit erreicht für {mediaType}.",
-    "@requestQuotaLimitReached": {
-        "placeholders": {
-            "mediaType": {
-                "type": "String"
-            }
-        }
-    },
-    "noOverviewAvailable": "Keine Übersicht verfügbar.",
-    "downloading": "herunterladen",
-    "request": "Anfrage",
-    "username": "Benutzername",
-    "seerr": "Seer",
-    "seerrLoadingUser": "Benutzer laden",
-    "seerrUnknownUser": "Unbekannter Benutzer",
-    "seerrSetServerFirst": "Seerr Server zuerst einstellen",
-    "seerrLocalLoginTitle": "Seerr Lokale Anmeldung",
-    "seerrJellyfinLoginTitle": "Seerr Jellyfin Login",
-    "seerrServer": "Seerr Server",
-    "seerrConfigured": "Konfiguriert",
-    "rootFolderDefaultLabel": "{folder} (Standard)",
-    "@rootFolderDefaultLabel": {
-        "placeholders": {
-            "folder": {
-                "type": "String"
-            }
-        }
-    },
-    "seerrAnimeSeriesNote": "* Diese Serie ist ein Anime.",
-    "seerrAuthApiKey": "API Schlüssel",
-    "seerrAuthJellyfin": "Jellyfin",
-    "seerrApiKeySaved": "API Schlüssel gespeichert",
-    "discover": "Entdecken",
-    "popularity": "Popularität",
-    "runtimeMinutesTitle": "Laufzeit (Minuten)",
-    "runtimeRangeMinutes": "{min} - {max} Minuten",
-    "@runtimeRangeMinutes": {
-        "placeholders": {
-            "min": {
-                "type": "int"
-            },
-            "max": {
-                "type": "int"
-            }
-        }
-    },
-    "minutesShort": "{count} Min",
-    "@minutesShort": {
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "5"
-            }
-        }
-    },
-    "streamingServices": "Anbieter ({count})",
-    "@streamingServices": {
-        "description": "Streaming providers (Netflix,HBO, etc.)",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "2"
-            }
-        }
-    },
-    "settingsProfileSubtitleLanguage": "Bevorzugte Untertitelsprache",
-    "settingsProfileSubtitleMode": "Untertitelmodus",
-    "subtitlePlaybackModeDefault": "Standard",
-    "subtitlePlaybackModeAlways": "Immer abspielen",
-    "subtitlePlaybackModeOnlyForced": "Nur erzwungene",
-    "subtitlePlaybackModeNone": "Keine",
-    "subtitlePlaybackModeSmart": "Smart",
-    "syncplayAccessCreateAndJoinGroups": "Gruppen erstellen und beitreten",
-    "syncplayAccessJoinGroups": "Gruppen beitreten",
-    "syncplayAccessNone": "Keine",
-    "popularSeries": "Beliebte Serien",
-    "sponsor": "Sponsor",
-    "sponsorMessage": "Wenn dir Fladder gefällt, würde ich mich sehr über eine Spende freuen. Diese trägt zur Weiterentwicklung und Verbesserung des Projektes bei. Vielen Dank für deine Unterstützung!",
-    "min": "min",
-    "max": "max",
-    "contentRating": "Altersfreigabe",
-    "seerrRequestStatusPending": "Ausstehend",
-    "seerrRequestStatusDeclined": "Abgelehnt",
-    "seerrRequestStatusFailed": "Fehlgeschlagen",
-    "seerrRequestStatusCompleted": "Abgeschlossen",
-    "seerrRequestStatusApproved": "Genehmigt",
-    "seerrMediaStatusProcessing": "Verarbeitung",
-    "seerrMediaStatusPartiallyAvailable": "Teilweise verfügbar",
-    "seerrMediaStatusAvailable": "Verfügbar",
-    "seerrMediaStatusDeleted": "Gelöscht",
-    "manageRequest": "Antrag auf Verwalten",
-    "requestAll": "Alle anfordern",
-    "seerrMediaStatusBlacklisted": "Blockliste",
-    "openInSeerr": "In Seerr öffnen",
-    "openInSonarr": "In Sonarr öffnen",
-    "openInRadarr": "In Radarr öffnen",
-    "removeFromSonarr": "Von Sonarr entfernen",
-    "removeFromRadarr": "Von Radarr entfernen",
-    "markAllSeasonsAsAvailable": "Alle Staffeln als verfügbar markieren",
-    "markAsAvailable": "Als verfügbar markieren",
-    "deleteData": "Daten löschen",
-    "removeSeriesFromSonarrConfirm": "Diese Serie von Sonarr entfernen? Dies wird alle Daten EINSCHLIEßLICH Dateien entfernen.",
-    "removeMovieFromRadarrConfirm": "Diesen Film von Radarr entfernen? Dies wird alle Daten EINSCHLIEßLICH Dateien entfernen.",
-    "markAllSeasonsAsAvailableConfirm": "Alle Staffeln als verfügbar markieren?",
-    "markAsAvailableConfirm": "Als verfügbar markieren?",
-    "markedAsAvailable": "Als Verfügbar markiert",
-    "deleteSeerrDataConfirm": "Alle Dateien von Seerr löschen? Diese Aktion kann nicht rückgängig gemacht werden.\nWenn die Daten noch in {service} vorhanden sind, werden diese eventuell erneut importiert.",
-    "@deleteSeerrDataConfirm": {
-        "description": "Confirmation message for deleting Seerr data",
-        "placeholders": {
-            "service": {
-                "type": "String",
-                "example": "Sonarr/Radarr"
-            }
-        }
-    },
-    "approve": "Genehmigen",
-    "decline": "Ablehnen",
-    "pendingRequests": "{count, plural, other{Keine ausstehende Anfrage} one{{count} austehende Anfrage} two{{count} austehenden Anfragen}}",
-    "@pendingRequests": {
-        "description": "pendingRequests",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "removedFromSonarr": "Von Sonarr entfernt",
-    "removedFromRadarr": "Von Radarr entfernt",
-    "dataDeleted": "Daten gelöscht",
-    "processing": "Verarbeitung",
-    "seerrDetails": "Seerr Details",
-    "specialFeature": "{count, plural, other{Special Features} one{Special Feature} }",
-    "@specialFeature": {
-        "description": "special feature",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "mediaTypeTV": "{count, plural, one{TV Sender} other{TV Sender}}",
-    "@mediaTypeTV": {
-        "description": "TV Channel (plural)",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "playbackTypeTV": "TV",
-    "seerrCustomHeaders": "Benutzerdefinierte Header",
-    "seerrHeader": "Header",
-    "seerrHeaderValue": "Wert",
-    "now": "Aktuell",
-    "noPrograms": "Kein Programm verfügbar",
-    "switchChannel": "Sender wechseln",
-    "switchChannelDesc": "Möchtest du \"{programName}\" auf {channelName} schauen?",
-    "@switchChannelDesc": {
-        "placeholders": {
-            "programName": {
-                "type": "String"
-            },
-            "channelName": {
-                "type": "String"
-            }
-        }
-    },
-    "watch": "Schauen",
-    "watchChannel": "{channel} schauen",
-    "@watchChannel": {
-        "placeholders": {
-            "channel": {
-                "type": "String"
-            }
-        }
-    },
-    "homeBannerDetailed": "Ausführlich",
-    "homeBannerTV": "TV",
-    "showLess": "Weniger anzeigen",
-    "activeTvChannels": "Aktive TV Kanäle",
-    "enableNewTVLayout": "Neues TV Layout aktivieren",
-    "enableNewTVLayoutDesc": "Zeige größere TV-Stil Banner auf dem Dashboard. Dies wird zum Standardlayout in einer zukünftigen Version.",
-    "enableSpeedBoostTitle": "Beschleunigung aktivieren",
-    "enableSpeedBoostDesc": "Bildschirm (Touch) oder Leertaste (Pc) gedrückt halten, um die Wiedergabegeschwindigkeit temporär zu erhöhen",
-    "speedBoostRateTitle": "Beschleunigungsrate",
-    "speedBoostRateDesc": "Wiedergabegeschwindigkeit bei aktivierter Beschleunigung",
-    "enableDoubleTapSeekTitle": "Doppelt tippen zum spulen/starten/pausieren",
-    "enableDoubleTapSeekDesc": "Linke/Rechte Bildschirmhälfte doppelt tippen um zurück/nach vorne zu springen. Zum Abspielen/pausieren doppelt in die Bildschirmmitte tippen",
-    "backgroundColor": "Hintergrundfarbe",
-    "liveTV": "Live TV",
-    "liveTvManageTunersEpg": "Tuner-Geräte und EPG-Anbieter verwalten",
-    "tunerDevices": "Tuner-Geräte",
-    "epgGuideProviders": "EPG-Anbieter",
-    "noTunerDevicesConfigured": "Keine Tuner-Geräte konfiguriert",
-    "noEpgProvidersConfigured": "Keine EPG-Anbieter konfiguriert",
-    "addTunerDevice": "Tuner-Gerät hinzufügen",
-    "addProvider": "Anbieter hinzufügen",
-    "tunerHostAddedSuccessfully": "Tuner Host erfolgreich hinzugefügt",
-    "failedToAddTunerHost": "Tuner Host konnte nicht hinzugefügt werden: {error}",
-    "@failedToAddTunerHost": {
-        "placeholders": {
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "tunerHostUpdatedSuccessfully": "Tuner Host erfolgreich aktualisiert",
-    "failedToUpdateTunerHost": "Tuner Host konnte nicht aktualisiert werden: {error}",
-    "@failedToUpdateTunerHost": {
-        "placeholders": {
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "deleteTunerHost": "Tuner Host löschen",
-    "deleteTunerHostConfirm": "Sind Sie sicher, dass Sie \"{name}\" löschen möchten?",
-    "@deleteTunerHostConfirm": {
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "tunerHostDeletedSuccessfully": "Tuner Host erfolgreich gelöscht",
-    "failedToDeleteTunerHost": "Tuner Host konnte nicht gelöscht werden: {error}",
-    "@failedToDeleteTunerHost": {
-        "placeholders": {
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "epgProviderAddedSuccessfully": "EPG-Anbieter erfolgreich hinzugefügt",
-    "failedToAddEpgProvider": "EPG-Anbieter konnte nicht hinzugefügt werden: {error}",
-    "@failedToAddEpgProvider": {
-        "placeholders": {
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "epgProviderUpdatedSuccessfully": "EPG-Anbieter erfolgreich aktualisiert",
-    "failedToUpdateEpgProvider": "EPG-Anbieter konnte nicht aktualisiert werden: {error}",
-    "@failedToUpdateEpgProvider": {
-        "placeholders": {
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "deleteEpgProvider": "EPG-Anbieter löschen",
-    "deleteEpgProviderConfirm": "Sind Sie sicher, dass Sie diesen Anbieter löschen möchten?",
-    "epgProviderDeletedSuccessfully": "EPG-Anbieter erfolgreich gelöscht",
-    "failedToDeleteEpgProvider": "EPG-Anbieter konnte nicht gelöscht werden: {error}",
-    "@failedToDeleteEpgProvider": {
-        "placeholders": {
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "editTunerDevice": "Tuner-Gerät bearbeiten",
-    "friendlyName": "Anzeigename",
-    "url": "URL",
-    "userAgent": "User Agent",
-    "userAgentOptional": "User Agent (Optional)",
-    "maxConcurrentStreams": "Maximale gleichzeitige Streams",
-    "addEpgProvider": "EPG-Anbieter hinzufügen",
-    "editEpgProvider": "EPG-Anbieter bearbeiten",
-    "xmltvPathUrl": "XMLTV Pfad/URL",
-    "enableAllTuners": "Für alle Tuner aktivieren",
-    "enabledTuners": "Aktivierte Tuner",
-    "selectTuners": "Tuner auswählen",
-    "moviePrefix": "Filmpräfix",
-    "movieCategories": "Filmkategorien",
-    "newsCategories": "Nachrichtenkategorien",
-    "sportsCategories": "Sportkategorien",
-    "kidsCategories": "Kinderkategorien",
-    "fileOrUrl": "Datei oder URL",
-    "tunerIpAddress": "Tuner IP Adresse",
-    "fallbackMaxBitrate": "Höchste Fallback Bitrate (Mbps)",
-    "concurrentStreams": "Maximale gleichzeitige Streams",
-    "concurrentStreamsHint": "0 = Unbegrenzt",
-    "allowFmp4Container": "fMP4 Transkodierungscontainer erlauben",
-    "allowStreamSharing": "Stream Sharing erlauben",
-    "enableStreamLooping": "Steam Looping erlauben",
-    "ignoreDts": "DTS-Zeitstempel ignorieren",
-    "readAtNativeFramerate": "In nativer Bildrate abspielen",
-    "importFavoritesOnly": "Nur favorisierte Kanäle importieren",
-    "allowHWTranscoding": "Hardware-Transcodierung erlauben",
-    "detectDevices": "Geräte ermitteln",
-    "discoveredDevices": "Entdeckte Geräte",
-    "noDevicesFound": "Keine Geräte gefunden",
-    "failedToDiscoverDevices": "Es konnten keine Geräte gefunden werden: {error}",
-    "@failedToDiscoverDevices": {
-        "placeholders": {
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "path": "Pfad",
-    "maxConcurrentStreamsLabel": "Maximale gleichzeitige Streams",
-    "noCategories": "Keine Kategorien",
-    "moviePrefixSubLabel": "Wenn ein Präfix auf Filmtitel angewendet wird, geben Sie es hier ein, damit der Server es richtig verarbeiten kann.",
-    "movieCategoriesSubLabel": "Kategorien, die Kanälen mit dem Filmpräfix zugewiesen werden sollen",
-    "newsCategoriesSubLabel": "Kategorien, die Kanälen mit dem Nachrichtenpräfix zugewiesen werden sollen",
-    "sportsCategoriesSubLabel": "Kategorien, die Kanälen mit dem Sportpräfix zugewiesen werden sollen",
-    "kidsCategoriesSubLabel": "Kategorien, die Kanälen mit dem Kinderpräfix zugewiesen werden sollen",
-    "notifications": "Benachrichtigungen",
-    "showNewItemNotificationTitle": "Auf neue Einträge überprüfen",
-    "notificationChannelDescription": "Benachrichtigungen für neu hinzugefügte Einträge",
-    "notificationNewEpisodes": "Neue Episoden hinzugefügt",
-    "notificationNewItems": "{count, plural, one{{count} neuer Eintrag} other{{count} neue Einträge}}",
-    "@notificationNewItems": {
-        "description": "Plural for number of new items in a notification",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "notificationTimerIOSWarning": " iOS entscheidet wann/ob Updates tatsächlich ausgeführt werden, Benachrichtigungen erscheinen daher möglicherweise nicht oder nur verzögert.",
-    "updateCheckInterval": "Intervall zur Suche nach Updates",
-    "updateCheckIntervalDesc": "Wie oft die Hintergrundaufgabe läuft",
-    "notificationsIntervalClientReminder": "Das Benachrichtigungsintervall gilt für alle Benutzer.",
-    "requestMore": "Mehr Anfragen",
-    "seerrRequestNotifications": "Benachrichtigungen für Seerr Anfragen",
-    "notificationNewRequests": "{count, plural, one{{count} neue Anfrage} other{{count} neue Anfragen}}",
-    "@notificationNewRequests": {
-        "description": "Plural for number of new Seerr requests in a notification",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "lastUpdateAt": "Letzte Aktualisierung am {date} um {time}",
-    "@lastUpdateAt": {
-        "description": "lastUpdateAt",
-        "placeholders": {
-            "time": {
-                "type": "DateTime",
-                "format": "jm"
-            },
-            "date": {
-                "type": "DateTime",
-                "format": "yMd"
-            }
-        }
-    },
-    "includeHiddenItems": "Versteckte Bibliotheken einschließen",
-    "includeHiddenItemsDesc": "Bibliotheken einschließen, die in der Übersicht ausgeblendet sind",
-    "batteryOptimizationDesc": "Batterieoptimierungen können Hintergrundbenachrichtigungen für Fladder verzögern. \nTippe hier, um die Systemeinstellungen zu öffnen und die Optimierungen für Fladder zu deaktivieren, um die Zuverlässigkeit der Benachrichtigungen zu verbessern.",
-    "settingsBlurEffectsTitle": "Unschärfe Effekt aktivieren",
-    "settingsBlurEffectsDesc": "Aktiviert den Unschärfeeffekte in der Benutzeroberfläche. Das Deaktivieren kann die Leistung auf Geräten mit niedrigerer Leistung verbessern.",
-    "profileSettingsOpenAuthAtLaunch": "Authentifizierungsmethode beim App sperren anzeigen",
-    "toggleSidebar": "Seitenleiste umschalten",
-    "requestedSuccessForItem": "Anfrage erfolgreich: {itemName}",
-    "@requestedSuccessForItem": {
-        "description": "Message shown when a media item is successfully requested",
-        "placeholders": {
-            "itemName": {
-                "type": "String"
-            }
-        }
-    },
-    "generateLoginLink": "Code für {userName}",
-    "@generateLoginLink": {
-        "description": "Code for a user to share",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            }
-        }
-    },
-    "shareLoginLink": "Login Link teilen",
-    "shareQRCode": "QR Code teilen",
-    "copyLoginLink": "Link kopieren",
-    "includePassword": "Passwort einschließen",
-    "invalidAuthLink": "Ungültiger Login Link",
-    "linkData": "Link Daten",
-    "passwordNotRequired": "Nicht erforderlich, leer lassen damit dem Link kein Passwort beigefügt wird",
-    "authLinkButtonToolTip": "Auth Link Dialog aufrufen",
-    "connectWithAuthLink": "Mit Auth Link verbinden",
-    "pasteFladderAuthLink": "Fladder Auth Link einfügen fladder:///login?authLink=...",
-    "connect": "Verbinden",
-    "authLinkDesc": "Frage den Server-Admin, um den Auth-Link zu erhalten. Der Link enthält Authentifizierungsinformationen, behandle diesen daher vertraulich.",
-    "advancedVideoOptionsTitle": "Erweiterte Videooptionen",
-    "libraryOrderTitle": "Homescreen Reihenfolge",
-    "hidePlayedInLatestTitle": "Angesehene Inhalte ausblenden",
-    "hidePlayedInLatestDescription": "Angesehene Inhalte aus \"Kürzlich hinzugefügte Medien\" ausblenden",
-    "groupedFoldersDescription": "Inhalte aus den folgenden Bibliotheken automatisch in Ansichten wie „Filme“, „Musik“ und „TV“ gruppieren.",
-    "advancedVideoOptionsDesc": "HDR, Tone Mapping und Advanced Color Handling aktivieren (auf einigen Geräten instabil)",
-    "deletedItem": "{itemName} gelöscht",
-    "@deletedItem": {
-        "description": "Message shown when a item is deleted",
-        "placeholders": {
-            "itemName": {
-                "type": "String"
-            }
-        }
-    },
-    "libraryOrderDescription": "Ziehe die Bibliotheken, um sie auf der Startseite neu anzuordnen. Nicht ausgewählte Bibliotheken werden keine neu hinzugefügten Einträge anzeigen.",
-    "groupedFoldersTitle": "Gruppierte Bibliotheken",
-    "transcodeInfoTitle": "Transcoding Informationen",
-    "transcodeInfoNoMetadata": "Es sind keine Transcoding Metadaten verfügbar.",
-    "transcodeDetailsTitle": "Transcoding Details",
-    "containerLabel": "Container",
-    "videoCodecLabel": "Video Codec",
-    "audioCodecLabel": "Audio Codec",
-    "bitrateLabel": "Bitrate",
-    "kbps": "kbps",
-    "resolutionLabel": "Auflösung",
-    "downloadTranscoded": "Transkodiert herunterladen",
-    "downloadOriginal": "Im Original herunterladen",
-    "seerrUrlSchemeWarning": "Konnte das URL-Schema nicht automatisch erkennen. Es wird standardmäßig https:// verwendet. Nutze das http:// Prefix, wenn dein Server kein HTTPS verwendet.",
-    "airsIn": "Wird ausgestrahlt in {count} {duration}",
-    "@airsIn": {
-        "description": "airsIn",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "3"
-            },
-            "duration": {
-                "type": "String",
-                "example": "days"
-            }
-        }
-    },
-    "today": "Heute",
-    "gestures": "Gesten",
-    "enableEdgeGesturesTitle": "Eck-Gesten aktivieren",
-    "enableEdgeGesturesDesc": "Verändere Helligkeit und Lautstärke durch das hoch- und runterstreichen an den Bildschirmrändern",
-    "reverseEdgeGesturesTitle": "Eck-Gesten tauschen",
-    "reverseEdgeGesturesDesc": "Tausche die Seiten der Helligkeits- und Lautstärkeregler",
-    "brightnessIndicator": "Helligkeit: {brightness}",
-    "@brightnessIndicator": {
-        "placeholders": {
-            "brightness": {
-                "type": "int"
-            }
-        }
-    },
-    "viewTrailer": "Trailer anzeigen",
-    "anyLanguage": "Beliebige Sprache",
-    "personBirthday": "Geburtstag: {date}",
-    "@personBirthday": {
-        "description": "Birthday label with formatted date",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
-    "personAge": "Alter: {age}",
-    "@personAge": {
-        "description": "Age label with age number",
-        "placeholders": {
-            "age": {
-                "type": "int",
-                "example": "30"
-            }
-        }
-    },
-    "personBirthPlace": "Geboren in {place}",
-    "@personBirthPlace": {
-        "placeholders": {
-            "place": {
-                "type": "String"
-            }
-        }
-    },
-    "seerrMovies": "Filme entdecken",
-    "seerrSeries": "Serien entdecken",
-    "stepBack": "Schritt zurück",
-    "stepForward": "Schritt vorwärts",
-    "seekForwardInstant": "Vorspulen (sofort)",
-    "seekBackInstant": "Zurückspulen (sofort)"
+  "@@locale": "de",
+  "clearAllSettingsQuestion": "Alle Einstellungen zurücksetzen?",
+  "clearChanges": "Änderungen verwerfen",
+  "clearSelection": "Auswahl aufheben",
+  "collectionFolder": "{count, plural, one{Sammlung Ordner} other{Sammlungen Ordner}}",
+  "color": "Farbe",
+  "deleteItem": "{item} löschen?",
+  "@deleteItem": {
+    "description": "deleteItem",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "disabled": "Deaktiviert",
+  "downloadsTitle": "Downloads",
+  "enabled": "Aktiviert",
+  "endsAt": "Endet um {date}",
+  "@endsAt": {
+    "description": "endsAt",
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "jm"
+      }
+    }
+  },
+  "mediaTypePhoto": "{count, plural, one{Foto} other{Fotos}}",
+  "mediaTypePlaylist": "{count, plural, one{Playlist} other{Playlists}}",
+  "mediaTypePhotoAlbum": "{count, plural, one{Foto Album} other{Foto Alben}}",
+  "mediaTypeSeries": "{count, plural, one{Serie} other{Serien}}",
+  "minutes": "{count, plural, other{Minuten} one{Minute} }",
+  "@minutes": {
+    "description": "minute",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "moreFrom": "Mehr erfahren über {info}",
+  "@moreFrom": {
+    "description": "More from",
+    "placeholders": {
+      "info": {
+        "type": "String"
+      }
+    }
+  },
+  "noResults": "Keine Ergebnisse",
+  "noItemsToShow": "Keine Elemente hier zum Anzeigen",
+  "noRating": "Keine Bewertung",
+  "noServersFound": "Keine neuen Server gefunden",
+  "noSuggestionsFound": "Keine Empfehlungen gefunden",
+  "normal": "Normal",
+  "notPartOfAlbum": "Nicht zum Album dazugehörend",
+  "parentalRating": "Altersfreigabe",
+  "none": "Keine",
+  "openParent": "Übergeordnetes Element öffnen",
+  "openShow": "Serie öffnen",
+  "overview": "Überblick",
+  "page": "Seite {index}",
+  "@page": {
+    "description": "page",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "quickConnectAction": "Quick connect code eingeben für",
+  "playLabel": "Abspielen",
+  "playVideos": "Videos abspielen",
+  "played": "Abgespielt",
+  "reWatch": "Nochmal anschauen",
+  "random": "Zufällig",
+  "rating": "{count, plural, other{Bewertungen} one{Bewertung}}",
+  "@rating": {
+    "description": "rating",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "read": "{item} lesen",
+  "@read": {
+    "description": "read",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "addAsFavorite": "Als Favorit hinzufügen",
+  "addToCollection": "Zu Sammlung hinzufügen",
+  "addToPlaylist": "Zu Playlist hinzufügen",
+  "advanced": "Erweitert",
+  "all": "Alles",
+  "amoledBlack": "Amoled Schwarz",
+  "appLockBiometrics": "Biometrische Daten",
+  "appLockPasscode": "Passcode",
+  "autoPlay": "Autoplay",
+  "backgroundBlur": "Hintergrundverschwommenheit",
+  "backgroundOpacity": "Hintergrundtransparenz",
+  "biometricsFailedCheckAgain": "Biometrische Anmeldung fehlgeschlagen. Überprüfe die Einstellungen oder probiere es nochmal.",
+  "bold": "Fett",
+  "change": "Ändern",
+  "chapter": "{count, plural, other{Kapitel} one{Kapitel}}",
+  "@chapter": {
+    "description": "chapter",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "clear": "löschen",
+  "clearAllSettings": "Alle Einstellungen zurücksetzen",
+  "close": "Schließen",
+  "code": "Code",
+  "combined": "Kombiniert",
+  "communityRating": "Community-Bewertung",
+  "continuePage": "Weiter - Seite {page}",
+  "@continuePage": {
+    "description": "Continue - page 1",
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "controls": "Steuerelemente",
+  "dashboard": "Dashboard",
+  "dashboardContinue": "Weiter",
+  "dashboardContinueListening": "Weiterhören",
+  "dashboardContinueReading": "Weiterlesen",
+  "dashboardContinueWatching": "Weiterschauen",
+  "dashboardNextUp": "Als Nächstes",
+  "dashboardRecentlyAdded": "Zuletzt hinzugefügt in {name}",
+  "@dashboardRecentlyAdded": {
+    "description": "Recently added on home screen",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dateAdded": "Hinzugefügt am",
+  "dateLastContentAdded": "Inhalt zuletzt hinzugefügt am",
+  "datePlayed": "Abgespielt am",
+  "days": "{count, plural, one{Tag} other{Tage}}",
+  "delete": "Löschen",
+  "deleteFileFromSystem": "Das Element {item} wird sowohl vom Dateisystem als auch aus der Bibliothek entfernt. Sind Sie sicher, dass sie Fortfahren möchten?",
+  "@deleteFileFromSystem": {
+    "description": "Delete file from system",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "descending": "Absteigend",
+  "director": "{count, plural, other{Regisseur} two{Regisseure}}",
+  "@director": {
+    "description": "director",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "disableFilters": "Filter deaktivieren",
+  "discovered": "Entdeckt",
+  "displayLanguage": "Anzeigesprache",
+  "downloadsClearDesc": "Alle synchronisierten Daten für jeden synchronisierten Benutzer entfernen?",
+  "downloadsClearTitle": "Synchronisierte Daten löschen",
+  "downloadsPath": "Pfad",
+  "downloadsSyncedData": "Synchronisierte Daten",
+  "dynamicText": "Dynamisch",
+  "editMetadata": "Metadaten bearbeiten",
+  "empty": "Leer",
+  "episode": "{count, plural, other{Folgen} one{Folge} }",
+  "@episode": {
+    "description": "episode",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "error": "Fehler",
+  "failedToLoadImage": "Bild konnte nicht geladen werden",
+  "favorite": "Favorit",
+  "favorites": "Favoriten",
+  "fetchingLibrary": "Elemte aus den Bibliotheken werden geladen…",
+  "filter": "{count, plural, other{Filter} one{Filter}}",
+  "@filter": {
+    "description": "filter",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "folders": "Ordner",
+  "fontColor": "Schriftfarbe",
+  "fontSize": "Schriftgröße",
+  "forceRefresh": "Neu laden erzwingen",
+  "genre": "{count, plural, other{Genres} one{Genre}}",
+  "@genre": {
+    "description": "genre",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "goTo": "Gehe zu",
+  "grid": "Tabelle",
+  "group": "Gruppe",
+  "groupBy": "Gruppieren nach",
+  "heightOffset": "Höhenversetzung",
+  "hide": "Ausblenden",
+  "hideEmpty": "Leere Elemente ausblenden",
+  "home": "Home",
+  "identify": "Identifizieren",
+  "immediately": "Unverzüglich",
+  "incorrectPinTryAgain": "Falsche PIN. Erneute Eingabe erforderlich.",
+  "info": "Information",
+  "invalidUrl": "Ungültige URL",
+  "invalidUrlDesc": "Adresse muss mit http(s):// beginnen",
+  "itemCount": "Anzahl der Elemente: {count}",
+  "@itemCount": {
+    "description": "Item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "label": "{count, plural, other{Label} one{Label}}",
+  "@label": {
+    "description": "label",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "library": "{count, plural, other{Bibliotheken} one{Bibliothek}}",
+  "@library": {
+    "description": "Plural",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "libraryFetchNoItemsFound": "Keine Elemente gefunden.",
+  "libraryPageSizeDesc": "Anzahl der zu ladenden Elemente festlegen, 0 schaltet das Anlegen von Seiten aus.",
+  "libraryPageSizeTitle": "Größe der Bibliothekseiten",
+  "light": "Dünn",
+  "list": "Liste",
+  "lockscreen": "Sperrbildschirm",
+  "loggedIn": "Eingeloggt",
+  "login": "Einloggen",
+  "logout": "Ausloggen",
+  "logoutUserPopupContent": "Dieser Vorgang wird {userName} ausloggen und dessen Daten aus der App löschen. \nEin neuer Login für {serverName} wird daraufhin erforderlich sein.",
+  "@logoutUserPopupContent": {
+    "description": "Pop-up for loging out the user description",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      },
+      "serverName": {
+        "type": "String"
+      }
+    }
+  },
+  "logoutUserPopupTitle": "{userName} ausloggen?",
+  "@logoutUserPopupTitle": {
+    "description": "Pop-up for loging out the user",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      }
+    }
+  },
+  "loop": "Endlosschleife",
+  "markAsUnwatched": "Als nicht angeschaut markieren",
+  "markAsWatched": "Als angeschaut markieren",
+  "mediaTypeEpisode": "{count, plural, one{Folge} other{Folgen}}",
+  "mediaTypeFolder": "{count, plural, one{Ordner} other{Ordner}}",
+  "mediaTypeMovie": "{count, plural, one{Film} other{Filme}}",
+  "mediaTypePerson": "{count, plural, one{Person} other{Personen}}",
+  "mediaTypeBook": "{count, plural, one{Buch} other{Bücher}}",
+  "mediaTypeSeason": "{count, plural, one{Staffel} other{Staffeln}}",
+  "metaDataSavedFor": "Metadaten für {item} gespeichert",
+  "@metaDataSavedFor": {
+    "description": "metaDataSavedFor",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "metadataRefreshDefault": "Nach neuen und aktualisierten Dateien suchen",
+  "metadataRefreshFull": "Alle Metadaten ersetzen",
+  "metadataRefreshValidation": "Nach fehlenden Metadaten suchen",
+  "mode": "Modus",
+  "moreOptions": "Mehr Optionen",
+  "mouseDragSupport": "Mit der Maus ziehen",
+  "musicAlbum": "{count, plural, one{Album} other{Alben}}",
+  "name": "Name",
+  "navigation": "Navigation",
+  "navigationDashboard": "Dashboard",
+  "navigationFavorites": "Favoriten",
+  "navigationSync": "Synchronisiert",
+  "never": "Niemals",
+  "nextUp": "Als nächstes",
+  "noItemsSynced": "Keine synchronisierten Elemente",
+  "openWebLink": "Weblink öffnen",
+  "options": "Optionen",
+  "other": "Andere",
+  "outlineColor": "Randlinie",
+  "outlineSize": "Randgröße",
+  "password": "Passwort",
+  "pathClearTitle": "Downloadpfad verwerfen",
+  "pathEditSelect": "Downloadordner ausählen",
+  "pathEditTitle": "Pfad ändern",
+  "play": "{item} abspielen",
+  "@play": {
+    "description": "Play with",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "playCount": "Abgespielte Elemente",
+  "playFrom": "Aus {name} abspielen",
+  "@playFrom": {
+    "description": "playFrom",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playFromStart": "{name} vom Anfang abspielen",
+  "@playFromStart": {
+    "description": "speel vanaf het begin",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "quickConnectInputACode": "Einen Code eingeben",
+  "quickConnectTitle": "Quick Connect",
+  "quickConnectWrongCode": "Falscher Code",
+  "readFromStart": "{item} vom Anfang an lesen",
+  "@readFromStart": {
+    "description": "Read book from start",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "recursive": "Rekursiv",
+  "refresh": "Neu laden",
+  "refreshMetadata": "Metadaten neu laden",
+  "refreshPopup": "{name} neu laden",
+  "@refreshPopup": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "refreshPopupContentMetadata": "Metadaten werden basierend auf den Einstellungen und im Dashboard festgelegten Werten aktualisiert.",
+  "related": "Ähnlich",
+  "releaseDate": "Veröffentlicht am",
+  "removeAsFavorite": "Favorit entfernen",
+  "removeFromCollection": "Aus Sammlung entfernen",
+  "removeFromPlaylist": "Aus Playlist entfernen",
+  "replaceAllImages": "Alle Bilder ersetzen",
+  "replaceExistingImages": "Bereist exisitierende Bilder ersetzen",
+  "restart": "Neu starten",
+  "result": "Ergebnis",
+  "retrievePublicListOfUsers": "Öffentliche Benutzerliste laden",
+  "retry": "Neu versuchen",
+  "runTime": "Laufzeit",
+  "save": "Speichern",
+  "saved": "Gespreichert",
+  "scanYourFingerprintToAuthenticate": "Fingerabdruck scannen um als {user} anmelden zu können",
+  "@scanYourFingerprintToAuthenticate": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "scanningName": "{name} wird gescannt…",
+  "@scanningName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "search": "Suchen",
+  "seconds": "{count, plural, other{Sekunden} one{Sekunde}}",
+  "@seconds": {
+    "description": "second",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "selectAll": "Alle auswählen",
+  "selectTime": "Zeit auswählen",
+  "selected": "Augewählt",
+  "setIdentityTo": "Identität zu {name} festlegen",
+  "@setIdentityTo": {
+    "description": "setIdentityTo",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "settings": "Einstellungen",
+  "settingsBlurEpisodesDesc": "Alle anstehenden Folgen verschwommen anzeigen",
+  "settingsClientTitle": "Driftfin",
+  "settingsContinue": "Weiter",
+  "settingsEnableOsMediaControls": "Betriebssystemweite Mediensteuerung aktivieren",
+  "settingsHomeCarouselDesc": "Zeigt ein Karusell auf dem Dashboard an",
+  "settingsHomeCarouselTitle": "Dashboardkarusell",
+  "settingsPlayerCustomSubtitlesTitle": "Untertitelstil ändern",
+  "settingsPlayerDesc": "Bildschirmformat, erweitert",
+  "nativeName": "Deutsch",
+  "settingsPlayerMobileWarning": "Durch das Aktivieren von Hardwarebeschleunigung und nativer Untertitelanzeige können Untertitel eventuell nicht gerendert werden.",
+  "settingsPlayerVideoHWAccelTitle": "Hardwarebeschleunigung",
+  "settingsPlayerVideoHWAccelDesc": "GPU zum Rendern von Videos verwenden (empfohlen)",
+  "settingsProfileDesc": "Sperrbildschirm, Lokale URL, Seerr",
+  "settingsProfileTitle": "Profil",
+  "settingsQuickConnectTitle": "Quick Connect",
+  "shadow": "Schatten",
+  "showAlbum": "Album anzeigen",
+  "somethingWentWrong": "Etwas ist fehlgeschlagen",
+  "somethingWentWrongPasswordCheck": "Etwas ist fehlgeschlagen. Überprüfe dein Passwort.",
+  "sortBy": "Sortieren nach",
+  "sortName": "Name",
+  "subtitles": "Untertitel",
+  "about": "Über",
+  "active": "Aktiv",
+  "accept": "Akzeptieren",
+  "actor": "{count, plural, other{Schauspieler} one{Schauspieler}}",
+  "@actor": {
+    "description": "actor",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "appLockAutoLogin": "Automatischer Login",
+  "appLockTitle": "Anmeldemethode für {userName} auswählen",
+  "@appLockTitle": {
+    "description": "Pop-up to pick a login method",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      }
+    }
+  },
+  "ascending": "Aufsteigend",
+  "audio": "{count, plural, one{Audio} other{Audio}}",
+  "cancel": "Abbrechen",
+  "settingsSecurity": "Sicherheit",
+  "showDetails": "Details anzeigen",
+  "sync": "Synchronisierung",
+  "switchUser": "Benutzer wechseln",
+  "theme": "Design",
+  "themeModeLight": "Hell",
+  "themeColor": "Akzentfarbe",
+  "themeModeDark": "Dunkel",
+  "themeModeSystem": "System",
+  "scanBiometricHint": "Identität überprüfen",
+  "scanLibrary": "Bibliothek scannen",
+  "season": "{count, plural, other{Staffeln} one{Staffel} }",
+  "@season": {
+    "description": "season",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "scrollToTop": "Zum Anfang scrollen",
+  "set": "Festlegen",
+  "@set": {
+    "description": "Use for setting a certain value",
+    "context": "Set 'time'"
+  },
+  "settingSecurityApplockTitle": "App sperren",
+  "settingsBlurEpisodesTitle": "Nächste Folgen verschwommen anzeigen",
+  "mediaTypeBase": "Basistyp",
+  "pathEditDesc": "Dieser Speicherort ist für alle Benutzer festgelegt. Alle synchronisierten Daten sind dann nicht mehr zugänglich, verbleiben jedoch auf deinem Speicher.",
+  "resume": "Wiedergabe von {item} fortsetzen",
+  "@resume": {
+    "description": "resume",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "resumable": "Fortführbar",
+  "selectViewType": "Ansicht wählen",
+  "selectedWith": "{info} Ausgewählt",
+  "@selectedWith": {
+    "description": "selected",
+    "placeholders": {
+      "info": {
+        "type": "String"
+      }
+    }
+  },
+  "separate": "Trennen",
+  "server": "Server",
+  "settingsBlurredPlaceholderDesc": "Verschwommenen Hintergrund beim Laden von Postern anzeigen",
+  "settingsClientDesc": "Allgemein, Time-out, Layout, Design",
+  "settingsBlurredPlaceholderTitle": "Verschwommener Platzhalter",
+  "settingsHomeNextUpTitle": "Nächste Poster",
+  "settingsPlayerCustomSubtitlesDesc": "Größe, Farbe, Position, Randlinie anpassen",
+  "settingsPlayerTitle": "Wiedergabe",
+  "settingsPosterSlider": "Skalierungs-Slider anzeigen",
+  "settingsVisual": "Visuelles",
+  "shuffleGallery": "Gallerie zufällig anordnen",
+  "shuffleVideos": "Videos zufällig anordnen",
+  "showEmpty": "Leere Objekte anzeigen",
+  "subtitleConfigurator": "Untertitel konfigurieren",
+  "start": "Start",
+  "studio": "{count, plural, other{Studios} one{Studio}}",
+  "@studio": {
+    "description": "studio",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "sortOrder": "Sortierungsreihenfolge",
+  "subtitleConfiguratorPlaceHolder": "Dies ist Platzhaltertext, hier gibt es nichts zu sehen.",
+  "syncDeleteItemTitle": "Synchronisiertes Element löschen",
+  "syncOpenParent": "Übergeordnetes Element öffnen",
+  "tag": "{count, plural, one{Label} other{Labels}}",
+  "@tag": {
+    "description": "tag",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "syncedItems": "Synchronisierte Elemente",
+  "syncRemoveDataTitle": "Synchronisierte Daten löschen?",
+  "timeOut": "Zeitüberschreitung",
+  "unableToReverseAction": "Diese Aktion ist unumkehrbar und wird alle Einstellungen zurücksetzen.",
+  "unPlayed": "Nicht abgespielt",
+  "video": "{count, plural, one{Video} other{Videos}}",
+  "videoScaling": "Videoskalierung",
+  "videoScalingContain": "Beinhalten",
+  "videoScalingCover": "Bildschrim abdecken",
+  "videoScalingFill": "Bildschirm füllen",
+  "videoScalingFillScreenDesc": "Navigations -und Statusleiste füllen",
+  "userName": "Benutzername",
+  "watchOn": "Anschauen auf",
+  "year": "{count, plural, other{Jahre} one{Jahr}}",
+  "@year": {
+    "description": "year",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "syncDetails": "Details zur Synronsierung",
+  "syncDeletePopupPermanent": "Diese Aktion ist endgültig und entfernt alle lokal synchronisierten Dateien",
+  "unableToConnectHost": "Verbindung zum Host nicht möglich",
+  "type": "{count, plural, other{Typen} one{Typ}}",
+  "@type": {
+    "description": "type",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "homeBannerSlideshow": "Diashow",
+  "homeBannerCarousel": "Karussell",
+  "settingsHomeBannerDescription": "Als Diashow oder Karussell anzeigen oder das Banner ausblenden",
+  "settingsHomeBannerInformationDesc": "Informationen zur Anzeige im Home-Banner",
+  "settingsHomeBannerInformationTitle": "Banner Information",
+  "settingsHomeBannerTitle": "Home-Banner",
+  "settingsHomeNextUpDesc": "Art der auf der Dashboard Seite angezeigten Poster",
+  "settingsPlayerNativeLibassAccelDesc": "Nutze den libass-Untertitel-Renderer im Videoplayer",
+  "settingsPlayerNativeLibassAccelTitle": "Native libass-Untertitel",
+  "settingsPosterPinch": "Mit Zwei-Finger-Zoom Poster skalieren",
+  "settingsShowScaleSlider": "Postergrößen-Slide anzeigen",
+  "videoScalingFillScreenNotif": "Fill-Screen überschreibt Video fit, in horizontaler Rotation",
+  "syncDeleteItemDesc": "Alle für {item} synchronisierten Daten löschen?",
+  "@syncDeleteItemDesc": {
+    "description": "Sync delete item pop-up window",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsNextUpCutoffDays": "Nächste Folge wird nicht mehr vorgeschlagen ab",
+  "settingsPosterSize": "Postergröße",
+  "syncRemoveDataDesc": "Gelöschte Videodaten löschen? Dies ist permanent und Sie müssen die Dateien neu synchronisieren",
+  "timeAndAnnotation": "{minutes} und {seconds}",
+  "@timeAndAnnotation": {
+    "description": "timeAndAnnotation",
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      },
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "totalSize": "Gesamtgröße: {size}",
+  "@totalSize": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "unknown": "Unbekannt",
+  "useDefaults": "Standardeinstellungen verwenden",
+  "videoScalingFitHeight": "Passende Größe",
+  "syncStatusWaitingToRetry": "Warte auf erneuten Versuch",
+  "syncOverlaySyncing": "Elementdetails werden synchronisiert",
+  "videoScalingFillScreenTitle": "Bildschirm ausfüllen",
+  "addedToPlaylist": "Zu Playlist {playlistName} hinzugefügt",
+  "@addedToPlaylist": {
+    "placeholders": {
+      "playlistName": {
+        "type": "String"
+      }
+    }
+  },
+  "syncStatusEnqueued": "Zur Warteschlange hinzugefügt",
+  "syncStatusRunning": "Läuft",
+  "syncStatusComplete": "Abgeschlossen",
+  "syncStatusFailed": "Fehlgeschlagen",
+  "syncStatusPaused": "Pausiert",
+  "syncOverlayDeleting": "Synchronisiertes Element wird entfernt",
+  "syncStatusCanceled": "Abgebrochen",
+  "videoScalingScaleDown": "Herunterskalieren",
+  "addToNewCollection": "Neue Kollektion",
+  "addItemsToCollection": "{itemLength} Artikel zur Sammlung hinzufügen",
+  "@addItemsToCollection": {
+    "placeholders": {
+      "itemLength": {
+        "type": "int"
+      }
+    }
+  },
+  "addedToCollection": "Hinzugefügt zu {collectionName} Sammlung",
+  "@addedToCollection": {
+    "placeholders": {
+      "collectionName": {
+        "type": "String"
+      }
+    }
+  },
+  "removedFromCollection": "Von {collectionName} Sammlung entfernt",
+  "@removedFromCollection": {
+    "placeholders": {
+      "collectionName": {
+        "type": "String"
+      }
+    }
+  },
+  "addToNewPlaylist": "Neue Playlist",
+  "addItemsToPlaylist": "{itemLength} Artikel zur Wiedergabeliste hinzufügen",
+  "@addItemsToPlaylist": {
+    "placeholders": {
+      "itemLength": {
+        "type": "int"
+      }
+    }
+  },
+  "syncStatusNotFound": "Nicht gefunden",
+  "syncStatusPartially": "Teilweise",
+  "syncSelectDownloadsFolder": "Wählen Sie den Downloads-Ordner",
+  "writer": "{count, plural, other{Writer}}",
+  "@writer": {
+    "description": "writer",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "viewPhotos": "Fotos ansehen",
+  "videoScalingFitWidth": "An Breite anpassen",
+  "syncStatusSynced": "Synchronisiert",
+  "syncNoFolderSetup": "Kein Synchronisationsordner eingerichtet",
+  "defaultFilterForLibrary": "Standardfilter für Bibliothek",
+  "libraryFiltersLimitReached": "Filterlimit erreicht (10). Entferne Filter",
+  "aboutCreatedBy": "Erstellt von DonutWare",
+  "aboutLicenses": "Lizenzen",
+  "subtitle": "Untertitel",
+  "off": "Aus",
+  "screenBrightness": "Bildschirmhelligkeit",
+  "playBackSettings": "Playback-Einstellungen",
+  "speed": "Geschwindigkeit",
+  "deleteFilterConfirmation": "Sind Sie sicher, dass Sie diesen Filter löschen möchten?",
+  "playbackRate": "Wiedergaberate",
+  "unableToPlayMedia": "Es gab einen Fehler, einen kompatiblen Medientyp zu finden",
+  "updateFilterForLibrary": "Filter aktualisieren",
+  "aboutSocials": "Socials",
+  "unableToSyncItem": "{item} kann nicht synchronisiert werden, es ist ein Fehler aufgetreten",
+  "@unableToSyncItem": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "syncRemoveUnableToDeleteItem": "Synchronisiertes Element kann nicht entfernt werden, es ist ein Fehler aufgetreten",
+  "syncAddItemForSyncing": "{item} zur Synchronisation hinzugefügt",
+  "@syncAddItemForSyncing": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "startedSyncingItem": "Synchronisation von {item} gestartet",
+  "@startedSyncingItem": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "aboutVersion": "Version: {version}",
+  "@aboutVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "aboutBuild": "Build: {buildNumber}",
+  "@aboutBuild": {
+    "placeholders": {
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "scale": "Skalierung",
+  "subtitleConfiguration": "Untertitelkonfiguration",
+  "removeFilterForLibrary": "{filter} entfernen?",
+  "@removeFilterForLibrary": {
+    "description": "removeFilterForLibrary",
+    "placeholders": {
+      "filter": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsAutoNextDesc": "Zeigt eine Vorschau des nächsten Elements gegen Ende an, wenn ein weiteres Element in der Warteschlange ist",
+  "autoNextOffSmartDesc": "Zeigt den Als Nächstes-Bildschirm an, wenn der Abspann beginnt, sofern danach nicht mehr als 10 Sekunden verbleiben. Andernfalls wird der Als Nächstes-Bildschirm 30 Sekunden vor dem Ende der Wiedergabe angezeigt",
+  "autoNextOffStaticTitle": "Statisch",
+  "autoNextOffStaticDesc": "Zeige den Als Nächstes-Bildschirm, wenn 30 Sekunden Wiedergabezeit verbleiben",
+  "errorOpeningMedia": "Beim Abspielen dieses Mediums ist ein Fehler aufgetreten",
+  "unableToPlayBooksOnWeb": "Bücher werden derzeit im Web nicht unterstützt",
+  "clientSettingsShowAllCollectionsTitle": "Alle Kollektionstypen anzeigen",
+  "skipButtonLabel": "{segment} überspringen",
+  "@skipButtonLabel": {
+    "placeholders": {
+      "segment": {
+        "type": "String"
+      }
+    }
+  },
+  "mediaSegmentUnknown": "Unbekannt",
+  "mediaSegmentIntro": "Intro",
+  "noVideoPlayerOptions": "Das ausgewählte Backend hat keine Optionen",
+  "settingsLayoutSizesTitle": "Layout Größen",
+  "settingsLayoutModesTitle": "Layout-Modi",
+  "phone": "Telefon",
+  "settingsLayoutSizesDesc": "Wählen Sie, welche Layoutgrößen die App basierend auf der Fenstergröße verwenden kann",
+  "episodeAvailable": "Verfügbar",
+  "libraryFiltersRemoveAllConfirm": "Dies wird alle gespeicherten Filter für jede Bibliothek löschen",
+  "libraryFiltersRemoveAll": "Alle Filter entfernen",
+  "errorLogs": "Fehlerprotokolle",
+  "clientSettingsSchemeVariantTitle": "Schemavariante",
+  "schemeSettingsMonochrome": "Monochrom",
+  "schemeSettingsNeutral": "Neutral",
+  "schemeSettingsRainbow": "Regenbogen",
+  "schemeSettingsFruitSalad": "Fruchtsalat",
+  "playerSettingsBackendDesc": "Wählen Sie Ihren bevorzugten Mediaplayer für optimale Wiedergabeerfahrung",
+  "mdkExperimental": "MDK ist noch in einer experimentellen Phase",
+  "internetStreamingQualityTitle": "Internet-Qualität",
+  "internetStreamingQualityDesc": "Maximale Streaming-Qualität über das Internet (mobile)",
+  "homeStreamingQualityDesc": "Maximale Streaming-Qualität, wenn mit Heimnetz verbunden",
+  "qualityOptionsTitle": "Qualitätsoptionen",
+  "qualityOptionsOriginal": "Original",
+  "qualityOptionsAuto": "Auto",
+  "version": "Version",
+  "mediaSegmentActions": "Mediensegment Aktionen",
+  "segmentActionNone": "Keine",
+  "closeVideo": "Video schließen",
+  "autoNextOffSmartTitle": "Smart",
+  "clientSettingsRequireWifiDesc": "Nur herunterladen, wenn Sie mit einem Wlan-Netzwerk verbunden sind",
+  "clientSettingsShowAllCollectionsDesc": "Wenn aktiviert, werden alle Sammlungstypen angezeigt, einschließlich derjenigen, die von Driftfin nicht unterstützt werden",
+  "downloadFile": "{type} herunterladen",
+  "@downloadFile": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "copyStreamUrl": "Stream-Url kopieren",
+  "mediaSegmentCommercial": "Werbung",
+  "mediaSegmentPreview": "Vorschau",
+  "mediaSegmentRecap": "Rückblick",
+  "mediaSegmentOutro": "Outro",
+  "masonry": "Masonry",
+  "settingsLayoutModesDesc": "Steuere, ob die App ein Einzelfenster- oder Zweifenster-Layout verwenden kann",
+  "tablet": "Tablet",
+  "desktop": "Desktop",
+  "layoutModeSingle": "Einzeln",
+  "layoutModeDual": "Doppelt",
+  "playerSettingsOrientationTitle": "Player-Ausrichtung",
+  "playerSettingsOrientationDesc": "Den Videoplayer auf bestimmte Ausrichtungen festlegen",
+  "deviceOrientationPortraitUp": "Hochformat (oben)",
+  "deviceOrientationPortraitDown": "Hochformat (unten)",
+  "deviceOrientationLandscapeLeft": "Querformat (links)",
+  "deviceOrientationLandscapeRight": "Querformat (rechts)",
+  "mediaTypeBoxset": "{count, plural, one{Boxset} other{Boxsets}}",
+  "defaultLabel": "Standard",
+  "@defaultLabel": {
+    "description": "To indicate a default value, default video player backend"
+  },
+  "schemeSettingsTonalSpot": "Tonaler Akzent",
+  "schemeSettingsFidelity": "Detailtreue",
+  "schemeSettingsContent": "Inhaltsbezogen",
+  "schemeSettingsVibrant": "Lebendig",
+  "schemeSettingsExpressive": "Ausdrucksstark",
+  "playerSettingsBackendTitle": "Videoplayer-Backend",
+  "copiedToClipboard": "In die Zwischenablage kopiert",
+  "libraryShuffleAndPlayItems": "Elemente zufällig abspielen",
+  "libraryPlayItems": "Elemente abspielen",
+  "homeStreamingQualityTitle": "Qualität für Zuhause",
+  "segmentActionAskToSkip": "Zum Überspringen fragen",
+  "segmentActionSkip": "Überspringen",
+  "loading": "Wird geladen",
+  "stop": "Stopp",
+  "resumeVideo": "Video fortsetzen",
+  "playNextVideo": "Nächstes Video abspielen",
+  "external": "Extern",
+  "settingsAutoNextTitle": "Vorschau des nächsten Titels",
+  "clientSettingsRequireWifiTitle": "Wlan erforderlich",
+  "episodeUnaired": "Unveröffentlicht",
+  "episodeMissing": "Fehlt",
+  "castAndCrew": "Besetzung & Crew",
+  "guestActor": "{count, plural, other{Gastschauspieler} one{Gastschauspieler}}",
+  "@guestActor": {
+    "description": "Guest actors",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "settingsPlayerBufferSizeTitle": "Videopuffergröße",
+  "settingsPlayerBufferSizeDesc": "Konfiguriere die Puffergröße für die Videowiedergabe und lege fest, wie viele Daten in den Cache geladen werden.",
+  "exitFladderTitle": "Driftfin Beenden",
+  "maxConcurrentDownloadsTitle": "Maximale Anzahl gleichzeitiger Downloads",
+  "maxConcurrentDownloadsDesc": "Legt die maximale Anzahl gleichzeitig laufender Downloads fest. Setze den Wert auf 0, um die Begrenzung zu deaktivieren.",
+  "rememberSubtitleSelections": "Untertitelspur basierend auf vorherigem Element einstellen",
+  "rememberAudioSelections": "Audiospur basierend auf vorherigem Element einstellen",
+  "similarToRecentlyPlayed": "Ähnlich wie kürzlich gespielt",
+  "similarToLikedItem": "Ähnlich zu gefallenem Element",
+  "hasActorFromRecentlyPlayed": "Hat Schauspieler aus vor kurzem gespielt",
+  "hasLikedActor": "Hat Schauspieler der gefällt",
+  "latest": "Neueste",
+  "recommended": "Empfohlen",
+  "hasLikedDirector": "Hat Regisseur der gefällt",
+  "hasDirectorFromRecentlyPlayed": "Hat Regisseur von vor kurzem gespielt",
+  "playbackType": "Wiedergabetyp",
+  "playbackTypeDirect": "Direkt",
+  "playbackTypeTranscode": "Transkodieren",
+  "playbackTypeOffline": "Offline",
+  "latestReleases": "Aktuelle Veröffentlichungen",
+  "newReleaseFoundTitle": "Aktualisierung {newRelease} verfügbar!",
+  "@newReleaseFoundTitle": {
+    "placeholders": {
+      "newRelease": {
+        "type": "String"
+      }
+    }
+  },
+  "autoCheckForUpdates": "Regelmäßig auf Aktualisierungen prüfen",
+  "newUpdateFoundOnGithub": "Neue Aktualisierung auf Github gefunden",
+  "rememberSubtitleSelectionsDesc": "Versucht die Untertitelspur so einzustellen, dass sie dem letzten Video am nächsten kommt.",
+  "rememberAudioSelectionsDesc": "Versucht die Audiospur so einzustellen, dass sie dem letzten Video am nächsten kommt.",
+  "playbackTrackSelection": "Auswahl der Wiedergabespur",
+  "enableBackgroundPostersDesc": "Zufällige Poster in den entsprechenden Bildschirmen anzeigen",
+  "settingsEnableOsMediaControlsDesc": "Ermöglicht die Wiedergabesteuerung mithilfe von Medientasten und zeigt die aktuell wiedergegebenen Medien im Betriebssystem an",
+  "enableBackgroundPostersTitle": "Hintergrundposter aktivieren",
+  "syncDeleteAll": "Alle Dateien löschen",
+  "syncAllFiles": "Alle Dateien synchronisieren",
+  "usePostersForLibraryIconsTitle": "Poster für Bibliothekssymbole anzeigen",
+  "usePostersForLibraryIconsDesc": "Poster anstelle von Symbolen für Bibliotheken anzeigen",
+  "offline": "Offline",
+  "nextVideo": "Nächstes Video",
+  "prevVideo": "Vorheriges Video",
+  "nextChapter": "Nächstes Kapitel",
+  "prevChapter": "Vorheriges Kapitel",
+  "fullScreen": "Vollbild",
+  "blurred": "Unscharf",
+  "volumeIndicator": "Lautstärke: {volume}",
+  "@volumeIndicator": {
+    "placeholders": {
+      "volume": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationDownloadingDownloading": "Wird heruntergeladen",
+  "notificationDownloadingPaused": "Herunterladen pausiert",
+  "notificationDownloadingFinished": "Herunterladen abgeschlossen",
+  "notificationDownloadingError": "Fehler beim Herunterladen",
+  "syncAllItemsTitle": "Alle Elemente aus {itemName} synchronisieren?",
+  "@syncAllItemsTitle": {
+    "description": "syncAllItemsFrom",
+    "placeholders": {
+      "itemName": {
+        "type": "String"
+      }
+    }
+  },
+  "syncPauseAll": "Alles pausieren",
+  "syncResumeAll": "Alles fortsetzen",
+  "syncStopAll": "Alles stoppen",
+  "playPause": "Wiedergabe/Pause",
+  "mute": "Stummschalten",
+  "volumeUp": "Lautstärke erhöhen",
+  "volumeDown": "Lautstärke verringern",
+  "skipMediaSegment": "Medienbereich überspringen",
+  "exit": "Beenden",
+  "syncDeleteAllItemsDesc": "Dies wird alle synchronisierten Elemente aus '{itemName}' löschen.\nDies ist permanent und Sie müssen ({itemCount}) Dateien erneut synchronisieren.",
+  "@syncDeleteAllItemsDesc": {
+    "description": "syncDeleteAllitemsFromDesc",
+    "placeholders": {
+      "itemName": {
+        "type": "String"
+      },
+      "itemCount": {
+        "type": "int"
+      }
+    }
+  },
+  "shortCuts": "Shortcuts",
+  "keyboardShortCuts": "Tastenkombinationen",
+  "clientSettingsUseSystemIMETitle": "Systemtastatur verwenden",
+  "clientSettingsUseSystemIMEDesc": "Verwende die vom System bereitgestellte integrierte Tastatur",
+  "television": "Fernsehen",
+  "exitFladderDesc": "Möchten Sie Driftfin wirklich beenden?",
+  "syncAllItemsDesc": "Dies synchronisiert ({itemCount}) Elemente von '{itemName}' zu Ihrem Gerät.\nDies kann eine Weile dauern, abhängig von der Menge der Elemente.",
+  "@syncAllItemsDesc": {
+    "description": "syncAllitemsFromDesc",
+    "placeholders": {
+      "itemName": {
+        "type": "String"
+      },
+      "itemCount": {
+        "type": "int"
+      }
+    }
+  },
+  "syncDeleteAllItemsTitle": "Alle synchronisierten Elemente aus {itemName} löschen?",
+  "@syncDeleteAllItemsTitle": {
+    "description": "syncDeleteAllitemsFrom",
+    "placeholders": {
+      "itemName": {
+        "type": "String"
+      }
+    }
+  },
+  "skipForwardLength": "Länge zum Überspringen",
+  "skipBackLength": "Länge zum Zurückspringen",
+  "seekForward": "Vorwärts suchen",
+  "seekBack": "Rückwärts suchen",
+  "speedUp": "Beschleunigen",
+  "speedDown": "Verlangsamen",
+  "shortCutAlreadyAssigned": "Die Tastenkombination '{hotKey}' ist bereits belegt",
+  "@shortCutAlreadyAssigned": {
+    "placeholders": {
+      "hotKey": {
+        "type": "String"
+      }
+    }
+  },
+  "speedIndicator": "Wiedergabegeschwindigkeit: {speed}",
+  "@speedIndicator": {
+    "placeholders": {
+      "speed": {
+        "type": "double"
+      }
+    }
+  },
+  "quickConnectPostFailed": "Quick Connect-Code konnte nicht abgerufen werden",
+  "quickConnectLoginUsingCode": "Quick Connect verwenden",
+  "quickConnectEnterCodeDescription": "Gib den folgenden Code ein, um dich anzumelden",
+  "showMore": "Mehr anzeigen",
+  "itemColorsTitle": "Item Farben",
+  "itemColorsDesc": "Verwende die Hauptfarbe des Items als Thema für die Detailseite",
+  "mediaTunnelingTitle": "Medientunneling",
+  "mediaTunnelingDesc": "Medientunneling für nativen Player aktivieren",
+  "nextUpInCount": "Als Nächstes in {seconds}",
+  "@nextUpInCount": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "formattedTime": "{time}",
+  "@formattedTime": {
+    "description": "Formatted time",
+    "placeholders": {
+      "time": {
+        "type": "DateTime",
+        "format": "jm"
+      }
+    }
+  },
+  "openImeKeyboard": "IME Tastatur öffnen",
+  "playerSettingsScreensaverDesc": "Wähle einen Bildschirmschoner aus, der bei Inaktivität angezeigt wird",
+  "screensaverDvd": "DVD",
+  "screensaverLogo": "Logo",
+  "screensaverTime": "Zeit",
+  "screensaverBlack": "Schwarz",
+  "playerSettingsScreensaverTitle": "Bildschirmschoner",
+  "settingsLocalUrlSetTitle": "Konfiguriere lokale Jellyfin URL",
+  "settingsLocalUrlSetDesc": "Geben Sie die lokale Jellyfinadresse an. Driftfin wird diese URL automatisch verwenden, wenn Ihr Gerät im selben Netzwerk ist.",
+  "takeScreenshot": "Screenshot aufnehmen",
+  "takeScreenshotClean": "Screenshot aufnehmen (ohne Untertitel)",
+  "screenshots": "Screenshots",
+  "screenshotTaken": "Screenshot gespeichert!",
+  "screenshotCleanTaken": "Screenshot ohne Untertitel gespeichert!",
+  "errorTakingScreenshot": "Beim Erstellen des Screenshots ist ein Fehler aufgetreten",
+  "settingsLocalUrlTitle": "Lokale Jellyfin URL",
+  "regenerateTrickplayImages": "Trickplay-Bilder neu generieren",
+  "segmentActionSkipOnce": "Einmalig überspringen",
+  "serverVersion": "Server Version",
+  "webVersion": "Web Version",
+  "devices": "Geräte",
+  "storagePaths": "Speicherpfade",
+  "web": "Web",
+  "cache": "Cache",
+  "logs": "Logs",
+  "count": "Anzahl",
+  "scanAllLibraries": "Alle Bibliotheken scannen",
+  "restartServer": "Server neustarten",
+  "shutDownServer": "Server herunterfahren",
+  "lastActivity": "Letzte Aktivität",
+  "timeAgo": "vor {time}",
+  "@timeAgo": {
+    "description": "timeAgo",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "lessThenAMinute": "Weniger als eine Minute",
+  "plannedTasks": "Geplante Aufgaben",
+  "taskTriggerTypeInterval": "Intervall",
+  "taskTriggerTypeDaily": "Täglich",
+  "taskTriggerTypeWeekly": "Wöchentlich",
+  "create": "Erstellen",
+  "time": "Zeit",
+  "interval": "Intervall",
+  "taskTimeLimitInHours": "Zeitlimit (Stunden)",
+  "taskTriggerDailyDesc": "Täglich um {time}",
+  "@taskTriggerDailyDesc": {
+    "description": "taskTriggerDailyDesc",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "taskTriggerWeeklyDesc": "Wöchentlich am {day} um {time}",
+  "@taskTriggerWeeklyDesc": {
+    "description": "taskTriggerWeeklyDesc",
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "taskTriggerTimeLimitSub": "Zeitlimit: {time}",
+  "@taskTriggerTimeLimitSub": {
+    "description": "taskTriggerTimeLimit",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "serverNameLabel": "Servername",
+  "cachePath": "Cache Pfad",
+  "metadataPath": "Metadaten Pfad",
+  "maxConcurrentLibraryScanLabel": "Max gleichzeitige Bibliotheken Scans",
+  "controlPanelServerDesc": "Servername, Quick Connect, Leistung",
+  "deleteUserTitle": "Benutzer {user} löschen?",
+  "@deleteUserTitle": {
+    "description": "deleteUserTitle",
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteUserDesc": "Hiermit wird der Benutzer {user} und alle zugehörigen Einstellungen gelöscht.",
+  "@deleteUserDesc": {
+    "description": "deleteUserDesc",
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "userInformation": "Benutzerinformation",
+  "allowManageServer": "Erlaube diesem Nutzer die Serververwaltung",
+  "allowEditSubtitles": "Erlaube diesem Benutzer Untertitel zu bearbeiten",
+  "mediaPlayback": "Medienwiedergabe",
+  "allowMediaPlayback": "Medienwiedergabe erlauben",
+  "allowVideoTranscoding": "Video-Wiedergabe, die Transkodierung benötigt, zulassen",
+  "allowAudioTranscoding": "Audio-Wiedergabe, die Transkodierung benötigt, zulassen",
+  "allowMediaDeletion": "Erlaube Medienlöschung von",
+  "allLibraries": "Alle Bibliotheken",
+  "libraryAccess": "Bibliothekszugriff",
+  "enableAllLibraries": "Zugriff auf alle Bibliotheken zulassen",
+  "parentalControl": "Kindersicherung",
+  "blockedItemsNoRating": "Blockiere Inhalte mit keiner oder nicht erkannter Altersfreigabe",
+  "maxParentalRating": "Maximal erlaubte Altersfreigabe",
+  "allowItemsTags": "Erlaube Einträge mit Tags",
+  "blockItemsTags": "Blockiere Inhalte mit Tags",
+  "newLibrary": "Neue Bibliothek",
+  "extractChapterImagesDuringLibraryScan": "Erzeuge Kapitelbilder während des Bibliothekscans",
+  "enableChapterImageExtraction": "Extraktion von Kapitelbildern aktivieren",
+  "chapterImages": "Kapitelbilder",
+  "saveTrickplayImagesNextToMedia": "Trickplay-Bilder bei den Medien speichern",
+  "extractTrickplayImagesDuringLibraryScan": "Extrahieren von Trickplay-Bildern beim Scannen der Bibliothek",
+  "enableTrickplayImageExtraction": "Extrahieren von Trickplay-Bildern aktivieren",
+  "enableAndRankImageFetchers": "Aktiviere und ordne deine bevorzugten Bildquellen nach Präferenzen.",
+  "imageFetchers": "Bildquellen ({type})",
+  "@imageFetchers": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "enableAndRankImagesFetchers": "Aktiviere und ordne deine bevorzugten Bildquellen nach Präferenzen.",
+  "enableAndRankMetadataFetchers": "Aktiviere und ordne deine bevorzugten Metadatendownloader nach Präferenzen.",
+  "metadataFetchers": "Metadatendienst ({type})",
+  "@metadataFetchers": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "used": "Belegt",
+  "metadataImageLongPressTouch": "Lange Drücken um Bild zu löschen",
+  "metadataImageLongPressClick": "Rechtsklicken um Bild zu löschen",
+  "controlDashboard": "System Dashboard",
+  "serverName": "Servername",
+  "dashboardDesc": "Server, Anzahl, Geräte, Speicher",
+  "lastRunTaking": "Letzte Ausführung {date}, Dauer {time}",
+  "@lastRunTaking": {
+    "description": "lastRunTaking",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "taskTriggerTypeName": "Auslöser-Typ",
+  "taskTriggerTypeStartup": "Start",
+  "newTaskTrigger": "Neuer Aufgabenauslöser",
+  "dayOfTheWeek": "Wochentag",
+  "maxConcurrentLibraryScanDesc": "Anzahl der Maximalen parallelen Aufgaben während des Bibliotheksscans. Wenn Sie diesen Wert auf 0 lassen, wird ein Limit auf Grundlage der Kernanzahl Ihres Systems festgelegt. WARNUNG: Wenn Sie diese Zahl zu hoch einstellen, kann es zu Problemen mit Bibliotheken, die über das Netzwerk verbunden sind, kommen; wenn dies der Fall ist, senken Sie diese Zahl.",
+  "maxImageDecodingThreadsLabel": "Max Bild-Dekodierungsthreads",
+  "maxImageDecodingThreadsDesc": "Maximale Anzahl von Bildkodierungen, die parallel ausgeführt werden dürfen. Lässt Du diesen Wert leer, wird ein Limit auf Grundlage der Kernanzahl deines Systems festgelegt.",
+  "transcodingTemp": "Transkodierung Temp",
+  "taskTriggerIntervalDesc": "Alle {time}",
+  "@taskTriggerIntervalDesc": {
+    "description": "Task trigger interval desc",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "allowCollections": "Dieser Benutzer darf Sammlungen verwalten",
+  "featureAccess": "Funktionszugriff",
+  "allowLiveTVAccess": "Live-TV Zugriff zulassen",
+  "allowLiveTVRecording": "Live-TV Aufnahmeplanung zulassen",
+  "forceRemoteTranscoding": "Transkodieren von externen Medienquellen erzwingen",
+  "accessSchedule": "Zugangsplan",
+  "accessSchedules": "Zeitbeschränkung",
+  "addAccessSchedule": "Zeitbeschränkung hinzufügen",
+  "dayOfWeek": "Wochentag",
+  "addTag": "Tag hinzufügen",
+  "editUser": "Benutzer bearbeiten",
+  "general": "Allgemein",
+  "access": "Zugriff",
+  "endTimeMustBeAfter": "Endzeit muss nach Startzeit liegen",
+  "assignLibraries": "Bibliotheken zuordnen",
+  "resetPassword": "Passwort zurücksetzen",
+  "passwordResetSuccess": "Passwort erfolgreich zurückgesetzt",
+  "passwordMismatch": "Neues Passwort und Bestätigung stimmen nicht überein",
+  "passwordChangeSuccess": "Passwort erfolgreich geändert",
+  "passwordChangeFailed": "Passwort konnte nicht geändert werden",
+  "enabledLUFSScan": "LUFS Scan aktivieren",
+  "automaticRefreshInterval": "Automatisches Refresh Intervall",
+  "autoRefreshIntervalNote": "Wenn aktiviert, könnten Bibliotheksaktualisierungen länger dauern.",
+  "preferredDownloadLanguage": "Bevorzugte Sprache für Downloads",
+  "mediaSegmentProviders": "Mediensegmentanbieter",
+  "enableAndRankMediaSegmentProviders": "Aktiviere und ordne die Mediensegmentanbieter in einer benutzerdefinierten Reihenfolge.",
+  "contentType": "Inhaltsart",
+  "controlPanelDesc": "Server, Aktivität, Benutzer, Bibliothek",
+  "activeTasks": "Aktive Aufgaben",
+  "newTrigger": "Neuer Auslöser",
+  "controlPanel": "Systemsteuerung",
+  "performance": "Leistung",
+  "allowMediaConversion": "Videowiedergabe zulassen, die Medienkonvertierung erfordert",
+  "syncplayAccess": "Syncplay Zugriff",
+  "enableAllDevices": "Zugriff auf alle Geräte aktivieren",
+  "startTime": "Startzeit",
+  "endTime": "Endzeit",
+  "createNewUser": "Neue Benutzer erstellen",
+  "createUser": "Benutzer erstellen",
+  "users": "Benutzer",
+  "passwordSettingsComing": "Passwort-Einstellungen kommen bald",
+  "enableAccessAllLibraries": "Zugriff auf alle Bibliotheken aktivieren",
+  "currentPassword": "Aktuelles Passwort",
+  "newPassword": "Neues Passwort",
+  "confirmPassword": "Passwort bestätigen",
+  "passwordResetFailed": "Fehler beim Zurücksetzen des Passworts",
+  "savePassword": "Passwort speichern",
+  "deleteLibraryConfirmTitle": "Bibliothek löschen?",
+  "deleteLibraryConfirmMessage": "Sind Sie sicher, dass Sie {libraryName} löschen möchten?\nDiese Aktion kann nicht rückgängig gemacht werden.",
+  "@deleteLibraryConfirmMessage": {
+    "placeholders": {
+      "libraryName": {
+        "type": "String"
+      }
+    }
+  },
+  "noLibrarySelected": "Keine Bibliothek ausgewählt",
+  "enabledPhotos": "Fotos aktivieren",
+  "enabledRealtimeMonitoring": "Realtime-Monitoring aktivieren",
+  "automaticallyAddToCollection": "Automatisch zur Sammlung hinzufügen",
+  "enabledEmbeddedTitles": "Aktivierte eingebettete Titel",
+  "enabledEmbeddedExtrasTitles": "Aktivierte Extras eingebettete Titel",
+  "countryRegion": "Land/Region",
+  "saveMetadata": "Metadaten speichern",
+  "saveArtWorkNextToMedia": "Artwork neben Mediendateien speichern",
+  "select": "Wählen",
+  "systemRootFolder": "System Wurzelordner",
+  "selectedPath": "Ausgewählter Pfad: {path}",
+  "@selectedPath": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "subtitleDownloads": "Untertitel-Downloads",
+  "downloadLanguages": "Herunterzuladende Sprachen",
+  "subtitleDownloaders": "Untertitel-Downloader",
+  "onlyPerfectSubtitleMatch": "Nur Untertitel herunterladen, die perfekt zum Medium passen",
+  "perfectSubtitleMatchDescription": "Wenn eine perfekte Übereinstimmung vorausgesetzt wird, werden nur Untertitel heruntergeladen die mit der vorhandenen Videodatei getestet und verifiziert wurden. Das Entfernen dieses Hakens erhöht die Wahrscheinlichkeit von Untertitel-Downloads, aber erhöht gleichzeitig auch die Chance auf schlecht synchronisierte oder falsche Untertitel.",
+  "skipSubtitlesIfAudioMatches": "Überspringen, falls der Ton bereits der herunterladbaren Sprache entspricht",
+  "skipSubtitlesIfEmbedded": "Überspringen, falls das Video bereits eingebettete Untertitel enthält",
+  "saveSubtitlesNextToMedia": "Untertitel neben Mediendateien speichern",
+  "saveArtWorkNextToMediaDesc": "Durch das Speichern von Bildmaterial direkt in den Medienverzeichnissen befinden sich diese an einem Ort, wo sie sehr leicht bearbeitet werden können.",
+  "primary": "Primär",
+  "selectFolderToAdd": "Ordner auswählen, der hinzugefügt werden soll",
+  "syncplay": "Syncplay",
+  "logo": "{count, plural, other{Logos} one{Logo}}",
+  "@logo": {
+    "description": "logo",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "trickplay": "Trickplay",
+  "programData": "Program Data",
+  "hours": "{count, plural, one{Stunde} other{Stunden}}",
+  "@hours": {
+    "description": "Pluralization for hours",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "weeks": "{count, plural, one{Woche} other{Wochen}}",
+  "@weeks": {
+    "description": "Pluralization for weeks",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "months": "{count, plural, one{Monat} other{Monate}}",
+  "@months": {
+    "description": "Pluralization for months",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "years": "{count, plural, one{Jahr} other{Jahre}}",
+  "@years": {
+    "description": "Pluralization for years",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "backdrop": "{count, plural, other{Backdrops} one{Backdrop}}",
+  "@backdrop": {
+    "description": "backdrop",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "deleteRequestConfirmation": "Sind Sie sicher, dass Sie diese Anfrage löschen möchten?",
+  "recentlyAdded": "Kürzlich hinzugefügt",
+  "recentRequests": "Kürzlich angefragt",
+  "trending": "Im Trend",
+  "popularMovies": "Beliebte Filme",
+  "expectedSeries": "Erwartete Serien",
+  "selectFolder": "Ordner auswählen",
+  "tags": "Tags",
+  "noTags": "Keine Tags",
+  "requestAs": "Anfordern als",
+  "requestQuotaTitle": "Kontingent anfordern",
+  "requestQuotaStatus": "{remaining} von {limit} übrig (Wird alle {days} Tage zurückgesetzt)",
+  "@requestQuotaStatus": {
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "submitRequest": "Anfrage senden",
+  "viewRequest": "Anfrage einsehen",
+  "email": "E-Mail",
+  "ok": "OK",
+  "seerrNotConfigured": "Nicht eingerichtet",
+  "loggedInAs": "Angemeldet als {displayName}",
+  "@loggedInAs": {
+    "placeholders": {
+      "displayName": {
+        "type": "String"
+      }
+    }
+  },
+  "seerrSessionSaved": "Seerr Sitzung gespeichert",
+  "seerrStatusVersion": "Seerr: {version}",
+  "@seerrStatusVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "seerrAuthenticateLocal": "Seerr Authentifizierung (lokal)",
+  "seerrAuthenticateJellyfin": "Seerr Authentifizierung (Jellyfin)",
+  "seerrSessionConfigured": "Session konfiguriert",
+  "seerrTestConnection": "Seerr Verbindung testen",
+  "seerrAutoApproveNotice": "Von Ihnen gesendete Anfragen werden automatisch genehmigt.",
+  "seerrPermissionDenied": "Sie haben keine Berechtigung diesen Medientyp anzufordern.",
+  "seerrAuthLocal": "Lokal",
+  "seerrUserFetchFailed": "Benutzer konnte von Seerr nicht abgeholt werden",
+  "seerrEnterServerUrlFirst": "Geben Sie zuerst eine Seerr Server URL ein",
+  "seerrLoggedIn": "Bei Seerr angemeldet",
+  "seerrConnectedToServer": "Mit Seerr Server verbunden: {serverUrl}",
+  "@seerrConnectedToServer": {
+    "placeholders": {
+      "serverUrl": {
+        "type": "String"
+      }
+    }
+  },
+  "emailUsername": "E-Mail/Benutzername",
+  "expectedMovies": "Erwartete Filme",
+  "requestConfiguration": "Konfiguration anfordern",
+  "qualityProfile": "Qualitätsprofil",
+  "selectProfile": "Profil auswählen",
+  "rootFolder": "Wurzelverzeichnis",
+  "requestQuotaLimitReached": "Anforderungslimit erreicht für {mediaType}.",
+  "@requestQuotaLimitReached": {
+    "placeholders": {
+      "mediaType": {
+        "type": "String"
+      }
+    }
+  },
+  "noOverviewAvailable": "Keine Übersicht verfügbar.",
+  "downloading": "herunterladen",
+  "request": "Anfrage",
+  "username": "Benutzername",
+  "seerr": "Seer",
+  "seerrLoadingUser": "Benutzer laden",
+  "seerrUnknownUser": "Unbekannter Benutzer",
+  "seerrSetServerFirst": "Seerr Server zuerst einstellen",
+  "seerrLocalLoginTitle": "Seerr Lokale Anmeldung",
+  "seerrJellyfinLoginTitle": "Seerr Jellyfin Login",
+  "seerrServer": "Seerr Server",
+  "seerrConfigured": "Konfiguriert",
+  "rootFolderDefaultLabel": "{folder} (Standard)",
+  "@rootFolderDefaultLabel": {
+    "placeholders": {
+      "folder": {
+        "type": "String"
+      }
+    }
+  },
+  "seerrAnimeSeriesNote": "* Diese Serie ist ein Anime.",
+  "seerrAuthApiKey": "API Schlüssel",
+  "seerrAuthJellyfin": "Jellyfin",
+  "seerrApiKeySaved": "API Schlüssel gespeichert",
+  "discover": "Entdecken",
+  "popularity": "Popularität",
+  "runtimeMinutesTitle": "Laufzeit (Minuten)",
+  "runtimeRangeMinutes": "{min} - {max} Minuten",
+  "@runtimeRangeMinutes": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count} Min",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "streamingServices": "Anbieter ({count})",
+  "@streamingServices": {
+    "description": "Streaming providers (Netflix,HBO, etc.)",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "settingsProfileSubtitleLanguage": "Bevorzugte Untertitelsprache",
+  "settingsProfileSubtitleMode": "Untertitelmodus",
+  "subtitlePlaybackModeDefault": "Standard",
+  "subtitlePlaybackModeAlways": "Immer abspielen",
+  "subtitlePlaybackModeOnlyForced": "Nur erzwungene",
+  "subtitlePlaybackModeNone": "Keine",
+  "subtitlePlaybackModeSmart": "Smart",
+  "syncplayAccessCreateAndJoinGroups": "Gruppen erstellen und beitreten",
+  "syncplayAccessJoinGroups": "Gruppen beitreten",
+  "syncplayAccessNone": "Keine",
+  "popularSeries": "Beliebte Serien",
+  "sponsor": "Sponsor",
+  "sponsorMessage": "Wenn dir Driftfin gefällt, würde ich mich sehr über eine Spende freuen. Diese trägt zur Weiterentwicklung und Verbesserung des Projektes bei. Vielen Dank für deine Unterstützung!",
+  "min": "min",
+  "max": "max",
+  "contentRating": "Altersfreigabe",
+  "seerrRequestStatusPending": "Ausstehend",
+  "seerrRequestStatusDeclined": "Abgelehnt",
+  "seerrRequestStatusFailed": "Fehlgeschlagen",
+  "seerrRequestStatusCompleted": "Abgeschlossen",
+  "seerrRequestStatusApproved": "Genehmigt",
+  "seerrMediaStatusProcessing": "Verarbeitung",
+  "seerrMediaStatusPartiallyAvailable": "Teilweise verfügbar",
+  "seerrMediaStatusAvailable": "Verfügbar",
+  "seerrMediaStatusDeleted": "Gelöscht",
+  "manageRequest": "Antrag auf Verwalten",
+  "requestAll": "Alle anfordern",
+  "seerrMediaStatusBlacklisted": "Blockliste",
+  "openInSeerr": "In Seerr öffnen",
+  "openInSonarr": "In Sonarr öffnen",
+  "openInRadarr": "In Radarr öffnen",
+  "removeFromSonarr": "Von Sonarr entfernen",
+  "removeFromRadarr": "Von Radarr entfernen",
+  "markAllSeasonsAsAvailable": "Alle Staffeln als verfügbar markieren",
+  "markAsAvailable": "Als verfügbar markieren",
+  "deleteData": "Daten löschen",
+  "removeSeriesFromSonarrConfirm": "Diese Serie von Sonarr entfernen? Dies wird alle Daten EINSCHLIEßLICH Dateien entfernen.",
+  "removeMovieFromRadarrConfirm": "Diesen Film von Radarr entfernen? Dies wird alle Daten EINSCHLIEßLICH Dateien entfernen.",
+  "markAllSeasonsAsAvailableConfirm": "Alle Staffeln als verfügbar markieren?",
+  "markAsAvailableConfirm": "Als verfügbar markieren?",
+  "markedAsAvailable": "Als Verfügbar markiert",
+  "deleteSeerrDataConfirm": "Alle Dateien von Seerr löschen? Diese Aktion kann nicht rückgängig gemacht werden.\nWenn die Daten noch in {service} vorhanden sind, werden diese eventuell erneut importiert.",
+  "@deleteSeerrDataConfirm": {
+    "description": "Confirmation message for deleting Seerr data",
+    "placeholders": {
+      "service": {
+        "type": "String",
+        "example": "Sonarr/Radarr"
+      }
+    }
+  },
+  "approve": "Genehmigen",
+  "decline": "Ablehnen",
+  "pendingRequests": "{count, plural, other{Keine ausstehende Anfrage} one{{count} austehende Anfrage} two{{count} austehenden Anfragen}}",
+  "@pendingRequests": {
+    "description": "pendingRequests",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "removedFromSonarr": "Von Sonarr entfernt",
+  "removedFromRadarr": "Von Radarr entfernt",
+  "dataDeleted": "Daten gelöscht",
+  "processing": "Verarbeitung",
+  "seerrDetails": "Seerr Details",
+  "specialFeature": "{count, plural, other{Special Features} one{Special Feature} }",
+  "@specialFeature": {
+    "description": "special feature",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "mediaTypeTV": "{count, plural, one{TV Sender} other{TV Sender}}",
+  "@mediaTypeTV": {
+    "description": "TV Channel (plural)",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "playbackTypeTV": "TV",
+  "seerrCustomHeaders": "Benutzerdefinierte Header",
+  "seerrHeader": "Header",
+  "seerrHeaderValue": "Wert",
+  "now": "Aktuell",
+  "noPrograms": "Kein Programm verfügbar",
+  "switchChannel": "Sender wechseln",
+  "switchChannelDesc": "Möchtest du \"{programName}\" auf {channelName} schauen?",
+  "@switchChannelDesc": {
+    "placeholders": {
+      "programName": {
+        "type": "String"
+      },
+      "channelName": {
+        "type": "String"
+      }
+    }
+  },
+  "watch": "Schauen",
+  "watchChannel": "{channel} schauen",
+  "@watchChannel": {
+    "placeholders": {
+      "channel": {
+        "type": "String"
+      }
+    }
+  },
+  "homeBannerDetailed": "Ausführlich",
+  "homeBannerTV": "TV",
+  "showLess": "Weniger anzeigen",
+  "activeTvChannels": "Aktive TV Kanäle",
+  "enableNewTVLayout": "Neues TV Layout aktivieren",
+  "enableNewTVLayoutDesc": "Zeige größere TV-Stil Banner auf dem Dashboard. Dies wird zum Standardlayout in einer zukünftigen Version.",
+  "enableSpeedBoostTitle": "Beschleunigung aktivieren",
+  "enableSpeedBoostDesc": "Bildschirm (Touch) oder Leertaste (Pc) gedrückt halten, um die Wiedergabegeschwindigkeit temporär zu erhöhen",
+  "speedBoostRateTitle": "Beschleunigungsrate",
+  "speedBoostRateDesc": "Wiedergabegeschwindigkeit bei aktivierter Beschleunigung",
+  "enableDoubleTapSeekTitle": "Doppelt tippen zum spulen/starten/pausieren",
+  "enableDoubleTapSeekDesc": "Linke/Rechte Bildschirmhälfte doppelt tippen um zurück/nach vorne zu springen. Zum Abspielen/pausieren doppelt in die Bildschirmmitte tippen",
+  "backgroundColor": "Hintergrundfarbe",
+  "liveTV": "Live TV",
+  "liveTvManageTunersEpg": "Tuner-Geräte und EPG-Anbieter verwalten",
+  "tunerDevices": "Tuner-Geräte",
+  "epgGuideProviders": "EPG-Anbieter",
+  "noTunerDevicesConfigured": "Keine Tuner-Geräte konfiguriert",
+  "noEpgProvidersConfigured": "Keine EPG-Anbieter konfiguriert",
+  "addTunerDevice": "Tuner-Gerät hinzufügen",
+  "addProvider": "Anbieter hinzufügen",
+  "tunerHostAddedSuccessfully": "Tuner Host erfolgreich hinzugefügt",
+  "failedToAddTunerHost": "Tuner Host konnte nicht hinzugefügt werden: {error}",
+  "@failedToAddTunerHost": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tunerHostUpdatedSuccessfully": "Tuner Host erfolgreich aktualisiert",
+  "failedToUpdateTunerHost": "Tuner Host konnte nicht aktualisiert werden: {error}",
+  "@failedToUpdateTunerHost": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteTunerHost": "Tuner Host löschen",
+  "deleteTunerHostConfirm": "Sind Sie sicher, dass Sie \"{name}\" löschen möchten?",
+  "@deleteTunerHostConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tunerHostDeletedSuccessfully": "Tuner Host erfolgreich gelöscht",
+  "failedToDeleteTunerHost": "Tuner Host konnte nicht gelöscht werden: {error}",
+  "@failedToDeleteTunerHost": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "epgProviderAddedSuccessfully": "EPG-Anbieter erfolgreich hinzugefügt",
+  "failedToAddEpgProvider": "EPG-Anbieter konnte nicht hinzugefügt werden: {error}",
+  "@failedToAddEpgProvider": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "epgProviderUpdatedSuccessfully": "EPG-Anbieter erfolgreich aktualisiert",
+  "failedToUpdateEpgProvider": "EPG-Anbieter konnte nicht aktualisiert werden: {error}",
+  "@failedToUpdateEpgProvider": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteEpgProvider": "EPG-Anbieter löschen",
+  "deleteEpgProviderConfirm": "Sind Sie sicher, dass Sie diesen Anbieter löschen möchten?",
+  "epgProviderDeletedSuccessfully": "EPG-Anbieter erfolgreich gelöscht",
+  "failedToDeleteEpgProvider": "EPG-Anbieter konnte nicht gelöscht werden: {error}",
+  "@failedToDeleteEpgProvider": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "editTunerDevice": "Tuner-Gerät bearbeiten",
+  "friendlyName": "Anzeigename",
+  "url": "URL",
+  "userAgent": "User Agent",
+  "userAgentOptional": "User Agent (Optional)",
+  "maxConcurrentStreams": "Maximale gleichzeitige Streams",
+  "addEpgProvider": "EPG-Anbieter hinzufügen",
+  "editEpgProvider": "EPG-Anbieter bearbeiten",
+  "xmltvPathUrl": "XMLTV Pfad/URL",
+  "enableAllTuners": "Für alle Tuner aktivieren",
+  "enabledTuners": "Aktivierte Tuner",
+  "selectTuners": "Tuner auswählen",
+  "moviePrefix": "Filmpräfix",
+  "movieCategories": "Filmkategorien",
+  "newsCategories": "Nachrichtenkategorien",
+  "sportsCategories": "Sportkategorien",
+  "kidsCategories": "Kinderkategorien",
+  "fileOrUrl": "Datei oder URL",
+  "tunerIpAddress": "Tuner IP Adresse",
+  "fallbackMaxBitrate": "Höchste Fallback Bitrate (Mbps)",
+  "concurrentStreams": "Maximale gleichzeitige Streams",
+  "concurrentStreamsHint": "0 = Unbegrenzt",
+  "allowFmp4Container": "fMP4 Transkodierungscontainer erlauben",
+  "allowStreamSharing": "Stream Sharing erlauben",
+  "enableStreamLooping": "Steam Looping erlauben",
+  "ignoreDts": "DTS-Zeitstempel ignorieren",
+  "readAtNativeFramerate": "In nativer Bildrate abspielen",
+  "importFavoritesOnly": "Nur favorisierte Kanäle importieren",
+  "allowHWTranscoding": "Hardware-Transcodierung erlauben",
+  "detectDevices": "Geräte ermitteln",
+  "discoveredDevices": "Entdeckte Geräte",
+  "noDevicesFound": "Keine Geräte gefunden",
+  "failedToDiscoverDevices": "Es konnten keine Geräte gefunden werden: {error}",
+  "@failedToDiscoverDevices": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "path": "Pfad",
+  "maxConcurrentStreamsLabel": "Maximale gleichzeitige Streams",
+  "noCategories": "Keine Kategorien",
+  "moviePrefixSubLabel": "Wenn ein Präfix auf Filmtitel angewendet wird, geben Sie es hier ein, damit der Server es richtig verarbeiten kann.",
+  "movieCategoriesSubLabel": "Kategorien, die Kanälen mit dem Filmpräfix zugewiesen werden sollen",
+  "newsCategoriesSubLabel": "Kategorien, die Kanälen mit dem Nachrichtenpräfix zugewiesen werden sollen",
+  "sportsCategoriesSubLabel": "Kategorien, die Kanälen mit dem Sportpräfix zugewiesen werden sollen",
+  "kidsCategoriesSubLabel": "Kategorien, die Kanälen mit dem Kinderpräfix zugewiesen werden sollen",
+  "notifications": "Benachrichtigungen",
+  "showNewItemNotificationTitle": "Auf neue Einträge überprüfen",
+  "notificationChannelDescription": "Benachrichtigungen für neu hinzugefügte Einträge",
+  "notificationNewEpisodes": "Neue Episoden hinzugefügt",
+  "notificationNewItems": "{count, plural, one{{count} neuer Eintrag} other{{count} neue Einträge}}",
+  "@notificationNewItems": {
+    "description": "Plural for number of new items in a notification",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationTimerIOSWarning": " iOS entscheidet wann/ob Updates tatsächlich ausgeführt werden, Benachrichtigungen erscheinen daher möglicherweise nicht oder nur verzögert.",
+  "updateCheckInterval": "Intervall zur Suche nach Updates",
+  "updateCheckIntervalDesc": "Wie oft die Hintergrundaufgabe läuft",
+  "notificationsIntervalClientReminder": "Das Benachrichtigungsintervall gilt für alle Benutzer.",
+  "requestMore": "Mehr Anfragen",
+  "seerrRequestNotifications": "Benachrichtigungen für Seerr Anfragen",
+  "notificationNewRequests": "{count, plural, one{{count} neue Anfrage} other{{count} neue Anfragen}}",
+  "@notificationNewRequests": {
+    "description": "Plural for number of new Seerr requests in a notification",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "lastUpdateAt": "Letzte Aktualisierung am {date} um {time}",
+  "@lastUpdateAt": {
+    "description": "lastUpdateAt",
+    "placeholders": {
+      "time": {
+        "type": "DateTime",
+        "format": "jm"
+      },
+      "date": {
+        "type": "DateTime",
+        "format": "yMd"
+      }
+    }
+  },
+  "includeHiddenItems": "Versteckte Bibliotheken einschließen",
+  "includeHiddenItemsDesc": "Bibliotheken einschließen, die in der Übersicht ausgeblendet sind",
+  "batteryOptimizationDesc": "Batterieoptimierungen können Hintergrundbenachrichtigungen für Driftfin verzögern. \nTippe hier, um die Systemeinstellungen zu öffnen und die Optimierungen für Driftfin zu deaktivieren, um die Zuverlässigkeit der Benachrichtigungen zu verbessern.",
+  "settingsBlurEffectsTitle": "Unschärfe Effekt aktivieren",
+  "settingsBlurEffectsDesc": "Aktiviert den Unschärfeeffekte in der Benutzeroberfläche. Das Deaktivieren kann die Leistung auf Geräten mit niedrigerer Leistung verbessern.",
+  "profileSettingsOpenAuthAtLaunch": "Authentifizierungsmethode beim App sperren anzeigen",
+  "toggleSidebar": "Seitenleiste umschalten",
+  "requestedSuccessForItem": "Anfrage erfolgreich: {itemName}",
+  "@requestedSuccessForItem": {
+    "description": "Message shown when a media item is successfully requested",
+    "placeholders": {
+      "itemName": {
+        "type": "String"
+      }
+    }
+  },
+  "generateLoginLink": "Code für {userName}",
+  "@generateLoginLink": {
+    "description": "Code for a user to share",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      }
+    }
+  },
+  "shareLoginLink": "Login Link teilen",
+  "shareQRCode": "QR Code teilen",
+  "copyLoginLink": "Link kopieren",
+  "includePassword": "Passwort einschließen",
+  "invalidAuthLink": "Ungültiger Login Link",
+  "linkData": "Link Daten",
+  "passwordNotRequired": "Nicht erforderlich, leer lassen damit dem Link kein Passwort beigefügt wird",
+  "authLinkButtonToolTip": "Auth Link Dialog aufrufen",
+  "connectWithAuthLink": "Mit Auth Link verbinden",
+  "pasteFladderAuthLink": "Driftfin Auth Link einfügen driftfin:///login?authLink=...",
+  "connect": "Verbinden",
+  "authLinkDesc": "Frage den Server-Admin, um den Auth-Link zu erhalten. Der Link enthält Authentifizierungsinformationen, behandle diesen daher vertraulich.",
+  "advancedVideoOptionsTitle": "Erweiterte Videooptionen",
+  "libraryOrderTitle": "Homescreen Reihenfolge",
+  "hidePlayedInLatestTitle": "Angesehene Inhalte ausblenden",
+  "hidePlayedInLatestDescription": "Angesehene Inhalte aus \"Kürzlich hinzugefügte Medien\" ausblenden",
+  "groupedFoldersDescription": "Inhalte aus den folgenden Bibliotheken automatisch in Ansichten wie „Filme“, „Musik“ und „TV“ gruppieren.",
+  "advancedVideoOptionsDesc": "HDR, Tone Mapping und Advanced Color Handling aktivieren (auf einigen Geräten instabil)",
+  "deletedItem": "{itemName} gelöscht",
+  "@deletedItem": {
+    "description": "Message shown when a item is deleted",
+    "placeholders": {
+      "itemName": {
+        "type": "String"
+      }
+    }
+  },
+  "libraryOrderDescription": "Ziehe die Bibliotheken, um sie auf der Startseite neu anzuordnen. Nicht ausgewählte Bibliotheken werden keine neu hinzugefügten Einträge anzeigen.",
+  "groupedFoldersTitle": "Gruppierte Bibliotheken",
+  "transcodeInfoTitle": "Transcoding Informationen",
+  "transcodeInfoNoMetadata": "Es sind keine Transcoding Metadaten verfügbar.",
+  "transcodeDetailsTitle": "Transcoding Details",
+  "containerLabel": "Container",
+  "videoCodecLabel": "Video Codec",
+  "audioCodecLabel": "Audio Codec",
+  "bitrateLabel": "Bitrate",
+  "kbps": "kbps",
+  "resolutionLabel": "Auflösung",
+  "downloadTranscoded": "Transkodiert herunterladen",
+  "downloadOriginal": "Im Original herunterladen",
+  "seerrUrlSchemeWarning": "Konnte das URL-Schema nicht automatisch erkennen. Es wird standardmäßig https:// verwendet. Nutze das http:// Prefix, wenn dein Server kein HTTPS verwendet.",
+  "airsIn": "Wird ausgestrahlt in {count} {duration}",
+  "@airsIn": {
+    "description": "airsIn",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "duration": {
+        "type": "String",
+        "example": "days"
+      }
+    }
+  },
+  "today": "Heute",
+  "gestures": "Gesten",
+  "enableEdgeGesturesTitle": "Eck-Gesten aktivieren",
+  "enableEdgeGesturesDesc": "Verändere Helligkeit und Lautstärke durch das hoch- und runterstreichen an den Bildschirmrändern",
+  "reverseEdgeGesturesTitle": "Eck-Gesten tauschen",
+  "reverseEdgeGesturesDesc": "Tausche die Seiten der Helligkeits- und Lautstärkeregler",
+  "brightnessIndicator": "Helligkeit: {brightness}",
+  "@brightnessIndicator": {
+    "placeholders": {
+      "brightness": {
+        "type": "int"
+      }
+    }
+  },
+  "viewTrailer": "Trailer anzeigen",
+  "anyLanguage": "Beliebige Sprache",
+  "personBirthday": "Geburtstag: {date}",
+  "@personBirthday": {
+    "description": "Birthday label with formatted date",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "personAge": "Alter: {age}",
+  "@personAge": {
+    "description": "Age label with age number",
+    "placeholders": {
+      "age": {
+        "type": "int",
+        "example": "30"
+      }
+    }
+  },
+  "personBirthPlace": "Geboren in {place}",
+  "@personBirthPlace": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
+  "seerrMovies": "Filme entdecken",
+  "seerrSeries": "Serien entdecken",
+  "stepBack": "Schritt zurück",
+  "stepForward": "Schritt vorwärts",
+  "seekForwardInstant": "Vorspulen (sofort)",
+  "seekBackInstant": "Zurückspulen (sofort)"
 }

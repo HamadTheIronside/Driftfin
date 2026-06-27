@@ -1,576 +1,576 @@
 {
-    "about": "Om",
-    "accept": "Acceptera",
-    "active": "Aktiv",
-    "nativeName": "Svenska",
-    "addAsFavorite": "Lägg till som favorit",
-    "advanced": "Avancerad",
-    "all": "Alla",
-    "amoledBlack": "Amoled svart",
-    "appLockAutoLogin": "Automatisk inloggning",
-    "appLockBiometrics": "Biometri",
-    "actor": "{count, plural, other{Skådespelare} one{Skådespelare}}",
-    "@actor": {
-        "description": "actor",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "mediaTypeSeason": "{count, plural, one{Säsong} other{Säsonger}}",
-    "mediaSegmentOutro": "Outro",
-    "login": "Logga in",
-    "loggedIn": "Inloggad",
-    "light": "Ljus",
-    "list": "Lista",
-    "lockscreen": "Låsskärm",
-    "loading": "Laddar",
-    "downloadsTitle": "Nedladdningar",
-    "downloadsClearTitle": "Rensa synkad data",
-    "deleteItem": "Radera {item}?",
-    "@deleteItem": {
-        "description": "deleteItem",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "descending": "Fallande",
-    "disabled": "Av",
-    "discovered": "Upptäckt",
-    "disableFilters": "Stäng av filter",
-    "editMetadata": "Redigera metadata",
-    "downloadFile": "Ladda ner {type}",
-    "@downloadFile": {
-        "placeholders": {
-            "type": {
-                "type": "String"
-            }
-        }
-    },
-    "cancel": "Avbryt",
-    "change": "Byt",
-    "castAndCrew": "Skådespelare och filmarbetare",
-    "favorites": "Favoriter",
-    "enabled": "På",
-    "displayLanguage": "Visningsspråk",
-    "deleteFilterConfirmation": "Är du säker på att du vill ta bort det här filtret?",
-    "home": "Hem",
-    "info": "Info",
-    "invalidUrl": "Ogiltig URL",
-    "invalidUrlDesc": "URL:en måste börja med http(s)://",
-    "identify": "Identifiera",
-    "mediaTypePhoto": "{count, plural, one{Foto} other{Foton}}",
-    "mediaTypeMovie": "{count, plural, one{Film} other{Filmer}}",
-    "mediaTypeBook": "{count, plural, one{Bok} other{Böcker}}",
-    "mediaSegmentUnknown": "Okänd",
-    "mediaTypeFolder": "{count, plural, one{Mapp} other{Mappar}}",
-    "mediaTypeBoxset": "Boxset",
-    "mediaTypeEpisode": "{count, plural, one{Avsnitt} other{Avsnitt}}",
-    "mediaTypePerson": "{count, plural, one{Person} other{Personer}}",
-    "mediaTypePlaylist": "{count, plural, one{Spellista} other{Spellistor}}",
-    "mediaTypeSeries": "{count, plural, one{Serie} other{Serier}}",
-    "name": "Namn",
-    "switchUser": "Byt användare",
-    "navigationFavorites": "Favoriter",
-    "notificationDownloadingError": "Nedladdningsfel",
-    "addToCollection": "Lägg till i samling",
-    "addToPlaylist": "Lägg till i spellista",
-    "appLockTitle": "Välj inloggningsmetod för {userName}",
-    "@appLockTitle": {
-        "description": "Pop-up to pick a login method",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            }
-        }
-    },
-    "audio": "{count, plural, one{Ljud} other{Ljud}}",
-    "ascending": "Ökande",
-    "bold": "Fetstil",
-    "clearAllSettingsQuestion": "Återställ alla inställningar?",
-    "clearChanges": "Rensa ändringar",
-    "clearSelection": "Rensa markeringar",
-    "close": "Stäng",
-    "code": "Kod",
-    "color": "Färg",
-    "combined": "Kombinerad",
-    "communityRating": "Gemenskapsbetyg",
-    "continuePage": "Fortsätt - sida {page}",
-    "@continuePage": {
-        "description": "Continue - page 1",
-        "placeholders": {
-            "page": {
-                "type": "int"
-            }
-        }
-    },
-    "controls": "Kontroller",
-    "dashboard": "Kontrollpanel",
-    "dashboardContinue": "Fortsätt",
-    "dashboardContinueListening": "Fortsätt lyssna",
-    "dashboardContinueReading": "Fortsätt läsa",
-    "nextUp": "Nästa",
-    "dashboardRecentlyAdded": "Nyligen lagts till i {name}",
-    "@dashboardRecentlyAdded": {
-        "description": "Recently added on home screen",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "dateAdded": "Datum tillagt",
-    "dateLastContentAdded": "Datum innehåll senast blev tillagt",
-    "datePlayed": "Datum spelat",
-    "delete": "Ta bort",
-    "heightOffset": "Höjdförskjutning",
-    "hide": "Göm",
-    "hideEmpty": "Göm tomma",
-    "homeBannerCarousel": "Karusell",
-    "immediately": "Omedelbart",
-    "incorrectPinTryAgain": "Fel PIN. Försök igen.",
-    "label": "{count, plural, other{Etiketter} one{Etikett}}",
-    "@label": {
-        "description": "label",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "library": "{count, plural, other{Bibliotek} one{Bibliotek}}",
-    "@library": {
-        "description": "Plural",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "libraryPageSizeDesc": "Sätt antal att ladda åt gången. 0 stänger av sidindelning.",
-    "libraryPageSizeTitle": "Sidstorlek för bibliotek",
-    "logout": "Logga ut",
-    "logoutUserPopupContent": "Detta kommer att logga ut {userName} och ta bort användaren från appen.\nDu kommer att behöva logga in igen på {serverName}.",
-    "@logoutUserPopupContent": {
-        "description": "Pop-up for logging out the user description",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            },
-            "serverName": {
-                "type": "String"
-            }
-        }
-    },
-    "logoutUserPopupTitle": "Logga ut {userName}?",
-    "@logoutUserPopupTitle": {
-        "description": "Pop-up for logging out the user",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            }
-        }
-    },
-    "loop": "Slinga",
-    "markAsUnwatched": "Markera som inte sedd",
-    "markAsWatched": "Markera som sedd",
-    "masonry": "Murverk",
-    "mediaTypeBase": "Grundtyp",
-    "metaDataSavedFor": "Sparade metadata för {item}",
-    "@metaDataSavedFor": {
-        "description": "metaDataSavedFor",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "metadataRefreshDefault": "Sök efter nya och uppdaterade filer",
-    "autoPlay": "Auto-spela",
-    "endsAt": "slutar {date}",
-    "@endsAt": {
-        "description": "endsAt",
-        "placeholders": {
-            "date": {
-                "type": "DateTime",
-                "format": "jm"
-            }
-        }
-    },
-    "episode": "{count, plural, other{Avsnitt} one{Avsnitt} }",
-    "@episode": {
-        "description": "episode",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "error": "Fel",
-    "failedToLoadImage": "Kunde inte hämta bild",
-    "favorite": "Favorit",
-    "filter": "{count, plural, other{Filter} one{Filter}}",
-    "@filter": {
-        "description": "filter",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "folders": "Mappar",
-    "fontColor": "Textfärg",
-    "fontSize": "Teckenstorlek",
-    "forceRefresh": "Tvinga att ladda om",
-    "genre": "{count, plural, other{Genrer} one{Genre}}",
-    "@genre": {
-        "description": "genre",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "goTo": "Gå till",
-    "grid": "Rutnät",
-    "group": "Grupp",
-    "groupBy": "Gruppera efter",
-    "never": "Aldrig",
-    "page": "Sida {index}",
-    "@page": {
-        "description": "page",
-        "placeholders": {
-            "index": {
-                "type": "int"
-            }
-        }
-    },
-    "parentalRating": "Åldersgräns",
-    "password": "Lösenord",
-    "refreshPopup": "Uppdatera - {name}",
-    "@refreshPopup": {
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "refreshPopupContentMetadata": "Metadata uppdateras beroende på inställningar och om internet tjänster är aktiverat i kontrollpanelen.",
-    "related": "Relaterat",
-    "releaseDate": "Utgivningsdatum",
-    "removeAsFavorite": "Ta bort som favorit",
-    "removeFromCollection": "Ta bort från samling",
-    "removeFromPlaylist": "Ta bort från spellista",
-    "replaceAllImages": "Ersätt alla bilder",
-    "replaceExistingImages": "Ersätt existerande bilder",
-    "restart": "Starta om",
-    "result": "Resultat",
-    "resumable": "Kan återupptas",
-    "resume": "Återuppta {item}",
-    "@resume": {
-        "description": "resume",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "retrievePublicListOfUsers": "Hämta offentlig lista över användare",
-    "retry": "Försök igen",
-    "runTime": "Speltid",
-    "runtimeMinutesTitle": "Speltid (minuter)",
-    "runtimeRangeMinutes": "{min} - {max} minuter",
-    "@runtimeRangeMinutes": {
-        "placeholders": {
-            "min": {
-                "type": "int"
-            },
-            "max": {
-                "type": "int"
-            }
-        }
-    },
-    "minutesShort": "{count} min",
-    "@minutesShort": {
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "5"
-            }
-        }
-    },
-    "streamingServices": "Streamingtjänster ({count})",
-    "@streamingServices": {
-        "description": "Streaming providers (Netflix,HBO, etc.)",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "2"
-            }
-        }
-    },
-    "save": "Spara",
-    "saved": "Sparad",
-    "scanBiometricHint": "Bekräfta identitet",
-    "scanLibrary": "Skanna bibliotek",
-    "scanYourFingerprintToAuthenticate": "Skanna ditt fingeravtryck för att logga in som {user}",
-    "@scanYourFingerprintToAuthenticate": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "scanningName": "Skannar - {name}…",
-    "@scanningName": {
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "search": "Sök",
-    "season": "{count, plural, other{Säsonger} one{Säsong} }",
-    "@season": {
-        "description": "season",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "seconds": "{count, plural, other{Sekunder} one{Sekund}}",
-    "@seconds": {
-        "description": "second",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "selectAll": "Markera alla",
-    "selectTime": "Välj tid",
-    "selectViewType": "Välj visningstyp",
-    "selected": "Vald",
-    "selectedWith": "Valde {info}",
-    "@selectedWith": {
-        "description": "selected",
-        "placeholders": {
-            "info": {
-                "type": "String"
-            }
-        }
-    },
-    "separate": "Separera",
-    "server": "Server",
-    "set": "Sätt",
-    "@set": {
-        "description": "Use for setting a certain value",
-        "context": "Set 'time'"
-    },
-    "setIdentityTo": "Ändra identitet till {name}",
-    "@setIdentityTo": {
-        "description": "setIdentityTo",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "settingSecurityApplockTitle": "Applås",
-    "settings": "Inställningar",
-    "empty": "Tom",
-    "navigationSync": "Synkroniserat",
-    "random": "Slumpmässig",
-    "popularity": "Popularitet",
-    "reWatch": "Se igen",
-    "read": "Läs {item}",
-    "@read": {
-        "description": "read",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "readFromStart": "Läs {item} från början",
-    "@readFromStart": {
-        "description": "Read book from start",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "recursive": "Rekursivt",
-    "refresh": "Uppdatera",
-    "refreshMetadata": "Uppdatera metadata",
-    "settingsProfileTitle": "Profil",
-    "settingsProfileSubtitleLanguage": "Föredraget undertextsspråk",
-    "settingsProfileSubtitleMode": "Undertextsläge",
-    "backgroundBlur": "Bakgrundsskärpa",
-    "backgroundOpacity": "Bakgrundstransparans",
-    "clear": "Rensa",
-    "clearAllSettings": "Återställ alla inställningar",
-    "invalidAuthLink": "Ogiltig inloggningslänk",
-    "dashboardContinueWatching": "Fortsätt titta",
-    "downloadsPath": "Sökväg",
-    "fetchingLibrary": "Hämtar biblioteksobjekt…",
-    "homeBannerSlideshow": "Bildspel",
-    "homeBannerTV": "TV",
-    "libraryFetchNoItemsFound": "Inga objekt hittades. Prova ändra dina inställningar.",
-    "pathClearTitle": "Rensa nerladdningssökväg",
-    "mode": "Läge",
-    "lastUpdateAt": "Senast uppdaterad den {date} vid {time}",
-    "@lastUpdateAt": {
-        "description": "lastUpdateAt",
-        "placeholders": {
-            "time": {
-                "type": "DateTime",
-                "format": "jm"
-            },
-            "date": {
-                "type": "DateTime",
-                "format": "yMd"
-            }
-        }
-    },
-    "deletedItem": "Raderad {itemName}",
-    "@deletedItem": {
-        "description": "Message shown when a item is deleted",
-        "placeholders": {
-            "itemName": {
-                "type": "String"
-            }
-        }
-    },
-    "downloadTranscoded": "Nerladdning transkodad",
-    "seerrSeries": "Upptäck Serier",
-    "today": "Idag",
-    "quickConnectInputACode": "Mata in en kod",
-    "quickConnectWrongCode": "Fel kod",
-    "settingsClientDesc": "Allmän, Time-out, Layout, Tema",
-    "settingsClientTitle": "Fladder",
-    "biometricsFailedCheckAgain": "Biometri misslyckades. Kontrollera inställningar och försök igen.",
-    "generateLoginLink": "Kod för {userName}",
-    "@generateLoginLink": {
-        "description": "Code for a user to share",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            }
-        }
-    },
-    "shareLoginLink": "Dela inloggningslänk",
-    "shareQRCode": "Dela QR-kod",
-    "copyLoginLink": "Kopiera länk",
-    "includePassword": "Inkludera lösenord",
-    "gestures": "Gester",
-    "dynamicText": "Dynamisk",
-    "homeBannerDetailed": "Detaljerad",
-    "other": "Andra",
-    "overview": "Översikt",
-    "pathEditTitle": "Ändra plats",
-    "play": "Spela {item}",
-    "@play": {
-        "description": "Play with",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "moreFrom": "Mer från {info}",
-    "@moreFrom": {
-        "description": "More from",
-        "placeholders": {
-            "info": {
-                "type": "String"
-            }
-        }
-    },
-    "moreOptions": "Fler alternativ",
-    "mouseDragSupport": "Drag med mus",
-    "navigation": "Navigation",
-    "noItemsSynced": "Inga objekt synkroniserade",
-    "noItemsToShow": "Inga objekt att visa",
-    "noRating": "Inget betyg",
-    "noResults": "Inga resultat",
-    "noServersFound": "Inga nya servrar hittades",
-    "noSuggestionsFound": "Inga förslag hittades",
-    "none": "Ingen",
-    "normal": "Normal",
-    "notPartOfAlbum": "Inte en del av ett album",
-    "options": "Alternativ",
-    "includeHiddenItems": "Inkludera dolda bibliotek",
-    "linkData": "Länk data",
-    "passwordNotRequired": "Inte nödvändigt, lämna tomt för att inte inkludera lösenord i länken",
-    "connect": "Anslut",
-    "groupedFoldersTitle": "Grupperade bibliotek",
-    "downloadOriginal": "Ladda ner original",
-    "personBirthday": "Födelsedag: {date}",
-    "@personBirthday": {
-        "description": "Birthday label with formatted date",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            }
-        }
-    },
-    "personAge": "Ålder: {age}",
-    "@personAge": {
-        "description": "Age label with age number",
-        "placeholders": {
-            "age": {
-                "type": "int",
-                "example": "30"
-            }
-        }
-    },
-    "personBirthPlace": "Född i {place}",
-    "@personBirthPlace": {
-        "placeholders": {
-            "place": {
-                "type": "String"
-            }
-        }
-    },
-    "seerrMovies": "Upptäck filmer",
-    "playFrom": "Spela från {name}",
-    "@playFrom": {
-        "description": "playFrom",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "playFromStart": "Spela {name} från början",
-    "@playFromStart": {
-        "description": "speel vanaf het begin",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "playLabel": "Spela",
-    "playVideos": "Spela videor",
-    "quickConnectAction": "Ange snabb anslutningskod för",
-    "quickConnectTitle": "Snabbanslutning",
-    "contentRating": "Innehållsbetyg",
-    "settingsBlurredPlaceholderDesc": "Visa suddig bakgrund när du laddar affischer",
-    "settingsContinue": "Fortsätt",
-    "settingsHomeBannerDescription": "Visa som en bildspel, karusell eller dölja bannern"
+  "about": "Om",
+  "accept": "Acceptera",
+  "active": "Aktiv",
+  "nativeName": "Svenska",
+  "addAsFavorite": "Lägg till som favorit",
+  "advanced": "Avancerad",
+  "all": "Alla",
+  "amoledBlack": "Amoled svart",
+  "appLockAutoLogin": "Automatisk inloggning",
+  "appLockBiometrics": "Biometri",
+  "actor": "{count, plural, other{Skådespelare} one{Skådespelare}}",
+  "@actor": {
+    "description": "actor",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "mediaTypeSeason": "{count, plural, one{Säsong} other{Säsonger}}",
+  "mediaSegmentOutro": "Outro",
+  "login": "Logga in",
+  "loggedIn": "Inloggad",
+  "light": "Ljus",
+  "list": "Lista",
+  "lockscreen": "Låsskärm",
+  "loading": "Laddar",
+  "downloadsTitle": "Nedladdningar",
+  "downloadsClearTitle": "Rensa synkad data",
+  "deleteItem": "Radera {item}?",
+  "@deleteItem": {
+    "description": "deleteItem",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "descending": "Fallande",
+  "disabled": "Av",
+  "discovered": "Upptäckt",
+  "disableFilters": "Stäng av filter",
+  "editMetadata": "Redigera metadata",
+  "downloadFile": "Ladda ner {type}",
+  "@downloadFile": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "cancel": "Avbryt",
+  "change": "Byt",
+  "castAndCrew": "Skådespelare och filmarbetare",
+  "favorites": "Favoriter",
+  "enabled": "På",
+  "displayLanguage": "Visningsspråk",
+  "deleteFilterConfirmation": "Är du säker på att du vill ta bort det här filtret?",
+  "home": "Hem",
+  "info": "Info",
+  "invalidUrl": "Ogiltig URL",
+  "invalidUrlDesc": "URL:en måste börja med http(s)://",
+  "identify": "Identifiera",
+  "mediaTypePhoto": "{count, plural, one{Foto} other{Foton}}",
+  "mediaTypeMovie": "{count, plural, one{Film} other{Filmer}}",
+  "mediaTypeBook": "{count, plural, one{Bok} other{Böcker}}",
+  "mediaSegmentUnknown": "Okänd",
+  "mediaTypeFolder": "{count, plural, one{Mapp} other{Mappar}}",
+  "mediaTypeBoxset": "Boxset",
+  "mediaTypeEpisode": "{count, plural, one{Avsnitt} other{Avsnitt}}",
+  "mediaTypePerson": "{count, plural, one{Person} other{Personer}}",
+  "mediaTypePlaylist": "{count, plural, one{Spellista} other{Spellistor}}",
+  "mediaTypeSeries": "{count, plural, one{Serie} other{Serier}}",
+  "name": "Namn",
+  "switchUser": "Byt användare",
+  "navigationFavorites": "Favoriter",
+  "notificationDownloadingError": "Nedladdningsfel",
+  "addToCollection": "Lägg till i samling",
+  "addToPlaylist": "Lägg till i spellista",
+  "appLockTitle": "Välj inloggningsmetod för {userName}",
+  "@appLockTitle": {
+    "description": "Pop-up to pick a login method",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      }
+    }
+  },
+  "audio": "{count, plural, one{Ljud} other{Ljud}}",
+  "ascending": "Ökande",
+  "bold": "Fetstil",
+  "clearAllSettingsQuestion": "Återställ alla inställningar?",
+  "clearChanges": "Rensa ändringar",
+  "clearSelection": "Rensa markeringar",
+  "close": "Stäng",
+  "code": "Kod",
+  "color": "Färg",
+  "combined": "Kombinerad",
+  "communityRating": "Gemenskapsbetyg",
+  "continuePage": "Fortsätt - sida {page}",
+  "@continuePage": {
+    "description": "Continue - page 1",
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "controls": "Kontroller",
+  "dashboard": "Kontrollpanel",
+  "dashboardContinue": "Fortsätt",
+  "dashboardContinueListening": "Fortsätt lyssna",
+  "dashboardContinueReading": "Fortsätt läsa",
+  "nextUp": "Nästa",
+  "dashboardRecentlyAdded": "Nyligen lagts till i {name}",
+  "@dashboardRecentlyAdded": {
+    "description": "Recently added on home screen",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dateAdded": "Datum tillagt",
+  "dateLastContentAdded": "Datum innehåll senast blev tillagt",
+  "datePlayed": "Datum spelat",
+  "delete": "Ta bort",
+  "heightOffset": "Höjdförskjutning",
+  "hide": "Göm",
+  "hideEmpty": "Göm tomma",
+  "homeBannerCarousel": "Karusell",
+  "immediately": "Omedelbart",
+  "incorrectPinTryAgain": "Fel PIN. Försök igen.",
+  "label": "{count, plural, other{Etiketter} one{Etikett}}",
+  "@label": {
+    "description": "label",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "library": "{count, plural, other{Bibliotek} one{Bibliotek}}",
+  "@library": {
+    "description": "Plural",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "libraryPageSizeDesc": "Sätt antal att ladda åt gången. 0 stänger av sidindelning.",
+  "libraryPageSizeTitle": "Sidstorlek för bibliotek",
+  "logout": "Logga ut",
+  "logoutUserPopupContent": "Detta kommer att logga ut {userName} och ta bort användaren från appen.\nDu kommer att behöva logga in igen på {serverName}.",
+  "@logoutUserPopupContent": {
+    "description": "Pop-up for logging out the user description",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      },
+      "serverName": {
+        "type": "String"
+      }
+    }
+  },
+  "logoutUserPopupTitle": "Logga ut {userName}?",
+  "@logoutUserPopupTitle": {
+    "description": "Pop-up for logging out the user",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      }
+    }
+  },
+  "loop": "Slinga",
+  "markAsUnwatched": "Markera som inte sedd",
+  "markAsWatched": "Markera som sedd",
+  "masonry": "Murverk",
+  "mediaTypeBase": "Grundtyp",
+  "metaDataSavedFor": "Sparade metadata för {item}",
+  "@metaDataSavedFor": {
+    "description": "metaDataSavedFor",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "metadataRefreshDefault": "Sök efter nya och uppdaterade filer",
+  "autoPlay": "Auto-spela",
+  "endsAt": "slutar {date}",
+  "@endsAt": {
+    "description": "endsAt",
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "jm"
+      }
+    }
+  },
+  "episode": "{count, plural, other{Avsnitt} one{Avsnitt} }",
+  "@episode": {
+    "description": "episode",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "error": "Fel",
+  "failedToLoadImage": "Kunde inte hämta bild",
+  "favorite": "Favorit",
+  "filter": "{count, plural, other{Filter} one{Filter}}",
+  "@filter": {
+    "description": "filter",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "folders": "Mappar",
+  "fontColor": "Textfärg",
+  "fontSize": "Teckenstorlek",
+  "forceRefresh": "Tvinga att ladda om",
+  "genre": "{count, plural, other{Genrer} one{Genre}}",
+  "@genre": {
+    "description": "genre",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "goTo": "Gå till",
+  "grid": "Rutnät",
+  "group": "Grupp",
+  "groupBy": "Gruppera efter",
+  "never": "Aldrig",
+  "page": "Sida {index}",
+  "@page": {
+    "description": "page",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "parentalRating": "Åldersgräns",
+  "password": "Lösenord",
+  "refreshPopup": "Uppdatera - {name}",
+  "@refreshPopup": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "refreshPopupContentMetadata": "Metadata uppdateras beroende på inställningar och om internet tjänster är aktiverat i kontrollpanelen.",
+  "related": "Relaterat",
+  "releaseDate": "Utgivningsdatum",
+  "removeAsFavorite": "Ta bort som favorit",
+  "removeFromCollection": "Ta bort från samling",
+  "removeFromPlaylist": "Ta bort från spellista",
+  "replaceAllImages": "Ersätt alla bilder",
+  "replaceExistingImages": "Ersätt existerande bilder",
+  "restart": "Starta om",
+  "result": "Resultat",
+  "resumable": "Kan återupptas",
+  "resume": "Återuppta {item}",
+  "@resume": {
+    "description": "resume",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "retrievePublicListOfUsers": "Hämta offentlig lista över användare",
+  "retry": "Försök igen",
+  "runTime": "Speltid",
+  "runtimeMinutesTitle": "Speltid (minuter)",
+  "runtimeRangeMinutes": "{min} - {max} minuter",
+  "@runtimeRangeMinutes": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count} min",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "streamingServices": "Streamingtjänster ({count})",
+  "@streamingServices": {
+    "description": "Streaming providers (Netflix,HBO, etc.)",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "save": "Spara",
+  "saved": "Sparad",
+  "scanBiometricHint": "Bekräfta identitet",
+  "scanLibrary": "Skanna bibliotek",
+  "scanYourFingerprintToAuthenticate": "Skanna ditt fingeravtryck för att logga in som {user}",
+  "@scanYourFingerprintToAuthenticate": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "scanningName": "Skannar - {name}…",
+  "@scanningName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "search": "Sök",
+  "season": "{count, plural, other{Säsonger} one{Säsong} }",
+  "@season": {
+    "description": "season",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "seconds": "{count, plural, other{Sekunder} one{Sekund}}",
+  "@seconds": {
+    "description": "second",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "selectAll": "Markera alla",
+  "selectTime": "Välj tid",
+  "selectViewType": "Välj visningstyp",
+  "selected": "Vald",
+  "selectedWith": "Valde {info}",
+  "@selectedWith": {
+    "description": "selected",
+    "placeholders": {
+      "info": {
+        "type": "String"
+      }
+    }
+  },
+  "separate": "Separera",
+  "server": "Server",
+  "set": "Sätt",
+  "@set": {
+    "description": "Use for setting a certain value",
+    "context": "Set 'time'"
+  },
+  "setIdentityTo": "Ändra identitet till {name}",
+  "@setIdentityTo": {
+    "description": "setIdentityTo",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "settingSecurityApplockTitle": "Applås",
+  "settings": "Inställningar",
+  "empty": "Tom",
+  "navigationSync": "Synkroniserat",
+  "random": "Slumpmässig",
+  "popularity": "Popularitet",
+  "reWatch": "Se igen",
+  "read": "Läs {item}",
+  "@read": {
+    "description": "read",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "readFromStart": "Läs {item} från början",
+  "@readFromStart": {
+    "description": "Read book from start",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "recursive": "Rekursivt",
+  "refresh": "Uppdatera",
+  "refreshMetadata": "Uppdatera metadata",
+  "settingsProfileTitle": "Profil",
+  "settingsProfileSubtitleLanguage": "Föredraget undertextsspråk",
+  "settingsProfileSubtitleMode": "Undertextsläge",
+  "backgroundBlur": "Bakgrundsskärpa",
+  "backgroundOpacity": "Bakgrundstransparans",
+  "clear": "Rensa",
+  "clearAllSettings": "Återställ alla inställningar",
+  "invalidAuthLink": "Ogiltig inloggningslänk",
+  "dashboardContinueWatching": "Fortsätt titta",
+  "downloadsPath": "Sökväg",
+  "fetchingLibrary": "Hämtar biblioteksobjekt…",
+  "homeBannerSlideshow": "Bildspel",
+  "homeBannerTV": "TV",
+  "libraryFetchNoItemsFound": "Inga objekt hittades. Prova ändra dina inställningar.",
+  "pathClearTitle": "Rensa nerladdningssökväg",
+  "mode": "Läge",
+  "lastUpdateAt": "Senast uppdaterad den {date} vid {time}",
+  "@lastUpdateAt": {
+    "description": "lastUpdateAt",
+    "placeholders": {
+      "time": {
+        "type": "DateTime",
+        "format": "jm"
+      },
+      "date": {
+        "type": "DateTime",
+        "format": "yMd"
+      }
+    }
+  },
+  "deletedItem": "Raderad {itemName}",
+  "@deletedItem": {
+    "description": "Message shown when a item is deleted",
+    "placeholders": {
+      "itemName": {
+        "type": "String"
+      }
+    }
+  },
+  "downloadTranscoded": "Nerladdning transkodad",
+  "seerrSeries": "Upptäck Serier",
+  "today": "Idag",
+  "quickConnectInputACode": "Mata in en kod",
+  "quickConnectWrongCode": "Fel kod",
+  "settingsClientDesc": "Allmän, Time-out, Layout, Tema",
+  "settingsClientTitle": "Driftfin",
+  "biometricsFailedCheckAgain": "Biometri misslyckades. Kontrollera inställningar och försök igen.",
+  "generateLoginLink": "Kod för {userName}",
+  "@generateLoginLink": {
+    "description": "Code for a user to share",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      }
+    }
+  },
+  "shareLoginLink": "Dela inloggningslänk",
+  "shareQRCode": "Dela QR-kod",
+  "copyLoginLink": "Kopiera länk",
+  "includePassword": "Inkludera lösenord",
+  "gestures": "Gester",
+  "dynamicText": "Dynamisk",
+  "homeBannerDetailed": "Detaljerad",
+  "other": "Andra",
+  "overview": "Översikt",
+  "pathEditTitle": "Ändra plats",
+  "play": "Spela {item}",
+  "@play": {
+    "description": "Play with",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "moreFrom": "Mer från {info}",
+  "@moreFrom": {
+    "description": "More from",
+    "placeholders": {
+      "info": {
+        "type": "String"
+      }
+    }
+  },
+  "moreOptions": "Fler alternativ",
+  "mouseDragSupport": "Drag med mus",
+  "navigation": "Navigation",
+  "noItemsSynced": "Inga objekt synkroniserade",
+  "noItemsToShow": "Inga objekt att visa",
+  "noRating": "Inget betyg",
+  "noResults": "Inga resultat",
+  "noServersFound": "Inga nya servrar hittades",
+  "noSuggestionsFound": "Inga förslag hittades",
+  "none": "Ingen",
+  "normal": "Normal",
+  "notPartOfAlbum": "Inte en del av ett album",
+  "options": "Alternativ",
+  "includeHiddenItems": "Inkludera dolda bibliotek",
+  "linkData": "Länk data",
+  "passwordNotRequired": "Inte nödvändigt, lämna tomt för att inte inkludera lösenord i länken",
+  "connect": "Anslut",
+  "groupedFoldersTitle": "Grupperade bibliotek",
+  "downloadOriginal": "Ladda ner original",
+  "personBirthday": "Födelsedag: {date}",
+  "@personBirthday": {
+    "description": "Birthday label with formatted date",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "personAge": "Ålder: {age}",
+  "@personAge": {
+    "description": "Age label with age number",
+    "placeholders": {
+      "age": {
+        "type": "int",
+        "example": "30"
+      }
+    }
+  },
+  "personBirthPlace": "Född i {place}",
+  "@personBirthPlace": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
+  "seerrMovies": "Upptäck filmer",
+  "playFrom": "Spela från {name}",
+  "@playFrom": {
+    "description": "playFrom",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playFromStart": "Spela {name} från början",
+  "@playFromStart": {
+    "description": "speel vanaf het begin",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playLabel": "Spela",
+  "playVideos": "Spela videor",
+  "quickConnectAction": "Ange snabb anslutningskod för",
+  "quickConnectTitle": "Snabbanslutning",
+  "contentRating": "Innehållsbetyg",
+  "settingsBlurredPlaceholderDesc": "Visa suddig bakgrund när du laddar affischer",
+  "settingsContinue": "Fortsätt",
+  "settingsHomeBannerDescription": "Visa som en bildspel, karusell eller dölja bannern"
 }

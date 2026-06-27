@@ -16,8 +16,8 @@ import 'package:driftfin/seerr/seerr_models.dart';
 import 'package:driftfin/services/notification_service.dart';
 import 'package:driftfin/util/notification_helpers.dart';
 
-const String updateTaskName = 'nl.jknaapen.fladder.update_notifications_check';
-const String updateTaskNameDebug = 'nl.jknaapen.fladder.update_notifications_check_debug';
+const String updateTaskName = 'io.github.hamadtheironside.driftfin.update_notifications_check';
+const String updateTaskNameDebug = 'io.github.hamadtheironside.driftfin.update_notifications_check_debug';
 const String updateWorkerPortName = 'fladder_notification_update_worker_port';
 
 @pragma('vm:entry-point')

@@ -24,4 +24,15 @@ class HomeSettingsNotifier extends StateNotifier<HomeSettingsModel> {
   void setLayoutModes(Set<LayoutMode> set) => state = state.copyWith(screenLayouts: set);
 
   void setViewSize(Set<ViewSize> set) => state = state.copyWith(layoutStates: set);
+
+  /// Pins/unpins a collection (boxset) so it renders as a row on the dashboard.
+  void toggleHomeCollection(String collectionId) {
+    final pinned = [...state.pinnedCollectionIds];
+    if (pinned.contains(collectionId)) {
+      pinned.remove(collectionId);
+    } else {
+      pinned.add(collectionId);
+    }
+    state = state.copyWith(pinnedCollectionIds: pinned);
+  }
 }

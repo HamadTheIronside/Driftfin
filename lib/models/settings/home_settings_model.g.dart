@@ -24,6 +24,10 @@ _HomeSettingsModel _$HomeSettingsModelFromJson(Map<String, dynamic> json) =>
           HomeCarouselSettings.combined,
       nextUp: $enumDecodeNullable(_$HomeNextUpEnumMap, json['nextUp']) ??
           HomeNextUp.separate,
+      pinnedCollectionIds: (json['pinnedCollectionIds'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const <String>[],
     );
 
 Map<String, dynamic> _$HomeSettingsModelToJson(_HomeSettingsModel instance) =>
@@ -36,6 +40,7 @@ Map<String, dynamic> _$HomeSettingsModelToJson(_HomeSettingsModel instance) =>
       'carouselSettings':
           _$HomeCarouselSettingsEnumMap[instance.carouselSettings]!,
       'nextUp': _$HomeNextUpEnumMap[instance.nextUp]!,
+      'pinnedCollectionIds': instance.pinnedCollectionIds,
     };
 
 const _$LayoutModeEnumMap = {

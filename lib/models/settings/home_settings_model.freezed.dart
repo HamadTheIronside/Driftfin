@@ -19,6 +19,7 @@ mixin _$HomeSettingsModel {
   HomeBanner get homeBanner;
   HomeCarouselSettings get carouselSettings;
   HomeNextUp get nextUp;
+  List<String> get pinnedCollectionIds;
 
   /// Create a copy of HomeSettingsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,7 @@ mixin _$HomeSettingsModel {
 
   @override
   String toString() {
-    return 'HomeSettingsModel(screenLayouts: $screenLayouts, layoutStates: $layoutStates, homeBanner: $homeBanner, carouselSettings: $carouselSettings, nextUp: $nextUp)';
+    return 'HomeSettingsModel(screenLayouts: $screenLayouts, layoutStates: $layoutStates, homeBanner: $homeBanner, carouselSettings: $carouselSettings, nextUp: $nextUp, pinnedCollectionIds: $pinnedCollectionIds)';
   }
 }
 
@@ -48,7 +49,8 @@ abstract mixin class $HomeSettingsModelCopyWith<$Res> {
       Set<ViewSize> layoutStates,
       HomeBanner homeBanner,
       HomeCarouselSettings carouselSettings,
-      HomeNextUp nextUp});
+      HomeNextUp nextUp,
+      List<String> pinnedCollectionIds});
 }
 
 /// @nodoc
@@ -69,6 +71,7 @@ class _$HomeSettingsModelCopyWithImpl<$Res>
     Object? homeBanner = null,
     Object? carouselSettings = null,
     Object? nextUp = null,
+    Object? pinnedCollectionIds = null,
   }) {
     return _then(_self.copyWith(
       screenLayouts: null == screenLayouts
@@ -91,6 +94,10 @@ class _$HomeSettingsModelCopyWithImpl<$Res>
           ? _self.nextUp
           : nextUp // ignore: cast_nullable_to_non_nullable
               as HomeNextUp,
+      pinnedCollectionIds: null == pinnedCollectionIds
+          ? _self.pinnedCollectionIds
+          : pinnedCollectionIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -193,15 +200,21 @@ extension HomeSettingsModelPatterns on HomeSettingsModel {
             Set<ViewSize> layoutStates,
             HomeBanner homeBanner,
             HomeCarouselSettings carouselSettings,
-            HomeNextUp nextUp)?
+            HomeNextUp nextUp,
+            List<String> pinnedCollectionIds)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _HomeSettingsModel() when $default != null:
-        return $default(_that.screenLayouts, _that.layoutStates,
-            _that.homeBanner, _that.carouselSettings, _that.nextUp);
+        return $default(
+            _that.screenLayouts,
+            _that.layoutStates,
+            _that.homeBanner,
+            _that.carouselSettings,
+            _that.nextUp,
+            _that.pinnedCollectionIds);
       case _:
         return orElse();
     }
@@ -227,14 +240,20 @@ extension HomeSettingsModelPatterns on HomeSettingsModel {
             Set<ViewSize> layoutStates,
             HomeBanner homeBanner,
             HomeCarouselSettings carouselSettings,
-            HomeNextUp nextUp)
+            HomeNextUp nextUp,
+            List<String> pinnedCollectionIds)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _HomeSettingsModel():
-        return $default(_that.screenLayouts, _that.layoutStates,
-            _that.homeBanner, _that.carouselSettings, _that.nextUp);
+        return $default(
+            _that.screenLayouts,
+            _that.layoutStates,
+            _that.homeBanner,
+            _that.carouselSettings,
+            _that.nextUp,
+            _that.pinnedCollectionIds);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -259,14 +278,20 @@ extension HomeSettingsModelPatterns on HomeSettingsModel {
             Set<ViewSize> layoutStates,
             HomeBanner homeBanner,
             HomeCarouselSettings carouselSettings,
-            HomeNextUp nextUp)?
+            HomeNextUp nextUp,
+            List<String> pinnedCollectionIds)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _HomeSettingsModel() when $default != null:
-        return $default(_that.screenLayouts, _that.layoutStates,
-            _that.homeBanner, _that.carouselSettings, _that.nextUp);
+        return $default(
+            _that.screenLayouts,
+            _that.layoutStates,
+            _that.homeBanner,
+            _that.carouselSettings,
+            _that.nextUp,
+            _that.pinnedCollectionIds);
       case _:
         return null;
     }
@@ -281,9 +306,11 @@ class _HomeSettingsModel extends HomeSettingsModel {
       final Set<ViewSize> layoutStates = const {...ViewSize.values},
       this.homeBanner = HomeBanner.carousel,
       this.carouselSettings = HomeCarouselSettings.combined,
-      this.nextUp = HomeNextUp.separate})
+      this.nextUp = HomeNextUp.separate,
+      final List<String> pinnedCollectionIds = const <String>[]})
       : _screenLayouts = screenLayouts,
         _layoutStates = layoutStates,
+        _pinnedCollectionIds = pinnedCollectionIds,
         super._();
   factory _HomeSettingsModel.fromJson(Map<String, dynamic> json) =>
       _$HomeSettingsModelFromJson(json);
@@ -315,6 +342,15 @@ class _HomeSettingsModel extends HomeSettingsModel {
   @override
   @JsonKey()
   final HomeNextUp nextUp;
+  final List<String> _pinnedCollectionIds;
+  @override
+  @JsonKey()
+  List<String> get pinnedCollectionIds {
+    if (_pinnedCollectionIds is EqualUnmodifiableListView)
+      return _pinnedCollectionIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_pinnedCollectionIds);
+  }
 
   /// Create a copy of HomeSettingsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -333,7 +369,7 @@ class _HomeSettingsModel extends HomeSettingsModel {
 
   @override
   String toString() {
-    return 'HomeSettingsModel(screenLayouts: $screenLayouts, layoutStates: $layoutStates, homeBanner: $homeBanner, carouselSettings: $carouselSettings, nextUp: $nextUp)';
+    return 'HomeSettingsModel(screenLayouts: $screenLayouts, layoutStates: $layoutStates, homeBanner: $homeBanner, carouselSettings: $carouselSettings, nextUp: $nextUp, pinnedCollectionIds: $pinnedCollectionIds)';
   }
 }
 
@@ -350,7 +386,8 @@ abstract mixin class _$HomeSettingsModelCopyWith<$Res>
       Set<ViewSize> layoutStates,
       HomeBanner homeBanner,
       HomeCarouselSettings carouselSettings,
-      HomeNextUp nextUp});
+      HomeNextUp nextUp,
+      List<String> pinnedCollectionIds});
 }
 
 /// @nodoc
@@ -371,6 +408,7 @@ class __$HomeSettingsModelCopyWithImpl<$Res>
     Object? homeBanner = null,
     Object? carouselSettings = null,
     Object? nextUp = null,
+    Object? pinnedCollectionIds = null,
   }) {
     return _then(_HomeSettingsModel(
       screenLayouts: null == screenLayouts
@@ -393,6 +431,10 @@ class __$HomeSettingsModelCopyWithImpl<$Res>
           ? _self.nextUp
           : nextUp // ignore: cast_nullable_to_non_nullable
               as HomeNextUp,
+      pinnedCollectionIds: null == pinnedCollectionIds
+          ? _self._pinnedCollectionIds
+          : pinnedCollectionIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }

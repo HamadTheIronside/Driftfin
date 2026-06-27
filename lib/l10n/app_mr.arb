@@ -1,1275 +1,1275 @@
 {
-    "about": "Fladder विषयी",
-    "accept": "स्वीकारा",
-    "addToCollection": "संग्रहात जोडा",
-    "advanced": "प्रगत",
-    "all": "सर्व",
-    "amoledBlack": "AMOLED काळा",
-    "appLockBiometrics": "बायोमेट्रिक्स",
-    "appLockPasscode": "पास-कोड",
-    "autoPlay": "आपोआप-प्ले",
-    "bold": "ठळक",
-    "change": "बदला",
-    "clearAllSettings": "सर्व सेटिंग साफ करा",
-    "clearAllSettingsQuestion": "सर्व सेटिंग साफ करायचे का?",
-    "clearChanges": "बदल साफ करा",
-    "color": "रंग",
-    "combined": "मिळून",
-    "controls": "कंट्रोल",
-    "dashboardContinueReading": "वाचणे चालू ठेवा",
-    "nextUp": "यापुढे",
-    "dateAdded": "जोडण्याचा दिनांक",
-    "days": "दिवस",
-    "disabled": "बंद",
-    "downloadsClearTitle": "सिंक केलेला डेटा साफ करून टाका",
-    "downloadsSyncedData": "सिंक केलेला डेटा",
-    "empty": "रिकामा",
-    "enabled": "चालू",
-    "error": "त्रुटी",
-    "failedToLoadImage": "चित्र लोड करता आले नाही",
-    "folders": "फोल्डर",
-    "forceRefresh": "जबरदस्ती रिफ्रेश करा",
-    "goTo": "येथे जा",
-    "grid": "ग्रिड",
-    "group": "गट",
-    "hide": "लपवा",
-    "hideEmpty": "रिकाम्या लपवा",
-    "immediately": "ताबडतोब",
-    "info": "माहिती",
-    "libraryFetchNoItemsFound": "कोणत्याही वस्तू सापडल्या नाहीत. सेटिंग बदलून पाहा.",
-    "lockscreen": "लॉकस्क्रीन",
-    "login": "लॉगइन",
-    "logout": "लॉगआउट",
-    "markAsUnwatched": "न पाहिलेले असे चिन्हित करा",
-    "mediaTypeBook": "पुस्तक",
-    "mediaTypeEpisode": "एपिसोड",
-    "mediaTypeMovie": "चित्रपट",
-    "mediaTypePerson": "व्यक्ती",
-    "mediaTypePhotoAlbum": "फोटो अल्बम",
-    "mediaTypeSeason": "सीझन",
-    "mediaTypeSeries": "मालिका",
-    "mode": "मोड",
-    "musicAlbum": "अल्बम",
-    "name": "नाव",
-    "noResults": "निकाल नाहीत",
-    "noServersFound": "कोणतेही नवीन सर्व्हर सापडले नाहीत",
-    "none": "कोणतीही नाही",
-    "notPartOfAlbum": "अल्बमचा भाग नाही",
-    "openWebLink": "वेब लिंक उघडा",
-    "password": "पासवर्ड",
-    "pathEditTitle": "स्थान बदला",
-    "playCount": "प्ले केलेल्याची मोजणी",
-    "playFromStart": "{name} सुरुवातीपासून प्ले करा",
-    "@playFromStart": {
-        "description": "speel vanaf het begin",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "playVideos": "व्हिडिओ प्ले करा",
-    "quickConnectInputACode": "कोड प्रविष्ट करा",
-    "quickConnectTitle": "जलद-कनेक्ट",
-    "quickConnectAction": "यासाठी जलद-कनेक्ट कोड प्रविष्ट करा",
-    "read": "{item} वाचा",
-    "@read": {
-        "description": "read",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "refresh": "रिफ्रेश",
-    "related": "यासंबंधी",
-    "removeAsFavorite": "आवडीच्यांमधून काढून टाका",
-    "restart": "रिस्टार्ट करा",
-    "result": "निकाल",
-    "resumable": "चालू ठेवता येण्यासारखे",
-    "save": "सेव्ह करा",
-    "saved": "सेव्ह केले",
-    "search": "शोध घ्या",
-    "selectAll": "सर्व निवडा",
-    "selectViewType": "दृश्य प्रकार निवडा",
-    "separate": "विभाजित",
-    "settingsClientTitle": "फ्लॅडर",
-    "settingsContinue": "चालू ठेवा",
-    "showAlbum": "अल्बम दाखवा",
-    "showEmpty": "रिकामे दाखवा",
-    "sortName": "नाव",
-    "start": "सुरू करा",
-    "themeModeDark": "गडद",
-    "unPlayed": "प्ले न केलेले",
-    "totalSize": "एकूण आकार: {size}",
-    "@totalSize": {
-        "placeholders": {
-            "size": {
-                "type": "String"
-            }
-        }
-    },
-    "unknown": "अज्ञात",
-    "useDefaults": "डिफॉल्ट वापरा",
-    "userName": "वापरकर्त्याचे नाव",
-    "videoScalingFill": "भरा",
-    "videoScalingFillScreenTitle": "पडदा भरा",
-    "videoScalingFitHeight": "उंची भरा",
-    "videoScalingFitWidth": "रुंदी भरा",
-    "addItemsToCollection": "{itemLength} वस्तू संग्रहात जोडा",
-    "@addItemsToCollection": {
-        "placeholders": {
-            "itemLength": {
-                "type": "int"
-            }
-        }
-    },
-    "addedToPlaylist": "{playlistName} प्लेलिस्टमध्ये जोडले गेले",
-    "@addedToPlaylist": {
-        "placeholders": {
-            "playlistName": {
-                "type": "String"
-            }
-        }
-    },
-    "removedFromCollection": "{collectionName} संग्रहातून काढून टाकले गेले",
-    "@removedFromCollection": {
-        "placeholders": {
-            "collectionName": {
-                "type": "String"
-            }
-        }
-    },
-    "syncStatusNotFound": "सापडले नाही",
-    "syncOverlayDeleting": "सिंक केलेली वस्तू काढून टाकत आहे",
-    "mediaSegmentUnknown": "अज्ञात",
-    "mediaSegmentCommercial": "जाहिरात",
-    "mediaSegmentOutro": "आउट्रो",
-    "mediaSegmentIntro": "इनट्रो",
-    "ascending": "चढत्या क्रमात",
-    "clearSelection": "निवड साफ करा",
-    "dashboardContinue": "चालू ठेवा",
-    "continuePage": "पुढे - पान {page}",
-    "@continuePage": {
-        "description": "Continue - page 1",
-        "placeholders": {
-            "page": {
-                "type": "int"
-            }
-        }
-    },
-    "mouseDragSupport": "माउसने खेचणे",
-    "playLabel": "प्ले करा",
-    "themeModeSystem": "सिस्टम",
-    "dashboard": "मुख्य पान",
-    "dashboardContinueListening": "ऐकणे चालू ठेवा",
-    "removeFromCollection": "संग्रहातून काढून टाका",
-    "datePlayed": "प्ले केलेल्याचा दिनांक",
-    "displayLanguage": "दर्शनाची भाषा",
-    "favorites": "आवडीचे",
-    "fontSize": "फाँटचा आकार",
-    "home": "घर",
-    "selected": "निवडलेले",
-    "mediaTypeFolder": "फोल्डर",
-    "navigationSync": "सिंक केले",
-    "refreshPopup": "रिफ्रेश करा - {name}",
-    "@refreshPopup": {
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "invalidUrlDesc": "URL ची सुरुवात http(s):// अशी झाली पाहिजे",
-    "list": "यादी",
-    "syncStatusComplete": "पूर्ण",
-    "metaDataSavedFor": "{item} यासाठी मेटाडेटा सेव्ह केला गेला",
-    "@metaDataSavedFor": {
-        "description": "metaDataSavedFor",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "noRating": "रेटिंग नाही",
-    "readFromStart": "{item} सुरुवातीपासून वाचा",
-    "@readFromStart": {
-        "description": "Read book from start",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "options": "पर्याय",
-    "playFrom": "{name} पासून प्ले करा",
-    "@playFrom": {
-        "description": "playFrom",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "removeFromPlaylist": "प्लेलिस्टमधून काढून टाका",
-    "themeModeLight": "हलका",
-    "resume": "{item} चालू ठेवा",
-    "@resume": {
-        "description": "resume",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "settingsProfileDesc": "लॉकस्क्रीन",
-    "addToNewCollection": "नवीन संग्रह",
-    "selectedWith": "{info} निवडलेले",
-    "@selectedWith": {
-        "description": "selected",
-        "placeholders": {
-            "info": {
-                "type": "String"
-            }
-        }
-    },
-    "settings": "सेटिंग",
-    "settingsProfileTitle": "प्रोफाइल",
-    "settingsQuickConnectTitle": "जलद-कनेक्ट",
-    "switchUser": "वापरकर्ता बदला",
-    "sync": "सिंक करा",
-    "theme": "थीम",
-    "addItemsToPlaylist": "{itemLength} वस्तू प्लेसिस्टमध्ये जोडा",
-    "@addItemsToPlaylist": {
-        "placeholders": {
-            "itemLength": {
-                "type": "int"
-            }
-        }
-    },
-    "syncStatusFailed": "अपयशी",
-    "timeAndAnnotation": "{minutes} आणि {seconds}",
-    "@timeAndAnnotation": {
-        "description": "timeAndAnnotation",
-        "placeholders": {
-            "minutes": {
-                "type": "String"
-            },
-            "seconds": {
-                "type": "String"
-            }
-        }
-    },
-    "viewPhotos": "फोटो पाहा",
-    "watchOn": "यावर पाहा",
-    "syncStatusPaused": "पॉझ केले",
-    "syncOverlaySyncing": "वस्तू तपशील सिंक करत आहे",
-    "syncSelectDownloadsFolder": "डाउनलोड फोल्डर निवडा",
-    "active": "सक्रिय",
-    "nativeName": "मराठी",
-    "mediaTypePlaylist": "प्लेलिस्ट",
-    "retry": "पुन्हा प्रयत्न करा",
-    "syncStatusCanceled": "रद्द केले गेले",
-    "cancel": "रद्द करा",
-    "code": "कोड",
-    "downloadsTitle": "डाउनलोड",
-    "endsAt": "{date} ला समाप्त",
-    "@endsAt": {
-        "description": "endsAt",
-        "placeholders": {
-            "date": {
-                "type": "DateTime",
-                "format": "jm"
-            }
-        }
-    },
-    "fontColor": "फाँटचा रंग",
-    "homeBannerSlideshow": "स्लाइडशो",
-    "reWatch": "पुन्हा-पाहणे",
-    "shadow": "सावली",
-    "showDetails": "तपशील दाखवा",
-    "themeColor": "थीमचा रंग",
-    "video": "व्हिडिओ",
-    "addedToCollection": "{collectionName} या संग्रहात जोडले गेले",
-    "@addedToCollection": {
-        "placeholders": {
-            "collectionName": {
-                "type": "String"
-            }
-        }
-    },
-    "syncStatusSynced": "सिंक केले",
-    "noItemsSynced": "कोणत्याही वस्तू सिंक केल्या नाहीत",
-    "noItemsToShow": "दाखवण्यास कोणत्याही वस्तू नाहीत",
-    "other": "इतर",
-    "play": "{item} प्ले करा",
-    "@play": {
-        "description": "Play with",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "selectTime": "वेळ निवडा",
-    "addToNewPlaylist": "नवीन प्लेलिस्ट",
-    "scanningName": "स्कॅन करत आहे - {name}…",
-    "@scanningName": {
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "descending": "उतरत्या क्रमात",
-    "mediaTypePhoto": "फोटो",
-    "delete": "डिलीट करा",
-    "invalidUrl": "अवैध URL",
-    "itemCount": "वस्तूंची मोजणी: {count}",
-    "@itemCount": {
-        "description": "Item count",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "loggedIn": "लॉगइन झालेले",
-    "openShow": "मालिका उघडा",
-    "server": "सर्व्हर",
-    "audio": "ऑडिओ",
-    "clear": "साफ करा",
-    "editMetadata": "मेटाडेटा संपादित करा",
-    "incorrectPinTryAgain": "चुकीचा पीन. पुन्हा प्रयत्न करा.",
-    "markAsWatched": "पाहिलेले असे चिन्हित करा",
-    "masonry": "भिंतीसारखे",
-    "navigationFavorites": "आवडीचे",
-    "played": "प्ले केलेले",
-    "collectionFolder": "{count, plural, one{संग्रह फोल्डर} other{संग्रह फोल्डर}}",
-    "downloadsPath": "पाथ",
-    "favorite": "आवडीचा",
-    "moreOptions": "अधिक पर्याय",
-    "addAsFavorite": "आवडीच्यांमध्ये जोडा",
-    "addToPlaylist": "प्लेलिस्टमध्ये जोडा",
-    "appLockAutoLogin": "आपोआप लॉगइन करा",
-    "close": "बंद करा",
-    "deleteItem": "{item} डिलीट करायचे का?",
-    "@deleteItem": {
-        "description": "deleteItem",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "disableFilters": "गाळण्या बंद करा",
-    "groupBy": "असा गट बनवा",
-    "homeBannerCarousel": "कॅरूझेल",
-    "navigationDashboard": "मुख्य पान",
-    "never": "कधीच नाही",
-    "page": "पान {index}",
-    "@page": {
-        "description": "page",
-        "placeholders": {
-            "index": {
-                "type": "int"
-            }
-        }
-    },
-    "quickConnectWrongCode": "चुकीचा कोड",
-    "dashboardContinueWatching": "पाहणे चालू ठेवा",
-    "logoutUserPopupTitle": "{userName} यांना लॉगआउट करायचे का?",
-    "@logoutUserPopupTitle": {
-        "description": "Pop-up for logging out the user",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            }
-        }
-    },
-    "refreshMetadata": "मेटाडेटा रिफ्रेश करा",
-    "settingsPosterSize": "पोस्टरांचा आकार",
-    "syncStatusRunning": "चालू",
-    "aboutSocials": "सोशल मीडियावर",
-    "playBackSettings": "प्लेबॅक सेटिंग",
-    "unableToPlayBooksOnWeb": "पुस्तके सध्या वेब आवृत्तीत समर्थित नाहीत",
-    "libraryFiltersRemoveAll": "सर्व गाळण्या काढून टाका",
-    "schemeSettingsRainbow": "इंद्रधनुष्य",
-    "schemeSettingsFruitSalad": "फ्रुट सॅलड",
-    "clientSettingsShowAllCollectionsTitle": "सर्व संग्रह प्रकार दाखवा",
-    "stop": "थांबवा",
-    "playNextVideo": "पुढचा व्हिडिओ प्ले करा",
-    "external": "बाह्य दुवा",
-    "errorLogs": "त्रुटींची नोंदवही",
-    "tablet": "टॅबलेट",
-    "desktop": "डेस्कटॉप",
-    "internetStreamingQualityTitle": "इंटरनेट गुणवत्ता",
-    "qualityOptionsTitle": "गुणवत्ता पर्याय",
-    "segmentActionAskToSkip": "स्किप करण्यास विचारा",
-    "libraryPlayItems": "वस्तू प्ले करा",
-    "closeVideo": "व्हिडिओ बंद करा",
-    "layoutModeDual": "दुहेरी",
-    "phone": "फोन",
-    "segmentActionSkip": "स्किप करा",
-    "playbackRate": "प्लेबॅक दर",
-    "defaultLabel": "डिफॉल्ट",
-    "@defaultLabel": {
-        "description": "To indicate a default value, default video player backend"
-    },
-    "episodeAvailable": "उपलब्ध",
-    "updateFilterForLibrary": "गाळणी अपडेट करा",
-    "playerSettingsBackendTitle": "व्हिडिओ प्लेयर बॅकएंड",
-    "layoutModeSingle": "एकेरी",
-    "clientSettingsRequireWifiTitle": "वाय-फाय आवश्यक असणे",
-    "aboutCreatedBy": "DonutWare द्वारा निर्मित",
-    "copiedToClipboard": "क्लिपबोर्डवर कॉपी केले",
-    "version": "आवृत्ती",
-    "homeStreamingQualityTitle": "घरातील गुणवत्ता",
-    "resumeVideo": "व्हिडिओ चालू ठेवा",
-    "noVideoPlayerOptions": "निवडलेल्या बॅकएंडमध्ये कोणतेही पर्याय नाहीत",
-    "qualityOptionsOriginal": "मूळ",
-    "loading": "लोड करत आहे",
-    "removeFilterForLibrary": "{filter} काढून टाकायची का?",
-    "@removeFilterForLibrary": {
-        "description": "removeFilterForLibrary",
-        "placeholders": {
-            "filter": {
-                "type": "String"
-            }
-        }
-    },
-    "downloadFile": "{type} डाउनलोड करा",
-    "@downloadFile": {
-        "placeholders": {
-            "type": {
-                "type": "String"
-            }
-        }
-    },
-    "qualityOptionsAuto": "आपोआप",
-    "segmentActionNone": "स्किप करू नका",
-    "unableToSyncItem": "{item} सिंक करता आले नाही, काहीतरी गडबड झाली",
-    "@unableToSyncItem": {
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "deleteFilterConfirmation": "तुम्हाला ही गाळणी नक्की डिलीट करायची आहे का?",
-    "aboutVersion": "आवृत्ती: {version}",
-    "@aboutVersion": {
-        "placeholders": {
-            "version": {
-                "type": "String"
-            }
-        }
-    },
-    "speed": "गती",
-    "off": "बंद",
-    "screenBrightness": "पडद्याचा तेजस्वीपणा",
-    "subtitle": "सबटायटल",
-    "aboutBuild": "बिल्ड: {buildNumber}",
-    "@aboutBuild": {
-        "placeholders": {
-            "buildNumber": {
-                "type": "String"
-            }
-        }
-    },
-    "startedSyncingItem": "{item} सिंक करणे सुरू केले",
-    "@startedSyncingItem": {
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "syncAddItemForSyncing": "सिंक करण्यास {item} जोडले गेले",
-    "@syncAddItemForSyncing": {
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "backgroundBlur": "पार्श्वभूमीचा ब्लर",
-    "backgroundOpacity": "पार्श्वभूमीची अपारदर्शकता",
-    "biometricsFailedCheckAgain": "बायोमेट्रिक्स अपयशी. सेटिंग तपासा आणि पुन्हा प्रयत्न करा.",
-    "chapter": "{count, plural, other{अध्याय} one{अध्याय}}",
-    "@chapter": {
-        "description": "chapter",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "deleteFileFromSystem": "{item} ही वस्तू डिलिट केल्याने ती फाईल सिस्टम आणि मीडिया लायब्ररी दोघांमधून डिलिट केली जाईल. तुम्हाला नक्की असे करायचे आहे का?",
-    "@deleteFileFromSystem": {
-        "description": "Delete file from system",
-        "placeholders": {
-            "item": {
-                "type": "String"
-            }
-        }
-    },
-    "episode": "{count, plural, other{भाग} one{भाग}}",
-    "@episode": {
-        "description": "episode",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "filter": "{count, plural, other{गाळण्या} one{गाळणी}}",
-    "@filter": {
-        "description": "filter",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "genre": "{count, plural, other{जाँरे} one{जाँरे}}",
-    "@genre": {
-        "description": "genre",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "identify": "ओळख पटवा",
-    "libraryPageSizeTitle": "लायब्ररी पानाचा आकार",
-    "mediaTypeBoxset": "बॉक्स सेट",
-    "metadataRefreshDefault": "नवीन आणि अपडेट केलेल्या फायलींचा स्कॅन करा",
-    "metadataRefreshFull": "सर्व मेटाडेटा बदलून घ्या",
-    "metadataRefreshValidation": "नसलेल्या मेटाडेटाचा शोध घ्या",
-    "minutes": "{count, plural, other{मिनिटे} one{मिनिट} }",
-    "@minutes": {
-        "description": "minute",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "normal": "साधारण",
-    "openParent": "पालक उघडा",
-    "outlineColor": "बाह्यरेखेचा रंग",
-    "overview": "सारांश",
-    "pathClearTitle": "डाउनलोड पाथ रिंकामा करा",
-    "recursive": "रिकर्सिव्ह",
-    "releaseDate": "प्रदर्शन दिनांक",
-    "replaceExistingImages": "अस्तित्वातील चित्रे बदलून घ्या",
-    "replaceAllImages": "सर्व चित्रे बदलून घ्या",
-    "retrievePublicListOfUsers": "प्रयोक्त्यांची सार्वजनिक यादी मिळवा",
-    "scanLibrary": "लायब्ररी स्कॅन करा",
-    "scrollToTop": "वरपर्यंत स्क्रोल करा",
-    "season": "{count, plural, other{सीझन} one{सीझन} }",
-    "@season": {
-        "description": "season",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "set": "सेट करा",
-    "@set": {
-        "description": "Use for setting a certain value",
-        "context": "Set 'time'"
-    },
-    "settingSecurityApplockTitle": "ॲप लॉक",
-    "settingsEnableOsMediaControls": "OS मिडिया कंट्रोल सक्षम करा",
-    "settingsHomeBannerInformationTitle": "बॅनर माहिती",
-    "settingsPlayerTitle": "प्लेयर",
-    "settingsPlayerCustomSubtitlesTitle": "सबटायटल सानुकूलित करा",
-    "settingsPlayerNativeLibassAccelTitle": "नेटिव्ह libass सबटायटल",
-    "settingsSecurity": "सुरक्षता",
-    "somethingWentWrong": "काहीतरी गडबड झाली",
-    "somethingWentWrongPasswordCheck": "काहीतरी गडबड झाली. आपला पासवर्ड तपासा.",
-    "settingsVisual": "दृश्य संबंधित",
-    "studio": "{count, plural, other{स्टुडियो} one{स्टुडियो}}",
-    "@studio": {
-        "description": "studio",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "subtitles": "सबटायटल",
-    "syncOpenParent": "पालक उघडा",
-    "syncRemoveDataTitle": "सिंक केलेला डेटा काढून टाकायचा का?",
-    "syncedItems": "सिंक केलेल्या वस्तू",
-    "tag": "{count, plural, one{टॅग} other{टॅग}}",
-    "@tag": {
-        "description": "tag",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "unableToConnectHost": "होस्टला कनेक्ट करता आले नाही",
-    "unableToReverseAction": "ही क्रिया मागे घेता येत नाही. याने सर्व सेटिंग काढून टाकले जातील.",
-    "type": "{count, plural, other{प्रकार} one{प्रकार}}",
-    "@type": {
-        "description": "type",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "syncStatusWaitingToRetry": "पुन्हा प्रयत्न करण्यास प्रतीक्षा करत आहे",
-    "syncRemoveUnableToDeleteItem": "सिंक केलेली वस्तू काढून टाकता आली नाही, काहीतरी गडबड झाली",
-    "aboutLicenses": "लायसंस",
-    "errorOpeningMedia": "हा मिडिया प्ले करताना काहीतरी गडबड झाली",
-    "defaultFilterForLibrary": "या लायब्ररीसाठी डिफॉल्ट गाळणी करा",
-    "libraryFiltersLimitReached": "गाळण्यांची सीमा गाठली (10) काही गाळण्या काढून टाका",
-    "skipButtonLabel": "{segment} स्किप करा (S)",
-    "@skipButtonLabel": {
-        "placeholders": {
-            "segment": {
-                "type": "String"
-            }
-        }
-    },
-    "copyStreamUrl": "स्ट्रीम यु.आर.एल. कॉपी करा",
-    "episodeUnaired": "अप्रदर्शित",
-    "episodeMissing": "नसलेले",
-    "castAndCrew": "कलाकार & कर्मचारी",
-    "hasLikedDirector": "आवडीचा दिग्दर्शक असलेला",
-    "latest": "अलीकडील",
-    "playbackTypeOffline": "ऑफलाईन",
-    "latestReleases": "अलीकडील प्रदर्शित",
-    "newUpdateFoundOnGithub": "Github वर नवीन आवृत्ती सापडली",
-    "exitFladderTitle": "Fladder बंद करा",
-    "playbackTypeTranscode": "ट्रान्सकोड",
-    "hasLikedActor": "आवडीचा अभिनेता असलेला",
-    "fetchingLibrary": "लायब्ररीतील वस्तू मिळवत आहे…",
-    "libraryPageSizeDesc": "एका वेळी लोड करायची संख्या सेट करा. 0 असे सेट केल्याने पाने केली जाणार नाहीत.",
-    "moreFrom": "{info} यांच्याकडून अजून",
-    "@moreFrom": {
-        "description": "More from",
-        "placeholders": {
-            "info": {
-                "type": "String"
-            }
-        }
-    },
-    "outlineSize": "बाह्यरेखेचा आकार",
-    "settingsHomeBannerTitle": "मुख्य पानाचा बॅनर",
-    "newReleaseFoundTitle": "नवीन आवृत्ती {newRelease} उपलब्ध आहे!",
-    "@newReleaseFoundTitle": {
-        "placeholders": {
-            "newRelease": {
-                "type": "String"
-            }
-        }
-    },
-    "communityRating": "सामाजिक रेटिंग",
-    "random": "यादृच्छिक",
-    "settingsHomeBannerInformationDesc": "मुख्य पानाच्या बॅनरमध्ये दाखवायची माहिती",
-    "dashboardRecentlyAdded": "{name} मध्ये अलीकडील जोडलेले",
-    "@dashboardRecentlyAdded": {
-        "description": "Recently added on home screen",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "playbackType": "प्लेबॅक प्रकार",
-    "library": "{count, plural, other{लायब्ररी} one{लायब्ररी}}",
-    "@library": {
-        "description": "Plural",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "seconds": "{count, plural, other{सेकंदे} one{सेकंद}}",
-    "@seconds": {
-        "description": "second",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "director": "{count, plural, other{दिग्दर्शक} two{दिग्दर्शक}}",
-    "@director": {
-        "description": "director",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "writer": "{count, plural, other{लेखक} two{लेखक}}",
-    "@writer": {
-        "description": "writer",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "actor": "{count, plural, other{अभिनेते} one{अभिनेता}}",
-    "@actor": {
-        "description": "actor",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "label": "{count, plural, other{लेबल} one{लेबल}}",
-    "@label": {
-        "description": "label",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "settingsPlayerCustomSubtitlesDesc": "आकार, रंग, स्थान, बाह्यरेखा सानुकूलित करा",
-    "rating": "{count, plural, other{रेटिंग} one{रेटिंग}}",
-    "@rating": {
-        "description": "rating",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "year": "{count, plural, other{वर्षे} one{वर्ष}}",
-    "@year": {
-        "description": "year",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "libraryFiltersRemoveAllConfirm": "याने प्रत्येक लायब्ररीसाठी सेव्ह केलेल्या गाळण्या डिलिट केल्या जातील",
-    "playbackTrackSelection": "प्लेबॅक ट्रॅक निवड",
-    "rememberSubtitleSelections": "आधीच्या वस्तूनुसार सबटायटल ट्रॅक सेट करा",
-    "rememberAudioSelections": "आधीच्या वस्तूनुसार ऑडियो ट्रॅक सेट करा",
-    "clientSettingsRequireWifiDesc": "केवळ वाय-फाय नेटवर्कवर कनेक्टेड असताना डाउनलोड करा",
-    "settingsPlayerVideoHWAccelTitle": "हार्डवेअर अ‍ॅक्सेलेरेशन",
-    "autoCheckForUpdates": "वेळोवेळी अपडेट असल्याचे तपासा",
-    "dateLastContentAdded": "शेवटची सामग्री जोडण्याचा दिनांक",
-    "downloadsClearDesc": "प्रत्येक सिंक केलेल्या वापरकर्त्याचे डेटा साफ करून सर्व सिंक केलेला डेटा काढून टाकायचा का?",
-    "dynamicText": "गतिक",
-    "heightOffset": "उंची ऑफसेट",
-    "loop": "लूप",
-    "mediaTypeBase": "मूळ प्रकार",
-    "navigation": "नॅव्हिगेशन",
-    "noSuggestionsFound": "कोणत्याही सूचना सापडल्या नाहीत",
-    "parentalRating": "पालक रेटिंग",
-    "pathEditDesc": "हे स्थान सर्व प्रयोक्त्यांसाठी सेट केले जाईल, आणि सिंक केलेला डेटा यानंतर उपलब्ध राहणार नाही. तो तुमच्या स्टोरेजमध्ये राहील.",
-    "pathEditSelect": "डाउनलोड गंतव्यस्थान निवडा",
-    "scanBiometricHint": "ओळख पडताळा",
-    "settingsBlurEpisodesDesc": "पुढील येणारे सर्व भाग अस्पष्ट करा",
-    "settingsBlurEpisodesTitle": "पुढचे भाग अस्पष्ट करा",
-    "settingsBlurredPlaceholderDesc": "पोस्टर लोड करताना अस्पष्ट केलेली पार्श्वभूमी दाखवा",
-    "settingsClientDesc": "साधारण, टाइम-आउट, मांडणी, थीम",
-    "settingsHomeBannerDescription": "स्लाइडशो किंवा कॅरूझेल म्हणून दाखवा, किंवा बॅनर लपवा",
-    "settingsHomeNextUpDesc": "मुख्य पानाच्या पडद्यावर दाखवायच्या पोस्टरांचा प्रकार",
-    "settingsHomeNextUpTitle": "पुढील येणार्‍यांचे पोस्टर",
-    "syncDeleteItemTitle": "सिंक केलेली वस्तू डिलीट करा",
-    "timeOut": "टाइम-आउट",
-    "discovered": "सापडले",
-    "settingsPlayerDesc": "अ‍ॅस्पेक्ट रेशो, प्रगत पर्याय",
-    "settingsPlayerBufferSizeTitle": "व्हिडियो बफर आकार",
-    "settingsPlayerVideoHWAccelDesc": "व्हिडयो रेंडर करण्यासाठी GPU चा वापर करा (सुचवलेले)",
-    "logoutUserPopupContent": "याने {userName} यांना लॉग आउट केले जाईल व अ‍ॅपवरून या प्रयोक्त्याला डिलीट करून टाकले जाईल.\nतुम्हाला {serverName} वर पुन्हा लॉग इन करावे लागेल.",
-    "@logoutUserPopupContent": {
-        "description": "Pop-up for logging out the user description",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            },
-            "serverName": {
-                "type": "String"
-            }
-        }
-    },
-    "setIdentityTo": "ओळख बदलून {name} असे करा",
-    "@setIdentityTo": {
-        "description": "setIdentityTo",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "settingsPlayerBufferSizeDesc": "व्हिडियो प्लेबॅकसाठी बफर आकार ठरवा. याने कॅशमध्ये किती डेटा लोड केली जाते हे निर्धारित होते.",
-    "appLockTitle": "{userName} यांच्यासाठी लॉगइन पद्धत सेट करा",
-    "@appLockTitle": {
-        "description": "Pop-up to pick a login method",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            }
-        }
-    },
-    "syncDetails": "तपशील सिंक करा",
-    "light": "हलका",
-    "notificationDownloadingDownloading": "डाउनलोड करत आहे",
-    "notificationDownloadingPaused": "डाउनलोड पॉझ केले आहे",
-    "syncStatusEnqueued": "रांगेत आहे",
-    "exit": "बाहेर पडा",
-    "fullScreen": "पूर्ण पडदा वापरा",
-    "mute": "म्यूट करा",
-    "nextVideo": "पुढचा व्हिडियो",
-    "offline": "ऑफलाईन",
-    "syncPauseAll": "सर्व पॉझ करा",
-    "playPause": "प्ले/पॉझ",
-    "prevVideo": "मागचा व्हिडियो",
-    "syncResumeAll": "सर्व चालू ठेवा",
-    "shortCuts": "शॉर्टकट",
-    "seekBack": "मागे सीक करा",
-    "seekForward": "पुढे सीक करा",
-    "similarToLikedItem": "आवडीच्या वस्तूसारखे",
-    "similarToRecentlyPlayed": "अलीकडील प्ले केल्यासारखे",
-    "sortBy": "क्रमवारी",
-    "syncStopAll": "सर्व थांबवा",
-    "syncAllFiles": "सर्व फायली सिंक करा",
-    "syncAllItemsTitle": "{itemName} च्या सर्व वस्तू सिंक करायच्या का?",
-    "@syncAllItemsTitle": {
-        "description": "syncAllItemsFrom",
-        "placeholders": {
-            "itemName": {
-                "type": "String"
-            }
-        }
-    },
-    "volumeDown": "आवाज कमी करा",
-    "volumeUp": "आवाज वाढवा",
-    "volumeIndicator": "आवाज: {volume}",
-    "@volumeIndicator": {
-        "placeholders": {
-            "volume": {
-                "type": "int"
-            }
-        }
-    },
-    "copyLoginLink": "लिंक कॉपी करा",
-    "includePassword": "पासवर्ड समाविष्ट करा",
-    "homeBannerDetailed": "तपशीलवार",
-    "homeBannerTV": "टीव्ही",
-    "mediaTypeTV": "{count, plural, one{टीव्ही वाहिनी} other{टीव्ही वाहिन्या}}",
-    "@mediaTypeTV": {
-        "description": "TV Channel (plural)",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "popularity": "लोकप्रियता",
-    "runtimeRangeMinutes": "{min} - {max} मिनिट",
-    "@runtimeRangeMinutes": {
-        "placeholders": {
-            "min": {
-                "type": "int"
-            },
-            "max": {
-                "type": "int"
-            }
-        }
-    },
-    "minutesShort": "{count} मि",
-    "@minutesShort": {
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "5"
-            }
-        }
-    },
-    "settingsProfileSubtitleLanguage": "पसंतीची सबटायटल भाषा",
-    "subtitlePlaybackModeNone": "नको",
-    "backgroundColor": "पार्श्वभूमीचा रंग",
-    "openImeKeyboard": "आयएमई कीबोर्ड उघडा",
-    "screensaverDvd": "डीव्हीडी",
-    "screensaverLogo": "लोगो",
-    "screensaverTime": "कालावधी",
-    "screensaverBlack": "काळा",
-    "playerSettingsScreensaverTitle": "स्क्रीनसेव्हर",
-    "takeScreenshot": "स्क्रीनशॉट घ्या",
-    "takeScreenshotClean": "स्क्रीनशॉट घ्या (सबटायटल शिवाय)",
-    "screenshotTaken": "स्क्रीनशॉट सेव्ह झाला!",
-    "screenshotCleanTaken": "सबटायटल शिवायचा स्क्रीनशॉट सेव्ह झाला!",
-    "errorTakingScreenshot": "स्क्रीनशॉट घेण्यात त्रुटी आढळली",
-    "segmentActionSkipOnce": "एकदा स्किप करा",
-    "serverName": "सरव्हरचे नाव",
-    "serverVersion": "सरव्हरची आवृत्ती",
-    "webVersion": "वेब आवृत्ती",
-    "devices": "उपकरण",
-    "used": "वापरलेले",
-    "web": "वेब",
-    "cache": "कॅश",
-    "count": "मोजणी",
-    "restartServer": "सरव्हर रिस्टार्ट करा",
-    "shutDownServer": "सरव्हर बंद करा",
-    "hours": "{count, plural, one{तास} other{तास}}",
-    "@hours": {
-        "description": "Pluralization for hours",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "3"
-            }
-        }
-    },
-    "weeks": "{count, plural, one{आठवडा} other{आठवडे}}",
-    "@weeks": {
-        "description": "Pluralization for weeks",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "2"
-            }
-        }
-    },
-    "months": "{count, plural, one{महिना} other{महिने}}",
-    "@months": {
-        "description": "Pluralization for months",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "5"
-            }
-        }
-    },
-    "years": "{count, plural, one{वर्ष} other{वर्षे}}",
-    "@years": {
-        "description": "Pluralization for years",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "timeAgo": "{time} पूर्वी",
-    "@timeAgo": {
-        "description": "timeAgo",
-        "placeholders": {
-            "time": {
-                "type": "String"
-            }
-        }
-    },
-    "lessThenAMinute": "एक मिनिटापेक्षा कमी वेळात",
-    "taskTriggerTypeInterval": "अवधी",
-    "taskTriggerTypeDaily": "दर रोज",
-    "taskTriggerTypeWeekly": "दर आठवड्याला",
-    "taskTriggerTypeStartup": "सुरुवात",
-    "create": "बनवा",
-    "taskTriggerTypeName": "ट्रिगरचा प्रकार",
-    "newTrigger": "नवीन ट्रिगर",
-    "dayOfTheWeek": "आठवड्यातला दिवस",
-    "time": "वेळ",
-    "interval": "अवधी",
-    "taskTimeLimitInHours": "वेळेची मर्यादा (तासांमध्ये)",
-    "taskTriggerIntervalDesc": "प्रत्येक {time}",
-    "@taskTriggerIntervalDesc": {
-        "description": "Task trigger interval desc",
-        "placeholders": {
-            "time": {
-                "type": "String"
-            }
-        }
-    },
-    "taskTriggerDailyDesc": "दर रोज {time} वाजता",
-    "@taskTriggerDailyDesc": {
-        "description": "taskTriggerDailyDesc",
-        "placeholders": {
-            "time": {
-                "type": "String"
-            }
-        }
-    },
-    "taskTriggerWeeklyDesc": "दर आठवड्याला {day} ला {time} वाजता",
-    "@taskTriggerWeeklyDesc": {
-        "description": "taskTriggerWeeklyDesc",
-        "placeholders": {
-            "day": {
-                "type": "String"
-            },
-            "time": {
-                "type": "String"
-            }
-        }
-    },
-    "taskTriggerTimeLimitSub": "वेळेची मर्यादा: {time}",
-    "@taskTriggerTimeLimitSub": {
-        "description": "taskTriggerTimeLimit",
-        "placeholders": {
-            "time": {
-                "type": "String"
-            }
-        }
-    },
-    "serverNameLabel": "सरव्हरचे नाव",
-    "cachePath": "कॅश मार्ग",
-    "metadataPath": "मेटाडेटा मार्ग",
-    "syncplay": "सिंकप्ले",
-    "dayOfWeek": "आठवड्यातला दिवस",
-    "startTime": "सुरू करायची वेळ",
-    "endTime": "संपायची वेळ",
-    "addTag": "टॅग जोडा",
-    "general": "साधारण",
-    "endTimeMustBeAfter": "संपायची वेळ ही सुरू करायच्या वेळेनंतर असायला हवी",
-    "currentPassword": "वर्तमान पासवर्ड",
-    "newPassword": "नवीन पासवर्ड",
-    "confirmPassword": "पासवर्डची खात्री करा",
-    "resetPassword": "पासवर्ड रीसेट करा",
-    "passwordResetSuccess": "पासवर्ड यशस्वीरीत्या रीसेट झाले",
-    "passwordResetFailed": "पासवर्ड रीसेट करण्यात अपयशी",
-    "passwordMismatch": "नवीन पासवर्ड आणि खात्री करायचे पासवर्ड जुळत नाहीत",
-    "passwordChangeSuccess": "पासवर्ड यशस्वीरीत्या बदलले गेले",
-    "savePassword": "पासवर्ड सेव्ह करा",
-    "automaticallyAddToCollection": "आपोआप संग्रहात जोडा",
-    "preferredDownloadLanguage": "पसंतीची डाउनलोड भाषा",
-    "countryRegion": "देश/प्रदेश",
-    "saveMetadata": "मेटाडेटा सेव्ह करा",
-    "metadataFetchers": "मेटाडेटा आणणारे ({type})",
-    "@metadataFetchers": {
-        "placeholders": {
-            "type": {
-                "type": "String"
-            }
-        }
-    },
-    "imageFetchers": "चित्र आणणारे ({type})",
-    "@imageFetchers": {
-        "placeholders": {
-            "type": {
-                "type": "String"
-            }
-        }
-    },
-    "trickplay": "ट्रिकप्ले",
-    "subtitleDownloads": "सबटायटल डाउनलोड",
-    "downloadLanguages": "डाउनलोड करायच्या भाषा",
-    "subtitleDownloaders": "सबटायटल डाउनलोड करणारे",
-    "select": "निवडा",
-    "contentType": "सामग्रीचा प्रकार",
-    "metadataImageLongPressClick": "चित्र डिलीट करण्यासाठी उजवीकडून क्लिक करा",
-    "primary": "प्राथमिक",
-    "logo": "{count, plural, other{लोगो} one{लोगो}}",
-    "@logo": {
-        "description": "logo",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "backdrop": "{count, plural, other{पार्श्वभूमी} one{पार्श्वभूमी}}",
-    "@backdrop": {
-        "description": "backdrop",
-        "placeholders": {
-            "count": {
-                "type": "int",
-                "example": "1"
-            }
-        }
-    },
-    "selectFolderToAdd": "जोडायचा फोल्डर निवडा",
-    "systemRootFolder": "सिस्टम रूट फोल्डर",
-    "selectedPath": "निवडलेला मार्ग: {path}",
-    "@selectedPath": {
-        "placeholders": {
-            "path": {
-                "type": "String"
-            }
-        }
-    },
-    "deleteRequestConfirmation": "तुम्हाला नक्की ही विनंती डिलीट करायची आहे का?",
-    "recentlyAdded": "अलीकडील जोडलेले",
-    "recentRequests": "अलीकडील विनंत्या",
-    "trending": "ट्रेंडिंग",
-    "popularMovies": "लोकप्रिय चित्रपट",
-    "expectedMovies": "अपेक्षित चित्रपट",
-    "expectedSeries": "अपेक्षित मालिका",
-    "qualityProfile": "गुणवत्ता प्रोफाइल",
-    "selectProfile": "प्रोफाइल निवडा",
-    "rootFolder": "रूट फोल्डर",
-    "selectFolder": "फोल्डर निवडा",
-    "tags": "टॅग",
-    "noTags": "टॅग नाहीत",
-    "requestQuotaLimitReached": "{mediaType} साठीची विनंती मर्यादा गाठली.",
-    "@requestQuotaLimitReached": {
-        "placeholders": {
-            "mediaType": {
-                "type": "String"
-            }
-        }
-    },
-    "submitRequest": "विनंती सादर करा",
-    "downloading": "डाउनलोड करत आहे",
-    "request": "विनंती",
-    "viewRequest": "विनंती पाहा",
-    "email": "ईमेल",
-    "ok": "ठीक आहे",
-    "seerr": "Seerr",
-    "loggedInAs": "{displayName} म्हणून लॉगइन केले आहे",
-    "@loggedInAs": {
-        "placeholders": {
-            "displayName": {
-                "type": "String"
-            }
-        }
-    },
-    "seerrServer": "Seerr सरव्हर",
-    "rootFolderDefaultLabel": "{folder} (डिफॉल्ट)",
-    "@rootFolderDefaultLabel": {
-        "placeholders": {
-            "folder": {
-                "type": "String"
-            }
-        }
-    },
-    "seerrAnimeSeriesNote": "* ही मालिका आनिमे आहे.",
-    "seerrAutoApproveNotice": "तुम्ही सादर केलेल्या विनंत्या आपोआप स्वीकारल्या जातात.",
-    "seerrAuthApiKey": "API की",
-    "seerrAuthJellyfin": "जेलिफिन",
-    "seerrApiKeySaved": "API की सेव्ह केली",
-    "seerrLoggedIn": "Seerr मध्ये लॉगइन केले",
-    "discover": "शोध लावा",
-    "min": "किमान",
-    "max": "कमाल",
-    "manageRequest": "विनंती सांभाळा",
-    "openInSeerr": "Seerr मध्ये उघडा",
-    "openInSonarr": "Sonarr मध्ये उघडा",
-    "openInRadarr": "Radarr मध्ये उघडा",
-    "removeFromSonarr": "Sonarr मधून काढून टाका",
-    "removeFromRadarr": "Radarr मधून काढून टाका",
-    "markAllSeasonsAsAvailable": "सर्व सीझन उपलब्ध असे चिन्हित करा",
-    "markAsAvailable": "उपलब्ध असे चिन्हित करा",
-    "deleteData": "डेटा काढून टाका",
-    "removedFromSonarr": "Sonarr मधून काढून टाकले",
-    "removedFromRadarr": "Radarr मधून काढून टाकले",
-    "markAllSeasonsAsAvailableConfirm": "सर्व सीझन उपलब्ध असे चिन्हित करायचे का?",
-    "markAsAvailableConfirm": "उपलब्ध असे चिन्हित करायचे का?",
-    "markedAsAvailable": "उपलब्ध असे चिन्हित केले",
-    "seerrRequestStatusApproved": "स्वीकारलेले",
-    "seerrRequestStatusPending": "अनिर्णीत असलेले",
-    "seerrRequestStatusDeclined": "नाकारलेले",
-    "seerrRequestStatusFailed": "अपयशी",
-    "seerrRequestStatusCompleted": "पूर्ण झाले",
-    "seerrMediaStatusAvailable": "उपलब्ध",
-    "seerrMediaStatusDeleted": "काढून टाकलेले",
-    "approve": "स्वीकारा",
-    "decline": "नाकारा",
-    "playbackTypeTV": "टीव्ही",
-    "watch": "बघा",
-    "watchChannel": "{channel} बघा",
-    "@watchChannel": {
-        "placeholders": {
-            "channel": {
-                "type": "String"
-            }
-        }
-    },
-    "now": "आता",
-    "noPrograms": "कार्यक्रम उपलब्ध नाहीत",
-    "switchChannel": "वाहिनी बदला",
-    "switchChannelDesc": "तुम्हाला {channelName} वर \"{programName}\" बघायचे आहे का?",
-    "@switchChannelDesc": {
-        "placeholders": {
-            "programName": {
-                "type": "String"
-            },
-            "channelName": {
-                "type": "String"
-            }
-        }
-    },
-    "seerrHeaderValue": "मूल्य",
-    "showLess": "कमी दाखवा",
-    "liveTV": "लाईव्ह टीव्ही",
-    "tunerDevices": "ट्यूनर उपकरण",
-    "addTunerDevice": "ट्यूनर उपकरण जोडा",
-    "deleteTunerHostConfirm": "तुम्हाला \"{name}\" हे नक्की काढून टाकायचे आहे का?",
-    "@deleteTunerHostConfirm": {
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "editTunerDevice": "ट्यूनर उपकरण संपादित करा",
-    "url": "यूआरएल",
-    "movieCategories": "चित्रपटांचे वर्ग",
-    "newsCategories": "बातम्यांचे वर्ग",
-    "sportsCategories": "स्पोर्ट्सचे वर्ग",
-    "fileOrUrl": "फाईल किंवा यूआरएल",
-    "tunerIpAddress": "ट्यूनरचा आयपी पत्ता",
-    "concurrentStreamsHint": "0 = अमर्यादित",
-    "importFavoritesOnly": "केवळ आवडीच्या वाहिन्या आयात करा",
-    "detectDevices": "उपकरणे शोधून काढा",
-    "discoveredDevices": "सापडलेली उपकरणे",
-    "noDevicesFound": "कोणतीही उपकरणे सापडली नाहीत",
-    "failedToDiscoverDevices": "उपकरणे शोधून काढण्यात अपयशी: {error}",
-    "@failedToDiscoverDevices": {
-        "placeholders": {
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "path": "मार्ग",
-    "noCategories": "वर्ग नाहीत",
-    "notificationNewEpisodes": "नवीन भाग जोडले आहेत",
-    "requestMore": "अजून विनंती करा",
-    "shareQRCode": "क्यूआर कोड शेअर करा",
-    "invalidAuthLink": "लॉगइन लिंक अवैध आहे",
-    "linkData": "लिंक डेटा",
-    "hidePlayedInLatestTitle": "बघितलेली सामग्री लपवा",
-    "videoCodecLabel": "व्हिडियो कोडेक",
-    "audioCodecLabel": "ऑडिओ कोडेक",
-    "bitrateLabel": "बिटरेट",
-    "kbps": "kbps",
-    "generateLoginLink": "{userName} यांच्यासाठीचा कोड",
-    "@generateLoginLink": {
-        "description": "Code for a user to share",
-        "placeholders": {
-            "userName": {
-                "type": "String"
-            }
-        }
+  "about": "Driftfin विषयी",
+  "accept": "स्वीकारा",
+  "addToCollection": "संग्रहात जोडा",
+  "advanced": "प्रगत",
+  "all": "सर्व",
+  "amoledBlack": "AMOLED काळा",
+  "appLockBiometrics": "बायोमेट्रिक्स",
+  "appLockPasscode": "पास-कोड",
+  "autoPlay": "आपोआप-प्ले",
+  "bold": "ठळक",
+  "change": "बदला",
+  "clearAllSettings": "सर्व सेटिंग साफ करा",
+  "clearAllSettingsQuestion": "सर्व सेटिंग साफ करायचे का?",
+  "clearChanges": "बदल साफ करा",
+  "color": "रंग",
+  "combined": "मिळून",
+  "controls": "कंट्रोल",
+  "dashboardContinueReading": "वाचणे चालू ठेवा",
+  "nextUp": "यापुढे",
+  "dateAdded": "जोडण्याचा दिनांक",
+  "days": "दिवस",
+  "disabled": "बंद",
+  "downloadsClearTitle": "सिंक केलेला डेटा साफ करून टाका",
+  "downloadsSyncedData": "सिंक केलेला डेटा",
+  "empty": "रिकामा",
+  "enabled": "चालू",
+  "error": "त्रुटी",
+  "failedToLoadImage": "चित्र लोड करता आले नाही",
+  "folders": "फोल्डर",
+  "forceRefresh": "जबरदस्ती रिफ्रेश करा",
+  "goTo": "येथे जा",
+  "grid": "ग्रिड",
+  "group": "गट",
+  "hide": "लपवा",
+  "hideEmpty": "रिकाम्या लपवा",
+  "immediately": "ताबडतोब",
+  "info": "माहिती",
+  "libraryFetchNoItemsFound": "कोणत्याही वस्तू सापडल्या नाहीत. सेटिंग बदलून पाहा.",
+  "lockscreen": "लॉकस्क्रीन",
+  "login": "लॉगइन",
+  "logout": "लॉगआउट",
+  "markAsUnwatched": "न पाहिलेले असे चिन्हित करा",
+  "mediaTypeBook": "पुस्तक",
+  "mediaTypeEpisode": "एपिसोड",
+  "mediaTypeMovie": "चित्रपट",
+  "mediaTypePerson": "व्यक्ती",
+  "mediaTypePhotoAlbum": "फोटो अल्बम",
+  "mediaTypeSeason": "सीझन",
+  "mediaTypeSeries": "मालिका",
+  "mode": "मोड",
+  "musicAlbum": "अल्बम",
+  "name": "नाव",
+  "noResults": "निकाल नाहीत",
+  "noServersFound": "कोणतेही नवीन सर्व्हर सापडले नाहीत",
+  "none": "कोणतीही नाही",
+  "notPartOfAlbum": "अल्बमचा भाग नाही",
+  "openWebLink": "वेब लिंक उघडा",
+  "password": "पासवर्ड",
+  "pathEditTitle": "स्थान बदला",
+  "playCount": "प्ले केलेल्याची मोजणी",
+  "playFromStart": "{name} सुरुवातीपासून प्ले करा",
+  "@playFromStart": {
+    "description": "speel vanaf het begin",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
     }
+  },
+  "playVideos": "व्हिडिओ प्ले करा",
+  "quickConnectInputACode": "कोड प्रविष्ट करा",
+  "quickConnectTitle": "जलद-कनेक्ट",
+  "quickConnectAction": "यासाठी जलद-कनेक्ट कोड प्रविष्ट करा",
+  "read": "{item} वाचा",
+  "@read": {
+    "description": "read",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "refresh": "रिफ्रेश",
+  "related": "यासंबंधी",
+  "removeAsFavorite": "आवडीच्यांमधून काढून टाका",
+  "restart": "रिस्टार्ट करा",
+  "result": "निकाल",
+  "resumable": "चालू ठेवता येण्यासारखे",
+  "save": "सेव्ह करा",
+  "saved": "सेव्ह केले",
+  "search": "शोध घ्या",
+  "selectAll": "सर्व निवडा",
+  "selectViewType": "दृश्य प्रकार निवडा",
+  "separate": "विभाजित",
+  "settingsClientTitle": "फ्लॅडर",
+  "settingsContinue": "चालू ठेवा",
+  "showAlbum": "अल्बम दाखवा",
+  "showEmpty": "रिकामे दाखवा",
+  "sortName": "नाव",
+  "start": "सुरू करा",
+  "themeModeDark": "गडद",
+  "unPlayed": "प्ले न केलेले",
+  "totalSize": "एकूण आकार: {size}",
+  "@totalSize": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "unknown": "अज्ञात",
+  "useDefaults": "डिफॉल्ट वापरा",
+  "userName": "वापरकर्त्याचे नाव",
+  "videoScalingFill": "भरा",
+  "videoScalingFillScreenTitle": "पडदा भरा",
+  "videoScalingFitHeight": "उंची भरा",
+  "videoScalingFitWidth": "रुंदी भरा",
+  "addItemsToCollection": "{itemLength} वस्तू संग्रहात जोडा",
+  "@addItemsToCollection": {
+    "placeholders": {
+      "itemLength": {
+        "type": "int"
+      }
+    }
+  },
+  "addedToPlaylist": "{playlistName} प्लेलिस्टमध्ये जोडले गेले",
+  "@addedToPlaylist": {
+    "placeholders": {
+      "playlistName": {
+        "type": "String"
+      }
+    }
+  },
+  "removedFromCollection": "{collectionName} संग्रहातून काढून टाकले गेले",
+  "@removedFromCollection": {
+    "placeholders": {
+      "collectionName": {
+        "type": "String"
+      }
+    }
+  },
+  "syncStatusNotFound": "सापडले नाही",
+  "syncOverlayDeleting": "सिंक केलेली वस्तू काढून टाकत आहे",
+  "mediaSegmentUnknown": "अज्ञात",
+  "mediaSegmentCommercial": "जाहिरात",
+  "mediaSegmentOutro": "आउट्रो",
+  "mediaSegmentIntro": "इनट्रो",
+  "ascending": "चढत्या क्रमात",
+  "clearSelection": "निवड साफ करा",
+  "dashboardContinue": "चालू ठेवा",
+  "continuePage": "पुढे - पान {page}",
+  "@continuePage": {
+    "description": "Continue - page 1",
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "mouseDragSupport": "माउसने खेचणे",
+  "playLabel": "प्ले करा",
+  "themeModeSystem": "सिस्टम",
+  "dashboard": "मुख्य पान",
+  "dashboardContinueListening": "ऐकणे चालू ठेवा",
+  "removeFromCollection": "संग्रहातून काढून टाका",
+  "datePlayed": "प्ले केलेल्याचा दिनांक",
+  "displayLanguage": "दर्शनाची भाषा",
+  "favorites": "आवडीचे",
+  "fontSize": "फाँटचा आकार",
+  "home": "घर",
+  "selected": "निवडलेले",
+  "mediaTypeFolder": "फोल्डर",
+  "navigationSync": "सिंक केले",
+  "refreshPopup": "रिफ्रेश करा - {name}",
+  "@refreshPopup": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "invalidUrlDesc": "URL ची सुरुवात http(s):// अशी झाली पाहिजे",
+  "list": "यादी",
+  "syncStatusComplete": "पूर्ण",
+  "metaDataSavedFor": "{item} यासाठी मेटाडेटा सेव्ह केला गेला",
+  "@metaDataSavedFor": {
+    "description": "metaDataSavedFor",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "noRating": "रेटिंग नाही",
+  "readFromStart": "{item} सुरुवातीपासून वाचा",
+  "@readFromStart": {
+    "description": "Read book from start",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "options": "पर्याय",
+  "playFrom": "{name} पासून प्ले करा",
+  "@playFrom": {
+    "description": "playFrom",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "removeFromPlaylist": "प्लेलिस्टमधून काढून टाका",
+  "themeModeLight": "हलका",
+  "resume": "{item} चालू ठेवा",
+  "@resume": {
+    "description": "resume",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsProfileDesc": "लॉकस्क्रीन",
+  "addToNewCollection": "नवीन संग्रह",
+  "selectedWith": "{info} निवडलेले",
+  "@selectedWith": {
+    "description": "selected",
+    "placeholders": {
+      "info": {
+        "type": "String"
+      }
+    }
+  },
+  "settings": "सेटिंग",
+  "settingsProfileTitle": "प्रोफाइल",
+  "settingsQuickConnectTitle": "जलद-कनेक्ट",
+  "switchUser": "वापरकर्ता बदला",
+  "sync": "सिंक करा",
+  "theme": "थीम",
+  "addItemsToPlaylist": "{itemLength} वस्तू प्लेसिस्टमध्ये जोडा",
+  "@addItemsToPlaylist": {
+    "placeholders": {
+      "itemLength": {
+        "type": "int"
+      }
+    }
+  },
+  "syncStatusFailed": "अपयशी",
+  "timeAndAnnotation": "{minutes} आणि {seconds}",
+  "@timeAndAnnotation": {
+    "description": "timeAndAnnotation",
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      },
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "viewPhotos": "फोटो पाहा",
+  "watchOn": "यावर पाहा",
+  "syncStatusPaused": "पॉझ केले",
+  "syncOverlaySyncing": "वस्तू तपशील सिंक करत आहे",
+  "syncSelectDownloadsFolder": "डाउनलोड फोल्डर निवडा",
+  "active": "सक्रिय",
+  "nativeName": "मराठी",
+  "mediaTypePlaylist": "प्लेलिस्ट",
+  "retry": "पुन्हा प्रयत्न करा",
+  "syncStatusCanceled": "रद्द केले गेले",
+  "cancel": "रद्द करा",
+  "code": "कोड",
+  "downloadsTitle": "डाउनलोड",
+  "endsAt": "{date} ला समाप्त",
+  "@endsAt": {
+    "description": "endsAt",
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "jm"
+      }
+    }
+  },
+  "fontColor": "फाँटचा रंग",
+  "homeBannerSlideshow": "स्लाइडशो",
+  "reWatch": "पुन्हा-पाहणे",
+  "shadow": "सावली",
+  "showDetails": "तपशील दाखवा",
+  "themeColor": "थीमचा रंग",
+  "video": "व्हिडिओ",
+  "addedToCollection": "{collectionName} या संग्रहात जोडले गेले",
+  "@addedToCollection": {
+    "placeholders": {
+      "collectionName": {
+        "type": "String"
+      }
+    }
+  },
+  "syncStatusSynced": "सिंक केले",
+  "noItemsSynced": "कोणत्याही वस्तू सिंक केल्या नाहीत",
+  "noItemsToShow": "दाखवण्यास कोणत्याही वस्तू नाहीत",
+  "other": "इतर",
+  "play": "{item} प्ले करा",
+  "@play": {
+    "description": "Play with",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "selectTime": "वेळ निवडा",
+  "addToNewPlaylist": "नवीन प्लेलिस्ट",
+  "scanningName": "स्कॅन करत आहे - {name}…",
+  "@scanningName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "descending": "उतरत्या क्रमात",
+  "mediaTypePhoto": "फोटो",
+  "delete": "डिलीट करा",
+  "invalidUrl": "अवैध URL",
+  "itemCount": "वस्तूंची मोजणी: {count}",
+  "@itemCount": {
+    "description": "Item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "loggedIn": "लॉगइन झालेले",
+  "openShow": "मालिका उघडा",
+  "server": "सर्व्हर",
+  "audio": "ऑडिओ",
+  "clear": "साफ करा",
+  "editMetadata": "मेटाडेटा संपादित करा",
+  "incorrectPinTryAgain": "चुकीचा पीन. पुन्हा प्रयत्न करा.",
+  "markAsWatched": "पाहिलेले असे चिन्हित करा",
+  "masonry": "भिंतीसारखे",
+  "navigationFavorites": "आवडीचे",
+  "played": "प्ले केलेले",
+  "collectionFolder": "{count, plural, one{संग्रह फोल्डर} other{संग्रह फोल्डर}}",
+  "downloadsPath": "पाथ",
+  "favorite": "आवडीचा",
+  "moreOptions": "अधिक पर्याय",
+  "addAsFavorite": "आवडीच्यांमध्ये जोडा",
+  "addToPlaylist": "प्लेलिस्टमध्ये जोडा",
+  "appLockAutoLogin": "आपोआप लॉगइन करा",
+  "close": "बंद करा",
+  "deleteItem": "{item} डिलीट करायचे का?",
+  "@deleteItem": {
+    "description": "deleteItem",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "disableFilters": "गाळण्या बंद करा",
+  "groupBy": "असा गट बनवा",
+  "homeBannerCarousel": "कॅरूझेल",
+  "navigationDashboard": "मुख्य पान",
+  "never": "कधीच नाही",
+  "page": "पान {index}",
+  "@page": {
+    "description": "page",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "quickConnectWrongCode": "चुकीचा कोड",
+  "dashboardContinueWatching": "पाहणे चालू ठेवा",
+  "logoutUserPopupTitle": "{userName} यांना लॉगआउट करायचे का?",
+  "@logoutUserPopupTitle": {
+    "description": "Pop-up for logging out the user",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      }
+    }
+  },
+  "refreshMetadata": "मेटाडेटा रिफ्रेश करा",
+  "settingsPosterSize": "पोस्टरांचा आकार",
+  "syncStatusRunning": "चालू",
+  "aboutSocials": "सोशल मीडियावर",
+  "playBackSettings": "प्लेबॅक सेटिंग",
+  "unableToPlayBooksOnWeb": "पुस्तके सध्या वेब आवृत्तीत समर्थित नाहीत",
+  "libraryFiltersRemoveAll": "सर्व गाळण्या काढून टाका",
+  "schemeSettingsRainbow": "इंद्रधनुष्य",
+  "schemeSettingsFruitSalad": "फ्रुट सॅलड",
+  "clientSettingsShowAllCollectionsTitle": "सर्व संग्रह प्रकार दाखवा",
+  "stop": "थांबवा",
+  "playNextVideo": "पुढचा व्हिडिओ प्ले करा",
+  "external": "बाह्य दुवा",
+  "errorLogs": "त्रुटींची नोंदवही",
+  "tablet": "टॅबलेट",
+  "desktop": "डेस्कटॉप",
+  "internetStreamingQualityTitle": "इंटरनेट गुणवत्ता",
+  "qualityOptionsTitle": "गुणवत्ता पर्याय",
+  "segmentActionAskToSkip": "स्किप करण्यास विचारा",
+  "libraryPlayItems": "वस्तू प्ले करा",
+  "closeVideo": "व्हिडिओ बंद करा",
+  "layoutModeDual": "दुहेरी",
+  "phone": "फोन",
+  "segmentActionSkip": "स्किप करा",
+  "playbackRate": "प्लेबॅक दर",
+  "defaultLabel": "डिफॉल्ट",
+  "@defaultLabel": {
+    "description": "To indicate a default value, default video player backend"
+  },
+  "episodeAvailable": "उपलब्ध",
+  "updateFilterForLibrary": "गाळणी अपडेट करा",
+  "playerSettingsBackendTitle": "व्हिडिओ प्लेयर बॅकएंड",
+  "layoutModeSingle": "एकेरी",
+  "clientSettingsRequireWifiTitle": "वाय-फाय आवश्यक असणे",
+  "aboutCreatedBy": "DonutWare द्वारा निर्मित",
+  "copiedToClipboard": "क्लिपबोर्डवर कॉपी केले",
+  "version": "आवृत्ती",
+  "homeStreamingQualityTitle": "घरातील गुणवत्ता",
+  "resumeVideo": "व्हिडिओ चालू ठेवा",
+  "noVideoPlayerOptions": "निवडलेल्या बॅकएंडमध्ये कोणतेही पर्याय नाहीत",
+  "qualityOptionsOriginal": "मूळ",
+  "loading": "लोड करत आहे",
+  "removeFilterForLibrary": "{filter} काढून टाकायची का?",
+  "@removeFilterForLibrary": {
+    "description": "removeFilterForLibrary",
+    "placeholders": {
+      "filter": {
+        "type": "String"
+      }
+    }
+  },
+  "downloadFile": "{type} डाउनलोड करा",
+  "@downloadFile": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "qualityOptionsAuto": "आपोआप",
+  "segmentActionNone": "स्किप करू नका",
+  "unableToSyncItem": "{item} सिंक करता आले नाही, काहीतरी गडबड झाली",
+  "@unableToSyncItem": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteFilterConfirmation": "तुम्हाला ही गाळणी नक्की डिलीट करायची आहे का?",
+  "aboutVersion": "आवृत्ती: {version}",
+  "@aboutVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "speed": "गती",
+  "off": "बंद",
+  "screenBrightness": "पडद्याचा तेजस्वीपणा",
+  "subtitle": "सबटायटल",
+  "aboutBuild": "बिल्ड: {buildNumber}",
+  "@aboutBuild": {
+    "placeholders": {
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "startedSyncingItem": "{item} सिंक करणे सुरू केले",
+  "@startedSyncingItem": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "syncAddItemForSyncing": "सिंक करण्यास {item} जोडले गेले",
+  "@syncAddItemForSyncing": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "backgroundBlur": "पार्श्वभूमीचा ब्लर",
+  "backgroundOpacity": "पार्श्वभूमीची अपारदर्शकता",
+  "biometricsFailedCheckAgain": "बायोमेट्रिक्स अपयशी. सेटिंग तपासा आणि पुन्हा प्रयत्न करा.",
+  "chapter": "{count, plural, other{अध्याय} one{अध्याय}}",
+  "@chapter": {
+    "description": "chapter",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "deleteFileFromSystem": "{item} ही वस्तू डिलिट केल्याने ती फाईल सिस्टम आणि मीडिया लायब्ररी दोघांमधून डिलिट केली जाईल. तुम्हाला नक्की असे करायचे आहे का?",
+  "@deleteFileFromSystem": {
+    "description": "Delete file from system",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "episode": "{count, plural, other{भाग} one{भाग}}",
+  "@episode": {
+    "description": "episode",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "filter": "{count, plural, other{गाळण्या} one{गाळणी}}",
+  "@filter": {
+    "description": "filter",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "genre": "{count, plural, other{जाँरे} one{जाँरे}}",
+  "@genre": {
+    "description": "genre",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "identify": "ओळख पटवा",
+  "libraryPageSizeTitle": "लायब्ररी पानाचा आकार",
+  "mediaTypeBoxset": "बॉक्स सेट",
+  "metadataRefreshDefault": "नवीन आणि अपडेट केलेल्या फायलींचा स्कॅन करा",
+  "metadataRefreshFull": "सर्व मेटाडेटा बदलून घ्या",
+  "metadataRefreshValidation": "नसलेल्या मेटाडेटाचा शोध घ्या",
+  "minutes": "{count, plural, other{मिनिटे} one{मिनिट} }",
+  "@minutes": {
+    "description": "minute",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "normal": "साधारण",
+  "openParent": "पालक उघडा",
+  "outlineColor": "बाह्यरेखेचा रंग",
+  "overview": "सारांश",
+  "pathClearTitle": "डाउनलोड पाथ रिंकामा करा",
+  "recursive": "रिकर्सिव्ह",
+  "releaseDate": "प्रदर्शन दिनांक",
+  "replaceExistingImages": "अस्तित्वातील चित्रे बदलून घ्या",
+  "replaceAllImages": "सर्व चित्रे बदलून घ्या",
+  "retrievePublicListOfUsers": "प्रयोक्त्यांची सार्वजनिक यादी मिळवा",
+  "scanLibrary": "लायब्ररी स्कॅन करा",
+  "scrollToTop": "वरपर्यंत स्क्रोल करा",
+  "season": "{count, plural, other{सीझन} one{सीझन} }",
+  "@season": {
+    "description": "season",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "set": "सेट करा",
+  "@set": {
+    "description": "Use for setting a certain value",
+    "context": "Set 'time'"
+  },
+  "settingSecurityApplockTitle": "ॲप लॉक",
+  "settingsEnableOsMediaControls": "OS मिडिया कंट्रोल सक्षम करा",
+  "settingsHomeBannerInformationTitle": "बॅनर माहिती",
+  "settingsPlayerTitle": "प्लेयर",
+  "settingsPlayerCustomSubtitlesTitle": "सबटायटल सानुकूलित करा",
+  "settingsPlayerNativeLibassAccelTitle": "नेटिव्ह libass सबटायटल",
+  "settingsSecurity": "सुरक्षता",
+  "somethingWentWrong": "काहीतरी गडबड झाली",
+  "somethingWentWrongPasswordCheck": "काहीतरी गडबड झाली. आपला पासवर्ड तपासा.",
+  "settingsVisual": "दृश्य संबंधित",
+  "studio": "{count, plural, other{स्टुडियो} one{स्टुडियो}}",
+  "@studio": {
+    "description": "studio",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "subtitles": "सबटायटल",
+  "syncOpenParent": "पालक उघडा",
+  "syncRemoveDataTitle": "सिंक केलेला डेटा काढून टाकायचा का?",
+  "syncedItems": "सिंक केलेल्या वस्तू",
+  "tag": "{count, plural, one{टॅग} other{टॅग}}",
+  "@tag": {
+    "description": "tag",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "unableToConnectHost": "होस्टला कनेक्ट करता आले नाही",
+  "unableToReverseAction": "ही क्रिया मागे घेता येत नाही. याने सर्व सेटिंग काढून टाकले जातील.",
+  "type": "{count, plural, other{प्रकार} one{प्रकार}}",
+  "@type": {
+    "description": "type",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "syncStatusWaitingToRetry": "पुन्हा प्रयत्न करण्यास प्रतीक्षा करत आहे",
+  "syncRemoveUnableToDeleteItem": "सिंक केलेली वस्तू काढून टाकता आली नाही, काहीतरी गडबड झाली",
+  "aboutLicenses": "लायसंस",
+  "errorOpeningMedia": "हा मिडिया प्ले करताना काहीतरी गडबड झाली",
+  "defaultFilterForLibrary": "या लायब्ररीसाठी डिफॉल्ट गाळणी करा",
+  "libraryFiltersLimitReached": "गाळण्यांची सीमा गाठली (10) काही गाळण्या काढून टाका",
+  "skipButtonLabel": "{segment} स्किप करा (S)",
+  "@skipButtonLabel": {
+    "placeholders": {
+      "segment": {
+        "type": "String"
+      }
+    }
+  },
+  "copyStreamUrl": "स्ट्रीम यु.आर.एल. कॉपी करा",
+  "episodeUnaired": "अप्रदर्शित",
+  "episodeMissing": "नसलेले",
+  "castAndCrew": "कलाकार & कर्मचारी",
+  "hasLikedDirector": "आवडीचा दिग्दर्शक असलेला",
+  "latest": "अलीकडील",
+  "playbackTypeOffline": "ऑफलाईन",
+  "latestReleases": "अलीकडील प्रदर्शित",
+  "newUpdateFoundOnGithub": "Github वर नवीन आवृत्ती सापडली",
+  "exitFladderTitle": "Driftfin बंद करा",
+  "playbackTypeTranscode": "ट्रान्सकोड",
+  "hasLikedActor": "आवडीचा अभिनेता असलेला",
+  "fetchingLibrary": "लायब्ररीतील वस्तू मिळवत आहे…",
+  "libraryPageSizeDesc": "एका वेळी लोड करायची संख्या सेट करा. 0 असे सेट केल्याने पाने केली जाणार नाहीत.",
+  "moreFrom": "{info} यांच्याकडून अजून",
+  "@moreFrom": {
+    "description": "More from",
+    "placeholders": {
+      "info": {
+        "type": "String"
+      }
+    }
+  },
+  "outlineSize": "बाह्यरेखेचा आकार",
+  "settingsHomeBannerTitle": "मुख्य पानाचा बॅनर",
+  "newReleaseFoundTitle": "नवीन आवृत्ती {newRelease} उपलब्ध आहे!",
+  "@newReleaseFoundTitle": {
+    "placeholders": {
+      "newRelease": {
+        "type": "String"
+      }
+    }
+  },
+  "communityRating": "सामाजिक रेटिंग",
+  "random": "यादृच्छिक",
+  "settingsHomeBannerInformationDesc": "मुख्य पानाच्या बॅनरमध्ये दाखवायची माहिती",
+  "dashboardRecentlyAdded": "{name} मध्ये अलीकडील जोडलेले",
+  "@dashboardRecentlyAdded": {
+    "description": "Recently added on home screen",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playbackType": "प्लेबॅक प्रकार",
+  "library": "{count, plural, other{लायब्ररी} one{लायब्ररी}}",
+  "@library": {
+    "description": "Plural",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "seconds": "{count, plural, other{सेकंदे} one{सेकंद}}",
+  "@seconds": {
+    "description": "second",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "director": "{count, plural, other{दिग्दर्शक} two{दिग्दर्शक}}",
+  "@director": {
+    "description": "director",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "writer": "{count, plural, other{लेखक} two{लेखक}}",
+  "@writer": {
+    "description": "writer",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "actor": "{count, plural, other{अभिनेते} one{अभिनेता}}",
+  "@actor": {
+    "description": "actor",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "label": "{count, plural, other{लेबल} one{लेबल}}",
+  "@label": {
+    "description": "label",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "settingsPlayerCustomSubtitlesDesc": "आकार, रंग, स्थान, बाह्यरेखा सानुकूलित करा",
+  "rating": "{count, plural, other{रेटिंग} one{रेटिंग}}",
+  "@rating": {
+    "description": "rating",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "year": "{count, plural, other{वर्षे} one{वर्ष}}",
+  "@year": {
+    "description": "year",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "libraryFiltersRemoveAllConfirm": "याने प्रत्येक लायब्ररीसाठी सेव्ह केलेल्या गाळण्या डिलिट केल्या जातील",
+  "playbackTrackSelection": "प्लेबॅक ट्रॅक निवड",
+  "rememberSubtitleSelections": "आधीच्या वस्तूनुसार सबटायटल ट्रॅक सेट करा",
+  "rememberAudioSelections": "आधीच्या वस्तूनुसार ऑडियो ट्रॅक सेट करा",
+  "clientSettingsRequireWifiDesc": "केवळ वाय-फाय नेटवर्कवर कनेक्टेड असताना डाउनलोड करा",
+  "settingsPlayerVideoHWAccelTitle": "हार्डवेअर अ‍ॅक्सेलेरेशन",
+  "autoCheckForUpdates": "वेळोवेळी अपडेट असल्याचे तपासा",
+  "dateLastContentAdded": "शेवटची सामग्री जोडण्याचा दिनांक",
+  "downloadsClearDesc": "प्रत्येक सिंक केलेल्या वापरकर्त्याचे डेटा साफ करून सर्व सिंक केलेला डेटा काढून टाकायचा का?",
+  "dynamicText": "गतिक",
+  "heightOffset": "उंची ऑफसेट",
+  "loop": "लूप",
+  "mediaTypeBase": "मूळ प्रकार",
+  "navigation": "नॅव्हिगेशन",
+  "noSuggestionsFound": "कोणत्याही सूचना सापडल्या नाहीत",
+  "parentalRating": "पालक रेटिंग",
+  "pathEditDesc": "हे स्थान सर्व प्रयोक्त्यांसाठी सेट केले जाईल, आणि सिंक केलेला डेटा यानंतर उपलब्ध राहणार नाही. तो तुमच्या स्टोरेजमध्ये राहील.",
+  "pathEditSelect": "डाउनलोड गंतव्यस्थान निवडा",
+  "scanBiometricHint": "ओळख पडताळा",
+  "settingsBlurEpisodesDesc": "पुढील येणारे सर्व भाग अस्पष्ट करा",
+  "settingsBlurEpisodesTitle": "पुढचे भाग अस्पष्ट करा",
+  "settingsBlurredPlaceholderDesc": "पोस्टर लोड करताना अस्पष्ट केलेली पार्श्वभूमी दाखवा",
+  "settingsClientDesc": "साधारण, टाइम-आउट, मांडणी, थीम",
+  "settingsHomeBannerDescription": "स्लाइडशो किंवा कॅरूझेल म्हणून दाखवा, किंवा बॅनर लपवा",
+  "settingsHomeNextUpDesc": "मुख्य पानाच्या पडद्यावर दाखवायच्या पोस्टरांचा प्रकार",
+  "settingsHomeNextUpTitle": "पुढील येणार्‍यांचे पोस्टर",
+  "syncDeleteItemTitle": "सिंक केलेली वस्तू डिलीट करा",
+  "timeOut": "टाइम-आउट",
+  "discovered": "सापडले",
+  "settingsPlayerDesc": "अ‍ॅस्पेक्ट रेशो, प्रगत पर्याय",
+  "settingsPlayerBufferSizeTitle": "व्हिडियो बफर आकार",
+  "settingsPlayerVideoHWAccelDesc": "व्हिडयो रेंडर करण्यासाठी GPU चा वापर करा (सुचवलेले)",
+  "logoutUserPopupContent": "याने {userName} यांना लॉग आउट केले जाईल व अ‍ॅपवरून या प्रयोक्त्याला डिलीट करून टाकले जाईल.\nतुम्हाला {serverName} वर पुन्हा लॉग इन करावे लागेल.",
+  "@logoutUserPopupContent": {
+    "description": "Pop-up for logging out the user description",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      },
+      "serverName": {
+        "type": "String"
+      }
+    }
+  },
+  "setIdentityTo": "ओळख बदलून {name} असे करा",
+  "@setIdentityTo": {
+    "description": "setIdentityTo",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsPlayerBufferSizeDesc": "व्हिडियो प्लेबॅकसाठी बफर आकार ठरवा. याने कॅशमध्ये किती डेटा लोड केली जाते हे निर्धारित होते.",
+  "appLockTitle": "{userName} यांच्यासाठी लॉगइन पद्धत सेट करा",
+  "@appLockTitle": {
+    "description": "Pop-up to pick a login method",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      }
+    }
+  },
+  "syncDetails": "तपशील सिंक करा",
+  "light": "हलका",
+  "notificationDownloadingDownloading": "डाउनलोड करत आहे",
+  "notificationDownloadingPaused": "डाउनलोड पॉझ केले आहे",
+  "syncStatusEnqueued": "रांगेत आहे",
+  "exit": "बाहेर पडा",
+  "fullScreen": "पूर्ण पडदा वापरा",
+  "mute": "म्यूट करा",
+  "nextVideo": "पुढचा व्हिडियो",
+  "offline": "ऑफलाईन",
+  "syncPauseAll": "सर्व पॉझ करा",
+  "playPause": "प्ले/पॉझ",
+  "prevVideo": "मागचा व्हिडियो",
+  "syncResumeAll": "सर्व चालू ठेवा",
+  "shortCuts": "शॉर्टकट",
+  "seekBack": "मागे सीक करा",
+  "seekForward": "पुढे सीक करा",
+  "similarToLikedItem": "आवडीच्या वस्तूसारखे",
+  "similarToRecentlyPlayed": "अलीकडील प्ले केल्यासारखे",
+  "sortBy": "क्रमवारी",
+  "syncStopAll": "सर्व थांबवा",
+  "syncAllFiles": "सर्व फायली सिंक करा",
+  "syncAllItemsTitle": "{itemName} च्या सर्व वस्तू सिंक करायच्या का?",
+  "@syncAllItemsTitle": {
+    "description": "syncAllItemsFrom",
+    "placeholders": {
+      "itemName": {
+        "type": "String"
+      }
+    }
+  },
+  "volumeDown": "आवाज कमी करा",
+  "volumeUp": "आवाज वाढवा",
+  "volumeIndicator": "आवाज: {volume}",
+  "@volumeIndicator": {
+    "placeholders": {
+      "volume": {
+        "type": "int"
+      }
+    }
+  },
+  "copyLoginLink": "लिंक कॉपी करा",
+  "includePassword": "पासवर्ड समाविष्ट करा",
+  "homeBannerDetailed": "तपशीलवार",
+  "homeBannerTV": "टीव्ही",
+  "mediaTypeTV": "{count, plural, one{टीव्ही वाहिनी} other{टीव्ही वाहिन्या}}",
+  "@mediaTypeTV": {
+    "description": "TV Channel (plural)",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "popularity": "लोकप्रियता",
+  "runtimeRangeMinutes": "{min} - {max} मिनिट",
+  "@runtimeRangeMinutes": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{count} मि",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "settingsProfileSubtitleLanguage": "पसंतीची सबटायटल भाषा",
+  "subtitlePlaybackModeNone": "नको",
+  "backgroundColor": "पार्श्वभूमीचा रंग",
+  "openImeKeyboard": "आयएमई कीबोर्ड उघडा",
+  "screensaverDvd": "डीव्हीडी",
+  "screensaverLogo": "लोगो",
+  "screensaverTime": "कालावधी",
+  "screensaverBlack": "काळा",
+  "playerSettingsScreensaverTitle": "स्क्रीनसेव्हर",
+  "takeScreenshot": "स्क्रीनशॉट घ्या",
+  "takeScreenshotClean": "स्क्रीनशॉट घ्या (सबटायटल शिवाय)",
+  "screenshotTaken": "स्क्रीनशॉट सेव्ह झाला!",
+  "screenshotCleanTaken": "सबटायटल शिवायचा स्क्रीनशॉट सेव्ह झाला!",
+  "errorTakingScreenshot": "स्क्रीनशॉट घेण्यात त्रुटी आढळली",
+  "segmentActionSkipOnce": "एकदा स्किप करा",
+  "serverName": "सरव्हरचे नाव",
+  "serverVersion": "सरव्हरची आवृत्ती",
+  "webVersion": "वेब आवृत्ती",
+  "devices": "उपकरण",
+  "used": "वापरलेले",
+  "web": "वेब",
+  "cache": "कॅश",
+  "count": "मोजणी",
+  "restartServer": "सरव्हर रिस्टार्ट करा",
+  "shutDownServer": "सरव्हर बंद करा",
+  "hours": "{count, plural, one{तास} other{तास}}",
+  "@hours": {
+    "description": "Pluralization for hours",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "weeks": "{count, plural, one{आठवडा} other{आठवडे}}",
+  "@weeks": {
+    "description": "Pluralization for weeks",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "months": "{count, plural, one{महिना} other{महिने}}",
+  "@months": {
+    "description": "Pluralization for months",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "years": "{count, plural, one{वर्ष} other{वर्षे}}",
+  "@years": {
+    "description": "Pluralization for years",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "timeAgo": "{time} पूर्वी",
+  "@timeAgo": {
+    "description": "timeAgo",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "lessThenAMinute": "एक मिनिटापेक्षा कमी वेळात",
+  "taskTriggerTypeInterval": "अवधी",
+  "taskTriggerTypeDaily": "दर रोज",
+  "taskTriggerTypeWeekly": "दर आठवड्याला",
+  "taskTriggerTypeStartup": "सुरुवात",
+  "create": "बनवा",
+  "taskTriggerTypeName": "ट्रिगरचा प्रकार",
+  "newTrigger": "नवीन ट्रिगर",
+  "dayOfTheWeek": "आठवड्यातला दिवस",
+  "time": "वेळ",
+  "interval": "अवधी",
+  "taskTimeLimitInHours": "वेळेची मर्यादा (तासांमध्ये)",
+  "taskTriggerIntervalDesc": "प्रत्येक {time}",
+  "@taskTriggerIntervalDesc": {
+    "description": "Task trigger interval desc",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "taskTriggerDailyDesc": "दर रोज {time} वाजता",
+  "@taskTriggerDailyDesc": {
+    "description": "taskTriggerDailyDesc",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "taskTriggerWeeklyDesc": "दर आठवड्याला {day} ला {time} वाजता",
+  "@taskTriggerWeeklyDesc": {
+    "description": "taskTriggerWeeklyDesc",
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "taskTriggerTimeLimitSub": "वेळेची मर्यादा: {time}",
+  "@taskTriggerTimeLimitSub": {
+    "description": "taskTriggerTimeLimit",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "serverNameLabel": "सरव्हरचे नाव",
+  "cachePath": "कॅश मार्ग",
+  "metadataPath": "मेटाडेटा मार्ग",
+  "syncplay": "सिंकप्ले",
+  "dayOfWeek": "आठवड्यातला दिवस",
+  "startTime": "सुरू करायची वेळ",
+  "endTime": "संपायची वेळ",
+  "addTag": "टॅग जोडा",
+  "general": "साधारण",
+  "endTimeMustBeAfter": "संपायची वेळ ही सुरू करायच्या वेळेनंतर असायला हवी",
+  "currentPassword": "वर्तमान पासवर्ड",
+  "newPassword": "नवीन पासवर्ड",
+  "confirmPassword": "पासवर्डची खात्री करा",
+  "resetPassword": "पासवर्ड रीसेट करा",
+  "passwordResetSuccess": "पासवर्ड यशस्वीरीत्या रीसेट झाले",
+  "passwordResetFailed": "पासवर्ड रीसेट करण्यात अपयशी",
+  "passwordMismatch": "नवीन पासवर्ड आणि खात्री करायचे पासवर्ड जुळत नाहीत",
+  "passwordChangeSuccess": "पासवर्ड यशस्वीरीत्या बदलले गेले",
+  "savePassword": "पासवर्ड सेव्ह करा",
+  "automaticallyAddToCollection": "आपोआप संग्रहात जोडा",
+  "preferredDownloadLanguage": "पसंतीची डाउनलोड भाषा",
+  "countryRegion": "देश/प्रदेश",
+  "saveMetadata": "मेटाडेटा सेव्ह करा",
+  "metadataFetchers": "मेटाडेटा आणणारे ({type})",
+  "@metadataFetchers": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "imageFetchers": "चित्र आणणारे ({type})",
+  "@imageFetchers": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "trickplay": "ट्रिकप्ले",
+  "subtitleDownloads": "सबटायटल डाउनलोड",
+  "downloadLanguages": "डाउनलोड करायच्या भाषा",
+  "subtitleDownloaders": "सबटायटल डाउनलोड करणारे",
+  "select": "निवडा",
+  "contentType": "सामग्रीचा प्रकार",
+  "metadataImageLongPressClick": "चित्र डिलीट करण्यासाठी उजवीकडून क्लिक करा",
+  "primary": "प्राथमिक",
+  "logo": "{count, plural, other{लोगो} one{लोगो}}",
+  "@logo": {
+    "description": "logo",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "backdrop": "{count, plural, other{पार्श्वभूमी} one{पार्श्वभूमी}}",
+  "@backdrop": {
+    "description": "backdrop",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "selectFolderToAdd": "जोडायचा फोल्डर निवडा",
+  "systemRootFolder": "सिस्टम रूट फोल्डर",
+  "selectedPath": "निवडलेला मार्ग: {path}",
+  "@selectedPath": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteRequestConfirmation": "तुम्हाला नक्की ही विनंती डिलीट करायची आहे का?",
+  "recentlyAdded": "अलीकडील जोडलेले",
+  "recentRequests": "अलीकडील विनंत्या",
+  "trending": "ट्रेंडिंग",
+  "popularMovies": "लोकप्रिय चित्रपट",
+  "expectedMovies": "अपेक्षित चित्रपट",
+  "expectedSeries": "अपेक्षित मालिका",
+  "qualityProfile": "गुणवत्ता प्रोफाइल",
+  "selectProfile": "प्रोफाइल निवडा",
+  "rootFolder": "रूट फोल्डर",
+  "selectFolder": "फोल्डर निवडा",
+  "tags": "टॅग",
+  "noTags": "टॅग नाहीत",
+  "requestQuotaLimitReached": "{mediaType} साठीची विनंती मर्यादा गाठली.",
+  "@requestQuotaLimitReached": {
+    "placeholders": {
+      "mediaType": {
+        "type": "String"
+      }
+    }
+  },
+  "submitRequest": "विनंती सादर करा",
+  "downloading": "डाउनलोड करत आहे",
+  "request": "विनंती",
+  "viewRequest": "विनंती पाहा",
+  "email": "ईमेल",
+  "ok": "ठीक आहे",
+  "seerr": "Seerr",
+  "loggedInAs": "{displayName} म्हणून लॉगइन केले आहे",
+  "@loggedInAs": {
+    "placeholders": {
+      "displayName": {
+        "type": "String"
+      }
+    }
+  },
+  "seerrServer": "Seerr सरव्हर",
+  "rootFolderDefaultLabel": "{folder} (डिफॉल्ट)",
+  "@rootFolderDefaultLabel": {
+    "placeholders": {
+      "folder": {
+        "type": "String"
+      }
+    }
+  },
+  "seerrAnimeSeriesNote": "* ही मालिका आनिमे आहे.",
+  "seerrAutoApproveNotice": "तुम्ही सादर केलेल्या विनंत्या आपोआप स्वीकारल्या जातात.",
+  "seerrAuthApiKey": "API की",
+  "seerrAuthJellyfin": "जेलिफिन",
+  "seerrApiKeySaved": "API की सेव्ह केली",
+  "seerrLoggedIn": "Seerr मध्ये लॉगइन केले",
+  "discover": "शोध लावा",
+  "min": "किमान",
+  "max": "कमाल",
+  "manageRequest": "विनंती सांभाळा",
+  "openInSeerr": "Seerr मध्ये उघडा",
+  "openInSonarr": "Sonarr मध्ये उघडा",
+  "openInRadarr": "Radarr मध्ये उघडा",
+  "removeFromSonarr": "Sonarr मधून काढून टाका",
+  "removeFromRadarr": "Radarr मधून काढून टाका",
+  "markAllSeasonsAsAvailable": "सर्व सीझन उपलब्ध असे चिन्हित करा",
+  "markAsAvailable": "उपलब्ध असे चिन्हित करा",
+  "deleteData": "डेटा काढून टाका",
+  "removedFromSonarr": "Sonarr मधून काढून टाकले",
+  "removedFromRadarr": "Radarr मधून काढून टाकले",
+  "markAllSeasonsAsAvailableConfirm": "सर्व सीझन उपलब्ध असे चिन्हित करायचे का?",
+  "markAsAvailableConfirm": "उपलब्ध असे चिन्हित करायचे का?",
+  "markedAsAvailable": "उपलब्ध असे चिन्हित केले",
+  "seerrRequestStatusApproved": "स्वीकारलेले",
+  "seerrRequestStatusPending": "अनिर्णीत असलेले",
+  "seerrRequestStatusDeclined": "नाकारलेले",
+  "seerrRequestStatusFailed": "अपयशी",
+  "seerrRequestStatusCompleted": "पूर्ण झाले",
+  "seerrMediaStatusAvailable": "उपलब्ध",
+  "seerrMediaStatusDeleted": "काढून टाकलेले",
+  "approve": "स्वीकारा",
+  "decline": "नाकारा",
+  "playbackTypeTV": "टीव्ही",
+  "watch": "बघा",
+  "watchChannel": "{channel} बघा",
+  "@watchChannel": {
+    "placeholders": {
+      "channel": {
+        "type": "String"
+      }
+    }
+  },
+  "now": "आता",
+  "noPrograms": "कार्यक्रम उपलब्ध नाहीत",
+  "switchChannel": "वाहिनी बदला",
+  "switchChannelDesc": "तुम्हाला {channelName} वर \"{programName}\" बघायचे आहे का?",
+  "@switchChannelDesc": {
+    "placeholders": {
+      "programName": {
+        "type": "String"
+      },
+      "channelName": {
+        "type": "String"
+      }
+    }
+  },
+  "seerrHeaderValue": "मूल्य",
+  "showLess": "कमी दाखवा",
+  "liveTV": "लाईव्ह टीव्ही",
+  "tunerDevices": "ट्यूनर उपकरण",
+  "addTunerDevice": "ट्यूनर उपकरण जोडा",
+  "deleteTunerHostConfirm": "तुम्हाला \"{name}\" हे नक्की काढून टाकायचे आहे का?",
+  "@deleteTunerHostConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "editTunerDevice": "ट्यूनर उपकरण संपादित करा",
+  "url": "यूआरएल",
+  "movieCategories": "चित्रपटांचे वर्ग",
+  "newsCategories": "बातम्यांचे वर्ग",
+  "sportsCategories": "स्पोर्ट्सचे वर्ग",
+  "fileOrUrl": "फाईल किंवा यूआरएल",
+  "tunerIpAddress": "ट्यूनरचा आयपी पत्ता",
+  "concurrentStreamsHint": "0 = अमर्यादित",
+  "importFavoritesOnly": "केवळ आवडीच्या वाहिन्या आयात करा",
+  "detectDevices": "उपकरणे शोधून काढा",
+  "discoveredDevices": "सापडलेली उपकरणे",
+  "noDevicesFound": "कोणतीही उपकरणे सापडली नाहीत",
+  "failedToDiscoverDevices": "उपकरणे शोधून काढण्यात अपयशी: {error}",
+  "@failedToDiscoverDevices": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "path": "मार्ग",
+  "noCategories": "वर्ग नाहीत",
+  "notificationNewEpisodes": "नवीन भाग जोडले आहेत",
+  "requestMore": "अजून विनंती करा",
+  "shareQRCode": "क्यूआर कोड शेअर करा",
+  "invalidAuthLink": "लॉगइन लिंक अवैध आहे",
+  "linkData": "लिंक डेटा",
+  "hidePlayedInLatestTitle": "बघितलेली सामग्री लपवा",
+  "videoCodecLabel": "व्हिडियो कोडेक",
+  "audioCodecLabel": "ऑडिओ कोडेक",
+  "bitrateLabel": "बिटरेट",
+  "kbps": "kbps",
+  "generateLoginLink": "{userName} यांच्यासाठीचा कोड",
+  "@generateLoginLink": {
+    "description": "Code for a user to share",
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      }
+    }
+  }
 }

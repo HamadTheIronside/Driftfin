@@ -68,12 +68,42 @@ jobs:
           cache: true
       - run: flutter pub get
       - run: flutter build windows --release
-      - name: Zip Windows bundle
+      - name: Zip Windows bundle (portable)
         run: Compress-Archive -Path build/windows/x64/runner/Release/* -DestinationPath "Driftfin-Windows-${{ needs.version.outputs.version }}.zip"
+      - name: Compile Inno Setup installer
+        uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
+        with:
+          path: windows/windows_setup.iss
+          options: /O+ /DDRIFTFIN_VERSION="${{ needs.version.outputs.version }}"
+      - name: Rename installer
+        run: Move-Item windows\Output\driftfin_setup.exe "Driftfin-Windows-${{ needs.version.outputs.version }}-Setup.exe"
       - uses: actions/upload-artifact@v4
         with:
           name: windows
-          path: Driftfin-Windows-*.zip
+          path: |
+            Driftfin-Windows-*.zip
+            Driftfin-Windows-*-Setup.exe
+
+  # Deploys the web build to GitHub Pages (https://hamadtheironside.github.io/Driftfin/).
+  # Must use --base-href "/Driftfin/" because Pages serves under the repo subpath;
+  # without it Flutter requests assets from "/" and the page renders blank.
+  pages:
+    needs: version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .fvmrc
+          cache: true
+      - run: flutter pub get
+      - run: flutter build web --release --base-href "/Driftfin/"
+      - name: Deploy to GitHub Pages
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
 
   ios:
     needs: version
@@ -115,6 +145,7 @@ jobs:
           name: Driftfin ${{ needs.version.outputs.version }}
           tag_name: ${{ github.ref_name }}
           generate_release_notes: true
+          prerelease: ${{ contains(github.ref_name, 'nightly') }}
           fail_on_unmatched_files: false
           files: dist/**/*
           body: |
@@ -124,5 +155,6 @@ jobs:
 
             ### Downloads
             - **Web** (`Driftfin-Web-*.zip`) — unzip and serve behind any static host; open in a browser.
-            - **Windows** (`Driftfin-Windows-*.zip`) — portable; unzip and run `driftfin.exe`.
+            - **Windows installer** (`Driftfin-Windows-*-Setup.exe`) — recommended; installs to your user profile with Start Menu shortcuts.
+            - **Windows portable** (`Driftfin-Windows-*.zip`) — unzip and run `driftfin.exe`; supports in-app self-update.
             - **iOS** (`Driftfin-iOS-*-unsigned.ipa`) — **unsigned** (no Apple Developer cert in CI); sideload with AltStore / Sideloadly or re-sign yourself.
