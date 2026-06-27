@@ -1,5 +1,5 @@
 name: fladder
-description: A simple cross-platform Jellyfin client.
+description: Driftfin — a cross-platform Jellyfin client (fork of Fladder).
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev

@@ -3,11 +3,13 @@
   <br>
     <a href="https://github.com/DonutWare/Fladder"><img src="https://raw.githubusercontent.com/DonutWare/Fladder/refs/heads/develop/icons/production/fladder_macos_icon.png" alt="Fladder" width="200"></a>
   <br>
-  Fladder
+  Driftfin
   <br>
 </h1>
 
-<h4 align="center">A cross-platform Jellyfin Frontend built on top of <a href="https://flutter.dev/" target="_blank">Flutter</a>.</h4>
+<h4 align="center">A cross-platform Jellyfin frontend built on top of <a href="https://flutter.dev/" target="_blank">Flutter</a>.</h4>
+
+<p align="center"><i><b>Driftfin</b> is a fork of <a href="https://github.com/DonutWare/Fladder">Fladder</a> by DonutWare, continued under the same <a href="./LICENSE">GPL-3.0</a> license. Huge thanks to the original authors. See <a href="#credits--attribution">Credits &amp; Attribution</a>.</i></p>
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
@@ -140,11 +142,13 @@ Interested in contributing? Here are a couple of ways you can help:
 Thank you for helping to make this project better! 🙌
 
 
-## Credits
+## Credits & Attribution
+
+**Driftfin is a fork of [Fladder](https://github.com/DonutWare/Fladder) by DonutWare.** All credit for the original application goes to the Fladder authors and contributors; Driftfin builds on their work and continues under the same GPL-3.0 license. Changes made in this fork are tracked in this repository's git history.
 
 This software uses the following open source packages:
 - [Flutter](https://flutter.dev/)
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0. More information about the license can be found in [this file](https://github.com/DonutWare/Fladder/blob/develop/LICENSE).
+This project is licensed under the GNU General Public License v3.0 — the same license as the upstream [Fladder](https://github.com/DonutWare/Fladder) project. See the [LICENSE](./LICENSE) file for the full text.
