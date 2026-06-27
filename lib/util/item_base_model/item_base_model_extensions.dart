@@ -333,7 +333,8 @@ extension ItemBaseModelExtensions on ItemBaseModel {
         ),
       if ((type == FladderItemType.boxset ||
               type == FladderItemType.folder ||
-              type == FladderItemType.collectionFolder) &&
+              type == FladderItemType.collectionFolder ||
+              type == FladderItemType.baseType) &&
           !exclude.contains(ItemActions.addToHome))
         ItemActionButton(
           icon: Icon(ref.read(homeSettingsProvider).pinnedCollectionIds.contains(id)

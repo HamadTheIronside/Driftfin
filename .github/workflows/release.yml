@@ -49,7 +49,7 @@ jobs:
           flutter-version-file: .fvmrc
           cache: true
       - run: flutter pub get
-      - run: flutter build web --release
+      - run: flutter build web --release --build-number=${{ github.run_number }}
       - name: Zip web bundle
         run: cd build/web && zip -r "../../Driftfin-Web-${{ needs.version.outputs.version }}.zip" .
       - uses: actions/upload-artifact@v4
@@ -67,7 +67,7 @@ jobs:
           flutter-version-file: .fvmrc
           cache: true
       - run: flutter pub get
-      - run: flutter build windows --release
+      - run: flutter build windows --release --build-number=${{ github.run_number }}
       - name: Zip Windows bundle (portable)
         run: Compress-Archive -Path build/windows/x64/runner/Release/* -DestinationPath "Driftfin-Windows-${{ needs.version.outputs.version }}.zip"
       - name: Compile Inno Setup installer
@@ -97,7 +97,7 @@ jobs:
           flutter-version-file: .fvmrc
           cache: true
       - run: flutter pub get
-      - run: flutter build web --release --base-href "/Driftfin/"
+      - run: flutter build web --release --base-href "/Driftfin/" --build-number=${{ github.run_number }}
       - name: Deploy to GitHub Pages
         if: startsWith(github.ref, 'refs/tags/')
         uses: peaceiris/actions-gh-pages@v4
@@ -116,7 +116,7 @@ jobs:
           cache: true
       - run: flutter pub get
       - name: Build iOS (unsigned)
-        run: flutter build ios --release --no-codesign --flavor production
+        run: flutter build ios --release --no-codesign --flavor production --build-number=${{ github.run_number }}
       - name: Package unsigned .ipa
         run: |
           cd build/ios/iphoneos
