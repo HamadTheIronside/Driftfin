@@ -1,22 +1,12 @@
 name: Build Fladder
 
+# NOTE (Driftfin fork): this is upstream Fladder's full pipeline, kept for
+# reference and to merge cleanly from upstream. Its auto-triggers are DISABLED
+# because it requires secrets this fork doesn't have (Android signing keystore,
+# Play Console, a FLADDER_BOT GitHub App, flatpak metainfo). Driftfin releases
+# are produced by release.yml (Web + Windows + iOS) on `v*` tags instead.
+# Left as workflow_dispatch-only so it can still be run by hand if wired up.
 on:
-  push:
-    tags:
-      - "v*"
-    branches:
-      - master
-  pull_request:
-    paths:
-      - pubspec.yaml
-      - .github/workflows/build.yml
-      - .fvmrc
-    types:
-      - opened
-      - reopened
-  schedule:
-    # Run nightly at midnight UTC, but only if there were changes to develop
-    - cron: "0 0 * * *"
   workflow_dispatch:
     inputs:
       build_type:

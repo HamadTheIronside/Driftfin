@@ -1,0 +1,128 @@
+name: Release Driftfin
+
+# Fork-owned release pipeline. Builds the three targets Driftfin cares about
+# (Web, Windows, iOS-unsigned) and publishes a GitHub Release with the binaries.
+# The upstream Fladder pipeline (build.yml) is kept for reference but its
+# auto-triggers are disabled — it needs secrets (Android keystore, Play Console,
+# a GitHub App) this fork does not have.
+#
+# To cut a release:  git tag vX.Y.Z[-driftfin.N] && git push origin vX.Y.Z...
+# Or run manually from the Actions tab (workflow_dispatch) for a dry build.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: v
+        shell: bash
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            V="${GITHUB_REF_NAME#v}"
+          else
+            V="$(grep '^version:' pubspec.yaml | cut -d: -f2 | cut -d+ -f1 | tr -d ' ')-dev"
+          fi
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+          echo "Driftfin version: $V"
+
+  web:
+    needs: version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .fvmrc
+          cache: true
+      - run: flutter pub get
+      - run: flutter build web --release
+      - name: Zip web bundle
+        run: cd build/web && zip -r "../../Driftfin-Web-${{ needs.version.outputs.version }}.zip" .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web
+          path: Driftfin-Web-*.zip
+
+  windows:
+    needs: version
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .fvmrc
+          cache: true
+      - run: flutter pub get
+      - run: flutter build windows --release
+      - name: Zip Windows bundle
+        run: Compress-Archive -Path build/windows/x64/runner/Release/* -DestinationPath "Driftfin-Windows-${{ needs.version.outputs.version }}.zip"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: Driftfin-Windows-*.zip
+
+  ios:
+    needs: version
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .fvmrc
+          cache: true
+      - run: flutter pub get
+      - name: Build iOS (unsigned)
+        run: flutter build ios --release --no-codesign --flavor production
+      - name: Package unsigned .ipa
+        run: |
+          cd build/ios/iphoneos
+          mkdir -p Payload
+          cp -R Runner.app Payload/Runner.app
+          zip -qr "../../../Driftfin-iOS-${{ needs.version.outputs.version }}-unsigned.ipa" Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ios
+          path: Driftfin-iOS-*.ipa
+
+  release:
+    needs: [version, web, windows, ios]
+    # Publish even if one platform fails, but only for real tag pushes.
+    if: always() && startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: List artifacts
+        run: ls -R dist || echo "(no artifacts)"
+      - uses: softprops/action-gh-release@v2
+        with:
+          name: Driftfin ${{ needs.version.outputs.version }}
+          tag_name: ${{ github.ref_name }}
+          generate_release_notes: true
+          fail_on_unmatched_files: false
+          files: dist/**/*
+          body: |
+            **Driftfin ${{ needs.version.outputs.version }}** — a cross-platform Jellyfin client.
+
+            Driftfin is a fork of [Fladder](https://github.com/DonutWare/Fladder) by DonutWare, continued under the same **GPL-3.0** license. All credit for the original application goes to the Fladder authors.
+
+            ### Downloads
+            - **Web** (`Driftfin-Web-*.zip`) — unzip and serve behind any static host; open in a browser.
+            - **Windows** (`Driftfin-Windows-*.zip`) — portable; unzip and run `driftfin.exe`.
+            - **iOS** (`Driftfin-iOS-*-unsigned.ipa`) — **unsigned** (no Apple Developer cert in CI); sideload with AltStore / Sideloadly or re-sign yourself.
