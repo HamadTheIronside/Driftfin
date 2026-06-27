@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:driftfin/models/settings/home_settings_model.dart';
+import 'package:driftfin/providers/home_collections_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
 import 'package:driftfin/screens/settings/settings_list_tile.dart';
@@ -84,6 +86,61 @@ List<Widget> buildClientSettingsDashboard(BuildContext context, WidgetRef ref) {
               .update((current) => current.copyWith(showAllCollectionTypes: value)),
         ),
       ),
+      if (ref.watch(homeSettingsProvider.select((value) => value.pinnedCollectionIds)).isNotEmpty)
+        SettingsListTile(
+          label: Text(context.localized.managePinnedCollections),
+          subLabel: Text(context.localized.managePinnedCollectionsDesc),
+          onTap: () => _showManagePinnedCollections(context),
+          trailing: const Icon(Icons.dashboard_customize_outlined),
+        ),
     ],
+  );
+}
+
+Future<void> _showManagePinnedCollections(BuildContext context) {
+  return showDialog(
+    context: context,
+    builder: (context) => Consumer(
+      builder: (context, ref, _) {
+        final ids = ref.watch(homeSettingsProvider.select((value) => value.pinnedCollectionIds));
+        final collections = ref.watch(homeCollectionsProvider).valueOrNull ?? [];
+        String nameFor(String id) =>
+            collections.firstWhereOrNull((collection) => collection.container.id == id)?.name ?? id;
+        return AlertDialog(
+          title: Text(context.localized.managePinnedCollections),
+          content: SizedBox(
+            width: 400,
+            height: 360,
+            child: ids.isEmpty
+                ? Center(child: Text(context.localized.noPinnedCollections, textAlign: TextAlign.center))
+                : ReorderableListView(
+                    onReorder: (oldIndex, newIndex) {
+                      final reordered = [...ids];
+                      if (newIndex > oldIndex) newIndex -= 1;
+                      reordered.insert(newIndex, reordered.removeAt(oldIndex));
+                      ref.read(homeSettingsProvider.notifier).setPinnedCollections(reordered);
+                    },
+                    children: [
+                      for (final id in ids)
+                        ListTile(
+                          key: ValueKey(id),
+                          title: Text(nameFor(id)),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.delete_outline),
+                            onPressed: () => ref.read(homeSettingsProvider.notifier).toggleHomeCollection(id),
+                          ),
+                        ),
+                    ],
+                  ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(context.localized.close),
+            ),
+          ],
+        );
+      },
+    ),
   );
 }

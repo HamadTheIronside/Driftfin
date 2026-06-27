@@ -35,4 +35,9 @@ class HomeSettingsNotifier extends StateNotifier<HomeSettingsModel> {
     }
     state = state.copyWith(pinnedCollectionIds: pinned);
   }
+
+  /// Replaces the pinned-collection list (used to reorder/remove from the
+  /// manage screen). Order is preserved on the dashboard.
+  void setPinnedCollections(List<String> collectionIds) =>
+      state = state.copyWith(pinnedCollectionIds: collectionIds);
 }
