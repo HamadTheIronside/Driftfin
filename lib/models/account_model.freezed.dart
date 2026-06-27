@@ -983,7 +983,30 @@ class __$AccountModelCopyWithImpl<$Res>
 /// @nodoc
 mixin _$UserSettings implements DiagnosticableTreeMixin {
   Duration get skipForwardDuration;
-  Duration get skipBackDuration;
+  Duration
+      get skipBackDuration; // --- Cross-platform synced Driftfin config (stored per-user in Jellyfin's
+// DisplayPreferences.customPrefs). Stored as primitives so this model stays
+// decoupled from the settings models; the config sync service maps them
+// to/from the relevant providers. A null field means "not synced yet".
+  String? get syncedAt; // Seerr
+  String? get seerrServerUrl;
+  bool? get seerrRequestsEnabled; // Home layout
+  String? get homeBanner;
+  String? get homeCarousel;
+  String? get homeNextUp;
+  List<String>? get pinnedCollectionIds; // Appearance
+  String? get themeMode;
+  String? get themeColor;
+  String? get schemeVariant;
+  bool? get amoledBlack;
+  bool? get deriveColorsFromItem;
+  String? get backgroundImage;
+  bool? get enableBlurEffects;
+  bool? get blurPlaceHolders;
+  double? get posterSize;
+  String? get locale;
+  bool? get showAllCollectionTypes;
+  bool? get usePosterForLibrary;
 
   /// Create a copy of UserSettings
   /// with the given fields replaced by the non-null parameter values.
@@ -1001,12 +1024,32 @@ mixin _$UserSettings implements DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'UserSettings'))
       ..add(DiagnosticsProperty('skipForwardDuration', skipForwardDuration))
-      ..add(DiagnosticsProperty('skipBackDuration', skipBackDuration));
+      ..add(DiagnosticsProperty('skipBackDuration', skipBackDuration))
+      ..add(DiagnosticsProperty('syncedAt', syncedAt))
+      ..add(DiagnosticsProperty('seerrServerUrl', seerrServerUrl))
+      ..add(DiagnosticsProperty('seerrRequestsEnabled', seerrRequestsEnabled))
+      ..add(DiagnosticsProperty('homeBanner', homeBanner))
+      ..add(DiagnosticsProperty('homeCarousel', homeCarousel))
+      ..add(DiagnosticsProperty('homeNextUp', homeNextUp))
+      ..add(DiagnosticsProperty('pinnedCollectionIds', pinnedCollectionIds))
+      ..add(DiagnosticsProperty('themeMode', themeMode))
+      ..add(DiagnosticsProperty('themeColor', themeColor))
+      ..add(DiagnosticsProperty('schemeVariant', schemeVariant))
+      ..add(DiagnosticsProperty('amoledBlack', amoledBlack))
+      ..add(DiagnosticsProperty('deriveColorsFromItem', deriveColorsFromItem))
+      ..add(DiagnosticsProperty('backgroundImage', backgroundImage))
+      ..add(DiagnosticsProperty('enableBlurEffects', enableBlurEffects))
+      ..add(DiagnosticsProperty('blurPlaceHolders', blurPlaceHolders))
+      ..add(DiagnosticsProperty('posterSize', posterSize))
+      ..add(DiagnosticsProperty('locale', locale))
+      ..add(
+          DiagnosticsProperty('showAllCollectionTypes', showAllCollectionTypes))
+      ..add(DiagnosticsProperty('usePosterForLibrary', usePosterForLibrary));
   }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserSettings(skipForwardDuration: $skipForwardDuration, skipBackDuration: $skipBackDuration)';
+    return 'UserSettings(skipForwardDuration: $skipForwardDuration, skipBackDuration: $skipBackDuration, syncedAt: $syncedAt, seerrServerUrl: $seerrServerUrl, seerrRequestsEnabled: $seerrRequestsEnabled, homeBanner: $homeBanner, homeCarousel: $homeCarousel, homeNextUp: $homeNextUp, pinnedCollectionIds: $pinnedCollectionIds, themeMode: $themeMode, themeColor: $themeColor, schemeVariant: $schemeVariant, amoledBlack: $amoledBlack, deriveColorsFromItem: $deriveColorsFromItem, backgroundImage: $backgroundImage, enableBlurEffects: $enableBlurEffects, blurPlaceHolders: $blurPlaceHolders, posterSize: $posterSize, locale: $locale, showAllCollectionTypes: $showAllCollectionTypes, usePosterForLibrary: $usePosterForLibrary)';
   }
 }
 
@@ -1016,7 +1059,28 @@ abstract mixin class $UserSettingsCopyWith<$Res> {
           UserSettings value, $Res Function(UserSettings) _then) =
       _$UserSettingsCopyWithImpl;
   @useResult
-  $Res call({Duration skipForwardDuration, Duration skipBackDuration});
+  $Res call(
+      {Duration skipForwardDuration,
+      Duration skipBackDuration,
+      String? syncedAt,
+      String? seerrServerUrl,
+      bool? seerrRequestsEnabled,
+      String? homeBanner,
+      String? homeCarousel,
+      String? homeNextUp,
+      List<String>? pinnedCollectionIds,
+      String? themeMode,
+      String? themeColor,
+      String? schemeVariant,
+      bool? amoledBlack,
+      bool? deriveColorsFromItem,
+      String? backgroundImage,
+      bool? enableBlurEffects,
+      bool? blurPlaceHolders,
+      double? posterSize,
+      String? locale,
+      bool? showAllCollectionTypes,
+      bool? usePosterForLibrary});
 }
 
 /// @nodoc
@@ -1033,6 +1097,25 @@ class _$UserSettingsCopyWithImpl<$Res> implements $UserSettingsCopyWith<$Res> {
   $Res call({
     Object? skipForwardDuration = null,
     Object? skipBackDuration = null,
+    Object? syncedAt = freezed,
+    Object? seerrServerUrl = freezed,
+    Object? seerrRequestsEnabled = freezed,
+    Object? homeBanner = freezed,
+    Object? homeCarousel = freezed,
+    Object? homeNextUp = freezed,
+    Object? pinnedCollectionIds = freezed,
+    Object? themeMode = freezed,
+    Object? themeColor = freezed,
+    Object? schemeVariant = freezed,
+    Object? amoledBlack = freezed,
+    Object? deriveColorsFromItem = freezed,
+    Object? backgroundImage = freezed,
+    Object? enableBlurEffects = freezed,
+    Object? blurPlaceHolders = freezed,
+    Object? posterSize = freezed,
+    Object? locale = freezed,
+    Object? showAllCollectionTypes = freezed,
+    Object? usePosterForLibrary = freezed,
   }) {
     return _then(_self.copyWith(
       skipForwardDuration: null == skipForwardDuration
@@ -1043,6 +1126,82 @@ class _$UserSettingsCopyWithImpl<$Res> implements $UserSettingsCopyWith<$Res> {
           ? _self.skipBackDuration
           : skipBackDuration // ignore: cast_nullable_to_non_nullable
               as Duration,
+      syncedAt: freezed == syncedAt
+          ? _self.syncedAt
+          : syncedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      seerrServerUrl: freezed == seerrServerUrl
+          ? _self.seerrServerUrl
+          : seerrServerUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      seerrRequestsEnabled: freezed == seerrRequestsEnabled
+          ? _self.seerrRequestsEnabled
+          : seerrRequestsEnabled // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      homeBanner: freezed == homeBanner
+          ? _self.homeBanner
+          : homeBanner // ignore: cast_nullable_to_non_nullable
+              as String?,
+      homeCarousel: freezed == homeCarousel
+          ? _self.homeCarousel
+          : homeCarousel // ignore: cast_nullable_to_non_nullable
+              as String?,
+      homeNextUp: freezed == homeNextUp
+          ? _self.homeNextUp
+          : homeNextUp // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pinnedCollectionIds: freezed == pinnedCollectionIds
+          ? _self.pinnedCollectionIds
+          : pinnedCollectionIds // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      themeMode: freezed == themeMode
+          ? _self.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      themeColor: freezed == themeColor
+          ? _self.themeColor
+          : themeColor // ignore: cast_nullable_to_non_nullable
+              as String?,
+      schemeVariant: freezed == schemeVariant
+          ? _self.schemeVariant
+          : schemeVariant // ignore: cast_nullable_to_non_nullable
+              as String?,
+      amoledBlack: freezed == amoledBlack
+          ? _self.amoledBlack
+          : amoledBlack // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      deriveColorsFromItem: freezed == deriveColorsFromItem
+          ? _self.deriveColorsFromItem
+          : deriveColorsFromItem // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      backgroundImage: freezed == backgroundImage
+          ? _self.backgroundImage
+          : backgroundImage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      enableBlurEffects: freezed == enableBlurEffects
+          ? _self.enableBlurEffects
+          : enableBlurEffects // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      blurPlaceHolders: freezed == blurPlaceHolders
+          ? _self.blurPlaceHolders
+          : blurPlaceHolders // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      posterSize: freezed == posterSize
+          ? _self.posterSize
+          : posterSize // ignore: cast_nullable_to_non_nullable
+              as double?,
+      locale: freezed == locale
+          ? _self.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as String?,
+      showAllCollectionTypes: freezed == showAllCollectionTypes
+          ? _self.showAllCollectionTypes
+          : showAllCollectionTypes // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      usePosterForLibrary: freezed == usePosterForLibrary
+          ? _self.usePosterForLibrary
+          : usePosterForLibrary // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -1140,14 +1299,56 @@ extension UserSettingsPatterns on UserSettings {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Duration skipForwardDuration, Duration skipBackDuration)?
+    TResult Function(
+            Duration skipForwardDuration,
+            Duration skipBackDuration,
+            String? syncedAt,
+            String? seerrServerUrl,
+            bool? seerrRequestsEnabled,
+            String? homeBanner,
+            String? homeCarousel,
+            String? homeNextUp,
+            List<String>? pinnedCollectionIds,
+            String? themeMode,
+            String? themeColor,
+            String? schemeVariant,
+            bool? amoledBlack,
+            bool? deriveColorsFromItem,
+            String? backgroundImage,
+            bool? enableBlurEffects,
+            bool? blurPlaceHolders,
+            double? posterSize,
+            String? locale,
+            bool? showAllCollectionTypes,
+            bool? usePosterForLibrary)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _UserSettings() when $default != null:
-        return $default(_that.skipForwardDuration, _that.skipBackDuration);
+        return $default(
+            _that.skipForwardDuration,
+            _that.skipBackDuration,
+            _that.syncedAt,
+            _that.seerrServerUrl,
+            _that.seerrRequestsEnabled,
+            _that.homeBanner,
+            _that.homeCarousel,
+            _that.homeNextUp,
+            _that.pinnedCollectionIds,
+            _that.themeMode,
+            _that.themeColor,
+            _that.schemeVariant,
+            _that.amoledBlack,
+            _that.deriveColorsFromItem,
+            _that.backgroundImage,
+            _that.enableBlurEffects,
+            _that.blurPlaceHolders,
+            _that.posterSize,
+            _that.locale,
+            _that.showAllCollectionTypes,
+            _that.usePosterForLibrary);
       case _:
         return orElse();
     }
@@ -1168,13 +1369,55 @@ extension UserSettingsPatterns on UserSettings {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Duration skipForwardDuration, Duration skipBackDuration)
+    TResult Function(
+            Duration skipForwardDuration,
+            Duration skipBackDuration,
+            String? syncedAt,
+            String? seerrServerUrl,
+            bool? seerrRequestsEnabled,
+            String? homeBanner,
+            String? homeCarousel,
+            String? homeNextUp,
+            List<String>? pinnedCollectionIds,
+            String? themeMode,
+            String? themeColor,
+            String? schemeVariant,
+            bool? amoledBlack,
+            bool? deriveColorsFromItem,
+            String? backgroundImage,
+            bool? enableBlurEffects,
+            bool? blurPlaceHolders,
+            double? posterSize,
+            String? locale,
+            bool? showAllCollectionTypes,
+            bool? usePosterForLibrary)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _UserSettings():
-        return $default(_that.skipForwardDuration, _that.skipBackDuration);
+        return $default(
+            _that.skipForwardDuration,
+            _that.skipBackDuration,
+            _that.syncedAt,
+            _that.seerrServerUrl,
+            _that.seerrRequestsEnabled,
+            _that.homeBanner,
+            _that.homeCarousel,
+            _that.homeNextUp,
+            _that.pinnedCollectionIds,
+            _that.themeMode,
+            _that.themeColor,
+            _that.schemeVariant,
+            _that.amoledBlack,
+            _that.deriveColorsFromItem,
+            _that.backgroundImage,
+            _that.enableBlurEffects,
+            _that.blurPlaceHolders,
+            _that.posterSize,
+            _that.locale,
+            _that.showAllCollectionTypes,
+            _that.usePosterForLibrary);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -1194,13 +1437,55 @@ extension UserSettingsPatterns on UserSettings {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Duration skipForwardDuration, Duration skipBackDuration)?
+    TResult? Function(
+            Duration skipForwardDuration,
+            Duration skipBackDuration,
+            String? syncedAt,
+            String? seerrServerUrl,
+            bool? seerrRequestsEnabled,
+            String? homeBanner,
+            String? homeCarousel,
+            String? homeNextUp,
+            List<String>? pinnedCollectionIds,
+            String? themeMode,
+            String? themeColor,
+            String? schemeVariant,
+            bool? amoledBlack,
+            bool? deriveColorsFromItem,
+            String? backgroundImage,
+            bool? enableBlurEffects,
+            bool? blurPlaceHolders,
+            double? posterSize,
+            String? locale,
+            bool? showAllCollectionTypes,
+            bool? usePosterForLibrary)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _UserSettings() when $default != null:
-        return $default(_that.skipForwardDuration, _that.skipBackDuration);
+        return $default(
+            _that.skipForwardDuration,
+            _that.skipBackDuration,
+            _that.syncedAt,
+            _that.seerrServerUrl,
+            _that.seerrRequestsEnabled,
+            _that.homeBanner,
+            _that.homeCarousel,
+            _that.homeNextUp,
+            _that.pinnedCollectionIds,
+            _that.themeMode,
+            _that.themeColor,
+            _that.schemeVariant,
+            _that.amoledBlack,
+            _that.deriveColorsFromItem,
+            _that.backgroundImage,
+            _that.enableBlurEffects,
+            _that.blurPlaceHolders,
+            _that.posterSize,
+            _that.locale,
+            _that.showAllCollectionTypes,
+            _that.usePosterForLibrary);
       case _:
         return null;
     }
@@ -1212,7 +1497,27 @@ extension UserSettingsPatterns on UserSettings {
 class _UserSettings with DiagnosticableTreeMixin implements UserSettings {
   _UserSettings(
       {this.skipForwardDuration = const Duration(seconds: 30),
-      this.skipBackDuration = const Duration(seconds: 10)});
+      this.skipBackDuration = const Duration(seconds: 10),
+      this.syncedAt,
+      this.seerrServerUrl,
+      this.seerrRequestsEnabled,
+      this.homeBanner,
+      this.homeCarousel,
+      this.homeNextUp,
+      final List<String>? pinnedCollectionIds,
+      this.themeMode,
+      this.themeColor,
+      this.schemeVariant,
+      this.amoledBlack,
+      this.deriveColorsFromItem,
+      this.backgroundImage,
+      this.enableBlurEffects,
+      this.blurPlaceHolders,
+      this.posterSize,
+      this.locale,
+      this.showAllCollectionTypes,
+      this.usePosterForLibrary})
+      : _pinnedCollectionIds = pinnedCollectionIds;
   factory _UserSettings.fromJson(Map<String, dynamic> json) =>
       _$UserSettingsFromJson(json);
 
@@ -1222,6 +1527,60 @@ class _UserSettings with DiagnosticableTreeMixin implements UserSettings {
   @override
   @JsonKey()
   final Duration skipBackDuration;
+// --- Cross-platform synced Driftfin config (stored per-user in Jellyfin's
+// DisplayPreferences.customPrefs). Stored as primitives so this model stays
+// decoupled from the settings models; the config sync service maps them
+// to/from the relevant providers. A null field means "not synced yet".
+  @override
+  final String? syncedAt;
+// Seerr
+  @override
+  final String? seerrServerUrl;
+  @override
+  final bool? seerrRequestsEnabled;
+// Home layout
+  @override
+  final String? homeBanner;
+  @override
+  final String? homeCarousel;
+  @override
+  final String? homeNextUp;
+  final List<String>? _pinnedCollectionIds;
+  @override
+  List<String>? get pinnedCollectionIds {
+    final value = _pinnedCollectionIds;
+    if (value == null) return null;
+    if (_pinnedCollectionIds is EqualUnmodifiableListView)
+      return _pinnedCollectionIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+// Appearance
+  @override
+  final String? themeMode;
+  @override
+  final String? themeColor;
+  @override
+  final String? schemeVariant;
+  @override
+  final bool? amoledBlack;
+  @override
+  final bool? deriveColorsFromItem;
+  @override
+  final String? backgroundImage;
+  @override
+  final bool? enableBlurEffects;
+  @override
+  final bool? blurPlaceHolders;
+  @override
+  final double? posterSize;
+  @override
+  final String? locale;
+  @override
+  final bool? showAllCollectionTypes;
+  @override
+  final bool? usePosterForLibrary;
 
   /// Create a copy of UserSettings
   /// with the given fields replaced by the non-null parameter values.
@@ -1243,12 +1602,32 @@ class _UserSettings with DiagnosticableTreeMixin implements UserSettings {
     properties
       ..add(DiagnosticsProperty('type', 'UserSettings'))
       ..add(DiagnosticsProperty('skipForwardDuration', skipForwardDuration))
-      ..add(DiagnosticsProperty('skipBackDuration', skipBackDuration));
+      ..add(DiagnosticsProperty('skipBackDuration', skipBackDuration))
+      ..add(DiagnosticsProperty('syncedAt', syncedAt))
+      ..add(DiagnosticsProperty('seerrServerUrl', seerrServerUrl))
+      ..add(DiagnosticsProperty('seerrRequestsEnabled', seerrRequestsEnabled))
+      ..add(DiagnosticsProperty('homeBanner', homeBanner))
+      ..add(DiagnosticsProperty('homeCarousel', homeCarousel))
+      ..add(DiagnosticsProperty('homeNextUp', homeNextUp))
+      ..add(DiagnosticsProperty('pinnedCollectionIds', pinnedCollectionIds))
+      ..add(DiagnosticsProperty('themeMode', themeMode))
+      ..add(DiagnosticsProperty('themeColor', themeColor))
+      ..add(DiagnosticsProperty('schemeVariant', schemeVariant))
+      ..add(DiagnosticsProperty('amoledBlack', amoledBlack))
+      ..add(DiagnosticsProperty('deriveColorsFromItem', deriveColorsFromItem))
+      ..add(DiagnosticsProperty('backgroundImage', backgroundImage))
+      ..add(DiagnosticsProperty('enableBlurEffects', enableBlurEffects))
+      ..add(DiagnosticsProperty('blurPlaceHolders', blurPlaceHolders))
+      ..add(DiagnosticsProperty('posterSize', posterSize))
+      ..add(DiagnosticsProperty('locale', locale))
+      ..add(
+          DiagnosticsProperty('showAllCollectionTypes', showAllCollectionTypes))
+      ..add(DiagnosticsProperty('usePosterForLibrary', usePosterForLibrary));
   }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserSettings(skipForwardDuration: $skipForwardDuration, skipBackDuration: $skipBackDuration)';
+    return 'UserSettings(skipForwardDuration: $skipForwardDuration, skipBackDuration: $skipBackDuration, syncedAt: $syncedAt, seerrServerUrl: $seerrServerUrl, seerrRequestsEnabled: $seerrRequestsEnabled, homeBanner: $homeBanner, homeCarousel: $homeCarousel, homeNextUp: $homeNextUp, pinnedCollectionIds: $pinnedCollectionIds, themeMode: $themeMode, themeColor: $themeColor, schemeVariant: $schemeVariant, amoledBlack: $amoledBlack, deriveColorsFromItem: $deriveColorsFromItem, backgroundImage: $backgroundImage, enableBlurEffects: $enableBlurEffects, blurPlaceHolders: $blurPlaceHolders, posterSize: $posterSize, locale: $locale, showAllCollectionTypes: $showAllCollectionTypes, usePosterForLibrary: $usePosterForLibrary)';
   }
 }
 
@@ -1260,7 +1639,28 @@ abstract mixin class _$UserSettingsCopyWith<$Res>
       __$UserSettingsCopyWithImpl;
   @override
   @useResult
-  $Res call({Duration skipForwardDuration, Duration skipBackDuration});
+  $Res call(
+      {Duration skipForwardDuration,
+      Duration skipBackDuration,
+      String? syncedAt,
+      String? seerrServerUrl,
+      bool? seerrRequestsEnabled,
+      String? homeBanner,
+      String? homeCarousel,
+      String? homeNextUp,
+      List<String>? pinnedCollectionIds,
+      String? themeMode,
+      String? themeColor,
+      String? schemeVariant,
+      bool? amoledBlack,
+      bool? deriveColorsFromItem,
+      String? backgroundImage,
+      bool? enableBlurEffects,
+      bool? blurPlaceHolders,
+      double? posterSize,
+      String? locale,
+      bool? showAllCollectionTypes,
+      bool? usePosterForLibrary});
 }
 
 /// @nodoc
@@ -1278,6 +1678,25 @@ class __$UserSettingsCopyWithImpl<$Res>
   $Res call({
     Object? skipForwardDuration = null,
     Object? skipBackDuration = null,
+    Object? syncedAt = freezed,
+    Object? seerrServerUrl = freezed,
+    Object? seerrRequestsEnabled = freezed,
+    Object? homeBanner = freezed,
+    Object? homeCarousel = freezed,
+    Object? homeNextUp = freezed,
+    Object? pinnedCollectionIds = freezed,
+    Object? themeMode = freezed,
+    Object? themeColor = freezed,
+    Object? schemeVariant = freezed,
+    Object? amoledBlack = freezed,
+    Object? deriveColorsFromItem = freezed,
+    Object? backgroundImage = freezed,
+    Object? enableBlurEffects = freezed,
+    Object? blurPlaceHolders = freezed,
+    Object? posterSize = freezed,
+    Object? locale = freezed,
+    Object? showAllCollectionTypes = freezed,
+    Object? usePosterForLibrary = freezed,
   }) {
     return _then(_UserSettings(
       skipForwardDuration: null == skipForwardDuration
@@ -1288,6 +1707,82 @@ class __$UserSettingsCopyWithImpl<$Res>
           ? _self.skipBackDuration
           : skipBackDuration // ignore: cast_nullable_to_non_nullable
               as Duration,
+      syncedAt: freezed == syncedAt
+          ? _self.syncedAt
+          : syncedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      seerrServerUrl: freezed == seerrServerUrl
+          ? _self.seerrServerUrl
+          : seerrServerUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      seerrRequestsEnabled: freezed == seerrRequestsEnabled
+          ? _self.seerrRequestsEnabled
+          : seerrRequestsEnabled // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      homeBanner: freezed == homeBanner
+          ? _self.homeBanner
+          : homeBanner // ignore: cast_nullable_to_non_nullable
+              as String?,
+      homeCarousel: freezed == homeCarousel
+          ? _self.homeCarousel
+          : homeCarousel // ignore: cast_nullable_to_non_nullable
+              as String?,
+      homeNextUp: freezed == homeNextUp
+          ? _self.homeNextUp
+          : homeNextUp // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pinnedCollectionIds: freezed == pinnedCollectionIds
+          ? _self._pinnedCollectionIds
+          : pinnedCollectionIds // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      themeMode: freezed == themeMode
+          ? _self.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      themeColor: freezed == themeColor
+          ? _self.themeColor
+          : themeColor // ignore: cast_nullable_to_non_nullable
+              as String?,
+      schemeVariant: freezed == schemeVariant
+          ? _self.schemeVariant
+          : schemeVariant // ignore: cast_nullable_to_non_nullable
+              as String?,
+      amoledBlack: freezed == amoledBlack
+          ? _self.amoledBlack
+          : amoledBlack // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      deriveColorsFromItem: freezed == deriveColorsFromItem
+          ? _self.deriveColorsFromItem
+          : deriveColorsFromItem // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      backgroundImage: freezed == backgroundImage
+          ? _self.backgroundImage
+          : backgroundImage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      enableBlurEffects: freezed == enableBlurEffects
+          ? _self.enableBlurEffects
+          : enableBlurEffects // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      blurPlaceHolders: freezed == blurPlaceHolders
+          ? _self.blurPlaceHolders
+          : blurPlaceHolders // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      posterSize: freezed == posterSize
+          ? _self.posterSize
+          : posterSize // ignore: cast_nullable_to_non_nullable
+              as double?,
+      locale: freezed == locale
+          ? _self.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as String?,
+      showAllCollectionTypes: freezed == showAllCollectionTypes
+          ? _self.showAllCollectionTypes
+          : showAllCollectionTypes // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      usePosterForLibrary: freezed == usePosterForLibrary
+          ? _self.usePosterForLibrary
+          : usePosterForLibrary // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }

@@ -85,6 +85,33 @@ abstract class UserSettings with _$UserSettings {
   factory UserSettings({
     @Default(Duration(seconds: 30)) Duration skipForwardDuration,
     @Default(Duration(seconds: 10)) Duration skipBackDuration,
+
+    // --- Cross-platform synced Driftfin config (stored per-user in Jellyfin's
+    // DisplayPreferences.customPrefs). Stored as primitives so this model stays
+    // decoupled from the settings models; the config sync service maps them
+    // to/from the relevant providers. A null field means "not synced yet".
+    String? syncedAt,
+    // Seerr
+    String? seerrServerUrl,
+    bool? seerrRequestsEnabled,
+    // Home layout
+    String? homeBanner,
+    String? homeCarousel,
+    String? homeNextUp,
+    List<String>? pinnedCollectionIds,
+    // Appearance
+    String? themeMode,
+    String? themeColor,
+    String? schemeVariant,
+    bool? amoledBlack,
+    bool? deriveColorsFromItem,
+    String? backgroundImage,
+    bool? enableBlurEffects,
+    bool? blurPlaceHolders,
+    double? posterSize,
+    String? locale,
+    bool? showAllCollectionTypes,
+    bool? usePosterForLibrary,
   }) = _UserSettings;
 
   factory UserSettings.fromJson(Map<String, dynamic> json) => _$UserSettingsFromJson(json);

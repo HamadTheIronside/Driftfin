@@ -82,10 +82,50 @@ _UserSettings _$UserSettingsFromJson(Map<String, dynamic> json) =>
       skipBackDuration: json['skipBackDuration'] == null
           ? const Duration(seconds: 10)
           : Duration(microseconds: (json['skipBackDuration'] as num).toInt()),
+      syncedAt: json['syncedAt'] as String?,
+      seerrServerUrl: json['seerrServerUrl'] as String?,
+      seerrRequestsEnabled: json['seerrRequestsEnabled'] as bool?,
+      homeBanner: json['homeBanner'] as String?,
+      homeCarousel: json['homeCarousel'] as String?,
+      homeNextUp: json['homeNextUp'] as String?,
+      pinnedCollectionIds: (json['pinnedCollectionIds'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      themeMode: json['themeMode'] as String?,
+      themeColor: json['themeColor'] as String?,
+      schemeVariant: json['schemeVariant'] as String?,
+      amoledBlack: json['amoledBlack'] as bool?,
+      deriveColorsFromItem: json['deriveColorsFromItem'] as bool?,
+      backgroundImage: json['backgroundImage'] as String?,
+      enableBlurEffects: json['enableBlurEffects'] as bool?,
+      blurPlaceHolders: json['blurPlaceHolders'] as bool?,
+      posterSize: (json['posterSize'] as num?)?.toDouble(),
+      locale: json['locale'] as String?,
+      showAllCollectionTypes: json['showAllCollectionTypes'] as bool?,
+      usePosterForLibrary: json['usePosterForLibrary'] as bool?,
     );
 
 Map<String, dynamic> _$UserSettingsToJson(_UserSettings instance) =>
     <String, dynamic>{
       'skipForwardDuration': instance.skipForwardDuration.inMicroseconds,
       'skipBackDuration': instance.skipBackDuration.inMicroseconds,
+      'syncedAt': instance.syncedAt,
+      'seerrServerUrl': instance.seerrServerUrl,
+      'seerrRequestsEnabled': instance.seerrRequestsEnabled,
+      'homeBanner': instance.homeBanner,
+      'homeCarousel': instance.homeCarousel,
+      'homeNextUp': instance.homeNextUp,
+      'pinnedCollectionIds': instance.pinnedCollectionIds,
+      'themeMode': instance.themeMode,
+      'themeColor': instance.themeColor,
+      'schemeVariant': instance.schemeVariant,
+      'amoledBlack': instance.amoledBlack,
+      'deriveColorsFromItem': instance.deriveColorsFromItem,
+      'backgroundImage': instance.backgroundImage,
+      'enableBlurEffects': instance.enableBlurEffects,
+      'blurPlaceHolders': instance.blurPlaceHolders,
+      'posterSize': instance.posterSize,
+      'locale': instance.locale,
+      'showAllCollectionTypes': instance.showAllCollectionTypes,
+      'usePosterForLibrary': instance.usePosterForLibrary,
     };

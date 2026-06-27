@@ -1,0 +1,166 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:driftfin/models/account_model.dart';
+import 'package:driftfin/models/settings/client_settings_model.dart';
+import 'package:driftfin/models/settings/home_settings_model.dart';
+import 'package:driftfin/providers/settings/client_settings_provider.dart';
+import 'package:driftfin/providers/settings/home_settings_provider.dart';
+import 'package:driftfin/providers/shared_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/util/custom_color_themes.dart';
+import 'package:driftfin/util/debouncer.dart';
+
+/// Device-local toggle: whether this device syncs settings to the Jellyfin
+/// server. Never itself synced.
+final syncSettingsEnabledProvider = StateNotifierProvider<SyncSettingsEnabledNotifier, bool>((ref) {
+  return SyncSettingsEnabledNotifier(ref);
+});
+
+class SyncSettingsEnabledNotifier extends StateNotifier<bool> {
+  SyncSettingsEnabledNotifier(this.ref) : super(ref.read(sharedUtilityProvider).syncSettingsEnabled);
+  final Ref ref;
+
+  void set(bool value) {
+    state = value;
+    ref.read(sharedUtilityProvider).syncSettingsEnabled = value;
+  }
+}
+
+/// Wires cross-platform settings sync. Construct once at app start (watched in
+/// the root widget). It:
+///  - applies the server-stored config to the local providers when it loads
+///    on login (and adopts it when the user turns sync on),
+///  - pushes local changes back to the server (debounced) while sync is on.
+///
+/// Synced config lives in Jellyfin's per-user DisplayPreferences.customPrefs via
+/// [UserSettings] (see service_provider get/setCustomConfig). Device-local
+/// settings (window size, downloads, shortcuts, biometrics) are never synced.
+final configSyncProvider = Provider<ConfigSync>((ref) {
+  final sync = ConfigSync(ref);
+  sync.init();
+  return sync;
+});
+
+class ConfigSync {
+  ConfigSync(this.ref);
+  final Ref ref;
+
+  final Debouncer _debouncer = Debouncer(const Duration(seconds: 2));
+  bool _applying = false;
+
+  bool get _enabled => ref.read(syncSettingsEnabledProvider);
+
+  void init() {
+    // Server config loaded (login) or changed -> apply locally.
+    ref.listen(userProvider.select((account) => account?.userSettings), (previous, next) {
+      if (next != null && _enabled && !_applying) _apply(next);
+    });
+
+    // Local changes -> push (debounced).
+    ref.listen(clientSettingsProvider, (_, __) => _schedulePush());
+    ref.listen(homeSettingsProvider, (_, __) => _schedulePush());
+    ref.listen(userProvider.select((account) => account?.seerrCredentials?.serverUrl), (_, __) => _schedulePush());
+    ref.listen(userProvider.select((account) => account?.seerrRequestsEnabled), (_, __) => _schedulePush());
+
+    // Turning sync on -> adopt server config if present, else seed it.
+    ref.listen(syncSettingsEnabledProvider, (previous, next) {
+      if (next == true) _onEnabled();
+    });
+  }
+
+  void _onEnabled() {
+    final settings = ref.read(userProvider)?.userSettings;
+    if (settings != null && settings.syncedAt != null) {
+      _apply(settings);
+    } else {
+      _schedulePush();
+    }
+  }
+
+  void _schedulePush() {
+    if (_applying || !_enabled) return;
+    _debouncer.run(_pushNow);
+  }
+
+  Future<void> _pushNow() async {
+    final account = ref.read(userProvider);
+    if (account == null || !_enabled) return;
+    final current = account.userSettings ?? UserSettings();
+    final built = _buildFrom(current);
+    // Nothing actually changed -> skip (also breaks the apply -> push loop).
+    if (built == current) return;
+    final stamped = built.copyWith(syncedAt: DateTime.now().toIso8601String());
+    await ref.read(userProvider.notifier).updateCustomConfig(stamped);
+  }
+
+  /// Builds the synced payload from current local state, preserving fields the
+  /// sync service does not own (e.g. skip durations).
+  UserSettings _buildFrom(UserSettings current) {
+    final client = ref.read(clientSettingsProvider);
+    final home = ref.read(homeSettingsProvider);
+    final account = ref.read(userProvider);
+    return current.copyWith(
+      seerrServerUrl: account?.seerrCredentials?.serverUrl,
+      seerrRequestsEnabled: account?.seerrRequestsEnabled,
+      homeBanner: home.homeBanner.name,
+      homeCarousel: home.carouselSettings.name,
+      homeNextUp: home.nextUp.name,
+      pinnedCollectionIds: home.pinnedCollectionIds,
+      themeMode: client.themeMode.name,
+      themeColor: client.themeColor?.name,
+      schemeVariant: client.schemeVariant.name,
+      amoledBlack: client.amoledBlack,
+      deriveColorsFromItem: client.deriveColorsFromItem,
+      backgroundImage: client.backgroundImage.name,
+      enableBlurEffects: client.enableBlurEffects,
+      blurPlaceHolders: client.blurPlaceHolders,
+      posterSize: client.posterSize,
+      locale: const LocaleConvert().toJson(client.selectedLocale),
+      showAllCollectionTypes: client.showAllCollectionTypes,
+      usePosterForLibrary: client.usePosterForLibrary,
+    );
+  }
+
+  void _apply(UserSettings s) {
+    _applying = true;
+    try {
+      ref.read(clientSettingsProvider.notifier).update((c) => c.copyWith(
+            themeMode: _byName(ThemeMode.values, s.themeMode) ?? c.themeMode,
+            themeColor: _byName(ColorThemes.values, s.themeColor) ?? c.themeColor,
+            schemeVariant: _byName(DynamicSchemeVariant.values, s.schemeVariant) ?? c.schemeVariant,
+            amoledBlack: s.amoledBlack ?? c.amoledBlack,
+            deriveColorsFromItem: s.deriveColorsFromItem ?? c.deriveColorsFromItem,
+            backgroundImage: _byName(BackgroundType.values, s.backgroundImage) ?? c.backgroundImage,
+            enableBlurEffects: s.enableBlurEffects ?? c.enableBlurEffects,
+            blurPlaceHolders: s.blurPlaceHolders ?? c.blurPlaceHolders,
+            posterSize: s.posterSize ?? c.posterSize,
+            selectedLocale: s.locale != null ? const LocaleConvert().fromJson(s.locale) : c.selectedLocale,
+            showAllCollectionTypes: s.showAllCollectionTypes ?? c.showAllCollectionTypes,
+            usePosterForLibrary: s.usePosterForLibrary ?? c.usePosterForLibrary,
+          ));
+
+      ref.read(homeSettingsProvider.notifier).update((h) => h.copyWith(
+            homeBanner: _byName(HomeBanner.values, s.homeBanner) ?? h.homeBanner,
+            carouselSettings: _byName(HomeCarouselSettings.values, s.homeCarousel) ?? h.carouselSettings,
+            nextUp: _byName(HomeNextUp.values, s.homeNextUp) ?? h.nextUp,
+            pinnedCollectionIds: s.pinnedCollectionIds ?? h.pinnedCollectionIds,
+          ));
+
+      if (s.seerrServerUrl != null && s.seerrServerUrl!.isNotEmpty) {
+        ref.read(userProvider.notifier).setSeerrServerUrl(s.seerrServerUrl);
+      }
+    } finally {
+      _applying = false;
+    }
+  }
+}
+
+T? _byName<T extends Enum>(Iterable<T> values, String? name) {
+  if (name == null) return null;
+  for (final value in values) {
+    if (value.name == name) return value;
+  }
+  return null;
+}

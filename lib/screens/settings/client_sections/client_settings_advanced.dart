@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
+import 'package:driftfin/providers/config_sync_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
 import 'package:driftfin/screens/settings/settings_list_tile.dart';
@@ -17,6 +18,15 @@ List<Widget> buildClientSettingsAdvanced(BuildContext context, WidgetRef ref) {
     context,
     SettingsLabelDivider(label: context.localized.advanced),
     [
+      SettingsListTile(
+        label: Text(context.localized.syncSettingsTitle),
+        subLabel: Text(context.localized.syncSettingsDesc),
+        onTap: () => ref.read(syncSettingsEnabledProvider.notifier).set(!ref.read(syncSettingsEnabledProvider)),
+        trailing: Switch(
+          value: ref.watch(syncSettingsEnabledProvider),
+          onChanged: (value) => ref.read(syncSettingsEnabledProvider.notifier).set(value),
+        ),
+      ),
       SettingsListTile(
         label: Text(context.localized.settingsLayoutSizesTitle),
         subLabel: Text(context.localized.settingsLayoutSizesDesc),

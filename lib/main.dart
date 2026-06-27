@@ -9,6 +9,7 @@ import 'package:driftfin/bootstrap/platform/platform_app_wrapper.dart';
 import 'package:driftfin/l10n/generated/app_localizations.dart';
 import 'package:driftfin/localization_delegates.dart';
 import 'package:driftfin/providers/arguments_provider.dart';
+import 'package:driftfin/providers/config_sync_provider.dart';
 import 'package:driftfin/providers/crash_log_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/shared_provider.dart';
@@ -68,6 +69,9 @@ class _FladderApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Keep the settings-sync service alive so it applies server config on login
+    // and pushes local changes back while enabled.
+    ref.watch(configSyncProvider);
     final themeMode = ref.watch(clientSettingsProvider.select((value) => value.themeMode));
     final amoledBlack = ref.watch(clientSettingsProvider.select((value) => value.amoledBlack));
     final mouseDrag = ref.watch(clientSettingsProvider.select((value) => value.mouseDragSupport));

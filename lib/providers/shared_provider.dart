@@ -88,6 +88,7 @@ class SharedKeys {
   static const String _bookViewSettingsKey = 'bookViewSettings';
   static const String _photoViewSettingsKey = 'photoViewSettings';
   static const String lastSeenNotificationsKey = 'lastSeenNotifications';
+  static const String _syncSettingsKey = 'syncSettingsEnabled';
 
   final _keyChanged = StreamController<String>.broadcast();
 
@@ -196,6 +197,12 @@ class SharedHelper {
 
   set homeSettings(HomeSettingsModel settings) =>
       sharedPreferences.setString(SharedKeys._homeSettingsKey, jsonEncode(settings.toJson()));
+
+  /// Whether this device syncs its settings to the Jellyfin server (device-local
+  /// intent; never itself synced).
+  bool get syncSettingsEnabled => sharedPreferences.getBool(SharedKeys._syncSettingsKey) ?? false;
+
+  set syncSettingsEnabled(bool value) => sharedPreferences.setBool(SharedKeys._syncSettingsKey, value);
 
   BookViewerSettingsModel get bookViewSettings {
     try {
