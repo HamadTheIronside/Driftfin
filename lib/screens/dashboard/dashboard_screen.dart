@@ -222,7 +222,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                         contentPadding: padding,
                         label: collection.name,
                         posters: collection.items,
-                        onLabelClick: () => collection.navigateTo(context),
+                        onLabelClick: () => collection.container.navigateTo(context),
                       ),
                     ),
                 ...views.dashboardViews

@@ -331,7 +331,10 @@ extension ItemBaseModelExtensions on ItemBaseModel {
           },
           label: Text(context.localized.addShowToFavorites),
         ),
-      if (type == FladderItemType.boxset && !exclude.contains(ItemActions.addToHome))
+      if ((type == FladderItemType.boxset ||
+              type == FladderItemType.folder ||
+              type == FladderItemType.collectionFolder) &&
+          !exclude.contains(ItemActions.addToHome))
         ItemActionButton(
           icon: Icon(ref.read(homeSettingsProvider).pinnedCollectionIds.contains(id)
               ? Icons.home_filled
