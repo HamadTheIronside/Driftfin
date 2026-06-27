@@ -174,7 +174,12 @@ class SeerrPosterCard extends ConsumerWidget {
                         padding: const EdgeInsets.all(3.0),
                         child: Icon(
                           switch (poster.mediaStatus) {
-                            SeerrMediaStatus.available => IconsaxPlusLinear.import_3,
+                            SeerrMediaStatus.available => Icons.check_rounded,
+                            SeerrMediaStatus.partiallyAvailable => Icons.download_done_rounded,
+                            SeerrMediaStatus.processing => Icons.downloading_rounded,
+                            SeerrMediaStatus.pending => Icons.hourglass_top_rounded,
+                            SeerrMediaStatus.blacklisted => Icons.block_rounded,
+                            SeerrMediaStatus.deleted => Icons.delete_outline_rounded,
                             _ => Icons.remove_rounded,
                           },
                           size: 18,

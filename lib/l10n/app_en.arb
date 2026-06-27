@@ -24,6 +24,8 @@
   "@addShowToFavorites": {},
   "addedShowToFavorites": "Added show to favorites",
   "@addedShowToFavorites": {},
+  "removedShowFromFavorites": "Removed show from favorites",
+  "@removedShowFromFavorites": {},
   "addToHome": "Add to homepage",
   "@addToHome": {},
   "removeFromHome": "Remove from homepage",

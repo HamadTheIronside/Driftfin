@@ -16,6 +16,7 @@ import 'package:driftfin/models/items/item_shared_models.dart';
 import 'package:driftfin/models/items/movie_model.dart';
 import 'package:driftfin/models/items/photos_model.dart';
 import 'package:driftfin/models/items/series_model.dart';
+import 'package:driftfin/providers/api_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
 import 'package:driftfin/providers/sync_provider.dart';
 import 'package:driftfin/providers/user_provider.dart';
@@ -323,8 +324,15 @@ extension ItemBaseModelExtensions on ItemBaseModel {
           action: () async {
             final seriesId = (this as EpisodeModel).parentId!;
             try {
-              await ref.read(userProvider.notifier).setAsFavorite(true, seriesId);
-              if (context.mounted) FladderSnack.show(context.localized.addedShowToFavorites);
+              // Toggle: read the show's current favourite state, then flip it.
+              final series = await ref.read(jellyApiProvider).usersUserIdItemsItemIdGet(itemId: seriesId);
+              final currentlyFavourite = series.body?.userData.isFavourite ?? false;
+              await ref.read(userProvider.notifier).setAsFavorite(!currentlyFavourite, seriesId);
+              if (context.mounted) {
+                FladderSnack.show(currentlyFavourite
+                    ? context.localized.removedShowFromFavorites
+                    : context.localized.addedShowToFavorites);
+              }
             } finally {
               context.refreshData();
             }
