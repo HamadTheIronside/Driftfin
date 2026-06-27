@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:driftfin/providers/config_sync_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
+import 'package:driftfin/providers/sonarr_provider.dart';
 import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/screens/settings/settings_list_tile.dart';
 import 'package:driftfin/screens/settings/widgets/settings_label_divider.dart';
@@ -140,6 +141,64 @@ List<Widget> buildClientSettingsAdvanced(BuildContext context, WidgetRef ref) {
             onChanged: (value) => ref.read(clientSettingsProvider.notifier).useSystemIME(value),
           ),
         ),
+      SettingsListTile(
+        label: Text(context.localized.sonarrIntegrationTitle),
+        subLabel: Text(context.localized.sonarrIntegrationDesc),
+        onTap: () => ref.read(sonarrProvider.notifier).setEnabled(!ref.read(sonarrProvider).enabled),
+        trailing: Switch(
+          value: ref.watch(sonarrProvider.select((value) => value.enabled)),
+          onChanged: (value) => ref.read(sonarrProvider.notifier).setEnabled(value),
+        ),
+      ),
+      if (ref.watch(sonarrProvider.select((value) => value.enabled))) ...[
+        SettingsListTile(
+          label: Text(context.localized.sonarrUrlTitle),
+          subLabel: Text(ref.watch(sonarrProvider.select((value) => value.baseUrl)).isEmpty
+              ? '—'
+              : ref.watch(sonarrProvider.select((value) => value.baseUrl))),
+          onTap: () async {
+            final value = await _promptText(context,
+                title: context.localized.sonarrUrlTitle, initial: ref.read(sonarrProvider).baseUrl);
+            if (value != null) ref.read(sonarrProvider.notifier).setBaseUrl(value);
+          },
+          trailing: const Icon(Icons.link),
+        ),
+        SettingsListTile(
+          label: Text(context.localized.sonarrApiKeyTitle),
+          subLabel: Text(ref.watch(sonarrProvider.select((value) => value.apiKey)).isEmpty ? '—' : '••••••••'),
+          onTap: () async {
+            final value = await _promptText(context,
+                title: context.localized.sonarrApiKeyTitle, initial: ref.read(sonarrProvider).apiKey, obscure: true);
+            if (value != null) ref.read(sonarrProvider.notifier).setApiKey(value);
+          },
+          trailing: const Icon(Icons.key),
+        ),
+      ],
     ],
+  );
+}
+
+Future<String?> _promptText(
+  BuildContext context, {
+  required String title,
+  required String initial,
+  bool obscure = false,
+}) {
+  final controller = TextEditingController(text: initial);
+  return showDialog<String>(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(title),
+      content: TextField(
+        controller: controller,
+        obscureText: obscure,
+        autofocus: true,
+        onSubmitted: (value) => Navigator.of(context).pop(value),
+      ),
+      actions: [
+        TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(context.localized.cancel)),
+        FilledButton(onPressed: () => Navigator.of(context).pop(controller.text), child: Text(context.localized.save)),
+      ],
+    ),
   );
 }

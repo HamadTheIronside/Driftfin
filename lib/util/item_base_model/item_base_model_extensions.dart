@@ -18,6 +18,7 @@ import 'package:driftfin/models/items/photos_model.dart';
 import 'package:driftfin/models/items/series_model.dart';
 import 'package:driftfin/providers/api_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
+import 'package:driftfin/providers/sonarr_provider.dart';
 import 'package:driftfin/providers/sync_provider.dart';
 import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/routes/auto_router.gr.dart';
@@ -103,6 +104,7 @@ enum ItemActions {
   markUnplayed,
   setFavorite,
   favoriteShow,
+  requestEpisode,
   addToHome,
   refreshMetaData,
   editMetaData,
@@ -338,6 +340,26 @@ extension ItemBaseModelExtensions on ItemBaseModel {
             }
           },
           label: Text(context.localized.addShowToFavorites),
+        ),
+      if (this is EpisodeModel &&
+          (this as EpisodeModel).parentId != null &&
+          ref.read(sonarrProvider).isConfigured &&
+          !exclude.contains(ItemActions.requestEpisode))
+        ItemActionButton(
+          icon: const Icon(IconsaxPlusLinear.arrow_down),
+          action: () async {
+            final result = await ref.read(sonarrProvider.notifier).requestEpisode(this as EpisodeModel);
+            if (context.mounted) {
+              FladderSnack.show(switch (result) {
+                SonarrRequestResult.success => context.localized.sonarrEpisodeRequested,
+                SonarrRequestResult.seriesNotFound => context.localized.sonarrSeriesNotFound,
+                SonarrRequestResult.episodeNotFound => context.localized.sonarrEpisodeNotFound,
+                SonarrRequestResult.notConfigured => context.localized.sonarrNotConfigured,
+                SonarrRequestResult.failed => context.localized.sonarrRequestFailed,
+              });
+            }
+          },
+          label: Text(context.localized.requestEpisodeSonarr),
         ),
       if ((type == FladderItemType.boxset ||
               type == FladderItemType.folder ||
