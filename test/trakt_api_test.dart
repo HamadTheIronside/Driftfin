@@ -1,0 +1,148 @@
+import 'dart:convert';
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
+
+import 'package:driftfin/providers/trakt_provider.dart';
+
+void main() {
+  const id = 'CLIENT_ID';
+  const secret = 'CLIENT_SECRET';
+
+  TraktApi api(http.Client client, {String? token}) =>
+      TraktApi(clientId: id, clientSecret: secret, accessToken: token, client: client);
+
+  group('TraktApi auth', () {
+    test('requestDeviceCode parses the device code + sends api key', () async {
+      late http.Request captured;
+      final client = MockClient((req) async {
+        captured = req;
+        return http.Response(
+          jsonEncode({
+            'device_code': 'DEV',
+            'user_code': '1234ABCD',
+            'verification_url': 'https://trakt.tv/activate',
+            'expires_in': 600,
+            'interval': 5,
+          }),
+          200,
+        );
+      });
+      final code = await api(client).requestDeviceCode();
+      expect(code?.userCode, '1234ABCD');
+      expect(code?.deviceCode, 'DEV');
+      expect(captured.url.toString(), 'https://api.trakt.tv/oauth/device/code');
+      expect(captured.headers['trakt-api-key'], id);
+      expect(jsonDecode(captured.body), {'client_id': id});
+    });
+
+    test('pollDeviceToken maps status codes', () async {
+      Future<TraktPollStatus> poll(int status, [Map<String, dynamic>? body]) async {
+        final client = MockClient((req) async => http.Response(jsonEncode(body ?? {}), status));
+        return (await api(client).pollDeviceToken('DEV')).status;
+      }
+
+      expect(await poll(400), TraktPollStatus.pending);
+      expect(await poll(429), TraktPollStatus.slowDown);
+      expect(await poll(404), TraktPollStatus.invalid);
+      expect(await poll(409), TraktPollStatus.invalid);
+      expect(await poll(410), TraktPollStatus.expired);
+      expect(await poll(418), TraktPollStatus.denied);
+      expect(await poll(500), TraktPollStatus.error);
+    });
+
+    test('pollDeviceToken success returns tokens', () async {
+      final client = MockClient((req) async => http.Response(
+            jsonEncode({
+              'access_token': 'ACCESS',
+              'refresh_token': 'REFRESH',
+              'created_at': 1000,
+              'expires_in': 7776000,
+            }),
+            200,
+          ));
+      final result = await api(client).pollDeviceToken('DEV');
+      expect(result.status, TraktPollStatus.success);
+      expect(result.tokens?.accessToken, 'ACCESS');
+      expect(result.tokens?.refreshToken, 'REFRESH');
+    });
+
+    test('token expiry uses a 1h safety window', () {
+      const tokens = TraktTokens(accessToken: 'a', refreshToken: 'r', createdAt: 1000, expiresIn: 7200);
+      expect(tokens.expiredAt(1000), isFalse); // fresh
+      expect(tokens.expiredAt(1000 + 7200 - 3601), isFalse); // just outside window
+      expect(tokens.expiredAt(1000 + 7200 - 3599), isTrue); // inside the 1h window
+    });
+  });
+
+  group('TraktApi scrobble', () {
+    test('episode start sends episode ids + progress to the start endpoint', () async {
+      late http.Request captured;
+      final client = MockClient((req) async {
+        captured = req;
+        return http.Response('{}', 201);
+      });
+      final ok = await api(client, token: 'ACCESS').scrobble(
+        TraktScrobbleAction.start,
+        ids: {'tvdb': 81189},
+        isMovie: false,
+        progress: 12.5,
+      );
+      expect(ok, isTrue);
+      expect(captured.url.toString(), 'https://api.trakt.tv/scrobble/start');
+      expect(captured.headers['Authorization'], 'Bearer ACCESS');
+      expect(jsonDecode(captured.body), {
+        'episode': {
+          'ids': {'tvdb': 81189}
+        },
+        'progress': 12.5,
+      });
+    });
+
+    test('movie stop sends movie ids to the stop endpoint', () async {
+      late http.Request captured;
+      final client = MockClient((req) async {
+        captured = req;
+        return http.Response('{}', 200);
+      });
+      final ok = await api(client, token: 'ACCESS').scrobble(
+        TraktScrobbleAction.stop,
+        ids: {'tmdb': 603},
+        isMovie: true,
+        progress: 99.0,
+      );
+      expect(ok, isTrue);
+      expect(captured.url.toString(), 'https://api.trakt.tv/scrobble/stop');
+      expect(jsonDecode(captured.body), {
+        'movie': {
+          'ids': {'tmdb': 603}
+        },
+        'progress': 99.0,
+      });
+    });
+  });
+
+  group('TraktSettings', () {
+    test('isActive requires enabled + creds + tokens', () {
+      const tokens = TraktTokens(accessToken: 'a', refreshToken: 'r', createdAt: 0, expiresIn: 1);
+      expect(const TraktSettings(enabled: true, clientId: 'c', clientSecret: 's', tokens: tokens).isActive, isTrue);
+      expect(const TraktSettings(enabled: false, clientId: 'c', clientSecret: 's', tokens: tokens).isActive, isFalse);
+      expect(const TraktSettings(enabled: true, clientId: '', clientSecret: 's', tokens: tokens).isActive, isFalse);
+      expect(const TraktSettings(enabled: true, clientId: 'c', clientSecret: 's').isActive, isFalse);
+    });
+
+    test('json round-trip preserves tokens', () {
+      const settings = TraktSettings(
+        enabled: true,
+        clientId: 'c',
+        clientSecret: 's',
+        tokens: TraktTokens(accessToken: 'a', refreshToken: 'r', createdAt: 5, expiresIn: 10),
+      );
+      final restored = TraktSettings.fromJson(settings.toJson());
+      expect(restored.isAuthenticated, isTrue);
+      expect(restored.tokens?.accessToken, 'a');
+      expect(restored.clientId, 'c');
+    });
+  });
+}
