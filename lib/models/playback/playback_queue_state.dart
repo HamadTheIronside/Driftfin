@@ -258,7 +258,14 @@ class PlaybackQueueState {
 
   PlaybackQueueState reorderSection(AudioQueueSection section, int oldIndex, int newIndex) {
     if (section != AudioQueueSection.nextUp || nextUpQueue.length <= 1) return this;
-    final updated = List<ItemBaseModel>.from(nextUpQueue)..reorderInPlace(oldIndex, newIndex);
+    // The UI reorders within the *displayed* Next Up list, which omits the item
+    // currently playing from Next Up. Shift the display indices back onto the
+    // full queue so we don't move the wrong (or currently-playing) item.
+    final offset = nextUpQueue.length - _remainingNextUpQueue().length;
+    final from = oldIndex + offset;
+    final to = newIndex + offset;
+    if (from < 0 || from >= nextUpQueue.length || to < 0 || to > nextUpQueue.length) return this;
+    final updated = List<ItemBaseModel>.from(nextUpQueue)..reorderInPlace(from, to);
     return copyWith(nextUpQueue: updated);
   }
 

@@ -66,6 +66,25 @@ void main() {
       expect(state.nextItem(e3.id)?.id, e1.id);
     });
 
+    test('reorderSection maps display indices onto the full queue when playing from Next Up', () {
+      final n1 = _item('n1'); // currently playing from Next Up (hidden in display)
+      final n2 = _item('n2'); // display index 0
+      final n3 = _item('n3'); // display index 1
+      final state = PlaybackQueueState(
+        queue: episodes,
+        originalQueue: episodes,
+        nextUpQueue: [n1, n2, n3],
+        mainQueueCurrentId: e1.id,
+        playingFromNextUp: true,
+      );
+
+      // User drags display item 0 (n2) below display item 1 (n3).
+      final reordered = state.reorderSection(AudioQueueSection.nextUp, 0, 2);
+
+      // n1 (currently playing) must stay put; only the displayed items swap.
+      expect(reordered.nextUpQueue.map((e) => e.id).toList(), ['n1', 'n3', 'n2']);
+    });
+
     test('falls back to the main anchor when playing an item outside the main queue', () {
       // Simulates playing from the Next Up list: the current id is not in the
       // main queue, so next resumes the main queue after the tracked anchor.

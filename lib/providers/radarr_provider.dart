@@ -215,4 +215,10 @@ class RadarrNotifier extends StateNotifier<RadarrSettings> {
     if (!state.isConfigured) return RadarrRequestResult.notConfigured;
     return _api.requestMovie(tmdbId);
   }
+
+  @override
+  void dispose() {
+    _client.close();
+    super.dispose();
+  }
 }
