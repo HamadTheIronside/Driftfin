@@ -3,6 +3,11 @@ import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/episode_model.dart';
+import 'package:driftfin/models/items/movie_model.dart';
+import 'package:driftfin/models/items/series_model.dart';
+import 'package:driftfin/providers/api_provider.dart';
 import 'package:driftfin/providers/shared_provider.dart';
 
 /// Bring-your-own Trakt integration: the user supplies their own Trakt API
@@ -159,22 +164,42 @@ class TraktApi {
     return TraktTokens.fromOauth(jsonDecode(response.body) as Map<String, dynamic>);
   }
 
-  /// Scrobbles playback. [ids] is the Trakt ids map (tmdb/imdb/tvdb); [isMovie]
-  /// chooses the movie vs episode payload; [progress] is 0..100.
+  /// Scrobbles a movie (or an episode by its own ids). [ids] is the Trakt ids
+  /// map (tmdb/imdb/tvdb); [isMovie] chooses the payload; [progress] is 0..100.
   Future<bool> scrobble(
     TraktScrobbleAction action, {
     required Map<String, dynamic> ids,
     required bool isMovie,
     required double progress,
-  }) async {
+  }) {
+    return _postScrobble(action, {
+      if (isMovie) 'movie': {'ids': ids} else 'episode': {'ids': ids},
+      'progress': progress,
+    });
+  }
+
+  /// Scrobbles an episode by its show ids + season/number — the reliable form
+  /// when only the show's external ids are known (Jellyfin episodes don't carry
+  /// their own TVDB/TMDB ids).
+  Future<bool> scrobbleEpisodeByShow(
+    TraktScrobbleAction action, {
+    required Map<String, dynamic> showIds,
+    required int season,
+    required int number,
+    required double progress,
+  }) {
+    return _postScrobble(action, {
+      'show': {'ids': showIds},
+      'episode': {'season': season, 'number': number},
+      'progress': progress,
+    });
+  }
+
+  Future<bool> _postScrobble(TraktScrobbleAction action, Map<String, dynamic> body) async {
     final path = switch (action) {
       TraktScrobbleAction.start => 'start',
       TraktScrobbleAction.pause => 'pause',
       TraktScrobbleAction.stop => 'stop',
-    };
-    final body = <String, dynamic>{
-      if (isMovie) 'movie': {'ids': ids} else 'episode': {'ids': ids},
-      'progress': progress,
     };
     final response = await _client.post(
       Uri.parse('$_traktBase/scrobble/$path'),
@@ -183,6 +208,27 @@ class TraktApi {
     );
     return response.statusCode >= 200 && response.statusCode < 300;
   }
+}
+
+/// Maps Jellyfin providerIds (keys 'Tmdb'/'Imdb'/'Tvdb') to Trakt's ids map.
+Map<String, dynamic> traktIdsFromProviderIds(Map<String, dynamic>? providerIds) {
+  if (providerIds == null) return {};
+  final ids = <String, dynamic>{};
+  for (final entry in providerIds.entries) {
+    final value = entry.value?.toString();
+    if (value == null || value.isEmpty) continue;
+    switch (entry.key.toLowerCase()) {
+      case 'tmdb':
+        final n = int.tryParse(value);
+        if (n != null) ids['tmdb'] = n;
+      case 'tvdb':
+        final n = int.tryParse(value);
+        if (n != null) ids['tvdb'] = n;
+      case 'imdb':
+        ids['imdb'] = value;
+    }
+  }
+  return ids;
 }
 
 /// Persisted Trakt config: BYO credentials + tokens. Never synced.
@@ -298,18 +344,48 @@ class TraktNotifier extends StateNotifier<TraktSettings> {
     return refreshed.accessToken;
   }
 
-  /// Scrobbles playback to Trakt. No-op (returns false) unless active.
-  Future<bool> scrobble(
-    TraktScrobbleAction action, {
-    required Map<String, dynamic> ids,
-    required bool isMovie,
+  final Map<String, Map<String, dynamic>> _showIdsCache = {};
+
+  /// Scrobbles a playing item to Trakt. Resolves Trakt ids from the item:
+  /// movies use their own providerIds; episodes resolve to the show's ids +
+  /// season/number (Jellyfin episodes don't carry external ids). Best-effort:
+  /// never throws and is a no-op unless Trakt is active.
+  Future<void> scrobbleItem({
+    required ItemBaseModel item,
+    required TraktScrobbleAction action,
     required double progress,
     required int nowSeconds,
   }) async {
-    if (!state.isActive || ids.isEmpty) return false;
+    if (!state.isActive) return;
     final token = await _validAccessToken(nowSeconds);
-    if (token == null) return false;
-    return _api(accessToken: token).scrobble(action, ids: ids, isMovie: isMovie, progress: progress);
+    if (token == null) return;
+    final api = _api(accessToken: token);
+    try {
+      if (item is MovieModel) {
+        final ids = traktIdsFromProviderIds(item.providerIds);
+        if (ids.isEmpty) return;
+        await api.scrobble(action, ids: ids, isMovie: true, progress: progress);
+      } else if (item is EpisodeModel) {
+        final seriesId = item.parentId;
+        if (seriesId == null) return;
+        var showIds = _showIdsCache[seriesId];
+        if (showIds == null) {
+          final series = (await ref.read(jellyApiProvider).usersUserIdItemsItemIdGet(itemId: seriesId)).body;
+          showIds = series is SeriesModel ? traktIdsFromProviderIds(series.providerIds) : {};
+          _showIdsCache[seriesId] = showIds;
+        }
+        if (showIds.isEmpty) return;
+        await api.scrobbleEpisodeByShow(
+          action,
+          showIds: showIds,
+          season: item.season,
+          number: item.episode,
+          progress: progress,
+        );
+      }
+    } catch (_) {
+      // Scrobbling is best-effort; never disrupt playback.
+    }
   }
 
   @override

@@ -100,6 +100,30 @@ void main() {
       });
     });
 
+    test('scrobbleEpisodeByShow sends show ids + season/number', () async {
+      late http.Request captured;
+      final client = MockClient((req) async {
+        captured = req;
+        return http.Response('{}', 201);
+      });
+      final ok = await api(client, token: 'ACCESS').scrobbleEpisodeByShow(
+        TraktScrobbleAction.pause,
+        showIds: {'tvdb': 81189},
+        season: 2,
+        number: 5,
+        progress: 40.0,
+      );
+      expect(ok, isTrue);
+      expect(captured.url.toString(), 'https://api.trakt.tv/scrobble/pause');
+      expect(jsonDecode(captured.body), {
+        'show': {
+          'ids': {'tvdb': 81189}
+        },
+        'episode': {'season': 2, 'number': 5},
+        'progress': 40.0,
+      });
+    });
+
     test('movie stop sends movie ids to the stop endpoint', () async {
       late http.Request captured;
       final client = MockClient((req) async {
@@ -120,6 +144,19 @@ void main() {
         },
         'progress': 99.0,
       });
+    });
+  });
+
+  group('traktIdsFromProviderIds', () {
+    test('maps Jellyfin provider ids to Trakt ids with correct types', () {
+      final ids = traktIdsFromProviderIds({'Tmdb': '603', 'Imdb': 'tt0133093', 'Tvdb': '1234', 'Zap2It': 'xyz'});
+      expect(ids, {'tmdb': 603, 'imdb': 'tt0133093', 'tvdb': 1234});
+    });
+
+    test('ignores empty/null and non-numeric tmdb/tvdb', () {
+      expect(traktIdsFromProviderIds(null), isEmpty);
+      expect(traktIdsFromProviderIds({'Tmdb': '', 'Imdb': null}), isEmpty);
+      expect(traktIdsFromProviderIds({'Tmdb': 'abc'}), isEmpty);
     });
   });
 

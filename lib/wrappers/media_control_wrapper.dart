@@ -27,6 +27,7 @@ import 'package:driftfin/providers/live_tv_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/subtitle_settings_provider.dart';
 import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
+import 'package:driftfin/providers/trakt_provider.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
 import 'package:driftfin/providers/window_title_provider.dart';
 import 'package:driftfin/src/video_player_helper.g.dart' hide PlaybackState;
@@ -343,6 +344,15 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
     if (_isNewPlayback || !playbackState.value.playing) {
       _isNewPlayback = false;
       await ref.read(playBackModel)?.playbackStarted(currentPosition ?? Duration.zero, ref);
+      final startItem = ref.read(playBackModel)?.item;
+      if (startItem != null) {
+        unawaited(ref.read(traktProvider.notifier).scrobbleItem(
+              item: startItem,
+              action: TraktScrobbleAction.start,
+              progress: 0,
+              nowSeconds: DateTime.now().millisecondsSinceEpoch ~/ 1000,
+            ));
+      }
     }
     if (playBackItem == null) return;
 
@@ -457,6 +467,15 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
     await Future.delayed(const Duration(seconds: 1));
 
     await playbackModel.playbackStopped(position ?? Duration.zero, totalDuration, ref);
+    final stopProgress = (totalDuration != null && totalDuration.inMilliseconds > 0)
+        ? ((position ?? Duration.zero).inMilliseconds / totalDuration.inMilliseconds * 100).clamp(0, 100).toDouble()
+        : 0.0;
+    unawaited(ref.read(traktProvider.notifier).scrobbleItem(
+          item: playbackModel.item,
+          action: TraktScrobbleAction.stop,
+          progress: stopProgress,
+          nowSeconds: DateTime.now().millisecondsSinceEpoch ~/ 1000,
+        ));
     ref.read(playBackModel.notifier).update((_) => null);
     ref.read(mediaPlaybackProvider.notifier).update((state) => state.copyWith(position: Duration.zero));
 
