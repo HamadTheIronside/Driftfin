@@ -92,6 +92,7 @@ final List<AutoRoute> detailsRoutes = [
   AutoRoute(page: LiveTvRoute.page, path: 'live-tv'),
   AutoRoute(page: SeerrSearchRoute.page, path: 'seerr-search'),
   AutoRoute(page: SeerrRequestsRoute.page, path: 'seerr-requests'),
+  AutoRoute(page: CalendarRoute.page, path: 'calendar'),
   AutoRoute(page: SeerrDetailsRoute.page, path: 'seerr/:mediaType/:tmdbId'),
 ];
 

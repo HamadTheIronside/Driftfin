@@ -156,15 +156,19 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                   ),
                 ),
               },
-              if (AdaptiveLayout.of(context).isDesktop)
-                const SliverToBoxAdapter(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      PosterSizeWidget(),
-                    ],
-                  ),
+              SliverToBoxAdapter(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      tooltip: context.localized.calendarTitle,
+                      icon: const Icon(Icons.calendar_month_outlined),
+                      onPressed: () => context.router.push(const CalendarRoute()),
+                    ),
+                    if (AdaptiveLayout.of(context).isDesktop) const PosterSizeWidget(),
+                  ],
                 ),
+              ),
               ...[
                 if (tvChannels.isNotEmpty)
                   PosterRow(

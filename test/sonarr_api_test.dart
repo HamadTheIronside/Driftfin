@@ -159,6 +159,48 @@ void main() {
       );
     });
 
+    test('calendar parses entries and sends date range params', () async {
+      late http.Request captured;
+      final client = MockClient((req) async {
+        captured = req;
+        return http.Response(
+          jsonEncode([
+            {
+              'seasonNumber': 1,
+              'episodeNumber': 1,
+              'title': 'Pilot',
+              'airDateUtc': '2008-01-21T02:00:00Z',
+              'hasFile': false,
+              'series': {'title': 'Breaking Bad', 'tvdbId': 81189},
+            },
+            {
+              'seasonNumber': 2,
+              'episodeNumber': 3,
+              'title': 'No air date',
+              'series': {'title': 'X'},
+            },
+          ]),
+          200,
+        );
+      });
+      final items = await api(client).calendar(
+        start: DateTime.utc(2008, 1, 1),
+        end: DateTime.utc(2008, 2, 1),
+      );
+      // The entry with no airDateUtc is dropped.
+      expect(items.length, 1);
+      expect(items.first.seriesTitle, 'Breaking Bad');
+      expect(items.first.seriesTvdbId, 81189);
+      expect(items.first.seasonNumber, 1);
+      expect(items.first.episodeNumber, 1);
+      expect(items.first.airDateUtc, isNotNull);
+      expect(captured.url.path, '/api/v3/calendar');
+      expect(captured.url.queryParameters['includeSeries'], 'true');
+      expect(captured.url.queryParameters['unmonitored'], 'true');
+      expect(captured.url.queryParameters.containsKey('start'), isTrue);
+      expect(captured.url.queryParameters.containsKey('end'), isTrue);
+    });
+
     test('requestEpisodeByTvdb addIfMissing: looks up, adds series, then grabs episode', () async {
       final calls = <String>[];
       Map<String, dynamic>? postedSeries;

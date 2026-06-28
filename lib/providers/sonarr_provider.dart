@@ -19,6 +19,41 @@ enum SonarrRequestResult {
 /// trailing slashes so '/api/v3/...' joins cleanly.
 String normalizeSonarrUrl(String value) => value.trim().replaceFirst(RegExp(r'/+$'), '');
 
+/// One episode from the Sonarr calendar.
+class SonarrCalendarItem {
+  final String seriesTitle;
+  final int? seriesTvdbId;
+  final int seasonNumber;
+  final int episodeNumber;
+  final String episodeTitle;
+  final DateTime? airDateUtc;
+  final bool hasFile;
+
+  const SonarrCalendarItem({
+    required this.seriesTitle,
+    required this.seriesTvdbId,
+    required this.seasonNumber,
+    required this.episodeNumber,
+    required this.episodeTitle,
+    required this.airDateUtc,
+    required this.hasFile,
+  });
+
+  factory SonarrCalendarItem.fromJson(Map<String, dynamic> json) {
+    final series = json['series'] as Map<String, dynamic>?;
+    final rawAir = json['airDateUtc'] as String?;
+    return SonarrCalendarItem(
+      seriesTitle: series?['title'] as String? ?? '',
+      seriesTvdbId: (series?['tvdbId'] as num?)?.toInt(),
+      seasonNumber: (json['seasonNumber'] as num?)?.toInt() ?? 0,
+      episodeNumber: (json['episodeNumber'] as num?)?.toInt() ?? 0,
+      episodeTitle: json['title'] as String? ?? '',
+      airDateUtc: rawAir == null ? null : DateTime.tryParse(rawAir),
+      hasFile: json['hasFile'] as bool? ?? false,
+    );
+  }
+}
+
 /// Thin, dependency-free client for Sonarr's v3 API. Injectable [http.Client]
 /// makes it unit-testable. Only the calls needed to monitor + search a single
 /// episode are implemented.
@@ -58,6 +93,25 @@ class SonarrApi {
       body: jsonEncode({'episodeIds': episodeIds, 'monitored': true}),
     );
     return response.statusCode >= 200 && response.statusCode < 300;
+  }
+
+  /// Fetches the Sonarr calendar (aired/upcoming episodes) within a date range.
+  Future<List<SonarrCalendarItem>> calendar({required DateTime start, required DateTime end}) async {
+    final response = await _client.get(
+      _uri('calendar', {
+        'start': start.toUtc().toIso8601String(),
+        'end': end.toUtc().toIso8601String(),
+        'includeSeries': 'true',
+        'unmonitored': 'true',
+      }),
+      headers: _headers,
+    );
+    if (response.statusCode != 200) return const [];
+    final list = jsonDecode(response.body) as List<dynamic>;
+    return list
+        .map((entry) => SonarrCalendarItem.fromJson(entry as Map<String, dynamic>))
+        .where((item) => item.airDateUtc != null)
+        .toList();
   }
 
   Future<bool> searchEpisodes(List<int> episodeIds) async {
@@ -222,6 +276,12 @@ class SonarrNotifier extends StateNotifier<SonarrSettings> {
   void setApiKey(String value) {
     state = state.copyWith(apiKey: value.trim());
     _persist();
+  }
+
+  /// Fetches the Sonarr calendar for [start]..[end]; empty if not configured.
+  Future<List<SonarrCalendarItem>> calendar({required DateTime start, required DateTime end}) async {
+    if (!state.isConfigured) return const [];
+    return SonarrApi(baseUrl: state.baseUrl, apiKey: state.apiKey, client: _client).calendar(start: start, end: end);
   }
 
   /// Requests a single episode of a show by its TVDB id (from Seerr discovery),

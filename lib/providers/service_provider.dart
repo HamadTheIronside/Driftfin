@@ -783,6 +783,16 @@ class JellyService {
     }
   }
 
+  /// Upcoming (not-yet-aired) episodes for shows in the user's libraries.
+  Future<Response<BaseItemDtoQueryResult>> showsUpcoming({int? limit, List<ItemFields>? fields}) {
+    return api.showsUpcomingGet(
+      userId: account?.id,
+      limit: limit,
+      fields: fields,
+      enableImageTypes: [ImageType.primary, ImageType.backdrop, ImageType.thumb],
+    );
+  }
+
   Future<Response<BaseItemDtoQueryResult>> usersUserIdItemsGet({
     String? parentId,
     List<ItemSortBy>? sortBy,
