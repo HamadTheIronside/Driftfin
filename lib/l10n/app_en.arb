@@ -48,6 +48,34 @@
   "@sonarrApiKeyTitle": {},
   "sonarrSaved": "Sonarr settings saved",
   "@sonarrSaved": {},
+  "traktTitle": "Trakt",
+  "@traktTitle": {},
+  "traktDesc": "Scrobble what you watch to Trakt. Bring your own Trakt API app (client id + secret).",
+  "@traktDesc": {},
+  "traktClientId": "Trakt client ID",
+  "@traktClientId": {},
+  "traktClientSecret": "Trakt client secret",
+  "@traktClientSecret": {},
+  "traktConnect": "Connect to Trakt",
+  "@traktConnect": {},
+  "traktDisconnect": "Disconnect from Trakt",
+  "@traktDisconnect": {},
+  "traktConnected": "Connected",
+  "@traktConnected": {},
+  "traktNotConnected": "Not connected",
+  "@traktNotConnected": {},
+  "traktActivateInstructions": "On another device, open {url} and enter this code:",
+  "@traktActivateInstructions": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "traktConnectedSuccess": "Connected to Trakt",
+  "@traktConnectedSuccess": {},
+  "traktConnectFailed": "Trakt connection failed or timed out",
+  "@traktConnectFailed": {},
   "addToHome": "Add to homepage",
   "@addToHome": {},
   "removeFromHome": "Remove from homepage",
