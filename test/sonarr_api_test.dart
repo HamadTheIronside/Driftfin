@@ -159,6 +159,70 @@ void main() {
       );
     });
 
+    test('requestEpisodeByTvdb addIfMissing: looks up, adds series, then grabs episode', () async {
+      final calls = <String>[];
+      Map<String, dynamic>? postedSeries;
+      final client = MockClient((req) async {
+        calls.add('${req.method} ${req.url.path}');
+        switch (req.url.path) {
+          case '/api/v3/series':
+            if (req.method == 'GET') return http.Response(jsonEncode([]), 200); // not present
+            postedSeries = jsonDecode(req.body) as Map<String, dynamic>; // add
+            return http.Response(jsonEncode({'id': 5}), 201);
+          case '/api/v3/series/lookup':
+            return http.Response(jsonEncode([
+              {'tvdbId': 78874, 'title': 'Firefly', 'titleSlug': 'firefly', 'seasons': []}
+            ]), 200);
+          case '/api/v3/rootfolder':
+            return http.Response(jsonEncode([
+              {'path': '/tv', 'accessible': true}
+            ]), 200);
+          case '/api/v3/qualityprofile':
+            return http.Response(jsonEncode([
+              {'id': 1, 'name': 'Any'}
+            ]), 200);
+          case '/api/v3/episode':
+            return http.Response(jsonEncode([
+              {'id': 50, 'seasonNumber': 1, 'episodeNumber': 1}
+            ]), 200);
+          case '/api/v3/episode/monitor':
+            return http.Response('', 202);
+          case '/api/v3/command':
+            return http.Response('', 201);
+        }
+        return http.Response('not found', 404);
+      });
+
+      final result = await api(client).requestEpisodeByTvdb(tvdbId: 78874, season: 1, episode: 1, addIfMissing: true);
+      expect(result, SonarrRequestResult.success);
+      // The series was added unmonitored without a full-series search.
+      expect(postedSeries?['rootFolderPath'], '/tv');
+      expect(postedSeries?['qualityProfileId'], 1);
+      expect(postedSeries?['addOptions']?['monitor'], 'none');
+      expect(postedSeries?['addOptions']?['searchForMissingEpisodes'], false);
+      expect(calls.contains('POST /api/v3/series'), isTrue);
+    });
+
+    test('requestEpisodeByTvdb addIfMissing -> seriesNotFound when no root folder', () async {
+      final client = MockClient((req) async {
+        return switch (req.url.path) {
+          '/api/v3/series' => http.Response(jsonEncode([]), 200),
+          '/api/v3/series/lookup' => http.Response(jsonEncode([
+              {'tvdbId': 78874, 'title': 'Firefly'}
+            ]), 200),
+          '/api/v3/rootfolder' => http.Response(jsonEncode([]), 200), // none configured
+          '/api/v3/qualityprofile' => http.Response(jsonEncode([
+              {'id': 1}
+            ]), 200),
+          _ => http.Response('not found', 404),
+        };
+      });
+      expect(
+        await api(client).requestEpisodeByTvdb(tvdbId: 78874, season: 1, episode: 1, addIfMissing: true),
+        SonarrRequestResult.seriesNotFound,
+      );
+    });
+
     test('requestEpisodeByTvdb -> failed when the search command errors', () async {
       final client = MockClient((req) async {
         return switch (req.url.path) {

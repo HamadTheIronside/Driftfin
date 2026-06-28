@@ -4,9 +4,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:driftfin/models/items/episode_model.dart';
-import 'package:driftfin/models/items/series_model.dart';
-import 'package:driftfin/providers/api_provider.dart';
 import 'package:driftfin/providers/shared_provider.dart';
 
 /// Outcome of a direct-Sonarr episode request.
@@ -72,17 +69,81 @@ class SonarrApi {
     return response.statusCode >= 200 && response.statusCode < 300;
   }
 
-  /// Finds the show by TVDB id, then monitors + searches the single episode.
+  /// Looks up a show by TVDB id (Sonarr's add payload).
+  Future<Map<String, dynamic>?> lookupByTvdb(int tvdbId) async {
+    final response = await _client.get(_uri('series/lookup', {'term': 'tvdb:$tvdbId'}), headers: _headers);
+    if (response.statusCode != 200) return null;
+    final list = jsonDecode(response.body) as List<dynamic>;
+    final match = list.firstWhereOrNull((s) => s['tvdbId'] == tvdbId) ?? (list.isEmpty ? null : list.first);
+    return match == null ? null : Map<String, dynamic>.from(match as Map);
+  }
+
+  Future<String?> firstRootFolderPath() async {
+    final response = await _client.get(_uri('rootfolder'), headers: _headers);
+    if (response.statusCode != 200) return null;
+    final list = jsonDecode(response.body) as List<dynamic>;
+    final folder = list.firstWhereOrNull((f) => f['accessible'] == true) ?? (list.isEmpty ? null : list.first);
+    return folder?['path'] as String?;
+  }
+
+  Future<int?> firstQualityProfileId() async {
+    final response = await _client.get(_uri('qualityprofile'), headers: _headers);
+    if (response.statusCode != 200) return null;
+    final list = jsonDecode(response.body) as List<dynamic>;
+    return list.isEmpty ? null : list.first['id'] as int?;
+  }
+
+  /// Adds the show to Sonarr (unmonitored, no full-series search) so a single
+  /// episode can then be monitored + grabbed. Returns the new series id.
+  Future<int?> addSeries(int tvdbId) async {
+    final lookup = await lookupByTvdb(tvdbId);
+    if (lookup == null) return null;
+    final rootFolderPath = await firstRootFolderPath();
+    final qualityProfileId = await firstQualityProfileId();
+    if (rootFolderPath == null || qualityProfileId == null) return null;
+
+    lookup['rootFolderPath'] = rootFolderPath;
+    lookup['qualityProfileId'] = qualityProfileId;
+    lookup['monitored'] = true;
+    lookup['seasonFolder'] = true;
+    lookup['addOptions'] = {
+      'monitor': 'none',
+      'searchForMissingEpisodes': false,
+      'searchForCutoffUnmetEpisodes': false,
+    };
+
+    final response = await _client.post(_uri('series'), headers: _headers, body: jsonEncode(lookup));
+    if (response.statusCode < 200 || response.statusCode >= 300) return null;
+    return (jsonDecode(response.body) as Map<String, dynamic>)['id'] as int?;
+  }
+
+  /// Finds the show by TVDB id (adding it to Sonarr first when [addIfMissing]),
+  /// then monitors + searches the single episode.
   Future<SonarrRequestResult> requestEpisodeByTvdb({
     required int tvdbId,
     required int season,
     required int episode,
+    bool addIfMissing = false,
   }) async {
     try {
-      final seriesId = await findSeriesIdByTvdb(tvdbId);
-      if (seriesId == null) return SonarrRequestResult.seriesNotFound;
+      var seriesId = await findSeriesIdByTvdb(tvdbId);
+      var justAdded = false;
+      if (seriesId == null) {
+        if (!addIfMissing) return SonarrRequestResult.seriesNotFound;
+        seriesId = await addSeries(tvdbId);
+        if (seriesId == null) return SonarrRequestResult.seriesNotFound;
+        justAdded = true;
+      }
 
-      final episodeId = await findEpisodeId(seriesId, season, episode);
+      var episodeId = await findEpisodeId(seriesId, season, episode);
+      // A freshly-added series populates its episodes a moment after the add,
+      // so retry briefly before giving up.
+      if (episodeId == null && justAdded) {
+        for (var attempt = 0; attempt < 6 && episodeId == null; attempt++) {
+          await Future<void>.delayed(const Duration(milliseconds: 800));
+          episodeId = await findEpisodeId(seriesId, season, episode);
+        }
+      }
       if (episodeId == null) return SonarrRequestResult.episodeNotFound;
 
       await monitorEpisodes([episodeId]);
@@ -163,26 +224,16 @@ class SonarrNotifier extends StateNotifier<SonarrSettings> {
     _persist();
   }
 
-  /// Resolves the show's TVDB id from the Jellyfin episode, then delegates to
-  /// [SonarrApi] to monitor + search that single episode.
-  Future<SonarrRequestResult> requestEpisode(EpisodeModel episode) async {
+  /// Requests a single episode of a show by its TVDB id (from Seerr discovery),
+  /// adding the series to Sonarr first if it isn't there yet.
+  Future<SonarrRequestResult> requestEpisodeByTvdb({
+    required int tvdbId,
+    required int season,
+    required int episode,
+  }) async {
     if (!state.isConfigured) return SonarrRequestResult.notConfigured;
-    final seriesId = episode.parentId;
-    if (seriesId == null) return SonarrRequestResult.seriesNotFound;
-
-    try {
-      final seriesItem = await ref.read(jellyApiProvider).usersUserIdItemsItemIdGet(itemId: seriesId);
-      final series = seriesItem.body;
-      final providerIds = series is SeriesModel ? series.providerIds : null;
-      final rawTvdb = providerIds?['Tvdb'];
-      final tvdbId = rawTvdb is int ? rawTvdb : int.tryParse(rawTvdb?.toString() ?? '');
-      if (tvdbId == null) return SonarrRequestResult.seriesNotFound;
-
-      return SonarrApi(baseUrl: state.baseUrl, apiKey: state.apiKey, client: _client)
-          .requestEpisodeByTvdb(tvdbId: tvdbId, season: episode.season, episode: episode.episode);
-    } catch (_) {
-      return SonarrRequestResult.failed;
-    }
+    return SonarrApi(baseUrl: state.baseUrl, apiKey: state.apiKey, client: _client)
+        .requestEpisodeByTvdb(tvdbId: tvdbId, season: season, episode: episode, addIfMissing: true);
   }
 
   @override

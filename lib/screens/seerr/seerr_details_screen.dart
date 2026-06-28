@@ -27,6 +27,8 @@ import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 import 'package:driftfin/util/fladder_image.dart';
 import 'package:driftfin/util/focus_provider.dart';
 import 'package:driftfin/util/list_padding.dart';
+import 'package:driftfin/providers/sonarr_provider.dart';
+import 'package:driftfin/screens/shared/fladder_notification_overlay.dart';
 import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/util/refresh_state.dart';
 import 'package:driftfin/util/widget_extensions.dart';
@@ -458,6 +460,7 @@ class _SeerrSeasonsSection extends StatelessWidget {
             episodes: episodes,
             onToggle: () => notifier.toggleSeasonExpanded(seasonNumber),
             poster: state.poster,
+            tvdbId: state.externalIds?.tvdbId,
           );
         }),
       ],
@@ -473,6 +476,7 @@ class _SeasonCard extends StatelessWidget {
   final List<SeerrEpisode> episodes;
   final VoidCallback onToggle;
   final SeerrDashboardPosterModel? poster;
+  final int? tvdbId;
 
   const _SeasonCard({
     required this.season,
@@ -482,6 +486,7 @@ class _SeasonCard extends StatelessWidget {
     required this.episodes,
     required this.onToggle,
     this.poster,
+    this.tvdbId,
   });
 
   @override
@@ -568,7 +573,12 @@ class _SeasonCard extends StatelessWidget {
             child: isExpanded
                 ? Column(
                     children: episodes.map((episode) {
-                      return _EpisodeCard(episode: episode, poster: poster, seasonNumber: seasonNumber);
+                      return _EpisodeCard(
+                        episode: episode,
+                        poster: poster,
+                        seasonNumber: seasonNumber,
+                        tvdbId: tvdbId,
+                      );
                     }).toList(),
                   )
                 : const SizedBox.shrink(),
@@ -579,12 +589,13 @@ class _SeasonCard extends StatelessWidget {
   }
 }
 
-class _EpisodeCard extends StatelessWidget {
+class _EpisodeCard extends ConsumerWidget {
   final SeerrEpisode episode;
   final SeerrDashboardPosterModel? poster;
   final int seasonNumber;
+  final int? tvdbId;
 
-  const _EpisodeCard({required this.episode, this.poster, required this.seasonNumber});
+  const _EpisodeCard({required this.episode, this.poster, required this.seasonNumber, this.tvdbId});
 
   /// The active download for this specific episode, if Jellyseerr reports one.
   SeerrDownloadStatus? get _download {
@@ -598,7 +609,7 @@ class _EpisodeCard extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final posterUrl = episode.stillUrl;
     final posterImage = posterUrl == null
         ? null
@@ -655,6 +666,30 @@ class _EpisodeCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
+                      if (tvdbId != null &&
+                          _download == null &&
+                          ref.watch(sonarrProvider.select((value) => value.isConfigured)))
+                        IconButton(
+                          visualDensity: VisualDensity.compact,
+                          tooltip: context.localized.requestEpisodeSonarr,
+                          icon: const Icon(Icons.download_outlined, size: 20),
+                          onPressed: () async {
+                            final result = await ref.read(sonarrProvider.notifier).requestEpisodeByTvdb(
+                                  tvdbId: tvdbId!,
+                                  season: seasonNumber,
+                                  episode: episode.episodeNumber ?? 0,
+                                );
+                            if (context.mounted) {
+                              FladderSnack.show(switch (result) {
+                                SonarrRequestResult.success => context.localized.sonarrEpisodeRequested,
+                                SonarrRequestResult.seriesNotFound => context.localized.sonarrSeriesNotFound,
+                                SonarrRequestResult.episodeNotFound => context.localized.sonarrEpisodeNotFound,
+                                SonarrRequestResult.notConfigured => context.localized.sonarrNotConfigured,
+                                SonarrRequestResult.failed => context.localized.sonarrRequestFailed,
+                              });
+                            }
+                          },
+                        ),
                     ],
                   ),
                   Builder(builder: (context) {

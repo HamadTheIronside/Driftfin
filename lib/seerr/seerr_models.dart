@@ -980,12 +980,14 @@ class SeerrMediaInfoSeason {
 @JsonSerializable()
 class SeerrExternalIds {
   final String? imdbId;
+  final int? tvdbId;
   final String? facebookId;
   final String? instagramId;
   final String? twitterId;
 
   SeerrExternalIds({
     this.imdbId,
+    this.tvdbId,
     this.facebookId,
     this.instagramId,
     this.twitterId,
