@@ -133,6 +133,7 @@ class PosterImage extends ConsumerWidget {
             poster: poster,
             padding: padding,
           ),
+          PosterMediaBadge(poster: poster),
         ],
         focusedOverlays: [
           if (AdaptiveLayout.inputDeviceOf(context) == InputDevice.pointer) ...[

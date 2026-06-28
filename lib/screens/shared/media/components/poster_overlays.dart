@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 import 'package:driftfin/models/item_base_model.dart';
@@ -7,6 +8,7 @@ import 'package:driftfin/models/items/photos_model.dart';
 import 'package:driftfin/models/items/watched_state.dart';
 import 'package:driftfin/util/humanize_duration.dart';
 import 'package:driftfin/util/localization_helper.dart';
+import 'package:driftfin/util/video_properties.dart';
 import 'package:driftfin/widgets/shared/status_card.dart';
 
 class SelectedPosterOverlay extends StatelessWidget {
@@ -265,6 +267,50 @@ class BottomOverlaysContainer extends StatelessWidget {
               padding: progressPadding,
             ),
         ],
+      ),
+    );
+  }
+}
+
+/// Compact quality badge (resolution + HDR/DV) shown bottom-left on a poster
+/// when stream data is available. Renders nothing otherwise (list responses
+/// often omit media streams).
+class PosterMediaBadge extends StatelessWidget {
+  final ItemBaseModel poster;
+  const PosterMediaBadge({required this.poster, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final video = poster.streamModel?.videoStreams.firstOrNull;
+    if (video == null) return const SizedBox.shrink();
+
+    final labels = <String>[];
+    final resolution = Resolution.fromVideoStream(video)?.value;
+    if (resolution != null && resolution.isNotEmpty) labels.add(resolution);
+    final profile = DisplayProfile.fromVideoStream(video);
+    if (profile != DisplayProfile.sdr) {
+      labels.add(profile.name.toLowerCase().contains('dolby') ? 'DV' : 'HDR');
+    }
+    if (labels.isEmpty) return const SizedBox.shrink();
+
+    return Align(
+      alignment: Alignment.bottomLeft,
+      child: Padding(
+        padding: const EdgeInsets.all(6),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+          decoration: BoxDecoration(
+            color: Colors.black.withValues(alpha: 0.6),
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: Text(
+            labels.join(' • '),
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
+          ),
+        ),
       ),
     );
   }
