@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
@@ -567,7 +568,7 @@ class _SeasonCard extends StatelessWidget {
             child: isExpanded
                 ? Column(
                     children: episodes.map((episode) {
-                      return _EpisodeCard(episode: episode);
+                      return _EpisodeCard(episode: episode, poster: poster, seasonNumber: seasonNumber);
                     }).toList(),
                   )
                 : const SizedBox.shrink(),
@@ -580,8 +581,21 @@ class _SeasonCard extends StatelessWidget {
 
 class _EpisodeCard extends StatelessWidget {
   final SeerrEpisode episode;
+  final SeerrDashboardPosterModel? poster;
+  final int seasonNumber;
 
-  const _EpisodeCard({required this.episode});
+  const _EpisodeCard({required this.episode, this.poster, required this.seasonNumber});
+
+  /// The active download for this specific episode, if Jellyseerr reports one.
+  SeerrDownloadStatus? get _download {
+    final downloads = <SeerrDownloadStatus>[
+      ...?poster?.mediaInfo?.downloadStatus,
+      ...?poster?.mediaInfo?.downloadStatus4k,
+    ];
+    return downloads.firstWhereOrNull(
+      (d) => d.episode?.seasonNumber == seasonNumber && d.episode?.episodeNumber == episode.episodeNumber,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -643,6 +657,45 @@ class _EpisodeCard extends StatelessWidget {
                       ),
                     ],
                   ),
+                  Builder(builder: (context) {
+                    final download = _download;
+                    if (download == null) return const SizedBox.shrink();
+                    final size = download.size ?? 0;
+                    final progress = size > 0 ? (size - (download.sizeLeft ?? 0)) / size : null;
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        spacing: 6,
+                        children: [
+                          SizedBox(
+                            width: 14,
+                            height: 14,
+                            child: CircularProgressIndicator(
+                              value: progress,
+                              strokeWidth: 2,
+                              backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer.withAlpha(50),
+                              valueColor:
+                                  AlwaysStoppedAnimation(Theme.of(context).colorScheme.onPrimaryContainer),
+                            ),
+                          ),
+                          Text(
+                            progress != null
+                                ? '${context.localized.processing} ${(progress * 100).round()}%'
+                                : context.localized.processing,
+                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
                   if (episode.overview != null && episode.overview!.isNotEmpty)
                     Text(
                       episode.overview!,
