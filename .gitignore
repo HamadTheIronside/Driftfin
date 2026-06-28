@@ -79,3 +79,6 @@ Output
 # Generated localizations
 lib/l10n/generated
 android/build/reports/problems/
+
+# graphify knowledge graph output
+graphify-out/

@@ -389,6 +389,15 @@ class _SideNavigationRail extends ConsumerState<SideNavigationRail> {
                             ),
                           ),
                           NavigationButton(
+                            label: context.localized.calendarTitle,
+                            selected: widget.currentLocation.contains(const CalendarRoute().routeName),
+                            selectedIcon: const Icon(IconsaxPlusBold.calendar_1),
+                            icon: const Icon(IconsaxPlusLinear.calendar_1),
+                            horizontal: true,
+                            expanded: shouldExpand,
+                            onPressed: () => context.router.push(const CalendarRoute()),
+                          ),
+                          NavigationButton(
                             label: context.localized.settings,
                             selected: widget.currentLocation.contains(const SettingsRoute().routeName),
                             selectedIcon: const Icon(IconsaxPlusBold.setting_3),

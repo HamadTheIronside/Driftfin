@@ -92,8 +92,10 @@ final calendarProvider = FutureProvider.autoDispose<Map<DateTime, List<CalendarE
           end: now.add(const Duration(days: 35)),
         );
     for (final item in sonarr) {
+      final airDateUtc = item.airDateUtc;
+      if (airDateUtc == null) continue;
       final entry = CalendarEntry(
-        airDate: item.airDateUtc!.toLocal(),
+        airDate: airDateUtc.toLocal(),
         seriesTitle: item.seriesTitle,
         season: item.seasonNumber,
         episode: item.episodeNumber,
@@ -113,8 +115,10 @@ final calendarProvider = FutureProvider.autoDispose<Map<DateTime, List<CalendarE
           end: now.add(const Duration(days: 35)),
         );
     for (final movie in movies) {
+      final releaseDate = movie.releaseDate;
+      if (releaseDate == null) continue;
       final entry = CalendarEntry(
-        airDate: movie.releaseDate!.toLocal(),
+        airDate: releaseDate.toLocal(),
         seriesTitle: movie.title,
         season: null,
         episode: null,

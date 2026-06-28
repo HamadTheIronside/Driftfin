@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import 'package:driftfin/providers/calendar_provider.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 import 'package:driftfin/util/fladder_image.dart';
 import 'package:driftfin/util/localization_helper.dart';
 
@@ -57,7 +58,9 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
   Widget build(BuildContext context) {
     final calendar = ref.watch(calendarProvider);
 
-    return Scaffold(
+    return Padding(
+      padding: EdgeInsetsDirectional.only(start: AdaptiveLayout.of(context).sideBarWidth),
+      child: Scaffold(
       appBar: AppBar(
         title: Text(context.localized.calendarTitle),
         actions: [
@@ -94,30 +97,52 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
           },
         ),
       ),
+    ),
     );
   }
 
-  Widget _empty(BuildContext context) =>
-      ListView(children: [const SizedBox(height: 120), Center(child: Text(context.localized.calendarEmpty))]);
+  /// Centres and width-constrains content so the page doesn't sprawl on wide
+  /// desktop windows.
+  Widget _constrained({required Widget child}) => Align(
+        alignment: Alignment.topCenter,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 820),
+          child: child,
+        ),
+      );
+
+  Widget _empty(BuildContext context) => ListView(
+        children: [
+          const SizedBox(height: 120),
+          Icon(Icons.event_busy_outlined,
+              size: 48, color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.5)),
+          const SizedBox(height: 12),
+          Center(child: Text(context.localized.calendarEmpty)),
+        ],
+      );
 
   Widget _buildAgenda(BuildContext context, Map<DateTime, List<CalendarEntry>> byDay) {
     final days = byDay.keys.toList()..sort();
-    return ListView.builder(
-      itemCount: days.length,
-      itemBuilder: (context, index) {
-        final day = days[index];
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
-              child: Text(_dayLabel(context, day),
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+    return _constrained(
+      child: ListView.builder(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        itemCount: days.length,
+        itemBuilder: (context, index) {
+          final day = days[index];
+          final entries = byDay[day]!;
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _DayHeader(label: _dayLabel(context, day), date: day, count: entries.length),
+                _EntryGroup(entries: entries),
+                const SizedBox(height: 8),
+              ],
             ),
-            ...byDay[day]!.map((entry) => _CalendarTile(entry: entry)),
-          ],
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
@@ -130,94 +155,204 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
     final today = DateUtils.dateOnly(DateTime.now());
     final selectedEntries = byDay[_selectedDay] ?? const [];
 
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          child: Row(
-            children: [
-              IconButton(
-                icon: const Icon(Icons.chevron_left),
-                onPressed: () => setState(() => _focusedMonth = DateTime(_focusedMonth.year, _focusedMonth.month - 1)),
-              ),
-              Expanded(
-                child: Text(DateFormat('MMMM yyyy').format(_focusedMonth),
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
-              ),
-              IconButton(
-                icon: const Icon(Icons.chevron_right),
-                onPressed: () => setState(() => _focusedMonth = DateTime(_focusedMonth.year, _focusedMonth.month + 1)),
-              ),
-            ],
-          ),
-        ),
-        Row(
-          children: [
-            for (final d in const ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])
-              Expanded(
-                child: Center(
-                  child: Text(d, style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
-                ),
-              ),
-          ],
-        ),
-        const SizedBox(height: 4),
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 6),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 7),
-          itemCount: cellCount,
-          itemBuilder: (context, index) {
-            if (index < leadingBlanks) return const SizedBox.shrink();
-            final dayNum = index - leadingBlanks + 1;
-            final day = DateTime(_focusedMonth.year, _focusedMonth.month, dayNum);
-            final count = byDay[day]?.length ?? 0;
-            final isSelected = DateUtils.isSameDay(day, _selectedDay);
-            final isToday = DateUtils.isSameDay(day, today);
-            return InkWell(
-              onTap: () => setState(() => _selectedDay = day),
-              borderRadius: BorderRadius.circular(8),
-              child: Container(
-                margin: const EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                  color: isSelected ? theme.colorScheme.primaryContainer : null,
-                  borderRadius: BorderRadius.circular(8),
-                  border: isToday ? Border.all(color: theme.colorScheme.primary, width: 1.5) : null,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('$dayNum', style: theme.textTheme.bodyMedium),
-                    if (count > 0)
-                      Container(
-                        margin: const EdgeInsets.only(top: 2),
-                        width: 6,
-                        height: 6,
-                        decoration: BoxDecoration(color: theme.colorScheme.primary, shape: BoxShape.circle),
+    return _constrained(
+      child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        children: [
+          Card(
+            elevation: 0,
+            color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+            margin: EdgeInsets.zero,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 12),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.chevron_left),
+                        onPressed: () =>
+                            setState(() => _focusedMonth = DateTime(_focusedMonth.year, _focusedMonth.month - 1)),
                       ),
-                  ],
-                ),
+                      Expanded(
+                        child: Text(DateFormat('MMMM yyyy').format(_focusedMonth),
+                            textAlign: TextAlign.center,
+                            style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.chevron_right),
+                        onPressed: () =>
+                            setState(() => _focusedMonth = DateTime(_focusedMonth.year, _focusedMonth.month + 1)),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      for (final d in const ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])
+                        Expanded(
+                          child: Center(
+                            child: Text(d,
+                                style: theme.textTheme.labelMedium
+                                    ?.copyWith(color: theme.colorScheme.onSurfaceVariant, fontWeight: FontWeight.w600)),
+                          ),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 7, childAspectRatio: 1, mainAxisSpacing: 2, crossAxisSpacing: 2),
+                    itemCount: cellCount,
+                    itemBuilder: (context, index) {
+                      if (index < leadingBlanks) return const SizedBox.shrink();
+                      final dayNum = index - leadingBlanks + 1;
+                      final day = DateTime(_focusedMonth.year, _focusedMonth.month, dayNum);
+                      final count = byDay[day]?.length ?? 0;
+                      final isSelected = DateUtils.isSameDay(day, _selectedDay);
+                      final isToday = DateUtils.isSameDay(day, today);
+                      final dayColor = isSelected
+                          ? theme.colorScheme.onPrimary
+                          : isToday
+                              ? theme.colorScheme.primary
+                              : theme.colorScheme.onSurface;
+                      return InkWell(
+                        onTap: () => setState(() => _selectedDay = day),
+                        borderRadius: BorderRadius.circular(10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: isSelected ? theme.colorScheme.primary : null,
+                            borderRadius: BorderRadius.circular(10),
+                            border: isToday && !isSelected
+                                ? Border.all(color: theme.colorScheme.primary, width: 1.5)
+                                : null,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('$dayNum',
+                                  style: theme.textTheme.bodyMedium?.copyWith(
+                                      color: dayColor,
+                                      fontWeight: isToday || isSelected ? FontWeight.bold : FontWeight.normal)),
+                              const SizedBox(height: 3),
+                              if (count > 0)
+                                Container(
+                                  constraints: const BoxConstraints(minWidth: 16),
+                                  height: 15,
+                                  alignment: Alignment.center,
+                                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                                  decoration: BoxDecoration(
+                                    color: isSelected
+                                        ? theme.colorScheme.onPrimary.withValues(alpha: 0.25)
+                                        : theme.colorScheme.primary.withValues(alpha: 0.18),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Text('$count',
+                                      style: theme.textTheme.labelSmall?.copyWith(
+                                          color: isSelected ? theme.colorScheme.onPrimary : theme.colorScheme.primary,
+                                          fontWeight: FontWeight.w700,
+                                          height: 1)),
+                                )
+                              else
+                                const SizedBox(height: 15),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
-            );
-          },
-        ),
-        const Divider(height: 24),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
-          child: Text(_dayLabel(context, _selectedDay),
-              style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
-        ),
-        if (selectedEntries.isEmpty)
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Center(child: Text(context.localized.calendarEmpty)),
-          )
-        else
-          ...selectedEntries.map((entry) => _CalendarTile(entry: entry)),
-        const SizedBox(height: 24),
-      ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          _DayHeader(label: _dayLabel(context, _selectedDay), date: _selectedDay, count: selectedEntries.length),
+          if (selectedEntries.isEmpty)
+            Padding(
+              padding: const EdgeInsets.all(24),
+              child: Center(
+                  child: Text(context.localized.calendarEmpty,
+                      style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant))),
+            )
+          else
+            _EntryGroup(entries: selectedEntries),
+          const SizedBox(height: 24),
+        ],
+      ),
+    );
+  }
+}
+
+/// Day section header: a leading date badge plus the human label and item count.
+class _DayHeader extends StatelessWidget {
+  final String label;
+  final DateTime date;
+  final int count;
+  const _DayHeader({required this.label, required this.date, required this.count});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isToday = DateUtils.isSameDay(date, DateTime.now());
+    final badgeColor = isToday ? theme.colorScheme.primary : theme.colorScheme.surfaceContainerHighest;
+    final badgeFg = isToday ? theme.colorScheme.onPrimary : theme.colorScheme.onSurface;
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(4, 16, 4, 8),
+      child: Row(
+        children: [
+          Container(
+            width: 48,
+            padding: const EdgeInsets.symmetric(vertical: 6),
+            decoration: BoxDecoration(color: badgeColor, borderRadius: BorderRadius.circular(12)),
+            child: Column(
+              children: [
+                Text(DateFormat('EEE').format(date).toUpperCase(),
+                    style: theme.textTheme.labelSmall?.copyWith(color: badgeFg.withValues(alpha: 0.8), height: 1)),
+                Text('${date.day}',
+                    style: theme.textTheme.titleLarge?.copyWith(color: badgeFg, fontWeight: FontWeight.bold, height: 1.1)),
+              ],
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+          ),
+          if (count > 0)
+            Text('$count',
+                style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+        ],
+      ),
+    );
+  }
+}
+
+/// A rounded surface grouping a day's entries with dividers between them.
+class _EntryGroup extends StatelessWidget {
+  final List<CalendarEntry> entries;
+  const _EntryGroup({required this.entries});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Card(
+      elevation: 0,
+      margin: EdgeInsets.zero,
+      color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        children: [
+          for (var i = 0; i < entries.length; i++) ...[
+            if (i > 0) Divider(height: 1, indent: 100, color: theme.colorScheme.outlineVariant.withValues(alpha: 0.4)),
+            _CalendarTile(entry: entries[i]),
+          ],
+        ],
+      ),
     );
   }
 }
@@ -238,20 +373,23 @@ class _CalendarTile extends StatelessWidget {
     return InkWell(
       onTap: entry.item == null ? null : () => entry.item!.navigateTo(context),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         child: Row(
           spacing: 12,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(8),
               child: SizedBox(
-                width: 64,
-                height: 40,
+                width: 76,
+                height: 48,
                 child: FladderImage(
                   image: entry.image,
-                  placeHolder: Icon(
-                    entry.isMovie ? Icons.movie_outlined : Icons.live_tv_outlined,
-                    color: theme.colorScheme.onSurfaceVariant,
+                  placeHolder: Container(
+                    color: theme.colorScheme.surfaceContainerHighest,
+                    child: Icon(
+                      entry.isMovie ? Icons.movie_outlined : Icons.live_tv_outlined,
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
                   ),
                 ),
               ),

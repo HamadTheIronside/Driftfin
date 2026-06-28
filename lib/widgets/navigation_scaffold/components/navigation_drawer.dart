@@ -132,6 +132,16 @@ class NestedNavigationDrawer extends ConsumerWidget {
           }),
         },
         const Divider(indent: 28, endIndent: 28),
+        DrawerListButton(
+          label: context.localized.calendarTitle,
+          selected: currentLocation.contains(const CalendarRoute().routeName),
+          selectedIcon: const Icon(IconsaxPlusBold.calendar_1),
+          icon: const Icon(IconsaxPlusLinear.calendar_1),
+          onPressed: () {
+            context.router.push(const CalendarRoute());
+            Scaffold.of(context).closeDrawer();
+          },
+        ),
         if (isExpanded)
           Transform.translate(
             offset: const Offset(-8, 0),
