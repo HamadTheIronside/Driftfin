@@ -5,6 +5,7 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:intl/intl.dart';
 
 import 'package:driftfin/providers/config_sync_provider.dart';
+import 'package:driftfin/providers/external_player_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
 import 'package:driftfin/providers/sonarr_provider.dart';
@@ -230,6 +231,43 @@ List<Widget> buildClientSettingsAdvanced(BuildContext context, WidgetRef ref) {
             trailing: Icon(authed ? Icons.link_off : Icons.link),
           );
         }),
+      ],
+      if (externalPlayerSupported) ...[
+        SettingsListTile(
+          label: Text(context.localized.externalPlayerTitle),
+          subLabel: Text(context.localized.externalPlayerDesc),
+          onTap: () =>
+              ref.read(externalPlayerProvider.notifier).setEnabled(!ref.read(externalPlayerProvider).enabled),
+          trailing: Switch(
+            value: ref.watch(externalPlayerProvider.select((value) => value.enabled)),
+            onChanged: (value) => ref.read(externalPlayerProvider.notifier).setEnabled(value),
+          ),
+        ),
+        if (ref.watch(externalPlayerProvider.select((value) => value.enabled))) ...[
+          SettingsListTile(
+            label: Text(context.localized.externalPlayerPath),
+            subLabel: Text(ref.watch(externalPlayerProvider.select((value) => value.path)).isEmpty
+                ? '—'
+                : ref.watch(externalPlayerProvider.select((value) => value.path))),
+            onTap: () async {
+              final value = await _promptText(context,
+                  title: context.localized.externalPlayerPath, initial: ref.read(externalPlayerProvider).path);
+              if (value != null) ref.read(externalPlayerProvider.notifier).setPath(value);
+            },
+            trailing: const Icon(Icons.folder_open),
+          ),
+          SettingsListTile(
+            label: Text(context.localized.externalPlayerArgs),
+            subLabel: Text(ref.watch(externalPlayerProvider.select((value) => value.argsTemplate))),
+            onTap: () async {
+              final value = await _promptText(context,
+                  title: context.localized.externalPlayerArgs,
+                  initial: ref.read(externalPlayerProvider).argsTemplate);
+              if (value != null) ref.read(externalPlayerProvider.notifier).setArgsTemplate(value);
+            },
+            trailing: const Icon(Icons.tune),
+          ),
+        ],
       ],
     ],
   );

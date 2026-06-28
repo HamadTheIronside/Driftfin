@@ -17,6 +17,7 @@ import 'package:driftfin/models/items/movie_model.dart';
 import 'package:driftfin/models/items/photos_model.dart';
 import 'package:driftfin/models/items/series_model.dart';
 import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/providers/external_player_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
 import 'package:driftfin/providers/sync_provider.dart';
 import 'package:driftfin/providers/user_provider.dart';
@@ -90,6 +91,7 @@ extension ItemBaseModelsBooleans on List<ItemBaseModel> {
 
 enum ItemActions {
   play,
+  externalPlayer,
   addToQueue,
   instantMix,
   openShow,
@@ -188,6 +190,18 @@ extension ItemBaseModelExtensions on ItemBaseModel {
             action: () => play(context, ref),
             icon: const Icon(IconsaxPlusLinear.play),
             label: Text(playButtonLabel(context.localized)),
+          ),
+      if (!exclude.contains(ItemActions.externalPlayer))
+        if (playAble && externalPlayerSupported && ref.read(externalPlayerProvider).isConfigured)
+          ItemActionButton(
+            icon: const Icon(IconsaxPlusLinear.export_3),
+            label: Text(context.localized.playInExternalPlayer),
+            action: () async {
+              final launched = await ref.read(externalPlayerProvider.notifier).launch(this);
+              if (!launched && context.mounted) {
+                FladderSnack.show(context.localized.externalPlayerFailed);
+              }
+            },
           ),
       if (!exclude.contains(ItemActions.addToQueue))
         if (this is AudioModel || this is AlbumModel || this is ArtistModel)
