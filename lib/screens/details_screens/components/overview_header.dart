@@ -10,6 +10,7 @@ import 'package:driftfin/models/items/item_shared_models.dart';
 import 'package:driftfin/models/items/media_streams_model.dart';
 import 'package:driftfin/models/items/watched_state.dart';
 import 'package:driftfin/screens/details_screens/components/media_stream_information.dart';
+import 'package:driftfin/screens/shared/media/components/media_badges.dart';
 import 'package:driftfin/screens/shared/media/components/media_header.dart';
 import 'package:driftfin/screens/shared/media/components/small_detail_widgets.dart';
 import 'package:driftfin/theme.dart';
@@ -282,6 +283,7 @@ class OverviewHeader extends ConsumerWidget {
                   runTime: runTime,
                   communityRating: communityRating,
                 ),
+                if (mediaStreamHelper != null) MediaBadges(streams: mediaStreamHelper!.mediaStream),
                 if (genres.isNotEmpty)
                   Genres(
                     genres: genres.take(6).toList(),
