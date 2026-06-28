@@ -77,6 +77,11 @@ class SeerrRequestsNotifier extends StateNotifier<SeerrRequestsState> {
   final Ref ref;
   static const int _pageSize = 20;
 
+  // Incremented on every load() so a slow, stale response (e.g. from a filter
+  // the user already switched away from) can be discarded instead of clobbering
+  // the current results.
+  int _loadGeneration = 0;
+
   // Posters are expensive (one lookup per request), so cache them across pages
   // and reloads to avoid re-hitting the server.
   static final TimedCache<String, SeerrDashboardPosterModel> _posterCache =
@@ -105,9 +110,14 @@ class SeerrRequestsNotifier extends StateNotifier<SeerrRequestsState> {
   }
 
   Future<void> load() async {
+    final generation = ++_loadGeneration;
     state = state.copyWith(loading: true);
     final page = await _fetchPage(0);
-    if (!mounted) return;
+    if (!mounted || generation != _loadGeneration) return;
+    if (!page.ok) {
+      state = state.copyWith(loading: false);
+      return;
+    }
     state = state.copyWith(
       entries: page.entries,
       totalPages: page.totalPages,
@@ -118,9 +128,15 @@ class SeerrRequestsNotifier extends StateNotifier<SeerrRequestsState> {
 
   Future<void> loadMore() async {
     if (state.loadingMore || state.loading || !state.canLoadMore) return;
+    final generation = _loadGeneration;
     state = state.copyWith(loadingMore: true);
     final page = await _fetchPage(state.loadedPages);
-    if (!mounted) return;
+    if (!mounted || generation != _loadGeneration) return;
+    if (!page.ok) {
+      // Transient failure: keep loadedPages so we retry this same page next time.
+      state = state.copyWith(loadingMore: false);
+      return;
+    }
     state = state.copyWith(
       entries: [...state.entries, ...page.entries],
       totalPages: page.totalPages,
@@ -129,7 +145,7 @@ class SeerrRequestsNotifier extends StateNotifier<SeerrRequestsState> {
     );
   }
 
-  Future<({List<SeerrRequestEntry> entries, int totalPages})> _fetchPage(int page) async {
+  Future<({List<SeerrRequestEntry> entries, int totalPages, bool ok})> _fetchPage(int page) async {
     final api = ref.read(seerrApiProvider);
     try {
       final currentUserId = ref.read(seerrUserProvider)?.id;
@@ -144,9 +160,9 @@ class SeerrRequestsNotifier extends StateNotifier<SeerrRequestsState> {
       final results = response.body?.results ?? const <SeerrMediaRequest>[];
       final totalPages = response.body?.pageInfo?.pages ?? 1;
       final entries = await Future.wait(results.map((request) async => SeerrRequestEntry(request, await _poster(request))));
-      return (entries: entries, totalPages: totalPages);
+      return (entries: entries, totalPages: totalPages, ok: true);
     } catch (_) {
-      return (entries: const <SeerrRequestEntry>[], totalPages: state.totalPages);
+      return (entries: const <SeerrRequestEntry>[], totalPages: state.totalPages, ok: false);
     }
   }
 
