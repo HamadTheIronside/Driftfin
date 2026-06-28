@@ -118,7 +118,7 @@ class UpdateChecker {
         }
       }
 
-      bool isNewer = tag != null && _compareVersions(tag, currentVersion) > 0;
+      bool isNewer = tag != null && compareVersions(tag, currentVersion) > 0;
 
       return ReleaseInfo(
         version: tag ?? 'unknown',
@@ -136,15 +136,26 @@ class UpdateChecker {
     return !releases.first.isNewerThanCurrent;
   }
 
-  static int _compareVersions(String a, String b) {
-    final aParts = a.split('.').map(int.tryParse).toList();
-    final bParts = b.split('.').map(int.tryParse).toList();
+}
 
-    for (var i = 0; i < aParts.length || i < bParts.length; i++) {
-      final aVal = i < aParts.length ? (aParts[i] ?? 0) : 0;
-      final bVal = i < bParts.length ? (bParts[i] ?? 0) : 0;
-      if (aVal != bVal) return aVal.compareTo(bVal);
-    }
-    return 0;
+/// Compares dot-separated versions, tolerating pre-release suffixes by using
+/// the leading number of each segment (e.g. "5-nightly" -> 5,
+/// "0.10.5-nightly.20260628.2" -> [0,10,5,20260628,2]). Extra numeric segments
+/// count as newer, so nightly builds order after their base version. Returns
+/// >0 if [a] is newer than [b].
+int compareVersions(String a, String b) {
+  final aParts = a.split('.').map(_leadingInt).toList();
+  final bParts = b.split('.').map(_leadingInt).toList();
+
+  for (var i = 0; i < aParts.length || i < bParts.length; i++) {
+    final aVal = i < aParts.length ? aParts[i] : 0;
+    final bVal = i < bParts.length ? bParts[i] : 0;
+    if (aVal != bVal) return aVal.compareTo(bVal);
   }
+  return 0;
+}
+
+int _leadingInt(String segment) {
+  final match = RegExp(r'^\d+').firstMatch(segment.trim());
+  return match == null ? 0 : (int.tryParse(match.group(0)!) ?? 0);
 }

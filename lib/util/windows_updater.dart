@@ -85,9 +85,10 @@ class WindowsUpdater {
     }
   }
 
-  /// PowerShell helper: waits for the app to close, expands the zip over the
-  /// install directory and relaunches the executable. The portable zip's root
-  /// maps directly onto the install dir (driftfin.exe, data\, *.dll).
+  /// PowerShell helper: waits for the app to close, expands the zip and merges
+  /// it over the install directory with robocopy (Copy-Item -Recurse -Force does
+  /// not reliably merge an existing dir tree), then relaunches. Writes a log to
+  /// %TEMP%\driftfin_update.log for diagnosis.
   static const String _helperScript = r'''
 param(
   [int]$ProcessId,
@@ -96,23 +97,48 @@ param(
   [string]$ExePath
 )
 
-$ErrorActionPreference = 'Stop'
+$log = Join-Path $env:TEMP 'driftfin_update.log'
+function Log($m) { "$(Get-Date -Format o) $m" | Out-File -FilePath $log -Append -Encoding utf8 }
+Log "=== Update start. PID=$ProcessId Zip=$ZipPath Install=$InstallDir Exe=$ExePath"
 
-try {
-  Wait-Process -Id $ProcessId -Timeout 120 -ErrorAction SilentlyContinue
-} catch {}
-Start-Sleep -Seconds 1
+# Wait for the app to release its files; force-kill if it lingers.
+try { Wait-Process -Id $ProcessId -Timeout 60 -ErrorAction SilentlyContinue } catch {}
+if (Get-Process -Id $ProcessId -ErrorAction SilentlyContinue) {
+  Log "App still running; stopping PID $ProcessId"
+  try { Stop-Process -Id $ProcessId -Force -ErrorAction SilentlyContinue } catch {}
+}
+Start-Sleep -Seconds 2
 
 $extractDir = Join-Path $env:TEMP 'driftfin_update_extract'
-if (Test-Path $extractDir) { Remove-Item -Recurse -Force $extractDir }
+if (Test-Path $extractDir) { Remove-Item -Recurse -Force $extractDir -ErrorAction SilentlyContinue }
 
-Expand-Archive -Path $ZipPath -DestinationPath $extractDir -Force
-Copy-Item -Path (Join-Path $extractDir '*') -Destination $InstallDir -Recurse -Force
+try {
+  Expand-Archive -Path $ZipPath -DestinationPath $extractDir -Force
+} catch {
+  Log "Expand-Archive failed: $_"
+  exit 1
+}
 
-Start-Process -FilePath $ExePath
+# The zip may wrap everything in a single top folder; locate the real source.
+$exeName = Split-Path $ExePath -Leaf
+$source = $extractDir
+if (-not (Test-Path (Join-Path $extractDir $exeName))) {
+  $sub = Get-ChildItem -Path $extractDir -Directory -ErrorAction SilentlyContinue | Select-Object -First 1
+  if ($sub -and (Test-Path (Join-Path $sub.FullName $exeName))) { $source = $sub.FullName }
+}
+Log "Merging $source -> $InstallDir"
+
+# robocopy reliably merges/overwrites. Exit codes < 8 indicate success.
+robocopy $source $InstallDir /E /R:2 /W:1 /NFL /NDL /NJH /NJS | Out-Null
+$rc = $LASTEXITCODE
+Log "robocopy exit code: $rc"
+if ($rc -ge 8) { Log "robocopy failed; aborting"; exit 1 }
+
+Log "Relaunching $ExePath"
+Start-Process -FilePath $ExePath -WorkingDirectory $InstallDir
 
 Remove-Item -Recurse -Force $extractDir -ErrorAction SilentlyContinue
 Remove-Item -Force $ZipPath -ErrorAction SilentlyContinue
-Remove-Item -Force $MyInvocation.MyCommand.Path -ErrorAction SilentlyContinue
+Log "=== Update complete"
 ''';
 }
