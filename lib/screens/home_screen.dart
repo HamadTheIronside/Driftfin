@@ -8,6 +8,7 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:driftfin/models/settings/client_settings_model.dart';
 import 'package:driftfin/providers/dashboard_mode_provider.dart';
 import 'package:driftfin/providers/sync_provider.dart';
+import 'package:driftfin/providers/seerr_requests_provider.dart';
 import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/providers/window_title_provider.dart';
 import 'package:driftfin/routes/auto_router.gr.dart';
@@ -116,6 +117,7 @@ class HomeScreen extends ConsumerWidget {
     final seerrAuthenticated = ref.watch(
       userProvider.select((user) => user?.seerrCredentials?.isConfigured ?? false),
     );
+    final pendingRequests = seerrAuthenticated ? (ref.watch(pendingRequestsCountProvider).valueOrNull ?? 0) : 0;
     final destinations = HomeTabs.values
         .map((e) {
           switch (e) {
@@ -159,8 +161,12 @@ class HomeScreen extends ConsumerWidget {
               if (seerrAuthenticated) {
                 return DestinationModel(
                   label: context.localized.discover,
-                  icon: Icon(e.icon),
-                  selectedIcon: Icon(e.selectedIcon),
+                  icon: pendingRequests > 0
+                      ? Badge.count(count: pendingRequests, child: Icon(e.icon))
+                      : Icon(e.icon),
+                  selectedIcon: pendingRequests > 0
+                      ? Badge.count(count: pendingRequests, child: Icon(e.selectedIcon))
+                      : Icon(e.selectedIcon),
                   route: const SeerrRoute(),
                   floatingActionButton: AdaptiveFab(
                     context: context,

@@ -87,6 +87,7 @@ class _SeerrScreenState extends ConsumerState<SeerrScreen> {
                     label: context.localized.recentRequests,
                     posters: dashboardState.recentRequests,
                     contentPadding: padding,
+                    onLabelClick: () => context.router.push(const SeerrRequestsRoute()),
                     onRequestAddTap: (poster) => openRequest(context, poster),
                   ),
                 ),

@@ -91,6 +91,7 @@ final List<AutoRoute> detailsRoutes = [
   AutoRoute(page: LibrarySearchRoute.page, path: 'library'),
   AutoRoute(page: LiveTvRoute.page, path: 'live-tv'),
   AutoRoute(page: SeerrSearchRoute.page, path: 'seerr-search'),
+  AutoRoute(page: SeerrRequestsRoute.page, path: 'seerr-requests'),
   AutoRoute(page: SeerrDetailsRoute.page, path: 'seerr/:mediaType/:tmdbId'),
 ];
 
