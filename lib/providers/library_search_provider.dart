@@ -298,6 +298,7 @@ class LibrarySearchNotifier extends StateNotifier<LibrarySearchModel> {
         ItemFields.originaltitle,
         ItemFields.customrating,
         ItemFields.primaryimageaspectratio,
+        ItemFields.mediastreams,
         if (viewModel?.collectionType == CollectionType.tvshows) ItemFields.childcount,
       }.toList(),
       filters: [
@@ -324,6 +325,7 @@ class LibrarySearchNotifier extends StateNotifier<LibrarySearchModel> {
         ItemFields.originaltitle,
         ItemFields.customrating,
         ItemFields.primaryimageaspectratio,
+        ItemFields.mediastreams,
         if (viewModel?.collectionType == CollectionType.tvshows) ItemFields.childcount,
       }.toList(),
     );

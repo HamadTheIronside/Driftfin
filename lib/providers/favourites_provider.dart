@@ -69,6 +69,7 @@ class FavouritesNotifier extends StateNotifier<FavouritesModel> {
           fields: [
             ItemFields.overview,
             ItemFields.genres,
+            ItemFields.mediastreams,
           ],
           includeItemTypes: includeItemTypes,
           sortOrder: [SortOrder.ascending],
