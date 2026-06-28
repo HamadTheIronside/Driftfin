@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 
 import 'package:driftfin/providers/config_sync_provider.dart';
 import 'package:driftfin/providers/external_player_provider.dart';
+import 'package:driftfin/providers/radarr_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
 import 'package:driftfin/providers/sonarr_provider.dart';
@@ -174,6 +175,39 @@ List<Widget> buildClientSettingsAdvanced(BuildContext context, WidgetRef ref) {
             final value = await _promptText(context,
                 title: context.localized.sonarrApiKeyTitle, initial: ref.read(sonarrProvider).apiKey, obscure: true);
             if (value != null) ref.read(sonarrProvider.notifier).setApiKey(value);
+          },
+          trailing: const Icon(Icons.key),
+        ),
+      ],
+      SettingsListTile(
+        label: Text(context.localized.radarrIntegrationTitle),
+        subLabel: Text(context.localized.radarrIntegrationDesc),
+        onTap: () => ref.read(radarrProvider.notifier).setEnabled(!ref.read(radarrProvider).enabled),
+        trailing: Switch(
+          value: ref.watch(radarrProvider.select((value) => value.enabled)),
+          onChanged: (value) => ref.read(radarrProvider.notifier).setEnabled(value),
+        ),
+      ),
+      if (ref.watch(radarrProvider.select((value) => value.enabled))) ...[
+        SettingsListTile(
+          label: Text(context.localized.radarrUrlTitle),
+          subLabel: Text(ref.watch(radarrProvider.select((value) => value.baseUrl)).isEmpty
+              ? '—'
+              : ref.watch(radarrProvider.select((value) => value.baseUrl))),
+          onTap: () async {
+            final value = await _promptText(context,
+                title: context.localized.radarrUrlTitle, initial: ref.read(radarrProvider).baseUrl);
+            if (value != null) ref.read(radarrProvider.notifier).setBaseUrl(value);
+          },
+          trailing: const Icon(Icons.link),
+        ),
+        SettingsListTile(
+          label: Text(context.localized.radarrApiKeyTitle),
+          subLabel: Text(ref.watch(radarrProvider.select((value) => value.apiKey)).isEmpty ? '—' : '••••••••'),
+          onTap: () async {
+            final value = await _promptText(context,
+                title: context.localized.radarrApiKeyTitle, initial: ref.read(radarrProvider).apiKey, obscure: true);
+            if (value != null) ref.read(radarrProvider.notifier).setApiKey(value);
           },
           trailing: const Icon(Icons.key),
         ),

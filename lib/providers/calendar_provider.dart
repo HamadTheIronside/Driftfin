@@ -4,6 +4,7 @@ import 'package:driftfin/models/item_base_model.dart';
 import 'package:driftfin/models/items/episode_model.dart';
 import 'package:driftfin/models/items/images_models.dart';
 import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/providers/radarr_provider.dart';
 import 'package:driftfin/providers/sonarr_provider.dart';
 import 'package:driftfin/util/item_query_fields.dart';
 import 'package:driftfin/util/timed_cache.dart';
@@ -17,8 +18,9 @@ class CalendarEntry {
   final int? episode;
   final String episodeTitle;
   final bool hasFile;
-  final ItemBaseModel? item; // navigable Jellyfin item, null for Sonarr-only
+  final ItemBaseModel? item; // navigable Jellyfin item, null for Sonarr/Radarr-only
   final ImageData? image;
+  final bool isMovie;
 
   const CalendarEntry({
     required this.airDate,
@@ -29,10 +31,11 @@ class CalendarEntry {
     required this.hasFile,
     required this.item,
     required this.image,
+    this.isMovie = false,
   });
 
   String get codeLabel => (season != null && episode != null) ? 'S${season}E$episode' : '';
-  String get dedupeKey => '${seriesTitle.toLowerCase()}|$season|$episode';
+  String get dedupeKey => isMovie ? 'movie|${seriesTitle.toLowerCase()}' : '${seriesTitle.toLowerCase()}|$season|$episode';
 }
 
 /// Groups entries by local calendar day, each day's list sorted by air time.
@@ -98,6 +101,28 @@ final calendarProvider = FutureProvider.autoDispose<Map<DateTime, List<CalendarE
         hasFile: item.hasFile,
         item: null,
         image: null,
+      );
+      if (seen.add(entry.dedupeKey)) entries.add(entry);
+    }
+  } catch (_) {/* best-effort */}
+
+  // Radarr: upcoming movie releases (if configured).
+  try {
+    final movies = await ref.read(radarrProvider.notifier).calendar(
+          start: now.subtract(const Duration(days: 1)),
+          end: now.add(const Duration(days: 35)),
+        );
+    for (final movie in movies) {
+      final entry = CalendarEntry(
+        airDate: movie.releaseDate!.toLocal(),
+        seriesTitle: movie.title,
+        season: null,
+        episode: null,
+        episodeTitle: '',
+        hasFile: movie.hasFile,
+        item: null,
+        image: null,
+        isMovie: true,
       );
       if (seen.add(entry.dedupeKey)) entries.add(entry);
     }
