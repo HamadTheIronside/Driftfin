@@ -85,7 +85,7 @@ class AlbumModel extends ItemBaseModel with AlbumModelMappable {
       return overview.people.map((person) => person.name).where((value) => value.isNotEmpty).join(', ');
     }
     final labels = <String>[];
-    if (albumArtistIds.isNotEmpty) albumArtistIds;
+    if (albumArtistIds.isNotEmpty) labels.addAll(albumArtistIds);
     if (artistIds.isNotEmpty) labels.addAll(artistIds);
     return labels.join(', ');
   }

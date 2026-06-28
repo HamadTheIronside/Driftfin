@@ -63,8 +63,15 @@ class PlaybackQueueState {
 
   ItemBaseModel? _nextInQueue(String currentPlayingId) {
     if (queue.isEmpty) return null;
-    final anchorId = mainQueueCurrentId ?? currentPlayingId;
-    final idx = queue.indexWhere((e) => e.id == anchorId);
+    // Anchor on the item that is actually playing whenever it is part of the
+    // main queue. Only fall back to the tracked mainQueueCurrentId when the
+    // current item isn't in the queue (e.g. while playing an item from the
+    // Next Up list). Trusting the live id avoids handing back the current item
+    // again if mainQueueCurrentId ever lags a step behind playback.
+    var idx = queue.indexWhere((e) => e.id == currentPlayingId);
+    if (idx < 0 && mainQueueCurrentId != null) {
+      idx = queue.indexWhere((e) => e.id == mainQueueCurrentId);
+    }
     if (idx < 0) return repeatMode == AudioRepeatMode.all ? queue.first : null;
     if (idx + 1 < queue.length) return queue[idx + 1];
     if (repeatMode == AudioRepeatMode.all) return queue.first;

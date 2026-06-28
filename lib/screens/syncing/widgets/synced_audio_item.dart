@@ -176,7 +176,7 @@ class _SyncedAudioItemState extends ConsumerState<SyncedAudioItem> {
                     context.localized.syncRemoveDataDesc,
                     (context) async {
                       await ref.read(syncProvider.notifier).deleteFullSyncFiles(syncedItem, downloadTask.task);
-                      Navigator.pop(context);
+                      if (context.mounted) Navigator.pop(context);
                     },
                     context.localized.delete,
                     (context) => Navigator.pop(context),

@@ -251,10 +251,7 @@ class _AudioQueueDialogBodyState extends ConsumerState<_AudioQueueDialogBody> {
                             onShowItemActions: (index, item, globalPosition) => _showItemActionsMenu(
                               item,
                               globalPosition,
-                              removeAction: () => ref.read(videoPlayerProvider.notifier).removeAudioQueueSectionItem(
-                                    AudioQueueSection.nextUp,
-                                    index,
-                                  ),
+                              removeAction: () => ref.read(videoPlayerProvider.notifier).removeAudioQueueItem(item),
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -291,10 +288,7 @@ class _AudioQueueDialogBodyState extends ConsumerState<_AudioQueueDialogBody> {
                               onShowActions: (globalPosition) => _showItemActionsMenu(
                                 item,
                                 globalPosition,
-                                removeAction: () => ref.read(videoPlayerProvider.notifier).removeAudioQueueSectionItem(
-                                      AudioQueueSection.existing,
-                                      index,
-                                    ),
+                                removeAction: () => ref.read(videoPlayerProvider.notifier).removeAudioQueueItem(item),
                               ),
                               dragIndex: null,
                             ),

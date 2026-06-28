@@ -259,6 +259,7 @@ class _MusicDashboardScreenState extends ConsumerState<MusicDashboardScreen> {
     final selectedItem = queue.firstWhereOrNull((item) => item.id == selectedTrack.id) ?? queue.first;
     final currentIndex = queue.indexWhere((item) => item.id == selectedItem.id).clamp(0, queue.length - 1);
 
+    if (!mounted) return;
     final model = await ref.read(playbackModelHelper).createPlaybackModel(
           context,
           selectedItem,

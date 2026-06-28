@@ -30,6 +30,7 @@ extension AudioQueueHandler on MediaControlsWrapper {
     Duration startPosition,
     bool startPlayback,
   ) async {
+    if (queue.isEmpty) return;
     if (!_isAudioQueueMode) {
       _previousPlayer = _player;
       await _player?.stop();
