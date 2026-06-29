@@ -458,7 +458,13 @@ class LibMPV extends BasePlayer {
     final internalTrack = subTracks.getRange(2, subTracks.length).toList();
     final index = playbackModel.subStreams?.sublist(1).indexWhere((element) => element.id == wantedSubtitle.id);
     final subTrack = internalTrack.elementAtOrNull(index ?? -1);
-    if (wantedSubtitle.isExternal && wantedSubtitle.url != null && subTrack == null) {
+    // External (.srt sidecar) subs must always load via their URL. The `index`
+    // above is a position in the combined subStreams list (embedded first,
+    // external last), so for an external sub it can land inside mpv's
+    // embedded-only `internalTrack` and resolve `subTrack` to the wrong
+    // embedded track (e.g. an embedded Chinese track when Persian was picked).
+    // Only fall back to an embedded track for non-external subs.
+    if (wantedSubtitle.isExternal && wantedSubtitle.url != null) {
       await _player?.setSubtitleTrack(mpv.SubtitleTrack.uri(wantedSubtitle.url!));
     } else if (subTrack != null) {
       await _player?.setSubtitleTrack(subTrack);
