@@ -65,7 +65,15 @@ class TimeSyncService {
   void start() {
     _disposed = false;
     _completedSamples = 0;
+    _timer?.cancel();
     _tick();
+  }
+
+  /// Pause sampling (e.g. when leaving a group) without discarding the learned
+  /// offset; [start] resumes.
+  void stop() {
+    _timer?.cancel();
+    _timer = null;
   }
 
   Future<void> _tick() async {

@@ -516,9 +516,11 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
     return super.stop();
   }
 
-  /// Guards [seek] from re-routing to SyncPlay while the controller is applying
-  /// a server-scheduled command locally.
-  bool _applyingSync = false;
+  /// Depth counter (not a bool) so overlapping controller-driven seeks — e.g. a
+  /// scheduled Seek command and a drift-correction seek at once — don't clear
+  /// the guard while another apply is still in flight and let a real user seek
+  /// leak through to the server.
+  int _applyingSyncDepth = 0;
 
   bool get _syncActive => ref.read(syncPlayControllerProvider).inGroup;
 
@@ -527,11 +529,11 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
   Future<void> syncApplyPlay() async => play();
   Future<void> syncApplyPause() async => pause();
   Future<void> syncApplySeek(Duration position) async {
-    _applyingSync = true;
+    _applyingSyncDepth++;
     try {
       await seek(position);
     } finally {
-      _applyingSync = false;
+      _applyingSyncDepth--;
     }
   }
 
@@ -601,7 +603,7 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
     // User-initiated seeks in a SyncPlay group go to the server, which echoes a
     // scheduled Seek to all members. _applyingSync lets the controller's own
     // apply path through.
-    if (_syncActive && !_applyingSync) {
+    if (_syncActive && _applyingSyncDepth == 0) {
       return ref.read(syncPlayControllerProvider.notifier).userSeek(position);
     }
     _player?.seek(position);

@@ -25,6 +25,7 @@ class JellyfinSocket {
   Timer? _keepAliveTimer;
   Timer? _reconnectTimer;
   int _reconnectAttempt = 0;
+  DateTime? _connectedAt;
   bool _disposed = false;
 
   // Connection inputs, retained so reconnection can rebuild the URL.
@@ -92,7 +93,7 @@ class JellyfinSocket {
     try {
       await channel.ready;
       if (_disposed || _channel != channel) return;
-      _reconnectAttempt = 0;
+      _connectedAt = DateTime.now();
       _connection.add(SyncPlayConnection.connected);
       // Default keep-alive cadence; refined when ForceKeepAlive arrives.
       _scheduleKeepAlive(const Duration(seconds: 30));
@@ -155,6 +156,12 @@ class JellyfinSocket {
     _teardownChannel();
     if (_disposed) return;
     _connection.add(SyncPlayConnection.disconnected);
+    // Only treat a *stable* (>5s) connection that dropped as a fresh start;
+    // a connection that drops immediately (e.g. auth rejected) keeps escalating
+    // the backoff instead of hammering the server every second.
+    final wasStable = _connectedAt != null && DateTime.now().difference(_connectedAt!) > const Duration(seconds: 5);
+    if (wasStable) _reconnectAttempt = 0;
+    _connectedAt = null;
     // Exponential backoff capped at 30s.
     final delaySeconds = (1 << _reconnectAttempt.clamp(0, 5)).clamp(1, 30);
     _reconnectAttempt++;

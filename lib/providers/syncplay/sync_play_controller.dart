@@ -21,12 +21,8 @@ Duration _durationFromTicks(int ticks) => Duration(microseconds: ticks ~/ 10);
 
 /// Drives a Jellyfin SyncPlay ("Watch Together") session: owns the WebSocket and
 /// time-sync services, routes group-update and scheduled-command messages, keeps
-/// the local player aligned with the group, and reports buffering/ready so the
-/// group waits for slow members.
-///
-/// MVP scope: synchronized play/pause/seek for members already playing the same
-/// item. Auto-loading a different item from the group's PlayQueue is deferred
-/// (it surfaces [pendingItemId] for the UI to prompt instead).
+/// the local player aligned with the group via drift correction, and reports
+/// buffering/ready so the group waits for slow members.
 class SyncPlayController extends StateNotifier<SyncPlayState> {
   SyncPlayController(this.ref) : super(const SyncPlayState());
 
@@ -39,20 +35,20 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
   StreamSubscription<SyncPlayConnection>? _connSub;
   StreamSubscription<PlayerState>? _playerSub;
   Timer? _commandTimer;
+  Timer? _driftTimer;
 
   bool _wired = false;
   bool _lastBuffering = false;
 
-  // Drift correction: the last known group anchor (position at a local instant)
-  // used to compute where playback *should* be and nudge/seek toward it.
-  Timer? _driftTimer;
+  // Drift correction anchor: where the group expects playback to be, and from when.
   Duration _anchorPosition = Duration.zero;
   DateTime _anchorAt = DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true);
   bool _anchorPlaying = false;
-  bool _nudging = false; // currently holding a non-1.0 catch-up speed
+  bool _nudging = false; // currently holding a catch-up speed
+  double _userSpeed = 1.0; // the user's speed captured before a nudge
+  DateTime _driftCooldownUntil = DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true);
   bool _loadingItem = false;
 
-  /// Drift thresholds.
   static const _nudgeThreshold = Duration(milliseconds: 300);
   static const _seekThreshold = Duration(milliseconds: 2000);
 
@@ -60,8 +56,8 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
   /// reported back in buffering/ready messages.
   String? _currentPlaylistItemId;
 
-  /// Set when the group is playing an item different from the local player; the
-  /// UI can prompt the user to open it. Null when in sync.
+  /// Set when the group is playing an item we couldn't auto-load; the UI prompts
+  /// the user to open it. Null when in sync.
   String? pendingItemId;
 
   JellyfinOpenApi get _api => ref.read(jellyApiProvider).api;
@@ -83,8 +79,12 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     _ensureWired();
     try {
       final groupName = (name == null || name.trim().isEmpty) ? _defaultGroupName() : name.trim();
-      await _api.syncPlayNewPost(body: NewGroupRequestDto(groupName: groupName));
-      // Seed the group's queue with whatever we're currently watching.
+      final resp = await _api.syncPlayNewPost(body: NewGroupRequestDto(groupName: groupName));
+      if (!mounted) return;
+      // Apply membership from the REST response so it doesn't depend on the
+      // socket push winning the race against this request completing.
+      final info = resp.body?.toJson();
+      if (info != null) _applyGroupInfo(info);
       await _seedCurrentQueue();
     } catch (e) {
       _setError('Failed to create group: $e');
@@ -95,6 +95,10 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     _ensureWired();
     try {
       await _api.syncPlayJoinPost(body: JoinGroupRequestDto(groupId: groupId));
+      if (!mounted) return;
+      // Join returns no body; confirm membership over REST as a fallback to the
+      // socket GroupJoined push (idempotent if the push already arrived).
+      await _confirmMembership(groupId);
     } catch (e) {
       _setError('Failed to join group: $e');
     }
@@ -109,9 +113,8 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     _clearGroup();
   }
 
-  /// Routed from the player when the user toggles play/pause while in a group:
-  /// instead of acting locally, ask the server, which schedules the action for
-  /// everyone (including us).
+  /// Routed from the player when the user toggles play/pause in a group: ask the
+  /// server, which schedules the action for everyone (including us).
   Future<void> userTogglePlayPause() async {
     if (!state.inGroup) return;
     final playing = _player.lastState?.playing ?? false;
@@ -126,7 +129,7 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     }
   }
 
-  /// Routed from the player when the user seeks while in a group.
+  /// Routed from the player when the user seeks in a group.
   Future<void> userSeek(Duration position) async {
     if (!state.inGroup) return;
     try {
@@ -157,17 +160,14 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
         if (b?.requestReceptionTime == null || b?.responseTransmissionTime == null) return null;
         return UtcMeasurement(requestReceived: b!.requestReceptionTime!, responseSent: b.responseTransmissionTime!);
       },
-      onPing: (ms) {
-        // Best-effort: let the server account for our latency in scheduling.
-        _api.syncPlayPingPost(body: PingRequestDto(ping: ms)).ignore();
-      },
+      onPing: (ms) => _api.syncPlayPingPost(body: PingRequestDto(ping: ms)).ignore(),
     )..start();
 
     _connSub = _socket.connectionState.listen((c) {
       final reconnected = c == SyncPlayConnection.connected && state.connection != SyncPlayConnection.connected;
       state = state.copyWith(connection: c);
       // On (re)connect while we believe we're in a group, re-sync from the
-      // server which is authoritative — the socket drop may have removed us.
+      // authoritative server — the drop may have removed us.
       if (reconnected && state.inGroup) _resyncGroup();
     });
     _msgSub = _socket.messages.listen(_onMessage);
@@ -180,15 +180,20 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
   // ---- Inbound message routing -------------------------------------------
 
   void _onMessage(Map<String, dynamic> msg) {
-    switch (msg['MessageType']?.toString()) {
-      case 'SyncPlayGroupUpdate':
-        final data = msg['Data'];
-        if (data is Map<String, dynamic>) _onGroupUpdate(SyncPlayGroupUpdate.fromJson(data));
-        break;
-      case 'SyncPlayCommand':
-        final data = msg['Data'];
-        if (data is Map<String, dynamic>) _onCommand(data);
-        break;
+    try {
+      switch (msg['MessageType']?.toString()) {
+        case 'SyncPlayGroupUpdate':
+          final data = msg['Data'];
+          if (data is Map<String, dynamic>) _onGroupUpdate(SyncPlayGroupUpdate.fromJson(data));
+          break;
+        case 'SyncPlayCommand':
+          final data = msg['Data'];
+          if (data is Map<String, dynamic>) _onCommand(data);
+          break;
+      }
+    } catch (e, s) {
+      // A malformed message must never kill the message stream.
+      log('SyncPlay message handling failed: $e\n$s');
     }
   }
 
@@ -196,17 +201,13 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     switch (update.type) {
       case SyncGroupUpdateType.groupJoined:
         final info = update.groupInfo;
-        state = state.copyWith(
-          inGroup: true,
-          groupId: info?['GroupId']?.toString() ?? update.groupId,
-          groupName: info?['GroupName']?.toString(),
-          members: _participants(info),
-          groupState: SyncGroupState.parse(info?['State']),
-          clearError: true,
-        );
-        // Tell the server we're ready at our current position, otherwise a
-        // group that is already playing will keep waiting on us.
-        _reportReady();
+        if (info != null) {
+          _applyGroupInfo(info);
+        } else {
+          state = state.copyWith(inGroup: true, groupId: update.groupId, clearError: true);
+          _timeSync?.start();
+          _reportReady();
+        }
         break;
       case SyncGroupUpdateType.groupLeft:
       case SyncGroupUpdateType.notInGroup:
@@ -236,6 +237,20 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     }
   }
 
+  void _applyGroupInfo(Map<String, dynamic> info) {
+    state = state.copyWith(
+      inGroup: true,
+      groupId: info['GroupId']?.toString(),
+      groupName: info['GroupName']?.toString(),
+      members: _participants(info),
+      groupState: SyncGroupState.parse(info['State']),
+      clearError: true,
+    );
+    _timeSync?.start();
+    // Report ready at our current position, else an already-playing group waits.
+    _reportReady();
+  }
+
   void _onPlayQueue(Map<String, dynamic> q) {
     final playlist = q['Playlist'];
     final index = (q['PlayingItemIndex'] as num?)?.toInt() ?? 0;
@@ -248,13 +263,10 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
         _currentPlaylistItemId = item['PlaylistItemId']?.toString();
         final itemId = item['ItemId']?.toString();
         final localItemId = ref.read(playBackModel)?.item.id;
-        // If the group is on a different item than we're watching, switch to it
-        // so joining "just works"; falls back to a UI prompt if the load fails.
         if (itemId != null && itemId != localItemId) {
           _loadGroupItem(itemId, startPos, isPlaying);
         } else {
           pendingItemId = null;
-          // Same item: jump to the group's position and anchor for drift sync.
           if (startPos != null) {
             _player.syncApplySeek(startPos);
             _setAnchor(startPos, isPlaying);
@@ -269,11 +281,13 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     _loadingItem = true;
     try {
       final resp = await ref.read(jellyApiProvider).usersUserIdItemsItemIdGet(itemId: itemId);
+      if (!mounted) return;
       final item = resp.body;
       if (item != null) {
         await ref.read(playbackModelHelper).loadNewVideo(item);
+        if (!mounted) return;
         pendingItemId = null;
-        // Anchor at the group's position; drift correction will seek the freshly
+        // Anchor at the group's position; drift correction seeks the freshly
         // loaded player into alignment once it starts playing.
         if (startPos != null) _setAnchor(startPos, isPlaying);
       } else {
@@ -332,44 +346,53 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     }
   }
 
+  // ---- Drift correction ---------------------------------------------------
+
   void _setAnchor(Duration position, bool playing) {
     _anchorPosition = position;
     _anchorAt = DateTime.now().toUtc();
     _anchorPlaying = playing;
   }
 
-  /// Where the group expects playback to be right now, from the last anchor.
   Duration get _expectedPosition {
     if (!_anchorPlaying) return _anchorPosition;
     return _anchorPosition + DateTime.now().toUtc().difference(_anchorAt);
   }
 
-  /// Keeps the local player aligned with the group's expected position: a small
-  /// drift is corrected by briefly nudging playback speed, a large drift by a
-  /// hard seek. Jellyfin SyncPlay does not sync playback speed, so these speed
-  /// changes stay local and are not broadcast.
+  /// Keep the local player aligned with the group's expected position: small
+  /// drift is nudged via a brief proportional speed change (relative to the
+  /// user's own speed, then restored), large drift via a hard seek with a short
+  /// cooldown so the player can settle. Speed changes stay local (Jellyfin
+  /// SyncPlay does not sync playback speed).
   void _driftTick() {
     if (!state.inGroup || !_anchorPlaying) return;
+    if (DateTime.now().toUtc().isBefore(_driftCooldownUntil)) return;
     final s = _player.lastState;
     if (s == null || !s.playing || s.buffering) return;
 
-    final drift = s.position - _expectedPosition; // >0 ⇒ we're ahead
+    final drift = s.position - _expectedPosition; // >0 ⇒ ahead
     final abs = drift.abs();
 
     if (abs > _seekThreshold) {
+      _restoreSpeed();
       _player.syncApplySeek(_expectedPosition);
-      if (_nudging) {
-        _player.setSpeed(1.0);
-        _nudging = false;
-      }
+      _driftCooldownUntil = DateTime.now().toUtc().add(const Duration(seconds: 3));
       return;
     }
     if (abs > _nudgeThreshold) {
-      // Ahead ⇒ slow down slightly; behind ⇒ speed up slightly.
-      _player.setSpeed(drift.isNegative ? 1.05 : 0.95);
-      _nudging = true;
-    } else if (_nudging) {
-      _player.setSpeed(1.0);
+      if (!_nudging) {
+        _userSpeed = (s.rate <= 0 ? 1.0 : s.rate).clamp(0.25, 4.0);
+        _nudging = true;
+      }
+      _player.setSpeed(_userSpeed * (drift.isNegative ? 1.05 : 0.95));
+    } else {
+      _restoreSpeed();
+    }
+  }
+
+  void _restoreSpeed() {
+    if (_nudging) {
+      _player.setSpeed(_userSpeed);
       _nudging = false;
     }
   }
@@ -383,7 +406,6 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     _reportBuffer(s.buffering, s.position, s.playing);
   }
 
-  /// Report that we're ready at our current position (e.g. right after joining).
   void _reportReady() {
     final s = _player.lastState;
     if (s == null) return;
@@ -431,24 +453,37 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     }
   }
 
+  Future<void> _confirmMembership(String groupId) async {
+    try {
+      final resp = await _api.syncPlayIdGet(id: groupId);
+      if (!mounted) return;
+      final info = resp.body?.toJson();
+      if (info != null) _applyGroupInfo(info);
+    } catch (e) {
+      log('SyncPlay confirm membership failed: $e');
+    }
+  }
+
   Future<void> _refreshMembers() async {
     final id = state.groupId;
     if (id == null) return;
     try {
       final resp = await _api.syncPlayIdGet(id: id);
+      if (!mounted) return;
       state = state.copyWith(members: _participants(resp.body?.toJson()));
     } catch (e) {
       log('SyncPlay refresh members failed: $e');
     }
   }
 
-  /// Re-fetch authoritative group state after a reconnect. If the server no
-  /// longer has us in the group, drop the local group state.
+  /// Re-fetch authoritative group state after a reconnect; drop the group if the
+  /// server no longer has us.
   Future<void> _resyncGroup() async {
     final id = state.groupId;
     if (id == null) return;
     try {
       final resp = await _api.syncPlayIdGet(id: id);
+      if (!mounted) return;
       final info = resp.body?.toJson();
       if (info == null) {
         _clearGroup();
@@ -464,18 +499,12 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
 
   void _clearGroup() {
     _commandTimer?.cancel();
-    _resetSpeed();
+    _restoreSpeed();
+    _timeSync?.stop(); // stop /SyncPlay/Ping traffic while not in a group
     pendingItemId = null;
     _currentPlaylistItemId = null;
     _anchorPlaying = false;
-    state = state.copyWith(clearGroup: true);
-  }
-
-  void _resetSpeed() {
-    if (_nudging) {
-      _player.setSpeed(1.0);
-      _nudging = false;
-    }
+    if (mounted) state = state.copyWith(clearGroup: true);
   }
 
   List<String> _participants(Map<String, dynamic>? info) {
@@ -491,7 +520,7 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
 
   void _setError(String message) {
     log('SyncPlay: $message');
-    state = state.copyWith(lastError: message);
+    if (mounted) state = state.copyWith(lastError: message);
   }
 
   @override
