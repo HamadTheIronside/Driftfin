@@ -174,6 +174,7 @@ class CastController extends StateNotifier<CastState> {
 
   List<CastTarget> _chromecastTargets = const [];
   List<CastTarget> _dlnaTargets = const [];
+  Timer? _discoveryTimer;
 
   void _publishDevices() {
     if (state.isCasting) return; // don't disturb the controls view while casting
@@ -182,7 +183,17 @@ class CastController extends StateNotifier<CastState> {
 
   /// Discover cast devices on the local network (Chromecast + DLNA in parallel).
   Future<void> discover() async {
+    if (state.status == CastStatus.discovering) return; // already searching
     state = state.copyWith(status: CastStatus.discovering, clearError: true);
+    // End the "searching…" state after a window so the empty-state message can
+    // show when nothing is found (DLNA discovery runs continuously and would
+    // otherwise leave the spinner up forever).
+    _discoveryTimer?.cancel();
+    _discoveryTimer = Timer(const Duration(seconds: 6), () {
+      if (state.status == CastStatus.discovering) {
+        state = state.copyWith(status: CastStatus.disconnected);
+      }
+    });
     _discoverDlna();
     await _discoverChromecast();
   }
@@ -207,6 +218,7 @@ class CastController extends StateNotifier<CastState> {
   void _discoverDlna() {
     try {
       _dlnaDevicesSub?.cancel();
+      _dlna?.stop(); // close the prior manager's UDP socket before starting a new one
       _dlna = DLNAManager();
       _dlna!.start().then((manager) {
         _dlnaDevicesSub = manager.devices.stream.listen((deviceMap) {
@@ -228,6 +240,10 @@ class CastController extends StateNotifier<CastState> {
 
   /// Connect to [target] and start casting the current item.
   Future<void> connect(CastTarget target) async {
+    if (_currentMedia() == null) {
+      state = state.copyWith(status: CastStatus.error, error: 'No media to cast', clearDevice: true);
+      return;
+    }
     await _teardown();
     state = state.copyWith(status: CastStatus.connecting, device: target, clearError: true);
     switch (target.backend) {
@@ -345,12 +361,19 @@ class CastController extends StateNotifier<CastState> {
 
   // --- Unified controls ---------------------------------------------------
 
+  // DLNA control calls are SOAP POSTs that can throw if the renderer drops;
+  // they're fire-and-forget here, so swallow errors to avoid unhandled async
+  // exceptions (state is corrected by the position poller / next command).
+  void _dlnaFireForget(Future<String>? f) {
+    f?.then((_) {}, onError: (Object e, StackTrace s) => _log.warning('DLNA command failed', e, s));
+  }
+
   void play() {
     switch (_connected) {
       case CastBackend.chromecast:
         _chromecastMedia('PLAY');
       case CastBackend.dlna:
-        _dlnaDevice?.play();
+        _dlnaFireForget(_dlnaDevice?.play());
         state = state.copyWith(playing: true);
       case null:
         break;
@@ -362,7 +385,7 @@ class CastController extends StateNotifier<CastState> {
       case CastBackend.chromecast:
         _chromecastMedia('PAUSE');
       case CastBackend.dlna:
-        _dlnaDevice?.pause();
+        _dlnaFireForget(_dlnaDevice?.pause());
         state = state.copyWith(playing: false);
       case null:
         break;
@@ -374,21 +397,7 @@ class CastController extends StateNotifier<CastState> {
       case CastBackend.chromecast:
         _chromecastMedia('SEEK', {'currentTime': to.inSeconds});
       case CastBackend.dlna:
-        _dlnaDevice?.seek(formatClockTime(to));
-      case null:
-        break;
-    }
-  }
-
-  void setVolume(double level) {
-    final clamped = level.clamp(0.0, 1.0);
-    switch (_connected) {
-      case CastBackend.chromecast:
-        _chromecastMedia('SET_VOLUME', {
-          'volume': {'level': clamped}
-        });
-      case CastBackend.dlna:
-        _dlnaDevice?.volume((clamped * 100).round());
+        _dlnaFireForget(_dlnaDevice?.seek(formatClockTime(to)));
       case null:
         break;
     }
@@ -416,6 +425,12 @@ class CastController extends StateNotifier<CastState> {
   }
 
   Future<void> _teardown() async {
+    _discoveryTimer?.cancel();
+    _discoveryTimer = null;
+    await _dlnaDevicesSub?.cancel();
+    _dlnaDevicesSub = null;
+    _dlna?.stop(); // stop SSDP discovery; the connected DLNADevice has its own socket
+    _dlna = null;
     _statusTimer?.cancel();
     _statusTimer = null;
     await _stateSub?.cancel();
@@ -439,8 +454,6 @@ class CastController extends StateNotifier<CastState> {
   @override
   void dispose() {
     _teardown();
-    _dlnaDevicesSub?.cancel();
-    _dlna?.stop();
     super.dispose();
   }
 }
