@@ -1512,6 +1512,10 @@
   "@syncPlayNoGroups": {},
   "syncPlayDifferentItem": "The group is watching a different item. Open it to sync.",
   "@syncPlayDifferentItem": {},
+  "syncPlayChatHint": "Message…",
+  "@syncPlayChatHint": {},
+  "syncPlayChatEmpty": "No messages yet",
+  "@syncPlayChatEmpty": {},
   "syncPlayMembers": "{count, plural, =0{No members} =1{1 member} other{{count} members}}",
   "@syncPlayMembers": {
     "placeholders": {

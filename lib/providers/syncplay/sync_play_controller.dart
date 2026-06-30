@@ -129,6 +129,34 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     }
   }
 
+  /// Send a chat message to the group. SyncPlay has no chat channel, so this is
+  /// relayed best-effort as a Jellyfin session `DisplayMessage` to each member's
+  /// active session(s); members receive it as a GeneralCommand on their socket.
+  Future<void> sendChat(String text) async {
+    final trimmed = text.trim();
+    if (!state.inGroup || trimmed.isEmpty) return;
+    final me = ref.read(userProvider)?.name ?? 'Me';
+    _appendChat(SyncChatMessage(sender: me, text: trimmed, mine: true));
+    try {
+      final myDeviceId = ref.read(userProvider)?.credentials.deviceId;
+      final sessions = (await _api.sessionsGet()).body ?? const [];
+      final memberNames = state.members.toSet();
+      for (final s in sessions) {
+        if (s.id == null || s.userName == null) continue;
+        if (!memberNames.contains(s.userName)) continue;
+        if (myDeviceId != null && s.deviceId == myDeviceId) continue; // skip self
+        _api
+            .sessionsSessionIdMessagePost(
+              sessionId: s.id!,
+              body: MessageCommand(header: me, text: trimmed, timeoutMs: 8000),
+            )
+            .ignore();
+      }
+    } catch (e) {
+      log('SyncPlay chat send failed: $e');
+    }
+  }
+
   /// Routed from the player when the user seeks in a group.
   Future<void> userSeek(Duration position) async {
     if (!state.inGroup) return;
@@ -190,6 +218,10 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
           final data = msg['Data'];
           if (data is Map<String, dynamic>) _onCommand(data);
           break;
+        case 'GeneralCommand':
+          final data = msg['Data'];
+          if (data is Map<String, dynamic>) _onGeneralCommand(data);
+          break;
       }
     } catch (e, s) {
       // A malformed message must never kill the message stream.
@@ -235,6 +267,25 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
       case SyncGroupUpdateType.unknown:
         break;
     }
+  }
+
+  void _onGeneralCommand(Map<String, dynamic> data) {
+    if (!state.inGroup) return;
+    if (data['Name']?.toString() != 'DisplayMessage') return;
+    final args = data['Arguments'];
+    if (args is Map) {
+      final header = args['Header']?.toString() ?? '';
+      final text = args['Text']?.toString() ?? '';
+      if (text.isEmpty) return;
+      _appendChat(SyncChatMessage(sender: header, text: text, mine: false));
+    }
+  }
+
+  void _appendChat(SyncChatMessage message) {
+    if (!mounted) return;
+    final next = [...state.chat, message];
+    if (next.length > 200) next.removeRange(0, next.length - 200);
+    state = state.copyWith(chat: next);
   }
 
   void _applyGroupInfo(Map<String, dynamic> info) {

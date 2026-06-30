@@ -4,6 +4,15 @@ import 'package:driftfin/models/syncplay/sync_play_models.dart';
 
 enum SyncPlayConnection { disconnected, connecting, connected }
 
+/// A single Watch Together chat line. Chat is relayed over Jellyfin session
+/// `DisplayMessage`s since SyncPlay itself carries no chat channel.
+class SyncChatMessage {
+  const SyncChatMessage({required this.sender, required this.text, required this.mine});
+  final String sender;
+  final String text;
+  final bool mine;
+}
+
 /// Immutable UI/state snapshot of the SyncPlay session.
 class SyncPlayState {
   const SyncPlayState({
@@ -13,6 +22,7 @@ class SyncPlayState {
     this.groupName,
     this.members = const [],
     this.groupState = SyncGroupState.idle,
+    this.chat = const [],
     this.lastError,
   });
 
@@ -24,6 +34,7 @@ class SyncPlayState {
   /// Participant display names reported by the server.
   final List<String> members;
   final SyncGroupState groupState;
+  final List<SyncChatMessage> chat;
   final String? lastError;
 
   /// True while the group is holding for a member to finish buffering.
@@ -36,6 +47,7 @@ class SyncPlayState {
     String? groupName,
     List<String>? members,
     SyncGroupState? groupState,
+    List<SyncChatMessage>? chat,
     String? lastError,
     bool clearError = false,
     bool clearGroup = false,
@@ -47,6 +59,7 @@ class SyncPlayState {
       groupName: clearGroup ? null : (groupName ?? this.groupName),
       members: clearGroup ? const [] : (members ?? this.members),
       groupState: clearGroup ? SyncGroupState.idle : (groupState ?? this.groupState),
+      chat: clearGroup ? const [] : (chat ?? this.chat),
       lastError: clearError ? null : (lastError ?? this.lastError),
     );
   }
@@ -60,6 +73,7 @@ class SyncPlayState {
       other.groupName == groupName &&
       const ListEquality().equals(other.members, members) &&
       other.groupState == groupState &&
+      identical(other.chat, chat) &&
       other.lastError == lastError;
 
   @override
@@ -70,6 +84,7 @@ class SyncPlayState {
         groupName,
         const ListEquality().hash(members),
         groupState,
+        identityHashCode(chat),
         lastError,
       );
 }

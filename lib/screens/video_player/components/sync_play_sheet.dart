@@ -29,6 +29,7 @@ class _SyncPlaySheetState extends ConsumerState<SyncPlaySheet> {
   Timer? _poll;
   List<GroupInfoDto> _groups = [];
   bool _busy = false;
+  final _chatController = TextEditingController();
 
   @override
   void initState() {
@@ -40,7 +41,15 @@ class _SyncPlaySheetState extends ConsumerState<SyncPlaySheet> {
   @override
   void dispose() {
     _poll?.cancel();
+    _chatController.dispose();
     super.dispose();
+  }
+
+  void _sendChat() {
+    final text = _chatController.text;
+    if (text.trim().isEmpty) return;
+    _chatController.clear();
+    ref.read(syncPlayControllerProvider.notifier).sendChat(text);
   }
 
   Future<void> _refresh() async {
@@ -99,38 +108,104 @@ class _SyncPlaySheetState extends ConsumerState<SyncPlaySheet> {
   }
 
   Widget _inGroup(BuildContext context, SyncPlayState state, SyncPlayController notifier) {
-    return ListView(
-      shrinkWrap: true,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         ListTile(
+          contentPadding: EdgeInsets.zero,
           leading: const Icon(IconsaxPlusBold.video),
           title: Text(state.groupName ?? context.localized.watchTogether),
-          subtitle: Text(_statusLabel(context, state)),
+          subtitle:
+              Text('${_statusLabel(context, state)} · ${context.localized.syncPlayMembers(state.members.length)}'),
+          trailing: TextButton.icon(
+            onPressed: _busy ? null : () => _run(notifier.leaveGroup),
+            icon: const Icon(IconsaxPlusLinear.logout),
+            label: Text(context.localized.syncPlayLeave),
+          ),
         ),
         if (notifier.pendingItemId != null)
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.symmetric(vertical: 4),
             child: Text(context.localized.syncPlayDifferentItem,
                 style: TextStyle(color: Theme.of(context).colorScheme.tertiary)),
           ),
-        const SizedBox(height: 8),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(context.localized.syncPlayMembers(state.members.length),
-              style: Theme.of(context).textTheme.titleSmall),
-        ),
-        ...state.members.map((m) => ListTile(
-              dense: true,
-              leading: const Icon(IconsaxPlusLinear.user),
-              title: Text(m),
-            )),
-        const SizedBox(height: 12),
-        FilledButton.tonalIcon(
-          onPressed: _busy ? null : () => _run(notifier.leaveGroup),
-          icon: const Icon(IconsaxPlusLinear.logout),
-          label: Text(context.localized.syncPlayLeave),
-        ),
+        if (state.members.isNotEmpty)
+          Wrap(
+            spacing: 6,
+            runSpacing: 4,
+            children: state.members
+                .map((m) => Chip(
+                      visualDensity: VisualDensity.compact,
+                      avatar: const Icon(IconsaxPlusLinear.user, size: 16),
+                      label: Text(m),
+                    ))
+                .toList(),
+          ),
+        const Divider(),
+        Expanded(child: _chatList(context, state)),
+        _chatInput(context),
       ],
+    );
+  }
+
+  Widget _chatList(BuildContext context, SyncPlayState state) {
+    if (state.chat.isEmpty) {
+      return Center(
+        child: Opacity(opacity: 0.5, child: Text(context.localized.syncPlayChatEmpty)),
+      );
+    }
+    final messages = state.chat.reversed.toList();
+    return ListView.builder(
+      reverse: true,
+      itemCount: messages.length,
+      itemBuilder: (context, i) {
+        final m = messages[i];
+        return Align(
+          alignment: m.mine ? Alignment.centerRight : Alignment.centerLeft,
+          child: Container(
+            margin: const EdgeInsets.symmetric(vertical: 2),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            decoration: BoxDecoration(
+              color: m.mine
+                  ? Theme.of(context).colorScheme.primaryContainer
+                  : Theme.of(context).colorScheme.surfaceContainerHighest,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (!m.mine && m.sender.isNotEmpty) Text(m.sender, style: Theme.of(context).textTheme.labelSmall),
+                Text(m.text),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _chatInput(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: _chatController,
+              textInputAction: TextInputAction.send,
+              onSubmitted: (_) => _sendChat(),
+              decoration: InputDecoration(
+                isDense: true,
+                hintText: context.localized.syncPlayChatHint,
+                border: const OutlineInputBorder(),
+              ),
+            ),
+          ),
+          IconButton(onPressed: _sendChat, icon: const Icon(IconsaxPlusBold.send_1)),
+        ],
+      ),
     );
   }
 
