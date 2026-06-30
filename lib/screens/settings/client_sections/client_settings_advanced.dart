@@ -148,11 +148,17 @@ List<Widget> buildClientSettingsAdvanced(BuildContext context, WidgetRef ref) {
         ),
       SettingsListTile(
         label: Text(context.localized.sonarrIntegrationTitle),
-        subLabel: Text(context.localized.sonarrIntegrationDesc),
-        onTap: () => ref.read(sonarrProvider.notifier).setEnabled(!ref.read(sonarrProvider).enabled),
+        subLabel: Text(ref.watch(sonarrProvider.select((value) => value.managed))
+            ? context.localized.managedByServerPlugin
+            : context.localized.sonarrIntegrationDesc),
+        onTap: ref.watch(sonarrProvider.select((value) => value.managed))
+            ? null
+            : () => ref.read(sonarrProvider.notifier).setEnabled(!ref.read(sonarrProvider).enabled),
         trailing: Switch(
           value: ref.watch(sonarrProvider.select((value) => value.enabled)),
-          onChanged: (value) => ref.read(sonarrProvider.notifier).setEnabled(value),
+          onChanged: ref.watch(sonarrProvider.select((value) => value.managed))
+              ? null
+              : (value) => ref.read(sonarrProvider.notifier).setEnabled(value),
         ),
       ),
       if (ref.watch(sonarrProvider.select((value) => value.enabled))) ...[
@@ -161,31 +167,43 @@ List<Widget> buildClientSettingsAdvanced(BuildContext context, WidgetRef ref) {
           subLabel: Text(ref.watch(sonarrProvider.select((value) => value.baseUrl)).isEmpty
               ? '—'
               : ref.watch(sonarrProvider.select((value) => value.baseUrl))),
-          onTap: () async {
-            final value = await _promptText(context,
-                title: context.localized.sonarrUrlTitle, initial: ref.read(sonarrProvider).baseUrl);
-            if (value != null) ref.read(sonarrProvider.notifier).setBaseUrl(value);
-          },
+          onTap: ref.watch(sonarrProvider.select((value) => value.managed))
+              ? null
+              : () async {
+                  final value = await _promptText(context,
+                      title: context.localized.sonarrUrlTitle, initial: ref.read(sonarrProvider).baseUrl);
+                  if (value != null) ref.read(sonarrProvider.notifier).setBaseUrl(value);
+                },
           trailing: const Icon(Icons.link),
         ),
         SettingsListTile(
           label: Text(context.localized.sonarrApiKeyTitle),
           subLabel: Text(ref.watch(sonarrProvider.select((value) => value.apiKey)).isEmpty ? '—' : '••••••••'),
-          onTap: () async {
-            final value = await _promptText(context,
-                title: context.localized.sonarrApiKeyTitle, initial: ref.read(sonarrProvider).apiKey, obscure: true);
-            if (value != null) ref.read(sonarrProvider.notifier).setApiKey(value);
-          },
+          onTap: ref.watch(sonarrProvider.select((value) => value.managed))
+              ? null
+              : () async {
+                  final value = await _promptText(context,
+                      title: context.localized.sonarrApiKeyTitle,
+                      initial: ref.read(sonarrProvider).apiKey,
+                      obscure: true);
+                  if (value != null) ref.read(sonarrProvider.notifier).setApiKey(value);
+                },
           trailing: const Icon(Icons.key),
         ),
       ],
       SettingsListTile(
         label: Text(context.localized.radarrIntegrationTitle),
-        subLabel: Text(context.localized.radarrIntegrationDesc),
-        onTap: () => ref.read(radarrProvider.notifier).setEnabled(!ref.read(radarrProvider).enabled),
+        subLabel: Text(ref.watch(radarrProvider.select((value) => value.managed))
+            ? context.localized.managedByServerPlugin
+            : context.localized.radarrIntegrationDesc),
+        onTap: ref.watch(radarrProvider.select((value) => value.managed))
+            ? null
+            : () => ref.read(radarrProvider.notifier).setEnabled(!ref.read(radarrProvider).enabled),
         trailing: Switch(
           value: ref.watch(radarrProvider.select((value) => value.enabled)),
-          onChanged: (value) => ref.read(radarrProvider.notifier).setEnabled(value),
+          onChanged: ref.watch(radarrProvider.select((value) => value.managed))
+              ? null
+              : (value) => ref.read(radarrProvider.notifier).setEnabled(value),
         ),
       ),
       if (ref.watch(radarrProvider.select((value) => value.enabled))) ...[
@@ -194,52 +212,70 @@ List<Widget> buildClientSettingsAdvanced(BuildContext context, WidgetRef ref) {
           subLabel: Text(ref.watch(radarrProvider.select((value) => value.baseUrl)).isEmpty
               ? '—'
               : ref.watch(radarrProvider.select((value) => value.baseUrl))),
-          onTap: () async {
-            final value = await _promptText(context,
-                title: context.localized.radarrUrlTitle, initial: ref.read(radarrProvider).baseUrl);
-            if (value != null) ref.read(radarrProvider.notifier).setBaseUrl(value);
-          },
+          onTap: ref.watch(radarrProvider.select((value) => value.managed))
+              ? null
+              : () async {
+                  final value = await _promptText(context,
+                      title: context.localized.radarrUrlTitle, initial: ref.read(radarrProvider).baseUrl);
+                  if (value != null) ref.read(radarrProvider.notifier).setBaseUrl(value);
+                },
           trailing: const Icon(Icons.link),
         ),
         SettingsListTile(
           label: Text(context.localized.radarrApiKeyTitle),
           subLabel: Text(ref.watch(radarrProvider.select((value) => value.apiKey)).isEmpty ? '—' : '••••••••'),
-          onTap: () async {
-            final value = await _promptText(context,
-                title: context.localized.radarrApiKeyTitle, initial: ref.read(radarrProvider).apiKey, obscure: true);
-            if (value != null) ref.read(radarrProvider.notifier).setApiKey(value);
-          },
+          onTap: ref.watch(radarrProvider.select((value) => value.managed))
+              ? null
+              : () async {
+                  final value = await _promptText(context,
+                      title: context.localized.radarrApiKeyTitle,
+                      initial: ref.read(radarrProvider).apiKey,
+                      obscure: true);
+                  if (value != null) ref.read(radarrProvider.notifier).setApiKey(value);
+                },
           trailing: const Icon(Icons.key),
         ),
       ],
       SettingsListTile(
         label: Text(context.localized.traktTitle),
-        subLabel: Text(context.localized.traktDesc),
-        onTap: () => ref.read(traktProvider.notifier).setEnabled(!ref.read(traktProvider).enabled),
+        subLabel: Text(ref.watch(traktProvider.select((value) => value.managed))
+            ? context.localized.managedByServerPlugin
+            : context.localized.traktDesc),
+        onTap: ref.watch(traktProvider.select((value) => value.managed))
+            ? null
+            : () => ref.read(traktProvider.notifier).setEnabled(!ref.read(traktProvider).enabled),
         trailing: Switch(
           value: ref.watch(traktProvider.select((value) => value.enabled)),
-          onChanged: (value) => ref.read(traktProvider.notifier).setEnabled(value),
+          onChanged: ref.watch(traktProvider.select((value) => value.managed))
+              ? null
+              : (value) => ref.read(traktProvider.notifier).setEnabled(value),
         ),
       ),
       if (ref.watch(traktProvider.select((value) => value.enabled))) ...[
         SettingsListTile(
           label: Text(context.localized.traktClientId),
           subLabel: Text(ref.watch(traktProvider.select((value) => value.clientId)).isEmpty ? '—' : '••••••••'),
-          onTap: () async {
-            final value = await _promptText(context,
-                title: context.localized.traktClientId, initial: ref.read(traktProvider).clientId);
-            if (value != null) ref.read(traktProvider.notifier).setClientId(value);
-          },
+          onTap: ref.watch(traktProvider.select((value) => value.managed))
+              ? null
+              : () async {
+                  final value = await _promptText(context,
+                      title: context.localized.traktClientId, initial: ref.read(traktProvider).clientId);
+                  if (value != null) ref.read(traktProvider.notifier).setClientId(value);
+                },
           trailing: const Icon(Icons.badge_outlined),
         ),
         SettingsListTile(
           label: Text(context.localized.traktClientSecret),
           subLabel: Text(ref.watch(traktProvider.select((value) => value.clientSecret)).isEmpty ? '—' : '••••••••'),
-          onTap: () async {
-            final value = await _promptText(context,
-                title: context.localized.traktClientSecret, initial: ref.read(traktProvider).clientSecret, obscure: true);
-            if (value != null) ref.read(traktProvider.notifier).setClientSecret(value);
-          },
+          onTap: ref.watch(traktProvider.select((value) => value.managed))
+              ? null
+              : () async {
+                  final value = await _promptText(context,
+                      title: context.localized.traktClientSecret,
+                      initial: ref.read(traktProvider).clientSecret,
+                      obscure: true);
+                  if (value != null) ref.read(traktProvider.notifier).setClientSecret(value);
+                },
           trailing: const Icon(Icons.key),
         ),
         Builder(builder: (context) {

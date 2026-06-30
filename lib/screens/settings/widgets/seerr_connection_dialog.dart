@@ -6,6 +6,7 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:driftfin/models/item_base_model.dart';
 import 'package:driftfin/providers/api_provider.dart';
 import 'package:driftfin/providers/seerr_api_provider.dart';
+import 'package:driftfin/providers/server_integration_config_provider.dart';
 import 'package:driftfin/providers/seerr_dashboard_provider.dart';
 import 'package:driftfin/providers/seerr_user_provider.dart';
 import 'package:driftfin/providers/user_provider.dart';
@@ -70,6 +71,10 @@ class _SeerrConnectionDialogState extends ConsumerState<SeerrConnectionDialog> {
   String? warning;
 
   bool get _hasPresetSeerrBaseUrl => FladderConfig.seerrBaseUrl?.isNotEmpty == true;
+
+  /// Whether Seerr is configured server-side by the Driftfin plugin; when true
+  /// the connection is locked and the in-dialog controls are read-only.
+  bool get _seerrManaged => ref.read(serverIntegrationConfigProvider)?.seerr.isManaged ?? false;
 
   @override
   void initState() {
@@ -409,7 +414,7 @@ class _SeerrConnectionDialogState extends ConsumerState<SeerrConnectionDialog> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FilledButton(
-              onPressed: processing ? null : _logout,
+              onPressed: (processing || _seerrManaged) ? null : _logout,
               child: Text(context.localized.logout),
             ),
           ],
@@ -430,7 +435,7 @@ class _SeerrConnectionDialogState extends ConsumerState<SeerrConnectionDialog> {
           controller: serverController,
           keyboardType: TextInputType.url,
           textInputAction: TextInputAction.next,
-          enabled: !_hasPresetSeerrBaseUrl,
+          enabled: !_hasPresetSeerrBaseUrl && !_seerrManaged,
           onSubmitted: (_) async {
             await _applyServerUrl();
             await _refreshSession();
@@ -534,7 +539,7 @@ class _SeerrConnectionDialogState extends ConsumerState<SeerrConnectionDialog> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FilledButton(
-                  onPressed: processing ? null : _useApiKey,
+                  onPressed: (processing || _seerrManaged) ? null : _useApiKey,
                   child: processing
                       ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator())
                       : Text(context.localized.save),
@@ -573,7 +578,7 @@ class _SeerrConnectionDialogState extends ConsumerState<SeerrConnectionDialog> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FilledButton(
-                  onPressed: processing ? null : _loginLocal,
+                  onPressed: (processing || _seerrManaged) ? null : _loginLocal,
                   child: processing
                       ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator())
                       : Text(context.localized.login),
@@ -611,7 +616,7 @@ class _SeerrConnectionDialogState extends ConsumerState<SeerrConnectionDialog> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FilledButton(
-                  onPressed: processing ? null : _loginJellyfin,
+                  onPressed: (processing || _seerrManaged) ? null : _loginJellyfin,
                   child: processing
                       ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator())
                       : Text(context.localized.login),
@@ -625,6 +630,8 @@ class _SeerrConnectionDialogState extends ConsumerState<SeerrConnectionDialog> {
 
   @override
   Widget build(BuildContext context) {
+    // Rebuild when the plugin-managed state changes (used via [_seerrManaged]).
+    ref.watch(serverIntegrationConfigProvider);
     return ConstrainedBox(
       constraints: BoxConstraints(
         maxWidth: 640,
@@ -637,6 +644,7 @@ class _SeerrConnectionDialogState extends ConsumerState<SeerrConnectionDialog> {
           spacing: 12,
           children: [
             _header(context),
+            if (_seerrManaged) SettingsMessageBox(context.localized.managedByServerPlugin, messageType: MessageType.info),
             if (loading)
               const Padding(
                 padding: EdgeInsets.all(16),

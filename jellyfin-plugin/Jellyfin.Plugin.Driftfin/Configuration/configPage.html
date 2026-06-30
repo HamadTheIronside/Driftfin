@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Driftfin</title>
+</head>
+<body>
+<div id="DriftfinConfigPage" data-role="page" class="page type-interior pluginConfigurationPage"
+     data-require="emby-input,emby-button,emby-checkbox">
+    <div data-role="content">
+        <div class="content-primary">
+            <form id="DriftfinConfigForm">
+                <div class="verticalSection">
+                    <h2 class="sectionTitle">Driftfin</h2>
+                    <p class="fieldDescription">
+                        Configure the integrations once here and every Driftfin client pulls them automatically.
+                        Configured integrations become read-only ("Managed by server") in the apps.
+                        Note: these values (including API keys) are returned to any logged-in user.
+                    </p>
+                </div>
+
+                <div class="verticalSection">
+                    <h3 class="sectionTitle">Jellyseerr / Overseerr</h3>
+                    <label class="checkboxContainer">
+                        <input is="emby-checkbox" type="checkbox" id="SeerrEnabled" />
+                        <span>Provide Jellyseerr to clients</span>
+                    </label>
+                    <div class="inputContainer">
+                        <input is="emby-input" type="text" id="SeerrUrl" label="Jellyseerr URL" />
+                    </div>
+                    <div class="inputContainer">
+                        <input is="emby-input" type="text" id="SeerrApiKey" label="Jellyseerr API key" />
+                    </div>
+                </div>
+
+                <div class="verticalSection">
+                    <h3 class="sectionTitle">Sonarr</h3>
+                    <label class="checkboxContainer">
+                        <input is="emby-checkbox" type="checkbox" id="SonarrEnabled" />
+                        <span>Provide Sonarr to clients</span>
+                    </label>
+                    <div class="inputContainer">
+                        <input is="emby-input" type="text" id="SonarrUrl" label="Sonarr URL" />
+                    </div>
+                    <div class="inputContainer">
+                        <input is="emby-input" type="text" id="SonarrApiKey" label="Sonarr API key" />
+                    </div>
+                </div>
+
+                <div class="verticalSection">
+                    <h3 class="sectionTitle">Radarr</h3>
+                    <label class="checkboxContainer">
+                        <input is="emby-checkbox" type="checkbox" id="RadarrEnabled" />
+                        <span>Provide Radarr to clients</span>
+                    </label>
+                    <div class="inputContainer">
+                        <input is="emby-input" type="text" id="RadarrUrl" label="Radarr URL" />
+                    </div>
+                    <div class="inputContainer">
+                        <input is="emby-input" type="text" id="RadarrApiKey" label="Radarr API key" />
+                    </div>
+                </div>
+
+                <div class="verticalSection">
+                    <h3 class="sectionTitle">Trakt</h3>
+                    <label class="checkboxContainer">
+                        <input is="emby-checkbox" type="checkbox" id="TraktEnabled" />
+                        <span>Provide Trakt app credentials to clients</span>
+                    </label>
+                    <p class="fieldDescription">Each user still authorizes Trakt with their own account on their device.</p>
+                    <div class="inputContainer">
+                        <input is="emby-input" type="text" id="TraktClientId" label="Trakt client id" />
+                    </div>
+                    <div class="inputContainer">
+                        <input is="emby-input" type="text" id="TraktClientSecret" label="Trakt client secret" />
+                    </div>
+                </div>
+
+                <div>
+                    <button is="emby-button" type="submit" class="raised button-submit block emby-button">
+                        <span>Save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        (function () {
+            var pluginId = "a3b1e7c4-1d2f-4b8a-9c6e-7f0d2e5a9b11";
+
+            document.querySelector('#DriftfinConfigPage').addEventListener('pageshow', function () {
+                Dashboard.showLoadingMsg();
+                ApiClient.getPluginConfiguration(pluginId).then(function (config) {
+                    document.querySelector('#SeerrEnabled').checked = config.SeerrEnabled || false;
+                    document.querySelector('#SeerrUrl').value = config.SeerrUrl || '';
+                    document.querySelector('#SeerrApiKey').value = config.SeerrApiKey || '';
+                    document.querySelector('#SonarrEnabled').checked = config.SonarrEnabled || false;
+                    document.querySelector('#SonarrUrl').value = config.SonarrUrl || '';
+                    document.querySelector('#SonarrApiKey').value = config.SonarrApiKey || '';
+                    document.querySelector('#RadarrEnabled').checked = config.RadarrEnabled || false;
+                    document.querySelector('#RadarrUrl').value = config.RadarrUrl || '';
+                    document.querySelector('#RadarrApiKey').value = config.RadarrApiKey || '';
+                    document.querySelector('#TraktEnabled').checked = config.TraktEnabled || false;
+                    document.querySelector('#TraktClientId').value = config.TraktClientId || '';
+                    document.querySelector('#TraktClientSecret').value = config.TraktClientSecret || '';
+                    Dashboard.hideLoadingMsg();
+                });
+            });
+
+            document.querySelector('#DriftfinConfigForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                Dashboard.showLoadingMsg();
+                ApiClient.getPluginConfiguration(pluginId).then(function (config) {
+                    config.SeerrEnabled = document.querySelector('#SeerrEnabled').checked;
+                    config.SeerrUrl = document.querySelector('#SeerrUrl').value;
+                    config.SeerrApiKey = document.querySelector('#SeerrApiKey').value;
+                    config.SonarrEnabled = document.querySelector('#SonarrEnabled').checked;
+                    config.SonarrUrl = document.querySelector('#SonarrUrl').value;
+                    config.SonarrApiKey = document.querySelector('#SonarrApiKey').value;
+                    config.RadarrEnabled = document.querySelector('#RadarrEnabled').checked;
+                    config.RadarrUrl = document.querySelector('#RadarrUrl').value;
+                    config.RadarrApiKey = document.querySelector('#RadarrApiKey').value;
+                    config.TraktEnabled = document.querySelector('#TraktEnabled').checked;
+                    config.TraktClientId = document.querySelector('#TraktClientId').value;
+                    config.TraktClientSecret = document.querySelector('#TraktClientSecret').value;
+                    ApiClient.updatePluginConfiguration(pluginId, config).then(function (result) {
+                        Dashboard.processPluginConfigurationUpdateResult(result);
+                    });
+                });
+                return false;
+            });
+        })();
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+name: Plugin (Jellyfin)
+
+on:
+  push:
+    paths:
+      - 'jellyfin-plugin/**'
+      - '.github/workflows/plugin.yaml'
+  pull_request:
+    paths:
+      - 'jellyfin-plugin/**'
+      - '.github/workflows/plugin.yaml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build plugin
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore jellyfin-plugin/Jellyfin.Plugin.Driftfin/Jellyfin.Plugin.Driftfin.csproj
+
+      - name: Build
+        run: dotnet build jellyfin-plugin/Jellyfin.Plugin.Driftfin/Jellyfin.Plugin.Driftfin.csproj -c Release --no-restore
+
+      - name: Package
+        run: |
+          mkdir -p dist
+          cp jellyfin-plugin/Jellyfin.Plugin.Driftfin/bin/Release/net8.0/Jellyfin.Plugin.Driftfin.dll dist/
+          cd dist && zip "driftfin-plugin.zip" "Jellyfin.Plugin.Driftfin.dll"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: driftfin-plugin
+          path: dist/driftfin-plugin.zip

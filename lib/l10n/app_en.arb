@@ -42,6 +42,8 @@
   "@sonarrIntegrationTitle": {},
   "sonarrIntegrationDesc": "Connect Sonarr directly to request single episodes (Seerr only supports whole seasons). Only works for shows already added to Sonarr.",
   "@sonarrIntegrationDesc": {},
+  "managedByServerPlugin": "Managed by server (Driftfin plugin)",
+  "@managedByServerPlugin": {},
   "sonarrUrlTitle": "Sonarr URL",
   "@sonarrUrlTitle": {},
   "sonarrApiKeyTitle": "Sonarr API key",
