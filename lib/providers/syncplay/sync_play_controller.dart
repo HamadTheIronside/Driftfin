@@ -245,7 +245,8 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     final whenStr = cmd['When']?.toString();
     final when = whenStr != null ? DateTime.tryParse(whenStr) : null;
 
-    final localWhen = (when != null && (_timeSync?.hasSynced ?? false)) ? _timeSync!.serverToLocal(when) : DateTime.now().toUtc();
+    final localWhen =
+        (when != null && (_timeSync?.hasSynced ?? false)) ? _timeSync!.serverToLocal(when) : DateTime.now().toUtc();
     var delay = localWhen.difference(DateTime.now().toUtc());
     if (delay.isNegative) delay = Duration.zero;
 
@@ -298,13 +299,15 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     if (buffering) {
       _api
           .syncPlayBufferingPost(
-            body: BufferRequestDto(when: when, positionTicks: ticks, isPlaying: playing, playlistItemId: _currentPlaylistItemId),
+            body: BufferRequestDto(
+                when: when, positionTicks: ticks, isPlaying: playing, playlistItemId: _currentPlaylistItemId),
           )
           .ignore();
     } else {
       _api
           .syncPlayReadyPost(
-            body: ReadyRequestDto(when: when, positionTicks: ticks, isPlaying: playing, playlistItemId: _currentPlaylistItemId),
+            body: ReadyRequestDto(
+                when: when, positionTicks: ticks, isPlaying: playing, playlistItemId: _currentPlaylistItemId),
           )
           .ignore();
     }

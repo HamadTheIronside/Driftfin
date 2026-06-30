@@ -150,9 +150,8 @@ class _VideoOptionsMobileState extends ConsumerState<VideoOptions> {
             final sync = ref.watch(syncPlayControllerProvider);
             return SpacedListTile(
               title: Text(context.localized.watchTogether),
-              content: Text(sync.inGroup
-                  ? (sync.groupName ?? context.localized.syncPlayInGroup)
-                  : context.localized.off),
+              content:
+                  Text(sync.inGroup ? (sync.groupName ?? context.localized.syncPlayInGroup) : context.localized.off),
               onTap: () => showSyncPlaySheet(context),
             );
           }),
