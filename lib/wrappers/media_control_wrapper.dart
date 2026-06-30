@@ -27,6 +27,7 @@ import 'package:driftfin/providers/live_tv_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/subtitle_delay_provider.dart';
 import 'package:driftfin/providers/settings/subtitle_settings_provider.dart';
+import 'package:driftfin/providers/syncplay/sync_play_controller.dart';
 import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
 import 'package:driftfin/providers/trakt_provider.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
@@ -515,7 +516,34 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
     return super.stop();
   }
 
+  /// Depth counter (not a bool) so overlapping controller-driven seeks — e.g. a
+  /// scheduled Seek command and a drift-correction seek at once — don't clear
+  /// the guard while another apply is still in flight and let a real user seek
+  /// leak through to the server.
+  int _applyingSyncDepth = 0;
+
+  bool get _syncActive => ref.read(syncPlayControllerProvider).inGroup;
+
+  /// Apply a SyncPlay-scheduled action locally without echoing it back to the
+  /// group. Called by [SyncPlayController].
+  Future<void> syncApplyPlay() async => play();
+  Future<void> syncApplyPause() async => pause();
+  Future<void> syncApplySeek(Duration position) async {
+    _applyingSyncDepth++;
+    try {
+      await seek(position);
+    } finally {
+      _applyingSyncDepth--;
+    }
+  }
+
   Future<void> playOrPause() async {
+    // In a SyncPlay group, defer to the server which schedules the action for
+    // every member (including us) instead of acting locally.
+    if (_syncActive) {
+      await ref.read(syncPlayControllerProvider.notifier).userTogglePlayPause();
+      return;
+    }
     await _player?.playOrPause();
     final playing = _player?.lastState.playing ?? false;
     final position = _player?.lastState.position ?? Duration.zero;
@@ -572,6 +600,12 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
 
   @override
   Future<void> seek(Duration position) {
+    // User-initiated seeks in a SyncPlay group go to the server, which echoes a
+    // scheduled Seek to all members. _applyingSync lets the controller's own
+    // apply path through.
+    if (_syncActive && _applyingSyncDepth == 0) {
+      return ref.read(syncPlayControllerProvider.notifier).userSeek(position);
+    }
     _player?.seek(position);
     if (_player?.lastState.playing == false) {
       ref.read(mediaPlaybackProvider.notifier).update((state) => state.copyWith(position: position));

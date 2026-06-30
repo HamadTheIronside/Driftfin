@@ -14,8 +14,10 @@ import 'package:driftfin/models/playback/playback_model.dart';
 import 'package:driftfin/models/playback/transcode_playback_model.dart';
 import 'package:driftfin/models/settings/video_player_settings.dart';
 import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
+import 'package:driftfin/providers/syncplay/sync_play_controller.dart';
 import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
+import 'package:driftfin/screens/video_player/components/sync_play_sheet.dart';
 import 'package:driftfin/screens/collections/add_to_collection.dart';
 import 'package:driftfin/screens/metadata/info_screen.dart';
 import 'package:driftfin/screens/playlists/add_to_playlists.dart';
@@ -144,6 +146,15 @@ class _VideoOptionsMobileState extends ConsumerState<VideoOptions> {
             content: Text(currentMediaStreams?.currentAudioStream?.label(context) ?? context.localized.off),
             onTap: currentMediaStreams?.audioStreams.isNotEmpty == true ? () => showAudioSelection(context) : null,
           ),
+          Consumer(builder: (context, ref, _) {
+            final sync = ref.watch(syncPlayControllerProvider);
+            return SpacedListTile(
+              title: Text(context.localized.watchTogether),
+              content:
+                  Text(sync.inGroup ? (sync.groupName ?? context.localized.syncPlayInGroup) : context.localized.off),
+              onTap: () => showSyncPlaySheet(context),
+            );
+          }),
           ListTile(
             title: Row(
               mainAxisSize: MainAxisSize.min,
