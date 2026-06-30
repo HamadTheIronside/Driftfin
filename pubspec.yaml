@@ -76,6 +76,7 @@ dependencies:
   pip: ^0.0.3
   video_player: ^2.10.0
   cast_plus: ^2.2.0 # Chromecast (pure-Dart CASTV2 sender; bonsoir 6.x fork of `cast`).
+  dlna_dart: ^0.1.1 # DLNA/UPnP MediaRenderer "Play to" (pure Dart).
 
   image: ^4.5.4 # For saving screenshots.
 

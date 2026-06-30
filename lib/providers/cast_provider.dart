@@ -1,20 +1,41 @@
 import 'dart:async';
 
 import 'package:cast_plus/cast.dart';
+import 'package:dlna_dart/dlna.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 
 import 'package:driftfin/providers/image_provider.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
 
-/// Connection lifecycle for a Chromecast session.
+/// Which casting protocol a target speaks.
+enum CastBackend { chromecast, dlna }
+
+/// Connection lifecycle for a cast session.
 enum CastStatus { disconnected, discovering, connecting, connected, error }
+
+/// A discovered cast destination, abstracting over Chromecast and DLNA.
+class CastTarget {
+  final String id;
+  final String name;
+  final CastBackend backend;
+  final CastDevice? chromecast;
+  final DLNADevice? dlna;
+
+  const CastTarget({
+    required this.id,
+    required this.name,
+    required this.backend,
+    this.chromecast,
+    this.dlna,
+  });
+}
 
 /// Immutable view of the current cast state for the UI.
 class CastState {
   final CastStatus status;
-  final List<CastDevice> devices;
-  final CastDevice? device;
+  final List<CastTarget> devices;
+  final CastTarget? device;
   final Duration position;
   final Duration duration;
   final bool playing;
@@ -34,8 +55,8 @@ class CastState {
 
   CastState copyWith({
     CastStatus? status,
-    List<CastDevice>? devices,
-    CastDevice? device,
+    List<CastTarget>? devices,
+    CastTarget? device,
     bool clearDevice = false,
     Duration? position,
     Duration? duration,
@@ -55,8 +76,8 @@ class CastState {
   }
 }
 
-/// Builds the Cast `LOAD` payload for the default media receiver from the
-/// current Jellyfin playback model. Pure function — unit-tested.
+/// Builds the Chromecast `LOAD` payload for the default media receiver.
+/// Pure function — unit-tested.
 Map<String, dynamic> buildLoadMessage({
   required String url,
   required String title,
@@ -85,8 +106,8 @@ Map<String, dynamic> buildLoadMessage({
   };
 }
 
-/// Parsed view of a Cast `MEDIA_STATUS` message. Null when the message carries
-/// no status entry. Pure — unit-tested.
+/// Parsed view of a Chromecast `MEDIA_STATUS` message. Null when the message
+/// carries no status entry. Pure — unit-tested.
 typedef MediaStatus = ({int? mediaSessionId, bool? playing, Duration? position, Duration? duration});
 
 MediaStatus? parseMediaStatus(Map<String, dynamic> message) {
@@ -104,19 +125,29 @@ MediaStatus? parseMediaStatus(Map<String, dynamic> message) {
   );
 }
 
-/// Builds a media-namespace command payload (PLAY/PAUSE/SEEK/STOP/SET_VOLUME).
-/// Pure — unit-tested.
+/// Builds a Chromecast media-namespace command payload. Pure — unit-tested.
 Map<String, dynamic> mediaCommand(String type, int mediaSessionId, [Map<String, dynamic> extra = const {}]) {
   return {'type': type, 'mediaSessionId': mediaSessionId, ...extra};
+}
+
+/// Formats a [Duration] as the `H:MM:SS` clock string DLNA AVTransport SEEK
+/// expects (REL_TIME target). Pure — unit-tested.
+String formatClockTime(Duration d) {
+  final clamped = d.isNegative ? Duration.zero : d;
+  final h = clamped.inHours;
+  final m = clamped.inMinutes.remainder(60).toString().padLeft(2, '0');
+  final s = clamped.inSeconds.remainder(60).toString().padLeft(2, '0');
+  return '$h:$m:$s';
 }
 
 final castProvider = StateNotifierProvider<CastController, CastState>((ref) {
   return CastController(ref);
 });
 
-/// Runtime Chromecast controller. Independent of the local [BasePlayer] backend
-/// (casting is a runtime hand-off, not a settings-time player choice). Reuses
-/// the already-built Jellyfin direct-play URL in `PlaybackModel.media.url`.
+/// Runtime cast controller for Chromecast (pure-Dart CASTV2) and DLNA/UPnP
+/// MediaRenderers. Independent of the local [BasePlayer] backend — casting is a
+/// runtime hand-off, not a settings-time player choice. Reuses the already-built
+/// Jellyfin direct-play URL in `PlaybackModel.media.url`.
 class CastController extends StateNotifier<CastState> {
   CastController(this.ref) : super(const CastState());
 
@@ -126,63 +157,131 @@ class CastController extends StateNotifier<CastState> {
   // Default Media Receiver application id.
   static const _defaultReceiverAppId = 'CC1AD845';
 
+  CastBackend? _connected;
+
+  // Chromecast.
   CastSession? _session;
   StreamSubscription? _stateSub;
   StreamSubscription? _messageSub;
   Timer? _statusTimer;
   int? _mediaSessionId;
 
-  /// Discover Chromecast devices on the local network.
+  // DLNA.
+  DLNAManager? _dlna;
+  StreamSubscription? _dlnaDevicesSub;
+  StreamSubscription? _dlnaPosSub;
+  DLNADevice? _dlnaDevice;
+
+  List<CastTarget> _chromecastTargets = const [];
+  List<CastTarget> _dlnaTargets = const [];
+
+  void _publishDevices() {
+    if (state.isCasting) return; // don't disturb the controls view while casting
+    state = state.copyWith(devices: [..._chromecastTargets, ..._dlnaTargets]);
+  }
+
+  /// Discover cast devices on the local network (Chromecast + DLNA in parallel).
   Future<void> discover() async {
     state = state.copyWith(status: CastStatus.discovering, clearError: true);
+    _discoverDlna();
+    await _discoverChromecast();
+  }
+
+  Future<void> _discoverChromecast() async {
     try {
       final devices = await CastDiscoveryService().search();
-      state = state.copyWith(
-        devices: devices,
-        // Stay in discovering until the user picks; revert if nothing found.
-        status: state.isCasting ? state.status : CastStatus.discovering,
-      );
+      _chromecastTargets = devices
+          .map((d) => CastTarget(
+                id: 'cc:${d.name}:${d.host}',
+                name: d.name,
+                backend: CastBackend.chromecast,
+                chromecast: d,
+              ))
+          .toList();
+      _publishDevices();
     } catch (e, s) {
-      _log.warning('Cast discovery failed', e, s);
-      state = state.copyWith(status: CastStatus.error, error: e.toString());
+      _log.warning('Chromecast discovery failed', e, s);
     }
   }
 
-  /// Connect to [device], launch the default media receiver, and load the
-  /// currently playing item.
-  Future<void> connect(CastDevice device) async {
-    await _teardownSession();
-    state = state.copyWith(status: CastStatus.connecting, device: device, clearError: true);
+  void _discoverDlna() {
+    try {
+      _dlnaDevicesSub?.cancel();
+      _dlna = DLNAManager();
+      _dlna!.start().then((manager) {
+        _dlnaDevicesSub = manager.devices.stream.listen((deviceMap) {
+          _dlnaTargets = deviceMap.entries
+              .map((e) => CastTarget(
+                    id: 'dlna:${e.key}',
+                    name: e.value.info.friendlyName,
+                    backend: CastBackend.dlna,
+                    dlna: e.value,
+                  ))
+              .toList();
+          _publishDevices();
+        });
+      });
+    } catch (e, s) {
+      _log.warning('DLNA discovery failed', e, s);
+    }
+  }
+
+  /// Connect to [target] and start casting the current item.
+  Future<void> connect(CastTarget target) async {
+    await _teardown();
+    state = state.copyWith(status: CastStatus.connecting, device: target, clearError: true);
+    switch (target.backend) {
+      case CastBackend.chromecast:
+        await _connectChromecast(target);
+      case CastBackend.dlna:
+        await _connectDlna(target);
+    }
+  }
+
+  ({String url, String title, String? image, Duration startAt})? _currentMedia() {
+    final model = ref.read(playBackModel);
+    final url = model?.media?.url;
+    if (model == null || url == null) return null;
+    final image = ref.read(imageUtilityProvider).getItemsImageUrl(model.item.id);
+    return (
+      url: url,
+      title: model.item.name,
+      image: image.isNotEmpty ? image : null,
+      startAt: ref.read(videoPlayerProvider).lastState?.position ?? Duration.zero,
+    );
+  }
+
+  // --- Chromecast ---------------------------------------------------------
+
+  Future<void> _connectChromecast(CastTarget target) async {
+    final device = target.chromecast;
+    if (device == null) return;
     try {
       final session = await CastSessionManager().startSession(device);
       _session = session;
+      _connected = CastBackend.chromecast;
 
-      // The package emits `connected` only after a receiver app is launched
-      // (it needs the app's transportId). So: launch the default receiver now,
-      // and load the media once the session reports connected.
+      // The package emits `connected` only after a receiver app launches (it
+      // needs the app's transportId). So: launch now, load on connected.
       _stateSub = session.stateStream.listen((s) {
         if (s == CastSessionState.connected) {
-          _loadCurrent();
+          _loadChromecast();
         } else if (s == CastSessionState.closed) {
           _onClosed();
         }
       });
-      _messageSub = session.messageStream.listen(_onMessage);
+      _messageSub = session.messageStream.listen(_onChromecastMessage);
 
-      // Pause local playback so we don't double-play, then launch the receiver.
       ref.read(videoPlayerProvider).pause();
-      session.sendMessage(CastSession.kNamespaceReceiver, {
-        'type': 'LAUNCH',
-        'appId': _defaultReceiverAppId,
-      });
+      session.sendMessage(CastSession.kNamespaceReceiver, {'type': 'LAUNCH', 'appId': _defaultReceiverAppId});
     } catch (e, s) {
-      _log.warning('Cast connect failed', e, s);
+      _log.warning('Chromecast connect failed', e, s);
       state = state.copyWith(status: CastStatus.error, error: e.toString(), clearDevice: true);
-      await _teardownSession();
+      await _teardown();
     }
   }
 
-  void _onMessage(Map<String, dynamic> message) {
+  void _onChromecastMessage(Map<String, dynamic> message) {
     final status = parseMediaStatus(message);
     if (status == null) return;
     _mediaSessionId = status.mediaSessionId ?? _mediaSessionId;
@@ -192,58 +291,131 @@ class CastController extends StateNotifier<CastState> {
       position: status.position,
       duration: status.duration,
     );
-    _startStatusPolling();
+    _statusTimer ??= Timer.periodic(const Duration(seconds: 2), (_) => _chromecastMedia('GET_STATUS'));
   }
 
-  void _loadCurrent() {
+  void _loadChromecast() {
     final session = _session;
-    final model = ref.read(playBackModel);
-    final url = model?.media?.url;
-    if (session == null || model == null || url == null) return;
-    final imageUrl = ref.read(imageUtilityProvider).getItemsImageUrl(model.item.id);
+    final media = _currentMedia();
+    if (session == null || media == null) return;
     session.sendMessage(
       CastSession.kNamespaceMedia,
-      buildLoadMessage(
-        url: url,
-        title: model.item.name,
-        imageUrl: imageUrl.isNotEmpty ? imageUrl : null,
-        startAt: ref.read(videoPlayerProvider).lastState?.position ?? Duration.zero,
-      ),
+      buildLoadMessage(url: media.url, title: media.title, imageUrl: media.image, startAt: media.startAt),
     );
     state = state.copyWith(status: CastStatus.connected);
   }
 
-  void _media(String type, [Map<String, dynamic> extra = const {}]) {
+  void _chromecastMedia(String type, [Map<String, dynamic> extra = const {}]) {
     final session = _session;
     final id = _mediaSessionId;
     if (session == null || id == null) return;
     session.sendMessage(CastSession.kNamespaceMedia, mediaCommand(type, id, extra));
   }
 
-  void play() => _media('PLAY');
-  void pause() => _media('PAUSE');
-  void seek(Duration to) => _media('SEEK', {'currentTime': to.inSeconds});
-  void setVolume(double level) => _media('SET_VOLUME', {
-        'volume': {'level': level.clamp(0.0, 1.0)}
-      });
+  // --- DLNA ---------------------------------------------------------------
 
-  void _startStatusPolling() {
-    _statusTimer ??= Timer.periodic(const Duration(seconds: 2), (_) => _media('GET_STATUS'));
+  Future<void> _connectDlna(CastTarget target) async {
+    final device = target.dlna;
+    final media = _currentMedia();
+    if (device == null || media == null) {
+      state = state.copyWith(status: CastStatus.error, error: 'No media to cast', clearDevice: true);
+      return;
+    }
+    try {
+      _dlnaDevice = device;
+      _connected = CastBackend.dlna;
+      ref.read(videoPlayerProvider).pause();
+      await device.setUrl(media.url, title: media.title);
+      await device.play();
+      device.positionPoller.start();
+      _dlnaPosSub = device.currPosition.stream.listen((p) {
+        state = state.copyWith(
+          status: CastStatus.connected,
+          position: Duration(seconds: p.RelTimeInt),
+          duration: Duration(seconds: p.TrackDurationInt),
+        );
+      });
+      state = state.copyWith(status: CastStatus.connected, playing: true);
+    } catch (e, s) {
+      _log.warning('DLNA connect failed', e, s);
+      state = state.copyWith(status: CastStatus.error, error: e.toString(), clearDevice: true);
+      await _teardown();
+    }
+  }
+
+  // --- Unified controls ---------------------------------------------------
+
+  void play() {
+    switch (_connected) {
+      case CastBackend.chromecast:
+        _chromecastMedia('PLAY');
+      case CastBackend.dlna:
+        _dlnaDevice?.play();
+        state = state.copyWith(playing: true);
+      case null:
+        break;
+    }
+  }
+
+  void pause() {
+    switch (_connected) {
+      case CastBackend.chromecast:
+        _chromecastMedia('PAUSE');
+      case CastBackend.dlna:
+        _dlnaDevice?.pause();
+        state = state.copyWith(playing: false);
+      case null:
+        break;
+    }
+  }
+
+  void seek(Duration to) {
+    switch (_connected) {
+      case CastBackend.chromecast:
+        _chromecastMedia('SEEK', {'currentTime': to.inSeconds});
+      case CastBackend.dlna:
+        _dlnaDevice?.seek(formatClockTime(to));
+      case null:
+        break;
+    }
+  }
+
+  void setVolume(double level) {
+    final clamped = level.clamp(0.0, 1.0);
+    switch (_connected) {
+      case CastBackend.chromecast:
+        _chromecastMedia('SET_VOLUME', {
+          'volume': {'level': clamped}
+        });
+      case CastBackend.dlna:
+        _dlnaDevice?.volume((clamped * 100).round());
+      case null:
+        break;
+    }
   }
 
   void _onClosed() {
+    _teardown();
     state = const CastState();
-    _teardownSession();
   }
 
   /// Stop casting and tear down the session.
   Future<void> disconnect() async {
-    _media('STOP');
-    await _teardownSession();
+    switch (_connected) {
+      case CastBackend.chromecast:
+        _chromecastMedia('STOP');
+      case CastBackend.dlna:
+        try {
+          await _dlnaDevice?.stop();
+        } catch (_) {}
+      case null:
+        break;
+    }
+    await _teardown();
     state = const CastState();
   }
 
-  Future<void> _teardownSession() async {
+  Future<void> _teardown() async {
     _statusTimer?.cancel();
     _statusTimer = null;
     await _stateSub?.cancel();
@@ -255,11 +427,20 @@ class CastController extends StateNotifier<CastState> {
       await _session?.close();
     } catch (_) {}
     _session = null;
+
+    await _dlnaPosSub?.cancel();
+    _dlnaPosSub = null;
+    _dlnaDevice?.positionPoller.stop();
+    _dlnaDevice = null;
+
+    _connected = null;
   }
 
   @override
   void dispose() {
-    _teardownSession();
+    _teardown();
+    _dlnaDevicesSub?.cancel();
+    _dlna?.stop();
     super.dispose();
   }
 }

@@ -108,6 +108,20 @@ void main() {
     });
   });
 
+  group('formatClockTime', () {
+    test('formats H:MM:SS for DLNA SEEK', () {
+      expect(formatClockTime(Duration.zero), '0:00:00');
+      expect(formatClockTime(const Duration(seconds: 5)), '0:00:05');
+      expect(formatClockTime(const Duration(minutes: 3, seconds: 9)), '0:03:09');
+      expect(formatClockTime(const Duration(hours: 1, minutes: 2, seconds: 3)), '1:02:03');
+      expect(formatClockTime(const Duration(hours: 25)), '25:00:00');
+    });
+
+    test('clamps negative durations to zero', () {
+      expect(formatClockTime(const Duration(seconds: -10)), '0:00:00');
+    });
+  });
+
   group('mediaCommand', () {
     test('builds a bare command with the media session id', () {
       expect(mediaCommand('PLAY', 4), {'type': 'PLAY', 'mediaSessionId': 4});
