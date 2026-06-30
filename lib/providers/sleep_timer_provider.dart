@@ -6,9 +6,7 @@ import 'package:driftfin/providers/video_player_provider.dart';
 
 /// Pauses playback after a chosen delay. `state` is the remaining time, or null
 /// when no timer is running (drives the countdown shown in the options sheet).
-final sleepTimerProvider = StateNotifierProvider<SleepTimerNotifier, Duration?>(
-  (ref) => SleepTimerNotifier(ref),
-);
+final sleepTimerProvider = StateNotifierProvider<SleepTimerNotifier, Duration?>((ref) => SleepTimerNotifier(ref));
 
 class SleepTimerNotifier extends StateNotifier<Duration?> {
   SleepTimerNotifier(this.ref) : super(null);
@@ -30,6 +28,11 @@ class SleepTimerNotifier extends StateNotifier<Duration?> {
     _timer?.cancel();
     state = duration;
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      // Player closed out from under us — drop the timer, nothing to pause.
+      if (ref.read(playBackModel) == null) {
+        cancel();
+        return;
+      }
       final next = (state ?? Duration.zero) - const Duration(seconds: 1);
       if (next <= Duration.zero) {
         cancel();
