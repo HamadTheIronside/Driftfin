@@ -127,7 +127,10 @@ class RadarrApi {
         final response = await _client.post(
           _uri('command'),
           headers: _headers,
-          body: jsonEncode({'name': 'MoviesSearch', 'movieIds': [existing]}),
+          body: jsonEncode({
+            'name': 'MoviesSearch',
+            'movieIds': [existing]
+          }),
         );
         return (response.statusCode >= 200 && response.statusCode < 300)
             ? RadarrRequestResult.success
@@ -190,7 +193,11 @@ class RadarrNotifier extends StateNotifier<RadarrSettings> {
     final server = ref.read(serverIntegrationConfigProvider)?.radarr;
     if (server != null && server.isManaged) {
       return RadarrSettings(
-          baseUrl: normalizeRadarrUrl(server.url), apiKey: server.apiKey.trim(), enabled: true, managed: true);
+        baseUrl: normalizeRadarrUrl(server.url),
+        apiKey: server.apiKey.trim(),
+        enabled: true,
+        managed: true,
+      );
     }
     return _load(ref);
   }
@@ -210,7 +217,11 @@ class RadarrNotifier extends StateNotifier<RadarrSettings> {
   void _applyServer(ArrServerConfig? server) {
     if (server != null && server.isManaged) {
       state = RadarrSettings(
-          baseUrl: normalizeRadarrUrl(server.url), apiKey: server.apiKey.trim(), enabled: true, managed: true);
+        baseUrl: normalizeRadarrUrl(server.url),
+        apiKey: server.apiKey.trim(),
+        enabled: true,
+        managed: true,
+      );
     } else if (state.managed) {
       state = _load(ref);
     }

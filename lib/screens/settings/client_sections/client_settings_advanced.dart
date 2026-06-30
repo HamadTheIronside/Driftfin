@@ -306,8 +306,7 @@ List<Widget> buildClientSettingsAdvanced(BuildContext context, WidgetRef ref) {
         SettingsListTile(
           label: Text(context.localized.externalPlayerTitle),
           subLabel: Text(context.localized.externalPlayerDesc),
-          onTap: () =>
-              ref.read(externalPlayerProvider.notifier).setEnabled(!ref.read(externalPlayerProvider).enabled),
+          onTap: () => ref.read(externalPlayerProvider.notifier).setEnabled(!ref.read(externalPlayerProvider).enabled),
           trailing: Switch(
             value: ref.watch(externalPlayerProvider.select((value) => value.enabled)),
             onChanged: (value) => ref.read(externalPlayerProvider.notifier).setEnabled(value),
@@ -331,8 +330,7 @@ List<Widget> buildClientSettingsAdvanced(BuildContext context, WidgetRef ref) {
             subLabel: Text(ref.watch(externalPlayerProvider.select((value) => value.argsTemplate))),
             onTap: () async {
               final value = await _promptText(context,
-                  title: context.localized.externalPlayerArgs,
-                  initial: ref.read(externalPlayerProvider).argsTemplate);
+                  title: context.localized.externalPlayerArgs, initial: ref.read(externalPlayerProvider).argsTemplate);
               if (value != null) ref.read(externalPlayerProvider.notifier).setArgsTemplate(value);
             },
             trailing: const Icon(Icons.tune),

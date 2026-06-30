@@ -644,7 +644,8 @@ class _SeerrConnectionDialogState extends ConsumerState<SeerrConnectionDialog> {
           spacing: 12,
           children: [
             _header(context),
-            if (_seerrManaged) SettingsMessageBox(context.localized.managedByServerPlugin, messageType: MessageType.info),
+            if (_seerrManaged)
+              SettingsMessageBox(context.localized.managedByServerPlugin, messageType: MessageType.info),
             if (loading)
               const Padding(
                 padding: EdgeInsets.all(16),
