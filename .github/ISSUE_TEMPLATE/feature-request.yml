@@ -1,0 +1,53 @@
+name: "💡 Feature Request"
+description: Suggest a new feature or enhancement.
+title: "<TITLE>"
+type: "Feature"
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for the idea! Please check the [roadmap](https://github.com/users/HamadTheIronside/projects/5) and existing issues before opening a new request."
+  - type: textarea
+    id: problem
+    attributes:
+      label: "Problem / use case"
+      description: What are you trying to do? What's missing or painful today?
+      placeholder: "I'm always frustrated when..."
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: "Proposed solution"
+      description: What would you like Driftfin to do?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives considered"
+      description: Any other approaches or workarounds you've thought about?
+    validations:
+      required: false
+  - type: dropdown
+    id: platform
+    attributes:
+      label: "Platform(s)"
+      description: Which platforms should this apply to?
+      multiple: true
+      options:
+        - Android
+        - Android TV
+        - iOS
+        - Linux
+        - Windows
+        - macOS
+        - Web
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: "Additional context"
+      description: Screenshots, mockups, links, or anything else that helps.
+    validations:
+      required: false

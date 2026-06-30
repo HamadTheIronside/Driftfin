@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: "💡 Feature Request"
-    url: "https://github.com/HamadTheIronside/Driftfin/discussions/new?category=ideas"
-    about: "Suggest a new feature or enhancement."
+  - name: "📍 Roadmap"
+    url: "https://github.com/users/HamadTheIronside/projects/5"
+    about: "See what's planned and in progress before filing a request."
+  - name: "📖 Install & usage docs"
+    url: "https://github.com/HamadTheIronside/Driftfin/blob/develop/INSTALL.md"
+    about: "Setup and platform-specific instructions."
