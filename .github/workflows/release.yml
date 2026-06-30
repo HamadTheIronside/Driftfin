@@ -145,7 +145,12 @@ jobs:
           cache: true
       - run: flutter pub get
       - name: Build Android APKs (debug)
-        run: flutter build apk --debug --split-per-abi --flavor production --build-number=${{ github.run_number }}
+        # checkProductionDebugDuplicateClasses (Jetifier) flakes intermittently; retry once.
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 30
+          max_attempts: 2
+          command: flutter build apk --debug --split-per-abi --flavor production --build-number=${{ github.run_number }}
       - name: Collect APKs
         run: |
           mkdir -p dist-apk
