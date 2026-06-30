@@ -14,6 +14,7 @@ import 'package:driftfin/models/playback/playback_model.dart';
 import 'package:driftfin/models/playback/transcode_playback_model.dart';
 import 'package:driftfin/models/settings/video_player_settings.dart';
 import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
+import 'package:driftfin/providers/sleep_timer_provider.dart';
 import 'package:driftfin/providers/syncplay/sync_play_controller.dart';
 import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
@@ -214,6 +215,20 @@ class _VideoOptionsMobileState extends ConsumerState<VideoOptions> {
               ],
             ),
           ),
+          Builder(builder: (context) {
+            final remaining = ref.watch(sleepTimerProvider);
+            return SpacedListTile(
+              title: Text(context.localized.sleepTimer),
+              content: Text(
+                remaining == null ? context.localized.off : _formatRemaining(remaining),
+                textAlign: TextAlign.end,
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+                showSleepTimer(context);
+              },
+            );
+          }),
           if (bitRateOptions?.isNotEmpty == true)
             ListTile(
               title: Row(
@@ -486,6 +501,50 @@ Future<void> showAudioSelection(BuildContext context) {
         },
       );
     },
+  );
+}
+
+String _formatRemaining(Duration d) =>
+    "${d.inMinutes.toString().padLeft(2, '0')}:${(d.inSeconds % 60).toString().padLeft(2, '0')}";
+
+Future<void> showSleepTimer(BuildContext context) {
+  return showDialog(
+    context: context,
+    builder: (context) => Consumer(
+      builder: (context, ref, child) {
+        final notifier = ref.read(sleepTimerProvider.notifier);
+        final active = ref.watch(sleepTimerProvider) != null;
+        void close() => Navigator.of(context).pop();
+        return SimpleDialog(
+          title: Text(context.localized.sleepTimer),
+          children: [
+            for (final minutes in const [15, 30, 45, 60])
+              SimpleDialogOption(
+                onPressed: () {
+                  notifier.startMinutes(minutes);
+                  close();
+                },
+                child: Text(context.localized.sleepTimerMinutes(minutes)),
+              ),
+            SimpleDialogOption(
+              onPressed: () {
+                notifier.startEndOfEpisode();
+                close();
+              },
+              child: Text(context.localized.sleepTimerEndOfEpisode),
+            ),
+            if (active)
+              SimpleDialogOption(
+                onPressed: () {
+                  notifier.cancel();
+                  close();
+                },
+                child: Text(context.localized.off),
+              ),
+          ],
+        );
+      },
+    ),
   );
 }
 
