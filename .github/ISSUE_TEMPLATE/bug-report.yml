@@ -1,7 +1,6 @@
 name: "🐛 Bug Report"
 description: Create a new ticket for a bug.
-title: "<TITLE>"
-type: "Bug"
+labels: ["bug"]
 body:
   - type: textarea
     id: description
