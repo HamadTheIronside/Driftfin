@@ -1,7 +1,9 @@
 package io.github.hamadtheironside.driftfin.player
 
 import android.content.Context
+import android.os.Handler
 import android.os.Looper
+import androidx.media3.common.text.CueGroup
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.Renderer
@@ -10,10 +12,16 @@ import androidx.media3.exoplayer.text.TextRenderer
 import io.github.hamadtheironside.driftfin.objects.PlayerSettingsObject
 
 /**
- * A [DefaultRenderersFactory] that swaps in an [OffsetTextRenderer] so subtitle
- * timing can be shifted at runtime. Media3/ExoPlayer has no built-in subtitle
- * delay knob; shifting the position the text renderer renders at is the
- * supported way to achieve a bidirectional offset.
+ * A [DefaultRenderersFactory] that wraps the subtitle [TextOutput] so cue
+ * delivery can be shifted in time. Media3's [TextRenderer] is final and exposes
+ * no subtitle-delay knob, so we intercept its output and re-dispatch cues on a
+ * delay.
+ *
+ * This supports positive offsets (showing subtitles *later*), which is the
+ * common sync need. Negative offsets (showing them *earlier*) aren't possible
+ * post-hoc because future cues haven't been decoded yet; they fall back to no
+ * shift. The libMPV backend (used on phones/desktop/iOS) handles both
+ * directions natively.
  */
 @UnstableApi
 class OffsetRenderersFactory(context: Context) : DefaultRenderersFactory(context) {
@@ -24,22 +32,21 @@ class OffsetRenderersFactory(context: Context) : DefaultRenderersFactory(context
         extensionRendererMode: Int,
         out: ArrayList<Renderer>,
     ) {
-        out.add(OffsetTextRenderer(output, outputLooper))
+        out.add(TextRenderer(OffsetTextOutput(output, Handler(outputLooper)), outputLooper))
     }
 }
 
-/**
- * Renders subtitles offset by [PlayerSettingsObject.subtitleDelayMs]. A positive
- * delay makes the renderer lag the playback clock (subtitles appear later); a
- * negative delay makes it lead (subtitles appear earlier).
- */
 @UnstableApi
-private class OffsetTextRenderer(
-    output: TextOutput,
-    outputLooper: Looper?,
-) : TextRenderer(output, outputLooper) {
-    override fun render(positionUs: Long, elapsedRealtimeUs: Long) {
-        val offsetUs = PlayerSettingsObject.subtitleDelayMs.value * 1_000L
-        super.render(positionUs - offsetUs, elapsedRealtimeUs)
+private class OffsetTextOutput(
+    private val delegate: TextOutput,
+    private val handler: Handler,
+) : TextOutput {
+    override fun onCues(cueGroup: CueGroup) {
+        val delayMs = PlayerSettingsObject.subtitleDelayMs.value
+        if (delayMs <= 0L) {
+            delegate.onCues(cueGroup)
+        } else {
+            handler.postDelayed({ delegate.onCues(cueGroup) }, delayMs)
+        }
     }
 }

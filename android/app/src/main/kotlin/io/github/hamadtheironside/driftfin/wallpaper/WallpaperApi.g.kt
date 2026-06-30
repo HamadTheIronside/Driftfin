@@ -2,8 +2,9 @@
 // See also: https://pub.dev/packages/pigeon
 @file:Suppress("UNCHECKED_CAST", "ArrayInDataClass")
 
-package nl.jknaapen.fladder.wallpaper
+package io.github.hamadtheironside.driftfin.wallpaper
 
+import FlutterError
 import android.util.Log
 import io.flutter.plugin.common.BasicMessageChannel
 import io.flutter.plugin.common.BinaryMessenger
@@ -13,71 +14,84 @@ import io.flutter.plugin.common.StandardMethodCodec
 import io.flutter.plugin.common.StandardMessageCodec
 import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
+
 private object WallpaperApiPigeonUtils {
 
-  fun wrapResult(result: Any?): List<Any?> {
-    return listOf(result)
-  }
-
-  fun wrapError(exception: Throwable): List<Any?> {
-    return if (exception is FlutterError) {
-      listOf(
-        exception.code,
-        exception.message,
-        exception.details
-      )
-    } else {
-      listOf(
-        exception.javaClass.simpleName,
-        exception.toString(),
-        "Cause: " + exception.cause + ", Stacktrace: " + Log.getStackTraceString(exception)
-      )
+    fun wrapResult(result: Any?): List<Any?> {
+        return listOf(result)
     }
-  }
+
+    fun wrapError(exception: Throwable): List<Any?> {
+        return if (exception is FlutterError) {
+            listOf(
+                exception.code,
+                exception.message,
+                exception.details
+            )
+        } else {
+            listOf(
+                exception.javaClass.simpleName,
+                exception.toString(),
+                "Cause: " + exception.cause + ", Stacktrace: " + Log.getStackTraceString(exception)
+            )
+        }
+    }
 }
+
 private open class WallpaperApiPigeonCodec : StandardMessageCodec() {
-  override fun readValueOfType(type: Byte, buffer: ByteBuffer): Any? {
-    return     super.readValueOfType(type, buffer)
-  }
-  override fun writeValue(stream: ByteArrayOutputStream, value: Any?)   {
-    super.writeValue(stream, value)
-  }
+    override fun readValueOfType(type: Byte, buffer: ByteBuffer): Any? {
+        return super.readValueOfType(type, buffer)
+    }
+
+    override fun writeValue(stream: ByteArrayOutputStream, value: Any?) {
+        super.writeValue(stream, value)
+    }
 }
 
 
 /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
 interface WallpaperApi {
-  fun openWallpaperPopup(filePath: String, callback: (Result<Boolean>) -> Unit)
+    fun openWallpaperPopup(filePath: String, callback: (Result<Boolean>) -> Unit)
 
-  companion object {
-    /** The codec used by WallpaperApi. */
-    val codec: MessageCodec<Any?> by lazy {
-      WallpaperApiPigeonCodec()
-    }
-    /** Sets up an instance of `WallpaperApi` to handle messages through the `binaryMessenger`. */
-    @JvmOverloads
-    fun setUp(binaryMessenger: BinaryMessenger, api: WallpaperApi?, messageChannelSuffix: String = "") {
-      val separatedMessageChannelSuffix = if (messageChannelSuffix.isNotEmpty()) ".$messageChannelSuffix" else ""
-      run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.io_github_hamadtheironside_driftfin.wallpaper.WallpaperApi.openWallpaperPopup$separatedMessageChannelSuffix", codec)
-        if (api != null) {
-          channel.setMessageHandler { message, reply ->
-            val args = message as List<Any?>
-            val filePathArg = args[0] as String
-            api.openWallpaperPopup(filePathArg) { result: Result<Boolean> ->
-              val error = result.exceptionOrNull()
-              if (error != null) {
-                reply.reply(WallpaperApiPigeonUtils.wrapError(error))
-              } else {
-                val data = result.getOrNull()
-                reply.reply(WallpaperApiPigeonUtils.wrapResult(data))
-              }
-            }
-          }
-        } else {
-          channel.setMessageHandler(null)
+    companion object {
+        /** The codec used by WallpaperApi. */
+        val codec: MessageCodec<Any?> by lazy {
+            WallpaperApiPigeonCodec()
         }
-      }
+
+        /** Sets up an instance of `WallpaperApi` to handle messages through the `binaryMessenger`. */
+        @JvmOverloads
+        fun setUp(
+            binaryMessenger: BinaryMessenger,
+            api: WallpaperApi?,
+            messageChannelSuffix: String = ""
+        ) {
+            val separatedMessageChannelSuffix =
+                if (messageChannelSuffix.isNotEmpty()) ".$messageChannelSuffix" else ""
+            run {
+                val channel = BasicMessageChannel<Any?>(
+                    binaryMessenger,
+                    "dev.flutter.pigeon.io_github_hamadtheironside_driftfin.wallpaper.WallpaperApi.openWallpaperPopup$separatedMessageChannelSuffix",
+                    codec
+                )
+                if (api != null) {
+                    channel.setMessageHandler { message, reply ->
+                        val args = message as List<Any?>
+                        val filePathArg = args[0] as String
+                        api.openWallpaperPopup(filePathArg) { result: Result<Boolean> ->
+                            val error = result.exceptionOrNull()
+                            if (error != null) {
+                                reply.reply(WallpaperApiPigeonUtils.wrapError(error))
+                            } else {
+                                val data = result.getOrNull()
+                                reply.reply(WallpaperApiPigeonUtils.wrapResult(data))
+                            }
+                        }
+                    }
+                } else {
+                    channel.setMessageHandler(null)
+                }
+            }
+        }
     }
-  }
 }

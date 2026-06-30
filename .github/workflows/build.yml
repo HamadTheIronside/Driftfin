@@ -301,7 +301,9 @@ jobs:
       - name: Ensure correct app name casing
         run: |
           APP_DIR="build/macos/Build/Products/Release-production"
-          mv "$APP_DIR/fladder.app" "$APP_DIR/Fladder.app"
+          # PRODUCT_NAME is Driftfin, so the bundle is already correctly cased;
+          # only rename if a lowercase variant was produced.
+          mv "$APP_DIR/driftfin.app" "$APP_DIR/Driftfin.app" 2>/dev/null || true
 
       - name: Install create-dmg
         run: brew install create-dmg
@@ -353,7 +355,7 @@ jobs:
             [[ -f "$lib" && -n "$(patchelf --print-rpath "$lib")" ]] && \
             patchelf --set-rpath '$ORIGIN' "$lib"
           done
-          patchelf --set-rpath '$ORIGIN/lib' "build/linux/x64/release/bundle/fladder"
+          patchelf --set-rpath '$ORIGIN/lib' "build/linux/x64/release/bundle/driftfin"
 
       - name: Archive Linux artifact
         uses: actions/upload-artifact@v4
