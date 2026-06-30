@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:driftfin/models/items/chapters_model.dart';
 import 'package:driftfin/screens/shared/flat_button.dart';
+import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/widgets/shared/horizontal_list.dart';
 
 void showPlayerChapterDialogue(
@@ -42,7 +43,7 @@ class VideoPlayerChapters extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: HorizontalList(
-          label: "Chapters",
+          label: context.localized.chapter(chapters.length),
           height: 200,
           startIndex: chapters.indexOf(currentChapter ?? chapters.first),
           contentPadding: const EdgeInsets.symmetric(horizontal: 32),
