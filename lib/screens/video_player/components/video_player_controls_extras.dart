@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:driftfin/models/items/media_segments_model.dart';
+import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
 import 'package:driftfin/screens/shared/animated_fade_size.dart';
 import 'package:driftfin/screens/video_player/components/video_player_chapters.dart';
@@ -16,25 +17,40 @@ class ChapterButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentChapters = ref.watch(playBackModel.select((value) => value?.chapters));
-    if (currentChapters != null) {
-      return IconButton(
-        onPressed: () {
-          showPlayerChapterDialogue(
-            context,
-            chapters: currentChapters,
-            currentPosition: position,
-            onChapterTapped: (chapter) => ref.read(videoPlayerProvider).seek(
-                  chapter.startPosition,
-                ),
-          );
-        },
-        icon: const Icon(
-          Icons.video_collection_rounded,
+    if (currentChapters == null || currentChapters.isEmpty) return Container();
+    // ponytail: prev/next reuse the existing nextChapter/prevChapter seek logic
+    // (same call the PageUp/PageDown hotkeys make) — no new logic, fork-safe.
+    final settings = ref.read(videoPlayerSettingsProvider.notifier);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        IconButton(
+          tooltip: context.localized.prevChapter,
+          onPressed: settings.prevChapter,
+          icon: const Icon(Icons.skip_previous_rounded),
         ),
-      );
-    } else {
-      return Container();
-    }
+        IconButton(
+          onPressed: () {
+            showPlayerChapterDialogue(
+              context,
+              chapters: currentChapters,
+              currentPosition: position,
+              onChapterTapped: (chapter) => ref.read(videoPlayerProvider).seek(
+                    chapter.startPosition,
+                  ),
+            );
+          },
+          icon: const Icon(
+            Icons.video_collection_rounded,
+          ),
+        ),
+        IconButton(
+          tooltip: context.localized.nextChapter,
+          onPressed: settings.nextChapter,
+          icon: const Icon(Icons.skip_next_rounded),
+        ),
+      ],
+    );
   }
 }
 

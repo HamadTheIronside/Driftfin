@@ -3,6 +3,7 @@ import 'package:driftfin/providers/book_viewer_provider.dart';
 import 'package:driftfin/providers/items/book_details_provider.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/widgets/shared/modal_side_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -48,7 +49,7 @@ class BookViewerChapters extends ConsumerWidget {
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Chapters",
+              context.localized.chapter(chapters.length),
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
