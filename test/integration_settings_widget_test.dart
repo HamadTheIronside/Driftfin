@@ -115,29 +115,58 @@ void main() {
     // No managed note when the plugin is absent.
     expect(find.text(l10n.managedByServerPlugin), findsNothing);
 
-    // Edit the Sonarr URL through the prompt dialog -> covers the onTap closure.
-    await tester.tap(find.text(l10n.sonarrUrlTitle));
-    await tester.pumpAndSettle();
-    await tester.enterText(find.byType(TextField), 'http://new-sonarr');
-    await tester.tap(find.text(l10n.save));
-    await tester.pumpAndSettle();
+    final container = ProviderScope.containerOf(tester.element(find.byType(ListView)));
 
-    final container = ProviderScope.containerOf(
-      tester.element(find.byType(ListView)),
-    );
+    // Save a value through the prompt dialog for every editable field
+    // (covers each onTap closure + promptText + the setter).
+    Future<void> editField(String title, String text) async {
+      await tester.tap(find.text(title));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField), text);
+      await tester.tap(find.text(l10n.save));
+      await tester.pumpAndSettle();
+    }
+
+    await editField(l10n.sonarrUrlTitle, 'http://new-sonarr');
+    await editField(l10n.sonarrApiKeyTitle, 'sonarr-key2');
+    await editField(l10n.radarrUrlTitle, 'http://new-radarr');
+    await editField(l10n.radarrApiKeyTitle, 'radarr-key2');
+    await editField(l10n.traktClientId, 'cid2');
+    await editField(l10n.traktClientSecret, 'secret2');
+
     expect(container.read(sonarrProvider).baseUrl, 'http://new-sonarr');
+    expect(container.read(sonarrProvider).apiKey, 'sonarr-key2');
+    expect(container.read(radarrProvider).baseUrl, 'http://new-radarr');
+    expect(container.read(radarrProvider).apiKey, 'radarr-key2');
+    expect(container.read(traktProvider).clientId, 'cid2');
+    expect(container.read(traktProvider).clientSecret, 'secret2');
 
-    // Cancel path on the Radarr API key dialog -> leaves value unchanged.
-    await tester.tap(find.text(l10n.radarrApiKeyTitle));
+    // Cancel path leaves the value unchanged.
+    await tester.tap(find.text(l10n.sonarrUrlTitle));
     await tester.pumpAndSettle();
     await tester.tap(find.text(l10n.cancel));
     await tester.pumpAndSettle();
-    expect(container.read(radarrProvider).apiKey, 'k');
+    expect(container.read(sonarrProvider).baseUrl, 'http://new-sonarr');
 
     // Trakt is authenticated -> the action tile disconnects (no network).
     await tester.tap(find.text(l10n.traktDisconnect));
     await tester.pumpAndSettle();
     expect(container.read(traktProvider).isAuthenticated, isFalse);
+
+    // Toggle each integration via its Switch (covers the onChanged closures).
+    // The three section switches keep their order (sonarr, radarr, trakt) even
+    // as field tiles collapse.
+    await tester.tap(find.byType(Switch).at(0));
+    await tester.pumpAndSettle();
+    expect(container.read(sonarrProvider).enabled, isFalse);
+
+    await tester.tap(find.byType(Switch).at(1));
+    await tester.pumpAndSettle();
+    expect(container.read(radarrProvider).enabled, isFalse);
+
+    await tester.tap(find.byType(Switch).at(2));
+    await tester.pumpAndSettle();
+    expect(container.read(traktProvider).enabled, isFalse);
   });
 
   testWidgets('unmanaged: toggling an integration off hides its fields', (tester) async {
