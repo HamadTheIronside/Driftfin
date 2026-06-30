@@ -8,7 +8,7 @@ on:
 
 jobs:
   linting:
-    name: Linting & Formatting
+    name: Lint, format & test
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -45,3 +45,7 @@ jobs:
           emojis: false
           fail-on: info
           line-length: 120
+
+      - name: Run tests
+        # Live integration tests (Trakt/Sonarr/Radarr) self-skip without creds.
+        run: flutter test
