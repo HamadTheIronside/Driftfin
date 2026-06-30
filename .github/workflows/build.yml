@@ -402,7 +402,7 @@ jobs:
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           bundle: Fladder-Linux.flatpak
-          manifest-path: flatpak/nl.jknaapen.fladder.yaml
+          manifest-path: flatpak/io.github.hamadtheironside.driftfin.yaml
 
       - name: Archive Linux Flatpak bundle
         uses: actions/upload-artifact@v4
