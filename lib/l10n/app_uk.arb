@@ -928,7 +928,7 @@
   "hasLikedActor": "Має вподобаного актора",
   "recommended": "Рекомендовано",
   "hasDirectorFromRecentlyPlayed": "Має режисера з нещодавно відтвореного",
-  "exitFladderTitle": "Вийти з Driftfin",
+  "exitDriftfinTitle": "Вийти з Driftfin",
   "playbackTypeDirect": "Пряме",
   "playbackType": "Тип відтворення",
   "playbackTypeTranscode": "Перекодування",
@@ -1046,7 +1046,7 @@
     }
   },
   "television": "Телебачення",
-  "exitFladderDesc": "Ви впевнені, що хочете закрити Driftfin?",
+  "exitDriftfinDesc": "Ви впевнені, що хочете закрити Driftfin?",
   "quickConnectPostFailed": "Не вдалося отримати швидкий код підключення",
   "quickConnectLoginUsingCode": "Використання швидкого підключення",
   "quickConnectEnterCodeDescription": "Введіть код нижче для входу",

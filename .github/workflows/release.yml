@@ -2,11 +2,10 @@ name: Release Driftfin
 
 # Fork-owned release pipeline. Builds the three targets Driftfin cares about
 # (Web, Windows, iOS-unsigned) and publishes a GitHub Release with the binaries.
-# The upstream Fladder pipeline (build.yml) is kept for reference but its
-# auto-triggers are disabled — it needs secrets (Android keystore, Play Console,
-# a GitHub App) this fork does not have.
+# The upstream Fladder pipeline (build.yml.disabled) is disabled — it needs
+# secrets (Android keystore, Play Console, a GitHub App) this fork does not have.
 #
-# To cut a release:  git tag vX.Y.Z[-driftfin.N] && git push origin vX.Y.Z...
+# To cut a release:  git tag vX.Y.Z && git push origin vX.Y.Z  (see CLAUDE.md → Releases)
 # Or run manually from the Actions tab (workflow_dispatch) for a dry build.
 
 on:

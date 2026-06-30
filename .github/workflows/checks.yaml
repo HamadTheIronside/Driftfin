@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0   # diff-cover needs the base branch to diff changed lines
 
       - name: Fetch version info
         run: |
@@ -46,6 +48,22 @@ jobs:
           fail-on: info
           line-length: 120
 
-      - name: Run tests
+      - name: Run unit & widget tests
+        # Both run via `flutter test` (flutter_test, no device needed).
         # Live integration tests (Trakt/Sonarr/Radarr) self-skip without creds.
-        run: flutter test
+        run: flutter test --coverage
+
+      - name: Coverage gate (changed lines must be tested)
+        if: github.event_name == 'pull_request'
+        # Diff coverage, not total: every changed line of hand-written code must be
+        # covered. Total coverage is meaningless here (generated client dominates).
+        # ponytail: --fail-under=80 is the knob; raise it as coverage matures.
+        run: |
+          pip install diff_cover
+          git fetch --no-tags origin "${{ github.base_ref }}"
+          diff-cover coverage/lcov.info \
+            --compare-branch="origin/${{ github.base_ref }}" \
+            --fail-under=80 \
+            --exclude "**/*.g.dart" "**/*.freezed.dart" "**/*.mapper.dart" \
+                      "**/*.gr.dart" "**/*.swagger*.dart" \
+                      "lib/jellyfin/**" "lib/src/**" "lib/l10n/generated/**"

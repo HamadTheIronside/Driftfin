@@ -1670,8 +1670,8 @@
   "segmentActionSkipOnce": "Skip once",
   "segmentActionSkip": "Skip",
   "loading": "Loading",
-  "exitFladderTitle": "Exit Driftfin",
-  "exitFladderDesc": "Are you sure you want to close Driftfin?",
+  "exitDriftfinTitle": "Exit Driftfin",
+  "exitDriftfinDesc": "Are you sure you want to close Driftfin?",
   "quitMultipleWindowsDesc": "You have {count} windows open. Quitting Driftfin will close all of them. Do you want to continue?",
   "@quitMultipleWindowsDesc": {
     "placeholders": {
@@ -2902,7 +2902,7 @@
   "passwordNotRequired": "Not required, leave empty to not include password in the link",
   "authLinkButtonToolTip": "Open auth link dialog",
   "connectWithAuthLink": "Connect with auth link",
-  "pasteFladderAuthLink": "Paste driftfin auth link driftfin:///login?authLink=...",
+  "pasteDriftfinAuthLink": "Paste driftfin auth link driftfin:///login?authLink=...",
   "connect": "Connect",
   "authLinkDesc": "Ask the server admin to provide the auth link. The link contains authentication information, so be sure to keep it secure.",
   "deletedItem": "Deleted {itemName}",

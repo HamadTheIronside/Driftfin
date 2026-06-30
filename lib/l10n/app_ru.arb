@@ -581,7 +581,7 @@
   "pathEditSelect": "Выберите место загрузки",
   "saved": "Сохранено",
   "maxConcurrentDownloadsTitle": "Максимальное количество одновременных загрузок",
-  "exitFladderTitle": "Выйти из Driftfin",
+  "exitDriftfinTitle": "Выйти из Driftfin",
   "maxConcurrentDownloadsDesc": "Устанавливает максимальное количество загрузок, которые могут выполняться одновременно. Установите значение 0, чтобы отключить ограничение.",
   "rememberAudioSelections": "Установка звуковой дорожки на основе предыдущего элемента",
   "similarToRecentlyPlayed": "Похожие на недавно просмотренные",
@@ -1031,7 +1031,7 @@
     }
   },
   "television": "Телевидение",
-  "exitFladderDesc": "Вы уверены, что хотите закрыть Driftfin?",
+  "exitDriftfinDesc": "Вы уверены, что хотите закрыть Driftfin?",
   "keyboardShortCuts": "Горячие клавиши",
   "speedUp": "Ускорение",
   "speedDown": "Замедление",
@@ -1863,7 +1863,7 @@
   "linkData": "Данные ссылки",
   "passwordNotRequired": "Не требуется, оставьте пустым, чтобы не включать пароль в ссылку",
   "connectWithAuthLink": "Подключиться с ссылкой для входа",
-  "pasteFladderAuthLink": "Вставьте ссылку для входа вида driftfin:///login?authLink=...",
+  "pasteDriftfinAuthLink": "Вставьте ссылку для входа вида driftfin:///login?authLink=...",
   "connect": "Подключиться",
   "deletedItem": "{itemName} удалено",
   "@deletedItem": {

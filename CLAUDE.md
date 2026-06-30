@@ -19,7 +19,7 @@ Linux dev needs `libmpv-dev` (`sudo apt install libmpv-dev`); desktop builds als
 $FLUTTER pub get
 $FLUTTER analyze lib/                                   # must be clean (CI fails on info)
 $DART format --line-length 120 <paths>                  # 120 cols — CI enforces it
-$FLUTTER test                                           # unit tests in test/
+$FLUTTER test                                           # unit + widget tests in test/
 $FLUTTER run -d <linux|macos|windows|chrome|<device>>   # run the app
 $FLUTTER gen-l10n                                        # regenerate localizations
 $DART run build_runner build --delete-conflicting-outputs   # see Codegen
@@ -28,7 +28,7 @@ $DART run pigeon --input pigeons/<file>.dart            # regen one bridge (outp
 
 ## Testing
 
-Unit tests live in `test/`; run with `$FLUTTER test` (Flutter's built-in `flutter_test`). No integration/e2e suites yet. Put new tests beside the code they cover, matching the existing `*_test.dart` naming.
+**Unit and widget tests are required** for every change — bugfix or new feature. Put new tests in `test/`, named after the code they cover (`*_test.dart`). Run with `$FLUTTER test` (Flutter's built-in `flutter_test`) — both unit and widget tests run here, no device needed. CI runs `flutter test` on every PR and must pass. Live integration tests (Trakt/Sonarr/Radarr) self-skip without creds. No on-device integration/e2e suites yet.
 
 ## Codegen (do this after editing models/providers/routes/APIs)
 
@@ -70,7 +70,7 @@ l10n/       app_*.arb (+ gitignored generated/)
 
 ## Conventions
 
-- This is a **fork**: keep edits conflict-safe, avoid refactoring upstream-owned files.
+- This fork has **diverged** from Fladder — no more upstream merges. Refactor freely; edits no longer need to be conflict-safe. (Origin/license credit stays in `README.md`.)
 - **Conventional Commits.** No `Co-Authored-By: Claude` trailer (`includeCoAuthoredBy: false`).
 - Before pushing: `analyze` clean + `format --line-length 120`. CI (`.github/workflows/checks.yaml`) runs both on PRs (analyze `fail-on: info`).
 - Feature requests/bugs go through GitHub **Issues** (Discussions disabled); roadmap is a public Project board with milestones `v1` and `Store releases`.
@@ -81,7 +81,7 @@ l10n/       app_*.arb (+ gitignored generated/)
 - **Stable:** tag `vX.Y.Z` matching the pubspec version (e.g. `v0.10.5`).
 - **Nightly:** tag `v<X.Y.Z>-nightly.YYYYMMDD.N` (e.g. `v0.10.5-nightly.20260630.1`) — published as a prerelease because the tag contains `nightly`; `N` increments per build that day.
 
-Do **not** use `build.yml` for releases (upstream Fladder pipeline; needs signing secrets and mints a rolling `nightly` tag that sorts out of order).
+`build.yml` (the upstream Fladder pipeline) is **disabled** — renamed to `build.yml.disabled`. It needed signing secrets this fork lacks and minted a rolling `nightly` tag that sorts out of order. Use `release.yml`.
 
 ## More docs
 

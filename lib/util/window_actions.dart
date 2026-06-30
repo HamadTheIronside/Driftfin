@@ -33,7 +33,7 @@ Future<void> quitApplication(BuildContext context) async {
   if (windows.length > 1) {
     await showDefaultAlertDialog(
       context,
-      context.localized.exitFladderTitle,
+      context.localized.exitDriftfinTitle,
       context.localized.quitMultipleWindowsDesc(windows.length),
       (context) => SystemNavigator.pop(),
       context.localized.exit,

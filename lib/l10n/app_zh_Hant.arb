@@ -899,7 +899,7 @@
   "segmentActionAskToSkip": "詢問",
   "segmentActionSkip": "跳過",
   "loading": "載入中",
-  "exitFladderTitle": "結束 Driftfin",
+  "exitDriftfinTitle": "結束 Driftfin",
   "castAndCrew": "演員與劇組",
   "guestActor": "{count, plural, other{客串演員} one{客串演員}}",
   "@guestActor": {
@@ -1031,7 +1031,7 @@
     }
   },
   "television": "電視",
-  "exitFladderDesc": "你確定要關閉 Driftfin 嗎？",
+  "exitDriftfinDesc": "你確定要關閉 Driftfin 嗎？",
   "keyboardShortCuts": "按鍵快速鍵",
   "speedUp": "加速",
   "speedDown": "減速",
@@ -1839,7 +1839,7 @@
   "passwordNotRequired": "非必填，留空表示連結中不包含密碼",
   "authLinkButtonToolTip": "開啟身份驗證連結對話框",
   "connectWithAuthLink": "使用身份驗證連結連線",
-  "pasteFladderAuthLink": "請貼上 Driftfin 驗證連結：driftfin:///login?authLink=...",
+  "pasteDriftfinAuthLink": "請貼上 Driftfin 驗證連結：driftfin:///login?authLink=...",
   "connect": "連線",
   "authLinkDesc": "請伺服器管理員提供驗證連結。該連結包含驗證資訊，請務必妥善保管，確保安全。",
   "deletedItem": "刪除 {itemName}",

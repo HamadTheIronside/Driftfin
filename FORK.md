@@ -1,19 +1,13 @@
 # Maintaining Driftfin (fork of Fladder)
 
 Driftfin is a fork of [Fladder](https://github.com/DonutWare/Fladder) by DonutWare,
-under GPL-3.0. This file documents how to keep it in sync with upstream and how to
-cut releases. (Branding/license credit lives in `README.md`.)
+under GPL-3.0. (Branding/license credit lives in `README.md`.)
 
-## Remotes
-
-```bash
-git remote -v
-# origin    https://github.com/HamadTheIronside/Driftfin   (your fork)
-# upstream  https://github.com/DonutWare/Fladder            (original)
-
-# one-time, if upstream is missing:
-git remote add upstream https://github.com/DonutWare/Fladder.git
-```
+> [!NOTE]
+> **Driftfin has diverged and no longer merges upstream Fladder.** The "Syncing
+> upstream into the fork" section below is kept for historical reference only — it
+> is no longer part of the workflow, and edits no longer need to be conflict-safe.
+> For current release steps, see the **Releases** section in `CLAUDE.md`.
 
 ## What the fork changes
 
@@ -54,42 +48,20 @@ Tips that make merges painless:
 
 ## Releasing
 
-Releases are built by GitHub Actions in [`.github/workflows/release.yml`](.github/workflows/release.yml)
-— **Web + Windows + iOS (unsigned)** — and published as a GitHub Release.
+Releases are built by [`.github/workflows/release.yml`](.github/workflows/release.yml)
+on any pushed `v*` tag. **See the "Releases" section in `CLAUDE.md` for the current
+tag scheme** (stable `vX.Y.Z` matching the pubspec version; nightly
+`v<X.Y.Z>-nightly.YYYYMMDD.N`). The old `v<upstream>-driftfin.N` scheme is retired now
+that the fork no longer tracks an upstream base version.
 
-```bash
-# pick the next version (see scheme below), then:
-git tag v0.10.3-driftfin.1
-git push origin v0.10.3-driftfin.1
-# -> Actions builds the three platforms and publishes the release with binaries.
-```
-
-You can also trigger `release.yml` manually from the **Actions** tab (workflow_dispatch)
-for a dry build without publishing.
-
-### Versioning scheme
-
-Track the upstream base version and append a fork counter, so it's always clear which
-Fladder release you're built on:
-
-```
-v<upstream-version>-driftfin.<n>
-e.g.  v0.10.3-driftfin.1   (first Driftfin release on top of Fladder 0.10.3)
-      v0.10.3-driftfin.2   (another Driftfin release, still on 0.10.3)
-      v0.11.0-driftfin.1   (after merging upstream 0.11.0)
-```
-
-The `pubspec.yaml` `version:` stays at the upstream base (e.g. `0.10.3+1`); the git
-tag carries the `-driftfin.N` suffix. The release title/asset names use the tag.
-
-### The inherited upstream pipeline
+### The inherited upstream pipeline (disabled)
 
 `.github/workflows/build.yml` is Fladder's full multi-platform pipeline (Android,
-macOS, Linux/flatpak, Play Console, web deploy). It's **kept** so upstream merges stay
-clean, but its auto-triggers are **disabled** (workflow_dispatch only) because it needs
-secrets this fork doesn't have (Android keystore, Play Console, a `FLADDER_BOT` GitHub
-App). Driftfin uses `release.yml` instead. If you ever want Android or the full set,
-wire up those secrets and re-enable `build.yml`'s triggers.
+macOS, Linux/flatpak, Play Console, web deploy). It is **disabled** — it needs secrets
+this fork doesn't have (Android keystore, Play Console, a `FLADDER_BOT` GitHub App) and
+the fork no longer merges upstream, so there's no reason to keep it live. Driftfin uses
+`release.yml` instead. If you ever want Android or the full set, re-enable it (rename
+`build.yml.disabled` → `build.yml`) and wire up those secrets.
 
 ## Known fork leftovers (cosmetic / deferred)
 

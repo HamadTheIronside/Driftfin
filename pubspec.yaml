@@ -239,10 +239,10 @@ flutter:
           style: italic
 
 flutter_native_splash:
-  color: "#210000"
-  color_dark: "#210000"
-  image: icons/production/fladder_icon.png
-  image_dark: icons/production/fladder_icon.png
+  color: "#0a2444"
+  color_dark: "#0a2444"
+  image: icons/production/driftfin_foreground.png
+  image_dark: icons/production/driftfin_foreground.png
   android: true
   ios: false
   web: false

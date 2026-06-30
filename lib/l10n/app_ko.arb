@@ -629,7 +629,7 @@
   "maxConcurrentDownloadsDesc": "동시에 실행할 수 있는 최대 다운로드 개수를 지정해요. 0으로 설정하면 제한 없이 다운로드할 수 있어요.",
   "maxConcurrentDownloadsTitle": "최대 동시 다운로드 수",
   "castAndCrew": "출연진 및 제작진",
-  "exitFladderTitle": "Driftfin 종료",
+  "exitDriftfinTitle": "Driftfin 종료",
   "loading": "로딩 중",
   "segmentActionSkip": "건너뛰기",
   "segmentActionAskToSkip": "건너뛰기 여부 묻기",
