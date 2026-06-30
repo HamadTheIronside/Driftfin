@@ -53,7 +53,7 @@ jobs:
           VERSION="${{ steps.version.outputs.version }}"
           DATE=$(date +%Y-%m-%d)
           NEW_RELEASE="  <releases>\n    <release version=\"${VERSION}\" date=\"${DATE}\">\n      <description>\n        <p>${{ env.CHANGELOG_MSG }}</p>\n      </description>\n    </release>\n  </releases>"
-          perl -i -0777 -pe "s@  <releases>.*?</releases>@$NEW_RELEASE@s" flatpak/nl.jknaapen.fladder.metainfo.xml
+          perl -i -0777 -pe "s@  <releases>.*?</releases>@$NEW_RELEASE@s" flatpak/io.github.hamadtheironside.driftfin.metainfo.xml
 
       - name: Update Fastlane Changelog
         if: steps.version.outputs.is_new_version == 'true'
@@ -73,7 +73,7 @@ jobs:
           VERSION="v${{ steps.version.outputs.version }}"
 
           # 1. Commit metadata to develop
-          git add flatpak/nl.jknaapen.fladder.metainfo.xml
+          git add flatpak/io.github.hamadtheironside.driftfin.metainfo.xml
           git add fastlane/metadata/android/en-US/changelogs/
 
           if git diff --staged --quiet; then
