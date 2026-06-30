@@ -364,68 +364,74 @@ class _DesktopControlsState extends ConsumerState<DesktopControls> {
                 children: [
                   Flexible(
                     flex: 2,
-                    child: Row(
-                      children: <Widget>[
-                        IconButton(
-                            onPressed: () => showVideoPlayerOptions(context, () => minimizePlayer(context)),
-                            icon: const Icon(IconsaxPlusLinear.more)),
-                        ChapterButton(position: ref.read(videoPlayerProvider).lastState?.position ?? Duration.zero),
-                        if (pipPlatformSupported && MediaQuery.orientationOf(context) == Orientation.landscape)
+                    // Horizontal scroll so the left cluster (which grows with the
+                    // chapter prev/list/next buttons + PiP) never RenderFlex-overflows
+                    // on narrow landscape phones.
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: <Widget>[
                           IconButton(
-                            tooltip: context.localized.pictureInPictureTitle,
-                            onPressed: () async {
-                              final ok = await ref.read(pipManagerProvider).enter();
-                              if (!ok && context.mounted) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text(context.localized.pictureInPictureNotSupported)),
-                                );
-                              }
-                            },
-                            icon: const Icon(IconsaxPlusLinear.screenmirroring),
-                          ),
-                        if (AdaptiveLayout.layoutOf(context) == ViewSize.tablet) ...[
-                          IconButton(
-                            onPressed: () => showSubSelection(context),
-                            icon: const Icon(IconsaxPlusLinear.subtitle),
-                          ),
-                          IconButton(
-                            onPressed: () => showAudioSelection(context),
-                            icon: const Icon(IconsaxPlusLinear.audio_square),
-                          ),
-                        ],
-                        if (AdaptiveLayout.layoutOf(context) >= ViewSize.desktop) ...[
-                          Flexible(
-                            child: ElevatedButton.icon(
+                              onPressed: () => showVideoPlayerOptions(context, () => minimizePlayer(context)),
+                              icon: const Icon(IconsaxPlusLinear.more)),
+                          ChapterButton(position: ref.read(videoPlayerProvider).lastState?.position ?? Duration.zero),
+                          if (pipPlatformSupported && MediaQuery.orientationOf(context) == Orientation.landscape)
+                            IconButton(
+                              tooltip: context.localized.pictureInPictureTitle,
+                              onPressed: () async {
+                                final ok = await ref.read(pipManagerProvider).enter();
+                                if (!ok && context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text(context.localized.pictureInPictureNotSupported)),
+                                  );
+                                }
+                              },
+                              icon: const Icon(IconsaxPlusLinear.screenmirroring),
+                            ),
+                          if (AdaptiveLayout.layoutOf(context) == ViewSize.tablet) ...[
+                            IconButton(
                               onPressed: () => showSubSelection(context),
                               icon: const Icon(IconsaxPlusLinear.subtitle),
-                              label: Text(
-                                ref.watch(playBackModel.select((value) {
-                                      final language = value?.mediaStreams?.currentSubStream?.language;
-                                      return language?.isEmpty == true ? context.localized.off : language;
-                                    }))?.capitalize() ??
-                                    "",
-                                maxLines: 1,
-                              ),
                             ),
-                          ),
-                          Flexible(
-                            child: ElevatedButton.icon(
+                            IconButton(
                               onPressed: () => showAudioSelection(context),
                               icon: const Icon(IconsaxPlusLinear.audio_square),
-                              label: Text(
-                                ref.watch(playBackModel.select((value) {
-                                      final language = value?.mediaStreams?.currentAudioStream?.language;
-                                      return language?.isEmpty == true ? context.localized.off : language;
-                                    }))?.capitalize() ??
-                                    "",
-                                maxLines: 1,
+                            ),
+                          ],
+                          if (AdaptiveLayout.layoutOf(context) >= ViewSize.desktop) ...[
+                            Flexible(
+                              child: ElevatedButton.icon(
+                                onPressed: () => showSubSelection(context),
+                                icon: const Icon(IconsaxPlusLinear.subtitle),
+                                label: Text(
+                                  ref.watch(playBackModel.select((value) {
+                                        final language = value?.mediaStreams?.currentSubStream?.language;
+                                        return language?.isEmpty == true ? context.localized.off : language;
+                                      }))?.capitalize() ??
+                                      "",
+                                  maxLines: 1,
+                                ),
                               ),
                             ),
-                          )
-                        ],
-                      ].addInBetween(const SizedBox(
-                        width: 4,
-                      )),
+                            Flexible(
+                              child: ElevatedButton.icon(
+                                onPressed: () => showAudioSelection(context),
+                                icon: const Icon(IconsaxPlusLinear.audio_square),
+                                label: Text(
+                                  ref.watch(playBackModel.select((value) {
+                                        final language = value?.mediaStreams?.currentAudioStream?.language;
+                                        return language?.isEmpty == true ? context.localized.off : language;
+                                      }))?.capitalize() ??
+                                      "",
+                                  maxLines: 1,
+                                ),
+                              ),
+                            )
+                          ],
+                        ].addInBetween(const SizedBox(
+                          width: 4,
+                        )),
+                      ),
                     ),
                   ),
                   previousButton,

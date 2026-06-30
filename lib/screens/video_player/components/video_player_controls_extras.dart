@@ -17,7 +17,7 @@ class ChapterButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentChapters = ref.watch(playBackModel.select((value) => value?.chapters));
-    if (currentChapters == null) return Container();
+    if (currentChapters == null || currentChapters.isEmpty) return Container();
     // ponytail: prev/next reuse the existing nextChapter/prevChapter seek logic
     // (same call the PageUp/PageDown hotkeys make) — no new logic, fork-safe.
     final settings = ref.read(videoPlayerSettingsProvider.notifier);
