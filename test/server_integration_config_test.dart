@@ -180,6 +180,31 @@ void main() {
       expect(container.read(traktProvider).clientId, 'cid');
     });
 
+    test('emitting managed config after build applies it via the listener', () async {
+      final container = _container(prefs, null);
+      addTearDown(container.dispose);
+
+      // Build providers unmanaged first.
+      expect(container.read(sonarrProvider).managed, isFalse);
+      expect(container.read(radarrProvider).managed, isFalse);
+      expect(container.read(traktProvider).managed, isFalse);
+
+      const managed = ServerIntegrationConfig(
+        sonarr: ArrServerConfig(enabled: true, url: 'https://s', apiKey: 'k'),
+        radarr: ArrServerConfig(enabled: true, url: 'https://r', apiKey: 'k'),
+        trakt: TraktServerConfig(enabled: true, clientId: 'c', clientSecret: 's'),
+      );
+      (container.read(serverIntegrationConfigProvider.notifier) as _FakeServerIntegrationConfig).emit(managed);
+      await Future<void>.delayed(Duration.zero);
+
+      expect(container.read(sonarrProvider).managed, isTrue);
+      expect(container.read(sonarrProvider).baseUrl, 'https://s');
+      expect(container.read(radarrProvider).managed, isTrue);
+      expect(container.read(radarrProvider).baseUrl, 'https://r');
+      expect(container.read(traktProvider).managed, isTrue);
+      expect(container.read(traktProvider).clientId, 'c');
+    });
+
     test('Sonarr: managed overrides local, locks setters, reverts on removal', () async {
       const managed = ServerIntegrationConfig(
         sonarr: ArrServerConfig(enabled: true, url: 'https://server-sonarr/', apiKey: 'server-key'),
