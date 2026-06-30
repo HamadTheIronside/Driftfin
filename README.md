@@ -14,7 +14,7 @@
 <p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#screenshots">Screenshots</a> •
-  <a href="#planned-features">Planned Features</a> •
+  <a href="#roadmap">Roadmap</a> •
   <a href="#download">Download</a> •
   <a href="#how-to-contribute">Contributing</a> •
   <a href="#credits">Credits</a> •
@@ -35,9 +35,11 @@
 ## Key Features
 
 * Play media – Stream or sync content locally to your device
+* Watch Together – synchronised group playback with friends (Jellyfin SyncPlay), with in-session chat
 * Manage your library – Refresh content and edit metadata
 * Multiple profiles – add multiple users or different servers easily switching between
 * Direct, Transcode and Offline playback
+* Subtitle sync – fine-tune subtitle timing offset during playback
 * Media segments skipping (Intro/Credits etc.)
 * Trickplay support (timeline scrubbing)
 * Dark/Light mode and multiple color styles to pick
@@ -102,10 +104,9 @@ Web/Desktop [try out the web build!](https://hamadtheironside.github.io/Driftfin
 > [!NOTE]
 > The GitHub hosted web build only allows `https` connections. This is a limitation on GitHub's end, for self-hosted versions `http` works fine.
 
-## Planned Features
+## Roadmap
 
-* Music playback
-* [And more???](https://github.com/HamadTheIronside/Driftfin/discussions/categories/ideas)
+What's planned and in progress lives on the [**Driftfin Roadmap**](https://github.com/users/HamadTheIronside/projects/5). Have an idea? [Open a feature request](https://github.com/HamadTheIronside/Driftfin/issues/new/choose).
 
 ## Download
 
@@ -134,7 +135,7 @@ Interested in contributing? Here are a couple of ways you can help:
 
 ### 🚀 Submitting Pull Requests
 - **Pull requests are always welcome!** 
-- For new features or large changes, please open a discussion or issue first to ensure that no one else is already working on it.
+- For new features or large changes, please open an issue first to ensure that no one else is already working on it.
 - **Keep pull requests short and focused**: try to avoid fixing multiple issues in a single pull request. This helps make the review process smoother and quicker.
 
 ### 🌐 Translations 
