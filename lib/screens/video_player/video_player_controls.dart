@@ -23,6 +23,7 @@ import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
 import 'package:driftfin/screens/shared/default_title_bar.dart';
 import 'package:driftfin/screens/shared/media/components/item_logo.dart';
+import 'package:driftfin/screens/video_player/components/cast_button.dart';
 import 'package:driftfin/screens/video_player/components/video_playback_information.dart';
 import 'package:driftfin/screens/video_player/components/video_player_brightness_indicator.dart';
 import 'package:driftfin/screens/video_player/components/video_player_controls_extras.dart';
@@ -370,6 +371,7 @@ class _DesktopControlsState extends ConsumerState<DesktopControls> {
                             onPressed: () => showVideoPlayerOptions(context, () => minimizePlayer(context)),
                             icon: const Icon(IconsaxPlusLinear.more)),
                         ChapterButton(position: ref.read(videoPlayerProvider).lastState?.position ?? Duration.zero),
+                        const CastButton(),
                         if (pipPlatformSupported && MediaQuery.orientationOf(context) == Orientation.landscape)
                           IconButton(
                             tooltip: context.localized.pictureInPictureTitle,

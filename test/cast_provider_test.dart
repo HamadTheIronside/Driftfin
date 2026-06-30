@@ -1,0 +1,130 @@
+import 'package:flutter_test/flutter_test.dart';
+
+import 'package:driftfin/providers/cast_provider.dart';
+
+void main() {
+  group('buildLoadMessage', () {
+    test('builds a LOAD payload with media + metadata', () {
+      final msg = buildLoadMessage(
+        url: 'https://jelly.example/Videos/abc/stream?api_key=token',
+        title: 'The Episode',
+        imageUrl: 'https://jelly.example/Items/abc/Images/Primary',
+        startAt: const Duration(seconds: 90),
+      );
+
+      expect(msg['type'], 'LOAD');
+      expect(msg['autoPlay'], true);
+      expect(msg['currentTime'], 90);
+
+      final media = msg['media'] as Map<String, dynamic>;
+      expect(media['contentId'], 'https://jelly.example/Videos/abc/stream?api_key=token');
+      expect(media['contentType'], 'video/mp4');
+      expect(media['streamType'], 'BUFFERED');
+
+      final metadata = media['metadata'] as Map<String, dynamic>;
+      expect(metadata['title'], 'The Episode');
+      expect((metadata['images'] as List).first['url'], 'https://jelly.example/Items/abc/Images/Primary');
+    });
+
+    test('omits images when no imageUrl given', () {
+      final msg = buildLoadMessage(url: 'https://x/y', title: 'No Image');
+      final metadata = (msg['media'] as Map)['metadata'] as Map<String, dynamic>;
+      expect(metadata.containsKey('images'), false);
+      expect(msg['currentTime'], 0);
+    });
+  });
+
+  group('CastState', () {
+    test('isCasting only when connected', () {
+      expect(const CastState().isCasting, false);
+      expect(const CastState(status: CastStatus.connecting).isCasting, false);
+      expect(const CastState(status: CastStatus.connected).isCasting, true);
+    });
+
+    test('copyWith clearDevice and clearError reset fields', () {
+      const s = CastState(status: CastStatus.error, error: 'boom');
+      final cleared = s.copyWith(clearError: true, status: CastStatus.disconnected);
+      expect(cleared.error, null);
+      expect(cleared.status, CastStatus.disconnected);
+    });
+
+    test('copyWith without clear flags preserves existing fields', () {
+      const s = CastState(status: CastStatus.connected, error: 'e');
+      final next = s.copyWith(playing: true);
+      expect(next.error, 'e');
+      expect(next.playing, true);
+      expect(next.status, CastStatus.connected);
+    });
+  });
+
+  group('parseMediaStatus', () {
+    test('returns null for non MEDIA_STATUS messages', () {
+      expect(parseMediaStatus({'type': 'RECEIVER_STATUS'}), null);
+      expect(parseMediaStatus({'type': 'PONG'}), null);
+    });
+
+    test('returns null when status list is missing or empty', () {
+      expect(parseMediaStatus({'type': 'MEDIA_STATUS'}), null);
+      expect(parseMediaStatus({'type': 'MEDIA_STATUS', 'status': []}), null);
+    });
+
+    test('parses session id, player state, position and duration', () {
+      final status = parseMediaStatus({
+        'type': 'MEDIA_STATUS',
+        'status': [
+          {
+            'mediaSessionId': 7,
+            'playerState': 'PLAYING',
+            'currentTime': 12.5,
+            'media': {'duration': 3600.0},
+          }
+        ],
+      });
+      expect(status, isNotNull);
+      expect(status!.mediaSessionId, 7);
+      expect(status.playing, true);
+      expect(status.position, const Duration(milliseconds: 12500));
+      expect(status.duration, const Duration(seconds: 3600));
+    });
+
+    test('playing is false for PAUSED and null when playerState absent', () {
+      final paused = parseMediaStatus({
+        'type': 'MEDIA_STATUS',
+        'status': [
+          {'mediaSessionId': 1, 'playerState': 'PAUSED'}
+        ],
+      });
+      expect(paused!.playing, false);
+      expect(paused.position, null);
+      expect(paused.duration, null);
+
+      final noState = parseMediaStatus({
+        'type': 'MEDIA_STATUS',
+        'status': [
+          {'mediaSessionId': 1}
+        ],
+      });
+      expect(noState!.playing, null);
+    });
+  });
+
+  group('mediaCommand', () {
+    test('builds a bare command with the media session id', () {
+      expect(mediaCommand('PLAY', 4), {'type': 'PLAY', 'mediaSessionId': 4});
+      expect(mediaCommand('PAUSE', 4), {'type': 'PAUSE', 'mediaSessionId': 4});
+    });
+
+    test('merges extra fields like SEEK currentTime and SET_VOLUME level', () {
+      expect(mediaCommand('SEEK', 4, {'currentTime': 30}), {'type': 'SEEK', 'mediaSessionId': 4, 'currentTime': 30});
+      expect(
+          mediaCommand('SET_VOLUME', 4, {
+            'volume': {'level': 0.5}
+          }),
+          {
+            'type': 'SET_VOLUME',
+            'mediaSessionId': 4,
+            'volume': {'level': 0.5}
+          });
+    });
+  });
+}

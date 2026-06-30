@@ -2962,5 +2962,20 @@
   "quiet": "Quiet",
   "loud": "Loud",
   "share": "Share",
-  "setAs": "Set as"
+  "setAs": "Set as",
+  "cast": "Cast",
+  "castTo": "Cast to TV",
+  "castSearching": "Searching for devices…",
+  "castNoDevices": "No cast devices found on your network",
+  "castConnecting": "Connecting…",
+  "castCastingTo": "Casting to {device}",
+  "@castCastingTo": {
+    "placeholders": {
+      "device": {
+        "type": "String"
+      }
+    }
+  },
+  "castStop": "Stop casting",
+  "castFailed": "Couldn't connect to the cast device"
 }
