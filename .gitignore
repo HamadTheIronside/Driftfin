@@ -82,3 +82,4 @@ android/build/reports/problems/
 
 # graphify knowledge graph output
 graphify-out/
+tool/syncplay_probe.dart

@@ -132,6 +132,11 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
   /// Send a chat message to the group. SyncPlay has no chat channel, so this is
   /// relayed best-effort as a Jellyfin session `DisplayMessage` to each member's
   /// active session(s); members receive it as a GeneralCommand on their socket.
+  ///
+  /// Verified against Jellyfin 10.11.x: `/Sessions` only returns sessions the
+  /// caller may control, so this reliably reaches peers only when the user has
+  /// the "Allow remote control of other users" permission. Without it, delivery
+  /// is limited to the sender's own sessions (effectively a local echo).
   Future<void> sendChat(String text) async {
     final trimmed = text.trim();
     if (!state.inGroup || trimmed.isEmpty) return;
