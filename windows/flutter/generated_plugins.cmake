@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  bonsoir_windows
   connectivity_plus
   desktop_drop
   desktop_multi_window
