@@ -15,6 +15,11 @@ import kotlin.time.toDuration
 object PlayerSettingsObject : PlayerSettingsPigeon {
     val settings: MutableStateFlow<PlayerSettings?> = MutableStateFlow(null)
     val subtitleSettings: MutableStateFlow<SubtitleSettings?> = MutableStateFlow(null)
+
+    // Subtitle timing offset in milliseconds. Positive delays subtitles (shows
+    // them later), negative shows them earlier. Read by the offset-aware text
+    // renderer; not persisted.
+    val subtitleDelayMs: MutableStateFlow<Long> = MutableStateFlow(0L)
     val skipMap = settings.map { it?.skipTypes ?: mapOf() }
 
     val forwardSpeed =

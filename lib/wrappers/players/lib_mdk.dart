@@ -269,6 +269,13 @@ class LibMDK extends BasePlayer {
     }
   }
 
+  @override
+  Future<void> setSubtitleDelay(Duration delay) async {
+    // MDK expects the subtitle delay in milliseconds. Best-effort: silently
+    // ignored by backends that don't support the property.
+    _controller?.setProperty('subtitle.delay', delay.inMilliseconds.toString());
+  }
+
   static String _colorToMdkRgba(Color c) {
     final r = (c.r * 255).round();
     final g = (c.g * 255).round();

@@ -72,6 +72,16 @@ class VideoPlayerImplementation(
         }
     }
 
+    override fun setSubtitleDelay(delayMs: Long) {
+        try {
+            PlayerSettingsObject.subtitleDelayMs.value = delayMs
+            // Nudge the player so the text renderer re-reads cues at the new offset.
+            player?.let { it.seekTo(it.currentPosition) }
+        } catch (e: Exception) {
+            println("Error setting subtitle delay: $e")
+        }
+    }
+
     override fun open(url: String, play: Boolean, callback: (Result<Boolean>) -> Unit) {
         Handler(Looper.getMainLooper()).postDelayed(delayInMillis = 1.seconds.inWholeMilliseconds) {
             try {

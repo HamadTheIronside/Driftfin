@@ -25,6 +25,7 @@ import 'package:driftfin/models/settings/video_player_settings.dart';
 import 'package:driftfin/providers/api_provider.dart';
 import 'package:driftfin/providers/live_tv_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
+import 'package:driftfin/providers/settings/subtitle_delay_provider.dart';
 import 'package:driftfin/providers/settings/subtitle_settings_provider.dart';
 import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
 import 'package:driftfin/providers/trakt_provider.dart';
@@ -68,6 +69,7 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
 
   List<StreamSubscription> subscriptions = [];
   ProviderSubscription? _subtitleSettingsSubscription;
+  ProviderSubscription? _subtitleDelaySubscription;
   SMTCWindows? smtc;
 
   bool initializedWrapper = false;
@@ -118,6 +120,7 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
 
   Future<void> dispose() async {
     _subtitleSettingsSubscription?.close();
+    _subtitleDelaySubscription?.close();
     await _playerStateSubscription?.cancel();
     _player?.dispose();
   }
@@ -136,12 +139,16 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
 
   void _initPlayer() {
     _subtitleSettingsSubscription?.close();
+    _subtitleDelaySubscription?.close();
     for (var element in subscriptions) {
       element.cancel();
     }
     _subscribePlayer();
     _subtitleSettingsSubscription = ref.listen(subtitleSettingsProvider, (_, next) {
       _player?.applySubtitleSettings(next);
+    });
+    _subtitleDelaySubscription = ref.listen(subtitleDelayProvider, (_, next) {
+      _player?.setSubtitleDelay(next);
     });
   }
 
@@ -165,6 +172,8 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
     _isNewPlayback = play;
     await _player?.loadVideo(model.media?.url ?? "", play, startPosition: startPosition);
     _player?.applySubtitleSettings(ref.read(subtitleSettingsProvider));
+    // Re-apply the session subtitle sync offset; opening new media resets it.
+    _player?.setSubtitleDelay(ref.read(subtitleDelayProvider));
 
     final context = ref.read(localizationContextProvider);
     if (context != null) {

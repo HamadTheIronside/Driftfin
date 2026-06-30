@@ -50,9 +50,8 @@ class BatteryOptimizationPigeon {
 
   final String pigeonVar_messageChannelSuffix;
 
-  /// Returns whether the app is currently *ignored* from battery optimizations.
   Future<bool> isIgnoringBatteryOptimizations() async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.nl_jknaapen_fladder.settings.BatteryOptimizationPigeon.isIgnoringBatteryOptimizations$pigeonVar_messageChannelSuffix';
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.io_github_hamadtheironside_driftfin.settings.BatteryOptimizationPigeon.isIgnoringBatteryOptimizations$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
@@ -79,9 +78,8 @@ class BatteryOptimizationPigeon {
     }
   }
 
-  /// Opens the battery-optimization/settings screen for this app (Android).
   Future<void> openBatteryOptimizationSettings() async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.nl_jknaapen_fladder.settings.BatteryOptimizationPigeon.openBatteryOptimizationSettings$pigeonVar_messageChannelSuffix';
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.io_github_hamadtheironside_driftfin.settings.BatteryOptimizationPigeon.openBatteryOptimizationSettings$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,

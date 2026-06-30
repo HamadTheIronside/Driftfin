@@ -75,6 +75,11 @@ class NativePlayer extends BasePlayer implements VideoPlayerListenerCallback {
   Future<void> setSpeed(double speed) async {}
 
   @override
+  Future<void> setSubtitleDelay(Duration delay) async {
+    return player.setSubtitleDelay(delay.inMilliseconds);
+  }
+
+  @override
   Future<int> setSubtitleTrack(SubStreamModel? model, PlaybackModel playbackModel) async {
     return model?.index ?? 0;
   }

@@ -41,6 +41,11 @@ abstract class BasePlayer {
   Future<int> setAudioTrack(AudioStreamModel? model, PlaybackModel playbackModel);
   void applySubtitleSettings(SubtitleSettingsModel settings) {}
 
+  /// Shifts subtitle timing by [delay]. Positive delays subtitles (shows them
+  /// later), negative shows them earlier. No-op for backends that don't
+  /// support subtitle sync.
+  Future<void> setSubtitleDelay(Duration delay) async {}
+
   Uri? isValidUrl(String input) {
     try {
       final uri = Uri.tryParse(input);

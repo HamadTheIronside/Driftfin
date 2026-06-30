@@ -4,11 +4,11 @@ import 'package:pigeon/pigeon.dart';
   PigeonOptions(
     dartOut: 'lib/src/translations_pigeon.g.dart',
     dartOptions: DartOptions(),
-    kotlinOut: 'android/app/src/main/kotlin/nl/jknaapen/fladder/api/TranslationsPigeon.g.kt',
+    kotlinOut: 'android/app/src/main/kotlin/io/github/hamadtheironside/driftfin/api/TranslationsPigeon.g.kt',
     kotlinOptions: KotlinOptions(
       includeErrorClass: false,
     ),
-    dartPackageName: 'nl_jknaapen_fladder.settings',
+    dartPackageName: 'io_github_hamadtheironside_driftfin.settings',
   ),
 )
 @FlutterApi()
@@ -20,6 +20,7 @@ abstract class TranslationsPigeon {
   String skip(String name);
 
   String subtitles();
+  String subtitleSync();
 
   String off();
   String chapters(int count);

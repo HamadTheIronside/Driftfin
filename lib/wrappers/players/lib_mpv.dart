@@ -447,6 +447,14 @@ class LibMPV extends BasePlayer {
   Future<void> setSpeed(double speed) async => _player?.setRate(speed);
 
   @override
+  Future<void> setSubtitleDelay(Duration delay) async {
+    if (_player?.platform is mpv.NativePlayer) {
+      // mpv expects sub-delay in seconds.
+      await (_player?.platform as dynamic).setProperty('sub-delay', '${delay.inMilliseconds / 1000.0}');
+    }
+  }
+
+  @override
   Future<int> setSubtitleTrack(SubStreamModel? model, PlaybackModel playbackModel) async {
     if (_player == null) return -1;
     final wantedSubtitle = model ?? playbackModel.defaultSubStream;

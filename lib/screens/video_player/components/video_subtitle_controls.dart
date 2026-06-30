@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
+import 'package:driftfin/providers/settings/subtitle_delay_provider.dart';
 import 'package:driftfin/providers/settings/subtitle_settings_provider.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 import 'package:driftfin/util/focus_provider.dart';
@@ -119,6 +120,46 @@ class _VideoSubtitleControlsState extends ConsumerState<VideoSubtitleControls> {
                                 child: Text(context.localized.useDefaults),
                               ),
                             ],
+                          ).addVisiblity(controlsHidden),
+                          Consumer(
+                            builder: (context, ref, _) {
+                              final delay = ref.watch(subtitleDelayProvider);
+                              void setDelay(Duration value) =>
+                                  ref.read(subtitleDelayProvider.notifier).state = value;
+                              return Column(
+                                spacing: 8,
+                                children: [
+                                  Row(
+                                    spacing: 8,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Icon(Icons.sync_rounded),
+                                      IconButton.filledTonal(
+                                        onPressed: () => setDelay(delay - const Duration(milliseconds: 100)),
+                                        icon: const Icon(Icons.remove_rounded),
+                                      ),
+                                      ConstrainedBox(
+                                        constraints: const BoxConstraints(minWidth: 70),
+                                        child: Text(
+                                          '${delay.inMilliseconds >= 0 ? '+' : ''}'
+                                          '${(delay.inMilliseconds / 1000).toStringAsFixed(1)} s',
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                      IconButton.filledTonal(
+                                        onPressed: () => setDelay(delay + const Duration(milliseconds: 100)),
+                                        icon: const Icon(Icons.add_rounded),
+                                      ),
+                                      IconButton(
+                                        onPressed: delay != Duration.zero ? () => setDelay(Duration.zero) : null,
+                                        icon: const Icon(Icons.restart_alt_rounded),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(context.localized.subtitleSync),
+                                ],
+                              );
+                            },
                           ).addVisiblity(controlsHidden),
                           SegmentedButton<FontWeight>(
                             showSelectedIcon: false,

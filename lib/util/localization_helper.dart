@@ -112,6 +112,9 @@ class _TranslationsMessgener extends messenger.TranslationsPigeon {
   String subtitles() => context.localized.subtitles;
 
   @override
+  String subtitleSync() => context.localized.subtitleSync;
+
+  @override
   String hoursAndMinutes(String time) => context.localized.formattedTime(DateTime.parse(time).toLocal());
 
   @override

@@ -4,9 +4,9 @@ import 'package:pigeon/pigeon.dart';
   PigeonOptions(
     dartOut: 'lib/src/video_player_helper.g.dart',
     dartOptions: DartOptions(),
-    kotlinOut: 'android/app/src/main/kotlin/nl/jknaapen/fladder/api/VideoPlayerHelper.g.kt',
+    kotlinOut: 'android/app/src/main/kotlin/io/github/hamadtheironside/driftfin/api/VideoPlayerHelper.g.kt',
     kotlinOptions: KotlinOptions(),
-    dartPackageName: 'nl_jknaapen_fladder.video',
+    dartPackageName: 'io_github_hamadtheironside_driftfin.video',
   ),
 )
 class SimpleItemModel {
@@ -213,6 +213,10 @@ abstract class VideoPlayerApi {
   void stop();
 
   void setSubtitleSettings(SubtitleSettings settings);
+
+  /// Shifts subtitle timing by the given offset, in milliseconds. Positive
+  /// values delay the subtitles (show them later), negative shows them earlier.
+  void setSubtitleDelay(int delayMs);
 }
 
 class PlaybackState {

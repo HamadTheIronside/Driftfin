@@ -941,6 +941,11 @@ interface VideoPlayerApi {
   fun seekTo(position: Long)
   fun stop()
   fun setSubtitleSettings(settings: SubtitleSettings)
+  /**
+   * Shifts subtitle timing by the given offset, in milliseconds. Positive
+   * values delay the subtitles (show them later), negative shows them earlier.
+   */
+  fun setSubtitleDelay(delayMs: Long)
 
   companion object {
     /** The codec used by VideoPlayerApi. */
@@ -1140,6 +1145,24 @@ interface VideoPlayerApi {
             val settingsArg = args[0] as SubtitleSettings
             val wrapped: List<Any?> = try {
               api.setSubtitleSettings(settingsArg)
+              listOf(null)
+            } catch (exception: Throwable) {
+              VideoPlayerHelperPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.io_github_hamadtheironside_driftfin.video.VideoPlayerApi.setSubtitleDelay$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val delayMsArg = args[0] as Long
+            val wrapped: List<Any?> = try {
+              api.setSubtitleDelay(delayMsArg)
               listOf(null)
             } catch (exception: Throwable) {
               VideoPlayerHelperPigeonUtils.wrapError(exception)

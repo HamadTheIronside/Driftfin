@@ -1492,6 +1492,8 @@
   "@aboutLicenses": {},
   "subtitle": "Subtitle",
   "subtitleConfiguration": "Subtitle configuration",
+  "subtitleSync": "Subtitle sync",
+  "@subtitleSync": {},
   "off": "Off",
   "screenBrightness": "Screen brightness",
   "enableEdgeGesturesTitle": "Enable edge gestures",

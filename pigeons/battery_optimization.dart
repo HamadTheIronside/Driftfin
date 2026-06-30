@@ -4,11 +4,11 @@ import 'package:pigeon/pigeon.dart';
   PigeonOptions(
     dartOut: 'lib/src/battery_optimization_pigeon.g.dart',
     dartOptions: DartOptions(),
-    kotlinOut: 'android/app/src/main/kotlin/nl/jknaapen/fladder/api/BatteryOptimizationPigeon.g.kt',
+    kotlinOut: 'android/app/src/main/kotlin/io/github/hamadtheironside/driftfin/api/BatteryOptimizationPigeon.g.kt',
     kotlinOptions: KotlinOptions(
       includeErrorClass: false,
     ),
-    dartPackageName: 'nl_jknaapen_fladder.settings',
+    dartPackageName: 'io_github_hamadtheironside_driftfin.settings',
   ),
 )
 @HostApi()

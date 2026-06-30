@@ -8,7 +8,7 @@ import 'package:pigeon/pigeon.dart';
     swiftOptions: SwiftOptions(
       includeErrorClass: false,
     ),
-    dartPackageName: 'nl_jknaapen_fladder.application_menu',
+    dartPackageName: 'io_github_hamadtheironside_driftfin.application_menu',
   ),
 )
 @FlutterApi()
