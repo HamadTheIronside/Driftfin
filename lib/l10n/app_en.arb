@@ -1494,6 +1494,32 @@
   "subtitleConfiguration": "Subtitle configuration",
   "subtitleSync": "Subtitle sync",
   "@subtitleSync": {},
+  "watchTogether": "Watch Together",
+  "@watchTogether": {},
+  "syncPlayInGroup": "In group",
+  "@syncPlayInGroup": {},
+  "syncPlayConnecting": "Connecting…",
+  "@syncPlayConnecting": {},
+  "syncPlayWaiting": "Waiting for members…",
+  "@syncPlayWaiting": {},
+  "syncPlayCreateGroup": "Create group",
+  "@syncPlayCreateGroup": {},
+  "syncPlayLeave": "Leave group",
+  "@syncPlayLeave": {},
+  "syncPlayAvailableGroups": "Available groups",
+  "@syncPlayAvailableGroups": {},
+  "syncPlayNoGroups": "No active groups",
+  "@syncPlayNoGroups": {},
+  "syncPlayDifferentItem": "The group is watching a different item. Open it to sync.",
+  "@syncPlayDifferentItem": {},
+  "syncPlayMembers": "{count, plural, =0{No members} =1{1 member} other{{count} members}}",
+  "@syncPlayMembers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "off": "Off",
   "screenBrightness": "Screen brightness",
   "enableEdgeGesturesTitle": "Enable edge gestures",
