@@ -26,5 +26,7 @@ Resolves #issue-number
 
 ## Checklist
 
+- [ ] Added/updated **unit and widget tests** covering this change (required for every bugfix and feature).
+- [ ] `flutter test` passes locally.
 - [ ] If a new package was added, did you ensure it works for all supported platforms? Is the package well maintained
 - [ ] Check that any changes are related to the issue at hand.

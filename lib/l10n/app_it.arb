@@ -727,7 +727,7 @@
   "segmentActionAskToSkip": "Chiedi di saltare",
   "segmentActionSkip": "Salta",
   "loading": "Caricamento in corso",
-  "exitFladderTitle": "Esci da Driftfin",
+  "exitDriftfinTitle": "Esci da Driftfin",
   "castAndCrew": "Cast e troupe",
   "maxConcurrentDownloadsTitle": "Numero massimo di download contemporanei",
   "maxConcurrentDownloadsDesc": "Imposta il numero massimo di download che possono essere eseguiti contemporaneamente. Imposta su 0 per disabilitare il limite.",
@@ -893,7 +893,7 @@
     }
   },
   "television": "Televisione",
-  "exitFladderDesc": "Sei sicuro di voler chiudere Driftfin?",
+  "exitDriftfinDesc": "Sei sicuro di voler chiudere Driftfin?",
   "notificationDownloadingDownloading": "Scaricamento",
   "notificationDownloadingPaused": "Scaricamento in pausa",
   "notificationDownloadingFinished": "Scaricamento completato",
@@ -1826,7 +1826,7 @@
   "passwordNotRequired": "Non richiesta, lascia vuoto per non includere la password nel link",
   "authLinkButtonToolTip": "Apri finestra link di autenticazione",
   "connectWithAuthLink": "Connetti con link di autenticazione",
-  "pasteFladderAuthLink": "Incolla link di autenticazione driftfin://login?authLink=...",
+  "pasteDriftfinAuthLink": "Incolla link di autenticazione driftfin://login?authLink=...",
   "authLinkDesc": "Chiedi all’amministratore del server di fornirti il link di autenticazione. Il link contiene informazioni di autenticazione, quindi tienilo al sicuro.",
   "generateLoginLink": "Codice per {userName}",
   "@generateLoginLink": {

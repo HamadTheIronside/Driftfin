@@ -899,7 +899,7 @@
   "segmentActionAskToSkip": "Preguntar per ometre",
   "segmentActionSkip": "Omet",
   "loading": "Carregant",
-  "exitFladderTitle": "Sortir de Driftfin",
+  "exitDriftfinTitle": "Sortir de Driftfin",
   "castAndCrew": "Equip i repartiment",
   "guestActor": "{count, plural, other{Actors convidats} one{Actor convidat}}",
   "@guestActor": {
@@ -1042,7 +1042,7 @@
   "speedDown": "Reduir velocitat",
   "nextVideo": "Vídeo següent",
   "television": "Televisió",
-  "exitFladderDesc": "Estàs segur de voler tancar Driftfin?",
+  "exitDriftfinDesc": "Estàs segur de voler tancar Driftfin?",
   "quickConnectPostFailed": "S'ha fallat en obtenir el codi Quick connect",
   "quickConnectLoginUsingCode": "Utilitzant quick connect",
   "quickConnectEnterCodeDescription": "Introduir el codi de sota per iniciar sessió",

@@ -35,7 +35,7 @@ Future<void> showConnectLinkDialog(
             children: [
               OutlinedTextField(
                 controller: textController,
-                placeHolder: context.localized.pasteFladderAuthLink,
+                placeHolder: context.localized.pasteDriftfinAuthLink,
               ),
               Text(
                 context.localized.authLinkDesc,

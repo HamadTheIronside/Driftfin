@@ -194,13 +194,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               ),
             if (ref.watch(argumentsStateProvider.select((value) => value.htpcMode)))
               SettingsListTile(
-                label: Text(context.localized.exitFladderTitle),
+                label: Text(context.localized.exitDriftfinTitle),
                 icon: IconsaxPlusLinear.close_square,
                 onTap: () async {
                   showDefaultAlertDialog(
                     context,
-                    context.localized.exitFladderTitle,
-                    context.localized.exitFladderDesc,
+                    context.localized.exitDriftfinTitle,
+                    context.localized.exitDriftfinDesc,
                     (context) async {
                       if (AdaptiveLayout.of(context).isDesktop) {
                         await quitApplication(context);

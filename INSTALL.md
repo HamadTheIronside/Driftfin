@@ -12,8 +12,6 @@ Platform-specific installation instructions can be found in this document.
 	- [Arch](#arch)
 	- [Fedora](#fedora)
 - [Android](#android)
-	- [Play Store](#play-store)
-	- [Manual installation](#manual)
 - [iOS](#iosipados)
 	- [Sideloadly](#sideloadly)
 - [Docker](#docker)
@@ -47,14 +45,10 @@ Run `driftfin.exe` to start the application.
 
 ### Flatpak
 
+Download the latest `.flatpak` file from the [Releases](https://github.com/HamadTheIronside/Driftfin/releases) page and install it.
+
 > [!NOTE]
-> The Flathub listing below is for the upstream **Fladder** distribution by DonutWare. Driftfin is not published to Flathub; for Driftfin, download the `.flatpak` from the Driftfin [Releases](https://github.com/HamadTheIronside/Driftfin/releases) page.
-
-Fladder is available on Flathub.
-
-<a href='https://flathub.org/apps/nl.jknaapen.fladder'><img alt='Get it on Flathub' src='https://flathub.org/api/badge?locale=en' width=192/></a>
-
-You can also download the latest `.flatpak` file from the [Releases](https://github.com/HamadTheIronside/Driftfin/releases) page and install it manually.
+> Driftfin is not published to Flathub.
 
 ### Ubuntu/Debian
 
@@ -67,15 +61,7 @@ Open a terminal and `cd` to the directory where you extracted Driftfin to. Run `
 
 ### Arch
 
-An AUR package is available for download (thanks to @tam1m).
-
-You can download it using your favourite AUR helper.
-
-[Yay](https://github.com/Jguer/yay): `yay -S fladder-git`<br>
-[Paru](https://github.com/Morganamilo/paru): `paru -S fladder-git`
-
-> [!NOTE]
-> The `fladder-git` AUR package is the upstream **Fladder** package. Driftfin does not currently provide its own AUR package.
+Driftfin does not provide an AUR package yet. Download the latest Linux `.zip` from the [Releases](https://github.com/HamadTheIronside/Driftfin/releases) page (see the [Ubuntu/Debian](#ubuntudebian) steps), or use the [Flatpak](#flatpak) above.
 
 ### Fedora
 
@@ -90,29 +76,20 @@ Open a terminal and `cd` to the directory where you extracted Driftfin to. Run `
 
 > [!IMPORTANT]
 > Alpha support added in v0.8.0 and contributions to add further support are always appreciated.
-### Play Store
-
-> [!NOTE]
-> The Google Play listing below is the upstream **Fladder** app by DonutWare. Driftfin is not yet published to the Play Store; use the [Manual](#manual) method or the [Releases](https://github.com/HamadTheIronside/Driftfin/releases) page for Driftfin.
-
-This is the recommended way to install Fladder on Android.
-
-<a href='https://play.google.com/store/apps/details?id=nl.jknaapen.fladder&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width=250/></a>
-
-### Manual
-
-If your device can't access the Play Store, you can install Driftfin manually.
 
 1. Download the latest `.apk` file from the [Releases](https://github.com/HamadTheIronside/Driftfin/releases) page and save it to your device.
 
 2. Open it to start the installation. You may need to allow unknown apps to be installed on your device, as this will be disallowed by default.
+
+> [!NOTE]
+> Driftfin is not yet published to the Play Store.
 
 ## iOS/iPadOS
 
 ### Sideloadly
 
 > [!NOTE]
-> Installing using Sideloadly is the only method of using Driftfin on iOS or iPadOS at this time. See [this issue](https://github.com/DonutWare/Fladder/issues/40) (upstream Fladder issue) for more information.
+> Installing using Sideloadly is the only method of using Driftfin on iOS or iPadOS at this time, until a signed App Store build is available.
 
 > [!IMPORTANT]
 > If you are using Windows, you must install the web versions of iTunes and iCloud (**not the Microsoft Store versions**) before installing Sideloadly. You can download them [here](https://www.apple.com/itunes/download/win64) and [here](https://updates.cdn-apple.com/2020/windows/001-39935-20200911-1A70AA56-F448-11EA-8CC0-99D41950005E/iCloudSetup.exe).

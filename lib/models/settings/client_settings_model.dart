@@ -32,7 +32,7 @@ enum GlobalHotKeys {
     return switch (this) {
       GlobalHotKeys.search => context.localized.search,
       GlobalHotKeys.closeWindow => context.localized.closeWindow,
-      GlobalHotKeys.exit => context.localized.exitFladderTitle,
+      GlobalHotKeys.exit => context.localized.exitDriftfinTitle,
       GlobalHotKeys.toggleSideBar => context.localized.toggleSidebar,
     };
   }

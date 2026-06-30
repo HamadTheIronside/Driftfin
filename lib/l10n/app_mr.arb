@@ -658,7 +658,7 @@
   "playbackTypeOffline": "ऑफलाईन",
   "latestReleases": "अलीकडील प्रदर्शित",
   "newUpdateFoundOnGithub": "Github वर नवीन आवृत्ती सापडली",
-  "exitFladderTitle": "Driftfin बंद करा",
+  "exitDriftfinTitle": "Driftfin बंद करा",
   "playbackTypeTranscode": "ट्रान्सकोड",
   "hasLikedActor": "आवडीचा अभिनेता असलेला",
   "fetchingLibrary": "लायब्ररीतील वस्तू मिळवत आहे…",

@@ -9,7 +9,7 @@
 	    "bundleIdentifier": "app.driftfin",
 	    "developerName": "HamadTheIronside",
 	    "localizedDescription": "A Simple Jellyfin Frontend built on top of Flutter.",
-	    "iconURL": "https://github.com/HamadTheIronside/Driftfin/raw/develop/icons/fladder_macos_icon.png?raw=true",
+	    "iconURL": "https://github.com/HamadTheIronside/Driftfin/raw/develop/icons/production/driftfin_macos_icon.png?raw=true",
 	    "category": "entertainment",
 	    "screenshots": [
 	      {

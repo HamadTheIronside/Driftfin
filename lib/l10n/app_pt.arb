@@ -903,7 +903,7 @@
   "settingsEnableOsMediaControlsDesc": "Permitir o controle da reprodução usando as teclas de média e mostrar a média atual em reprodução no OS",
   "settingsPlayerBufferSizeTitle": "Tamanho do buffer de vídeo",
   "settingsPlayerBufferSizeDesc": "Configure o tamanho do buffer para reprodução de vídeo, determinando a quantidade de dados que é carregada no cache.",
-  "exitFladderTitle": "Sair do Driftfin",
+  "exitDriftfinTitle": "Sair do Driftfin",
   "castAndCrew": "Elenco & Equipa",
   "guestActor": "{count, plural, other{Actores Convidados} one{Actor Convidado}}",
   "@guestActor": {
@@ -1015,7 +1015,7 @@
   "deleteRequestConfirmation": "Tem a certeza de que deseja eliminar este pedido?",
   "television": "Televisão",
   "advancedVideoOptionsTitle": "Opções avançadas de vídeo",
-  "exitFladderDesc": "Tem a certeza de que quer fechar o Driftfin?",
+  "exitDriftfinDesc": "Tem a certeza de que quer fechar o Driftfin?",
   "playbackTypeTV": "TV",
   "syncAllItemsTitle": "Sincronizar todos os itens de {itemName}?",
   "@syncAllItemsTitle": {
@@ -1587,7 +1587,7 @@
   "passwordNotRequired": "Não é necessário, deixe vazio para não incluir palavra-passe no link",
   "authLinkButtonToolTip": "Abrir diálogo de link de autenticação",
   "connectWithAuthLink": "Ligar com link de autenticação",
-  "pasteFladderAuthLink": "Cole o link de autenticação do Driftfin driftfin:///login?authLink=...",
+  "pasteDriftfinAuthLink": "Cole o link de autenticação do Driftfin driftfin:///login?authLink=...",
   "connect": "Ligar",
   "authLinkDesc": "Peça ao administrador do servidor para fornecer o link de autenticação. O link contém informações de autenticação, por isso mantenha-o seguro.",
   "deletedItem": "{itemName} eliminado",

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script to create DMG for Fladder macOS app using create-dmg
+# Script to create DMG for Driftfin macOS app using create-dmg
 # Usage: ./create_dmg.sh
 
 set -e
@@ -9,7 +9,7 @@ set -e
 APP_NAME="Driftfin"
 APP_PATH="build/macos/Build/Products/Release-production/Driftfin.app"
 DMG_PATH="build/macos/Build/Products/Release-production/macOS.dmg"
-BACKGROUND_IMAGE="assets/macos-dmg/Fladder-DMG-Background.jpg"
+BACKGROUND_IMAGE="assets/macos-dmg/driftfin-dmg-background.jpg"
 TEMP_DMG_DIR="dmg_temp"
 
 # Check if app exists
