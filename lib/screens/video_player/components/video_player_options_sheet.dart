@@ -14,6 +14,7 @@ import 'package:driftfin/models/playback/playback_model.dart';
 import 'package:driftfin/models/playback/transcode_playback_model.dart';
 import 'package:driftfin/models/settings/video_player_settings.dart';
 import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
+import 'package:driftfin/providers/sleep_timer_provider.dart';
 import 'package:driftfin/providers/syncplay/sync_play_controller.dart';
 import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
@@ -41,10 +42,7 @@ Future<void> showVideoPlayerOptions(BuildContext context, Function() minimizePla
   return showBottomSheetPill(
     context: context,
     content: (context, scrollController) {
-      return VideoOptions(
-        controller: scrollController,
-        minimizePlayer: minimizePlayer,
-      );
+      return VideoOptions(controller: scrollController, minimizePlayer: minimizePlayer);
     },
   );
 }
@@ -83,15 +81,10 @@ class _VideoOptionsMobileState extends ConsumerState<VideoOptions> {
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        currentItem?.title ?? "",
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                    ],
+                    children: [Text(currentItem?.title ?? "", style: Theme.of(context).textTheme.titleLarge)],
                   ),
                   const Spacer(),
-                  const Opacity(opacity: 0.1, child: Icon(Icons.info_outline_rounded))
+                  const Opacity(opacity: 0.1, child: Icon(Icons.info_outline_rounded)),
                 ],
               ),
             ),
@@ -124,12 +117,9 @@ class _VideoOptionsMobileState extends ConsumerState<VideoOptions> {
                           onPressed: () => ref.read(videoPlayerSettingsProvider.notifier).setScreenBrightness(null),
                           icon: Opacity(
                             opacity: videoSettings.screenBrightness != null ? 0.5 : 1,
-                            child: Icon(
-                              IconsaxPlusBold.autobrightness,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
+                            child: Icon(IconsaxPlusBold.autobrightness, color: Theme.of(context).colorScheme.primary),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -146,15 +136,18 @@ class _VideoOptionsMobileState extends ConsumerState<VideoOptions> {
             content: Text(currentMediaStreams?.currentAudioStream?.label(context) ?? context.localized.off),
             onTap: currentMediaStreams?.audioStreams.isNotEmpty == true ? () => showAudioSelection(context) : null,
           ),
-          Consumer(builder: (context, ref, _) {
-            final sync = ref.watch(syncPlayControllerProvider);
-            return SpacedListTile(
-              title: Text(context.localized.watchTogether),
-              content:
-                  Text(sync.inGroup ? (sync.groupName ?? context.localized.syncPlayInGroup) : context.localized.off),
-              onTap: () => showSyncPlaySheet(context),
-            );
-          }),
+          Consumer(
+            builder: (context, ref, _) {
+              final sync = ref.watch(syncPlayControllerProvider);
+              return SpacedListTile(
+                title: Text(context.localized.watchTogether),
+                content: Text(
+                  sync.inGroup ? (sync.groupName ?? context.localized.syncPlayInGroup) : context.localized.off,
+                ),
+                onTap: () => showSyncPlaySheet(context),
+              );
+            },
+          ),
           ListTile(
             title: Row(
               mainAxisSize: MainAxisSize.min,
@@ -164,10 +157,12 @@ class _VideoOptionsMobileState extends ConsumerState<VideoOptions> {
                     label: Text(context.localized.scale),
                     current: videoSettings.videoFit.name.toUpperCaseSplit(),
                     itemBuilder: (context) => BoxFit.values
-                        .map((value) => ItemActionButton(
-                              label: Text(value.name.toUpperCaseSplit()),
-                              action: () => ref.read(videoPlayerSettingsProvider.notifier).setFitType(value),
-                            ))
+                        .map(
+                          (value) => ItemActionButton(
+                            label: Text(value.name.toUpperCaseSplit()),
+                            action: () => ref.read(videoPlayerSettingsProvider.notifier).setFitType(value),
+                          ),
+                        )
                         .toList(),
                   ),
                 ),
@@ -180,15 +175,12 @@ class _VideoOptionsMobileState extends ConsumerState<VideoOptions> {
               title: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Expanded(
-                    flex: 3,
-                    child: Text(context.localized.videoScalingFill),
-                  ),
+                  Expanded(flex: 3, child: Text(context.localized.videoScalingFill)),
                   const Spacer(),
                   Switch(
                     value: videoSettings.fillScreen,
                     onChanged: (value) => ref.read(videoPlayerSettingsProvider.notifier).setFillScreen(value),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -205,33 +197,43 @@ class _VideoOptionsMobileState extends ConsumerState<VideoOptions> {
             title: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  flex: 3,
-                  child: Text(context.localized.playbackRate),
-                ),
+                Expanded(flex: 3, child: Text(context.localized.playbackRate)),
                 const Spacer(),
-                Text("x${ref.watch(playbackRateProvider)}")
+                Text("x${ref.watch(playbackRateProvider)}"),
               ],
             ),
+          ),
+          Builder(
+            builder: (context) {
+              final remaining = ref.watch(sleepTimerProvider);
+              return SpacedListTile(
+                title: Text(context.localized.sleepTimer),
+                content: Text(
+                  remaining == null ? context.localized.off : _formatRemaining(remaining),
+                  textAlign: TextAlign.end,
+                ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  showSleepTimer(context);
+                },
+              );
+            },
           ),
           if (bitRateOptions?.isNotEmpty == true)
             ListTile(
               title: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Expanded(
-                    flex: 3,
-                    child: Text(context.localized.qualityOptionsTitle),
-                  ),
+                  Expanded(flex: 3, child: Text(context.localized.qualityOptionsTitle)),
                   const Spacer(),
-                  Text(bitRateOptions?.enabledFirst.keys.firstOrNull?.label(context) ?? "")
+                  Text(bitRateOptions?.enabledFirst.keys.firstOrNull?.label(context) ?? ""),
                 ],
               ),
               onTap: () {
                 Navigator.of(context).pop();
                 openQualityOptions(context);
               },
-            )
+            ),
         ],
       );
     }
@@ -256,16 +258,12 @@ class _VideoOptionsMobileState extends ConsumerState<VideoOptions> {
                   items: playbackState?.queue ?? [],
                   currentItem: playbackState?.item,
                   onSectionReorder: (section, oldIndex, newIndex) {
-                    return ref.read(videoPlayerProvider.notifier).reorderAudioQueueSection(
-                          section,
-                          oldIndex,
-                          newIndex,
-                        );
+                    return ref.read(videoPlayerProvider.notifier).reorderAudioQueueSection(section, oldIndex, newIndex);
                   },
                   playSelected: ref.read(videoPlayerProvider.notifier).playAudioQueueItem,
                 );
               },
-            )
+            ),
         ],
       );
     }
@@ -342,14 +340,16 @@ class _VideoOptionsMobileState extends ConsumerState<VideoOptions> {
                 DirectPlaybackModel value => value.copyWith(item: newItem),
                 TranscodePlaybackModel value => value.copyWith(item: newItem),
                 OfflinePlaybackModel value => value.copyWith(item: newItem),
-                _ => null
+                _ => null,
               };
               ref.read(playBackModel.notifier).update((state) => playbackModel);
               Navigator.of(context).pop();
             },
-            title: Text(currentItem.userData.isFavourite == true
-                ? context.localized.removeAsFavorite
-                : context.localized.addAsFavorite),
+            title: Text(
+              currentItem.userData.isFavourite == true
+                  ? context.localized.removeAsFavorite
+                  : context.localized.addAsFavorite,
+            ),
           ),
           ListTile(
             onTap: () {
@@ -358,7 +358,7 @@ class _VideoOptionsMobileState extends ConsumerState<VideoOptions> {
             },
             title: Text(context.localized.info),
           ),
-        }
+        },
       ],
     );
   }
@@ -369,22 +369,12 @@ class _VideoOptionsMobileState extends ConsumerState<VideoOptions> {
         Row(
           children: [
             const SizedBox(width: 8),
-            BackButton(
-              onPressed: () => setState(() => page = 0),
-            ),
+            BackButton(onPressed: () => setState(() => page = 0)),
             const SizedBox(width: 16),
             Column(
               children: [
-                if (title != null)
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                if (subText != null)
-                  Text(
-                    subText,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  )
+                if (title != null) Text(title, style: Theme.of(context).textTheme.titleLarge),
+                if (subText != null) Text(subText, style: Theme.of(context).textTheme.titleMedium),
               ],
             ),
           ],
@@ -413,35 +403,31 @@ Future<void> showSubSelection(BuildContext context) {
                 const Spacer(),
                 if (player.backend == PlayerOptions.libMPV || player.backend == PlayerOptions.libMDK)
                   IconButton.outlined(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        showSubtitleControls(
-                          context: context,
-                          label: context.localized.subtitleConfiguration,
-                        );
-                      },
-                      icon: const Icon(Icons.display_settings_rounded))
+                    onPressed: () {
+                      Navigator.pop(context);
+                      showSubtitleControls(context: context, label: context.localized.subtitleConfiguration);
+                    },
+                    icon: const Icon(Icons.display_settings_rounded),
+                  ),
               ],
             ),
-            children: playbackModel?.subStreams?.mapIndexed(
-              (index, subModel) {
-                final selected = playbackModel.mediaStreams?.defaultSubStreamIndex == subModel.index;
-                return ListTile(
-                  title: Text(subModel.label(context)),
-                  tileColor: selected ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.3) : null,
-                  subtitle: subModel.language.isNotEmpty
-                      ? Opacity(opacity: 0.6, child: Text(subModel.language.capitalize()))
-                      : null,
-                  onTap: () async {
-                    final newModel = await playbackModel.setSubtitle(subModel, player);
-                    ref.read(playBackModel.notifier).update((state) => newModel);
-                    if (newModel != null) {
-                      await ref.read(playbackModelHelper).shouldReload(newModel);
-                    }
-                  },
-                );
-              },
-            ).toList(),
+            children: playbackModel?.subStreams?.mapIndexed((index, subModel) {
+              final selected = playbackModel.mediaStreams?.defaultSubStreamIndex == subModel.index;
+              return ListTile(
+                title: Text(subModel.label(context)),
+                tileColor: selected ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.3) : null,
+                subtitle: subModel.language.isNotEmpty
+                    ? Opacity(opacity: 0.6, child: Text(subModel.language.capitalize()))
+                    : null,
+                onTap: () async {
+                  final newModel = await playbackModel.setSubtitle(subModel, player);
+                  ref.read(playBackModel.notifier).update((state) => newModel);
+                  if (newModel != null) {
+                    await ref.read(playbackModelHelper).shouldReload(newModel);
+                  }
+                },
+              );
+            }).toList(),
           );
         },
       );
@@ -459,29 +445,24 @@ Future<void> showAudioSelection(BuildContext context) {
           final player = ref.watch(videoPlayerProvider);
           return SimpleDialog(
             contentPadding: const EdgeInsets.only(top: 8, bottom: 24),
-            title: Row(
-              children: [
-                Text(context.localized.audio(1)),
-              ],
-            ),
-            children: playbackModel?.audioStreams?.mapIndexed(
-              (index, audioStream) {
-                final selected = playbackModel.mediaStreams?.defaultAudioStreamIndex == audioStream.index;
-                return ListTile(
-                    title: Text(audioStream.label(context)),
-                    tileColor: selected ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.3) : null,
-                    subtitle: audioStream.language.isNotEmpty
-                        ? Opacity(opacity: 0.6, child: Text(audioStream.language.capitalize()))
-                        : null,
-                    onTap: () async {
-                      final newModel = await playbackModel.setAudio(audioStream, player);
-                      ref.read(playBackModel.notifier).update((state) => newModel);
-                      if (newModel != null) {
-                        await ref.read(playbackModelHelper).shouldReload(newModel);
-                      }
-                    });
-              },
-            ).toList(),
+            title: Row(children: [Text(context.localized.audio(1))]),
+            children: playbackModel?.audioStreams?.mapIndexed((index, audioStream) {
+              final selected = playbackModel.mediaStreams?.defaultAudioStreamIndex == audioStream.index;
+              return ListTile(
+                title: Text(audioStream.label(context)),
+                tileColor: selected ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.3) : null,
+                subtitle: audioStream.language.isNotEmpty
+                    ? Opacity(opacity: 0.6, child: Text(audioStream.language.capitalize()))
+                    : null,
+                onTap: () async {
+                  final newModel = await playbackModel.setAudio(audioStream, player);
+                  ref.read(playBackModel.notifier).update((state) => newModel);
+                  if (newModel != null) {
+                    await ref.read(playbackModelHelper).shouldReload(newModel);
+                  }
+                },
+              );
+            }).toList(),
           );
         },
       );
@@ -489,60 +470,110 @@ Future<void> showAudioSelection(BuildContext context) {
   );
 }
 
+String _formatRemaining(Duration d) {
+  String two(int n) => n.toString().padLeft(2, '0');
+  final mmss = "${two(d.inMinutes % 60)}:${two(d.inSeconds % 60)}";
+  return d.inHours > 0 ? "${d.inHours}:$mmss" : mmss;
+}
+
+Future<void> showSleepTimer(BuildContext context) {
+  return showDialog(
+    context: context,
+    builder: (context) => Consumer(
+      builder: (context, ref, child) {
+        final notifier = ref.read(sleepTimerProvider.notifier);
+        final active = ref.watch(sleepTimerProvider) != null;
+        void close() => Navigator.of(context).pop();
+        return SimpleDialog(
+          title: Text(context.localized.sleepTimer),
+          children: [
+            for (final minutes in const [15, 30, 45, 60])
+              SimpleDialogOption(
+                onPressed: () {
+                  notifier.startMinutes(minutes);
+                  close();
+                },
+                child: Text(context.localized.sleepTimerMinutes(minutes)),
+              ),
+            SimpleDialogOption(
+              onPressed: () {
+                notifier.startEndOfEpisode();
+                close();
+              },
+              child: Text(context.localized.sleepTimerEndOfEpisode),
+            ),
+            if (active)
+              SimpleDialogOption(
+                onPressed: () {
+                  notifier.cancel();
+                  close();
+                },
+                child: Text(context.localized.off),
+              ),
+          ],
+        );
+      },
+    ),
+  );
+}
+
 Future<void> showPlaybackSpeed(BuildContext context) {
   return showDialog(
     context: context,
     builder: (context) {
-      return StatefulBuilder(builder: (context, setState) {
-        return Consumer(
-          builder: (context, ref, child) {
-            final player = ref.watch(videoPlayerProvider);
-            final lastSpeed = ref.watch(playbackRateProvider);
-            return SimpleDialog(
-              contentPadding: const EdgeInsets.only(top: 8, bottom: 24),
-              title: Row(children: [Text(context.localized.playbackRate)]),
-              children: [
-                const Divider(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12).copyWith(top: 6),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text("${context.localized.speed}: "),
-                      Flexible(
-                        child: SizedBox(
-                          width: 250,
-                          child: FladderSlider(
-                            min: 0.25,
-                            max: 3,
-                            value: lastSpeed,
-                            divisions: 55,
-                            onChanged: (value) {
-                              ref.read(playbackRateProvider.notifier).state = value;
-                              player.setSpeed(value);
-                            },
+      return StatefulBuilder(
+        builder: (context, setState) {
+          return Consumer(
+            builder: (context, ref, child) {
+              final player = ref.watch(videoPlayerProvider);
+              final lastSpeed = ref.watch(playbackRateProvider);
+              return SimpleDialog(
+                contentPadding: const EdgeInsets.only(top: 8, bottom: 24),
+                title: Row(children: [Text(context.localized.playbackRate)]),
+                children: [
+                  const Divider(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12).copyWith(top: 6),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text("${context.localized.speed}: "),
+                        Flexible(
+                          child: SizedBox(
+                            width: 250,
+                            child: FladderSlider(
+                              min: 0.25,
+                              max: 3,
+                              value: lastSpeed,
+                              divisions: 55,
+                              onChanged: (value) {
+                                ref.read(playbackRateProvider.notifier).state = value;
+                                player.setSpeed(value);
+                              },
+                            ),
                           ),
                         ),
-                      ),
-                      Text("x${lastSpeed.toStringAsFixed(2)}")
-                    ].addInBetween(const SizedBox(width: 8)),
+                        Text("x${lastSpeed.toStringAsFixed(2)}"),
+                      ].addInBetween(const SizedBox(width: 8)),
+                    ),
                   ),
-                )
-              ],
-            );
-          },
-        );
-      });
+                ],
+              );
+            },
+          );
+        },
+      );
     },
   );
 }
 
 Future<void> showOrientationOptions(BuildContext context, WidgetRef ref) async {
   Set<DeviceOrientation> orientations = ref
-      .read(videoPlayerSettingsProvider
-          .select((value) => value.allowedOrientations ?? Set.from(DeviceOrientation.values)))
+      .read(
+        videoPlayerSettingsProvider.select((value) => value.allowedOrientations ?? Set.from(DeviceOrientation.values)),
+      )
       .toSet();
 
   void toggleOrientation(DeviceOrientation orientation) {
@@ -556,52 +587,54 @@ Future<void> showOrientationOptions(BuildContext context, WidgetRef ref) async {
   await showDialog(
     context: context,
     builder: (context) {
-      return StatefulBuilder(builder: (context, state) {
-        return SimpleDialog(
-          contentPadding: const EdgeInsets.only(top: 8, bottom: 24),
-          title: Row(children: [Text(context.localized.playerSettingsOrientationTitle)]),
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12).copyWith(top: 6),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Divider(),
-                  ...DeviceOrientation.values.map(
-                    (orientation) => CheckboxListTile(
-                      title: Text(orientation.label(context)),
-                      value: orientations.contains(orientation),
-                      onChanged: (value) {
-                        state(() => toggleOrientation(orientation));
-                      },
-                    ),
-                  ),
-                  const Divider(),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: Text(context.localized.cancel),
-                      ),
-                      FilledButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          ref.read(videoPlayerSettingsProvider.notifier).toggleOrientation(orientations);
+      return StatefulBuilder(
+        builder: (context, state) {
+          return SimpleDialog(
+            contentPadding: const EdgeInsets.only(top: 8, bottom: 24),
+            title: Row(children: [Text(context.localized.playerSettingsOrientationTitle)]),
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12).copyWith(top: 6),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Divider(),
+                    ...DeviceOrientation.values.map(
+                      (orientation) => CheckboxListTile(
+                        title: Text(orientation.label(context)),
+                        value: orientations.contains(orientation),
+                        onChanged: (value) {
+                          state(() => toggleOrientation(orientation));
                         },
-                        child: Text(context.localized.save),
                       ),
-                    ].addInBetween(const SizedBox(width: 8)),
-                  )
-                ].addInBetween(const SizedBox(width: 8)),
+                    ),
+                    const Divider(),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: Text(context.localized.cancel),
+                        ),
+                        FilledButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            ref.read(videoPlayerSettingsProvider.notifier).toggleOrientation(orientations);
+                          },
+                          child: Text(context.localized.save),
+                        ),
+                      ].addInBetween(const SizedBox(width: 8)),
+                    ),
+                  ].addInBetween(const SizedBox(width: 8)),
+                ),
               ),
-            )
-          ],
-        );
-      });
+            ],
+          );
+        },
+      );
     },
   );
 }

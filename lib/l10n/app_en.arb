@@ -1540,6 +1540,16 @@
   "autoNextOffStaticDesc": "Show the next-up screen when 30 seconds of playtime remain",
   "playbackRate": "Playback rate",
   "speed": "Speed",
+  "sleepTimer": "Sleep timer",
+  "sleepTimerEndOfEpisode": "End of episode",
+  "sleepTimerMinutes": "{count} minutes",
+  "@sleepTimerMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "unableToPlayMedia": "There was an error finding a compatible media type",
   "errorOpeningMedia": "Something went wrong trying to play this media",
   "unableToPlayBooksOnWeb": "Books are not supported on web for now",
