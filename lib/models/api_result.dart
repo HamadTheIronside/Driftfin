@@ -54,9 +54,9 @@ extension ResponseFutureExtensions<T> on Future<Response<T>> {
 extension ResponseExtensions<T> on Response<T> {
   ApiResult<T> get apiResult {
     if (isSuccessful) {
-      final responseBody = body;
+      final responseBody = this.body;
       if (responseBody is T) {
-        return ApiResult.success(responseBody as T);
+        return ApiResult.success(responseBody);
       }
 
       return ApiResult.success(null);

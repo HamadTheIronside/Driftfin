@@ -56,9 +56,11 @@ void main() {
     });
 
     test('findSeriesIdByTvdb returns null when not found', () async {
-      final client = MockClient((req) async => http.Response(jsonEncode([
+      final client = MockClient((req) async => http.Response(
+          jsonEncode([
             {'id': 1, 'tvdbId': 111}
-          ]), 200));
+          ]),
+          200));
       expect(await api(client).findSeriesIdByTvdb(999), isNull);
     });
 
@@ -93,7 +95,10 @@ void main() {
       expect(await api(client).monitorEpisodes([20]), isTrue);
       expect(captured.method, 'PUT');
       expect(captured.url.toString(), '$base/api/v3/episode/monitor');
-      expect(jsonDecode(captured.body), {'episodeIds': [20], 'monitored': true});
+      expect(jsonDecode(captured.body), {
+        'episodeIds': [20],
+        'monitored': true
+      });
     });
 
     test('searchEpisodes POSTs EpisodeSearch command', () async {
@@ -105,7 +110,10 @@ void main() {
       expect(await api(client).searchEpisodes([20]), isTrue);
       expect(captured.method, 'POST');
       expect(captured.url.toString(), '$base/api/v3/command');
-      expect(jsonDecode(captured.body), {'name': 'EpisodeSearch', 'episodeIds': [20]});
+      expect(jsonDecode(captured.body), {
+        'name': 'EpisodeSearch',
+        'episodeIds': [20]
+      });
     });
 
     test('requestEpisodeByTvdb happy path: success + correct call sequence', () async {
@@ -113,12 +121,16 @@ void main() {
       final client = MockClient((req) async {
         calls.add('${req.method} ${req.url.path}');
         return switch (req.url.path) {
-          '/api/v3/series' => http.Response(jsonEncode([
-              {'id': 7, 'tvdbId': 222}
-            ]), 200),
-          '/api/v3/episode' => http.Response(jsonEncode([
-              {'id': 20, 'seasonNumber': 2, 'episodeNumber': 5}
-            ]), 200),
+          '/api/v3/series' => http.Response(
+              jsonEncode([
+                {'id': 7, 'tvdbId': 222}
+              ]),
+              200),
+          '/api/v3/episode' => http.Response(
+              jsonEncode([
+                {'id': 20, 'seasonNumber': 2, 'episodeNumber': 5}
+              ]),
+              200),
           '/api/v3/episode/monitor' => http.Response('', 202),
           '/api/v3/command' => http.Response('', 201),
           _ => http.Response('not found', 404),
@@ -147,9 +159,11 @@ void main() {
     test('requestEpisodeByTvdb -> episodeNotFound', () async {
       final client = MockClient((req) async {
         if (req.url.path == '/api/v3/series') {
-          return http.Response(jsonEncode([
-            {'id': 7, 'tvdbId': 222}
-          ]), 200);
+          return http.Response(
+              jsonEncode([
+                {'id': 7, 'tvdbId': 222}
+              ]),
+              200);
         }
         return http.Response(jsonEncode([]), 200);
       });
@@ -212,21 +226,29 @@ void main() {
             postedSeries = jsonDecode(req.body) as Map<String, dynamic>; // add
             return http.Response(jsonEncode({'id': 5}), 201);
           case '/api/v3/series/lookup':
-            return http.Response(jsonEncode([
-              {'tvdbId': 78874, 'title': 'Firefly', 'titleSlug': 'firefly', 'seasons': []}
-            ]), 200);
+            return http.Response(
+                jsonEncode([
+                  {'tvdbId': 78874, 'title': 'Firefly', 'titleSlug': 'firefly', 'seasons': []}
+                ]),
+                200);
           case '/api/v3/rootfolder':
-            return http.Response(jsonEncode([
-              {'path': '/tv', 'accessible': true}
-            ]), 200);
+            return http.Response(
+                jsonEncode([
+                  {'path': '/tv', 'accessible': true}
+                ]),
+                200);
           case '/api/v3/qualityprofile':
-            return http.Response(jsonEncode([
-              {'id': 1, 'name': 'Any'}
-            ]), 200);
+            return http.Response(
+                jsonEncode([
+                  {'id': 1, 'name': 'Any'}
+                ]),
+                200);
           case '/api/v3/episode':
-            return http.Response(jsonEncode([
-              {'id': 50, 'seasonNumber': 1, 'episodeNumber': 1}
-            ]), 200);
+            return http.Response(
+                jsonEncode([
+                  {'id': 50, 'seasonNumber': 1, 'episodeNumber': 1}
+                ]),
+                200);
           case '/api/v3/episode/monitor':
             return http.Response('', 202);
           case '/api/v3/command':
@@ -249,13 +271,17 @@ void main() {
       final client = MockClient((req) async {
         return switch (req.url.path) {
           '/api/v3/series' => http.Response(jsonEncode([]), 200),
-          '/api/v3/series/lookup' => http.Response(jsonEncode([
-              {'tvdbId': 78874, 'title': 'Firefly'}
-            ]), 200),
+          '/api/v3/series/lookup' => http.Response(
+              jsonEncode([
+                {'tvdbId': 78874, 'title': 'Firefly'}
+              ]),
+              200),
           '/api/v3/rootfolder' => http.Response(jsonEncode([]), 200), // none configured
-          '/api/v3/qualityprofile' => http.Response(jsonEncode([
-              {'id': 1}
-            ]), 200),
+          '/api/v3/qualityprofile' => http.Response(
+              jsonEncode([
+                {'id': 1}
+              ]),
+              200),
           _ => http.Response('not found', 404),
         };
       });
@@ -268,12 +294,16 @@ void main() {
     test('requestEpisodeByTvdb -> failed when the search command errors', () async {
       final client = MockClient((req) async {
         return switch (req.url.path) {
-          '/api/v3/series' => http.Response(jsonEncode([
-              {'id': 7, 'tvdbId': 222}
-            ]), 200),
-          '/api/v3/episode' => http.Response(jsonEncode([
-              {'id': 20, 'seasonNumber': 2, 'episodeNumber': 5}
-            ]), 200),
+          '/api/v3/series' => http.Response(
+              jsonEncode([
+                {'id': 7, 'tvdbId': 222}
+              ]),
+              200),
+          '/api/v3/episode' => http.Response(
+              jsonEncode([
+                {'id': 20, 'seasonNumber': 2, 'episodeNumber': 5}
+              ]),
+              200),
           '/api/v3/episode/monitor' => http.Response('', 202),
           _ => http.Response('err', 500),
         };

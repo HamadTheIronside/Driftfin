@@ -109,7 +109,7 @@ String pageRouteInfoToPath(PageRouteInfo route) {
     return switch (route) {
       DetailsRoute() => '/details?id=${route.queryParams.get('id')}',
       SeerrDetailsRoute() =>
-        '/seerr?mediaType=${route.queryParams.get('mediaType')}&tmdbId=${route.queryParams.get('tmdbId')}',
+        '/seerr?mediaType=${route.pathParams.get('mediaType')}&tmdbId=${route.pathParams.get('tmdbId')}',
       LoginRoute() => '/login?authLink=${route.queryParams.get('authLink')}',
       _ => '/',
     };
