@@ -32,6 +32,8 @@ ItemBaseModel _item(String id) => ItemBaseModel(
     );
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   group('shouldFallbackToTranscode', () {
     test('true for a DirectPlaybackModel', () {
       final model = DirectPlaybackModel(item: _item('a'), media: null);

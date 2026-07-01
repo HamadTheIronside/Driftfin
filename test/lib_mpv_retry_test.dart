@@ -13,6 +13,7 @@
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:driftfin/util/audio_filter_chain.dart';
 import 'package:driftfin/wrappers/players/lib_mpv.dart';
 import 'package:driftfin/wrappers/players/playback_retry_policy.dart';
 import 'package:driftfin/wrappers/players/player_states.dart';
@@ -62,6 +63,17 @@ void main() {
         async.elapse(const Duration(milliseconds: 200));
         expect(player.lastState.error?.fatal ?? false, isFalse);
       });
+    });
+  });
+
+  group('LibMPV.setAudioEnhancement (no live mpv.Player)', () {
+    test('stores the requested settings and completes without a live player', () async {
+      final player = LibMPV();
+
+      await expectLater(
+        player.setAudioEnhancement(enableSmartDownmix: true, dialogueBoost: DialogueBoostLevel.high),
+        completes,
+      );
     });
   });
 }
