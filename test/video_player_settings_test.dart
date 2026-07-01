@@ -2,6 +2,7 @@ import 'package:driftfin/models/items/media_segments_model.dart';
 import 'package:driftfin/models/settings/arguments_model.dart';
 import 'package:driftfin/models/settings/key_combinations.dart';
 import 'package:driftfin/models/settings/video_player_settings.dart';
+import 'package:driftfin/util/audio_filter_chain.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -30,6 +31,24 @@ void main() {
     test('falls back to platformDefaults when playerOptions is null', () {
       final model = VideoPlayerSettingsModel();
       expect(model.wantedPlayer, PlayerOptions.platformDefaults);
+    });
+  });
+
+  group('VideoPlayerSettingsModel Night-Mode Audio defaults', () {
+    test('smart downmix and dialogue boost default to off', () {
+      final model = VideoPlayerSettingsModel();
+      expect(model.enableSmartDownmix, isFalse);
+      expect(model.dialogueBoost, DialogueBoostLevel.off);
+    });
+
+    test('round-trips through JSON', () {
+      final model = VideoPlayerSettingsModel(
+        enableSmartDownmix: true,
+        dialogueBoost: DialogueBoostLevel.high,
+      );
+      final restored = VideoPlayerSettingsModel.fromJson(model.toJson());
+      expect(restored.enableSmartDownmix, isTrue);
+      expect(restored.dialogueBoost, DialogueBoostLevel.high);
     });
   });
 

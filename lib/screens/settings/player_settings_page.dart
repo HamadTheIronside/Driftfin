@@ -23,6 +23,7 @@ import 'package:driftfin/screens/shared/animated_fade_size.dart';
 import 'package:driftfin/screens/shared/input_fields.dart';
 import 'package:driftfin/screens/video_player/components/video_player_options_sheet.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/audio_filter_chain.dart';
 import 'package:driftfin/util/bitrate_helper.dart';
 import 'package:driftfin/util/box_fit_extension.dart';
 import 'package:driftfin/util/localization_helper.dart';
@@ -500,6 +501,30 @@ class _PlayerSettingsPageState extends ConsumerState<PlayerSettingsPage> {
                         (entry) => ItemActionButton(
                           label: Text(entry.label(context)),
                           action: () => provider.setReplayGainVolumeLevel(entry),
+                        ),
+                      )
+                      .toList(),
+                ),
+              if (currentPlayer == PlayerOptions.libMPV)
+                SettingsListTile(
+                  label: Text(context.localized.playerSettingsSmartDownmixTitle),
+                  subLabel: Text(context.localized.playerSettingsSmartDownmixDesc),
+                  onTap: () => provider.setEnableSmartDownmix(!videoSettings.enableSmartDownmix),
+                  trailing: Switch(
+                    value: videoSettings.enableSmartDownmix,
+                    onChanged: (value) => provider.setEnableSmartDownmix(value),
+                  ),
+                ),
+              if (currentPlayer == PlayerOptions.libMPV)
+                SettingsListTileEnum(
+                  label: Text(context.localized.playerSettingsDialogueBoostTitle),
+                  subLabel: Text(context.localized.playerSettingsDialogueBoostDesc),
+                  current: videoSettings.dialogueBoost.label(context),
+                  itemBuilder: (context) => DialogueBoostLevel.values
+                      .map(
+                        (entry) => ItemActionButton(
+                          label: Text(entry.label(context)),
+                          action: () => provider.setDialogueBoost(entry),
                         ),
                       )
                       .toList(),

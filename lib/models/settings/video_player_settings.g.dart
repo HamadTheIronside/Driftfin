@@ -63,6 +63,10 @@ _VideoPlayerSettingsModel _$VideoPlayerSettingsModelFromJson(
       enableCrossfade: json['enableCrossfade'] as bool? ?? true,
       crossfadeDurationMs:
           (json['crossfadeDurationMs'] as num?)?.toInt() ?? 400,
+      enableSmartDownmix: json['enableSmartDownmix'] as bool? ?? false,
+      dialogueBoost: $enumDecodeNullable(
+              _$DialogueBoostLevelEnumMap, json['dialogueBoost']) ??
+          DialogueBoostLevel.off,
     );
 
 Map<String, dynamic> _$VideoPlayerSettingsModelToJson(
@@ -102,6 +106,8 @@ Map<String, dynamic> _$VideoPlayerSettingsModelToJson(
       'enablePlayPauseFade': instance.enablePlayPauseFade,
       'enableCrossfade': instance.enableCrossfade,
       'crossfadeDurationMs': instance.crossfadeDurationMs,
+      'enableSmartDownmix': instance.enableSmartDownmix,
+      'dialogueBoost': _$DialogueBoostLevelEnumMap[instance.dialogueBoost]!,
     };
 
 const _$BoxFitEnumMap = {
@@ -189,6 +195,7 @@ const _$VideoHotKeysEnumMap = {
   VideoHotKeys.skipMediaSegment: 'skipMediaSegment',
   VideoHotKeys.takeScreenshot: 'takeScreenshot',
   VideoHotKeys.takeScreenshotClean: 'takeScreenshotClean',
+  VideoHotKeys.toggleSubtitles: 'toggleSubtitles',
   VideoHotKeys.exit: 'exit',
 };
 
@@ -204,4 +211,11 @@ const _$ReplayGainVolumeLevelEnumMap = {
   ReplayGainVolumeLevel.quiet: 'quiet',
   ReplayGainVolumeLevel.normal: 'normal',
   ReplayGainVolumeLevel.loud: 'loud',
+};
+
+const _$DialogueBoostLevelEnumMap = {
+  DialogueBoostLevel.off: 'off',
+  DialogueBoostLevel.low: 'low',
+  DialogueBoostLevel.medium: 'medium',
+  DialogueBoostLevel.high: 'high',
 };

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -8,11 +9,18 @@ import 'package:path/path.dart' as p;
 
 import 'package:driftfin/models/item_base_model.dart';
 import 'package:driftfin/models/media_playback_model.dart';
+import 'package:driftfin/models/playback/direct_playback_model.dart';
 import 'package:driftfin/models/playback/playback_model.dart';
 import 'package:driftfin/models/playback/playback_queue_state.dart';
+import 'package:driftfin/models/video_stream_model.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
 import 'package:driftfin/wrappers/media_control_wrapper.dart';
+
+/// Whether a reported playback failure should trigger an automatic fallback
+/// to a compatible transcode. Only direct play/stream is eligible: transcode,
+/// offline and TV playback have no further server-side fallback to request.
+bool shouldFallbackToTranscode(PlaybackModel? currentModel) => currentModel is DirectPlaybackModel;
 
 final mediaPlaybackProvider = StateProvider<MediaPlaybackModel>((ref) => MediaPlaybackModel());
 
@@ -35,6 +43,8 @@ class VideoPlayerNotifier extends StateNotifier<MediaControlsWrapper> {
 
   MediaPlaybackModel get playbackState => ref.read(mediaPlaybackProvider);
 
+  bool _attemptedTranscodeFallback = false;
+
   Future<void> init() async {
     await state.dispose();
     await state.init();
@@ -49,9 +59,44 @@ class VideoPlayerNotifier extends StateNotifier<MediaControlsWrapper> {
       updatePlaying(value.playing);
       updatePosition(value.position);
       updateDuration(value.duration);
+      if (value.error?.fatal ?? false) {
+        fallbackToTranscodeOnFailure();
+      }
     });
 
     subscriptions.add(subscription);
+  }
+
+  /// Self-healing playback: when the current backend gives up on a direct
+  /// play/stream source, transparently re-request a compatible transcode at
+  /// the current position instead of leaving the user on a dead-end error.
+  /// Guarded to run at most once per loaded item to avoid retry loops.
+  Future<void> fallbackToTranscodeOnFailure() async {
+    if (_attemptedTranscodeFallback) return;
+    _attemptedTranscodeFallback = true;
+
+    final currentModel = ref.read(playBackModel);
+    if (currentModel == null || !shouldFallbackToTranscode(currentModel)) return;
+
+    try {
+      final position = playbackState.position;
+      final wasPlaying = playbackState.playing;
+
+      final newModel = await ref.read(playbackModelHelper).createPlaybackModel(
+            null,
+            currentModel.item,
+            oldModel: currentModel,
+            forcedPlaybackType: PlaybackType.transcode,
+            startPosition: position,
+          );
+
+      if (newModel == null) return;
+
+      ref.read(playBackModel.notifier).update((_) => newModel);
+      await state.loadVideo(newModel, position, wasPlaying);
+    } catch (error, stackTrace) {
+      log('Failed to fall back to transcode after playback failure. Error: $error\n$stackTrace');
+    }
   }
 
   Future<void> updateBuffering(bool event) async =>
@@ -115,6 +160,7 @@ class VideoPlayerNotifier extends StateNotifier<MediaControlsWrapper> {
   }
 
   Future<bool> loadPlaybackItem(PlaybackModel model, Duration startPosition) async {
+    _attemptedTranscodeFallback = false;
     ref.read(playBackModel)?.dispose();
     await state.stop();
     ref.read(playbackRateProvider.notifier).state = 1.0;
@@ -163,6 +209,7 @@ class VideoPlayerNotifier extends StateNotifier<MediaControlsWrapper> {
     int currentIndex,
     Duration startPosition,
   ) async {
+    _attemptedTranscodeFallback = false;
     final currentPlayerState = ref.read(mediaPlaybackProvider).state;
     final keepFullScreenLayout = currentPlayerState == VideoPlayerState.fullScreen;
     final playbackSettings = ref.read(mediaPlaybackProvider);

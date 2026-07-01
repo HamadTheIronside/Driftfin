@@ -14,6 +14,26 @@ void main() {
     });
   });
 
+  group('resolveMaxBitrate', () {
+    test('uses maxHomeBitrate on a home connection (Wi-Fi/Ethernet)', () {
+      final result = resolveMaxBitrate(
+        maxHomeBitrate: Bitrate.original,
+        maxInternetBitrate: Bitrate.b4Mbps,
+        homeInternet: true,
+      );
+      expect(result, Bitrate.original);
+    });
+
+    test('uses maxInternetBitrate on a non-home connection (cellular/offline)', () {
+      final result = resolveMaxBitrate(
+        maxHomeBitrate: Bitrate.original,
+        maxInternetBitrate: Bitrate.b4Mbps,
+        homeInternet: false,
+      );
+      expect(result, Bitrate.b4Mbps);
+    });
+  });
+
   group('getVideoQualityOptions', () {
     test('always includes original and auto', () {
       final options = getVideoQualityOptions(

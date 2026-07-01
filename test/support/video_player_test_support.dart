@@ -10,6 +10,7 @@ import 'package:driftfin/models/items/overview_model.dart';
 import 'package:driftfin/models/playback/direct_playback_model.dart';
 import 'package:driftfin/models/playback/playback_model.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
+import 'package:driftfin/util/audio_filter_chain.dart';
 import 'package:driftfin/wrappers/media_control_wrapper.dart';
 import 'package:driftfin/wrappers/players/base_player.dart';
 import 'package:driftfin/wrappers/players/player_capabilities.dart';
@@ -106,6 +107,18 @@ class FakeBasePlayer implements BasePlayer {
 
   @override
   Future<void> setSubtitleDelay(Duration delay) async {}
+
+  ({bool enableSmartDownmix, DialogueBoostLevel dialogueBoost})? lastAudioEnhancement;
+  int audioEnhancementCallCount = 0;
+
+  @override
+  Future<void> setAudioEnhancement({
+    required bool enableSmartDownmix,
+    required DialogueBoostLevel dialogueBoost,
+  }) async {
+    audioEnhancementCallCount++;
+    lastAudioEnhancement = (enableSmartDownmix: enableSmartDownmix, dialogueBoost: dialogueBoost);
+  }
 
   @override
   Uri? isValidUrl(String input) => null;

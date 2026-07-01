@@ -23,23 +23,23 @@ void main() {
       expect(capabilities.crossfade, isTrue);
     });
 
-    test('LibMDK (FVP/mdk) supports screenshots and subtitle delay only', () {
+    test('LibMDK (FVP/mdk) supports screenshots, subtitle delay and error reporting', () {
       final capabilities = LibMDK().capabilities;
       expect(capabilities.screenshots, isTrue);
       expect(capabilities.subtitleDelay, isTrue);
+      expect(capabilities.errorReporting, isTrue);
       expect(capabilities.audioDsp, isFalse);
       expect(capabilities.ambientGlow, isFalse);
-      expect(capabilities.errorReporting, isFalse);
       expect(capabilities.crossfade, isFalse);
     });
 
     test('NativePlayer (Android-TV ExoPlayer) gray-zones audio DSP and screenshots', () {
       final capabilities = NativePlayer().capabilities;
       expect(capabilities.subtitleDelay, isTrue);
+      expect(capabilities.errorReporting, isTrue);
       expect(capabilities.screenshots, isFalse);
       expect(capabilities.audioDsp, isFalse);
       expect(capabilities.ambientGlow, isFalse);
-      expect(capabilities.errorReporting, isFalse);
       expect(capabilities.crossfade, isFalse);
     });
 

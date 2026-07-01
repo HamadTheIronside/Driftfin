@@ -21,6 +21,7 @@ class NativePlayer extends BasePlayer implements VideoPlayerListenerCallback {
   @override
   PlayerCapabilities get capabilities => const PlayerCapabilities(
         subtitleDelay: true,
+        errorReporting: true,
       );
 
   final player = VideoPlayerApi();
@@ -124,6 +125,11 @@ class NativePlayer extends BasePlayer implements VideoPlayerListenerCallback {
       buffer: Duration(milliseconds: state.buffered),
       buffering: state.buffering,
     );
+    if (state.failed) {
+      lastState.update(error: const PlayerError('ExoPlayer reported a playback error', fatal: true));
+    } else {
+      lastState.clearError();
+    }
     _stateController.add(lastState);
   }
 

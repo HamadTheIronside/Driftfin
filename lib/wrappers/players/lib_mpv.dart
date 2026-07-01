@@ -19,12 +19,16 @@ import 'package:driftfin/models/settings/subtitle_settings_model.dart';
 import 'package:driftfin/models/settings/video_player_settings.dart';
 import 'package:driftfin/providers/settings/subtitle_settings_provider.dart';
 import 'package:driftfin/screens/video_player/video_player.dart' as video_screen;
+import 'package:driftfin/util/audio_filter_chain.dart';
 import 'package:driftfin/util/subtitle_position_calculator.dart';
 import 'package:driftfin/wrappers/players/base_player.dart';
+import 'package:driftfin/wrappers/players/playback_retry_policy.dart';
 import 'package:driftfin/wrappers/players/player_capabilities.dart';
 import 'package:driftfin/wrappers/players/player_states.dart';
 
 class LibMPV extends BasePlayer {
+  LibMPV({PlaybackRetryPolicy retryPolicy = const PlaybackRetryPolicy()}) : _retryPolicy = retryPolicy;
+
   @override
   PlayerCapabilities get capabilities => const PlayerCapabilities(
         screenshots: true,
@@ -50,8 +54,7 @@ class LibMPV extends BasePlayer {
 
   RestartableTimer? _retryTimer;
   DateTime _firstLoadAttempt = DateTime.now();
-  final Duration _maxRetryDuration = const Duration(minutes: 1);
-  final Duration _currentRetryDuration = const Duration(seconds: 5);
+  final PlaybackRetryPolicy _retryPolicy;
   Completer<void>? _loadCompleter;
   final List<StreamSubscription> _playerStreamSubs = [];
   double _preferredVolume = 100;
@@ -232,6 +235,7 @@ class LibMPV extends BasePlayer {
   Future<void> loadVideo(String url, bool play, {Duration startPosition = Duration.zero}) async {
     _loadCompleter = Completer<void>();
     _firstLoadAttempt = DateTime.now();
+    setState(lastState.clearError());
 
     await setStartPosition(startPosition);
 
@@ -241,10 +245,10 @@ class LibMPV extends BasePlayer {
     _retryTimer = null;
 
     _retryTimer = RestartableTimer(
-      _currentRetryDuration,
+      _retryPolicy.retryInterval,
       () async {
         await Future.delayed(const Duration(milliseconds: 150));
-        if (DateTime.now().isAfter(_firstLoadAttempt.add(_maxRetryDuration))) {
+        if (_retryPolicy.hasExceededBudget(firstAttempt: _firstLoadAttempt, now: DateTime.now())) {
           log("Max retry duration reached, stopping retries.");
           _retryTimer?.cancel();
           _retryTimer = null;
@@ -313,17 +317,45 @@ class LibMPV extends BasePlayer {
     return _settings.replayGainVolumeLevel.replayGainOffsetDb;
   }
 
+  bool _smartDownmixEnabled = false;
+  DialogueBoostLevel _dialogueBoost = DialogueBoostLevel.off;
+
+  /// Applies the Night-Mode Audio (dialogue boost / smart downmix) `af`
+  /// segments on top of whatever ReplayGain fallback filter is currently in
+  /// play, so the two features compose into one `af` chain instead of one
+  /// overwriting the other's `setProperty('af', ...)` call.
+  @override
+  Future<void> setAudioEnhancement({
+    required bool enableSmartDownmix,
+    required DialogueBoostLevel dialogueBoost,
+  }) async {
+    _smartDownmixEnabled = enableSmartDownmix;
+    _dialogueBoost = dialogueBoost;
+    await _applyReplayGainSettings(trackGainDb: _lastTrackGainDb);
+  }
+
+  double? _lastTrackGainDb;
+
+  Future<void> _applyAudioFilterChain(dynamic nativePlayer, {String? replayGainFallbackFilter}) async {
+    final chain = AudioFilterChainBuilder()
+        .addFilter(replayGainFallbackFilter)
+        .addFilter(buildNightModeAudioFilter(enableSmartDownmix: _smartDownmixEnabled, dialogueBoost: _dialogueBoost))
+        .build();
+    await nativePlayer.setProperty('af', chain);
+  }
+
   Future<void> _applyReplayGainSettings({double? trackGainDb, mpv.Player? targetPlayer}) async {
     final player = targetPlayer ?? _player;
     if (player?.platform is! mpv.NativePlayer) {
       return;
     }
 
+    _lastTrackGainDb = trackGainDb;
     final nativePlayer = player!.platform as dynamic;
 
     if (!_settings.enableReplayGain) {
       try {
-        await nativePlayer.setProperty('af', '');
+        await _applyAudioFilterChain(nativePlayer);
       } catch (_) {
         // Best effort clear.
       }
@@ -338,7 +370,7 @@ class LibMPV extends BasePlayer {
       await nativePlayer.setProperty('replaygain-clip', 'yes');
       await nativePlayer.setProperty('replaygain-fallback', '$replayGainFallbackDb');
       await nativePlayer.setProperty('replaygain-preamp', '$replayGainOffsetDb');
-      await nativePlayer.setProperty('af', '');
+      await _applyAudioFilterChain(nativePlayer);
       _replayGainFallbackLogged = false;
     } catch (error, stackTrace) {
       if (!_replayGainFallbackLogged) {
@@ -347,8 +379,10 @@ class LibMPV extends BasePlayer {
       _replayGainFallbackLogged = true;
 
       try {
-        final gainFilter = ',volume=${replayGainFallbackDb}dB';
-        await nativePlayer.setProperty('af', 'format=stereo,loudnorm$gainFilter');
+        await _applyAudioFilterChain(
+          nativePlayer,
+          replayGainFallbackFilter: buildReplayGainFallbackFilter(replayGainFallbackDb),
+        );
       } catch (fallbackError, fallbackStackTrace) {
         log('Unable to set loudnorm fallback filter. $fallbackError\n$fallbackStackTrace');
       }

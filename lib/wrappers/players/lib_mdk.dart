@@ -23,6 +23,7 @@ class LibMDK extends BasePlayer {
   PlayerCapabilities get capabilities => const PlayerCapabilities(
         screenshots: true,
         subtitleDelay: true,
+        errorReporting: true,
       );
 
   VideoPlayerController? _controller;
@@ -120,6 +121,12 @@ class LibMDK extends BasePlayer {
       buffering: _controller?.value.isBuffering ?? true,
       buffer: calculateBufferedDuration(_controller?.value),
     ));
+    final errorDescription = _controller?.value.errorDescription;
+    if (errorDescription != null) {
+      setState(lastState.update(error: PlayerError(errorDescription, fatal: true)));
+    } else {
+      setState(lastState.clearError());
+    }
   }
 
   Duration calculateBufferedDuration(VideoPlayerValue? value) {

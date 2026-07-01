@@ -8,6 +8,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:driftfin/models/items/media_segments_model.dart';
 import 'package:driftfin/models/settings/arguments_model.dart';
 import 'package:driftfin/models/settings/key_combinations.dart';
+import 'package:driftfin/util/audio_filter_chain.dart';
 import 'package:driftfin/util/bitrate_helper.dart';
 import 'package:driftfin/util/localization_helper.dart';
 
@@ -110,6 +111,8 @@ abstract class VideoPlayerSettingsModel with _$VideoPlayerSettingsModel {
     @Default(true) bool enablePlayPauseFade,
     @Default(true) bool enableCrossfade,
     @Default(400) int crossfadeDurationMs,
+    @Default(false) bool enableSmartDownmix,
+    @Default(DialogueBoostLevel.off) DialogueBoostLevel dialogueBoost,
   }) = _VideoPlayerSettingsModel;
 
   double get volume => internalVolume;
