@@ -158,6 +158,10 @@ extension LibrarySearchRouteExtension on LibrarySearchRoute {
       sortingOptions: model.sortingOption,
       types: model.types,
       genres: model.genres,
+      studios: model.studios,
+      tags: model.tags,
+      years: model.years,
+      officialRatings: model.officialRatings,
       recursive: model.recursive,
     );
   }

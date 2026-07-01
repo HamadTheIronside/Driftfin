@@ -57,6 +57,19 @@ void main() {
     });
   });
 
+  group('LibraryFiltersModel.showOnHome', () {
+    test('defaults to false so existing saved filters do not appear as smart shelves', () {
+      final model = LibraryFiltersModel(id: 'x', name: 'x', isFavourite: false);
+      expect(model.showOnHome, isFalse);
+    });
+
+    test('can be toggled independently of isFavourite', () {
+      final model = LibraryFiltersModel(id: 'x', name: 'x', isFavourite: true, showOnHome: true);
+      expect(model.showOnHome, isTrue);
+      expect(model.isFavourite, isTrue);
+    });
+  });
+
   group('LibraryFiltersModel.containsSameIds', () {
     test('true for the same set of ids regardless of order', () {
       final model = LibraryFiltersModel(id: 'x', name: 'x', isFavourite: false, ids: ['a', 'b']);
