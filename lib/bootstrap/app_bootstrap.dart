@@ -10,6 +10,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:driftfin/models/settings/arguments_model.dart';
+import 'package:driftfin/models/settings/client_settings_model.dart';
 import 'package:driftfin/providers/crash_log_provider.dart';
 import 'package:driftfin/providers/shared_provider.dart';
 import 'package:driftfin/src/video_player_helper.g.dart';
@@ -27,12 +28,29 @@ const sentryDsn = String.fromEnvironment('SENTRY_DSN');
 /// var) over the compile-time [sentryDsn], since a single Web build is shared
 /// across deployments and can't bake in a deployment-specific value. Every
 /// other platform only ever has the compile-time value.
-String get resolvedSentryDsn {
-  if (kIsWeb && (FladderConfig.sentryDsn?.isNotEmpty ?? false)) {
-    return FladderConfig.sentryDsn!;
+String get resolvedSentryDsn => resolveSentryDsn(
+      isWeb: kIsWeb,
+      webConfiguredDsn: FladderConfig.sentryDsn,
+      buildTimeDsn: sentryDsn,
+    );
+
+/// Pure form of [resolvedSentryDsn]. `kIsWeb` is a compile-time constant that
+/// gets folded to `false` on the VM, so its branch is unreachable in
+/// `flutter test`; taking `isWeb` as a plain parameter keeps both branches
+/// testable.
+@visibleForTesting
+String resolveSentryDsn({required bool isWeb, required String? webConfiguredDsn, required String buildTimeDsn}) {
+  if (isWeb && (webConfiguredDsn?.isNotEmpty ?? false)) {
+    return webConfiguredDsn!;
   }
-  return sentryDsn;
+  return buildTimeDsn;
 }
+
+/// Whether crash reporting should actually run: the app needs somewhere to
+/// send to (a resolved DSN) *and* the user has to have opted in themselves.
+@visibleForTesting
+bool computeCrashReportingEnabled({required String dsn, required ClientSettingsModel clientSettings}) =>
+    dsn.isNotEmpty && clientSettings.enableCrashReporting;
 
 bool get isDesktopPlatform {
   if (kIsWeb) return false;
@@ -108,8 +126,10 @@ Future<AppBootstrapResult> bootstrapApplication(List<String> args) async {
   );
 
   final effectiveSentryDsn = resolvedSentryDsn;
-  final crashReportingEnabled = effectiveSentryDsn.isNotEmpty &&
-      SharedHelper(sharedPreferences: sharedPreferences).clientSettings.enableCrashReporting;
+  final crashReportingEnabled = computeCrashReportingEnabled(
+    dsn: effectiveSentryDsn,
+    clientSettings: SharedHelper(sharedPreferences: sharedPreferences).clientSettings,
+  );
 
   return AppBootstrapResult(
     sharedPreferences: sharedPreferences,

@@ -67,11 +67,19 @@ void main() {
     final container = ProviderScope.containerOf(tester.element(find.byType(ListView)));
     expect(container.read(clientSettingsProvider).enableCrashReporting, isFalse);
 
-    await tester.tap(switchFinder, warnIfMissed: false);
+    // Drive the Switch's own onChanged directly — tapping the tile's outer
+    // FlatButton would also flip the setting via its onTap and mask whether
+    // the Switch's onChanged wiring itself is broken.
+    tester.widget<Switch>(switchFinder).onChanged!(true);
     await tester.pumpAndSettle();
 
     expect(container.read(clientSettingsProvider).enableCrashReporting, isTrue);
     expect(tester.widget<Switch>(switchFinder).value, isTrue);
+
+    // The tile's onTap toggle path (label/subLabel tap) should reach the same setter.
+    await tester.tap(find.text(l10n.crashReportingTitle), warnIfMissed: false);
+    await tester.pumpAndSettle();
+    expect(container.read(clientSettingsProvider).enableCrashReporting, isFalse);
 
     // Flush the notifier's debounced persistence timer so it doesn't outlive the test.
     await tester.pump(const Duration(seconds: 1));

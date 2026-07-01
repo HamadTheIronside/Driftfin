@@ -22,12 +22,13 @@ class CrashLogNotifier extends StateNotifier<List<ErrorLogModel>> {
   final maxLength = 50;
   String? logFilePath;
   Timer? _debounceTimer;
+  StreamSubscription<LogRecord>? _logSubscription;
   static const _debounceDuration = Duration(milliseconds: 500);
 
   void init() async {
     logger = Logger.root;
     logger.level = Level.ALL;
-    logger.onRecord.listen(logPrint);
+    _logSubscription = logger.onRecord.listen(logPrint);
 
     FlutterError.onError = (FlutterErrorDetails details) => logFile(details);
 
@@ -124,6 +125,7 @@ class CrashLogNotifier extends StateNotifier<List<ErrorLogModel>> {
   @override
   void dispose() {
     _debounceTimer?.cancel();
+    _logSubscription?.cancel();
     super.dispose();
   }
 }
