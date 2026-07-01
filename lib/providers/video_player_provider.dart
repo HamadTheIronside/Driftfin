@@ -60,7 +60,7 @@ class VideoPlayerNotifier extends StateNotifier<MediaControlsWrapper> {
       updatePosition(value.position);
       updateDuration(value.duration);
       if (value.failed) {
-        _fallbackToTranscodeOnFailure();
+        fallbackToTranscodeOnFailure();
       }
     });
 
@@ -71,7 +71,7 @@ class VideoPlayerNotifier extends StateNotifier<MediaControlsWrapper> {
   /// play/stream source, transparently re-request a compatible transcode at
   /// the current position instead of leaving the user on a dead-end error.
   /// Guarded to run at most once per loaded item to avoid retry loops.
-  Future<void> _fallbackToTranscodeOnFailure() async {
+  Future<void> fallbackToTranscodeOnFailure() async {
     if (_attemptedTranscodeFallback) return;
     _attemptedTranscodeFallback = true;
 

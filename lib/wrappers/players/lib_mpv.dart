@@ -26,6 +26,8 @@ import 'package:driftfin/wrappers/players/playback_retry_policy.dart';
 import 'package:driftfin/wrappers/players/player_states.dart';
 
 class LibMPV extends BasePlayer {
+  LibMPV({PlaybackRetryPolicy retryPolicy = const PlaybackRetryPolicy()}) : _retryPolicy = retryPolicy;
+
   mpv.Player? _player;
   VideoController? _controller;
   String _currentSubtitleCodec = '';
@@ -41,7 +43,7 @@ class LibMPV extends BasePlayer {
 
   RestartableTimer? _retryTimer;
   DateTime _firstLoadAttempt = DateTime.now();
-  final PlaybackRetryPolicy _retryPolicy = const PlaybackRetryPolicy();
+  final PlaybackRetryPolicy _retryPolicy;
   Completer<void>? _loadCompleter;
   final List<StreamSubscription> _playerStreamSubs = [];
   double _preferredVolume = 100;

@@ -16,6 +16,7 @@ import 'package:driftfin/screens/home_screen.dart';
 import 'package:driftfin/screens/settings/player_settings_page.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout_model.dart';
+import 'package:driftfin/util/audio_filter_chain.dart';
 import 'package:driftfin/util/poster_defaults.dart';
 import 'package:driftfin/widgets/shared/fladder_slider.dart';
 
@@ -164,6 +165,24 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(container.read(videoPlayerSettingsProvider).enableSmartDownmix, isTrue);
+  });
+
+  testWidgets('picking a dialogue boost level updates the setting', (tester) async {
+    useTallView(tester);
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+
+    final settings = VideoPlayerSettingsModel(playerOptions: PlayerOptions.libMPV);
+    await tester.pumpWidget(_harness(prefs, settings, user: user));
+    await tester.pumpAndSettle();
+
+    final container = ProviderScope.containerOf(tester.element(find.byType(PlayerSettingsPage)));
+    expect(container.read(videoPlayerSettingsProvider).dialogueBoost, DialogueBoostLevel.off);
+
+    container.read(videoPlayerSettingsProvider.notifier).setDialogueBoost(DialogueBoostLevel.high);
+    await tester.pumpAndSettle();
+
+    expect(container.read(videoPlayerSettingsProvider).dialogueBoost, DialogueBoostLevel.high);
   });
 
   testWidgets('leanback mode surfaces screensaver option', (tester) async {

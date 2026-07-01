@@ -161,6 +161,23 @@ class PlaybackModelHelper {
 
   JellyService get api => ref.read(jellyApiProvider);
 
+  /// Connection-aware quality options for [streamModel]: picks maxHomeBitrate
+  /// vs maxInternetBitrate based on the current connection state before
+  /// computing the available bitrate tiers.
+  Map<Bitrate, bool> resolveVideoQualityOptions(MediaStreamsModel? streamModel) {
+    return getVideoQualityOptions(
+      VideoQualitySettings(
+        maxBitRate: resolveMaxBitrate(
+          maxHomeBitrate: ref.read(videoPlayerSettingsProvider.select((value) => value.maxHomeBitrate)),
+          maxInternetBitrate: ref.read(videoPlayerSettingsProvider.select((value) => value.maxInternetBitrate)),
+          homeInternet: ref.read(connectivityStatusProvider.select((value) => value.homeInternet)),
+        ),
+        videoBitRate: streamModel?.videoStreams.firstOrNull?.bitRate ?? 0,
+        videoCodec: streamModel?.videoStreams.firstOrNull?.codec,
+      ),
+    );
+  }
+
   Future<PlaybackModel?> loadNewVideo(ItemBaseModel newItem) async {
     ref.read(videoPlayerProvider).pause();
     ref.read(mediaPlaybackProvider.notifier).update((state) => state.copyWith(buffering: true));
@@ -364,17 +381,7 @@ class PlaybackModelHelper {
 
       final newStreamModel = streamModel ?? item.streamModel;
 
-      Map<Bitrate, bool> qualityOptions = getVideoQualityOptions(
-        VideoQualitySettings(
-          maxBitRate: resolveMaxBitrate(
-            maxHomeBitrate: ref.read(videoPlayerSettingsProvider.select((value) => value.maxHomeBitrate)),
-            maxInternetBitrate: ref.read(videoPlayerSettingsProvider.select((value) => value.maxInternetBitrate)),
-            homeInternet: ref.read(connectivityStatusProvider.select((value) => value.homeInternet)),
-          ),
-          videoBitRate: newStreamModel?.videoStreams.firstOrNull?.bitRate ?? 0,
-          videoCodec: newStreamModel?.videoStreams.firstOrNull?.codec,
-        ),
-      );
+      Map<Bitrate, bool> qualityOptions = resolveVideoQualityOptions(newStreamModel);
 
       final audioStreamIndex = selectAudioStream(
           ref.read(userProvider.select((value) => value?.userConfiguration?.rememberAudioSelections ?? true)),
