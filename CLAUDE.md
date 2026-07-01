@@ -11,7 +11,7 @@ FLUTTER=~/fvm/versions/3.35.7/bin/flutter
 DART=~/fvm/versions/3.35.7/bin/dart
 ```
 
-Linux dev needs `libmpv-dev` (`sudo apt install libmpv-dev`); desktop builds also need `clang cmake ninja-build pkg-config libgtk-3-dev`.
+Linux dev needs `libmpv-dev` (`sudo apt install libmpv-dev`); desktop builds also need `clang cmake ninja-build pkg-config libgtk-3-dev libcurl4-openssl-dev` (the last is required by sentry-native's CMake config).
 
 ## Command cheat-sheet
 

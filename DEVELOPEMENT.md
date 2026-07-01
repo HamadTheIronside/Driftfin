@@ -29,10 +29,10 @@ flutter pub get
 
 ## 🐧 Linux Dependencies
 
-If you're on **Linux**, install the `mpv` dependency:
+If you're on **Linux**, install the `mpv` and build dependencies:
 
 ```bash
-sudo apt install libmpv-dev
+sudo apt install libmpv-dev clang cmake ninja-build pkg-config libgtk-3-dev libcurl4-openssl-dev
 ```
 
 ## 🛠️ Running the App
