@@ -34,6 +34,11 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Local-only dependency overrides (e.g. swapping a git dependency for a
+# hosted one in a sandboxed/offline dev environment). Never commit these -
+# they're meant to override pubspec.yaml for one machine, not the team.
+pubspec_overrides.yaml
+
 # Symbolication related
 app.*.symbols
 
