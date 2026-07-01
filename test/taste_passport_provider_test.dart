@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:driftfin/jellyfin/jellyfin_open_api.enums.swagger.dart';
 import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
 import 'package:driftfin/models/item_base_model.dart';
 import 'package:driftfin/models/items/item_shared_models.dart';
@@ -150,7 +149,7 @@ class _FakeJellyApi extends JellyApi {
   }
 }
 
-ProviderContainer containerWith(_FakeJellyApi fakeApi) {
+ProviderContainer _containerWith(_FakeJellyApi fakeApi) {
   return ProviderContainer(overrides: [jellyApiProvider.overrideWith(() => fakeApi)]);
 }
 
@@ -162,7 +161,7 @@ void main() {
       _item('1', genres: const ['Comedy'], runTime: const Duration(minutes: 30)),
       _item('2', genres: const ['Comedy', 'Drama'], runTime: const Duration(minutes: 45)),
     ]);
-    final container = containerWith(fakeApi);
+    final container = _containerWith(fakeApi);
     addTearDown(container.dispose);
 
     await container.read(tastePassportProvider.notifier).fetchProfile();
@@ -177,7 +176,7 @@ void main() {
 
   test('queries only played movies and episodes', () async {
     final fakeApi = _FakeJellyApi();
-    final container = containerWith(fakeApi);
+    final container = _containerWith(fakeApi);
     addTearDown(container.dispose);
 
     await container.read(tastePassportProvider.notifier).fetchProfile();
@@ -188,7 +187,7 @@ void main() {
 
   test('an empty watch history yields a zeroed-out profile', () async {
     final fakeApi = _FakeJellyApi();
-    final container = containerWith(fakeApi);
+    final container = _containerWith(fakeApi);
     addTearDown(container.dispose);
 
     await container.read(tastePassportProvider.notifier).fetchProfile();
@@ -201,7 +200,7 @@ void main() {
 
   test('fetchProfile is a no-op re-entrancy guard while already loading', () async {
     final fakeApi = _FakeJellyApi(watched: [_item('1')]);
-    final container = containerWith(fakeApi);
+    final container = _containerWith(fakeApi);
     addTearDown(container.dispose);
 
     final notifier = container.read(tastePassportProvider.notifier);
@@ -212,7 +211,7 @@ void main() {
 
   test('clear resets to the default model', () async {
     final fakeApi = _FakeJellyApi(watched: [_item('1')]);
-    final container = containerWith(fakeApi);
+    final container = _containerWith(fakeApi);
     addTearDown(container.dispose);
     final notifier = container.read(tastePassportProvider.notifier);
 

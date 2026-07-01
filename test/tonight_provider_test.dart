@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:driftfin/jellyfin/jellyfin_open_api.enums.swagger.dart';
 import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
 import 'package:driftfin/models/item_base_model.dart';
 import 'package:driftfin/models/view_model.dart';
@@ -136,10 +135,11 @@ void main() {
   test('fans out to recommendations, next-up and similar-item endpoints for a movies library', () async {
     final fakeApi = _FakeJellyApi(
       recommendations: [
-        RecommendationDto(baselineItemName: 'Because you liked X', items: [
+        const RecommendationDto(baselineItemName: 'Because you liked X', items: [
           BaseItemDto(id: 'rec-1', name: 'Recommended Movie', type: BaseItemKind.movie, communityRating: 8),
         ]),
       ],
+      nextUp: [const BaseItemDto(id: 'nextup-1', name: 'Next Up Episode', type: BaseItemKind.episode)],
     );
     final container = containerWith(fakeApi: fakeApi, dashboardViews: [_movieView()]);
     addTearDown(container.dispose);
@@ -150,7 +150,7 @@ void main() {
     expect(fakeApi.service.showsNextUpCalls, 1);
     final state = container.read(tonightProvider);
     expect(state.loading, isFalse);
-    expect(state.picks.map((e) => e.id), contains('rec-1'));
+    expect(state.picks.map((e) => e.id), containsAll(['rec-1', 'nextup-1']));
     expect(state.generatedAt, isNotNull);
     expect(state.timeAvailable, const Duration(hours: 2));
   });
@@ -158,13 +158,13 @@ void main() {
   test('seeds similar-item lookups from up to 3 resume-video items', () async {
     final fakeApi = _FakeJellyApi(
       similarByItemId: {
-        'resume-1': [BaseItemDto(id: 'similar-1', name: 'Similar Movie', type: BaseItemKind.movie)],
+        'resume-1': [const BaseItemDto(id: 'similar-1', name: 'Similar Movie', type: BaseItemKind.movie)],
       },
     );
     final container = containerWith(
       fakeApi: fakeApi,
       dashboardViews: [_movieView()],
-      resumeVideo: [BaseItemDto(id: 'resume-1', name: 'Resume Movie', type: BaseItemKind.movie)],
+      resumeVideo: [const BaseItemDto(id: 'resume-1', name: 'Resume Movie', type: BaseItemKind.movie)],
     );
     addTearDown(container.dispose);
 

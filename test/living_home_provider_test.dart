@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:driftfin/jellyfin/jellyfin_open_api.enums.swagger.dart';
 import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
 import 'package:driftfin/models/item_base_model.dart';
 import 'package:driftfin/models/items/item_shared_models.dart';
@@ -206,7 +205,7 @@ class _FakeJellyApi extends JellyApi {
   }
 }
 
-ProviderContainer containerWith(_FakeJellyApi fakeApi) {
+ProviderContainer _containerWith(_FakeJellyApi fakeApi) {
   return ProviderContainer(overrides: [jellyApiProvider.overrideWith(() => fakeApi)]);
 }
 
@@ -217,10 +216,10 @@ void main() {
     final fakeApi = _FakeJellyApi(
       favouriteSample: [_item('seed-1', favourite: true)],
       similarByItemId: {
-        'seed-1': [BaseItemDto(id: 'similar-1', name: 'Similar', type: BaseItemKind.movie)],
+        'seed-1': [const BaseItemDto(id: 'similar-1', name: 'Similar', type: BaseItemKind.movie)],
       },
     );
-    final container = containerWith(fakeApi);
+    final container = _containerWith(fakeApi);
     addTearDown(container.dispose);
 
     await container.read(livingHomeProvider.notifier).fetchRails();
@@ -235,10 +234,10 @@ void main() {
       favouriteSample: const [],
       playedSample: [_item('seed-2', played: true)],
       similarByItemId: {
-        'seed-2': [BaseItemDto(id: 'similar-2', name: 'Similar', type: BaseItemKind.movie)],
+        'seed-2': [const BaseItemDto(id: 'similar-2', name: 'Similar', type: BaseItemKind.movie)],
       },
     );
-    final container = containerWith(fakeApi);
+    final container = _containerWith(fakeApi);
     addTearDown(container.dispose);
 
     await container.read(livingHomeProvider.notifier).fetchRails();
@@ -257,7 +256,7 @@ void main() {
         'd1': [_item('director-pick')],
       },
     );
-    final container = containerWith(fakeApi);
+    final container = _containerWith(fakeApi);
     addTearDown(container.dispose);
 
     await container.read(livingHomeProvider.notifier).fetchRails();
@@ -275,7 +274,7 @@ void main() {
         _item('watched-already', communityRating: 9, played: true),
       ],
     );
-    final container = containerWith(fakeApi);
+    final container = _containerWith(fakeApi);
     addTearDown(container.dispose);
 
     await container.read(livingHomeProvider.notifier).fetchRails();
@@ -287,7 +286,7 @@ void main() {
 
   test('omits rails that end up with no posters', () async {
     final fakeApi = _FakeJellyApi();
-    final container = containerWith(fakeApi);
+    final container = _containerWith(fakeApi);
     addTearDown(container.dispose);
 
     await container.read(livingHomeProvider.notifier).fetchRails();
@@ -297,7 +296,7 @@ void main() {
 
   test('fetchRails is a no-op re-entrancy guard while already loading', () async {
     final fakeApi = _FakeJellyApi(favouriteSample: [_item('seed-1', favourite: true)]);
-    final container = containerWith(fakeApi);
+    final container = _containerWith(fakeApi);
     addTearDown(container.dispose);
 
     final notifier = container.read(livingHomeProvider.notifier);
@@ -309,7 +308,7 @@ void main() {
   group('refreshIfStale', () {
     test('fetches when nothing has been fetched yet', () async {
       final fakeApi = _FakeJellyApi();
-      final container = containerWith(fakeApi);
+      final container = _containerWith(fakeApi);
       addTearDown(container.dispose);
 
       await container.read(livingHomeProvider.notifier).refreshIfStale();
@@ -319,7 +318,7 @@ void main() {
 
     test('skips fetching when the last fetch is still fresh', () async {
       final fakeApi = _FakeJellyApi();
-      final container = containerWith(fakeApi);
+      final container = _containerWith(fakeApi);
       addTearDown(container.dispose);
       final notifier = container.read(livingHomeProvider.notifier);
 
@@ -332,7 +331,7 @@ void main() {
 
     test('force always refetches regardless of staleness', () async {
       final fakeApi = _FakeJellyApi();
-      final container = containerWith(fakeApi);
+      final container = _containerWith(fakeApi);
       addTearDown(container.dispose);
       final notifier = container.read(livingHomeProvider.notifier);
 
@@ -346,7 +345,7 @@ void main() {
 
   test('clear resets to the default model', () async {
     final fakeApi = _FakeJellyApi(favouriteSample: [_item('seed-1', favourite: true)]);
-    final container = containerWith(fakeApi);
+    final container = _containerWith(fakeApi);
     addTearDown(container.dispose);
     final notifier = container.read(livingHomeProvider.notifier);
 

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:driftfin/jellyfin/jellyfin_open_api.enums.swagger.dart';
 import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
 import 'package:driftfin/models/account_model.dart';
 import 'package:driftfin/models/credentials_model.dart';
@@ -171,7 +170,7 @@ AccountModel _accountWithFilters(List<LibraryFiltersModel> filters) {
   );
 }
 
-ProviderContainer containerWith({required List<LibraryFiltersModel> filters, required _FakeJellyApi fakeApi}) {
+ProviderContainer _containerWith({required List<LibraryFiltersModel> filters, required _FakeJellyApi fakeApi}) {
   return ProviderContainer(
     overrides: [
       userProvider.overrideWith(() => _FakeUser(_accountWithFilters(filters))),
@@ -185,7 +184,7 @@ void main() {
 
   test('returns nothing when no saved filter is marked showOnHome', () async {
     final filter = LibraryFiltersModel(id: 'f1', name: 'Sci-Fi', isFavourite: false, showOnHome: false);
-    final container = containerWith(filters: [filter], fakeApi: _FakeJellyApi());
+    final container = _containerWith(filters: [filter], fakeApi: _FakeJellyApi());
     addTearDown(container.dispose);
 
     final rails = await container.read(smartShelvesProvider.future);
@@ -204,7 +203,7 @@ void main() {
     final fakeApi = _FakeJellyApi(itemsByParentId: {
       'view-1': [_poster('p1')],
     });
-    final container = containerWith(filters: [filter], fakeApi: fakeApi);
+    final container = _containerWith(filters: [filter], fakeApi: fakeApi);
     addTearDown(container.dispose);
 
     final rails = await container.read(smartShelvesProvider.future);
@@ -217,7 +216,7 @@ void main() {
 
   test('omits shelves that resolve to zero items', () async {
     final filter = LibraryFiltersModel(id: 'f1', name: 'Empty Shelf', isFavourite: false, showOnHome: true);
-    final container = containerWith(filters: [filter], fakeApi: _FakeJellyApi());
+    final container = _containerWith(filters: [filter], fakeApi: _FakeJellyApi());
     addTearDown(container.dispose);
 
     final rails = await container.read(smartShelvesProvider.future);
@@ -236,7 +235,7 @@ void main() {
     final fakeApi = _FakeJellyApi(itemsByParentId: {
       null: [_poster('p1')],
     });
-    final container = containerWith(filters: [filter], fakeApi: fakeApi);
+    final container = _containerWith(filters: [filter], fakeApi: fakeApi);
     addTearDown(container.dispose);
 
     await container.read(smartShelvesProvider.future);
@@ -256,7 +255,7 @@ void main() {
     final fakeApi = _FakeJellyApi(itemsByParentId: {
       'view-1': [_poster('p1')],
     });
-    final container = containerWith(filters: [shown, hidden], fakeApi: fakeApi);
+    final container = _containerWith(filters: [shown, hidden], fakeApi: fakeApi);
     addTearDown(container.dispose);
 
     final rails = await container.read(smartShelvesProvider.future);
