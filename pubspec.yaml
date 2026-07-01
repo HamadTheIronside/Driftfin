@@ -59,6 +59,9 @@ dependencies:
   # Logging
   logging: ^1.3.0
 
+  # Crash reporting (opt-in, off by default — see clientSettingsProvider.enableCrashReporting)
+  sentry_flutter: ^9.22.0
+
   # Internationalization
   intl: ^0.20.2
 

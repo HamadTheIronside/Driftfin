@@ -11,11 +11,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:driftfin/models/settings/arguments_model.dart';
 import 'package:driftfin/providers/crash_log_provider.dart';
+import 'package:driftfin/providers/shared_provider.dart';
 import 'package:driftfin/src/video_player_helper.g.dart';
 import 'package:driftfin/util/application_info.dart';
 import 'package:driftfin/util/fladder_config.dart';
 import 'package:driftfin/util/string_extensions.dart';
 import 'package:driftfin/util/svg_utils.dart';
+
+/// Sentry DSN, supplied at build time via `--dart-define=SENTRY_DSN=...`.
+/// Never hardcoded — without it, crash reporting stays fully inert even if opted in.
+const sentryDsn = String.fromEnvironment('SENTRY_DSN');
 
 bool get isDesktopPlatform {
   if (kIsWeb) return false;
@@ -33,6 +38,7 @@ class AppBootstrapResult {
     required this.applicationDirectory,
     required this.argumentsModel,
     required this.crashProvider,
+    required this.crashReportingEnabled,
   });
 
   final SharedPreferences sharedPreferences;
@@ -40,6 +46,10 @@ class AppBootstrapResult {
   final Directory applicationDirectory;
   final ArgumentsModel argumentsModel;
   final CrashLogNotifier crashProvider;
+
+  /// Whether the user has opted in to crash reporting, read directly from
+  /// disk since this is decided before the Riverpod tree exists.
+  final bool crashReportingEnabled;
 }
 
 Future<AppBootstrapResult> bootstrapApplication(List<String> args) async {
@@ -80,12 +90,16 @@ Future<AppBootstrapResult> bootstrapApplication(List<String> args) async {
     leanBackEnabled,
   );
 
+  final crashReportingEnabled =
+      sentryDsn.isNotEmpty && SharedHelper(sharedPreferences: sharedPreferences).clientSettings.enableCrashReporting;
+
   return AppBootstrapResult(
     sharedPreferences: sharedPreferences,
     applicationInfo: applicationInfo,
     applicationDirectory: applicationDirectory,
     argumentsModel: argumentsModel,
     crashProvider: crashProvider,
+    crashReportingEnabled: crashReportingEnabled,
   );
 }
 

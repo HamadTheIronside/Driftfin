@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:driftfin/models/error_log_model.dart';
 
@@ -113,6 +114,10 @@ class CrashLogNotifier extends StateNotifier<List<ErrorLogModel>> {
     logger.severe('Flutter error: ${details.exception}', details.exception, details.stack);
     if (details.stack != null && kDebugMode) {
       print('${details.stack}');
+    }
+    // Only sends when the user opted in and Sentry was initialized at startup (see main.dart).
+    if (Sentry.isEnabled) {
+      Sentry.captureException(details.exception, stackTrace: details.stack);
     }
   }
 

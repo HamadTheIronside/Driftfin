@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:driftfin/models/settings/arguments_model.dart';
 import 'package:driftfin/models/settings/client_settings_model.dart';
 import 'package:driftfin/models/settings/key_combinations.dart';
@@ -37,6 +39,34 @@ void main() {
       expect(model.backgroundImage, BackgroundType.disabled);
       expect(model.themeMode, ThemeMode.dark);
       expect(model.enableBlurEffects, isFalse);
+    });
+  });
+
+  group('ClientSettingsModel.enableCrashReporting', () {
+    ClientSettingsModel baseModel() => ClientSettingsModel.internal(
+          transcodeDownloadModel: TranscodeDownloadModel.fromDefaults(),
+        );
+
+    test('defaults to false (opt-in, off by default)', () {
+      expect(baseModel().enableCrashReporting, isFalse);
+      expect(ClientSettingsModel.defaultModel().enableCrashReporting, isFalse);
+    });
+
+    test('copyWith toggles the flag', () {
+      final model = baseModel().copyWith(enableCrashReporting: true);
+      expect(model.enableCrashReporting, isTrue);
+    });
+
+    test('missing key in stored json falls back to false', () {
+      final json = jsonDecode(jsonEncode(baseModel().toJson())) as Map<String, dynamic>;
+      json.remove('enableCrashReporting');
+      expect(ClientSettingsModel.fromJson(json).enableCrashReporting, isFalse);
+    });
+
+    test('round-trips through the persisted json (as stored by SharedUtility.clientSettings)', () {
+      final model = baseModel().copyWith(enableCrashReporting: true);
+      final decoded = jsonDecode(jsonEncode(model.toJson())) as Map<String, dynamic>;
+      expect(ClientSettingsModel.fromJson(decoded).enableCrashReporting, isTrue);
     });
   });
 

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:driftfin/bootstrap/app_bootstrap.dart';
 import 'package:driftfin/bootstrap/platform/platform_app_wrapper.dart';
@@ -29,20 +30,31 @@ void main(List<String> args) async {
 
   final bootstrap = await bootstrapApplication(args);
 
-  runApp(
-    ProviderScope(
-      overrides: [
-        sharedPreferencesProvider.overrideWith((ref) => bootstrap.sharedPreferences),
-        applicationInfoProvider.overrideWith((ref) => bootstrap.applicationInfo),
-        crashLogProvider.overrideWith((ref) => bootstrap.crashProvider),
-        argumentsStateProvider.overrideWith((ref) => bootstrap.argumentsModel),
-        syncProvider.overrideWith((ref) => SyncNotifier(ref, bootstrap.applicationDirectory)),
-      ],
-      child: AdaptiveLayoutBuilder(
-        child: (context) => const Main(),
-      ),
+  final app = ProviderScope(
+    overrides: [
+      sharedPreferencesProvider.overrideWith((ref) => bootstrap.sharedPreferences),
+      applicationInfoProvider.overrideWith((ref) => bootstrap.applicationInfo),
+      crashLogProvider.overrideWith((ref) => bootstrap.crashProvider),
+      argumentsStateProvider.overrideWith((ref) => bootstrap.argumentsModel),
+      syncProvider.overrideWith((ref) => SyncNotifier(ref, bootstrap.applicationDirectory)),
+    ],
+    child: AdaptiveLayoutBuilder(
+      child: (context) => const Main(),
     ),
   );
+
+  if (bootstrap.crashReportingEnabled) {
+    await SentryFlutter.init(
+      (options) {
+        options.dsn = sentryDsn;
+        options.sendDefaultPii = false;
+        options.tracesSampleRate = 0;
+      },
+      appRunner: () => runApp(app),
+    );
+  } else {
+    runApp(app);
+  }
 }
 
 class Main extends ConsumerWidget {

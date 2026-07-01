@@ -31,6 +31,17 @@ List<Widget> buildClientSettingsAdvanced(BuildContext context, WidgetRef ref) {
           onChanged: (value) => ref.read(syncSettingsEnabledProvider.notifier).set(value),
         ),
       ),
+      SettingsListTile(
+        label: Text(context.localized.crashReportingTitle),
+        subLabel: Text(context.localized.crashReportingDesc),
+        onTap: () => ref
+            .read(clientSettingsProvider.notifier)
+            .setEnableCrashReporting(!ref.read(clientSettingsProvider.select((value) => value.enableCrashReporting))),
+        trailing: Switch(
+          value: ref.watch(clientSettingsProvider.select((value) => value.enableCrashReporting)),
+          onChanged: (value) => ref.read(clientSettingsProvider.notifier).setEnableCrashReporting(value),
+        ),
+      ),
       if (ref.watch(syncSettingsEnabledProvider))
         SettingsListTile(
           label: Text(context.localized.syncNow),
