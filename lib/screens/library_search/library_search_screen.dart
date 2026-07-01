@@ -8,6 +8,7 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 
 import 'package:driftfin/models/boxset_model.dart';
 import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/item_shared_models.dart';
 import 'package:driftfin/models/items/playlist_model.dart';
 import 'package:driftfin/models/library_filter_model.dart';
 import 'package:driftfin/models/library_search/library_search_model.dart';
@@ -55,6 +56,10 @@ class LibrarySearchScreen extends ConsumerStatefulWidget {
   final SortingOptions? sortingOptions;
   final Map<FladderItemType, bool>? types;
   final Map<String, bool>? genres;
+  final Map<Studio, bool>? studios;
+  final Map<String, bool>? tags;
+  final Map<int, bool>? years;
+  final Map<String, bool>? officialRatings;
   final bool? recursive;
   const LibrarySearchScreen({
     @QueryParam("parentId") this.viewModelId,
@@ -64,6 +69,10 @@ class LibrarySearchScreen extends ConsumerStatefulWidget {
     @QueryParam("sortOptions") this.sortingOptions,
     @QueryParam("itemTypes") this.types,
     @QueryParam("genres") this.genres,
+    @QueryParam("studios") this.studios,
+    @QueryParam("tags") this.tags,
+    @QueryParam("years") this.years,
+    @QueryParam("officialRatings") this.officialRatings,
     @QueryParam("recursive") this.recursive,
     super.key,
   });
@@ -258,6 +267,10 @@ class _LibrarySearchScreenState extends ConsumerState<LibrarySearchScreen> {
                           sortingOption: widget.sortingOptions ?? defaultFilter.sortingOption,
                           types: widget.types ?? {},
                           genres: widget.genres ?? {},
+                          studios: widget.studios ?? {},
+                          tags: widget.tags ?? {},
+                          years: widget.years ?? {},
+                          officialRatings: widget.officialRatings ?? {},
                           recursive: widget.recursive,
                         ),
                       );

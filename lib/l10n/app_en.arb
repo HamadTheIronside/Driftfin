@@ -2979,5 +2979,71 @@
     }
   },
   "castStop": "Stop casting",
-  "castFailed": "Couldn't connect to the cast device"
+  "castFailed": "Couldn't connect to the cast device",
+  "tonight": "Tonight",
+  "@tonight": {},
+  "tonightSubtitle": "Press play, don't browse",
+  "@tonightSubtitle": {},
+  "tonightEmpty": "Nothing fits right now - try widening your time budget",
+  "@tonightEmpty": {},
+  "tonightAnyLength": "Any length",
+  "@tonightAnyLength": {},
+  "tonightMinutesOrLess": "{minutes} min or less",
+  "@tonightMinutesOrLess": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "tonightMoodAny": "Any mood",
+  "@tonightMoodAny": {},
+  "tonightMoodCozy": "Cozy",
+  "@tonightMoodCozy": {},
+  "tonightMoodThrilling": "Thrilling",
+  "@tonightMoodThrilling": {},
+  "tonightMoodFunny": "Funny",
+  "@tonightMoodFunny": {},
+  "tonightMoodUplifting": "Uplifting",
+  "@tonightMoodUplifting": {},
+  "smartShelves": "Smart shelves",
+  "@smartShelves": {},
+  "addToHomeShelf": "Add to home as a smart shelf",
+  "@addToHomeShelf": {},
+  "removeFromHomeShelf": "Remove from home shelves",
+  "@removeFromHomeShelf": {},
+  "tastePassport": "Taste Passport",
+  "@tastePassport": {},
+  "tastePassportSubtitle": "Your on-device taste profile, built from what you've watched",
+  "@tastePassportSubtitle": {},
+  "tastePassportTopGenres": "Genres you gravitate to",
+  "@tastePassportTopGenres": {},
+  "tastePassportTopDirectors": "Directors you love",
+  "@tastePassportTopDirectors": {},
+  "tastePassportTopActors": "Actors you love",
+  "@tastePassportTopActors": {},
+  "tastePassportTotalWatchTime": "Total watch time",
+  "@tastePassportTotalWatchTime": {},
+  "tastePassportItemsWatched": "Items watched",
+  "@tastePassportItemsWatched": {},
+  "tastePassportEmpty": "Watch a few things and your taste profile will appear here",
+  "@tastePassportEmpty": {},
+  "livingHomeBecauseYouWatched": "Because you watched {name}",
+  "@livingHomeBecauseYouWatched": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "livingHomeHiddenGems": "Hidden gems you own",
+  "@livingHomeHiddenGems": {},
+  "livingHomeMoreFromDirector": "More from {name}",
+  "@livingHomeMoreFromDirector": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  }
 }

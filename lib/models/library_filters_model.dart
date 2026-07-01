@@ -18,6 +18,7 @@ abstract class LibraryFiltersModel with _$LibraryFiltersModel {
     required bool isFavourite,
     @Default([]) List<String> ids,
     @Default(LibraryFilterModel()) LibraryFilterModel filter,
+    @Default(false) bool showOnHome,
   }) = _LibraryFiltersModel;
 
   factory LibraryFiltersModel.fromJson(Map<String, dynamic> json) => _$LibraryFiltersModelFromJson(json);

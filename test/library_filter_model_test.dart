@@ -176,4 +176,49 @@ void main() {
       expect(restored, const LibraryFilterModel());
     });
   });
+
+  group('LibraryFilterModelMerge.mergeEnabledFrom', () {
+    test('applies enabled entries from the incoming filter without dropping the known universe', () {
+      const known = LibraryFilterModel(
+        genres: {'Action': false, 'Comedy': false},
+        tags: {'A24': false, 'Marvel': false},
+        years: {1999: false, 2020: false},
+        officialRatings: {'PG-13': false, 'R': false},
+      );
+      const incoming = LibraryFilterModel(
+        genres: {'Action': true},
+        tags: {'A24': true},
+        years: {2020: true},
+        officialRatings: {'R': true},
+      );
+
+      final merged = known.mergeEnabledFrom(incoming);
+
+      expect(merged.genres, {'Action': true, 'Comedy': false});
+      expect(merged.tags, {'A24': true, 'Marvel': false});
+      expect(merged.years, {1999: false, 2020: true});
+      expect(merged.officialRatings, {'PG-13': false, 'R': true});
+    });
+
+    test('merges enabled studios by matching the studio object, not just id text', () {
+      final a24 = Studio(id: 's1', name: 'A24');
+      final marvel = Studio(id: 's2', name: 'Marvel');
+      final known = LibraryFilterModel(studios: {a24: false, marvel: false});
+      final incoming = LibraryFilterModel(studios: {a24: true});
+
+      final merged = known.mergeEnabledFrom(incoming);
+
+      expect(merged.studios, {a24: true, marvel: false});
+    });
+
+    test('defaults recursive to true and favourites to false when the incoming filter leaves them unset', () {
+      const known = LibraryFilterModel(recursive: false, favourites: true);
+      const incoming = LibraryFilterModel();
+
+      final merged = known.mergeEnabledFrom(incoming);
+
+      expect(merged.recursive, isTrue);
+      expect(merged.favourites, isFalse);
+    });
+  });
 }

@@ -92,6 +92,22 @@ class LibrarySavedFiltersDialogue extends ConsumerWidget {
                                   ),
                                 ),
                                 IconButton.filledTonal(
+                                  tooltip: filter.showOnHome
+                                      ? context.localized.removeFromHomeShelf
+                                      : context.localized.addToHomeShelf,
+                                  style: ButtonStyle(
+                                    backgroundColor: WidgetStatePropertyAll(
+                                      filter.showOnHome ? Colors.lightBlueAccent.withValues(alpha: 0.5) : null,
+                                    ),
+                                  ),
+                                  onPressed: () =>
+                                      filterProvider.saveFilter(filter.copyWith(showOnHome: !filter.showOnHome)),
+                                  icon: Icon(
+                                    color: filter.showOnHome ? Colors.lightBlueAccent : null,
+                                    filter.showOnHome ? IconsaxPlusBold.home_1 : IconsaxPlusLinear.home_1,
+                                  ),
+                                ),
+                                IconButton.filledTonal(
                                   tooltip: context.localized.updateFilterForLibrary,
                                   onPressed:
                                       isCurrentFilter || anyFilterSelected ? null : () => provider.updateFilter(filter),
