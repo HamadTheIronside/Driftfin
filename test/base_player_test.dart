@@ -14,9 +14,13 @@ import 'package:driftfin/models/playback/playback_model.dart';
 import 'package:driftfin/models/settings/video_player_settings.dart';
 import 'package:driftfin/util/audio_filter_chain.dart';
 import 'package:driftfin/wrappers/players/base_player.dart';
+import 'package:driftfin/wrappers/players/player_capabilities.dart';
 import 'package:driftfin/wrappers/players/player_states.dart';
 
 class _NoopPlayer extends BasePlayer {
+  @override
+  PlayerCapabilities get capabilities => PlayerCapabilities.none;
+
   final _controller = StreamController<PlayerState>.broadcast();
 
   @override

@@ -148,6 +148,24 @@ class StudioEncoder implements JsonConverter<Map<Studio, bool>, String> {
   String toJson(Map<Studio, bool> studios) => jsonEncode(studios.map((key, value) => MapEntry(key.toJson(), value)));
 }
 
+extension LibraryFilterModelMerge on LibraryFilterModel {
+  /// Applies the *enabled* entries of an incoming filter (e.g. one carried by
+  /// a route/deep link) onto this filter, leaving everything this filter
+  /// already knows about (the full genre/studio/tag/year universe) intact.
+  LibraryFilterModel mergeEnabledFrom(LibraryFilterModel incoming) {
+    return copyWith(
+      types: types.replaceMap(incoming.types, enabledOnly: true),
+      genres: genres.replaceMap(incoming.genres, enabledOnly: true),
+      studios: studios.replaceMap(incoming.studios, enabledOnly: true),
+      tags: tags.replaceMap(incoming.tags, enabledOnly: true),
+      years: years.replaceMap(incoming.years, enabledOnly: true),
+      officialRatings: officialRatings.replaceMap(incoming.officialRatings, enabledOnly: true),
+      recursive: incoming.recursive ?? true,
+      favourites: incoming.favourites ?? false,
+    );
+  }
+}
+
 extension LibrarySearchRouteExtension on LibrarySearchRoute {
   LibrarySearchRoute withFilter(LibraryFilterModel model) {
     return LibrarySearchRoute(
@@ -158,6 +176,10 @@ extension LibrarySearchRouteExtension on LibrarySearchRoute {
       sortingOptions: model.sortingOption,
       types: model.types,
       genres: model.genres,
+      studios: model.studios,
+      tags: model.tags,
+      years: model.years,
+      officialRatings: model.officialRatings,
       recursive: model.recursive,
     );
   }

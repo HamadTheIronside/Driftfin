@@ -59,7 +59,7 @@ class VideoPlayerNotifier extends StateNotifier<MediaControlsWrapper> {
       updatePlaying(value.playing);
       updatePosition(value.position);
       updateDuration(value.duration);
-      if (value.failed) {
+      if (value.error?.fatal ?? false) {
         fallbackToTranscodeOnFailure();
       }
     });

@@ -40,6 +40,31 @@ class Other extends NameSwitch {
   String label(AppLocalizations l10n) => customLabel;
 }
 
+class BecauseYouWatched extends NameSwitch {
+  final String itemName;
+
+  const BecauseYouWatched(this.itemName);
+
+  @override
+  String label(AppLocalizations l10n) => l10n.livingHomeBecauseYouWatched(itemName);
+}
+
+class MoreFromDirector extends NameSwitch {
+  final String directorName;
+
+  const MoreFromDirector(this.directorName);
+
+  @override
+  String label(AppLocalizations l10n) => l10n.livingHomeMoreFromDirector(directorName);
+}
+
+class HiddenGems extends NameSwitch {
+  const HiddenGems();
+
+  @override
+  String label(AppLocalizations l10n) => l10n.livingHomeHiddenGems;
+}
+
 extension RecommendationTypeExtenstion on RecommendationType {
   String label(AppLocalizations l10n) => switch (this) {
         RecommendationType.similartorecentlyplayed => l10n.similarToRecentlyPlayed,

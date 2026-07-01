@@ -8,6 +8,7 @@ import 'package:driftfin/models/playback/playback_model.dart';
 import 'package:driftfin/models/settings/subtitle_settings_model.dart';
 import 'package:driftfin/models/settings/video_player_settings.dart';
 import 'package:driftfin/util/audio_filter_chain.dart';
+import 'package:driftfin/wrappers/players/player_capabilities.dart';
 import 'package:driftfin/wrappers/players/player_states.dart';
 
 const libassFallbackFont = "assets/mp-font.ttf";
@@ -15,6 +16,10 @@ const libassFallbackFont = "assets/mp-font.ttf";
 abstract class BasePlayer {
   Stream<PlayerState> get stateStream;
   PlayerState lastState = PlayerState();
+
+  /// Which optional features this backend actually supports. UI reads this to
+  /// gray out controls instead of them silently no-oping.
+  PlayerCapabilities get capabilities;
 
   Future<void> init(VideoPlayerSettingsModel settings);
   Widget? videoWidget(Key key, BoxFit fit);

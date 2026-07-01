@@ -1,8 +1,8 @@
 // Exercises LibMPV.loadVideo's retry-budget-exhausted path without a live
 // mpv.Player: with no player initialized (LibMPV constructed but never
 // `init()`ed), every mpv-touching call is a safe no-op via optional
-// chaining, so the retry timer's pure bookkeeping (arm, expire, mark
-// failed) can be driven deterministically with a fake clock.
+// chaining, so the retry timer's pure bookkeeping (arm, expire, report a
+// fatal PlayerError) can be driven deterministically with a fake clock.
 //
 // Note: LibMPV's budget check uses real `DateTime.now()`, not the `clock`
 // package, so `fakeAsync`'s elapsed time only controls *when the timer
@@ -15,37 +15,41 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:driftfin/wrappers/players/lib_mpv.dart';
 import 'package:driftfin/wrappers/players/playback_retry_policy.dart';
+import 'package:driftfin/wrappers/players/player_states.dart';
 
 void main() {
   group('LibMPV.loadVideo retry budget', () {
-    test('clears a stale failed flag at the start of a fresh load', () {
+    test('clears a stale error at the start of a fresh load', () {
       final player = LibMPV(
         retryPolicy: const PlaybackRetryPolicy(retryInterval: Duration(seconds: 1), maxRetryDuration: Duration.zero),
       );
-      player.lastState.failed = true;
+      player.lastState.update(error: const PlayerError('stale', fatal: true));
 
       fakeAsync((async) {
         player.loadVideo('https://example.com/video.mp4', true);
-        expect(player.lastState.failed, isFalse);
+        expect(player.lastState.error, isNull);
       });
     });
 
-    test('marks the state failed once the retry budget is exceeded', () {
+    test('reports a fatal error once the retry budget is exceeded', () {
       final player = LibMPV(
-        retryPolicy: const PlaybackRetryPolicy(retryInterval: Duration(milliseconds: 10), maxRetryDuration: Duration.zero),
+        retryPolicy: const PlaybackRetryPolicy(
+          retryInterval: Duration(milliseconds: 10),
+          maxRetryDuration: Duration.zero,
+        ),
       );
 
       fakeAsync((async) {
         player.loadVideo('https://example.com/video.mp4', true);
-        expect(player.lastState.failed, isFalse);
+        expect(player.lastState.error, isNull);
 
         async.elapse(const Duration(milliseconds: 200));
 
-        expect(player.lastState.failed, isTrue);
+        expect(player.lastState.error?.fatal, isTrue);
       });
     });
 
-    test('does not mark failed while still comfortably within the retry budget', () {
+    test('only reports non-fatal retry errors while still comfortably within the retry budget', () {
       final player = LibMPV(
         retryPolicy: const PlaybackRetryPolicy(
           retryInterval: Duration(milliseconds: 10),
@@ -56,7 +60,7 @@ void main() {
       fakeAsync((async) {
         player.loadVideo('https://example.com/video.mp4', true);
         async.elapse(const Duration(milliseconds: 200));
-        expect(player.lastState.failed, isFalse);
+        expect(player.lastState.error?.fatal ?? false, isFalse);
       });
     });
   });

@@ -86,7 +86,7 @@ void main() {
         failed: true,
       ));
 
-      expect(player.lastState.failed, isTrue);
+      expect(player.lastState.error?.fatal, isTrue);
     });
 
     test('a healthy state keeps failed false', () {
@@ -102,7 +102,7 @@ void main() {
         failed: false,
       ));
 
-      expect(player.lastState.failed, isFalse);
+      expect(player.lastState.error, isNull);
     });
 
     test('emits the updated state on stateStream', () async {
@@ -122,7 +122,7 @@ void main() {
       await Future<void>.delayed(Duration.zero);
 
       expect(states, isNotEmpty);
-      expect(states.last.failed, isTrue);
+      expect(states.last.error?.fatal, isTrue);
       await sub.cancel();
     });
   });

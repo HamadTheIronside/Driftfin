@@ -7,7 +7,7 @@ import 'package:driftfin/wrappers/players/lib_mdk.dart';
 
 void main() {
   group('LibMDK.updateState', () {
-    test('falls back to sensible defaults, including failed=false, when there is no controller yet', () {
+    test('falls back to sensible defaults, including a null error, when there is no controller yet', () {
       final player = LibMDK();
 
       player.updateState();
@@ -17,7 +17,7 @@ void main() {
       expect(player.lastState.position, Duration.zero);
       expect(player.lastState.duration, Duration.zero);
       expect(player.lastState.buffering, isTrue);
-      expect(player.lastState.failed, isFalse);
+      expect(player.lastState.error, isNull);
     });
   });
 }

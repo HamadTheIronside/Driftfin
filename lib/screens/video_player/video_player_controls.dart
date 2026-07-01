@@ -376,6 +376,7 @@ class _DesktopControlsState extends ConsumerState<DesktopControls> {
                               onPressed: () => showVideoPlayerOptions(context, () => minimizePlayer(context)),
                               icon: const Icon(IconsaxPlusLinear.more)),
                           ChapterButton(position: ref.read(videoPlayerProvider).lastState?.position ?? Duration.zero),
+                          const ScreenshotButton(),
                           const CastButton(),
                           if (pipPlatformSupported && MediaQuery.orientationOf(context) == Orientation.landscape)
                             IconButton(

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 
 import 'package:driftfin/jellyfin/jellyfin_open_api.enums.swagger.dart';
 import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
@@ -14,9 +15,11 @@ import 'package:driftfin/models/library_search/library_search_options.dart';
 import 'package:driftfin/models/settings/home_settings_model.dart';
 import 'package:driftfin/providers/dashboard_mode_provider.dart';
 import 'package:driftfin/providers/dashboard_provider.dart';
+import 'package:driftfin/providers/living_home_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/home_collections_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
+import 'package:driftfin/providers/smart_shelves_provider.dart';
 import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/providers/views_provider.dart';
 import 'package:driftfin/routes/auto_router.gr.dart';
@@ -60,6 +63,9 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     _timer = Timer.periodic(const Duration(seconds: 120), (timer) {
       _refreshIndicatorKey.currentState?.show();
     });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(livingHomeProvider.notifier).refreshIfStale();
+    });
   }
 
   @override
@@ -72,9 +78,13 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     if (mounted) {
       refreshHomeCollections();
       ref.invalidate(homeCollectionsProvider);
+      ref.invalidate(smartShelvesProvider);
       await ref.read(userProvider.notifier).updateInformation();
       await ref.read(viewsProvider.notifier).fetchViews();
       await ref.read(dashboardProvider.notifier).fetchNextUpAndResume();
+      // Rails are more expensive than the 120s dashboard poll warrants, so
+      // they self-throttle via refreshIfStale rather than refetching here.
+      await ref.read(livingHomeProvider.notifier).refreshIfStale();
     }
   }
 
@@ -89,6 +99,8 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     final dashboardData = ref.watch(dashboardProvider);
     final views = ref.watch(viewsProvider);
     final pinnedCollections = ref.watch(homeCollectionsProvider).valueOrNull ?? [];
+    final livingHomeRails = ref.watch(livingHomeProvider.select((value) => value.rails));
+    final smartShelves = ref.watch(smartShelvesProvider).valueOrNull ?? [];
     final homeSettings = ref.watch(homeSettingsProvider);
     final homeBanner = ref.watch(homeSettingsProvider.select((value) => value.homeBanner)) != HomeBanner.hide;
     final resumeVideo = dashboardData.resumeVideo;
@@ -160,6 +172,16 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    IconButton(
+                      tooltip: context.localized.tastePassport,
+                      icon: const Icon(IconsaxPlusLinear.medal_star),
+                      onPressed: () => const TastePassportRoute().navigate(context),
+                    ),
+                    IconButton(
+                      tooltip: context.localized.tonight,
+                      icon: const Icon(IconsaxPlusLinear.moon),
+                      onPressed: () => const TonightRoute().navigate(context),
+                    ),
                     if (AdaptiveLayout.of(context).isDesktop) const PosterSizeWidget(),
                   ],
                 ),
@@ -215,9 +237,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                     label: context.localized.dashboardContinue,
                     posters: [...allResume, ...dashboardData.nextUp],
                   ),
-                ...pinnedCollections
-                    .where((collection) => collection.items.isNotEmpty)
-                    .map(
+                ...pinnedCollections.where((collection) => collection.items.isNotEmpty).map(
                       (collection) => PosterRow(
                         tvMode: useTVExpandedLayout,
                         contentPadding: padding,
@@ -226,6 +246,22 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                         onLabelClick: () => collection.container.navigateTo(context),
                       ),
                     ),
+                ...livingHomeRails.map(
+                  (rail) => PosterRow(
+                    tvMode: useTVExpandedLayout,
+                    contentPadding: padding,
+                    label: rail.name.label(context.localized),
+                    posters: rail.posters,
+                  ),
+                ),
+                ...smartShelves.map(
+                  (shelf) => PosterRow(
+                    tvMode: useTVExpandedLayout,
+                    contentPadding: padding,
+                    label: shelf.name.label(context.localized),
+                    posters: shelf.posters,
+                  ),
+                ),
                 ...views.dashboardViews
                     .where(
                       (element) => element.recentlyAdded.isNotEmpty && element.collectionType != CollectionType.livetv,

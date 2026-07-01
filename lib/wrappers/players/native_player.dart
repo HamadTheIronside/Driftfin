@@ -12,11 +12,18 @@ import 'package:driftfin/models/playback/tv_playback_model.dart';
 import 'package:driftfin/models/settings/video_player_settings.dart';
 import 'package:driftfin/src/video_player_helper.g.dart';
 import 'package:driftfin/wrappers/players/base_player.dart';
+import 'package:driftfin/wrappers/players/player_capabilities.dart';
 import 'package:driftfin/wrappers/players/player_states.dart';
 
 bool nativeActivityStarted = false;
 
 class NativePlayer extends BasePlayer implements VideoPlayerListenerCallback {
+  @override
+  PlayerCapabilities get capabilities => const PlayerCapabilities(
+        subtitleDelay: true,
+        errorReporting: true,
+      );
+
   final player = VideoPlayerApi();
   final activity = NativeVideoActivity();
 
@@ -117,8 +124,12 @@ class NativePlayer extends BasePlayer implements VideoPlayerListenerCallback {
       position: Duration(milliseconds: state.position),
       buffer: Duration(milliseconds: state.buffered),
       buffering: state.buffering,
-      failed: state.failed,
     );
+    if (state.failed) {
+      lastState.update(error: const PlayerError('ExoPlayer reported a playback error', fatal: true));
+    } else {
+      lastState.clearError();
+    }
     _stateController.add(lastState);
   }
 
