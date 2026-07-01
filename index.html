@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Driftfin — A cross-platform Jellyfin client</title>
+<meta name="description" content="Driftfin is a fast, cross-platform Jellyfin client built with Flutter — Android, iOS, Windows, macOS, Linux, Web and Docker.">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<script>
+  (function () {
+    var saved = localStorage.getItem('driftfin-theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0a0e17;
+    --bg-glow: #142038;
+    --bg-alt: #101627;
+    --card: #141b2e;
+    --border: #232c44;
+    --text: #e7ecf5;
+    --text-dim: #9aa5bd;
+    --accent: #38bdf8;
+    --accent-2: #2dd4bf;
+    --pill-bg: #060a12;
+    --pill-text: #2dd4bf;
+    --shadow: rgba(0, 0, 0, 0.6);
+    --alt-tint: rgba(255, 255, 255, 0.02);
+    --note-bg: rgba(56, 189, 248, 0.08);
+    --note-border: rgba(56, 189, 248, 0.25);
+    --header-bg: rgba(10, 14, 23, 0.85);
+    --radius: 14px;
+  }
+  [data-theme="light"] {
+    --bg: #f6f8fc;
+    --bg-glow: #e3ecfb;
+    --bg-alt: #eef1f8;
+    --card: #ffffff;
+    --border: #dfe5f0;
+    --text: #131a2b;
+    --text-dim: #5b6478;
+    --accent: #0284c7;
+    --accent-2: #0d9488;
+    --pill-bg: #eef1f8;
+    --pill-text: #0f766e;
+    --shadow: rgba(30, 41, 59, 0.14);
+    --alt-tint: rgba(15, 23, 42, 0.03);
+    --note-bg: rgba(2, 132, 199, 0.07);
+    --note-border: rgba(2, 132, 199, 0.22);
+    --header-bg: rgba(246, 248, 252, 0.85);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: radial-gradient(1200px 600px at 50% -10%, var(--bg-glow) 0%, var(--bg) 55%);
+    color: var(--text);
+    line-height: 1.55;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  img.theme-dark, img.theme-light { display: none; }
+  [data-theme="dark"] img.theme-dark { display: block; }
+  [data-theme="light"] img.theme-light { display: block; }
+
+  header.site {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--header-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.1rem; text-decoration: none; }
+  .brand img { height: 28px; width: 28px; }
+  .nav-links { display: flex; align-items: center; gap: 20px; }
+  .nav-links a.navlink { color: var(--text-dim); text-decoration: none; font-size: 0.95rem; }
+  .nav-links a.navlink:hover { color: var(--text); }
+  .theme-toggle {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 999px; border: 1px solid var(--border);
+    background: var(--bg-alt); color: var(--text); cursor: pointer; padding: 0;
+  }
+  .theme-toggle:hover { border-color: var(--accent); }
+  .theme-toggle svg { width: 18px; height: 18px; }
+  [data-theme="light"] .theme-toggle .icon-moon { display: none; }
+  [data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 999px; font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; border: 1px solid transparent; cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #04121c; box-shadow: 0 8px 24px -8px var(--note-border); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--accent); }
+  .btn-sm { padding: 8px 16px; font-size: 0.88rem; }
+
+  .hero { padding: 88px 0 64px; text-align: center; }
+  .hero .eyebrow {
+    display: inline-block; padding: 6px 14px; border-radius: 999px;
+    border: 1px solid var(--border); color: var(--accent-2); font-size: 0.82rem;
+    letter-spacing: 0.02em; margin-bottom: 22px;
+  }
+  .hero img.wordmark { width: min(420px, 80vw); margin: 0 auto 22px; }
+  .hero h1 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); font-weight: 600; max-width: 760px; margin: 0 auto 14px; color: var(--text); }
+  .hero p.lead { color: var(--text-dim); max-width: 620px; margin: 0 auto 34px; font-size: 1.05rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: 56px; }
+
+  .hero-shot { position: relative; margin: 0 auto; max-width: 920px; }
+  .hero-shot img {
+    width: 100%; border-radius: var(--radius); border: 1px solid var(--border);
+    box-shadow: 0 40px 80px -32px var(--shadow);
+    display: block;
+  }
+
+  section { padding: 76px 0; }
+  section.alt { background: linear-gradient(180deg, transparent, var(--alt-tint) 20%, var(--alt-tint) 80%, transparent); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .section-head { text-align: center; max-width: 620px; margin: 0 auto 44px; }
+  .section-head .kicker { color: var(--accent); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .section-head h2 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); margin: 8px 0 10px; }
+  .section-head p { color: var(--text-dim); margin: 0; }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 26px 24px;
+  }
+  .card h3 { margin: 0 0 12px; font-size: 1.08rem; display: flex; align-items: center; gap: 10px; }
+  .card ul { margin: 0; padding-left: 20px; color: var(--text-dim); font-size: 0.94rem; }
+  .card ul li { margin-bottom: 8px; }
+  .card ul li:last-child { margin-bottom: 0; }
+
+  .platform-row {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px;
+  }
+  .chip {
+    padding: 10px 18px; border-radius: 999px; border: 1px solid var(--border);
+    background: var(--bg-alt); font-size: 0.9rem; color: var(--text-dim);
+  }
+
+  .shots-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: start;
+  }
+  .shots-grid a { display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+  .shots-grid img { width: 100%; display: block; transition: transform 0.25s ease; }
+  .shots-grid a:hover img { transform: scale(1.04); }
+  .shots-grid .tall { grid-row: span 2; }
+
+  .download-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .download-grid .card p { color: var(--text-dim); font-size: 0.92rem; margin: 8px 0 18px; }
+  code.pill {
+    display: block; background: var(--pill-bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 12px; font-size: 0.82rem; color: var(--pill-text); overflow-x: auto; margin-bottom: 8px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  .note {
+    max-width: 760px; margin: 40px auto 0; padding: 16px 20px; border-radius: 10px;
+    background: var(--note-bg); border: 1px solid var(--note-border);
+    color: var(--text-dim); font-size: 0.9rem;
+  }
+
+  footer { padding: 48px 0 64px; border-top: 1px solid var(--border); }
+  .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: flex-start; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+  .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; }
+  .footer-links a:hover { color: var(--text); }
+  .footer-credit { color: var(--text-dim); font-size: 0.85rem; max-width: 440px; }
+  .footer-credit a { color: var(--accent-2); text-decoration: none; }
+
+  @media (max-width: 860px) {
+    .grid-3, .download-grid { grid-template-columns: 1fr; }
+    .shots-grid { grid-template-columns: repeat(2, 1fr); }
+    .shots-grid .tall { grid-row: auto; }
+    .nav-links .navlink { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav wrap">
+    <a class="brand" href="#top">
+      <img class="theme-dark" src="assets/logo-light.png" alt="">
+      <img class="theme-light" src="assets/logo-dark.png" alt="">
+      Driftfin
+    </a>
+    <div class="nav-links">
+      <a class="navlink" href="#features">Features</a>
+      <a class="navlink" href="#screenshots">Screenshots</a>
+      <a class="navlink" href="#download">Download</a>
+      <a class="navlink" href="https://github.com/HamadTheIronside/Driftfin">GitHub</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a class="btn btn-primary btn-sm" href="app/">Open the app</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <span class="eyebrow">Open source · GPL-3.0 · Fork of Fladder</span>
+    <img class="wordmark theme-dark" src="assets/wordmark-light.png" alt="Driftfin">
+    <img class="wordmark theme-light" src="assets/wordmark-dark.png" alt="Driftfin">
+    <h1>A fast, modern Jellyfin client for every screen</h1>
+    <p class="lead">
+      Driftfin brings direct play, offline downloads, Watch Together, and a clean adaptive
+      interface to your phone, tablet, TV, desktop, and browser.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="app/">Open the web app →</a>
+      <a class="btn btn-ghost" href="#download">Download for your platform</a>
+      <a class="btn btn-ghost" href="https://github.com/HamadTheIronside/Driftfin">View on GitHub</a>
+    </div>
+    <div class="hero-shot">
+      <img src="assets/screenshots/tv-library.jpg" alt="Driftfin library screen on a TV" loading="lazy">
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Features</div>
+        <h2>Everything you expect from a great Jellyfin client</h2>
+        <p>And a few things you don't get anywhere else.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>🎬 Playback</h3>
+          <ul>
+            <li>Direct play, transcode, and offline playback</li>
+            <li>Watch Together — synchronised group playback with in-session chat</li>
+            <li>Subtitle timing offset, fine-tuned live</li>
+            <li>Media-segment skipping (intro / credits)</li>
+            <li>Trickplay timeline scrubbing</li>
+            <li>Next-up overview when watching a queue</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📚 Library</h3>
+          <ul>
+            <li>Browse, refresh content, and edit metadata</li>
+            <li>Download items and sync watch progress across devices</li>
+            <li>Server management with multi-user / multi-server switching</li>
+            <li>Jellyseerr / Seerr integration</li>
+            <li>Comic book reading support (.cbz, .cbr)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🖥️ Interface</h3>
+          <ul>
+            <li>Adaptive layout for phone, tablet, TV, and desktop</li>
+            <li>Dark / light mode with multiple color styles</li>
+            <li>Keyboard shortcuts</li>
+            <li>Chromecast + DLNA casting</li>
+          </ul>
+        </div>
+      </div>
+      <div class="platform-row">
+        <span class="chip">Android</span>
+        <span class="chip">Android TV</span>
+        <span class="chip">iOS</span>
+        <span class="chip">Windows</span>
+        <span class="chip">macOS</span>
+        <span class="chip">Linux</span>
+        <span class="chip">Web</span>
+        <span class="chip">Docker</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="screenshots" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Screenshots</div>
+        <h2>The same experience, tuned for every device</h2>
+      </div>
+      <div class="shots-grid">
+        <a href="assets/screenshots/mobile-dashboard.jpg" class="tall" target="_blank" rel="noopener">
+          <img src="assets/screenshots/mobile-dashboard.jpg" alt="Dashboard on mobile" loading="lazy">
+        </a>
+        <a href="assets/screenshots/tv-details.jpg" target="_blank" rel="noopener">
+          <img src="assets/screenshots/tv-details.jpg" alt="Item details on TV" loading="lazy">
+        </a>
+        <a href="assets/screenshots/mobile-player.jpg" class="tall" target="_blank" rel="noopener">
+          <img src="assets/screenshots/mobile-player.jpg" alt="Video player on mobile" loading="lazy">
+        </a>
+        <a href="assets/screenshots/tablet-sync.jpg" target="_blank" rel="noopener">
+          <img src="assets/screenshots/tablet-sync.jpg" alt="Watch Together sync on tablet" loading="lazy">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="download">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Download</div>
+        <h2>Get Driftfin</h2>
+        <p>Prebuilt binaries for every platform are attached to every release.</p>
+      </div>
+      <div class="download-grid">
+        <div class="card">
+          <h3>🌐 Web</h3>
+          <p>No install needed — run Driftfin straight from your browser.</p>
+          <a class="btn btn-primary btn-sm" href="app/">Open the web app</a>
+        </div>
+        <div class="card">
+          <h3>💻 Desktop &amp; Mobile</h3>
+          <p>Windows, macOS, Linux, Android (+TV), and unsigned iOS builds.</p>
+          <a class="btn btn-ghost btn-sm" href="https://github.com/HamadTheIronside/Driftfin/releases/latest">Go to releases</a>
+        </div>
+        <div class="card">
+          <h3>🐳 Docker</h3>
+          <p>Self-host Driftfin behind your own reverse proxy.</p>
+          <code class="pill">ghcr.io/hamadtheironside/driftfin:latest</code>
+          <code class="pill">ghcr.io/hamadtheironside/driftfin-rootless:latest</code>
+        </div>
+      </div>
+      <p class="note">
+        The hosted web app only allows <code>https</code> connections to your Jellyfin server —
+        a GitHub Pages limitation. Self-hosted web builds work fine over plain <code>http</code>.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <p class="footer-credit">
+      <strong>Driftfin</strong> is a fork of
+      <a href="https://github.com/DonutWare/Fladder">Fladder</a> by DonutWare, continued under the
+      same <a href="https://github.com/HamadTheIronside/Driftfin/blob/main/LICENSE">GPL-3.0</a>
+      license. All credit for the original application goes to the Fladder authors.
+    </p>
+    <div class="footer-links">
+      <a href="https://github.com/HamadTheIronside/Driftfin">GitHub</a>
+      <a href="https://github.com/HamadTheIronside/Driftfin/releases">Releases</a>
+      <a href="https://github.com/HamadTheIronside/Driftfin/issues">Issues</a>
+      <a href="https://github.com/users/HamadTheIronside/projects/5">Roadmap</a>
+      <a href="app/">Open the app</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('theme-toggle').addEventListener('click', function () {
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('driftfin-theme', next);
+  });
+</script>
+
+</body>
+</html>
