@@ -1296,11 +1296,14 @@ extension SyncNotifierHelpers on SyncNotifier {
 
     await _db.insertMultipleEntries(newItems);
 
-    for (var i = 0; i < itemsToDownload.length; i++) {
-      final item = itemsToDownload[i];
-      //No need to await file sync happens in the background
-      syncFile(item, false, transcodeModel: transcodeModel);
-    }
+    // Await all episode downloads so callers/UI only see the season as synced
+    // once every episode has actually finished downloading (previously this
+    // fired the downloads in the background and returned immediately, so a
+    // season could be marked as downloaded after only the first episode -
+    // or none - had actually finished).
+    await Future.wait(
+      itemsToDownload.map((item) => syncFile(item, false, transcodeModel: transcodeModel)),
+    );
 
     return seriesItem;
   }

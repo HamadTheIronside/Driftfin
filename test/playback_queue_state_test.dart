@@ -122,7 +122,8 @@ void main() {
     });
 
     test('removes the indexed main-queue item for the existing section', () {
-      final state = PlaybackQueueState.fromQueue(base, initialItemId: 'a').removeSectionItem(AudioQueueSection.existing, 1);
+      final state =
+          PlaybackQueueState.fromQueue(base, initialItemId: 'a').removeSectionItem(AudioQueueSection.existing, 1);
       expect(_ids(state.queue), ['a', 'c']);
     });
   });

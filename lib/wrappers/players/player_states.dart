@@ -64,6 +64,7 @@ class PlayerStream {
 
   void bindToState(PlayerState state) {
     playing.listen((value) => state.update(playing: value));
+    completed.listen((value) => state.update(completed: value));
     buffering.listen((value) => state.update(buffering: value));
     position.listen((value) => state.update(position: value));
     duration.listen((value) => state.update(duration: value));

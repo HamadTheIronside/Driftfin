@@ -75,8 +75,8 @@ extension ListExtensions<T> on List<T> {
 
     final iterator = this.iterator;
     while (iterator.moveNext()) {
-      final chunk = <T>[];
-      for (var i = 0; i < size; i++) {
+      final chunk = <T>[iterator.current];
+      for (var i = 1; i < size; i++) {
         if (!iterator.moveNext()) {
           break;
         }

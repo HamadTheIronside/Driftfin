@@ -49,7 +49,11 @@ void main() {
     final client = MockClient((req) async {
       calls.add('${req.method} ${req.url.path}');
       if (req.url.path == '/api/v3/movie' && req.method == 'GET') {
-        return http.Response(jsonEncode([{'id': 9, 'tmdbId': 550}]), 200);
+        return http.Response(
+            jsonEncode([
+              {'id': 9, 'tmdbId': 550}
+            ]),
+            200);
       }
       if (req.url.path == '/api/v3/command') return http.Response('{}', 201);
       return http.Response('x', 404);
@@ -69,9 +73,17 @@ void main() {
         case '/api/v3/movie/lookup/tmdb':
           return http.Response(jsonEncode({'tmdbId': 550, 'title': 'Fight Club', 'titleSlug': 'fight-club'}), 200);
         case '/api/v3/rootfolder':
-          return http.Response(jsonEncode([{'path': '/movies', 'accessible': true}]), 200);
+          return http.Response(
+              jsonEncode([
+                {'path': '/movies', 'accessible': true}
+              ]),
+              200);
         case '/api/v3/qualityprofile':
-          return http.Response(jsonEncode([{'id': 1}]), 200);
+          return http.Response(
+              jsonEncode([
+                {'id': 1}
+              ]),
+              200);
       }
       return http.Response('x', 404);
     });

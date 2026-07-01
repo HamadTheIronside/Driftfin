@@ -89,6 +89,10 @@ class ConnectivityStatus extends _$ConnectivityStatus {
           onStateChange([ConnectivityResult.none]);
         }
       },
+      onError: (Object error, StackTrace stackTrace) {
+        log('Failed to check connectivity: $error\n$stackTrace');
+        onStateChange([ConnectivityResult.none]);
+      },
     ));
     return state;
   }
@@ -99,7 +103,7 @@ Future<PublicSystemInfo?> fetchSystemInfoDynamic(String baseUrl) async {
   try {
     final uri = buildServerUriFromBase(baseUrl, pathSegments: const ['System', 'Info', 'Public']);
     if (uri == null) return null;
-    final response = await http.get(uri).timeout(const Duration(seconds: 1));
+    final response = await http.get(uri).timeout(const Duration(seconds: 5));
     if (response.statusCode == 200) {
       return PublicSystemInfo.fromJson(jsonDecode(response.body));
     }

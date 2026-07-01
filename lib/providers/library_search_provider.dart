@@ -527,7 +527,7 @@ class LibrarySearchNotifier extends StateNotifier<LibrarySearchModel> {
   }
 
   void removeFromPosters(List<String> ids) {
-    final newPosters = state.posters;
+    final newPosters = state.posters.toList();
     state = state.copyWith(posters: newPosters..removeWhere((element) => ids.contains(element.id)));
   }
 
