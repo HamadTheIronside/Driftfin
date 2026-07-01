@@ -83,6 +83,11 @@ l10n/       app_*.arb (+ gitignored generated/)
 
 `build.yml` (the upstream Fladder pipeline) is **disabled** — renamed to `build.yml.disabled`. It needed signing secrets this fork lacks and minted a rolling `nightly` tag that sorts out of order. Use `release.yml`.
 
+`release.yml` does not currently pass `--dart-define=SENTRY_DSN=...`, so official GitHub release binaries ship with crash
+reporting inert (the toggle exists but has nowhere to send to). To bake a DSN into a given platform's build step, add
+`--dart-define=SENTRY_DSN=${{ secrets.SENTRY_DSN }}` to its `flutter build` line and set the `SENTRY_DSN` repo secret. Web
+deployments (Docker/self-hosted) don't need this — see `SENTRY_DSN` in [INSTALL.md](INSTALL.md) for the runtime alternative.
+
 ## More docs
 
 `DEVELOPEMENT.md` (full setup/run), `FORK.md` (what changed vs Fladder), `CONTRIBUTING.md`, `INSTALL.md`.

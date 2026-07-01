@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:driftfin/models/error_log_model.dart';
 
@@ -21,12 +22,13 @@ class CrashLogNotifier extends StateNotifier<List<ErrorLogModel>> {
   final maxLength = 50;
   String? logFilePath;
   Timer? _debounceTimer;
+  StreamSubscription<LogRecord>? _logSubscription;
   static const _debounceDuration = Duration(milliseconds: 500);
 
   void init() async {
     logger = Logger.root;
     logger.level = Level.ALL;
-    logger.onRecord.listen(logPrint);
+    _logSubscription = logger.onRecord.listen(logPrint);
 
     FlutterError.onError = (FlutterErrorDetails details) => logFile(details);
 
@@ -114,11 +116,16 @@ class CrashLogNotifier extends StateNotifier<List<ErrorLogModel>> {
     if (details.stack != null && kDebugMode) {
       print('${details.stack}');
     }
+    // Only sends when the user opted in and Sentry was initialized at startup (see main.dart).
+    if (Sentry.isEnabled) {
+      Sentry.captureException(details.exception, stackTrace: details.stack);
+    }
   }
 
   @override
   void dispose() {
     _debounceTimer?.cancel();
+    _logSubscription?.cancel();
     super.dispose();
   }
 }

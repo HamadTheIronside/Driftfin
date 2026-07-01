@@ -6,6 +6,7 @@ ENV BASE_URL=""
 ENV SEERR_BASE_URL=""
 ENV SEERR_HEADER="null"
 ENV DRIFTFIN_WEBPATH="/"
+ENV SENTRY_DSN=""
 
 USER root
 COPY build/web /usr/share/nginx/html

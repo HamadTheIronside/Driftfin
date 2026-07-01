@@ -144,6 +144,18 @@ BASE_URL=https://jellyfin.example.com
 SEERR_BASE_URL=https://seerr.example.com
 ```
 
+### Opt-in crash reporting
+
+Driftfin has no crash reporting by default. If you'd like to catch field issues on the instance you're serving, set a [Sentry](https://sentry.io) DSN:
+
+- `SENTRY_DSN`: String URL of your Sentry project's DSN.
+
+```env
+SENTRY_DSN=https://examplePublicKey@o0.ingest.sentry.io/0
+```
+
+Setting this only makes crash reporting *available* — it stays off until a user flips **Settings → Advanced → Send crash reports** themselves. No DSN means the toggle can't send anywhere and no Sentry SDK calls are made, regardless of the setting.
+
 ## Web
 
 You can also manually copy the web .zip build to any static file server such as Nginx, Caddy, or Apache
@@ -156,9 +168,11 @@ You can also manually copy the web .zip build to any static file server such as 
 ```json
 {
 	"baseUrl": "https://jellyfin.example.com",
-	"seerrBaseUrl": "https://seerr.example.com"
+	"seerrBaseUrl": "https://seerr.example.com",
+	"sentryDsn": "https://examplePublicKey@o0.ingest.sentry.io/0"
 }
 ```
 
 - `baseUrl`: String. Presets Jellyfin URL on login.
 - `seerrBaseUrl`: String. Presets Seerr URL in personal settings.
+- `sentryDsn`: String. Optional. Same as the Docker `SENTRY_DSN` variable above — makes the in-app crash reporting toggle available; users still opt in themselves.

@@ -9,3 +9,4 @@ services:
       - SEERR_BASE_URL=https://seerr-url #OPTIONAL: Presets Seerr base URL
       - SEERR_HEADER={"key":"value"} #OPTIONAL: JSON object string of Seerr headers
       - DRIFTFIN_WEBPATH=/ #OPTIONAL: Configures a subpath to run Driftfin at
+      - SENTRY_DSN=https://examplePublicKey@o0.ingest.sentry.io/0 #OPTIONAL: Enables the in-app "Send crash reports" toggle by giving it somewhere to send to; users still opt in themselves, off by default
