@@ -63,7 +63,7 @@ ghcr.io/hamadtheironside/driftfin:latest
 ghcr.io/hamadtheironside/driftfin-rootless:latest
 ```
 
-**Web:** [try the hosted web build](https://hamadtheironside.github.io/Driftfin)
+**Web:** [try the hosted web build](https://hamadtheironside.github.io/Driftfin/app/) — or visit the [project site](https://hamadtheironside.github.io/Driftfin/) first.
 > [!NOTE]
 > The GitHub-hosted web build only allows `https` connections (a GitHub limitation). Self-hosted web builds work fine over plain `http`.
 
