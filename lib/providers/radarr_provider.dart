@@ -4,6 +4,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:driftfin/models/server_integration_config.dart';
+import 'package:driftfin/providers/server_integration_config_provider.dart';
 import 'package:driftfin/providers/shared_provider.dart';
 
 /// Outcome of a direct-Radarr movie request.
@@ -125,7 +127,10 @@ class RadarrApi {
         final response = await _client.post(
           _uri('command'),
           headers: _headers,
-          body: jsonEncode({'name': 'MoviesSearch', 'movieIds': [existing]}),
+          body: jsonEncode({
+            'name': 'MoviesSearch',
+            'movieIds': [existing]
+          }),
         );
         return (response.statusCode >= 200 && response.statusCode < 300)
             ? RadarrRequestResult.success
@@ -144,14 +149,20 @@ class RadarrSettings {
   final String apiKey;
   final bool enabled;
 
-  const RadarrSettings({this.baseUrl = '', this.apiKey = '', this.enabled = false});
+  /// True when these values come from the Driftfin server plugin. Transient —
+  /// never persisted — so local config survives plugin removal. While managed,
+  /// the in-app fields are read-only.
+  final bool managed;
+
+  const RadarrSettings({this.baseUrl = '', this.apiKey = '', this.enabled = false, this.managed = false});
 
   bool get isConfigured => enabled && baseUrl.trim().isNotEmpty && apiKey.trim().isNotEmpty;
 
-  RadarrSettings copyWith({String? baseUrl, String? apiKey, bool? enabled}) => RadarrSettings(
+  RadarrSettings copyWith({String? baseUrl, String? apiKey, bool? enabled, bool? managed}) => RadarrSettings(
         baseUrl: baseUrl ?? this.baseUrl,
         apiKey: apiKey ?? this.apiKey,
         enabled: enabled ?? this.enabled,
+        managed: managed ?? this.managed,
       );
 
   Map<String, dynamic> toJson() => {'baseUrl': baseUrl, 'apiKey': apiKey, 'enabled': enabled};
@@ -170,12 +181,26 @@ final radarrProvider = StateNotifierProvider<RadarrNotifier, RadarrSettings>((re
 });
 
 class RadarrNotifier extends StateNotifier<RadarrSettings> {
-  RadarrNotifier(this.ref) : super(_load(ref)) {
+  RadarrNotifier(this.ref) : super(_initialState(ref)) {
     _client = http.Client();
+    ref.listen<ServerIntegrationConfig?>(serverIntegrationConfigProvider, (_, next) => _applyServer(next?.radarr));
   }
 
   final Ref ref;
   late final http.Client _client;
+
+  static RadarrSettings _initialState(Ref ref) {
+    final server = ref.read(serverIntegrationConfigProvider)?.radarr;
+    if (server != null && server.isManaged) {
+      return RadarrSettings(
+        baseUrl: normalizeRadarrUrl(server.url),
+        apiKey: server.apiKey.trim(),
+        enabled: true,
+        managed: true,
+      );
+    }
+    return _load(ref);
+  }
 
   static RadarrSettings _load(Ref ref) {
     try {
@@ -187,19 +212,37 @@ class RadarrNotifier extends StateNotifier<RadarrSettings> {
     }
   }
 
+  /// Overlays server-managed values, or reverts to local prefs when the plugin
+  /// no longer manages Radarr.
+  void _applyServer(ArrServerConfig? server) {
+    if (server != null && server.isManaged) {
+      state = RadarrSettings(
+        baseUrl: normalizeRadarrUrl(server.url),
+        apiKey: server.apiKey.trim(),
+        enabled: true,
+        managed: true,
+      );
+    } else if (state.managed) {
+      state = _load(ref);
+    }
+  }
+
   void _persist() => ref.read(sharedPreferencesProvider).setString(_radarrSettingsKey, jsonEncode(state.toJson()));
 
   void setEnabled(bool value) {
+    if (state.managed) return;
     state = state.copyWith(enabled: value);
     _persist();
   }
 
   void setBaseUrl(String value) {
+    if (state.managed) return;
     state = state.copyWith(baseUrl: normalizeRadarrUrl(value));
     _persist();
   }
 
   void setApiKey(String value) {
+    if (state.managed) return;
     state = state.copyWith(apiKey: value.trim());
     _persist();
   }

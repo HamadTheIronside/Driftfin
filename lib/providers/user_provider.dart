@@ -14,6 +14,7 @@ import 'package:driftfin/models/library_filters_model.dart';
 import 'package:driftfin/models/seerr_credentials_model.dart';
 import 'package:driftfin/providers/api_provider.dart';
 import 'package:driftfin/providers/image_provider.dart';
+import 'package:driftfin/providers/server_integration_config_provider.dart';
 import 'package:driftfin/providers/service_provider.dart';
 import 'package:driftfin/providers/shared_provider.dart';
 import 'package:driftfin/providers/sync_provider.dart';
@@ -67,9 +68,22 @@ class User extends _$User {
         hasConfiguredPassword: user.hasConfiguredPassword ?? false,
         hasPassword: user.hasPassword ?? false,
       );
+      await _loadServerIntegrationConfig();
       return response.copyWith(body: state);
     }
     return null;
+  }
+
+  /// Pulls the optional Driftfin plugin's server-wide integration config and
+  /// applies the Seerr part (the *.arr/Trakt providers listen for it
+  /// themselves). A missing plugin leaves everything on local settings.
+  Future<void> _loadServerIntegrationConfig() async {
+    await ref.read(serverIntegrationConfigProvider.notifier).load();
+    final seerr = ref.read(serverIntegrationConfigProvider)?.seerr;
+    if (seerr != null && seerr.isManaged) {
+      setSeerrServerUrl(seerr.url);
+      setSeerrApiKey(seerr.apiKey);
+    }
   }
 
   void setRememberAudioSelections() async {
@@ -277,12 +291,14 @@ class User extends _$User {
   Future<void> logoutUser() async {
     await ref.read(videoPlayerProvider).stop();
     if (state == null) return;
+    ref.read(serverIntegrationConfigProvider.notifier).clear();
     userState = null;
   }
 
   Future<void> forceLogoutUser(AccountModel account) async {
     userState = account;
     await api.sessionsLogoutPost();
+    ref.read(serverIntegrationConfigProvider.notifier).clear();
     userState = null;
   }
 

@@ -74,6 +74,44 @@ ghcr.io/hamadtheironside/driftfin-rootless:latest
 
 What's planned and in progress lives on the [**Driftfin Roadmap**](https://github.com/users/HamadTheIronside/projects/5). Have an idea? [Open a feature request](https://github.com/HamadTheIronside/Driftfin/issues/new/choose).
 
+## Driftfin Server Plugin (optional)
+
+Driftfin stores its integration settings — Jellyseerr/Overseerr, Sonarr, Radarr
+and Trakt — **per user, per device**. The optional **Driftfin Jellyfin plugin**
+lets an admin configure those once on the server so every client picks them up
+automatically.
+
+**The app works perfectly without it.** With no plugin installed, nothing
+changes — each user configures integrations locally as before. The plugin lives
+in [`jellyfin-plugin/`](./jellyfin-plugin/) and is built/released separately
+from the app.
+
+**What it does**
+- Centralizes Seerr/Sonarr/Radarr URLs + API keys and Trakt app credentials.
+- Clients fetch the config on login (`GET /Driftfin/Config`). A configured
+  integration becomes **read-only** in the app, shown as *"Managed by server"*.
+- Per-user secrets stay local: Trakt OAuth tokens and Jellyseerr session
+  cookies are still established on each device.
+
+> **Heads-up:** the config endpoint returns the stored values (including API
+> keys) to **any logged-in Jellyfin user** — the same trust model Driftfin
+> already uses for client-side keys. Don't enable it where untrusted users
+> shouldn't see your *.arr keys.
+
+**Set it up**
+1. **Install** — build the plugin (see
+   [`jellyfin-plugin/README.md`](./jellyfin-plugin/README.md)), then either drop
+   the DLL into a `Driftfin` folder under your Jellyfin `plugins/` directory, or
+   add a plugin-repository manifest URL in *Dashboard → Plugins → Repositories*
+   and install "Driftfin". Restart Jellyfin.
+2. **Configure** — open *Dashboard → Plugins → Driftfin* and fill in the
+   integrations you want to share, then **Save**.
+3. **Use** — Driftfin clients pull the config on the next login; managed fields
+   become read-only. Uninstall the plugin to hand control back to each client.
+
+⚠️ The plugin's `targetAbi` must match your Jellyfin server version (defaults to
+**10.10.x**). See [`jellyfin-plugin/README.md`](./jellyfin-plugin/README.md).
+
 ## Contributing
 
 Interested in contributing? A few ways to help:

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:driftfin/models/account_model.dart';
 import 'package:driftfin/models/settings/client_settings_model.dart';
 import 'package:driftfin/models/settings/home_settings_model.dart';
+import 'package:driftfin/providers/server_integration_config_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
 import 'package:driftfin/providers/shared_provider.dart';
@@ -111,8 +112,11 @@ class ConfigSync {
     final client = ref.read(clientSettingsProvider);
     final home = ref.read(homeSettingsProvider);
     final account = ref.read(userProvider);
+    // When Seerr is managed by the Driftfin server plugin, keep the existing
+    // synced value rather than overwriting it with the plugin-injected URL.
+    final seerrManaged = ref.read(serverIntegrationConfigProvider)?.seerr.isManaged ?? false;
     return current.copyWith(
-      seerrServerUrl: account?.seerrCredentials?.serverUrl,
+      seerrServerUrl: seerrManaged ? current.seerrServerUrl : account?.seerrCredentials?.serverUrl,
       seerrRequestsEnabled: account?.seerrRequestsEnabled,
       homeBanner: home.homeBanner.name,
       homeCarousel: home.carouselSettings.name,

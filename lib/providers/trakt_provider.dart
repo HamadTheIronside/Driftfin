@@ -7,7 +7,9 @@ import 'package:driftfin/models/item_base_model.dart';
 import 'package:driftfin/models/items/episode_model.dart';
 import 'package:driftfin/models/items/movie_model.dart';
 import 'package:driftfin/models/items/series_model.dart';
+import 'package:driftfin/models/server_integration_config.dart';
 import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/providers/server_integration_config_provider.dart';
 import 'package:driftfin/providers/shared_provider.dart';
 
 /// Bring-your-own Trakt integration: the user supplies their own Trakt API
@@ -238,18 +240,31 @@ class TraktSettings {
   final bool enabled;
   final TraktTokens? tokens;
 
-  const TraktSettings({this.clientId = '', this.clientSecret = '', this.enabled = false, this.tokens});
+  /// True when the client id/secret come from the Driftfin server plugin.
+  /// Transient — never persisted. The OAuth tokens always stay per-user/local,
+  /// so the user still authorizes the device flow even when managed.
+  final bool managed;
+
+  const TraktSettings(
+      {this.clientId = '', this.clientSecret = '', this.enabled = false, this.tokens, this.managed = false});
 
   bool get hasCredentials => clientId.trim().isNotEmpty && clientSecret.trim().isNotEmpty;
   bool get isAuthenticated => tokens != null && tokens!.accessToken.isNotEmpty;
   bool get isActive => enabled && hasCredentials && isAuthenticated;
 
-  TraktSettings copyWith({String? clientId, String? clientSecret, bool? enabled, TraktTokens? tokens, bool clearTokens = false}) =>
+  TraktSettings copyWith(
+          {String? clientId,
+          String? clientSecret,
+          bool? enabled,
+          TraktTokens? tokens,
+          bool? managed,
+          bool clearTokens = false}) =>
       TraktSettings(
         clientId: clientId ?? this.clientId,
         clientSecret: clientSecret ?? this.clientSecret,
         enabled: enabled ?? this.enabled,
         tokens: clearTokens ? null : (tokens ?? this.tokens),
+        managed: managed ?? this.managed,
       );
 
   Map<String, dynamic> toJson() => {
@@ -274,12 +289,24 @@ final traktProvider = StateNotifierProvider<TraktNotifier, TraktSettings>((ref) 
 });
 
 class TraktNotifier extends StateNotifier<TraktSettings> {
-  TraktNotifier(this.ref) : super(_load(ref)) {
+  TraktNotifier(this.ref) : super(_initialState(ref)) {
     _client = http.Client();
+    ref.listen<ServerIntegrationConfig?>(serverIntegrationConfigProvider, (_, next) => _applyServer(next?.trakt));
   }
 
   final Ref ref;
   late final http.Client _client;
+
+  static TraktSettings _initialState(Ref ref) {
+    final local = _load(ref);
+    final server = ref.read(serverIntegrationConfigProvider)?.trakt;
+    if (server != null && server.isManaged) {
+      // Overlay server credentials but keep the user's local OAuth tokens.
+      return local.copyWith(
+          clientId: server.clientId.trim(), clientSecret: server.clientSecret.trim(), enabled: true, managed: true);
+    }
+    return local;
+  }
 
   static TraktSettings _load(Ref ref) {
     try {
@@ -291,19 +318,33 @@ class TraktNotifier extends StateNotifier<TraktSettings> {
     }
   }
 
+  /// Overlays server-managed credentials (keeping local tokens), or reverts to
+  /// local prefs when the plugin no longer manages Trakt.
+  void _applyServer(TraktServerConfig? server) {
+    if (server != null && server.isManaged) {
+      state = state.copyWith(
+          clientId: server.clientId.trim(), clientSecret: server.clientSecret.trim(), enabled: true, managed: true);
+    } else if (state.managed) {
+      state = _load(ref);
+    }
+  }
+
   void _persist() => ref.read(sharedPreferencesProvider).setString(_traktSettingsKey, jsonEncode(state.toJson()));
 
   void setEnabled(bool value) {
+    if (state.managed) return;
     state = state.copyWith(enabled: value);
     _persist();
   }
 
   void setClientId(String value) {
+    if (state.managed) return;
     state = state.copyWith(clientId: value.trim());
     _persist();
   }
 
   void setClientSecret(String value) {
+    if (state.managed) return;
     state = state.copyWith(clientSecret: value.trim());
     _persist();
   }
