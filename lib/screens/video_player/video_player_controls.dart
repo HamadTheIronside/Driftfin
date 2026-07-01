@@ -93,6 +93,7 @@ class _DesktopControlsState extends ConsumerState<DesktopControls> {
 
   @override
   void dispose() {
+    timer.cancel();
     _deactivateSpeedBoost();
     super.dispose();
   }
@@ -400,32 +401,33 @@ class _DesktopControlsState extends ConsumerState<DesktopControls> {
                             ),
                           ],
                           if (AdaptiveLayout.layoutOf(context) >= ViewSize.desktop) ...[
-                            Flexible(
-                              child: ElevatedButton.icon(
-                                onPressed: () => showSubSelection(context),
-                                icon: const Icon(IconsaxPlusLinear.subtitle),
-                                label: Text(
-                                  ref.watch(playBackModel.select((value) {
-                                        final language = value?.mediaStreams?.currentSubStream?.language;
-                                        return language?.isEmpty == true ? context.localized.off : language;
-                                      }))?.capitalize() ??
-                                      "",
-                                  maxLines: 1,
-                                ),
+                            // Note: these buttons intentionally do NOT use Flexible/Expanded.
+                            // They sit inside a horizontally-scrolling SingleChildScrollView
+                            // (see above), which gives its child Row unbounded width - a
+                            // flex widget there throws "RenderFlex children have non-zero
+                            // flex but incoming width constraints are unbounded".
+                            ElevatedButton.icon(
+                              onPressed: () => showSubSelection(context),
+                              icon: const Icon(IconsaxPlusLinear.subtitle),
+                              label: Text(
+                                ref.watch(playBackModel.select((value) {
+                                      final language = value?.mediaStreams?.currentSubStream?.language;
+                                      return language?.isEmpty == true ? context.localized.off : language;
+                                    }))?.capitalize() ??
+                                    "",
+                                maxLines: 1,
                               ),
                             ),
-                            Flexible(
-                              child: ElevatedButton.icon(
-                                onPressed: () => showAudioSelection(context),
-                                icon: const Icon(IconsaxPlusLinear.audio_square),
-                                label: Text(
-                                  ref.watch(playBackModel.select((value) {
-                                        final language = value?.mediaStreams?.currentAudioStream?.language;
-                                        return language?.isEmpty == true ? context.localized.off : language;
-                                      }))?.capitalize() ??
-                                      "",
-                                  maxLines: 1,
-                                ),
+                            ElevatedButton.icon(
+                              onPressed: () => showAudioSelection(context),
+                              icon: const Icon(IconsaxPlusLinear.audio_square),
+                              label: Text(
+                                ref.watch(playBackModel.select((value) {
+                                      final language = value?.mediaStreams?.currentAudioStream?.language;
+                                      return language?.isEmpty == true ? context.localized.off : language;
+                                    }))?.capitalize() ??
+                                    "",
+                                maxLines: 1,
                               ),
                             )
                           ],

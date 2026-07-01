@@ -89,6 +89,10 @@ class ConnectivityStatus extends _$ConnectivityStatus {
           onStateChange([ConnectivityResult.none]);
         }
       },
+      onError: (Object error, StackTrace stackTrace) {
+        log('Failed to check connectivity: $error\n$stackTrace');
+        onStateChange([ConnectivityResult.none]);
+      },
     ));
     return state;
   }
