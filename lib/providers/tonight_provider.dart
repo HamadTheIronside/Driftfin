@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:driftfin/jellyfin/jellyfin_open_api.enums.swagger.dart';
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
 import 'package:driftfin/models/item_base_model.dart';
 import 'package:driftfin/models/tonight_model.dart';
 import 'package:driftfin/providers/api_provider.dart';
@@ -49,7 +49,7 @@ class TonightNotifier extends StateNotifier<TonightModel> {
         itemLimit: 6,
         fields: _fieldsToFetch,
       );
-      for (final category in recommendations.body ?? const []) {
+      for (final category in recommendations.body ?? const <RecommendationDto>[]) {
         candidates.addAll((category.items ?? []).map((e) => ItemBaseModel.fromBaseDto(e, ref)));
       }
     }

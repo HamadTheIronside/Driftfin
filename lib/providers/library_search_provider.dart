@@ -80,18 +80,7 @@ class LibrarySearchNotifier extends StateNotifier<LibrarySearchModel> {
 
     if (!wasInitialized) {
       wasInitialized = true;
-      state = state.copyWith(
-        filters: state.filters.copyWith(
-          types: state.filters.types.replaceMap(filters.types, enabledOnly: true),
-          genres: state.filters.genres.replaceMap(filters.genres, enabledOnly: true),
-          studios: state.filters.studios.replaceMap(filters.studios, enabledOnly: true),
-          tags: state.filters.tags.replaceMap(filters.tags, enabledOnly: true),
-          years: state.filters.years.replaceMap(filters.years, enabledOnly: true),
-          officialRatings: state.filters.officialRatings.replaceMap(filters.officialRatings, enabledOnly: true),
-          recursive: filters.recursive ?? true,
-          favourites: filters.favourites ?? false,
-        ),
-      );
+      state = state.copyWith(filters: state.filters.mergeEnabledFrom(filters));
     }
 
     await loadMore(init: true);

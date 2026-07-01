@@ -70,6 +70,29 @@ void main() {
     });
   });
 
+  group('TasteSignals.topStudios', () {
+    test('ranks studios by frequency, most common first', () {
+      final a24 = Studio(id: 's1', name: 'A24');
+      final marvel = Studio(id: 's2', name: 'Marvel');
+      final items = [
+        _item('1', studios: [a24]),
+        _item('2', studios: [a24, marvel]),
+        _item('3', studios: [a24]),
+      ];
+      final top = TasteSignals.topStudios(items);
+      expect(top.first.key, a24);
+      expect(top.first.value, 3);
+    });
+
+    test('respects the limit', () {
+      final items = [
+        _item('1', studios: [Studio(id: 's1', name: 'A')]),
+        _item('2', studios: [Studio(id: 's2', name: 'B')]),
+      ];
+      expect(TasteSignals.topStudios(items, limit: 1), hasLength(1));
+    });
+  });
+
   group('TasteSignals.topDirectors', () {
     test('dedupes a director appearing across multiple items by id', () {
       final items = [

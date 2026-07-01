@@ -68,6 +68,23 @@ void main() {
       expect(result.first.id, 'comedy');
     });
 
+    test('every mood other than any maps to at least one genre keyword', () {
+      for (final mood in TonightMood.values) {
+        if (mood == TonightMood.any) {
+          expect(mood.genreKeywords, isEmpty);
+        } else {
+          expect(mood.genreKeywords, isNotEmpty, reason: '$mood should have at least one genre keyword');
+        }
+      }
+    });
+
+    test('boosts family/adventure items for an uplifting mood', () {
+      final uplifting = _item('uplifting', communityRating: 5, genres: const ['Adventure']);
+      final horror = _item('horror', communityRating: 5, genres: const ['Horror']);
+      final result = TonightPicker.pick([uplifting, horror], mood: TonightMood.uplifting);
+      expect(result.first.id, 'uplifting');
+    });
+
     test('filters out items that do not fit the time budget', () {
       final shorts = List.generate(
         3,

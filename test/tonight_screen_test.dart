@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart' as dto;
 import 'package:driftfin/l10n/generated/app_localizations.dart';
+import 'package:driftfin/models/item_base_model.dart';
 import 'package:driftfin/models/tonight_model.dart';
 import 'package:driftfin/providers/tonight_provider.dart';
 import 'package:driftfin/screens/home_screen.dart';
+import 'package:driftfin/screens/shared/media/poster_list_item.dart';
 import 'package:driftfin/screens/tonight/tonight_screen.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout_model.dart';
 import 'package:driftfin/util/poster_defaults.dart';
 import 'package:driftfin/util/tonight_picker.dart';
+
+ItemBaseModel _poster(String id) {
+  return ItemBaseModel.fromBaseDto(
+    dto.BaseItemDto(id: id, name: id, type: dto.BaseItemKind.movie),
+    null,
+  );
+}
 
 const _testLayoutModel = AdaptiveLayoutModel(
   viewSize: ViewSize.phone,
@@ -109,6 +120,31 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(harness.notifier.lastTimeAvailable, const Duration(minutes: 30));
+  });
+
+  testWidgets('tapping the refresh button re-fetches with the current time/mood', (tester) async {
+    final harness = _Harness();
+    await tester.pumpWidget(harness.build(const TonightModel(
+      timeAvailable: Duration(minutes: 60),
+      mood: TonightMood.cozy,
+    )));
+    await tester.pumpAndSettle();
+    final callsBeforeRefresh = harness.notifier.fetchCalls;
+
+    await tester.tap(find.byIcon(IconsaxPlusLinear.refresh));
+    await tester.pumpAndSettle();
+
+    expect(harness.notifier.fetchCalls, callsBeforeRefresh + 1);
+    expect(harness.notifier.lastTimeAvailable, const Duration(minutes: 60));
+    expect(harness.notifier.lastMood, TonightMood.cozy);
+  });
+
+  testWidgets('renders a poster row per pick once loaded', (tester) async {
+    final harness = _Harness();
+    await tester.pumpWidget(harness.build(TonightModel(picks: [_poster('1'), _poster('2')])));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(PosterListItem), findsNWidgets(2));
   });
 
   testWidgets('tapping a mood chip re-fetches with that mood', (tester) async {
