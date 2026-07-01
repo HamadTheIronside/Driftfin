@@ -366,7 +366,11 @@ class PlaybackModelHelper {
 
       Map<Bitrate, bool> qualityOptions = getVideoQualityOptions(
         VideoQualitySettings(
-          maxBitRate: ref.read(videoPlayerSettingsProvider.select((value) => value.maxHomeBitrate)),
+          maxBitRate: resolveMaxBitrate(
+            maxHomeBitrate: ref.read(videoPlayerSettingsProvider.select((value) => value.maxHomeBitrate)),
+            maxInternetBitrate: ref.read(videoPlayerSettingsProvider.select((value) => value.maxInternetBitrate)),
+            homeInternet: ref.read(connectivityStatusProvider.select((value) => value.homeInternet)),
+          ),
           videoBitRate: newStreamModel?.videoStreams.firstOrNull?.bitRate ?? 0,
           videoCodec: newStreamModel?.videoStreams.firstOrNull?.codec,
         ),

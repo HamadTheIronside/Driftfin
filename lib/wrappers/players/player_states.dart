@@ -8,6 +8,11 @@ class PlayerState {
   bool buffering;
   Duration buffer;
 
+  /// True once the backend has given up on the current source (e.g. mpv
+  /// exhausted its retry budget, or ExoPlayer/video_player reported a decode
+  /// error). Consumers can react by falling back to a compatible transcode.
+  bool failed;
+
   PlayerState({
     this.playing = false,
     this.completed = false,
@@ -17,6 +22,7 @@ class PlayerState {
     this.rate = 1.0,
     this.buffering = true,
     this.buffer = Duration.zero,
+    this.failed = false,
   });
 
   PlayerState update({
@@ -28,6 +34,7 @@ class PlayerState {
     double? volume,
     double? rate,
     Duration? buffer,
+    bool? failed,
   }) {
     if (playing != null) this.playing = playing;
     if (completed != null) this.completed = completed;
@@ -37,6 +44,7 @@ class PlayerState {
     if (volume != null) this.volume = volume;
     if (rate != null) this.rate = rate;
     if (buffer != null) this.buffer = buffer;
+    if (failed != null) this.failed = failed;
     return this;
   }
 }

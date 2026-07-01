@@ -12,6 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:driftfin/models/items/media_streams_model.dart';
 import 'package:driftfin/models/playback/playback_model.dart';
 import 'package:driftfin/models/settings/video_player_settings.dart';
+import 'package:driftfin/util/audio_filter_chain.dart';
 import 'package:driftfin/wrappers/players/base_player.dart';
 import 'package:driftfin/wrappers/players/player_states.dart';
 
@@ -108,6 +109,21 @@ void main() {
       expect(player.isValidUrl(''), isNull);
       expect(player.isValidUrl('   '), isNull);
       expect(player.isValidUrl('not a url at all'), isNull);
+    });
+  });
+
+  group('BasePlayer.setAudioEnhancement', () {
+    late _NoopPlayer player;
+
+    setUp(() {
+      player = _NoopPlayer();
+    });
+
+    test('defaults to a no-op that completes without error for backends that do not override it', () async {
+      await expectLater(
+        player.setAudioEnhancement(enableSmartDownmix: true, dialogueBoost: DialogueBoostLevel.high),
+        completes,
+      );
     });
   });
 }

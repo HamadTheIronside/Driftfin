@@ -38,6 +38,15 @@ enum Bitrate {
       };
 }
 
+/// Picks which configured bitrate cap applies for the current connection.
+/// Wi-Fi/Ethernet (`homeInternet`) uses [maxHomeBitrate]; cellular/offline uses [maxInternetBitrate].
+Bitrate resolveMaxBitrate({
+  required Bitrate maxHomeBitrate,
+  required Bitrate maxInternetBitrate,
+  required bool homeInternet,
+}) =>
+    homeInternet ? maxHomeBitrate : maxInternetBitrate;
+
 class VideoQualitySettings {
   final Bitrate? maxBitRate;
   final int videoBitRate;

@@ -13,6 +13,7 @@ import 'package:driftfin/models/settings/key_combinations.dart';
 import 'package:driftfin/models/settings/video_player_settings.dart';
 import 'package:driftfin/providers/shared_provider.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
+import 'package:driftfin/util/audio_filter_chain.dart';
 
 final videoPlayerSettingsProvider =
     StateNotifierProvider<VideoPlayerSettingsProviderNotifier, VideoPlayerSettingsModel>((ref) {
@@ -188,6 +189,10 @@ class VideoPlayerSettingsProviderNotifier extends StateNotifier<VideoPlayerSetti
   void setEnablePlayPauseFade(bool value) => state = state.copyWith(enablePlayPauseFade: value);
 
   void setReplayGainVolumeLevel(ReplayGainVolumeLevel value) => state = state.copyWith(replayGainVolumeLevel: value);
+
+  void setEnableSmartDownmix(bool value) => state = state.copyWith(enableSmartDownmix: value);
+
+  void setDialogueBoost(DialogueBoostLevel value) => state = state.copyWith(dialogueBoost: value);
 
   void setEnableCrossfade(bool value) {
     state = state.copyWith(enableCrossfade: value && state.canUseCrossfade);

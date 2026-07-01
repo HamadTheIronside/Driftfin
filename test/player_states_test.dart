@@ -76,6 +76,17 @@ void main() {
       expect(state.duration, const Duration(minutes: 10));
       expect(state.buffer, const Duration(minutes: 2));
     });
+
+    test('failed defaults to false and can be set and cleared', () {
+      final state = PlayerState();
+      expect(state.failed, isFalse);
+
+      state.update(failed: true);
+      expect(state.failed, isTrue);
+
+      state.update(failed: false);
+      expect(state.failed, isFalse);
+    });
   });
 
   group('PlayerStream.bindToState', () {

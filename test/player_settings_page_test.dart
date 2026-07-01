@@ -134,6 +134,38 @@ void main() {
     expect(find.text(l10n.playerSettingsReplayGainLevelTitle), findsOneWidget);
   });
 
+  testWidgets('smart downmix and dialogue boost tiles are shown on libMPV', (tester) async {
+    useTallView(tester);
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+
+    final settings = VideoPlayerSettingsModel(playerOptions: PlayerOptions.libMPV);
+    await tester.pumpWidget(_harness(prefs, settings, user: user));
+    await tester.pumpAndSettle();
+
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+    expect(find.text(l10n.playerSettingsSmartDownmixTitle), findsOneWidget);
+    expect(find.text(l10n.playerSettingsDialogueBoostTitle), findsOneWidget);
+  });
+
+  testWidgets('toggling smart downmix updates the setting', (tester) async {
+    useTallView(tester);
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+
+    final settings = VideoPlayerSettingsModel(playerOptions: PlayerOptions.libMPV);
+    await tester.pumpWidget(_harness(prefs, settings, user: user));
+    await tester.pumpAndSettle();
+
+    final container = ProviderScope.containerOf(tester.element(find.byType(PlayerSettingsPage)));
+    expect(container.read(videoPlayerSettingsProvider).enableSmartDownmix, isFalse);
+
+    container.read(videoPlayerSettingsProvider.notifier).setEnableSmartDownmix(true);
+    await tester.pumpAndSettle();
+
+    expect(container.read(videoPlayerSettingsProvider).enableSmartDownmix, isTrue);
+  });
+
   testWidgets('leanback mode surfaces screensaver option', (tester) async {
     useTallView(tester);
     SharedPreferences.setMockInitialValues({});

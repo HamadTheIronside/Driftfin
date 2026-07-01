@@ -112,6 +112,7 @@ class LibMDK extends BasePlayer {
       rate: _controller?.value.playbackSpeed ?? 1.0,
       buffering: _controller?.value.isBuffering ?? true,
       buffer: calculateBufferedDuration(_controller?.value),
+      failed: _controller?.value.hasError ?? false,
     ));
   }
 

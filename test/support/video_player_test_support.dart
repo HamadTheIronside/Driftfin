@@ -102,6 +102,9 @@ class FakeBasePlayer implements BasePlayer {
   Future<void> setSubtitleDelay(Duration delay) async {}
 
   @override
+  Future<void> setAudioEnhancement({required bool enableSmartDownmix, required dialogueBoost}) async {}
+
+  @override
   Uri? isValidUrl(String input) => null;
 }
 

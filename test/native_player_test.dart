@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:driftfin/src/video_player_helper.g.dart';
 import 'package:driftfin/wrappers/players/native_player.dart';
+import 'package:driftfin/wrappers/players/player_states.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -68,6 +69,61 @@ void main() {
         ['https://example.com/video.mp4', true],
       ]);
       expect(seekToCalls, [30000]);
+    });
+  });
+
+  group('NativePlayer.onPlaybackStateChanged', () {
+    test('propagates the native failed flag into PlayerState', () {
+      final player = NativePlayer();
+
+      player.onPlaybackStateChanged(PlaybackState(
+        position: 1000,
+        buffered: 1000,
+        duration: 60000,
+        playing: false,
+        buffering: false,
+        completed: false,
+        failed: true,
+      ));
+
+      expect(player.lastState.failed, isTrue);
+    });
+
+    test('a healthy state keeps failed false', () {
+      final player = NativePlayer();
+
+      player.onPlaybackStateChanged(PlaybackState(
+        position: 1000,
+        buffered: 2000,
+        duration: 60000,
+        playing: true,
+        buffering: false,
+        completed: false,
+        failed: false,
+      ));
+
+      expect(player.lastState.failed, isFalse);
+    });
+
+    test('emits the updated state on stateStream', () async {
+      final player = NativePlayer();
+      final states = <PlayerState>[];
+      final sub = player.stateStream.listen(states.add);
+
+      player.onPlaybackStateChanged(PlaybackState(
+        position: 0,
+        buffered: 0,
+        duration: 0,
+        playing: false,
+        buffering: true,
+        completed: false,
+        failed: true,
+      ));
+      await Future<void>.delayed(Duration.zero);
+
+      expect(states, isNotEmpty);
+      expect(states.last.failed, isTrue);
+      await sub.cancel();
     });
   });
 }

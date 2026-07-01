@@ -71,6 +71,7 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
   List<StreamSubscription> subscriptions = [];
   ProviderSubscription? _subtitleSettingsSubscription;
   ProviderSubscription? _subtitleDelaySubscription;
+  ProviderSubscription? _audioEnhancementSubscription;
   SMTCWindows? smtc;
 
   bool initializedWrapper = false;
@@ -122,6 +123,7 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
   Future<void> dispose() async {
     _subtitleSettingsSubscription?.close();
     _subtitleDelaySubscription?.close();
+    _audioEnhancementSubscription?.close();
     await _playerStateSubscription?.cancel();
     _player?.dispose();
   }
@@ -141,6 +143,7 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
   void _initPlayer() {
     _subtitleSettingsSubscription?.close();
     _subtitleDelaySubscription?.close();
+    _audioEnhancementSubscription?.close();
     for (var element in subscriptions) {
       element.cancel();
     }
@@ -151,6 +154,18 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
     _subtitleDelaySubscription = ref.listen(subtitleDelayProvider, (_, next) {
       _player?.setSubtitleDelay(next);
     });
+    _applyAudioEnhancementSettings(ref.read(videoPlayerSettingsProvider));
+    _audioEnhancementSubscription = ref.listen(
+      videoPlayerSettingsProvider.select((value) => (value.enableSmartDownmix, value.dialogueBoost)),
+      (_, next) => _applyAudioEnhancementSettings(ref.read(videoPlayerSettingsProvider)),
+    );
+  }
+
+  void _applyAudioEnhancementSettings(VideoPlayerSettingsModel settings) {
+    _player?.setAudioEnhancement(
+      enableSmartDownmix: settings.enableSmartDownmix,
+      dialogueBoost: settings.dialogueBoost,
+    );
   }
 
   void _subscribePlayerState() {
