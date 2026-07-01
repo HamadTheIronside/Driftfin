@@ -76,6 +76,37 @@ void main() {
       expect(state.duration, const Duration(minutes: 10));
       expect(state.buffer, const Duration(minutes: 2));
     });
+
+    test('error starts null and can be set via update', () {
+      final state = PlayerState();
+      expect(state.error, isNull);
+
+      const error = PlayerError('boom', fatal: true);
+      state.update(error: error);
+
+      expect(state.error, error);
+    });
+
+    test('update without an error argument does not clear a previously set error', () {
+      final state = PlayerState()..update(error: const PlayerError('boom'));
+
+      state.update(playing: true);
+
+      expect(state.error, const PlayerError('boom'));
+    });
+
+    test('clearError resets the error back to null', () {
+      final state = PlayerState()..update(error: const PlayerError('boom'));
+
+      state.clearError();
+
+      expect(state.error, isNull);
+    });
+
+    test('PlayerError equality is value-based', () {
+      expect(const PlayerError('boom', fatal: true), const PlayerError('boom', fatal: true));
+      expect(const PlayerError('boom'), isNot(const PlayerError('boom', fatal: true)));
+    });
   });
 
   group('PlayerStream.bindToState', () {

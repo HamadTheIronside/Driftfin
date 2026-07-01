@@ -10,6 +10,23 @@ import 'package:driftfin/screens/video_player/components/video_player_chapters.d
 import 'package:driftfin/screens/video_player/components/video_player_queue.dart';
 import 'package:driftfin/util/localization_helper.dart';
 
+/// Takes a screenshot of the current frame. Grayed out on backends whose
+/// [PlayerCapabilities.screenshots] is false (see BasePlayer capability
+/// matrix) instead of silently doing nothing when tapped.
+class ScreenshotButton extends ConsumerWidget {
+  const ScreenshotButton({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final supportsScreenshots = ref.watch(videoPlayerProvider.select((value) => value.capabilities.screenshots));
+    return IconButton(
+      tooltip: context.localized.takeScreenshot,
+      onPressed: supportsScreenshots ? () => ref.read(videoPlayerProvider.notifier).takeScreenshot() : null,
+      icon: const Icon(Icons.camera_alt_outlined),
+    );
+  }
+}
+
 class ChapterButton extends ConsumerWidget {
   final Duration position;
   const ChapterButton({super.key, required this.position});

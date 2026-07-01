@@ -21,9 +21,20 @@ import 'package:driftfin/providers/settings/subtitle_settings_provider.dart';
 import 'package:driftfin/screens/video_player/video_player.dart' as video_screen;
 import 'package:driftfin/util/subtitle_position_calculator.dart';
 import 'package:driftfin/wrappers/players/base_player.dart';
+import 'package:driftfin/wrappers/players/player_capabilities.dart';
 import 'package:driftfin/wrappers/players/player_states.dart';
 
 class LibMPV extends BasePlayer {
+  @override
+  PlayerCapabilities get capabilities => const PlayerCapabilities(
+        screenshots: true,
+        audioDsp: true,
+        ambientGlow: true,
+        errorReporting: true,
+        subtitleDelay: true,
+        crossfade: true,
+      );
+
   mpv.Player? _player;
   VideoController? _controller;
   String _currentSubtitleCodec = '';
@@ -237,8 +248,14 @@ class LibMPV extends BasePlayer {
           log("Max retry duration reached, stopping retries.");
           _retryTimer?.cancel();
           _retryTimer = null;
+          setState(lastState.update(
+            error: const PlayerError('Failed to load video: retries exhausted', fatal: true),
+          ));
         } else {
           log("Retrying to load video $url");
+          setState(lastState.update(
+            error: const PlayerError('Failed to load video, retrying', fatal: false),
+          ));
           await setStartPosition(startPosition);
           await _player?.open(mpv.Media(url), play: play);
           _retryTimer?.reset();
@@ -351,6 +368,7 @@ class LibMPV extends BasePlayer {
     _loadCompleter?.complete();
     _retryTimer?.cancel();
     _retryTimer = null;
+    setState(lastState.clearError());
   }
 
   @override

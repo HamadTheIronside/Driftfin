@@ -39,6 +39,7 @@ import 'package:driftfin/wrappers/players/lib_mdk.dart'
     if (dart.library.html) 'package:driftfin/stubs/web/lib_mdk_web.dart';
 import 'package:driftfin/wrappers/players/lib_mpv.dart';
 import 'package:driftfin/wrappers/players/native_player.dart';
+import 'package:driftfin/wrappers/players/player_capabilities.dart';
 import 'package:driftfin/wrappers/players/player_states.dart';
 
 part 'audio_queue_handler.dart';
@@ -52,6 +53,8 @@ class MediaControlsWrapper extends BaseAudioHandler implements VideoPlayerContro
   StreamSubscription<PlayerState>? _playerStateSubscription;
 
   bool get hasPlayer => _player != null;
+
+  PlayerCapabilities get capabilities => _player?.capabilities ?? PlayerCapabilities.none;
 
   PlayerOptions? get backend => switch (_player) {
         LibMPV _ => PlayerOptions.libMPV,
