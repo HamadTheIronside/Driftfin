@@ -12,11 +12,17 @@ import 'package:driftfin/models/playback/tv_playback_model.dart';
 import 'package:driftfin/models/settings/video_player_settings.dart';
 import 'package:driftfin/src/video_player_helper.g.dart';
 import 'package:driftfin/wrappers/players/base_player.dart';
+import 'package:driftfin/wrappers/players/player_capabilities.dart';
 import 'package:driftfin/wrappers/players/player_states.dart';
 
 bool nativeActivityStarted = false;
 
 class NativePlayer extends BasePlayer implements VideoPlayerListenerCallback {
+  @override
+  PlayerCapabilities get capabilities => const PlayerCapabilities(
+        subtitleDelay: true,
+      );
+
   final player = VideoPlayerApi();
   final activity = NativeVideoActivity();
 

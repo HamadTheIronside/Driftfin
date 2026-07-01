@@ -76,6 +76,54 @@ void main() {
       expect(state.duration, const Duration(minutes: 10));
       expect(state.buffer, const Duration(minutes: 2));
     });
+
+    test('error starts null and can be set via update', () {
+      final state = PlayerState();
+      expect(state.error, isNull);
+
+      const error = PlayerError('boom', fatal: true);
+      state.update(error: error);
+
+      expect(state.error, error);
+    });
+
+    test('update without an error argument does not clear a previously set error', () {
+      final state = PlayerState()..update(error: const PlayerError('boom'));
+
+      state.update(playing: true);
+
+      expect(state.error, const PlayerError('boom'));
+    });
+
+    test('clearError resets the error back to null', () {
+      final state = PlayerState()..update(error: const PlayerError('boom'));
+
+      state.clearError();
+
+      expect(state.error, isNull);
+    });
+
+    test('PlayerError equality is value-based', () {
+      expect(const PlayerError('boom', fatal: true), const PlayerError('boom', fatal: true));
+      expect(const PlayerError('boom'), isNot(const PlayerError('boom', fatal: true)));
+      expect(const PlayerError('boom'), isNot(const PlayerError('bang')));
+      // ignore: unrelated_type_equality_checks
+      expect(const PlayerError('boom') == 'boom', isFalse);
+      const error = PlayerError('boom');
+      expect(error == error, isTrue);
+    });
+
+    test('PlayerError hashCode matches for equal instances', () {
+      expect(const PlayerError('boom', fatal: true).hashCode, const PlayerError('boom', fatal: true).hashCode);
+    });
+
+    test('PlayerError toString reports message and fatal', () {
+      expect(const PlayerError('boom', fatal: true).toString(), 'PlayerError(boom, fatal: true)');
+    });
+
+    test('fatal defaults to false', () {
+      expect(const PlayerError('boom').fatal, isFalse);
+    });
   });
 
   group('PlayerStream.bindToState', () {

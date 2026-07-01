@@ -7,6 +7,7 @@ class PlayerState {
   double rate;
   bool buffering;
   Duration buffer;
+  PlayerError? error;
 
   PlayerState({
     this.playing = false,
@@ -17,6 +18,7 @@ class PlayerState {
     this.rate = 1.0,
     this.buffering = true,
     this.buffer = Duration.zero,
+    this.error,
   });
 
   PlayerState update({
@@ -28,6 +30,7 @@ class PlayerState {
     double? volume,
     double? rate,
     Duration? buffer,
+    PlayerError? error,
   }) {
     if (playing != null) this.playing = playing;
     if (completed != null) this.completed = completed;
@@ -37,8 +40,37 @@ class PlayerState {
     if (volume != null) this.volume = volume;
     if (rate != null) this.rate = rate;
     if (buffer != null) this.buffer = buffer;
+    if (error != null) this.error = error;
     return this;
   }
+
+  /// Clears a previously reported error, e.g. after a successful reload.
+  PlayerState clearError() {
+    error = null;
+    return this;
+  }
+}
+
+/// A non-fatal or fatal playback error reported by a [BasePlayer] backend.
+///
+/// Distinct from the retry loop in `lib_mpv.dart` giving up silently: this is
+/// how a backend tells the UI/playback layer *why* it failed so it can react
+/// (e.g. fall back to a transcode) instead of the player just sitting there.
+class PlayerError {
+  final String message;
+  final bool fatal;
+
+  const PlayerError(this.message, {this.fatal = false});
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is PlayerError && message == other.message && fatal == other.fatal;
+
+  @override
+  int get hashCode => Object.hash(message, fatal);
+
+  @override
+  String toString() => 'PlayerError($message, fatal: $fatal)';
 }
 
 class PlayerStream {

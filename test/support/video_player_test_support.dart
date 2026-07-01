@@ -12,11 +12,17 @@ import 'package:driftfin/models/playback/playback_model.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
 import 'package:driftfin/wrappers/media_control_wrapper.dart';
 import 'package:driftfin/wrappers/players/base_player.dart';
+import 'package:driftfin/wrappers/players/player_capabilities.dart';
 import 'package:driftfin/wrappers/players/player_states.dart';
 
 /// Minimal [BasePlayer] fake: every call is a no-op, no widgets/platform
 /// channels are touched.
 class FakeBasePlayer implements BasePlayer {
+  FakeBasePlayer({this.capabilities = PlayerCapabilities.none});
+
+  @override
+  final PlayerCapabilities capabilities;
+
   @override
   PlayerState lastState = PlayerState();
 
@@ -111,8 +117,23 @@ class FakeBasePlayer implements BasePlayer {
 class FakeVideoPlayerNotifier extends VideoPlayerNotifier {
   FakeVideoPlayerNotifier(super.ref);
 
-  Future<void> setupFake() async {
-    await state.setup(FakeBasePlayer());
+  late FakeBasePlayer fakePlayer;
+  int takeScreenshotCallCount = 0;
+
+  Future<void> setupFake({PlayerCapabilities capabilities = PlayerCapabilities.none}) async {
+    fakePlayer = FakeBasePlayer(capabilities: capabilities);
+    await state.setup(fakePlayer);
+  }
+
+  // The real implementation early-returns unless a sync path is configured
+  // (see VideoPlayerNotifier.takeScreenshot) - overridden here so widget
+  // tests can assert a tap reaches the notifier without wiring up
+  // clientSettingsProvider/sharedPreferencesProvider/JellyService just to
+  // satisfy that unrelated persistence path.
+  @override
+  Future<bool> takeScreenshot() async {
+    takeScreenshotCallCount++;
+    return true;
   }
 }
 

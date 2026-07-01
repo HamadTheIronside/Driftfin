@@ -15,9 +15,16 @@ import 'package:driftfin/models/settings/subtitle_settings_model.dart';
 import 'package:driftfin/models/settings/video_player_settings.dart';
 import 'package:driftfin/screens/video_player/video_player.dart' as video_screen;
 import 'package:driftfin/wrappers/players/base_player.dart';
+import 'package:driftfin/wrappers/players/player_capabilities.dart';
 import 'package:driftfin/wrappers/players/player_states.dart';
 
 class LibMDK extends BasePlayer {
+  @override
+  PlayerCapabilities get capabilities => const PlayerCapabilities(
+        screenshots: true,
+        subtitleDelay: true,
+      );
+
   VideoPlayerController? _controller;
   late final player = Player();
 
