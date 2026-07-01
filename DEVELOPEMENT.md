@@ -64,6 +64,18 @@ Format files to spec:
 dart format --line-length 120 ./lib/
 ```
 
+## 🐞 Crash Reporting (optional)
+
+Driftfin ships with opt-in [Sentry](https://sentry.io) crash reporting, off by default. It stays fully inert — no SDK
+init, no network calls — unless **both**:
+
+1. The app was built with a DSN: `flutter build <target> --dart-define=SENTRY_DSN=https://examplePublicKey@o0.ingest.sentry.io/0`
+   (Web deployments can instead set the `SENTRY_DSN` env var at container runtime — see [INSTALL.md](INSTALL.md) — so a
+   single Web build can serve multiple Sentry projects.)
+2. The user flips **Settings → Advanced → Send crash reports** in the app themselves.
+
+See `lib/bootstrap/app_bootstrap.dart` (`sentryDsn`, `resolvedSentryDsn`) and `lib/main.dart` for how the two are combined.
+
 ## 🌐 Using a demo Server
 You can use a fake server from Jellyfin.
 https://demo.jellyfin.org/stable/web/

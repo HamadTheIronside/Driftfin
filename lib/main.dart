@@ -46,7 +46,7 @@ void main(List<String> args) async {
   if (bootstrap.crashReportingEnabled) {
     await SentryFlutter.init(
       (options) {
-        options.dsn = sentryDsn;
+        options.dsn = bootstrap.sentryDsn;
         options.sendDefaultPii = false;
         options.tracesSampleRate = 0;
       },

@@ -22,6 +22,18 @@ import 'package:driftfin/util/svg_utils.dart';
 /// Never hardcoded — without it, crash reporting stays fully inert even if opted in.
 const sentryDsn = String.fromEnvironment('SENTRY_DSN');
 
+/// The DSN actually used at runtime. On Web this prefers the DSN injected into
+/// `config/config.json` at container start (docker-compose's `SENTRY_DSN` env
+/// var) over the compile-time [sentryDsn], since a single Web build is shared
+/// across deployments and can't bake in a deployment-specific value. Every
+/// other platform only ever has the compile-time value.
+String get resolvedSentryDsn {
+  if (kIsWeb && (FladderConfig.sentryDsn?.isNotEmpty ?? false)) {
+    return FladderConfig.sentryDsn!;
+  }
+  return sentryDsn;
+}
+
 bool get isDesktopPlatform {
   if (kIsWeb) return false;
   return [
@@ -39,6 +51,7 @@ class AppBootstrapResult {
     required this.argumentsModel,
     required this.crashProvider,
     required this.crashReportingEnabled,
+    required this.sentryDsn,
   });
 
   final SharedPreferences sharedPreferences;
@@ -50,6 +63,10 @@ class AppBootstrapResult {
   /// Whether the user has opted in to crash reporting, read directly from
   /// disk since this is decided before the Riverpod tree exists.
   final bool crashReportingEnabled;
+
+  /// The DSN to hand to `SentryFlutter.init` when [crashReportingEnabled] is
+  /// true — see [resolvedSentryDsn].
+  final String sentryDsn;
 }
 
 Future<AppBootstrapResult> bootstrapApplication(List<String> args) async {
@@ -90,8 +107,9 @@ Future<AppBootstrapResult> bootstrapApplication(List<String> args) async {
     leanBackEnabled,
   );
 
-  final crashReportingEnabled =
-      sentryDsn.isNotEmpty && SharedHelper(sharedPreferences: sharedPreferences).clientSettings.enableCrashReporting;
+  final effectiveSentryDsn = resolvedSentryDsn;
+  final crashReportingEnabled = effectiveSentryDsn.isNotEmpty &&
+      SharedHelper(sharedPreferences: sharedPreferences).clientSettings.enableCrashReporting;
 
   return AppBootstrapResult(
     sharedPreferences: sharedPreferences,
@@ -100,6 +118,7 @@ Future<AppBootstrapResult> bootstrapApplication(List<String> args) async {
     argumentsModel: argumentsModel,
     crashProvider: crashProvider,
     crashReportingEnabled: crashReportingEnabled,
+    sentryDsn: effectiveSentryDsn,
   );
 }
 
