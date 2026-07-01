@@ -106,6 +106,23 @@ void main() {
     test('PlayerError equality is value-based', () {
       expect(const PlayerError('boom', fatal: true), const PlayerError('boom', fatal: true));
       expect(const PlayerError('boom'), isNot(const PlayerError('boom', fatal: true)));
+      expect(const PlayerError('boom'), isNot(const PlayerError('bang')));
+      // ignore: unrelated_type_equality_checks
+      expect(const PlayerError('boom') == 'boom', isFalse);
+      const error = PlayerError('boom');
+      expect(error == error, isTrue);
+    });
+
+    test('PlayerError hashCode matches for equal instances', () {
+      expect(const PlayerError('boom', fatal: true).hashCode, const PlayerError('boom', fatal: true).hashCode);
+    });
+
+    test('PlayerError toString reports message and fatal', () {
+      expect(const PlayerError('boom', fatal: true).toString(), 'PlayerError(boom, fatal: true)');
+    });
+
+    test('fatal defaults to false', () {
+      expect(const PlayerError('boom').fatal, isFalse);
     });
   });
 

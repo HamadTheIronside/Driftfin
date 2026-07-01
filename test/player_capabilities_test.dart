@@ -58,4 +58,59 @@ void main() {
       expect(PlayerCapabilities.none.crossfade, isFalse);
     });
   });
+
+  group('PlayerCapabilities value semantics', () {
+    test('equal when every field matches', () {
+      const a = PlayerCapabilities(screenshots: true, audioDsp: true, subtitleDelay: true);
+      const b = PlayerCapabilities(screenshots: true, audioDsp: true, subtitleDelay: true);
+
+      expect(a, b);
+      expect(a.hashCode, b.hashCode);
+    });
+
+    test('is identical to itself', () {
+      const a = PlayerCapabilities(screenshots: true);
+      // ignore: unrelated_type_equality_checks
+      expect(identical(a, a), isTrue);
+      expect(a == a, isTrue);
+    });
+
+    test('not equal when any single field differs', () {
+      const base = PlayerCapabilities(screenshots: true, audioDsp: true);
+
+      expect(base, isNot(const PlayerCapabilities(screenshots: false, audioDsp: true)));
+      expect(base, isNot(const PlayerCapabilities(screenshots: true, audioDsp: false)));
+      expect(base, isNot(const PlayerCapabilities(screenshots: true, audioDsp: true, ambientGlow: true)));
+      expect(base, isNot(const PlayerCapabilities(screenshots: true, audioDsp: true, perTitleZoomPan: true)));
+      expect(base, isNot(const PlayerCapabilities(screenshots: true, audioDsp: true, errorReporting: true)));
+      expect(base, isNot(const PlayerCapabilities(screenshots: true, audioDsp: true, subtitleDelay: true)));
+      expect(base, isNot(const PlayerCapabilities(screenshots: true, audioDsp: true, crossfade: true)));
+    });
+
+    test('is not equal to an unrelated type', () {
+      // ignore: unrelated_type_equality_checks
+      expect(const PlayerCapabilities() == 'not a PlayerCapabilities', isFalse);
+    });
+
+    test('toString reports every field', () {
+      const capabilities = PlayerCapabilities(
+        screenshots: true,
+        audioDsp: true,
+        ambientGlow: true,
+        perTitleZoomPan: true,
+        errorReporting: true,
+        subtitleDelay: true,
+        crossfade: true,
+      );
+
+      final text = capabilities.toString();
+      expect(text, contains('screenshots: true'));
+      expect(text, contains('audioDsp: true'));
+      expect(text, contains('ambientGlow: true'));
+      expect(text, contains('perTitleZoomPan: true'));
+      expect(text, contains('errorReporting: true'));
+      expect(text, contains('subtitleDelay: true'));
+      expect(text, contains('crossfade: true'));
+    });
+  });
 }

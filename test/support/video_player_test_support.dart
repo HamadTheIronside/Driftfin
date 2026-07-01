@@ -117,8 +117,23 @@ class FakeBasePlayer implements BasePlayer {
 class FakeVideoPlayerNotifier extends VideoPlayerNotifier {
   FakeVideoPlayerNotifier(super.ref);
 
+  late FakeBasePlayer fakePlayer;
+  int takeScreenshotCallCount = 0;
+
   Future<void> setupFake({PlayerCapabilities capabilities = PlayerCapabilities.none}) async {
-    await state.setup(FakeBasePlayer(capabilities: capabilities));
+    fakePlayer = FakeBasePlayer(capabilities: capabilities);
+    await state.setup(fakePlayer);
+  }
+
+  // The real implementation early-returns unless a sync path is configured
+  // (see VideoPlayerNotifier.takeScreenshot) - overridden here so widget
+  // tests can assert a tap reaches the notifier without wiring up
+  // clientSettingsProvider/sharedPreferencesProvider/JellyService just to
+  // satisfy that unrelated persistence path.
+  @override
+  Future<bool> takeScreenshot() async {
+    takeScreenshotCallCount++;
+    return true;
   }
 }
 

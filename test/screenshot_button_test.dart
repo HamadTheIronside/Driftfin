@@ -52,11 +52,19 @@ void main() {
     return container;
   }
 
-  testWidgets('is enabled on a backend that supports screenshots', (tester) async {
-    await pumpScreenshotButton(tester, capabilities: const PlayerCapabilities(screenshots: true));
+  testWidgets('is enabled on a backend that supports screenshots, and tapping it takes a screenshot', (tester) async {
+    final container = await pumpScreenshotButton(tester, capabilities: const PlayerCapabilities(screenshots: true));
 
     final button = tester.widget<IconButton>(find.byType(IconButton));
     expect(button.onPressed, isNotNull);
+
+    final notifier = container.read(videoPlayerProvider.notifier) as FakeVideoPlayerNotifier;
+    expect(notifier.takeScreenshotCallCount, 0);
+
+    await tester.tap(find.byType(IconButton));
+    await tester.pumpAndSettle();
+
+    expect(notifier.takeScreenshotCallCount, 1);
   });
 
   testWidgets('grays out on a backend that does not support screenshots', (tester) async {
