@@ -83,9 +83,10 @@ jobs:
             Driftfin-Windows-*.zip
             Driftfin-Windows-*-Setup.exe
 
-  # Deploys the web build to GitHub Pages (https://hamadtheironside.github.io/Driftfin/).
-  # Must use --base-href "/Driftfin/" because Pages serves under the repo subpath;
-  # without it Flutter requests assets from "/" and the page renders blank.
+  # Deploys the landing page (site/) at the Pages root and the web app under
+  # /app/ (https://hamadtheironside.github.io/Driftfin/ and .../Driftfin/app/).
+  # The app must use --base-href "/Driftfin/app/" because it's served from that
+  # subpath; without it Flutter requests assets from "/" and the page renders blank.
   pages:
     needs: version
     runs-on: ubuntu-latest
@@ -96,13 +97,18 @@ jobs:
           flutter-version-file: .fvmrc
           cache: true
       - run: flutter pub get
-      - run: flutter build web --release --base-href "/Driftfin/" --build-number=${{ github.run_number }}
+      - run: flutter build web --release --base-href "/Driftfin/app/" --build-number=${{ github.run_number }}
+      - name: Assemble Pages publish dir (landing site + app)
+        run: |
+          mkdir -p dist-pages/app
+          cp -r site/. dist-pages/
+          cp -r build/web/. dist-pages/app/
       - name: Deploy to GitHub Pages
         if: startsWith(github.ref, 'refs/tags/')
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
+          publish_dir: ./dist-pages
 
   ios:
     needs: version
