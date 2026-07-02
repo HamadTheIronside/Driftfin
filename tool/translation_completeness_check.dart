@@ -3,7 +3,11 @@ import 'dart:io';
 
 /// Completeness report for a single non-template ARB locale file.
 class TranslationReport {
-  const TranslationReport({required this.fileName, required this.missingKeys, required this.emptyKeys});
+  const TranslationReport({
+    required this.fileName,
+    required this.missingKeys,
+    required this.emptyKeys,
+  });
 
   final String fileName;
   final List<String> missingKeys;
@@ -19,14 +23,19 @@ class TranslationReport {
 /// only the template needs them.
 List<TranslationReport> checkTranslationCompleteness(Directory l10nDir) {
   final templateFile = File('${l10nDir.path}/app_en.arb');
-  final template = jsonDecode(templateFile.readAsStringSync()) as Map<String, dynamic>;
-  final templateKeys = template.keys.where((key) => !key.startsWith('@')).toList()..sort();
+  final template =
+      jsonDecode(templateFile.readAsStringSync()) as Map<String, dynamic>;
+  final templateKeys =
+      template.keys.where((key) => !key.startsWith('@')).toList()..sort();
 
   final arbFiles =
       l10nDir
           .listSync()
           .whereType<File>()
-          .where((file) => file.path.endsWith('.arb') && file.path != templateFile.path)
+          .where(
+            (file) =>
+                file.path.endsWith('.arb') && file.path != templateFile.path,
+          )
           .toList()
         ..sort((a, b) => a.path.compareTo(b.path));
 
@@ -49,5 +58,9 @@ TranslationReport _checkFile(File file, List<String> templateKeys) {
     }
   }
 
-  return TranslationReport(fileName: file.uri.pathSegments.last, missingKeys: missingKeys, emptyKeys: emptyKeys);
+  return TranslationReport(
+    fileName: file.uri.pathSegments.last,
+    missingKeys: missingKeys,
+    emptyKeys: emptyKeys,
+  );
 }

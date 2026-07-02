@@ -12,9 +12,14 @@ void main() {
 
     final incomplete = reports.where((report) => !report.isComplete).toList();
     final details = [
-      for (final report in incomplete) '${report.fileName}: missing=${report.missingKeys} empty=${report.emptyKeys}',
+      for (final report in incomplete)
+        '${report.fileName}: missing=${report.missingKeys} empty=${report.emptyKeys}',
     ].join('\n');
 
-    expect(incomplete, isEmpty, reason: 'Incomplete translation files:\n$details');
+    expect(
+      incomplete,
+      isEmpty,
+      reason: 'Incomplete translation files:\n$details',
+    );
   });
 }

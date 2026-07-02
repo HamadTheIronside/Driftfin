@@ -11,11 +11,15 @@ void main() {
   final incomplete = reports.where((report) => !report.isComplete).toList();
 
   if (incomplete.isEmpty) {
-    stdout.writeln('All ${reports.length} translation files are 100% complete.');
+    stdout.writeln(
+      'All ${reports.length} translation files are 100% complete.',
+    );
     return;
   }
 
-  stderr.writeln('Incomplete translations found in ${incomplete.length} file(s):');
+  stderr.writeln(
+    'Incomplete translations found in ${incomplete.length} file(s):',
+  );
   for (final report in incomplete) {
     stderr.writeln(
       '  ${report.fileName}: ${report.missingKeys.length} missing, '
