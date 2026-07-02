@@ -81,4 +81,68 @@ void main() {
       expect(parseSyncCommand(null), SyncCommand.unknown);
     });
   });
+
+  group('parseSyncRelayKind', () {
+    test('maps every relay kind case-insensitively', () {
+      expect(parseSyncRelayKind('Chat'), SyncRelayKind.chat);
+      expect(parseSyncRelayKind('REACTION'), SyncRelayKind.reaction);
+      expect(parseSyncRelayKind('typing'), SyncRelayKind.typing);
+      expect(parseSyncRelayKind('Buffering'), SyncRelayKind.buffering);
+    });
+
+    test('falls back to unknown for null/garbage', () {
+      expect(parseSyncRelayKind(null), SyncRelayKind.unknown);
+      expect(parseSyncRelayKind('whatever'), SyncRelayKind.unknown);
+    });
+  });
+
+  group('SyncRelayMessage.tryParse', () {
+    test('parses a chat payload carrying the Driftfin relay marker', () {
+      final msg = SyncRelayMessage.tryParse(
+        header: syncRelayMarker,
+        text: '{"k":"chat","s":"Alice","t":"hello"}',
+      );
+      expect(msg, isNotNull);
+      expect(msg!.kind, SyncRelayKind.chat);
+      expect(msg.sender, 'Alice');
+      expect(msg.text, 'hello');
+      expect(msg.emoji, isNull);
+    });
+
+    test('parses a reaction payload', () {
+      final msg = SyncRelayMessage.tryParse(
+        header: syncRelayMarker,
+        text: '{"k":"reaction","s":"Bob","e":"👍"}',
+      );
+      expect(msg, isNotNull);
+      expect(msg!.kind, SyncRelayKind.reaction);
+      expect(msg.emoji, '👍');
+    });
+
+    test('null when the header is not the Driftfin relay marker (a genuine admin DisplayMessage)', () {
+      final msg = SyncRelayMessage.tryParse(header: 'Server Admin', text: '{"k":"chat","s":"Alice","t":"hi"}');
+      expect(msg, isNull);
+    });
+
+    test('null when the marker is present but text is not valid JSON', () {
+      final msg = SyncRelayMessage.tryParse(header: syncRelayMarker, text: 'not json');
+      expect(msg, isNull);
+    });
+
+    test('null when JSON is valid but not an object', () {
+      final msg = SyncRelayMessage.tryParse(header: syncRelayMarker, text: '[1,2,3]');
+      expect(msg, isNull);
+    });
+
+    test('null when the sender field is missing or empty', () {
+      expect(SyncRelayMessage.tryParse(header: syncRelayMarker, text: '{"k":"chat","t":"hi"}'), isNull);
+      expect(SyncRelayMessage.tryParse(header: syncRelayMarker, text: '{"k":"chat","s":"","t":"hi"}'), isNull);
+    });
+
+    test('unrecognized kind decodes to unknown rather than throwing', () {
+      final msg = SyncRelayMessage.tryParse(header: syncRelayMarker, text: '{"k":"bogus","s":"Alice"}');
+      expect(msg, isNotNull);
+      expect(msg!.kind, SyncRelayKind.unknown);
+    });
+  });
 }

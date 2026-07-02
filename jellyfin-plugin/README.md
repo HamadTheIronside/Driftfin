@@ -19,6 +19,15 @@ managed integrations.
 - Any integration that is enabled **and** fully filled in becomes
   *server-managed*: Driftfin uses those values and shows the matching in-app
   fields as read-only ("Managed by server").
+- The plugin also exposes `POST /Driftfin/SyncPlay/{groupId}/Messages`, which
+  any authenticated group member may call to relay a Watch Together chat
+  message, emoji reaction, or typing/buffering presence ping to the rest of
+  the group. Jellyfin's own session-message API only reaches sessions the
+  caller can remote-control (normally administrators only); this endpoint
+  runs with the plugin's own trusted access to the session manager, so it
+  reaches every group member regardless of permissions — the fix for
+  Driftfin issue #4. Without the plugin, chat still works between clients
+  where one side has remote-control rights; reactions/presence are local-only.
 
 > **Security note:** `GET /Driftfin/Config` returns the stored values —
 > including API keys — to every logged-in user (this matches how Driftfin

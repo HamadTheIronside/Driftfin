@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
+import 'package:meta/meta.dart';
 
 import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
 import 'package:driftfin/models/playback/playback_model.dart';
@@ -9,6 +11,7 @@ import 'package:driftfin/models/syncplay/sync_play_models.dart';
 import 'package:driftfin/models/syncplay/sync_play_state.dart';
 import 'package:driftfin/providers/api_provider.dart';
 import 'package:driftfin/providers/syncplay/jellyfin_socket.dart';
+import 'package:driftfin/providers/syncplay/sync_play_relay.dart';
 import 'package:driftfin/providers/syncplay/time_sync_service.dart';
 import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
@@ -24,9 +27,12 @@ Duration _durationFromTicks(int ticks) => Duration(microseconds: ticks ~/ 10);
 /// the local player aligned with the group via drift correction, and reports
 /// buffering/ready so the group waits for slow members.
 class SyncPlayController extends StateNotifier<SyncPlayState> {
-  SyncPlayController(this.ref) : super(const SyncPlayState());
+  SyncPlayController(this.ref, {http.Client? httpClient, @visibleForTesting SyncPlayState? initialState})
+      : _httpClient = httpClient ?? http.Client(),
+        super(initialState ?? const SyncPlayState());
 
   final Ref ref;
+  final http.Client _httpClient;
 
   final JellyfinSocket _socket = JellyfinSocket();
   TimeSyncService? _timeSync;
@@ -36,9 +42,11 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
   StreamSubscription<PlayerState>? _playerSub;
   Timer? _commandTimer;
   Timer? _driftTimer;
+  final Map<String, Timer> _presenceExpiryTimers = {};
 
   bool _wired = false;
   bool _lastBuffering = false;
+  bool _typingSent = false;
 
   // Drift correction anchor: where the group expects playback to be, and from when.
   Duration _anchorPosition = Duration.zero;
@@ -130,18 +138,24 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
   }
 
   /// Send a chat message to the group. SyncPlay has no chat channel, so this is
-  /// relayed best-effort as a Jellyfin session `DisplayMessage` to each member's
-  /// active session(s); members receive it as a GeneralCommand on their socket.
-  ///
-  /// Verified against Jellyfin 10.11.x: `/Sessions` only returns sessions the
-  /// caller may control, so this reliably reaches peers only when the user has
-  /// the "Allow remote control of other users" permission. Without it, delivery
-  /// is limited to the sender's own sessions (effectively a local echo).
+  /// relayed via the optional Driftfin plugin's group message relay (see
+  /// [_sendRelay]) when installed — the fix for issue #4, reaching every
+  /// member regardless of permissions. Without the plugin this falls back to
+  /// the legacy best-effort relay: a Jellyfin session `DisplayMessage` to each
+  /// member's active session(s), which (verified against Jellyfin 10.11.x)
+  /// only reliably reaches peers when the sender has the "Allow remote control
+  /// of other users" permission; otherwise delivery is limited to the
+  /// sender's own sessions (effectively a local echo).
   Future<void> sendChat(String text) async {
     final trimmed = text.trim();
     if (!state.inGroup || trimmed.isEmpty) return;
     final me = ref.read(userProvider)?.name ?? 'Me';
     _appendChat(SyncChatMessage(sender: me, text: trimmed, mine: true));
+    final relayed = await _sendRelay(SyncRelayKind.chat, text: trimmed);
+    if (!relayed) await _legacyBroadcastChat(trimmed, me);
+  }
+
+  Future<void> _legacyBroadcastChat(String text, String sender) async {
     try {
       final myDeviceId = ref.read(userProvider)?.credentials.deviceId;
       final sessions = (await _api.sessionsGet()).body ?? const [];
@@ -153,13 +167,47 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
         _api
             .sessionsSessionIdMessagePost(
               sessionId: s.id!,
-              body: MessageCommand(header: me, text: trimmed, timeoutMs: 8000),
+              body: MessageCommand(header: sender, text: text, timeoutMs: 8000),
             )
             .ignore();
       }
     } catch (e) {
       log('SyncPlay chat send failed: $e');
     }
+  }
+
+  /// Send a quick emoji reaction to the group (issue #5). Relay-only: requires
+  /// the Driftfin plugin (see [_sendRelay]); without it the reaction is shown
+  /// locally only, since there's no admin-permission fallback that makes sense
+  /// for a purely decorative feature.
+  Future<void> sendReaction(String emoji) async {
+    final trimmed = emoji.trim();
+    if (!state.inGroup || trimmed.isEmpty) return;
+    final me = ref.read(userProvider)?.name ?? 'Me';
+    _appendReaction(SyncReactionEvent(sender: me, emoji: trimmed, at: DateTime.now(), mine: true));
+    await _sendRelay(SyncRelayKind.reaction, emoji: trimmed);
+  }
+
+  /// Report a local typing start/stop to the group (issue #5 presence).
+  /// Relay-only; a no-op without the Driftfin plugin. De-duplicates so the UI
+  /// can call this on every keystroke without spamming the relay.
+  Future<void> setTyping(bool typing) async {
+    if (!state.inGroup || typing == _typingSent) return;
+    _typingSent = typing;
+    await _sendRelay(SyncRelayKind.typing, text: typing ? 'start' : 'stop');
+  }
+
+  /// Posts a relay message via the optional Driftfin plugin's
+  /// `POST /Driftfin/SyncPlay/{groupId}/Messages` endpoint. Returns false (and
+  /// never throws) when not in a group, not signed in, or the plugin isn't
+  /// installed/reachable.
+  Future<bool> _sendRelay(SyncRelayKind kind, {String? text, String? emoji}) async {
+    final groupId = state.groupId;
+    final credentials = ref.read(userProvider)?.credentials;
+    if (groupId == null || credentials == null) return false;
+    final url = buildServerUrl(ref, pathSegments: ['Driftfin', 'SyncPlay', groupId, 'Messages']);
+    if (url.isEmpty) return false;
+    return postSyncPlayRelayMessage(url, credentials.header(ref), kind, text: text, emoji: emoji, client: _httpClient);
   }
 
   /// Routed from the player when the user seeks in a group.
@@ -211,6 +259,13 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
   }
 
   // ---- Inbound message routing -------------------------------------------
+
+  /// Test-only entry point into the socket message router (group updates,
+  /// scheduled commands, and chat/reaction/typing/buffering relay parsing) —
+  /// lets tests exercise routing without a live WebSocket, which
+  /// [_ensureWired] otherwise requires. Never call this from production code.
+  @visibleForTesting
+  void debugHandleMessage(Map<String, dynamic> message) => _onMessage(message);
 
   void _onMessage(Map<String, dynamic> msg) {
     try {
@@ -278,11 +333,40 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     if (!state.inGroup) return;
     if (data['Name']?.toString() != 'DisplayMessage') return;
     final args = data['Arguments'];
-    if (args is Map) {
-      final header = args['Header']?.toString() ?? '';
-      final text = args['Text']?.toString() ?? '';
-      if (text.isEmpty) return;
-      _appendChat(SyncChatMessage(sender: header, text: text, mine: false));
+    if (args is! Map) return;
+    final header = args['Header']?.toString() ?? '';
+    final text = args['Text']?.toString() ?? '';
+    if (text.isEmpty) return;
+    final relay = SyncRelayMessage.tryParse(header: header, text: text);
+    if (relay != null) {
+      _onRelayMessage(relay);
+      return;
+    }
+    // Not a Driftfin relay payload: a genuine admin-authored DisplayMessage,
+    // shown as a plain system chat line (existing pre-plugin behavior).
+    _appendChat(SyncChatMessage(sender: header, text: text, mine: false));
+  }
+
+  void _onRelayMessage(SyncRelayMessage relay) {
+    switch (relay.kind) {
+      case SyncRelayKind.chat:
+        final text = relay.text;
+        if (text == null || text.isEmpty) return;
+        _appendChat(SyncChatMessage(sender: relay.sender, text: text, mine: false));
+        break;
+      case SyncRelayKind.reaction:
+        final emoji = relay.emoji;
+        if (emoji == null || emoji.isEmpty) return;
+        _appendReaction(SyncReactionEvent(sender: relay.sender, emoji: emoji, at: DateTime.now(), mine: false));
+        break;
+      case SyncRelayKind.typing:
+        _setPresence(relay.sender, typing: relay.text == 'start');
+        break;
+      case SyncRelayKind.buffering:
+        _setPresence(relay.sender, buffering: relay.text == 'start');
+        break;
+      case SyncRelayKind.unknown:
+        break;
     }
   }
 
@@ -291,6 +375,32 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     final next = [...state.chat, message];
     if (next.length > 200) next.removeRange(0, next.length - 200);
     state = state.copyWith(chat: next);
+  }
+
+  void _appendReaction(SyncReactionEvent event) {
+    if (!mounted) return;
+    final next = [...state.reactions, event];
+    if (next.length > 20) next.removeRange(0, next.length - 20);
+    state = state.copyWith(reactions: next);
+  }
+
+  /// Updates a member's typing/buffering presence. A typing=true ping
+  /// auto-expires after a few seconds in case the peer's "stop" never arrives
+  /// (e.g. it disconnects mid-message).
+  void _setPresence(String member, {bool? typing, bool? buffering}) {
+    if (!mounted || member.isEmpty) return;
+    final current = state.presence[member] ?? const SyncPresenceInfo();
+    state =
+        state.copyWith(presence: {...state.presence, member: current.copyWith(typing: typing, buffering: buffering)});
+    if (typing == true) {
+      _presenceExpiryTimers[member]?.cancel();
+      _presenceExpiryTimers[member] = Timer(const Duration(seconds: 6), () {
+        _presenceExpiryTimers.remove(member);
+        _setPresence(member, typing: false);
+      });
+    } else if (typing == false) {
+      _presenceExpiryTimers.remove(member)?.cancel();
+    }
   }
 
   void _applyGroupInfo(Map<String, dynamic> info) {
@@ -460,6 +570,9 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     if (s.buffering == _lastBuffering) return;
     _lastBuffering = s.buffering;
     _reportBuffer(s.buffering, s.position, s.playing);
+    // Best-effort presence ping so peers can show "X is buffering" (issue #5);
+    // edge-triggered like the report above, so this can't spam the relay.
+    _sendRelay(SyncRelayKind.buffering, text: s.buffering ? 'start' : 'stop').ignore();
   }
 
   void _reportReady() {
@@ -560,6 +673,11 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
     pendingItemId = null;
     _currentPlaylistItemId = null;
     _anchorPlaying = false;
+    _typingSent = false;
+    for (final t in _presenceExpiryTimers.values) {
+      t.cancel();
+    }
+    _presenceExpiryTimers.clear();
     if (mounted) state = state.copyWith(clearGroup: true);
   }
 
@@ -583,11 +701,16 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
   void dispose() {
     _commandTimer?.cancel();
     _driftTimer?.cancel();
+    for (final t in _presenceExpiryTimers.values) {
+      t.cancel();
+    }
+    _presenceExpiryTimers.clear();
     _msgSub?.cancel();
     _connSub?.cancel();
     _playerSub?.cancel();
     _timeSync?.dispose();
     _socket.dispose();
+    _httpClient.close();
     super.dispose();
   }
 }

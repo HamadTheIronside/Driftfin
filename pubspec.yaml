@@ -59,6 +59,10 @@ dependencies:
   # Logging
   logging: ^1.3.0
 
+  # Annotations (@visibleForTesting, @protected, ...) — was transitive-only,
+  # made direct for lib/providers/syncplay/sync_play_controller.dart's test seam.
+  meta: ^1.16.0
+
   # Crash reporting (opt-in, off by default — see clientSettingsProvider.enableCrashReporting)
   sentry_flutter: ^9.22.0
 
