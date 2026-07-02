@@ -3,7 +3,6 @@
 // Chromecast/DLNA discovery (mDNS/SSDP are unavailable in CI and would make
 // these tests slow/flaky) or a live Jellyfin server.
 import 'package:chopper/chopper.dart';
-import 'package:fake_async/fake_async.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -221,14 +220,17 @@ void main() {
     expect(harness.container.read(castProvider).status, CastStatus.disconnected);
   });
 
-  test("the position-poll timer reflects the remote session's reported play state", () {
-    fakeAsync((async) {
-      late _Harness harness;
-      _readyHarness().then((h) {
-        harness = h;
-        harness.controller.connect(_sessionTarget);
-      });
-      async.flushMicrotasks();
+  // These two drive the real 2-second Timer.periodic in _pollSession with a
+  // real (short, bounded) wait rather than fake_async: the poll loop reads
+  // through several app-level providers (video player, riverpod listeners)
+  // whose async internals aren't guaranteed to be fake-async-clean, so a
+  // real wait is the more robust choice for CI even at the cost of ~3s each.
+  test(
+    "the position-poll timer reflects the remote session's reported play state",
+    () async {
+      final harness = await _readyHarness();
+      addTearDown(harness.container.dispose);
+      await harness.controller.connect(_sessionTarget);
 
       // The remote now reports itself paused, 5 minutes in.
       harness.service.sessionsById['s1'] = const SessionInfoDto(
@@ -238,33 +240,28 @@ void main() {
         playState: PlayerStateInfo(isPaused: true, positionTicks: 3000000000),
       );
 
-      async.elapse(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 3));
 
       final state = harness.container.read(castProvider);
       expect(state.playing, isFalse);
       expect(state.position, const Duration(minutes: 5));
+    },
+    timeout: const Timeout(Duration(seconds: 15)),
+  );
 
-      harness.container.dispose();
-    });
-  });
-
-  test('the position-poll timer disconnects locally once the remote session disappears', () {
-    fakeAsync((async) {
-      late _Harness harness;
-      _readyHarness().then((h) {
-        harness = h;
-        harness.controller.connect(_sessionTarget);
-      });
-      async.flushMicrotasks();
+  test(
+    'the position-poll timer disconnects locally once the remote session disappears',
+    () async {
+      final harness = await _readyHarness();
+      addTearDown(harness.container.dispose);
+      await harness.controller.connect(_sessionTarget);
 
       harness.service.sessionsById.remove('s1'); // remote ended playback / logged out
 
-      async.elapse(const Duration(seconds: 2));
-      async.flushMicrotasks();
+      await Future.delayed(const Duration(seconds: 3));
 
       expect(harness.container.read(castProvider).isCasting, isFalse);
-
-      harness.container.dispose();
-    });
-  });
+    },
+    timeout: const Timeout(Duration(seconds: 15)),
+  );
 }
