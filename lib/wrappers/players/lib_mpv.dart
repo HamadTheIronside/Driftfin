@@ -41,7 +41,6 @@ class LibMPV extends BasePlayer {
 
   mpv.Player? _player;
   VideoController? _controller;
-  String _currentSubtitleCodec = '';
 
   final StreamController<PlayerState> _stateController = StreamController.broadcast();
   @override
@@ -514,7 +513,7 @@ class LibMPV extends BasePlayer {
       await _player?.setSubtitleTrack(mpv.SubtitleTrack.no());
       return -1;
     }
-    _currentSubtitleCodec = wantedSubtitle.codec;
+
     final internalTrack = subTracks.getRange(2, subTracks.length).toList();
     final index = playbackModel.subStreams?.sublist(1).indexWhere((element) => element.id == wantedSubtitle.id);
     final subTrack = internalTrack.elementAtOrNull(index ?? -1);
@@ -582,7 +581,6 @@ class LibMPV extends BasePlayer {
               controller: _controller!,
               showOverlay: showOverlay,
               controlsKey: controlsKey,
-              currentSubtitleCodec: _currentSubtitleCodec,
             )
           : null;
 
@@ -611,13 +609,10 @@ class _VideoSubtitles extends ConsumerStatefulWidget {
   final VideoController controller;
   final bool showOverlay;
   final GlobalKey? controlsKey;
-  final String currentSubtitleCodec;
-
   const _VideoSubtitles({
     required this.controller,
     this.showOverlay = false,
     this.controlsKey,
-    this.currentSubtitleCodec = '',
   });
 
   @override
@@ -669,19 +664,9 @@ class _VideoSubtitlesState extends ConsumerState<_VideoSubtitles> {
     final bool isLibassEnabled = widget.controller.player.platform?.configuration.libass ?? false;
 
     if (isLibassEnabled) {
-      // On desktop (Linux/Windows/macOS), mpv burns ALL subtitle formats into the video when libass is enabled.
-      // On mobile (Android/iOS), only ASS/SSA subs are burned in by libass; other formats need the Flutter overlay.
-      final bool isDesktop = defaultTargetPlatform == TargetPlatform.linux ||
-          defaultTargetPlatform == TargetPlatform.windows ||
-          defaultTargetPlatform == TargetPlatform.macOS;
-      if (isDesktop) {
-        return const SizedBox.shrink();
-      }
-      final currentSubCodec = widget.currentSubtitleCodec.toLowerCase();
-      final bool isAssSubtitle = currentSubCodec.contains('ass') || currentSubCodec.contains('ssa');
-      if (isAssSubtitle || text.isEmpty) {
-        return const SizedBox.shrink();
-      }
+      // When libass is enabled, mpv burns subtitles of all formats into the video frame.
+      // Hide the Flutter overlay to avoid rendering duplicates.
+      return const SizedBox.shrink();
     } else if (text.isEmpty) {
       return const SizedBox.shrink();
     }
