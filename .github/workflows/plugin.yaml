@@ -5,6 +5,7 @@ on:
     paths:
       - 'jellyfin-plugin/**'
       - '.github/workflows/plugin.yaml'
+    tags: ["plugin-v*"]
   pull_request:
     paths:
       - 'jellyfin-plugin/**'
@@ -41,3 +42,101 @@ jobs:
         with:
           name: driftfin-plugin
           path: dist/driftfin-plugin.zip
+
+  # Publishes a tagged plugin release and updates the Jellyfin plugin-repository
+  # manifest, so admins can add the manifest URL under Dashboard → Plugins →
+  # Repositories and install/update "Driftfin" from inside Jellyfin instead of
+  # copying the DLL by hand (see jellyfin-plugin/README.md).
+  #
+  # To cut a plugin release: bump `version` in jellyfin-plugin/build.yaml *and*
+  # the three <Version>/<AssemblyVersion>/<FileVersion> fields in the .csproj
+  # (they must match), merge, then:
+  #   git tag plugin-vX.Y.Z.W && git push origin plugin-vX.Y.Z.W
+  release:
+    name: Release plugin
+    if: startsWith(github.ref, 'refs/tags/plugin-v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Resolve and verify version
+        id: v
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#plugin-v}"
+          BUILD_YAML_VERSION="$(python3 -c "import yaml; print(yaml.safe_load(open('jellyfin-plugin/build.yaml'))['version'])")"
+          if [ "${TAG_VERSION}" != "${BUILD_YAML_VERSION}" ]; then
+            echo "::error::tag plugin-v${TAG_VERSION} does not match jellyfin-plugin/build.yaml version ${BUILD_YAML_VERSION}"
+            exit 1
+          fi
+          echo "version=${TAG_VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore jellyfin-plugin/Jellyfin.Plugin.Driftfin/Jellyfin.Plugin.Driftfin.csproj
+
+      - name: Build
+        run: dotnet build jellyfin-plugin/Jellyfin.Plugin.Driftfin/Jellyfin.Plugin.Driftfin.csproj -c Release --no-restore
+
+      - name: Package release zip
+        id: pkg
+        run: |
+          mkdir -p dist
+          ZIP_NAME="driftfin-plugin-${{ steps.v.outputs.version }}.zip"
+          cp jellyfin-plugin/Jellyfin.Plugin.Driftfin/bin/Release/net8.0/Jellyfin.Plugin.Driftfin.dll dist/
+          (cd dist && zip "${ZIP_NAME}" "Jellyfin.Plugin.Driftfin.dll")
+          echo "zip_path=dist/${ZIP_NAME}" >> "$GITHUB_OUTPUT"
+          echo "zip_name=${ZIP_NAME}" >> "$GITHUB_OUTPUT"
+          echo "checksum=$(md5sum "dist/${ZIP_NAME}" | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Driftfin plugin ${{ steps.v.outputs.version }}
+          generate_release_notes: false
+          files: ${{ steps.pkg.outputs.zip_path }}
+          body: |
+            Jellyfin **server** plugin — see [jellyfin-plugin/README.md](https://github.com/${{ github.repository }}/blob/develop/jellyfin-plugin/README.md).
+
+            **Install via a plugin repository (recommended):** add
+            `https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/jellyfin-plugin/manifest.json`
+            under **Dashboard → Plugins → Repositories**, then install "Driftfin" and restart.
+
+            **Manual install:** unzip `${{ steps.pkg.outputs.zip_name }}` into a `Driftfin` folder under your Jellyfin `plugins/` directory and restart the server.
+
+      - name: Fetch existing manifest
+        run: |
+          curl -fsSL -o existing-manifest.json \
+            "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/jellyfin-plugin/manifest.json" \
+            || echo "[]" > existing-manifest.json
+
+      - name: Install manifest script dependencies
+        run: pip install --quiet pyyaml
+
+      - name: Update manifest
+        run: |
+          python3 jellyfin-plugin/scripts/update_manifest.py \
+            --build-yaml jellyfin-plugin/build.yaml \
+            --existing existing-manifest.json \
+            --source-url "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/${{ steps.pkg.outputs.zip_name }}" \
+            --checksum "${{ steps.pkg.outputs.checksum }}" \
+            --timestamp "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --image-url "https://raw.githubusercontent.com/${{ github.repository }}/develop/icons/production/driftfin_icon_512.png" \
+            --output manifest-out/jellyfin-plugin/manifest.json
+
+      # keep_files: true — this branch also hosts the landing site + web app
+      # (deployed by release.yml); this step must not delete that content.
+      - name: Deploy manifest to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./manifest-out
+          keep_files: true

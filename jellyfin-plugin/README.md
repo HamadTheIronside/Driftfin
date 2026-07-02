@@ -55,26 +55,44 @@ The plugin DLL lands in
 target Jellyfin **10.10.x / net8.0**. If you run a different version, bump both
 before building.
 
-## Package / release
-
-Use [`jprm`](https://github.com/oddstr13/jellyfin-plugin-repository-manager) to
-build a release zip and manifest entry:
-
-```bash
-pip install jprm
-jprm plugin build jellyfin-plugin
-```
-
-Or grab the zip produced by the `Plugin (Jellyfin)` GitHub Actions workflow
-(`.github/workflows/plugin.yaml`).
-
 ## Install into Jellyfin
 
-**Manual:** unzip the build output into a `Driftfin` folder under your Jellyfin
-`plugins/` directory and restart the server.
+**Via a plugin repository (recommended):** add
 
-**Via a plugin repository:** publish the zip + manifest produced by `jprm`,
-then add the manifest URL in **Dashboard → Plugins → Repositories**, install
-"Driftfin", and restart.
+```
+https://hamadtheironside.github.io/Driftfin/jellyfin-plugin/manifest.json
+```
+
+under **Dashboard → Plugins → Repositories**, then find "Driftfin" under
+**Catalog** and install it. Future versions show up there too — updating is a
+normal Jellyfin plugin update, no manual file copying.
+
+**Manual:** grab `driftfin-plugin-*.zip` from the
+[plugin releases](https://github.com/HamadTheIronside/Driftfin/releases?q=plugin-v),
+unzip it into a `Driftfin` folder under your Jellyfin `plugins/` directory, and
+restart the server.
 
 Then open **Dashboard → Plugins → Driftfin** and fill in the integrations.
+
+## Release process (maintainers)
+
+The manifest above is generated and deployed automatically by the `Plugin
+(Jellyfin)` GitHub Actions workflow (`.github/workflows/plugin.yaml`) — it
+builds the plugin, publishes a GitHub Release with the zip, computes its MD5
+checksum, and merges a new entry into the manifest hosted on GitHub Pages
+(`gh-pages`, same branch as the landing site — the two deploys are configured
+with `keep_files: true` so neither wipes the other's content).
+
+To cut a release:
+
+1. Bump `version` in [`build.yaml`](build.yaml) **and** the three
+   `<Version>`/`<AssemblyVersion>`/`<FileVersion>` fields in
+   [`Jellyfin.Plugin.Driftfin.csproj`](Jellyfin.Plugin.Driftfin/Jellyfin.Plugin.Driftfin.csproj)
+   — they must match, and the workflow verifies this.
+2. Merge that change.
+3. `git tag plugin-vX.Y.Z.W && git push origin plugin-vX.Y.Z.W`
+
+You can still build a local zip/manifest by hand with
+[`jprm`](https://github.com/oddstr13/jellyfin-plugin-repository-manager)
+(`pip install jprm && jprm plugin build jellyfin-plugin`) if you want to test
+a repository without waiting on CI.
