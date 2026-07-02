@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -29,6 +30,20 @@ void main() {
     test('every entry has a non-empty localized label', () {
       for (final entry in registry) {
         expect(entry.label(l10n), isNotEmpty, reason: '${entry.id} has an empty label');
+      }
+    });
+
+    test('every entry resolves a route and its synonyms are invokable', () {
+      for (final entry in registry) {
+        expect(entry.route(), isA<PageRouteInfo>(), reason: '${entry.id} route() did not return a PageRouteInfo');
+        // Invoke the synonyms closure (when present) so it, too, is exercised —
+        // and assert every synonym is a non-empty string.
+        final synonyms = entry.synonyms?.call(l10n);
+        if (synonyms != null) {
+          for (final synonym in synonyms) {
+            expect(synonym, isNotEmpty, reason: '${entry.id} has an empty synonym');
+          }
+        }
       }
     });
   });

@@ -9,14 +9,17 @@ import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
 import 'package:driftfin/l10n/generated/app_localizations.dart';
 import 'package:driftfin/models/account_model.dart';
 import 'package:driftfin/models/credentials_model.dart';
+import 'package:driftfin/providers/config_sync_provider.dart';
 import 'package:driftfin/seerr/seerr_models.dart';
 import 'package:driftfin/providers/cultures_provider.dart';
 import 'package:driftfin/providers/home_collections_provider.dart';
 import 'package:driftfin/providers/home_preferences_provider.dart';
 import 'package:driftfin/providers/seerr_user_provider.dart';
+import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/shared_provider.dart';
 import 'package:driftfin/providers/sync_provider.dart';
 import 'package:driftfin/providers/user_provider.dart';
+import 'package:driftfin/screens/settings/settings_list_tile.dart';
 import 'package:driftfin/screens/home_screen.dart';
 import 'package:driftfin/screens/settings/account_device_settings_page.dart';
 import 'package:driftfin/screens/settings/appearance_settings_page.dart';
@@ -137,6 +140,20 @@ void main() {
     // A theme-group tile and the new reduce-animations tile both render.
     expect(find.text(l10n.itemColorsTitle), findsOneWidget);
     expect(find.text(l10n.reduceAnimationsTitle), findsOneWidget);
+
+    // Toggle "reduce animations" through the tile's Switch to exercise the
+    // onChanged wiring and the client-settings setter.
+    final container = ProviderScope.containerOf(tester.element(find.byType(AppearanceSettingsPage)));
+    expect(container.read(clientSettingsProvider).reduceAnimations, isFalse);
+    final switchFinder = find.descendant(
+      of: find.ancestor(of: find.text(l10n.reduceAnimationsTitle), matching: find.byType(SettingsListTile)),
+      matching: find.byType(Switch),
+    );
+    tester.widget<Switch>(switchFinder).onChanged!(true);
+    await tester.pump();
+    expect(container.read(clientSettingsProvider).reduceAnimations, isTrue);
+    // Flush the client-settings debounced persistence timer.
+    await tester.pump(const Duration(seconds: 1));
   });
 
   testWidgets('Home & Library page renders its dashboard + library-order groups', (tester) async {
@@ -197,5 +214,30 @@ void main() {
     expect(find.text(l10n.settingsAccountDeviceTitle), findsWidgets);
     expect(find.text(l10n.settingsAccountSectionTitle), findsOneWidget);
     expect(find.text(l10n.settingsSyncBackupSectionTitle), findsOneWidget);
+
+    final container = ProviderScope.containerOf(tester.element(find.byType(AccountDeviceSettingsPage)));
+
+    // Toggle the mouse-drag device setting via its Switch.
+    final mouseDragSwitch = find.descendant(
+      of: find.ancestor(of: find.text(l10n.mouseDragSupport), matching: find.byType(SettingsListTile)),
+      matching: find.byType(Switch),
+    );
+    tester.widget<Switch>(mouseDragSwitch).onChanged!(true);
+    await tester.pump();
+    expect(container.read(clientSettingsProvider).mouseDragSupport, isTrue);
+
+    // Turn on settings-sync; this reveals the "Sync now" action.
+    expect(container.read(syncSettingsEnabledProvider), isFalse);
+    final syncSwitch = find.descendant(
+      of: find.ancestor(of: find.text(l10n.syncSettingsTitle), matching: find.byType(SettingsListTile)),
+      matching: find.byType(Switch),
+    );
+    tester.widget<Switch>(syncSwitch).onChanged!(true);
+    await tester.pump();
+    expect(container.read(syncSettingsEnabledProvider), isTrue);
+    expect(find.text(l10n.syncNow), findsOneWidget);
+
+    // Flush the client-settings (1s) and config-sync push (2s) debounce timers.
+    await tester.pump(const Duration(seconds: 3));
   });
 }
