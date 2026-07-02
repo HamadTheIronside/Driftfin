@@ -5,16 +5,32 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/chapters_model.dart';
 import 'package:driftfin/models/items/item_shared_models.dart';
 import 'package:driftfin/models/items/overview_model.dart';
 import 'package:driftfin/models/playback/direct_playback_model.dart';
 import 'package:driftfin/models/playback/playback_model.dart';
+import 'package:driftfin/providers/cast_provider.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
 import 'package:driftfin/util/audio_filter_chain.dart';
 import 'package:driftfin/wrappers/media_control_wrapper.dart';
 import 'package:driftfin/wrappers/players/base_player.dart';
 import 'package:driftfin/wrappers/players/player_capabilities.dart';
 import 'package:driftfin/wrappers/players/player_states.dart';
+
+/// [CastController] fake that skips real mDNS/DLNA discovery (which touches
+/// platform channels and the network) so widget tests can tap the cast
+/// action without flaking or reaching out over the network.
+class FakeCastController extends CastController {
+  FakeCastController(super.ref);
+
+  int discoverCallCount = 0;
+
+  @override
+  Future<void> discover() async {
+    discoverCallCount++;
+  }
+}
 
 /// Minimal [BasePlayer] fake: every call is a no-op, no widgets/platform
 /// channels are touched.
@@ -170,10 +186,24 @@ ItemBaseModel testItem({
       jellyType: null,
     );
 
-PlaybackModel testPlaybackModel({ItemBaseModel? item, List<ItemBaseModel> queue = const []}) {
+PlaybackModel testPlaybackModel({
+  ItemBaseModel? item,
+  List<ItemBaseModel> queue = const [],
+  List<Chapter>? chapters,
+}) {
   return DirectPlaybackModel(
     item: item ?? testItem(),
     media: const Media(url: 'https://example.com/video.mp4'),
     queue: queue,
+    chapters: chapters,
   );
 }
+
+List<Chapter> testChapters(int count) => List.generate(
+      count,
+      (index) => Chapter(
+        name: 'Chapter $index',
+        imageUrl: '',
+        startPosition: Duration(minutes: index * 10),
+      ),
+    );

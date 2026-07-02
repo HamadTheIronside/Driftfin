@@ -16,13 +16,21 @@ class CastButton extends ConsumerWidget {
     final casting = ref.watch(castProvider.select((s) => s.isCasting));
     return IconButton(
       tooltip: context.localized.castTo,
-      onPressed: () {
-        if (!casting) ref.read(castProvider.notifier).discover();
-        _showCastSheet(context, ref);
-      },
+      onPressed: () => showCastSheet(context, ref),
       icon: Icon(casting ? Icons.cast_connected_rounded : Icons.cast_rounded),
     );
   }
+}
+
+/// Opens the cast device picker / cast controls sheet, discovering devices
+/// first if nothing is currently casting. Shared by [CastButton] and any
+/// other entry point (e.g. an overflow menu action) that wants the same
+/// behavior without depending on the button widget itself.
+void showCastSheet(BuildContext context, WidgetRef ref) {
+  if (!ref.read(castProvider.select((s) => s.isCasting))) {
+    ref.read(castProvider.notifier).discover();
+  }
+  _showCastSheet(context, ref);
 }
 
 void _showCastSheet(BuildContext context, WidgetRef ref) {

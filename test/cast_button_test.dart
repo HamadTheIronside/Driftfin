@@ -11,29 +11,30 @@ import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout_model.dart';
 import 'package:driftfin/util/poster_defaults.dart';
 
+import 'support/video_player_test_support.dart';
+
 const _adaptiveModel = AdaptiveLayoutModel(
-  viewSize: ViewSize.phone,
+  viewSize: ViewSize.desktop,
   layoutMode: LayoutMode.single,
-  inputDevice: InputDevice.touch,
-  platform: TargetPlatform.android,
-  isDesktop: false,
+  inputDevice: InputDevice.pointer,
+  platform: TargetPlatform.linux,
+  isDesktop: true,
   posterDefaults: PosterDefaults(size: 100, ratio: 0.66),
   controller: <HomeTabs, ScrollController>{},
   sideBarWidth: 0,
   topBarHeight: 0,
 );
 
-/// A [CastController] stand-in that skips real network discovery/dispatch so
-/// the "Play on…" picker can be widget-tested with a fixed target list.
-class _FakeCastController extends CastController {
-  _FakeCastController(super.ref);
+/// Extends the shared [FakeCastController] (which just counts `discover()`
+/// calls) with the extra hooks the "Play on…" picker tests below need: a way
+/// to seed a fixed device list, and to record dispatched `connect()` calls
+/// without touching real Chromecast/DLNA/session network I/O.
+class _TestCastController extends FakeCastController {
+  _TestCastController(super.ref);
 
   final List<CastTarget> connected = [];
 
   void seed(CastState newState) => state = newState;
-
-  @override
-  Future<void> discover() async {}
 
   @override
   Future<void> connect(CastTarget target) async {
@@ -50,37 +51,68 @@ const _sessionTarget = CastTarget(
   session: SessionInfoDto(id: 's1', deviceName: 'Bedroom TV', userName: 'bob', supportsRemoteControl: true),
 );
 
-Widget _harness({required void Function(_FakeCastController) onCreated, CastState initial = const CastState()}) {
-  return ProviderScope(
+Future<ProviderContainer> _pumpCastButton(
+  WidgetTester tester, {
+  required void Function(_TestCastController) onCreated,
+  CastState initial = const CastState(),
+}) async {
+  final container = ProviderContainer(
     overrides: [
       castProvider.overrideWith((ref) {
-        final fake = _FakeCastController(ref)..seed(initial);
+        final fake = _TestCastController(ref)..seed(initial);
         onCreated(fake);
         return fake;
       }),
     ],
-    child: const AdaptiveLayout(
-      data: _adaptiveModel,
-      child: MaterialApp(
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        home: Scaffold(body: Center(child: CastButton())),
+  );
+  addTearDown(container.dispose);
+
+  await tester.pumpWidget(
+    UncontrolledProviderScope(
+      container: container,
+      // AdaptiveLayout must wrap MaterialApp (as in lib/main.dart) since the
+      // cast sheet is a modal route - a sibling of `home` under the root
+      // Navigator, not a descendant of anything nested inside `home`.
+      child: const AdaptiveLayout(
+        data: _adaptiveModel,
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Scaffold(body: CastButton()),
+        ),
       ),
     ),
   );
+  await tester.pumpAndSettle();
+  return container;
 }
 
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
+  testWidgets('shows the idle cast icon when nothing is casting', (tester) async {
+    await _pumpCastButton(tester, onCreated: (_) {});
+    expect(find.byIcon(Icons.cast_rounded), findsOneWidget);
+  });
+
+  testWidgets('tapping it triggers discovery and opens the cast sheet', (tester) async {
+    late _TestCastController fake;
+    await _pumpCastButton(tester, onCreated: (f) => fake = f);
+
+    await tester.tap(find.byType(CastButton));
+    await tester.pumpAndSettle();
+
+    expect(fake.discoverCallCount, 1);
+    expect(find.text('Play on…'), findsOneWidget);
+  });
 
   testWidgets('unified picker lists nearby cast devices and remote Jellyfin sessions in separate sections',
       (tester) async {
-    await tester.pumpWidget(_harness(
+    await _pumpCastButton(
+      tester,
       onCreated: (_) {},
       initial: const CastState(devices: [_chromecastTarget, _sessionTarget]),
-    ));
+    );
 
-    await tester.tap(find.byType(IconButton));
+    await tester.tap(find.byType(CastButton));
     await tester.pumpAndSettle();
 
     expect(find.text('Nearby devices'), findsOneWidget);
@@ -90,13 +122,14 @@ void main() {
   });
 
   testWidgets('tapping a Jellyfin session target dispatches the handoff to that session', (tester) async {
-    late _FakeCastController fake;
-    await tester.pumpWidget(_harness(
+    late _TestCastController fake;
+    await _pumpCastButton(
+      tester,
       onCreated: (f) => fake = f,
       initial: const CastState(devices: [_chromecastTarget, _sessionTarget]),
-    ));
+    );
 
-    await tester.tap(find.byType(IconButton));
+    await tester.tap(find.byType(CastButton));
     await tester.pumpAndSettle();
 
     await tester.tap(find.text('Bedroom TV · bob'));
@@ -108,9 +141,9 @@ void main() {
   });
 
   testWidgets('shows a combined empty state when nothing is discovered', (tester) async {
-    await tester.pumpWidget(_harness(onCreated: (_) {}));
+    await _pumpCastButton(tester, onCreated: (_) {});
 
-    await tester.tap(find.byType(IconButton));
+    await tester.tap(find.byType(CastButton));
     await tester.pumpAndSettle();
 
     expect(find.text('No devices or active sessions found'), findsOneWidget);
