@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr（剧集请求）",
   "sonarrIntegrationDesc": "直接连接 Sonarr 以请求单集（Seerr 仅支持整季请求）。仅适用于已添加到 Sonarr 的节目。",
   "managedByServerPlugin": "由服务器管理（Driftfin 插件）",
+  "settingsSyncsAcrossDevices": "在您的设备间同步",
+  "settingsStaysOnDevice": "仅保留在此设备上",
   "sonarrUrlTitle": "Sonarr 地址",
   "sonarrApiKeyTitle": "Sonarr API 密钥",
   "sonarrSaved": "Sonarr 设置已保存",

@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (solicitări de episoade)",
   "sonarrIntegrationDesc": "Conectează Sonarr direct pentru a solicita episoade individuale (Seerr acceptă doar sezoane întregi). Funcționează doar pentru serialele deja adăugate în Sonarr.",
   "managedByServerPlugin": "Gestionat de server (plugin Driftfin)",
+  "settingsSyncsAcrossDevices": "Se sincronizează pe toate dispozitivele tale",
+  "settingsStaysOnDevice": "Rămâne doar pe acest dispozitiv",
   "sonarrUrlTitle": "URL Sonarr",
   "sonarrApiKeyTitle": "Cheie API Sonarr",
   "sonarrSaved": "Setările Sonarr au fost salvate",

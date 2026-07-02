@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -102,13 +103,7 @@ namespace Jellyfin.Plugin.Driftfin.Api
                 return NotFound();
             }
 
-            var payload = JsonSerializer.Serialize(new SyncPlayRelayPayload
-            {
-                Kind = body.Kind,
-                Sender = callerSession.UserName,
-                Text = body.Text,
-                Emoji = body.Emoji,
-            });
+            var payload = JsonSerializer.Serialize(BuildPayload(body, callerSession.UserName));
 
             var command = new GeneralCommand
             {
@@ -118,17 +113,54 @@ namespace Jellyfin.Plugin.Driftfin.Api
             command.Arguments["Header"] = RelayHeader;
             command.Arguments["Text"] = payload;
 
-            var recipients = _sessionManager.Sessions
-                .Where(s => s.Id != callerSession.Id && group.Participants.Contains(s.UserName, StringComparer.OrdinalIgnoreCase))
-                .ToList();
+            var recipientIds = SelectRecipientIds(
+                _sessionManager.Sessions.Select(s => new RelaySession(s.Id, s.UserName)),
+                callerSession.Id,
+                group.Participants);
 
-            await Task.WhenAll(recipients.Select(s =>
-                _sessionManager.SendGeneralCommand(callerSession.Id, s.Id, command, cancellationToken)))
+            await Task.WhenAll(recipientIds.Select(id =>
+                _sessionManager.SendGeneralCommand(callerSession.Id, id, command, cancellationToken)))
                 .ConfigureAwait(false);
 
             return NoContent();
         }
+
+        /// <summary>Builds the wire payload relayed to the rest of the group.</summary>
+        /// <param name="body">The client-submitted message.</param>
+        /// <param name="senderUserName">The caller's username, resolved server-side.</param>
+        /// <returns>The payload to serialize into the <c>DisplayMessage</c> text.</returns>
+        internal static SyncPlayRelayPayload BuildPayload(SyncPlayRelayMessageDto body, string senderUserName) => new()
+        {
+            Kind = body.Kind,
+            Sender = senderUserName,
+            Text = body.Text,
+            Emoji = body.Emoji,
+        };
+
+        /// <summary>
+        /// Picks which sessions should receive the relay: every group participant
+        /// other than the caller, matched by username case-insensitively (Jellyfin
+        /// group membership is username-based, not session-id-based).
+        /// </summary>
+        /// <param name="sessions">All active sessions on the server.</param>
+        /// <param name="callerSessionId">The relaying caller's own session id, excluded from the result.</param>
+        /// <param name="groupParticipants">Usernames of the SyncPlay group's members.</param>
+        /// <returns>The session ids to relay the message to.</returns>
+        internal static IEnumerable<string> SelectRecipientIds(
+            IEnumerable<RelaySession> sessions,
+            string callerSessionId,
+            IReadOnlyList<string> groupParticipants)
+        {
+            return sessions
+                .Where(s => s.Id != callerSessionId && groupParticipants.Contains(s.UserName, StringComparer.OrdinalIgnoreCase))
+                .Select(s => s.Id);
+        }
     }
+
+    /// <summary>The subset of a Jellyfin session that recipient selection needs.</summary>
+    /// <param name="Id">The session id.</param>
+    /// <param name="UserName">The session's username.</param>
+    internal readonly record struct RelaySession(string Id, string UserName);
 
     /// <summary>Wire DTO for a client-submitted relay message.</summary>
     public class SyncPlayRelayMessageDto

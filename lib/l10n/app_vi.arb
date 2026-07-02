@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (yêu cầu tập phim)",
   "sonarrIntegrationDesc": "Kết nối trực tiếp với Sonarr để yêu cầu từng tập phim riêng lẻ (Seerr chỉ hỗ trợ toàn bộ mùa). Chỉ hoạt động với phim bộ đã được thêm vào Sonarr.",
   "managedByServerPlugin": "Được quản lý bởi máy chủ (plugin Driftfin)",
+  "settingsSyncsAcrossDevices": "Đồng bộ trên các thiết bị của bạn",
+  "settingsStaysOnDevice": "Chỉ lưu trên thiết bị này",
   "sonarrUrlTitle": "URL Sonarr",
   "sonarrApiKeyTitle": "Khóa API Sonarr",
   "sonarrSaved": "Đã lưu cài đặt Sonarr",

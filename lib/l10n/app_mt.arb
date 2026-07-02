@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (talbiet ta' episodji)",
   "sonarrIntegrationDesc": "Qabbad is-Sonarr direttament biex titlob episodji individwali (Seerr jappoġġja biss staġuni sħaħ). Jaħdem biss għal spettakli diġà miżjuda fis-Sonarr.",
   "managedByServerPlugin": "Amministrat mis-server (plugin ta' Driftfin)",
+  "settingsSyncsAcrossDevices": "Tissinkronizza fuq id-diversi apparati tiegħek",
+  "settingsStaysOnDevice": "Tibqa' f'dan l-apparat",
   "sonarrUrlTitle": "URL tas-Sonarr",
   "sonarrApiKeyTitle": "Ċavetta API tas-Sonarr",
   "sonarrSaved": "Is-settings tas-Sonarr ġew ssejvjati",

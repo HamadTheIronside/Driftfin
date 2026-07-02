@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (درخواست قسمت‌ها)",
   "sonarrIntegrationDesc": "برای درخواست قسمت‌های تکی مستقیماً به Sonarr متصل شوید (Seerr فقط از فصل‌های کامل پشتیبانی می‌کند). فقط برای سریال‌هایی که از قبل به Sonarr اضافه شده‌اند کار می‌کند.",
   "managedByServerPlugin": "مدیریت‌شده توسط سرور (افزونه Driftfin)",
+  "settingsSyncsAcrossDevices": "در همه دستگاه‌های شما همگام‌سازی می‌شود",
+  "settingsStaysOnDevice": "فقط روی این دستگاه باقی می‌ماند",
   "sonarrUrlTitle": "آدرس Sonarr",
   "sonarrApiKeyTitle": "کلید API سرویس Sonarr",
   "sonarrSaved": "تنظیمات Sonarr ذخیره شد",

@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (episodeforespørsler)",
   "sonarrIntegrationDesc": "Koble til Sonarr direkte for å be om enkeltepisoder (Seerr støtter bare hele sesonger). Fungerer kun for serier som allerede er lagt til i Sonarr.",
   "managedByServerPlugin": "Håndteres av server (Driftfin-plugin)",
+  "settingsSyncsAcrossDevices": "Synkroniseres på tvers av enhetene dine",
+  "settingsStaysOnDevice": "Forblir på denne enheten",
   "sonarrUrlTitle": "Sonarr-URL",
   "sonarrApiKeyTitle": "Sonarr API-nøkkel",
   "sonarrSaved": "Sonarr-innstillinger lagret",

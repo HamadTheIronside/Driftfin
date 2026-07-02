@@ -103,12 +103,15 @@ jobs:
           mkdir -p dist-pages/app
           cp -r site/. dist-pages/
           cp -r build/web/. dist-pages/app/
+      # keep_files: true — this branch also hosts the Jellyfin plugin-repository
+      # manifest (deployed by plugin.yaml under /jellyfin-plugin/); don't delete it.
       - name: Deploy to GitHub Pages
         if: startsWith(github.ref, 'refs/tags/')
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist-pages
+          keep_files: true
 
   ios:
     needs: version

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:driftfin/models/settings/settings_entry.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/screens/settings/settings_list_tile.dart';
 import 'package:driftfin/screens/settings/widgets/settings_label_divider.dart';
@@ -16,6 +17,7 @@ List<Widget> buildClientSettingsTheme(BuildContext context, WidgetRef ref) {
   final clientSettings = ref.watch(clientSettingsProvider);
   return settingsListGroup(context, SettingsLabelDivider(label: context.localized.theme), [
     SettingsListTile(
+      id: SettingId.themeMode,
       label: Text(context.localized.mode),
       subLabel: Text(clientSettings.themeMode.label(context)),
       onTap: () => openMultiSelectOptions<ThemeMode>(
@@ -34,6 +36,7 @@ List<Widget> buildClientSettingsTheme(BuildContext context, WidgetRef ref) {
       ),
     ),
     SettingsListTile(
+      id: SettingId.themeColor,
       label: Text(context.localized.color),
       subLabel: Text(clientSettings.themeColor?.name ?? context.localized.dynamicText),
       onTap: () => openMultiSelectOptions<ColorThemes?>(
@@ -77,6 +80,7 @@ List<Widget> buildClientSettingsTheme(BuildContext context, WidgetRef ref) {
       ),
     ),
     SettingsListTile(
+      id: SettingId.schemeVariant,
       label: Text(context.localized.clientSettingsSchemeVariantTitle),
       subLabel: Text(clientSettings.schemeVariant.label(context)),
       onTap: () async {
@@ -96,6 +100,7 @@ List<Widget> buildClientSettingsTheme(BuildContext context, WidgetRef ref) {
       },
     ),
     SettingsListTile(
+      id: SettingId.amoledBlack,
       label: Text(context.localized.amoledBlack),
       subLabel: Text(clientSettings.amoledBlack ? context.localized.enabled : context.localized.disabled),
       onTap: () => ref.read(clientSettingsProvider.notifier).setAmoledBlack(!clientSettings.amoledBlack),
@@ -105,6 +110,7 @@ List<Widget> buildClientSettingsTheme(BuildContext context, WidgetRef ref) {
       ),
     ),
     SettingsListTile(
+      id: SettingId.deriveColorsFromItem,
       label: Text(context.localized.itemColorsTitle),
       subLabel: Text(context.localized.itemColorsDesc),
       onTap: () =>

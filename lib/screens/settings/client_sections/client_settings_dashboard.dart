@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:driftfin/models/settings/home_settings_model.dart';
+import 'package:driftfin/models/settings/settings_entry.dart';
 import 'package:driftfin/providers/home_collections_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
@@ -20,6 +21,7 @@ List<Widget> buildClientSettingsDashboard(BuildContext context, WidgetRef ref) {
     SettingsLabelDivider(label: context.localized.dashboard),
     [
       SettingsListTileEnum(
+        id: SettingId.homeBanner,
         label: Text(context.localized.settingsHomeBannerTitle),
         subLabel: Text(context.localized.settingsHomeBannerDescription),
         current: ref.watch(
@@ -39,6 +41,7 @@ List<Widget> buildClientSettingsDashboard(BuildContext context, WidgetRef ref) {
       ),
       if (ref.watch(homeSettingsProvider.select((value) => value.homeBanner)) != HomeBanner.hide)
         SettingsListTileEnum(
+          id: SettingId.homeBannerInformation,
           label: Text(context.localized.settingsHomeBannerInformationTitle),
           subLabel: Text(context.localized.settingsHomeBannerInformationDesc),
           current: ref.watch(
@@ -56,6 +59,7 @@ List<Widget> buildClientSettingsDashboard(BuildContext context, WidgetRef ref) {
               .toList(),
         ),
       SettingsListTileEnum(
+        id: SettingId.homeNextUp,
         label: Text(context.localized.settingsHomeNextUpTitle),
         subLabel: Text(context.localized.settingsHomeNextUpDesc),
         current: ref.watch(
@@ -74,6 +78,7 @@ List<Widget> buildClientSettingsDashboard(BuildContext context, WidgetRef ref) {
             .toList(),
       ),
       SettingsListTile(
+        id: SettingId.showAllCollectionTypes,
         label: Text(context.localized.clientSettingsShowAllCollectionsTitle),
         subLabel: Text(context.localized.clientSettingsShowAllCollectionsDesc),
         onTap: () => ref
@@ -88,6 +93,7 @@ List<Widget> buildClientSettingsDashboard(BuildContext context, WidgetRef ref) {
       ),
       if (ref.watch(homeSettingsProvider.select((value) => value.pinnedCollectionIds)).isNotEmpty)
         SettingsListTile(
+          id: SettingId.managePinnedCollections,
           label: Text(context.localized.managePinnedCollections),
           subLabel: Text(context.localized.managePinnedCollectionsDesc),
           onTap: () => _showManagePinnedCollections(context),

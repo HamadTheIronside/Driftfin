@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (பாக கோரிக்கைகள்)",
   "sonarrIntegrationDesc": "தனிப் பாகங்களை கோர Sonarr-ஐ நேரடியாக இணைக்கவும் (Seerr முழு பருவங்களை மட்டுமே ஆதரிக்கிறது). ஏற்கனவே Sonarr-ல் சேர்க்கப்பட்ட நிகழ்ச்சிகளுக்கு மட்டுமே இயங்கும்.",
   "managedByServerPlugin": "சேவையகத்தால் நிர்வகிக்கப்படுகிறது (Driftfin செருகுநிரல்)",
+  "settingsSyncsAcrossDevices": "உங்கள் சாதனங்களில் ஒத்திசைக்கப்படுகிறது",
+  "settingsStaysOnDevice": "இந்த சாதனத்தில் மட்டும் இருக்கும்",
   "sonarrUrlTitle": "Sonarr URL",
   "sonarrApiKeyTitle": "Sonarr API விசை",
   "sonarrSaved": "Sonarr அமைப்புகள் சேமிக்கப்பட்டன",

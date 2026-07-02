@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (solicitudes de episodios)",
   "sonarrIntegrationDesc": "Conecta Sonarr directamente para solicitar episodios individuales (Seerr solo admite temporadas completas). Solo funciona con programas ya añadidos a Sonarr.",
   "managedByServerPlugin": "Gestionado por el servidor (complemento de Driftfin)",
+  "settingsSyncsAcrossDevices": "Se sincroniza en tus dispositivos",
+  "settingsStaysOnDevice": "Permanece en este dispositivo",
   "sonarrUrlTitle": "URL de Sonarr",
   "sonarrApiKeyTitle": "Clave API de Sonarr",
   "sonarrSaved": "Ajustes de Sonarr guardados",

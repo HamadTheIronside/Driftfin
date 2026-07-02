@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (epizódkérések)",
   "sonarrIntegrationDesc": "Kapcsolja össze közvetlenül a Sonarr-ral, hogy egyes epizódokat is kérhessen (a Seerr csak teljes évadokat támogat). Csak a Sonarrhoz már hozzáadott sorozatoknál működik.",
   "managedByServerPlugin": "A kiszolgáló kezeli (Driftfin bővítmény)",
+  "settingsSyncsAcrossDevices": "Szinkronizálódik az eszközei között",
+  "settingsStaysOnDevice": "Csak ezen az eszközön marad",
   "sonarrUrlTitle": "Sonarr URL",
   "sonarrApiKeyTitle": "Sonarr API kulcs",
   "sonarrSaved": "Sonarr beállítások elmentve",

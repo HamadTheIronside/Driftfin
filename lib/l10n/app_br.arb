@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (goulennoù pennadoù)",
   "sonarrIntegrationDesc": "Kevreañ Sonarr eeun evit goulenn pennadoù nemetken (Seerr ne skor nemet koulzadoù a-bezh). Ne dalvez nemet evit an abadennoù zo bet ouzhpennet dija da Sonarr.",
   "managedByServerPlugin": "Merañ gant ar servijer (lugantenn Driftfin)",
+  "settingsSyncsAcrossDevices": "Kedivadur dre ho trevnadoù",
+  "settingsStaysOnDevice": "A chom war an trevnad-mañ hepken",
   "sonarrUrlTitle": "URL Sonarr",
   "sonarrApiKeyTitle": "Alc'hwez API Sonarr",
   "sonarrSaved": "Enrollet eo bet arventennoù Sonarr",

@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (ขอตอน)",
   "sonarrIntegrationDesc": "เชื่อมต่อ Sonarr โดยตรงเพื่อขอตอนเดี่ยว (Seerr รองรับเฉพาะทั้งซีซัน) ใช้ได้เฉพาะซีรีส์ที่เพิ่มใน Sonarr แล้วเท่านั้น",
   "managedByServerPlugin": "จัดการโดยเซิร์ฟเวอร์ (ปลั๊กอิน Driftfin)",
+  "settingsSyncsAcrossDevices": "ซิงค์ข้ามอุปกรณ์ของคุณ",
+  "settingsStaysOnDevice": "อยู่บนอุปกรณ์นี้เท่านั้น",
   "sonarrUrlTitle": "URL ของ Sonarr",
   "sonarrApiKeyTitle": "API key ของ Sonarr",
   "sonarrSaved": "บันทึกการตั้งค่า Sonarr แล้ว",

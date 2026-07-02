@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (permintaan episode)",
   "sonarrIntegrationDesc": "Hubungkan Sonarr secara langsung untuk meminta episode tunggal (Seerr hanya mendukung musim penuh). Hanya berfungsi untuk acara yang sudah ditambahkan di Sonarr.",
   "managedByServerPlugin": "Dikelola oleh server (plugin Driftfin)",
+  "settingsSyncsAcrossDevices": "Disinkronkan di semua perangkat Anda",
+  "settingsStaysOnDevice": "Tetap di perangkat ini",
   "sonarrUrlTitle": "URL Sonarr",
   "sonarrApiKeyTitle": "Kunci API Sonarr",
   "sonarrSaved": "Pengaturan Sonarr disimpan",

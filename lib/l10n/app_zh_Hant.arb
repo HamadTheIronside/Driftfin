@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr（集數要求）",
   "sonarrIntegrationDesc": "直接連接 Sonarr 以要求單一集數（Seerr 僅支援整季要求）。僅適用於已加入 Sonarr 的影集。",
   "managedByServerPlugin": "由伺服器管理（Driftfin 外掛）",
+  "settingsSyncsAcrossDevices": "在您的裝置間同步",
+  "settingsStaysOnDevice": "僅保留在此裝置上",
   "sonarrUrlTitle": "Sonarr 網址",
   "sonarrApiKeyTitle": "Sonarr API 金鑰",
   "sonarrSaved": "Sonarr 設定已儲存",

@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (طلبات الحلقات)",
   "sonarrIntegrationDesc": "اربط Sonarr مباشرة لطلب حلقات منفردة (يدعم Seerr المواسم الكاملة فقط). يعمل هذا فقط مع المسلسلات المضافة بالفعل إلى Sonarr.",
   "managedByServerPlugin": "تتم إدارته بواسطة الخادم (إضافة Driftfin)",
+  "settingsSyncsAcrossDevices": "يتزامن عبر أجهزتك",
+  "settingsStaysOnDevice": "يبقى على هذا الجهاز فقط",
   "sonarrUrlTitle": "رابط Sonarr",
   "sonarrApiKeyTitle": "مفتاح API الخاص بـ Sonarr",
   "sonarrSaved": "تم حفظ إعدادات Sonarr",

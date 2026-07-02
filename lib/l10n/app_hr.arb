@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (zahtjevi za epizode)",
   "sonarrIntegrationDesc": "Poveži Sonarr izravno kako bi zatražio pojedinačne epizode (Seerr podržava samo cijele sezone). Radi samo za serije koje su već dodane u Sonarr.",
   "managedByServerPlugin": "Upravlja server (Driftfin dodatak)",
+  "settingsSyncsAcrossDevices": "Sinkronizira se na svim vašim uređajima",
+  "settingsStaysOnDevice": "Ostaje na ovom uređaju",
   "sonarrUrlTitle": "Sonarr URL",
   "sonarrApiKeyTitle": "Sonarr API ključ",
   "sonarrSaved": "Sonarr postavke spremljene",
