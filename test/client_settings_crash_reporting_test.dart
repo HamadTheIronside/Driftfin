@@ -7,7 +7,7 @@ import 'package:driftfin/l10n/generated/app_localizations.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/shared_provider.dart';
 import 'package:driftfin/screens/home_screen.dart';
-import 'package:driftfin/screens/settings/client_sections/client_settings_advanced.dart';
+import 'package:driftfin/screens/settings/widgets/crash_reporting_tile.dart';
 import 'package:driftfin/screens/shared/flat_button.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout_model.dart';
@@ -35,7 +35,7 @@ Widget _harness(SharedPreferences prefs) {
         data: _adaptiveModel,
         child: Scaffold(
           body: Consumer(
-            builder: (context, ref, _) => ListView(children: buildClientSettingsAdvanced(context, ref)),
+            builder: (context, ref, _) => ListView(children: [buildCrashReportingTile(context, ref)]),
           ),
         ),
       ),

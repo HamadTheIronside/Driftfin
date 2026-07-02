@@ -156,7 +156,7 @@ class NestedNavigationDrawer extends ConsumerWidget {
                     const SettingsRoute().push(context);
                     break;
                   case LayoutMode.dual:
-                    context.router.push(const ClientSettingsRoute());
+                    context.router.push(const PlayerSettingsRoute());
                     break;
                 }
                 Scaffold.of(context).closeDrawer();
@@ -175,7 +175,7 @@ class NestedNavigationDrawer extends ConsumerWidget {
                   const SettingsRoute().push(context);
                   break;
                 case LayoutMode.dual:
-                  context.router.push(const ClientSettingsRoute());
+                  context.router.push(const PlayerSettingsRoute());
                   break;
               }
               Scaffold.of(context).closeDrawer();

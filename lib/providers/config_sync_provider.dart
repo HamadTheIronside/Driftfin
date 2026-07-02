@@ -118,6 +118,15 @@ class ConfigSync {
   /// enabled flag or whether anything changed. Used by the manual "Sync now".
   Future<void> syncNow() => _pushNow(force: true);
 
+  /// Builds the current local settings as a portable, serializable payload —
+  /// the same shape/logic the periodic sync push uses. Used by the manual
+  /// "Export settings" feature (issue #50 Phase 5).
+  UserSettings buildCurrentSettings() => _buildFrom(ref.read(userProvider)?.userSettings ?? UserSettings());
+
+  /// Applies a settings payload to the local providers — the same logic
+  /// incoming sync uses. Used by the manual "Import settings" feature.
+  void applySettings(UserSettings settings) => _apply(settings);
+
   /// When this device last uploaded its config to the server.
   DateTime? get lastSyncedAt {
     final raw = ref.read(userProvider)?.userSettings?.syncedAt;

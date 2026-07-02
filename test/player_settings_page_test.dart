@@ -71,6 +71,15 @@ Widget _harness(SharedPreferences prefs, VideoPlayerSettingsModel settings, {Acc
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  // The backend-conditional block (issue #50 Phase 2) now lives behind a
+  // collapsed ExpansionTile titled "Advanced" instead of being always
+  // expanded — tests that check its contents need to open it first.
+  Future<void> expandAdvanced(WidgetTester tester) async {
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+    await tester.tap(find.text(l10n.advanced));
+    await tester.pumpAndSettle();
+  }
+
   void useTallView(WidgetTester tester) {
     tester.view.physicalSize = const Size(1200, 5000);
     tester.view.devicePixelRatio = 1.0;
@@ -130,6 +139,7 @@ void main() {
     final settings = VideoPlayerSettingsModel(enableReplayGain: true);
     await tester.pumpWidget(_harness(prefs, settings, user: user));
     await tester.pumpAndSettle();
+    await expandAdvanced(tester);
 
     final l10n = await AppLocalizations.delegate.load(const Locale('en'));
     expect(find.text(l10n.playerSettingsReplayGainLevelTitle), findsOneWidget);
@@ -143,6 +153,7 @@ void main() {
     final settings = VideoPlayerSettingsModel(playerOptions: PlayerOptions.libMPV);
     await tester.pumpWidget(_harness(prefs, settings, user: user));
     await tester.pumpAndSettle();
+    await expandAdvanced(tester);
 
     final l10n = await AppLocalizations.delegate.load(const Locale('en'));
     expect(find.text(l10n.playerSettingsSmartDownmixTitle), findsOneWidget);
@@ -210,6 +221,7 @@ void main() {
 
     await tester.pumpWidget(widget);
     await tester.pumpAndSettle();
+    await expandAdvanced(tester);
 
     final l10n = await AppLocalizations.delegate.load(const Locale('en'));
     expect(find.text(l10n.playerSettingsScreensaverTitle), findsOneWidget);

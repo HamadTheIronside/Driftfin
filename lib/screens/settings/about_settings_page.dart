@@ -46,7 +46,7 @@ class AboutSettingsPage extends ConsumerWidget {
     final applicationInfo = ref.watch(applicationInfoProvider);
 
     return SettingsScaffold(
-      label: "",
+      label: context.localized.about,
       items: [
         const FladderLogo(),
         Column(

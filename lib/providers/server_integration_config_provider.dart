@@ -17,15 +17,46 @@ Future<ServerIntegrationConfig?> fetchServerIntegrationConfig(
   Map<String, String> headers,
   http.Client client,
 ) async {
+  final result = await fetchServerIntegrationConfigDiagnostic(url, headers, client);
+  if (result.status != ServerIntegrationConfigStatus.ok) {
+    log('Driftfin plugin config unavailable (using local settings): ${result.status}');
+  }
+  return result.config;
+}
+
+/// Why a [fetchServerIntegrationConfig]/[fetchServerIntegrationConfigDiagnostic]
+/// call ended up with no config — surfaced by the manual "Refresh" action in
+/// Settings > Integrations so a failure is visible instead of only ever
+/// silently logged.
+enum ServerIntegrationConfigStatus { ok, notLoggedIn, noPlugin, httpError, invalidResponse, requestFailed }
+
+/// Same fetch as [fetchServerIntegrationConfig], but reports *why* there's no
+/// config instead of collapsing every failure mode into `null`.
+Future<({ServerIntegrationConfig? config, ServerIntegrationConfigStatus status, String? detail})>
+    fetchServerIntegrationConfigDiagnostic(
+  String url,
+  Map<String, String> headers,
+  http.Client client,
+) async {
   try {
     final response = await client.get(Uri.parse(url), headers: headers).timeout(const Duration(seconds: 8));
-    if (response.statusCode != 200 || response.body.isEmpty) return null;
+    if (response.statusCode == 404) {
+      return (config: null, status: ServerIntegrationConfigStatus.noPlugin, detail: null);
+    }
+    if (response.statusCode != 200 || response.body.isEmpty) {
+      return (
+        config: null,
+        status: ServerIntegrationConfigStatus.httpError,
+        detail: response.statusCode.toString(),
+      );
+    }
     final decoded = jsonDecode(response.body);
-    if (decoded is! Map<String, dynamic>) return null;
-    return ServerIntegrationConfig.fromJson(decoded);
+    if (decoded is! Map<String, dynamic>) {
+      return (config: null, status: ServerIntegrationConfigStatus.invalidResponse, detail: null);
+    }
+    return (config: ServerIntegrationConfig.fromJson(decoded), status: ServerIntegrationConfigStatus.ok, detail: null);
   } catch (e) {
-    log('Driftfin plugin config unavailable (using local settings): $e');
-    return null;
+    return (config: null, status: ServerIntegrationConfigStatus.requestFailed, detail: e.toString());
   }
 }
 
@@ -56,6 +87,21 @@ class ServerIntegrationConfigNotifier extends StateNotifier<ServerIntegrationCon
       return;
     }
     state = await fetchServerIntegrationConfig(url, credentials.header(ref), _client);
+  }
+
+  /// Same as [load], but returns *why* there's no config instead of only ever
+  /// logging it — used by the manual "Refresh" action in Settings >
+  /// Integrations so a failure is visible to the user instead of silent.
+  Future<ServerIntegrationConfigStatus> loadWithDiagnostics() async {
+    final url = buildServerUrl(ref, pathSegments: ['Driftfin', 'Config']);
+    final credentials = ref.read(userProvider)?.credentials;
+    if (url.isEmpty || credentials == null) {
+      state = null;
+      return ServerIntegrationConfigStatus.notLoggedIn;
+    }
+    final result = await fetchServerIntegrationConfigDiagnostic(url, credentials.header(ref), _client);
+    state = result.config;
+    return result.status;
   }
 
   void clear() => state = null;

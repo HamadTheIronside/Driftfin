@@ -43,6 +43,7 @@ enum SettingId {
   schemeVariant,
   amoledBlack,
   deriveColorsFromItem,
+  reduceAnimations,
   // Client › Controls
   mouseDragSupport,
   // Client › Advanced

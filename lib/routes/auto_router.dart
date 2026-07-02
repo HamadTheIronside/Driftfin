@@ -103,12 +103,21 @@ final List<AutoRoute> _defaultRoutes = [
   AutoRoute(page: LoginRoute.page, path: '/login', maintainState: false),
 ];
 
+// Issue #50 Phase 2 — the settings IA regroup. The old 4 pages (Client,
+// Profile, Player, About) become 6 task-based destinations; `client` and
+// `security` are kept as redirects since nothing persists a route path (it's
+// UI-only), so any existing bookmark/deep link still resolves.
 final List<AutoRoute> _settingsChildren = [
   AutoRoute(page: SettingsSelectionRoute.page, path: 'list'),
-  AutoRoute(page: ClientSettingsRoute.page, path: 'client', maintainState: false),
-  AutoRoute(page: ProfileSettingsRoute.page, path: 'security', maintainState: false),
   AutoRoute(page: PlayerSettingsRoute.page, path: 'player', maintainState: false),
+  AutoRoute(page: AccountDeviceSettingsRoute.page, path: 'account', maintainState: false),
+  AutoRoute(page: AppearanceSettingsRoute.page, path: 'appearance', maintainState: false),
+  AutoRoute(page: HomeLibrarySettingsRoute.page, path: 'home-library', maintainState: false),
+  AutoRoute(page: DownloadsSettingsRoute.page, path: 'downloads', maintainState: false),
+  AutoRoute(page: IntegrationsSettingsRoute.page, path: 'integrations', maintainState: false),
   AutoRoute(page: AboutSettingsRoute.page, path: 'about'),
+  RedirectRoute(path: 'client', redirectTo: 'list'),
+  RedirectRoute(path: 'security', redirectTo: 'account'),
 ];
 
 final List<AutoRoute> _controlPanelRoutes = [

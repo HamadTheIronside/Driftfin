@@ -115,4 +115,6 @@ class ClientSettingsNotifier extends StateNotifier<ClientSettingsModel> {
   void toggleSideBar() => state = state.copyWith(expandSideBar: !state.expandSideBar);
 
   void setEnableCrashReporting(bool value) => state = state.copyWith(enableCrashReporting: value);
+
+  void setReduceAnimations(bool value) => state = state.copyWith(reduceAnimations: value);
 }

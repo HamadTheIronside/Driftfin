@@ -8,6 +8,7 @@ import 'package:driftfin/providers/api_provider.dart';
 import 'package:driftfin/providers/service_provider.dart';
 import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/providers/views_provider.dart';
+import 'package:driftfin/util/debouncer.dart';
 
 final homePreferencesProvider = StateNotifierProvider<HomePreferencesNotifier, HomePreferencesModel>((ref) {
   return HomePreferencesNotifier(ref);
@@ -17,6 +18,11 @@ class HomePreferencesNotifier extends StateNotifier<HomePreferencesModel> {
   HomePreferencesNotifier(this.ref) : super(const HomePreferencesModel());
 
   final Ref ref;
+  final Debouncer _debouncer = Debouncer(const Duration(seconds: 1));
+
+  // Guards against auto-saving the placeholder/default state before `load()`
+  // has populated it, and against re-saving while `load()` itself is running.
+  bool _loaded = false;
 
   late final JellyService api = ref.read(jellyApiProvider);
 
@@ -49,6 +55,14 @@ class HomePreferencesNotifier extends StateNotifier<HomePreferencesModel> {
       availableFolders: availableFolders,
       loading: false,
     );
+    _loaded = true;
+  }
+
+  /// Debounced auto-save (Phase 3, issue #50) — every setter below calls this
+  /// instead of requiring an explicit Save button.
+  void _scheduleAutoSave() {
+    if (!_loaded) return;
+    _debouncer.run(save);
   }
 
   List<String> _buildOrderedLibraryIds(
@@ -71,18 +85,22 @@ class HomePreferencesNotifier extends StateNotifier<HomePreferencesModel> {
 
   void setOrderedLibraryIds(List<String> ids) {
     state = state.copyWith(orderedLibraryIds: ids);
+    _scheduleAutoSave();
   }
 
   void setLatestItemsExcludes(List<String> ids) {
     state = state.copyWith(latestItemsExcludes: ids);
+    _scheduleAutoSave();
   }
 
   void setHidePlayedInLatest(bool value) {
     state = state.copyWith(hidePlayedInLatest: value);
+    _scheduleAutoSave();
   }
 
   void setGroupedFolders(List<String> ids) {
     state = state.copyWith(groupedFolders: ids);
+    _scheduleAutoSave();
   }
 
   Future<ApiResult<dynamic>> save() async {
