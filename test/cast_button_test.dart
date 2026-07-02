@@ -5,7 +5,23 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
 import 'package:driftfin/l10n/generated/app_localizations.dart';
 import 'package:driftfin/providers/cast_provider.dart';
+import 'package:driftfin/screens/home_screen.dart';
 import 'package:driftfin/screens/video_player/components/cast_button.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout_model.dart';
+import 'package:driftfin/util/poster_defaults.dart';
+
+const _adaptiveModel = AdaptiveLayoutModel(
+  viewSize: ViewSize.phone,
+  layoutMode: LayoutMode.single,
+  inputDevice: InputDevice.touch,
+  platform: TargetPlatform.android,
+  isDesktop: false,
+  posterDefaults: PosterDefaults(size: 100, ratio: 0.66),
+  controller: <HomeTabs, ScrollController>{},
+  sideBarWidth: 0,
+  topBarHeight: 0,
+);
 
 /// A [CastController] stand-in that skips real network discovery/dispatch so
 /// the "Play on…" picker can be widget-tested with a fixed target list.
@@ -43,10 +59,13 @@ Widget _harness({required void Function(_FakeCastController) onCreated, CastStat
         return fake;
       }),
     ],
-    child: const MaterialApp(
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: Scaffold(body: Center(child: CastButton())),
+    child: const AdaptiveLayout(
+      data: _adaptiveModel,
+      child: MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: Scaffold(body: Center(child: CastButton())),
+      ),
     ),
   );
 }
