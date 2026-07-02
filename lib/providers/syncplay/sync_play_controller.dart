@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
+import 'package:meta/meta.dart';
 
 import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
 import 'package:driftfin/models/playback/playback_model.dart';
@@ -26,9 +27,9 @@ Duration _durationFromTicks(int ticks) => Duration(microseconds: ticks ~/ 10);
 /// the local player aligned with the group via drift correction, and reports
 /// buffering/ready so the group waits for slow members.
 class SyncPlayController extends StateNotifier<SyncPlayState> {
-  SyncPlayController(this.ref, {http.Client? httpClient})
+  SyncPlayController(this.ref, {http.Client? httpClient, @visibleForTesting SyncPlayState? initialState})
       : _httpClient = httpClient ?? http.Client(),
-        super(const SyncPlayState());
+        super(initialState ?? const SyncPlayState());
 
   final Ref ref;
   final http.Client _httpClient;
@@ -258,6 +259,13 @@ class SyncPlayController extends StateNotifier<SyncPlayState> {
   }
 
   // ---- Inbound message routing -------------------------------------------
+
+  /// Test-only entry point into the socket message router (group updates,
+  /// scheduled commands, and chat/reaction/typing/buffering relay parsing) —
+  /// lets tests exercise routing without a live WebSocket, which
+  /// [_ensureWired] otherwise requires. Never call this from production code.
+  @visibleForTesting
+  void debugHandleMessage(Map<String, dynamic> message) => _onMessage(message);
 
   void _onMessage(Map<String, dynamic> msg) {
     try {

@@ -1,11 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:driftfin/models/syncplay/sync_play_models.dart';
 import 'package:driftfin/models/syncplay/sync_play_state.dart';
 import 'package:driftfin/providers/syncplay/sync_play_controller.dart';
 
-// These tests exercise only the small slice of SyncPlayController that is safe
-// to reach without wiring a live JellyfinSocket/API/player:
+// These tests exercise SyncPlayController without wiring a live
+// JellyfinSocket/API/player, via two seams:
 //
 //   - The guard clauses at the top of the public, player/network-facing
 //     methods (userTogglePlayPause/sendChat/sendReaction/setTyping/userSeek)
@@ -15,14 +18,19 @@ import 'package:driftfin/providers/syncplay/sync_play_controller.dart';
 //     (inGroup: false), so calling these is safe with a bare
 //     ProviderContainer and never triggers `_ensureWired()` / a real socket
 //     connection or HTTP request.
+//   - The `initialState` constructor param and `debugHandleMessage` method
+//     (both @visibleForTesting) let a test seed `inGroup: true` and feed a
+//     raw socket message straight into the private message router, without
+//     `_ensureWired()`'s real WebSocket. With no `userProvider` session,
+//     `_sendRelay`'s credentials check fails closed before any HTTP call, so
+//     `sendReaction`/`setTyping` are exercised end-to-end but never touch the
+//     network.
 //
 // Everything else of substance in this file is either:
 //   - private top-level ticks<->Duration helpers and the private
-//     _participants/_defaultGroupName/_onMessage/_onGroupUpdate/_onCommand/
-//     _applyCommand/_onGeneralCommand/_onRelayMessage/_setPresence routing,
-//     all unreachable from a test without either modifying lib/ visibility
-//     (out of scope here) or driving them via _ensureWired(), which opens a
-//     real WebSocket with no injection seam; or
+//     _participants/_defaultGroupName/_onGroupUpdate/_onCommand/
+//     _applyCommand routing, unreachable from a test without driving them via
+//     _ensureWired(), which opens a real WebSocket with no injection seam; or
 //   - already covered by test/sync_play_state_test.dart (SyncPlayState /
 //     copyWith / equality), test/sync_play_models_test.dart
 //     (SyncGroupState.parse, SyncGroupUpdateType.parse,
@@ -35,6 +43,37 @@ import 'package:driftfin/providers/syncplay/sync_play_controller.dart';
 final _testControllerProvider = StateNotifierProvider<SyncPlayController, SyncPlayState>(
   (ref) => SyncPlayController(ref),
 );
+
+/// A second test-local provider seeded already inside a group, so
+/// sendReaction/setTyping/debugHandleMessage can be exercised past their
+/// `state.inGroup` guard clause.
+final _testInGroupControllerProvider = StateNotifierProvider<SyncPlayController, SyncPlayState>(
+  (ref) => SyncPlayController(
+    ref,
+    initialState: const SyncPlayState(
+      inGroup: true,
+      groupId: 'g1',
+      groupName: 'Movie night',
+      members: ['Alice', 'Bob'],
+    ),
+  ),
+);
+
+Map<String, dynamic> _generalCommand(String name, Map<String, dynamic> arguments) => {
+      'MessageType': 'GeneralCommand',
+      'Data': {'Name': name, 'Arguments': arguments},
+    };
+
+Map<String, dynamic> _relayDisplayMessage(SyncRelayKind kind, {required String sender, String? text, String? emoji}) =>
+    _generalCommand('DisplayMessage', {
+      'Header': syncRelayMarker,
+      'Text': jsonEncode({
+        'k': kind.name,
+        's': sender,
+        if (text != null) 't': text,
+        if (emoji != null) 'e': emoji,
+      }),
+    });
 
 void main() {
   late ProviderContainer container;
@@ -94,6 +133,11 @@ void main() {
       await expectLater(controller.setTyping(true), completes);
       expect(controller.state, const SyncPlayState());
     });
+
+    test('debugHandleMessage no-ops entirely while not in a group', () {
+      controller.debugHandleMessage(_relayDisplayMessage(SyncRelayKind.chat, sender: 'Alice', text: 'hi'));
+      expect(controller.state, const SyncPlayState());
+    });
   });
 
   group('SyncPlayController construction', () {
@@ -120,6 +164,116 @@ void main() {
       // tearDown.
       expect(controller.state.inGroup, false);
       expect(container.dispose, returnsNormally);
+    });
+  });
+
+  group('SyncPlayController while in a group (initialState seam)', () {
+    late ProviderContainer groupContainer;
+    late SyncPlayController groupController;
+
+    setUp(() {
+      groupContainer = ProviderContainer();
+      groupController = groupContainer.read(_testInGroupControllerProvider.notifier);
+    });
+
+    tearDown(() {
+      groupContainer.dispose();
+    });
+
+    test('sendReaction appends a local mine:true reaction', () async {
+      await groupController.sendReaction('👍');
+      expect(groupController.state.reactions, hasLength(1));
+      final reaction = groupController.state.reactions.single;
+      expect(reaction.emoji, '👍');
+      expect(reaction.mine, true);
+      // No userProvider session, so the sender name falls back to 'Me'.
+      expect(reaction.sender, 'Me');
+    });
+
+    test('sendReaction still no-ops for a whitespace-only emoji even in a group', () async {
+      await groupController.sendReaction('   ');
+      expect(groupController.state.reactions, isEmpty);
+    });
+
+    test('setTyping de-duplicates repeated calls with the same value', () async {
+      // Can't observe the relay call directly (no server), but repeated calls
+      // with the same value and then a flip must both complete without error.
+      await expectLater(groupController.setTyping(true), completes);
+      await expectLater(groupController.setTyping(true), completes);
+      await expectLater(groupController.setTyping(false), completes);
+    });
+
+    test('debugHandleMessage: chat relay message appends a not-mine chat line', () {
+      groupController.debugHandleMessage(
+        _relayDisplayMessage(SyncRelayKind.chat, sender: 'Alice', text: 'hi there'),
+      );
+      expect(groupController.state.chat, hasLength(1));
+      final message = groupController.state.chat.single;
+      expect(message.sender, 'Alice');
+      expect(message.text, 'hi there');
+      expect(message.mine, false);
+    });
+
+    test('debugHandleMessage: reaction relay message appends a not-mine reaction', () {
+      groupController.debugHandleMessage(
+        _relayDisplayMessage(SyncRelayKind.reaction, sender: 'Bob', emoji: '🎉'),
+      );
+      expect(groupController.state.reactions, hasLength(1));
+      final reaction = groupController.state.reactions.single;
+      expect(reaction.sender, 'Bob');
+      expect(reaction.emoji, '🎉');
+      expect(reaction.mine, false);
+    });
+
+    test('debugHandleMessage: typing relay sets and then clears presence', () {
+      groupController.debugHandleMessage(
+        _relayDisplayMessage(SyncRelayKind.typing, sender: 'Alice', text: 'start'),
+      );
+      expect(groupController.state.typingMembers, ['Alice']);
+
+      groupController.debugHandleMessage(
+        _relayDisplayMessage(SyncRelayKind.typing, sender: 'Alice', text: 'stop'),
+      );
+      expect(groupController.state.typingMembers, isEmpty);
+    });
+
+    test('debugHandleMessage: buffering relay sets presence', () {
+      groupController.debugHandleMessage(
+        _relayDisplayMessage(SyncRelayKind.buffering, sender: 'Bob', text: 'start'),
+      );
+      expect(groupController.state.bufferingMembers, ['Bob']);
+    });
+
+    test('debugHandleMessage: a plain admin DisplayMessage (no relay marker) is a system chat line', () {
+      groupController.debugHandleMessage(
+        _generalCommand('DisplayMessage', {'Header': 'Server Admin', 'Text': 'Restarting soon'}),
+      );
+      expect(groupController.state.chat, hasLength(1));
+      final message = groupController.state.chat.single;
+      expect(message.sender, 'Server Admin');
+      expect(message.text, 'Restarting soon');
+      expect(message.mine, false);
+    });
+
+    test('debugHandleMessage: an unrelated GeneralCommand name is ignored', () {
+      groupController.debugHandleMessage(_generalCommand('ToggleMute', {'Header': 'x', 'Text': 'y'}));
+      expect(groupController.state,
+          const SyncPlayState(inGroup: true, groupId: 'g1', groupName: 'Movie night', members: ['Alice', 'Bob']));
+    });
+
+    test('debugHandleMessage: malformed payloads never throw', () {
+      expect(() => groupController.debugHandleMessage(const {'MessageType': 'GeneralCommand'}), returnsNormally);
+      expect(
+        () => groupController.debugHandleMessage(_generalCommand('DisplayMessage', const {})),
+        returnsNormally,
+      );
+      expect(
+        () => groupController.debugHandleMessage({
+          'MessageType': 'GeneralCommand',
+          'Data': {'Name': 'DisplayMessage', 'Arguments': 'not a map'},
+        }),
+        returnsNormally,
+      );
     });
   });
 }

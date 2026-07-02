@@ -123,6 +123,17 @@ void main() {
       expect(find.textContaining('typing'), findsOneWidget);
     });
 
+    testWidgets('clearing the chat text back to empty reports typing stopped', (tester) async {
+      final fake = await pumpSheet(tester, state: inGroup);
+      await tester.enterText(find.byType(TextField), 'hello');
+      await tester.pump();
+      expect(fake.lastTyping, true);
+
+      await tester.enterText(find.byType(TextField), '');
+      await tester.pump();
+      expect(fake.lastTyping, false);
+    });
+
     testWidgets('entering chat text reports typing to the controller', (tester) async {
       final fake = await pumpSheet(tester, state: inGroup);
       await tester.enterText(find.byType(TextField), 'hello');
