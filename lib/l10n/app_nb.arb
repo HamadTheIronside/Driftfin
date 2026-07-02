@@ -67,7 +67,7 @@
   "crashReportingDesc": "Velg å automatisk sende krasj- og feilrapporter for å bidra til å forbedre Driftfin. Av som standard; start appen på nytt etter at du har endret dette. Ingen personopplysninger inkluderes.",
   "managePinnedCollections": "Festede hjemmesamlinger",
   "managePinnedCollectionsDesc": "Endre rekkefølgen på eller fjern samlingene som vises på startskjermen din",
-  "noPinnedCollections": "Ingen festede samlinger. Bruk ''Legg til på startsiden'' fra menyen til en samling.",
+  "noPinnedCollections": "Ingen festede samlinger. Bruk 'Legg til på startsiden' fra menyen til en samling.",
   "syncedNever": "Ikke synkronisert ennå",
   "syncedAtLabel": "Sist synkronisert: {time}",
   "addToCollection": "Legg til i samling",
