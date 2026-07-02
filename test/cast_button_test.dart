@@ -43,10 +43,10 @@ Widget _harness({required void Function(_FakeCastController) onCreated, CastStat
         return fake;
       }),
     ],
-    child: MaterialApp(
+    child: const MaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const Scaffold(body: Center(child: CastButton())),
+      home: Scaffold(body: Center(child: CastButton())),
     ),
   );
 }

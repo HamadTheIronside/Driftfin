@@ -159,7 +159,7 @@ Map<String, dynamic> buildLoadMessage({
         'title': title,
         if (imageUrl != null)
           'images': [
-            {'url': imageUrl}
+            {'url': imageUrl},
           ],
       },
     },
@@ -280,12 +280,10 @@ class CastController extends StateNotifier<CastState> {
     try {
       final devices = await CastDiscoveryService().search();
       _chromecastTargets = devices
-          .map((d) => CastTarget(
-                id: 'cc:${d.name}:${d.host}',
-                name: d.name,
-                backend: CastBackend.chromecast,
-                chromecast: d,
-              ))
+          .map(
+            (d) =>
+                CastTarget(id: 'cc:${d.name}:${d.host}', name: d.name, backend: CastBackend.chromecast, chromecast: d),
+          )
           .toList();
       _publishDevices();
     } catch (e, s) {
@@ -301,12 +299,14 @@ class CastController extends StateNotifier<CastState> {
       _dlna!.start().then((manager) {
         _dlnaDevicesSub = manager.devices.stream.listen((deviceMap) {
           _dlnaTargets = deviceMap.entries
-              .map((e) => CastTarget(
-                    id: 'dlna:${e.key}',
-                    name: e.value.info.friendlyName,
-                    backend: CastBackend.dlna,
-                    dlna: e.value,
-                  ))
+              .map(
+                (e) => CastTarget(
+                  id: 'dlna:${e.key}',
+                  name: e.value.info.friendlyName,
+                  backend: CastBackend.dlna,
+                  dlna: e.value,
+                ),
+              )
               .toList();
           _publishDevices();
         });
@@ -344,7 +344,8 @@ class CastController extends StateNotifier<CastState> {
     String? mediaSourceId,
     int? audioStreamIndex,
     int? subtitleStreamIndex,
-  })? _currentMedia() {
+  })?
+  _currentMedia() {
     final model = ref.read(playBackModel);
     final url = model?.media?.url;
     if (model == null || url == null) return null;
@@ -476,7 +477,9 @@ class CastController extends StateNotifier<CastState> {
         audioStreamIndex: media.audioStreamIndex,
         subtitleStreamIndex: media.subtitleStreamIndex,
       );
-      await ref.read(jellyApiProvider).sessionsSessionIdPlayingPost(
+      await ref
+          .read(jellyApiProvider)
+          .sessionsSessionIdPlayingPost(
             sessionId: request.sessionId,
             itemIds: request.itemIds,
             startPositionTicks: request.startPositionTicks,
