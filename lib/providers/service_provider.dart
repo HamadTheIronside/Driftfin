@@ -938,6 +938,45 @@ class JellyService {
         activeWithinSeconds: timeoutSeconds,
       );
 
+  /// Other active Jellyfin sessions the current user may remote-control (the
+  /// "Play on…" handoff targets). The server itself filters this to sessions
+  /// controllable by [account], so no extra permission check is needed here.
+  Future<Response<List<SessionInfoDto>>> getControllableSessions() =>
+      api.sessionsGet(controllableByUserId: account?.id);
+
+  /// Hands off playback of [itemIds] to [sessionId], starting at
+  /// [startPositionTicks] with the given track selection.
+  Future<Response> sessionsSessionIdPlayingPost({
+    required String sessionId,
+    required List<String> itemIds,
+    int? startPositionTicks,
+    String? mediaSourceId,
+    int? audioStreamIndex,
+    int? subtitleStreamIndex,
+  }) =>
+      api.sessionsSessionIdPlayingPost(
+        sessionId: sessionId,
+        playCommand: enums.SessionsSessionIdPlayingPostPlayCommand.playnow,
+        itemIds: itemIds,
+        startPositionTicks: startPositionTicks,
+        mediaSourceId: mediaSourceId,
+        audioStreamIndex: audioStreamIndex,
+        subtitleStreamIndex: subtitleStreamIndex,
+      );
+
+  /// Sends a playstate transport command (play/pause/seek/stop) to [sessionId].
+  Future<Response> sessionsSessionIdPlayingCommandPost({
+    required String sessionId,
+    required enums.SessionsSessionIdPlayingCommandPostCommand command,
+    int? seekPositionTicks,
+  }) =>
+      api.sessionsSessionIdPlayingCommandPost(
+        sessionId: sessionId,
+        command: command,
+        seekPositionTicks: seekPositionTicks,
+        controllingUserId: account?.id,
+      );
+
   Future<void> stopActiveTask(String taskId) => api.scheduledTasksRunningTaskIdDelete(taskId: taskId);
   Future<void> startTask(String taskId) => api.scheduledTasksRunningTaskIdPost(taskId: taskId);
 
