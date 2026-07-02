@@ -402,16 +402,19 @@ class _PlayerSettingsPageState extends ConsumerState<PlayerSettingsPage> {
                 ],
               ],
               if (PlayerOptions.available.length != 1)
+                // Frame the backend picker as "Video engine — the default is
+                // recommended" (issue #50) so users don't feel they must
+                // change it. The platform default is tagged "(recommended)".
                 SettingsListTileEnum(
                   label: Text(context.localized.playerSettingsBackendTitle),
                   subLabel: Text(context.localized.playerSettingsBackendDesc),
                   current: videoSettings.playerOptions == null
-                      ? "${context.localized.defaultLabel} (${PlayerOptions.platformDefaults.label(context)})"
+                      ? "${context.localized.defaultLabel} (${PlayerOptions.platformDefaults.label(context)}) — ${context.localized.recommended}"
                       : videoSettings.wantedPlayer.label(context),
                   itemBuilder: (context) => [
                     ItemActionButton(
-                      label:
-                          Text("${context.localized.defaultLabel} (${PlayerOptions.platformDefaults.label(context)})"),
+                      label: Text(
+                          "${context.localized.defaultLabel} (${PlayerOptions.platformDefaults.label(context)}) — ${context.localized.recommended}"),
                       action: () => ref.read(videoPlayerSettingsProvider.notifier).state =
                           videoSettings.copyWith(playerOptions: null),
                     ),

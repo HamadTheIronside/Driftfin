@@ -50,7 +50,13 @@ class SubtitleSettingsNotifier extends StateNotifier<SubtitleSettingsModel> {
 
   void resetSettings({SubtitleSettingsModel? value}) => state = value ?? const SubtitleSettingsModel();
 
-  void setFontWeight(FontWeight? value) => state = state.copyWith(fontWeight: value);
+  void setFontWeight(FontWeight? value) {
+    // freezed's copyWith can't take null for the non-nullable fontWeight; a
+    // null request means "leave it unchanged" (matches the old hand-rolled
+    // copyWith that did `fontWeight ?? this.fontWeight`).
+    if (value == null) return;
+    state = state.copyWith(fontWeight: value);
+  }
 
   SubtitleSettingsModel setBackGroundOpacity(double value) =>
       state = state.copyWith(backGroundColor: state.backGroundColor.withValues(alpha: value));

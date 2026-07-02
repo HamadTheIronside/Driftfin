@@ -249,7 +249,8 @@ class SharedHelper {
 
   SubtitleSettingsModel get subtitleSettings {
     try {
-      return SubtitleSettingsModel.fromJson(sharedPreferences.getString(SharedKeys._subtitleSettingsKey) ?? "");
+      return SubtitleSettingsModel.fromJson(
+          jsonDecode(sharedPreferences.getString(SharedKeys._subtitleSettingsKey) ?? ""));
     } catch (e) {
       log(e.toString());
       return const SubtitleSettingsModel();
@@ -257,7 +258,7 @@ class SharedHelper {
   }
 
   set subtitleSettings(SubtitleSettingsModel settings) {
-    sharedPreferences.setString(SharedKeys._subtitleSettingsKey, settings.toJson());
+    sharedPreferences.setString(SharedKeys._subtitleSettingsKey, jsonEncode(settings.toJson()));
   }
 
   VideoPlayerSettingsModel get videoPlayerSettings {

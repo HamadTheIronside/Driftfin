@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:driftfin/models/settings/subtitle_settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -45,8 +47,8 @@ void main() {
     });
   });
 
-  group('SubtitleSettingsModel JSON round trip', () {
-    test('toMap/fromMap round-trips all fields except fontWeight', () {
+  group('SubtitleSettingsModel JSON round trip (freezed + json_serializable)', () {
+    test('toJson/fromJson round-trips every field, including non-default fontWeight', () {
       const model = SubtitleSettingsModel(
         fontSize: 50,
         fontWeight: FontWeight.w600,
@@ -58,18 +60,16 @@ void main() {
         shadow: 0.9,
       );
 
-      final restored = SubtitleSettingsModel.fromMap(model.toMap());
+      final restored = SubtitleSettingsModel.fromJson(model.toJson());
 
       expect(restored.fontSize, model.fontSize);
-      // toMap() stores fontWeight.value (100-900) but fromMap() looks it up by
-      // .index (0-8), so non-default weights never match and fall back to the
-      // default (FontWeight.normal). This is existing behavior of
-      // lib/models/settings/subtitle_settings_model.dart, not something this
-      // test suite changes.
-      expect(restored.fontWeight, const SubtitleSettingsModel().fontWeight);
+      // The pre-migration model stored fontWeight.value but read it back by
+      // .index, so any non-default weight silently reverted to normal. The
+      // freezed FontWeightConverter matches by .value, so w600 now survives.
+      expect(restored.fontWeight, FontWeight.w600);
       expect(restored.verticalOffset, model.verticalOffset);
-      // colorFromJson always reconstructs a plain Color via Color.from(), so a
-      // MaterialColor input (like Colors.blue) round-trips to an equal-valued
+      // The color converter always reconstructs a plain Color via Color.from(),
+      // so a MaterialColor input (Colors.blue) round-trips to an equal-valued
       // but not `==` plain Color. Compare the packed ARGB value instead.
       expect(restored.color.toARGB32(), model.color.toARGB32());
       expect(restored.outlineColor.toARGB32(), model.outlineColor.toARGB32());
@@ -78,24 +78,77 @@ void main() {
       expect(restored.shadow, model.shadow);
     });
 
-    test('toJson/fromJson string round trip', () {
-      const model = SubtitleSettingsModel(fontSize: 33);
-      final restored = SubtitleSettingsModel.fromJson(model.toJson());
-      expect(restored, model);
+    test('the JSON keys are exactly the pre-migration keys (no drift)', () {
+      final json = const SubtitleSettingsModel().toJson();
+      expect(
+        json.keys.toSet(),
+        {
+          'fontSize',
+          'fontWeight',
+          'verticalOffset',
+          'color',
+          'outlineColor',
+          'outlineSize',
+          'backGroundColor',
+          'shadow',
+        },
+      );
+      // Colors still serialize as the {alpha, red, green, blue} map, and
+      // fontWeight still serializes as its numeric weight — the exact shapes
+      // the hand-rolled toMap produced.
+      expect(json['color'], isA<Map<String, dynamic>>());
+      expect((json['color'] as Map).keys.toSet(), {'alpha', 'red', 'green', 'blue'});
+      expect(json['fontWeight'], isA<int>());
     });
 
-    test('fromMap with missing keys falls back to defaults', () {
-      final restored = SubtitleSettingsModel.fromMap(const {});
+    test('fromJson reads a real pre-migration payload (Phase 4 migration guard)', () {
+      // This is exactly what the old hand-rolled `toJson()` wrote to
+      // SharedPreferences before the freezed migration: fontWeight as its
+      // numeric weight (700), colors as {alpha,red,green,blue} doubles.
+      const preMigrationJson = '''
+      {
+        "fontSize": 48.0,
+        "fontWeight": 700,
+        "verticalOffset": 0.2,
+        "color": {"alpha": 1.0, "red": 1.0, "green": 1.0, "blue": 1.0},
+        "outlineColor": {"alpha": 0.85, "red": 0.0, "green": 0.0, "blue": 0.0},
+        "outlineSize": 5.0,
+        "backGroundColor": {"alpha": 0.0, "red": 0.0, "green": 0.0, "blue": 0.0},
+        "shadow": 0.75
+      }
+      ''';
+
+      final restored = SubtitleSettingsModel.fromJson(jsonDecode(preMigrationJson) as Map<String, dynamic>);
+
+      expect(restored.fontSize, 48.0);
+      expect(restored.fontWeight, FontWeight.w700);
+      expect(restored.verticalOffset, 0.2);
+      expect(restored.color.toARGB32(), Colors.white.toARGB32());
+      expect(restored.outlineColor.a, closeTo(0.85, 0.01));
+      expect(restored.outlineSize, 5.0);
+      expect(restored.backGroundColor.a, 0.0);
+      expect(restored.shadow, 0.75);
+    });
+
+    test('fromJson reads the even-older integer color format via colorFromJson', () {
+      final restored = SubtitleSettingsModel.fromJson({
+        'color': 0xFF00FF00, // deprecated packed-int color format
+      });
+      expect(restored.color.toARGB32(), const Color(0xFF00FF00).toARGB32());
+    });
+
+    test('fromJson with missing keys falls back to defaults', () {
+      final restored = SubtitleSettingsModel.fromJson(const {});
       expect(restored, const SubtitleSettingsModel());
     });
 
-    test('fromMap with an unknown fontWeight index falls back to the default fontWeight', () {
-      final restored = SubtitleSettingsModel.fromMap({'fontWeight': 999});
+    test('fromJson with an unknown fontWeight value falls back to the default fontWeight', () {
+      final restored = SubtitleSettingsModel.fromJson({'fontWeight': 999});
       expect(restored.fontWeight, const SubtitleSettingsModel().fontWeight);
     });
 
-    test('fromMap decodes colors via the map-based colorFromJson format', () {
-      final restored = SubtitleSettingsModel.fromMap({
+    test('fromJson decodes colors via the map-based colorFromJson format', () {
+      final restored = SubtitleSettingsModel.fromJson({
         'color': {'alpha': 1.0, 'red': 0.0, 'green': 1.0, 'blue': 0.0},
       });
       expect(restored.color.g, 1.0);

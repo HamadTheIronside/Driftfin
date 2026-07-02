@@ -181,7 +181,7 @@ class ConfigSync {
     try {
       ref.read(clientSettingsProvider.notifier).update((c) => c.copyWith(
             themeMode: _byName(ThemeMode.values, s.themeMode) ?? c.themeMode,
-            themeColor: _byName(ColorThemes.values, s.themeColor) ?? c.themeColor,
+            themeColor: _colorThemeByName(s.themeColor) ?? c.themeColor,
             schemeVariant: _byName(DynamicSchemeVariant.values, s.schemeVariant) ?? c.schemeVariant,
             amoledBlack: s.amoledBlack ?? c.amoledBlack,
             deriveColorsFromItem: s.deriveColorsFromItem ?? c.deriveColorsFromItem,
@@ -213,6 +213,20 @@ class ConfigSync {
 T? _byName<T extends Enum>(Iterable<T> values, String? name) {
   if (name == null) return null;
   for (final value in values) {
+    if (value.name == name) return value;
+  }
+  return null;
+}
+
+/// [ColorThemes] carries its own `name` field (e.g. 'Fladder', 'Deep Orange')
+/// that shadows `Enum.name`, and [_buildFrom] persists that custom string.
+/// The generic [_byName] above would compare against `Enum.name` (the Dart
+/// identifier, 'fladder') instead and never match, silently dropping the
+/// synced theme colour — so match on the custom field here. (Guarded by
+/// config_sync_round_trip_test.dart.)
+ColorThemes? _colorThemeByName(String? name) {
+  if (name == null) return null;
+  for (final value in ColorThemes.values) {
     if (value.name == name) return value;
   }
   return null;
