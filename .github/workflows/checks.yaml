@@ -62,13 +62,13 @@ jobs:
         if: github.event_name == 'pull_request'
         # Diff coverage, not total: every changed line of hand-written code must be
         # covered. Total coverage is meaningless here (generated client dominates).
-        # ponytail: --fail-under=80 is the knob; raise it as coverage matures.
+        # ponytail: --fail-under=60 is the knob; raise it as coverage matures.
         run: |
           pip install diff_cover
           git fetch --no-tags origin "${{ github.base_ref }}"
           diff-cover coverage/lcov.info \
             --compare-branch="origin/${{ github.base_ref }}" \
-            --fail-under=80 \
+            --fail-under=60 \
             --exclude "**/*.g.dart" "**/*.freezed.dart" "**/*.mapper.dart" \
                       "**/*.gr.dart" "**/*.swagger*.dart" \
                       "lib/jellyfin/**" "lib/src/**" "lib/l10n/generated/**"

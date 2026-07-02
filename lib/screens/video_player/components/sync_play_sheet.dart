@@ -30,8 +30,12 @@ class SyncPlaySheet extends ConsumerStatefulWidget {
   ConsumerState<SyncPlaySheet> createState() => _SyncPlaySheetState();
 }
 
+/// Quick emoji reactions offered in Watch Together (issue #5).
+const _quickReactions = ['👍', '❤️', '😂', '😮', '👏', '🎉'];
+
 class _SyncPlaySheetState extends ConsumerState<SyncPlaySheet> {
   Timer? _poll;
+  Timer? _typingStopTimer;
   List<GroupInfoDto> _groups = [];
   bool _busy = false;
   final _chatController = TextEditingController();
@@ -47,6 +51,10 @@ class _SyncPlaySheetState extends ConsumerState<SyncPlaySheet> {
   @override
   void dispose() {
     _poll?.cancel();
+    // Not clearing typing presence here: it auto-expires server-relay-side
+    // after a few seconds (SyncPlayController._setPresence), and touching
+    // `ref` from dispose is best avoided.
+    _typingStopTimer?.cancel();
     _chatController.dispose();
     _chatFocus.dispose();
     super.dispose();
@@ -56,9 +64,26 @@ class _SyncPlaySheetState extends ConsumerState<SyncPlaySheet> {
     final text = _chatController.text;
     if (text.trim().isEmpty) return;
     _chatController.clear();
-    ref.read(syncPlayControllerProvider.notifier).sendChat(text);
+    _typingStopTimer?.cancel();
+    ref.read(syncPlayControllerProvider.notifier)
+      ..setTyping(false)
+      ..sendChat(text);
     // Keep the keyboard up so several messages can be sent in a row.
     _chatFocus.requestFocus();
+  }
+
+  /// Reports typing presence (issue #5), debounced to a single "stop" a couple
+  /// of seconds after the user pauses rather than one relay call a keystroke.
+  void _onChatChanged(String text) {
+    final notifier = ref.read(syncPlayControllerProvider.notifier);
+    if (text.trim().isEmpty) {
+      _typingStopTimer?.cancel();
+      notifier.setTyping(false);
+      return;
+    }
+    notifier.setTyping(true);
+    _typingStopTimer?.cancel();
+    _typingStopTimer = Timer(const Duration(seconds: 3), () => notifier.setTyping(false));
   }
 
   Future<void> _refresh() async {
@@ -147,6 +172,16 @@ class _SyncPlaySheetState extends ConsumerState<SyncPlaySheet> {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
+                  if (state.bufferingMembers.isNotEmpty)
+                    Text(
+                      context.localized.syncPlayBufferingMembers(state.bufferingMembers.join(', ')),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: Theme.of(context).colorScheme.tertiary),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                 ],
               ),
             ),
@@ -178,9 +213,65 @@ class _SyncPlaySheetState extends ConsumerState<SyncPlaySheet> {
             child: _chatList(context, state),
           ),
         ),
+        if (state.typingMembers.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Text(
+              context.localized.syncPlayTyping(state.typingMembers.join(', ')),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(fontStyle: FontStyle.italic, color: Theme.of(context).colorScheme.tertiary),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        const SizedBox(height: 8),
+        _reactionsBar(context, state, notifier),
         const SizedBox(height: 8),
         _chatInput(context),
       ],
+    );
+  }
+
+  Widget _reactionsBar(BuildContext context, SyncPlayState state, SyncPlayController notifier) {
+    final recent = state.reactions.reversed.take(6).toList();
+    return SizedBox(
+      height: 32,
+      child: Row(
+        children: [
+          for (final emoji in _quickReactions)
+            Expanded(
+              child: Tooltip(
+                message: context.localized.syncPlayReact,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(16),
+                  onTap: () => notifier.sendReaction(emoji),
+                  child: Center(child: Text(emoji, style: const TextStyle(fontSize: 18))),
+                ),
+              ),
+            ),
+          if (recent.isNotEmpty) ...[
+            const VerticalDivider(width: 12),
+            Expanded(
+              flex: 2,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  for (final reaction in recent)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 3),
+                      child: Tooltip(
+                        message: reaction.sender,
+                        child: Text(reaction.emoji, style: const TextStyle(fontSize: 18)),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ],
+      ),
     );
   }
 
@@ -255,6 +346,7 @@ class _SyncPlaySheetState extends ConsumerState<SyncPlaySheet> {
             textInputAction: TextInputAction.send,
             minLines: 1,
             maxLines: 4,
+            onChanged: _onChatChanged,
             onSubmitted: (_) => _sendChat(),
             decoration: InputDecoration(
               isDense: true,

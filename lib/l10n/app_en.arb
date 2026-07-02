@@ -1530,6 +1530,24 @@
       }
     }
   },
+  "syncPlayReact": "React",
+  "@syncPlayReact": {},
+  "syncPlayTyping": "{names} typing…",
+  "@syncPlayTyping": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "syncPlayBufferingMembers": "{names} buffering…",
+  "@syncPlayBufferingMembers": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
   "off": "Off",
   "screenBrightness": "Screen brightness",
   "enableEdgeGesturesTitle": "Enable edge gestures",
@@ -2978,9 +2996,9 @@
   "share": "Share",
   "setAs": "Set as",
   "cast": "Cast",
-  "castTo": "Cast to TV",
+  "castTo": "Play on…",
   "castSearching": "Searching for devices…",
-  "castNoDevices": "No cast devices found on your network",
+  "castNoDevices": "No devices or active sessions found",
   "castConnecting": "Connecting…",
   "castCastingTo": "Casting to {device}",
   "@castCastingTo": {
@@ -2992,6 +3010,8 @@
   },
   "castStop": "Stop casting",
   "castFailed": "Couldn't connect to the cast device",
+  "castSectionNearby": "Nearby devices",
+  "castSectionSessions": "Your other devices",
   "tonight": "Tonight",
   "@tonight": {},
   "tonightSubtitle": "Press play, don't browse",

@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
 import 'package:driftfin/providers/cast_provider.dart';
 
 void main() {
@@ -139,6 +140,80 @@ void main() {
             'mediaSessionId': 4,
             'volume': {'level': 0.5}
           });
+    });
+  });
+
+  group('sessionCastTargets', () {
+    test('builds a target per controllable session, labelled by device + user', () {
+      final targets = sessionCastTargets([
+        const SessionInfoDto(
+          id: 's1',
+          deviceId: 'dev1',
+          deviceName: 'Living Room TV',
+          userName: 'alice',
+          supportsRemoteControl: true,
+        ),
+      ]);
+
+      expect(targets, hasLength(1));
+      final target = targets.single;
+      expect(target.id, 'session:s1');
+      expect(target.name, 'Living Room TV · alice');
+      expect(target.backend, CastBackend.jellyfinSession);
+      expect(target.session?.id, 's1');
+    });
+
+    test('excludes the caller\'s own device by deviceId', () {
+      final targets = sessionCastTargets(
+        [const SessionInfoDto(id: 's1', deviceId: 'mine', supportsRemoteControl: true)],
+        myDeviceId: 'mine',
+      );
+      expect(targets, isEmpty);
+    });
+
+    test('excludes sessions without an id or without remote-control support', () {
+      final targets = sessionCastTargets([
+        const SessionInfoDto(deviceId: 'dev1', supportsRemoteControl: true), // no id
+        const SessionInfoDto(id: 's2', deviceId: 'dev2', supportsRemoteControl: false), // not controllable
+        const SessionInfoDto(id: 's3', deviceId: 'dev3'), // supportsRemoteControl unset
+      ]);
+      expect(targets, isEmpty);
+    });
+
+    test('falls back to the session id when device and user names are blank', () {
+      final targets = sessionCastTargets([
+        const SessionInfoDto(id: 's1', supportsRemoteControl: true),
+      ]);
+      expect(targets.single.name, 's1');
+    });
+  });
+
+  group('buildSessionPlayRequest', () {
+    test('converts the start position to runtime ticks and carries the track selection', () {
+      final request = buildSessionPlayRequest(
+        sessionId: 's1',
+        itemId: 'item1',
+        startAt: const Duration(seconds: 90),
+        mediaSourceId: 'src1',
+        audioStreamIndex: 2,
+        subtitleStreamIndex: 3,
+      );
+
+      expect(request.sessionId, 's1');
+      expect(request.itemIds, ['item1']);
+      expect(request.startPositionTicks, 900000000);
+      expect(request.mediaSourceId, 'src1');
+      expect(request.audioStreamIndex, 2);
+      expect(request.subtitleStreamIndex, 3);
+    });
+
+    test('defaults optional track/media source fields to null', () {
+      final request = buildSessionPlayRequest(sessionId: 's1', itemId: 'item1', startAt: Duration.zero);
+
+      expect(request.startPositionTicks, 0);
+      expect(request.mediaSourceId, null);
+      expect(request.audioStreamIndex, null);
+      expect(request.subtitleStreamIndex, null);
     });
   });
 }
