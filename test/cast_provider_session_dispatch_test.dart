@@ -144,7 +144,15 @@ void main() {
   test('connect() to a Jellyfin session hands off the exact position + track selection, then marks it connected',
       () async {
     final harness = await _readyHarness();
-    addTearDown(harness.container.dispose);
+    addTearDown(() async {
+      // connect() starts a 2s Timer.periodic poll; CastController.dispose()
+      // fires _teardown() (which cancels it) without awaiting it, so an
+      // explicit disconnect() first is needed to guarantee the timer is gone
+      // before the container disposes - otherwise it can fire against an
+      // already-disposed container and hang/crash a later test.
+      await harness.controller.disconnect();
+      harness.container.dispose();
+    });
     harness.player.lastState.position = const Duration(seconds: 42);
     harness.player.lastState.duration = const Duration(minutes: 10);
 
@@ -184,7 +192,10 @@ void main() {
 
   test('play/pause/seek send the matching playstate command to the connected session', () async {
     final harness = await _readyHarness();
-    addTearDown(harness.container.dispose);
+    addTearDown(() async {
+      await harness.controller.disconnect();
+      harness.container.dispose();
+    });
     await harness.controller.connect(_sessionTarget);
 
     harness.controller.pause();
@@ -229,7 +240,10 @@ void main() {
     "the position-poll timer reflects the remote session's reported play state",
     () async {
       final harness = await _readyHarness();
-      addTearDown(harness.container.dispose);
+      addTearDown(() async {
+        await harness.controller.disconnect();
+        harness.container.dispose();
+      });
       await harness.controller.connect(_sessionTarget);
 
       // The remote now reports itself paused, 5 minutes in.
@@ -253,7 +267,10 @@ void main() {
     'the position-poll timer disconnects locally once the remote session disappears',
     () async {
       final harness = await _readyHarness();
-      addTearDown(harness.container.dispose);
+      addTearDown(() async {
+        await harness.controller.disconnect();
+        harness.container.dispose();
+      });
       await harness.controller.connect(_sessionTarget);
 
       harness.service.sessionsById.remove('s1'); // remote ended playback / logged out
