@@ -1,89 +1,146 @@
 {
-  "active": "Aktivní",
+  "@@locale": "cs",
   "nativeName": "Čeština",
   "about": "O nás",
   "accept": "Přijmout",
+  "active": "Aktivní",
   "actor": "{count, plural, one{Herec/Herečka} two{Herci} few{Herců} many{Herců} other{Herců}}",
-  "@actor": {
-    "description": "actor",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "addAsFavorite": "Přidat do oblíbených",
+  "addShowToFavorites": "Přidat seriál do oblíbených",
+  "addedShowToFavorites": "Seriál přidán do oblíbených",
+  "removedShowFromFavorites": "Seriál odebrán z oblíbených",
+  "requestEpisodeSonarr": "Vyžádat epizodu (Sonarr)",
+  "sonarrEpisodeRequested": "Epizoda vyžádána – Sonarr vyhledává",
+  "sonarrSeriesNotFound": "Tento seriál zatím není v Sonarru – nejprve ho tam přidejte",
+  "sonarrEpisodeNotFound": "Tuto epizodu se v Sonarru nepodařilo najít",
+  "sonarrNotConfigured": "Sonarr není nastaven – přidejte ho v Nastavení",
+  "sonarrRequestFailed": "Požadavek na Sonarr selhal",
+  "sonarrIntegrationTitle": "Sonarr (žádosti o epizody)",
+  "sonarrIntegrationDesc": "Připojte Sonarr přímo a žádejte o jednotlivé epizody (Seerr podporuje pouze celé sezóny). Funguje pouze u seriálů, které už jsou v Sonarru přidané.",
+  "managedByServerPlugin": "Spravováno serverem (plugin Driftfin)",
+  "sonarrUrlTitle": "URL adresa Sonarru",
+  "sonarrApiKeyTitle": "API klíč Sonarru",
+  "sonarrSaved": "Nastavení Sonarru uloženo",
+  "traktTitle": "Trakt",
+  "traktDesc": "Zaznamenávejte sledované do Trakt. Použijte vlastní API aplikaci Trakt (client ID + secret).",
+  "traktClientId": "Trakt client ID",
+  "traktClientSecret": "Trakt client secret",
+  "traktConnect": "Připojit k Trakt",
+  "traktDisconnect": "Odpojit od Trakt",
+  "traktConnected": "Připojeno",
+  "traktNotConnected": "Nepřipojeno",
+  "traktActivateInstructions": "Na jiném zařízení otevřete {url} a zadejte tento kód:",
+  "traktConnectedSuccess": "Připojeno k Trakt",
+  "traktConnectFailed": "Připojení k Trakt selhalo nebo vypršel časový limit",
+  "externalPlayerTitle": "Externí přehrávač",
+  "externalPlayerDesc": "Přehrávat ve vlastním desktopovém přehrávači (MPV / VLC / PotPlayer). Pozn.: externí přehrávač nehlásí průběh zpět, takže obnovení přehrávání ani zaznamenávání sledovanosti nebudou fungovat.",
+  "externalPlayerPath": "Cesta k přehrávači",
+  "externalPlayerArgs": "Argumenty spuštění",
+  "playInExternalPlayer": "Přehrát v externím přehrávači",
+  "externalPlayerFailed": "Nepodařilo se spustit externí přehrávač",
+  "requestsTitle": "Žádosti",
+  "requestsScopeMine": "Moje",
+  "requestsScopeAll": "Vše",
+  "requestFilterAll": "Vše",
+  "requestFilterUnavailable": "Nedostupné",
+  "requestSortAdded": "Datum přidání",
+  "requestSortModified": "Poslední úprava",
+  "approveAllPending": "Schválit všechny čekající",
+  "noRequestsFound": "Žádné žádosti",
+  "calendarTitle": "Kalendář",
+  "calendarEmpty": "Nic se nechystá",
+  "calendarToday": "Dnes",
+  "calendarTomorrow": "Zítra",
+  "calendarFilterAll": "Vše",
+  "calendarFilterTv": "TV",
+  "calendarFilterMovies": "Filmy",
+  "radarrIntegrationTitle": "Radarr (filmy)",
+  "radarrIntegrationDesc": "Připojte Radarr a zobrazte nadcházející premiéry filmů v kalendáři a žádejte o filmy přímo.",
+  "radarrUrlTitle": "URL adresa Radarru",
+  "radarrApiKeyTitle": "API klíč Radarru",
+  "addToHome": "Přidat na domovskou stránku",
+  "removeFromHome": "Odebrat z domovské stránky",
+  "syncSettingsTitle": "Synchronizovat nastavení se serverem",
+  "syncSettingsDesc": "Ukládejte vzhled, rozvržení domovské obrazovky, připnuté kolekce a URL adresu Seerr na server Jellyfin, aby vás následovaly na všech zařízeních.",
+  "syncNow": "Synchronizovat nyní",
+  "crashReportingTitle": "Odesílat hlášení o pádech",
+  "crashReportingDesc": "Povolte automatické odesílání hlášení o pádech a chybách a pomozte vylepšovat Driftfin. Ve výchozím stavu vypnuto; po změně restartujte aplikaci. Neobsahuje žádné osobní údaje.",
+  "managePinnedCollections": "Připnuté kolekce na domovské obrazovce",
+  "managePinnedCollectionsDesc": "Přeuspořádejte nebo odeberte kolekce zobrazené na domovské obrazovce",
+  "noPinnedCollections": "Žádné připnuté kolekce. Použijte „Přidat na domovskou stránku“ v nabídce kolekce.",
+  "syncedNever": "Zatím nesynchronizováno",
+  "syncedAtLabel": "Naposledy synchronizováno: {time}",
   "addToCollection": "Přidat do kolekce",
   "addToPlaylist": "Přidat do seznamu skladeb",
+  "addToQueue": "Přidat do fronty",
+  "instantMix": "Rychlý mix",
+  "addedToQueue": "{count, plural, one{Přidána {count} skladba do fronty} few{Přidány {count} skladby do fronty} other{Přidáno {count} skladeb do fronty}}",
   "advanced": "Pokročilé",
-  "director": "{count, plural, other{Režisérů} two{Režiséři} one{Režisér}}",
-  "@director": {
-    "description": "director",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "appLockBiometrics": "Biometrika",
-  "backgroundBlur": "Rozmazání pozadí",
-  "appLockPasscode": "Přístupový kód",
-  "communityRating": "Hodnocení komunity",
-  "dashboardContinueListening": "Pokračovat v poslechu",
-  "filter": "{count, plural, other{Filtrů} one{Filtr} few{Filtry}}",
-  "@filter": {
-    "description": "filter",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
+  "all": "Všechny",
   "amoledBlack": "Amoled černá",
   "appLockAutoLogin": "Automatické přihlášení",
+  "appLockBiometrics": "Biometrika",
+  "appLockPasscode": "Přístupový kód",
+  "appLockTitle": "Nastavte způsob přihlášení pro {userName}",
+  "ascending": "Vzestupně",
   "audio": "Zvuk",
+  "audioPlayerPlaybackOptionsTitle": "Možnosti přehrávání",
+  "audioPlayerRepeatAll": "Opakovat vše",
+  "audioPlayerRepeatOff": "Opakování vypnuto",
+  "audioPlayerRepeatOne": "Opakovat jednu",
+  "audioPlayerShuffle": "Náhodné přehrávání",
+  "showArtist": "Zobrazit interpreta",
+  "track": "{count, plural, one{Skladba} few{Skladby} other{Skladeb}}",
   "autoPlay": "Automatické přehrávání",
+  "backgroundBlur": "Rozmazání pozadí",
   "backgroundOpacity": "Průhlednost pozadí",
   "biometricsFailedCheckAgain": "Biometrické údaje selhaly. Zkontrolujte nastavení a zkuste to znovu.",
   "bold": "Tučné písmo",
   "cancel": "Zrušit",
   "change": "Změna",
-  "clearAllSettings": "Vymazat všechna nastavení",
+  "chapter": "{count, plural, other{Kapitol} one{Kapitola}}",
   "clear": "Vymazat",
+  "clearAllSettings": "Vymazat všechna nastavení",
   "clearAllSettingsQuestion": "Vymazat všechna nastavení?",
+  "clearChanges": "Vymazat změny",
+  "clearSelection": "Vymazat výběr",
+  "close": "Zavřít",
+  "generateLoginLink": "Kód pro {userName}",
+  "shareLoginLink": "Sdílet přihlašovací odkaz",
+  "shareQRCode": "Sdílet QR kód",
+  "copyLoginLink": "Kopírovat odkaz",
+  "includePassword": "Zahrnout heslo",
+  "invalidAuthLink": "Neplatný přihlašovací odkaz",
   "code": "Kód",
   "collectionFolder": "Složka kolekcí",
   "color": "Barva",
   "combined": "Kombinovaný",
+  "communityRating": "Hodnocení komunity",
+  "continuePage": "Pokračovat - strana {page}",
+  "controls": "Ovládání",
+  "gestures": "Gesta",
+  "dashboard": "Řídící panel",
   "dashboardContinue": "Pokračovat",
+  "dashboardContinueListening": "Pokračovat v poslechu",
   "dashboardContinueReading": "Pokračovat ve čtení",
+  "dashboardContinueWatching": "Pokračovat ve sledování",
+  "nextUp": "Nadcházející",
   "dashboardRecentlyAdded": "Nedávno přidáno do {name}",
-  "@dashboardRecentlyAdded": {
-    "description": "Recently added on home screen",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "days": "Dny",
+  "dashboardRecentlyAddedItems": "Nedávno přidané – {name}",
+  "dateAdded": "Datum přidání",
+  "dateLastContentAdded": "Datum posledního přidání obsahu",
+  "datePlayed": "Datum přehrání",
   "delete": "Smazat",
+  "deleteFileFromSystem": "Smazáním této položky {item} ji smažete ze souborového systému i z knihovny médií. Opravdu chcete pokračovat?",
   "deleteItem": "Smazat {item}?",
-  "@deleteItem": {
-    "description": "deleteItem",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
+  "descending": "Sestupně",
+  "director": "{count, plural, other{Režisérů} two{Režiséři} one{Režisér}}",
+  "disableFilters": "Vypnout filtry",
   "disabled": "Vypnuto",
   "discovered": "Objeven",
   "displayLanguage": "Jazyk zobrazení",
   "downloadsClearDesc": "Odstranit všechna synchronizovaná data a vymazat všechna data pro každého synchronizovaného uživatele?",
+  "downloadsClearTitle": "Vymazat synchronizovaná data",
   "downloadsPath": "Cesta",
   "downloadsSyncedData": "Synchronizovaná data",
   "downloadsTitle": "Stažené",
@@ -92,340 +149,113 @@
   "empty": "Prazdné",
   "enabled": "Zapnuto",
   "endsAt": "končí v {date}",
-  "@endsAt": {
-    "description": "endsAt",
-    "placeholders": {
-      "date": {
-        "type": "DateTime",
-        "format": "jm"
-      }
-    }
-  },
   "episode": "{count, plural, other{Epizod} one{Epizoda} few{Epizody}}",
-  "@episode": {
-    "description": "episode",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "error": "Chyba",
+  "failedToLoadImage": "Nepodařilo se načíst obrázek",
+  "favorite": "Oblíbené",
+  "favorites": "Oblíbené",
+  "fetchingLibrary": "Načítání položek z knihovny…",
+  "filter": "{count, plural, other{Filtrů} one{Filtr} few{Filtry}}",
   "folders": "Složky",
+  "fontColor": "Barva písma",
+  "fontSize": "Velikost písma",
   "forceRefresh": "Vynutit obnovení",
+  "genre": "{count, plural, other{Žánrů} one{Žánr} few{Žánry}}",
+  "goTo": "Přejít na",
+  "grid": "Mřížka",
+  "group": "Skupina",
   "groupBy": "Skupina od",
+  "heightOffset": "Výškový posun",
+  "hide": "Skrýt",
+  "hideEmpty": "Skrýt prázdné",
   "home": "Domů",
   "homeBannerSlideshow": "Prezentace",
+  "homeBannerCarousel": "Kolotoč",
+  "homeBannerDetailed": "Podrobné",
+  "homeBannerTV": "TV",
+  "identify": "Identifikovat",
   "immediately": "Ihned",
   "incorrectPinTryAgain": "Nesprávný PIN. Zkuste to znovu.",
   "info": "Info",
-  "invalidUrlDesc": "URL adresa musí začínat http(s)://",
+  "invalidUrl": "Neplatná adresa URL",
   "itemCount": "Počet položek: {count}",
-  "@itemCount": {
-    "description": "Item count",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "label": "{count, plural, other{Označení} one{Označení}}",
-  "@label": {
-    "description": "label",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
+  "library": "{count, plural, other{knihoven} few{knihovny} one{knihovna}}",
+  "libraryFetchNoItemsFound": "Nenalezeny žádné položky. Zkuste jiná nastavení.",
+  "libraryPageSizeDesc": "Nastavte množství, které se má načíst najednou. Hodnota 0 vypne stránkování.",
   "libraryPageSizeTitle": "Velikost stránky knihovny",
   "light": "Světlý",
   "list": "List",
+  "lockscreen": "Zamykací obrazovka",
+  "loggedIn": "Přihlášen/a",
+  "login": "Přihlásit se",
+  "logout": "Odhlásit se",
+  "logoutUserPopupContent": "Tímto odhlásíte uživatele {userName} a uživatel se smaže z aplikace.\nBudete se muset znovu přihlásit na server {serverName}.",
+  "logoutUserPopupTitle": "Odhlásit uživatele {userName}?",
+  "loop": "Smyčka",
+  "markAsUnwatched": "Označit jako nezhlédnuté",
   "markAsWatched": "Označit jako zhlédnuté",
+  "masonry": "Dlaždice",
   "mediaTypeBase": "Typ základny",
+  "mediaTypeBook": "Kniha",
   "mediaTypeBoxset": "Média",
+  "mediaTypeEpisode": "Epizoda",
+  "mediaTypeFolder": "Složka",
+  "mediaTypeMovie": "Film",
   "mediaTypePerson": "Osoba",
+  "mediaTypeArtists": "{count, plural, one{Umělec} few{Umělci} other{Umělců}}",
   "mediaTypePhoto": "Fotka",
+  "mediaTypePhotoAlbum": "Foto album",
   "mediaTypePlaylist": "Seznam skladeb",
   "mediaTypeSeason": "Sezóna",
+  "mediaTypeSeries": "Série",
+  "mediaTypeTV": "{count, plural, one{TV kanál} few{TV kanály} other{TV kanálů}}",
+  "metaDataSavedFor": "Metadata uložena pro {item}",
   "metadataRefreshDefault": "Vyhledat nové a aktualizované soubory",
   "metadataRefreshFull": "Nahradit všechna metadata",
   "metadataRefreshValidation": "Vyhledat chybějící metadata",
+  "minutes": "{count, plural, other {Minut} few{Minuty} one{Minuta} }",
+  "mode": "Mód",
+  "moreFrom": "Více od {info}",
+  "moreOptions": "Více možností",
+  "mouseDragSupport": "Táhněte pomocí myši",
+  "musicAlbum": "Album",
   "name": "Název",
   "navigation": "Navigace",
+  "navigationDashboard": "Řídící panel",
   "navigationFavorites": "Oblíbené",
   "navigationSync": "Synchronizováno",
+  "never": "Nikdy",
   "noItemsSynced": "Žádné synchronizované položky",
   "noItemsToShow": "Žádné položky k zobrazení",
   "noRating": "Žádné hodnocení",
   "noResults": "Žádné výsledky",
   "noServersFound": "Nenalezeny žádné nové servery",
   "noSuggestionsFound": "Nenalezeny žádné návrhy",
-  "favorite": "Oblíbené",
-  "mediaTypeSeries": "Série",
-  "all": "Všechny",
-  "dateLastContentAdded": "Datum posledního přidání obsahu",
-  "disableFilters": "Vypnout filtry",
-  "dateAdded": "Datum přidání",
-  "ascending": "Vzestupně",
-  "controls": "Ovládání",
-  "appLockTitle": "Nastavte způsob přihlášení pro {userName}",
-  "@appLockTitle": {
-    "description": "Pop-up to pick a login method",
-    "placeholders": {
-      "userName": {
-        "type": "String"
-      }
-    }
-  },
-  "chapter": "{count, plural, other{Kapitol} one{Kapitola}}",
-  "@chapter": {
-    "description": "chapter",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "clearChanges": "Vymazat změny",
-  "dashboard": "Řídící panel",
-  "clearSelection": "Vymazat výběr",
-  "datePlayed": "Datum přehrání",
-  "mediaTypePhotoAlbum": "Foto album",
-  "metaDataSavedFor": "Metadata uložena pro {item}",
-  "@metaDataSavedFor": {
-    "description": "metaDataSavedFor",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
-  "dashboardContinueWatching": "Pokračovat ve sledování",
-  "loop": "Smyčka",
-  "heightOffset": "Výškový posun",
-  "genre": "{count, plural, other{Žánrů} one{Žánr} few{Žánry}}",
-  "@genre": {
-    "description": "genre",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "hide": "Skrýt",
-  "mediaTypeEpisode": "Epizoda",
-  "lockscreen": "Zamykací obrazovka",
-  "login": "Přihlásit se",
-  "mouseDragSupport": "Táhněte pomocí myši",
-  "musicAlbum": "Album",
-  "fontColor": "Barva písma",
-  "logout": "Odhlásit se",
-  "mediaTypeBook": "Kniha",
-  "moreFrom": "Více od {info}",
-  "@moreFrom": {
-    "description": "More from",
-    "placeholders": {
-      "info": {
-        "type": "String"
-      }
-    }
-  },
-  "hideEmpty": "Skrýt prázdné",
-  "mediaTypeMovie": "Film",
-  "libraryFetchNoItemsFound": "Nenalezeny žádné položky. Zkuste jiná nastavení.",
-  "libraryPageSizeDesc": "Nastavte množství, které se má načíst najednou. Hodnota 0 vypne stránkování.",
-  "loggedIn": "Přihlášen/a",
-  "logoutUserPopupContent": "Tímto odhlásíte uživatele {userName} a uživatel se smaže z aplikace.\nBudete se muset znovu přihlásit na server {serverName}.",
-  "@logoutUserPopupContent": {
-    "description": "Pop-up for logging out the user description",
-    "placeholders": {
-      "userName": {
-        "type": "String"
-      },
-      "serverName": {
-        "type": "String"
-      }
-    }
-  },
-  "moreOptions": "Více možností",
-  "never": "Nikdy",
-  "openWebLink": "Otevřít webový odkaz",
-  "close": "Zavřít",
-  "nextUp": "Nadcházející",
-  "logoutUserPopupTitle": "Odhlásit uživatele {userName}?",
-  "@logoutUserPopupTitle": {
-    "description": "Pop-up for logging out the user",
-    "placeholders": {
-      "userName": {
-        "type": "String"
-      }
-    }
-  },
-  "deleteFileFromSystem": "Smazáním této položky {item} ji smažete ze souborového systému i z knihovny médií. Opravdu chcete pokračovat?",
-  "@deleteFileFromSystem": {
-    "description": "Delete file from system",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
-  "descending": "Sestupně",
-  "downloadsClearTitle": "Vymazat synchronizovaná data",
-  "group": "Skupina",
-  "fetchingLibrary": "Načítání položek z knihovny…",
-  "goTo": "Přejít na",
-  "mode": "Mód",
-  "navigationDashboard": "Řídící panel",
-  "page": "Strana {index}",
-  "@page": {
-    "description": "page",
-    "placeholders": {
-      "index": {
-        "type": "int"
-      }
-    }
-  },
-  "continuePage": "Pokračovat - strana {page}",
-  "@continuePage": {
-    "description": "Continue - page 1",
-    "placeholders": {
-      "page": {
-        "type": "int"
-      }
-    }
-  },
-  "fontSize": "Velikost písma",
-  "grid": "Mřížka",
-  "invalidUrl": "Neplatná adresa URL",
-  "mediaTypeFolder": "Složka",
-  "failedToLoadImage": "Nepodařilo se načíst obrázek",
-  "favorites": "Oblíbené",
-  "homeBannerCarousel": "Kolotoč",
-  "identify": "Identifikovat",
-  "library": "{count, plural, other{knihoven} few{knihovny} one{knihovna}}",
-  "@library": {
-    "description": "Plural",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "markAsUnwatched": "Označit jako nezhlédnuté",
-  "minutes": "{count, plural, other {Minut} few{Minuty} one{Minuta} }",
-  "@minutes": {
-    "description": "minute",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "none": "Žádný",
+  "normal": "Normální",
+  "notPartOfAlbum": "Není součástí alba",
+  "openParent": "Otevřené rodiče",
+  "openShow": "Otevřít show",
+  "options": "Možnosti",
   "other": "Ostatní",
   "outlineColor": "Vnější barva",
   "outlineSize": "Vnější velikost",
-  "options": "Možnosti",
-  "notPartOfAlbum": "Není součástí alba",
-  "openParent": "Otevřené rodiče",
   "overview": "Přehled",
-  "normal": "Normální",
-  "openShow": "Otevřít show",
+  "page": "Strana {index}",
   "parentalRating": "Rodičovské hodnocení",
-  "pathClearTitle": "Vymazat cestu ke stažení",
   "password": "Heslo",
+  "pathClearTitle": "Vymazat cestu ke stažení",
   "pathEditDesc": "Toto umístění je nastaveno pro všechny uživatele, synchronizovaná data již nebudou přístupná. Zůstanou ve vašem úložišti.",
   "pathEditSelect": "Vyberte cíl pro stahování",
-  "videoScaling": "Škálování videa",
-  "unableToReverseAction": "Tuto akci nelze vrátit zpět. Odstraní všechna nastavení.",
-  "video": "Video",
-  "removedFromCollection": "Odstraněno z kolekce {collectionName}",
-  "@removedFromCollection": {
-    "placeholders": {
-      "collectionName": {
-        "type": "String"
-      }
-    }
-  },
-  "syncStatusNotFound": "Nenalezeno",
-  "syncStatusRunning": "Synchronizování",
-  "subtitleConfiguratorPlaceHolder": "Toto je zástupný text, zde není nic k vidění.",
-  "subtitles": "Titulky",
-  "themeModeDark": "Tmavé",
-  "userName": "Uživatelské jméno",
-  "sync": "Synchronizace",
-  "type": "{count, plural, other{Typů} one{Typ} few{Typy}}",
-  "@type": {
-    "description": "type",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "syncedItems": "Synchronizované položky",
-  "syncStatusWaitingToRetry": "Čekání na opakování",
-  "themeColor": "Barva téma",
-  "themeModeLight": "Světlé",
-  "guestActor": "{count, plural, other{Hostující herci} one{Hostující herec/herečka}}",
-  "@guestActor": {
-    "description": "Guest actors",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "addedToCollection": "Přidáno do kolekce {collectionName}",
-  "@addedToCollection": {
-    "placeholders": {
-      "collectionName": {
-        "type": "String"
-      }
-    }
-  },
-  "unableToConnectHost": "Nelze se připojit k hostiteli",
-  "syncStatusFailed": "Neúspěšné",
+  "pathEditTitle": "Změnit umístění",
   "play": "Přehrát {item}",
-  "@play": {
-    "description": "Play with",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "playCount": "Počet přehrání",
   "playFrom": "Přehrát z {name}",
-  "@playFrom": {
-    "description": "playFrom",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "playFromStart": "Přehrát {name} od začátku",
-  "@playFromStart": {
-    "description": "speel vanaf het begin",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "playLabel": "Přehrát",
   "playVideos": "Přehrát videa",
+  "playMusic": "Přehrát hudbu",
   "played": "Přehráno",
   "quickConnectAction": "Zadejte kód pro rychlé připojení",
   "quickConnectInputACode": "Zadejte kód",
@@ -433,104 +263,53 @@
   "quickConnectWrongCode": "Špatný kód",
   "random": "Náhodně",
   "rating": "{count, plural, other{Hodnocení} one{Hodnocení}}",
-  "@rating": {
-    "description": "rating",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
+  "popularity": "Popularita",
   "reWatch": "Znovu se podívat",
   "read": "Přečíst {item}",
-  "@read": {
-    "description": "read",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "readFromStart": "Přečíst {item} od začátku",
-  "@readFromStart": {
-    "description": "Read book from start",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "recursive": "Rekurze",
   "refresh": "Obnovit",
   "refreshMetadata": "Obnovit metadata",
   "refreshPopup": "Obnovit - {name}",
-  "@refreshPopup": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "refreshPopupContentMetadata": "Metadata se aktualizovala na základě nastavení a internetových služeb zapnutých v řídicím panelu.",
   "related": "Související",
   "releaseDate": "Datum vydání",
+  "contentRating": "Hodnocení obsahu",
   "removeAsFavorite": "Odebrat z oblíbených",
   "removeFromCollection": "Odebrat z kolekce",
   "removeFromPlaylist": "Odebrat ze seznamu skladeb",
   "replaceAllImages": "Nahradit všechny obrázky",
   "replaceExistingImages": "Nahradit existující obrázky",
+  "restart": "Restartovat",
   "result": "Výsledek",
   "resumable": "Obnovitelné",
   "resume": "Obnovit {item}",
-  "@resume": {
-    "description": "resume",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
+  "retrievePublicListOfUsers": "Načíst veřejný seznam uživatelů",
   "retry": "Zkusit znovu",
   "runTime": "Trvání",
+  "runtimeMinutesTitle": "Délka (v minutách)",
+  "runtimeRangeMinutes": "{min} - {max} minut",
+  "minutesShort": "{count} min",
+  "streamingServices": "Poskytovatelé ({count})",
   "save": "Uložit",
   "saved": "Uloženo",
   "scanBiometricHint": "Ověření totožnosti",
   "scanLibrary": "Skenovat knihovnu",
+  "authenticateWithBiometrics": "Ověřte {user} pomocí biometrických údajů",
   "scanningName": "Skenování - {name}…",
-  "@scanningName": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
+  "scrollToTop": "Přejít nahoru",
   "search": "Vyhledat",
+  "season": "{count, plural, other{Sezón} few{Sezóny} one{Sezóna­­} }",
   "seconds": "{count, plural, other{Sekund} few{Sekundy} one{Sekunda} }",
-  "@seconds": {
-    "description": "second",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "selectAll": "Označit vše",
   "selectTime": "Vyberte čas",
   "selectViewType": "Vyberte typ zobrazení",
   "selected": "Označeno",
   "selectedWith": "Označeno {info}",
-  "@selectedWith": {
-    "description": "selected",
-    "placeholders": {
-      "info": {
-        "type": "String"
-      }
-    }
-  },
   "separate": "Oddělený",
   "server": "Server",
+  "set": "Nastavit",
+  "setIdentityTo": "Změnit identitu na {name}",
   "settingSecurityApplockTitle": "Zámek aplikace",
   "settings": "Nastavení",
   "settingsBlurEpisodesDesc": "Rozmazat všechny nadcházející epizody",
@@ -540,31 +319,49 @@
   "settingsClientDesc": "Obecné, Časový limit, Rozvržení, Téma",
   "settingsClientTitle": "Driftfin",
   "settingsContinue": "Pokračovat",
+  "settingsEnableOsMediaControls": "Povolit systémové ovládání médií",
+  "settingsEnableOsMediaControlsDesc": "Povolit ovládání přehrávání pomocí mediálních kláves a ukázat aktuální přehrávané v systému",
   "settingsHomeBannerDescription": "Zobrazit jako prezentaci, kolotoč nebo skrýt banner",
   "settingsHomeBannerTitle": "Domovský banner",
   "settingsHomeBannerInformationDesc": "Informace, které se mají zobrazit na domovském banneru",
   "settingsHomeBannerInformationTitle": "Informace na banneru",
+  "settingsHomeNextUpDesc": "Typ plakátů zobrazených na řídicím panelu",
   "settingsHomeNextUpTitle": "Nadcházející plakáty",
+  "settingsNextUpCutoffDays": "Počet dní pro nadcházející epizodu",
   "settingsPlayerCustomSubtitlesDesc": "Přizpůsobit velikost, barvu, polohu, obrys",
+  "settingsPlayerCustomSubtitlesTitle": "Přizpůsobení titulků",
   "settingsPlayerDesc": "Poměr stran, Pokročilý",
+  "settingsPlayerMobileWarning": "Zapnutí hardwarové akcelerace a nativních titulků libass v systému Android může způsobit, že se některé titulky nebudou vykreslovat.",
   "settingsPlayerNativeLibassAccelDesc": "Použít vykreslování titulků libass z video přehrávače",
   "settingsPlayerNativeLibassAccelTitle": "Nativní libass titulky",
   "settingsPlayerBufferSizeTitle": "Velikost vyrovnávací paměti videa",
+  "settingsPlayerPlayPauseFadeTitle": "Postupné ztišení při přehrání/pauze",
+  "settingsPlayerPlayPauseFadeDesc": "Postupně zesilovat a ztišovat hlasitost při přehrávání nebo pozastavení",
   "settingsPlayerBufferSizeDesc": "Nakonfigurovat velikost vyrovnávací paměti pro přehrávání videa a určit, kolik dat se načte do mezipaměti.",
   "settingsPlayerTitle": "Přehrávač",
   "settingsPlayerVideoHWAccelDesc": "Použít GPU na vykreslení videa (doporučeno)",
   "settingsPlayerVideoHWAccelTitle": "Hardwarová akcelerace",
+  "settingsPosterPinch": "Zvětšení plakátů pomocí přiblížení a sevření prstů",
   "settingsPosterSize": "Velikost plakátu",
-  "settingsPosterSlider": "Zobrazit posuvník měřítka",
   "settingsProfileDesc": "Zamykací obrazovka",
   "settingsProfileTitle": "Profil",
+  "settingsProfileSubtitleLanguage": "Preferovaný jazyk titulků",
+  "anyLanguage": "Jakýkoli jazyk",
+  "settingsProfileSubtitleMode": "Režim titulků",
+  "subtitlePlaybackModeDefault": "Výchozí",
+  "subtitlePlaybackModeAlways": "Vždy přehrávat",
+  "subtitlePlaybackModeOnlyForced": "Pouze vynucené",
+  "subtitlePlaybackModeNone": "Žádné",
+  "subtitlePlaybackModeSmart": "Chytré",
   "settingsQuickConnectTitle": "Rychlé připojení",
   "settingsSecurity": "Zabezpečení",
   "settingsShowScaleSlider": "Zobrazit posuvník pro změnu velikosti plakátu",
   "settingsVisual": "Vizuál",
   "shadow": "Stín",
-  "showEmpty": "Zobrazit prázdné",
+  "backgroundColor": "Barva pozadí",
+  "showAlbum": "Zobrazit album",
   "showDetails": "Zobrazit detaily",
+  "showEmpty": "Zobrazit prázdné",
   "shuffleVideos": "Náhodné přehrávání videa",
   "somethingWentWrong": "Něco se pokazilo",
   "somethingWentWrongPasswordCheck": "Něco se pokazilo. Zkontrolujte si heslo.",
@@ -573,296 +370,131 @@
   "sortOrder": "Pořadí řazení",
   "start": "Start",
   "studio": "{count, plural, other{Studia} one{Studio}}",
-  "@studio": {
-    "description": "studio",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "subtitleConfigurator": "Konfigurátor titulků",
+  "subtitleConfiguratorPlaceHolder": "Toto je zástupný text, zde není nic k vidění.",
+  "subtitles": "Titulky",
   "switchUser": "Přepnout uživatele",
+  "sync": "Synchronizace",
+  "syncDeleteItemDesc": "Smazat všechna synchronizovaná data pro {item}?",
+  "syncDeleteItemTitle": "Smazat synchronizovanou položku",
+  "syncDeletePopupPermanent": "Tato akce je trvalá a odstraní všechny lokálně synchronizované soubory",
+  "syncPlaylistDeleteTitle": "Smazat synchronizovaný seznam skladeb",
+  "syncPlaylistDeleteContent": "Chcete také odebrat skladby synchronizované z tohoto seznamu skladeb?",
+  "syncPlaylistKeepTracks": "Ponechat skladby",
+  "syncPlaylistRemoveTracks": "Odebrat skladby",
   "syncDetails": "Podrobnosti synchronizace",
   "syncOpenParent": "Otevřít nadřazený element",
+  "syncRemoveDataDesc": "Smazat synchronizovaná video data? Toto je trvalé a budete muset soubory znovu synchronizovat",
+  "syncRemoveDataTitle": "Odstranit synchronizovaná data?",
+  "syncedItems": "Synchronizované položky",
+  "tag": "{count, plural, one{Štítek} few{Štítky} many{Štítků} other{Štítků}}",
   "theme": "Téma",
+  "themeColor": "Barva téma",
+  "themeModeDark": "Tmavé",
+  "themeModeLight": "Světlé",
   "themeModeSystem": "Systémové",
+  "timeAndAnnotation": "{minutes} a {seconds}",
   "timeOut": "Časový limit",
   "totalSize": "Celková velikost: {size}",
-  "@totalSize": {
-    "placeholders": {
-      "size": {
-        "type": "String"
-      }
-    }
-  },
+  "type": "{count, plural, other{Typů} one{Typ} few{Typy}}",
   "unPlayed": "Nepřehrané",
+  "unableToConnectHost": "Nelze se připojit k hostiteli",
+  "unableToReverseAction": "Tuto akci nelze vrátit zpět. Odstraní všechna nastavení.",
+  "unknown": "Neznámý",
   "useDefaults": "Použít výchozí nastavení",
+  "userName": "Uživatelské jméno",
+  "video": "Video",
+  "videoScaling": "Škálování videa",
   "videoScalingContain": "Přizpůsobit",
   "videoScalingCover": "Vyplnit",
+  "videoScalingFill": "Roztáhnout",
+  "videoScalingFillScreenDesc": "Vyplnit i oblast navigace a stavového řádku",
+  "videoScalingFillScreenNotif": "Režim na celou obrazovku přepíše přizpůsobení videa při otočení na šířku",
+  "videoScalingFillScreenTitle": "Celá obrazovka",
+  "pictureInPictureTitle": "Obraz v obraze",
+  "pictureInPictureAutoTitle": "Automatický obraz v obraze",
+  "pictureInPictureSubtitle": "Automaticky přepnout do režimu obraz v obraze při opuštění přehrávače. Tlačítko PiP v ovládacích prvcích funguje vždy bez ohledu na toto nastavení.",
+  "pictureInPictureNotSupported": "Obraz v obraze není na tomto zařízení k dispozici",
+  "videoScalingFitHeight": "Přizpůsobit výšce",
+  "videoScalingFitWidth": "Přizpůsobit šířce",
+  "videoScalingScaleDown": "Zmenšit aby se vešlo",
   "viewPhotos": "Zobrazit fotografie",
-  "watchOn": "Sledovat na",
+  "writer": "{count, plural, other{Spisovatelů} few{Spisovatelé} one{Spisovatel}}",
+  "year": "{count, plural, other{Let} one{Rok} few{Roky}}",
   "addToNewCollection": "Nová kolekce",
   "addItemsToCollection": "Přidat {itemLength} položku/položek do kolekce",
-  "@addItemsToCollection": {
-    "placeholders": {
-      "itemLength": {
-        "type": "int"
-      }
-    }
-  },
+  "addedToCollection": "Přidáno do kolekce {collectionName}",
+  "removedFromCollection": "Odstraněno z kolekce {collectionName}",
   "addToNewPlaylist": "Nový seznam skladeb",
   "addItemsToPlaylist": "Přidat {itemLength} položku/položek do seznamu skladeb",
-  "@addItemsToPlaylist": {
-    "placeholders": {
-      "itemLength": {
-        "type": "int"
-      }
-    }
-  },
   "addedToPlaylist": "Přidáno do seznamu skladeb {playlistName}",
-  "@addedToPlaylist": {
-    "placeholders": {
-      "playlistName": {
-        "type": "String"
-      }
-    }
-  },
+  "removedFromPlaylist": "Odebráno ze seznamu skladeb {playlistName}",
   "syncStatusEnqueued": "Zařazeno do fronty",
-  "syncStatusComplete": "Dokončeno",
+  "syncStatusRunning": "Synchronizování",
+  "syncStatusNotFound": "Nenalezeno",
+  "syncStatusFailed": "Neúspěšné",
   "syncStatusCanceled": "Zrušeno",
+  "syncStatusWaitingToRetry": "Čekání na opakování",
   "syncStatusPaused": "Pozastaveno",
   "syncStatusSynced": "Synchronizováno",
-  "syncStatusPartially": "Částečně",
+  "syncOverlayDeleting": "Odebírání synchronizované položky",
   "syncOverlaySyncing": "Synchronizace podrobností o položce",
   "syncSelectDownloadsFolder": "Vyberte složku pro stahování",
   "syncNoFolderSetup": "Žádné nastavení synchronizační složky",
   "syncRemoveUnableToDeleteItem": "Nepodařilo se odstranit synchronizovanou položku, něco se pokazilo",
   "syncAddItemForSyncing": "Přidána položka {item} pro synchronizaci",
-  "@syncAddItemForSyncing": {
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "startedSyncingItem": "Zahájena synchronizace položky {item}",
-  "@startedSyncingItem": {
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "unableToSyncItem": "Nelze synchronizovat {item}, něco se pokazilo",
-  "@unableToSyncItem": {
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
-  "season": "{count, plural, other{Sezón} few{Sezóny} one{Sezóna­­} }",
-  "@season": {
-    "description": "season",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "restart": "Restartovat",
-  "retrievePublicListOfUsers": "Načíst veřejný seznam uživatelů",
-  "scanYourFingerprintToAuthenticate": "Naskenujte svůj otisk prstu pro ověření uživatele {user}",
-  "@scanYourFingerprintToAuthenticate": {
-    "placeholders": {
-      "user": {
-        "type": "String"
-      }
-    }
-  },
-  "scrollToTop": "Přejít nahoru",
-  "settingsEnableOsMediaControls": "Povolit systémové ovládání médií",
-  "settingsHomeNextUpDesc": "Typ plakátů zobrazených na řídicím panelu",
-  "syncDeletePopupPermanent": "Tato akce je trvalá a odstraní všechny lokálně synchronizované soubory",
-  "set": "Nastavit",
-  "@set": {
-    "description": "Use for setting a certain value",
-    "context": "Set 'time'"
-  },
-  "settingsPlayerCustomSubtitlesTitle": "Přizpůsobení titulků",
-  "settingsPlayerMobileWarning": "Zapnutí hardwarové akcelerace a nativních titulků libass v systému Android může způsobit, že se některé titulky nebudou vykreslovat.",
-  "settingsPosterPinch": "Zvětšení plakátů pomocí přiblížení a sevření prstů",
-  "showAlbum": "Zobrazit album",
-  "year": "{count, plural, other{Let} one{Rok} few{Roky}}",
-  "@year": {
-    "description": "year",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "timeAndAnnotation": "{minutes} a {seconds}",
-  "@timeAndAnnotation": {
-    "description": "timeAndAnnotation",
-    "placeholders": {
-      "minutes": {
-        "type": "String"
-      },
-      "seconds": {
-        "type": "String"
-      }
-    }
-  },
-  "syncOverlayDeleting": "Odebírání synchronizované položky",
-  "syncDeleteItemDesc": "Smazat všechna synchronizovaná data pro {item}?",
-  "@syncDeleteItemDesc": {
-    "description": "Sync delete item pop-up window",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
-  "unknown": "Neznámý",
-  "syncRemoveDataTitle": "Odstranit synchronizovaná data?",
-  "syncDeleteItemTitle": "Smazat synchronizovanou položku",
-  "writer": "{count, plural, other{Spisovatelů} few{Spisovatelé} one{Spisovatel}}",
-  "@writer": {
-    "description": "writer",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "tag": "{count, plural, one{Štítek} few{Štítky} many{Štítků} other{Štítků}}",
-  "@tag": {
-    "description": "tag",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "setIdentityTo": "Změnit identitu na {name}",
-  "@setIdentityTo": {
-    "description": "setIdentityTo",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "shuffleGallery": "Náhodné přehrávání galerie",
-  "syncRemoveDataDesc": "Smazat synchronizovaná video data? Toto je trvalé a budete muset soubory znovu synchronizovat",
-  "pathEditTitle": "Změnit umístění",
   "aboutVersion": "Verze: {version}",
-  "@aboutVersion": {
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "aboutBuild": "Verze sestavení: {buildNumber}",
-  "@aboutBuild": {
-    "placeholders": {
-      "buildNumber": {
-        "type": "String"
-      }
-    }
-  },
   "aboutCreatedBy": "Vytvořil DonutWare",
-  "autoNextOffStaticDesc": "Zobrazit nadcházející obrazovku, když zbývá 30 sekund přehrávání",
-  "phone": "Telefon",
-  "mediaSegmentPreview": "Náhled",
-  "rememberAudioSelections": "Nastavit zvukovou stopu na základě předchozí položky",
-  "settingsAutoNextDesc": "Zobrazí náhled nadcházející položky ke konci, pokud je ve frontě jiná položka",
-  "autoNextOffSmartDesc": "Zobrazí nadcházející obrazovku na začátku titulků, pokud po nich nezbývá více než 10 sekund. Jinak zobrazí další obrazovku s 30 sekundami zbývajícího času přehrávání",
-  "playerSettingsBackendDesc": "Vyberte si preferovaný přehrávač médií pro optimální zážitek z přehrávání",
-  "autoNextOffStaticTitle": "Statický",
-  "unableToPlayMedia": "Při hledání kompatibilního typu média došlo k chybě",
-  "removeFilterForLibrary": "Odebrat {filter}?",
-  "@removeFilterForLibrary": {
-    "description": "removeFilterForLibrary",
-    "placeholders": {
-      "filter": {
-        "type": "String"
-      }
-    }
-  },
-  "deviceOrientationLandscapeLeft": "Horizontálně vlevo",
-  "noVideoPlayerOptions": "Vybraný backend nemá žádné možnosti",
-  "clientSettingsShowAllCollectionsDesc": "Pokud je povoleno, zobrazit všechny typy kolekcí, včetně těch, které Driftfin nepodporuje",
-  "skipButtonLabel": "Přeskočit {segment}",
-  "@skipButtonLabel": {
-    "placeholders": {
-      "segment": {
-        "type": "String"
-      }
-    }
-  },
-  "mediaSegmentUnknown": "Neznámý",
-  "rememberSubtitleSelectionsDesc": "Zkusit nastavit titulkovou stopu tak, aby se co nejvíce shodovala s posledním videem.",
-  "copyStreamUrl": "Kopírovat URL streamu",
-  "mediaSegmentRecap": "Shrnutí",
-  "mdkExperimental": "MDK je stále v experimentální fázi",
-  "mediaSegmentOutro": "Konec",
-  "layoutModeSingle": "Jeden",
-  "copiedToClipboard": "Zkopírováno do schránky",
-  "defaultLabel": "Výchozí",
-  "@defaultLabel": {
-    "description": "To indicate a default value, default video player backend"
-  },
-  "external": "Externí",
-  "settingsLayoutSizesDesc": "Vyberte, které velikosti rozvržení může aplikace použít na základě velikosti okna",
-  "episodeUnaired": "Nevysílána",
-  "episodeMissing": "Chybí",
-  "rememberSubtitleSelections": "Nastavení titulkové stopy na základě předchozí položky",
-  "autoCheckForUpdates": "Pravidelně kontrolovat aktualizace",
-  "castAndCrew": "Obsazení a štáb",
-  "segmentActionSkip": "Přeskočit",
-  "rememberAudioSelectionsDesc": "Zkuste nastavit zvukovou stopu tak, aby se co nejvíce shodovala s posledním videem.",
-  "mediaSegmentCommercial": "Reklama",
-  "off": "Vypnuto",
-  "qualityOptionsAuto": "Auto",
-  "subtitle": "Titulek",
-  "deleteFilterConfirmation": "Opravdu chcete tento filtr smazat?",
-  "episodeAvailable": "Dostupná",
-  "similarToLikedItem": "Podobné položce, která se vám líbila",
-  "homeStreamingQualityDesc": "Maximální kvalita streamování při připojení k domácí síti",
-  "homeStreamingQualityTitle": "Kvalita v domácí síti",
-  "playbackTrackSelection": "Výběr skladby pro přehrávání",
-  "masonry": "Dlaždice",
-  "settingsNextUpCutoffDays": "Počet dní pro nadcházející epizodu",
-  "videoScalingFill": "Roztáhnout",
-  "videoScalingFillScreenDesc": "Vyplnit i oblast navigace a stavového řádku",
-  "videoScalingFillScreenNotif": "Režim na celou obrazovku přepíše přizpůsobení videa při otočení na šířku",
-  "videoScalingFillScreenTitle": "Celá obrazovka",
-  "videoScalingFitHeight": "Přizpůsobit výšce",
-  "videoScalingFitWidth": "Přizpůsobit šířce",
-  "videoScalingScaleDown": "Zmenšit aby se vešlo",
   "aboutSocials": "Sociální sítě",
   "aboutLicenses": "Licence",
+  "subtitle": "Titulek",
   "subtitleConfiguration": "Konfigurace titulků",
+  "subtitleSync": "Synchronizace titulků",
+  "watchTogether": "Sledovat společně",
+  "syncPlayInGroup": "Ve skupině",
+  "syncPlayConnecting": "Připojování…",
+  "syncPlayWaiting": "Čekání na členy…",
+  "syncPlayCreateGroup": "Vytvořit skupinu",
+  "syncPlayLeave": "Opustit skupinu",
+  "syncPlayAvailableGroups": "Dostupné skupiny",
+  "syncPlayNoGroups": "Žádné aktivní skupiny",
+  "syncPlayDifferentItem": "Skupina sleduje jinou položku. Otevřete ji pro synchronizaci.",
+  "syncPlayChatHint": "Zpráva…",
+  "syncPlayChatEmpty": "Zatím žádné zprávy",
+  "syncPlayMembers": "{count, plural, =0{Žádní členové} =1{1 člen} few{{count} členové} other{{count} členů}}",
+  "syncPlayReact": "Reagovat",
+  "syncPlayTyping": "{names} píše…",
+  "syncPlayBufferingMembers": "{names} ukládá do vyrovnávací paměti…",
+  "off": "Vypnuto",
   "screenBrightness": "Jas obrazovky",
+  "enableEdgeGesturesTitle": "Povolit okrajová gesta",
+  "enableEdgeGesturesDesc": "Ovládejte jas a hlasitost tažením nahoru a dolů po okrajích obrazovky",
+  "reverseEdgeGesturesTitle": "Prohodit okrajová gesta",
+  "reverseEdgeGesturesDesc": "Prohodit strany pro ovládání jasu a hlasitosti",
   "scale": "Škála",
   "playBackSettings": "Nastavení přehrávání",
   "settingsAutoNextTitle": "Nadcházející náhled",
+  "settingsAutoNextDesc": "Zobrazí náhled nadcházející položky ke konci, pokud je ve frontě jiná položka",
   "autoNextOffSmartTitle": "Chytrý",
+  "autoNextOffSmartDesc": "Zobrazí nadcházející obrazovku na začátku titulků, pokud po nich nezbývá více než 10 sekund. Jinak zobrazí další obrazovku s 30 sekundami zbývajícího času přehrávání",
+  "autoNextOffStaticTitle": "Statický",
+  "autoNextOffStaticDesc": "Zobrazit nadcházející obrazovku, když zbývá 30 sekund přehrávání",
   "playbackRate": "Rychlost přehrávání",
   "speed": "Rychlost",
+  "sleepTimer": "Časovač vypnutí",
+  "sleepTimerEndOfEpisode": "Konec epizody",
+  "sleepTimerMinutes": "{count} minut",
+  "unableToPlayMedia": "Při hledání kompatibilního typu média došlo k chybě",
   "errorOpeningMedia": "Při přehrávání tohoto média se něco pokazilo",
   "unableToPlayBooksOnWeb": "Knihy momentálně nejsou na webu podporovány",
   "defaultFilterForLibrary": "Výchozí filtr pro knihovnu",
   "updateFilterForLibrary": "Aktualizovat filtr",
+  "removeFilterForLibrary": "Odebrat {filter}?",
+  "deleteFilterConfirmation": "Opravdu chcete tento filtr smazat?",
+  "deleteRequestConfirmation": "Opravdu chcete tuto žádost smazat?",
   "libraryFiltersLimitReached": "Dosažen limit filtrů (10), odstraňte některé filtry",
   "libraryFiltersRemoveAll": "Odebrat všechny filtry",
   "libraryFiltersRemoveAllConfirm": "Toto smaže všechny uložené filtry pro každou knihovnu",
@@ -870,6 +502,7 @@
   "playerSettingsOrientationDesc": "Vynucení určité orientace přehrávače videa",
   "deviceOrientationPortraitUp": "Vertikálně nahoru",
   "deviceOrientationPortraitDown": "Vertikálně dolů",
+  "deviceOrientationLandscapeLeft": "Horizontálně vlevo",
   "deviceOrientationLandscapeRight": "Horizontálně vpravo",
   "clientSettingsSchemeVariantTitle": "Varianta schématu",
   "schemeSettingsTonalSpot": "Tónová skvrna",
@@ -886,157 +519,180 @@
   "libraryShuffleAndPlayItems": "Zamíchat a přehrát položky",
   "libraryPlayItems": "Přehrát položky",
   "clientSettingsShowAllCollectionsTitle": "Zobrazit všechny typy kolekcí",
+  "clientSettingsShowAllCollectionsDesc": "Pokud je povoleno, zobrazit všechny typy kolekcí, včetně těch, které Driftfin nepodporuje",
   "stop": "Zastavit",
   "resumeVideo": "Obnovit video",
   "closeVideo": "Zavřít video",
   "playNextVideo": "Přehrát další video",
   "playerSettingsBackendTitle": "Backend přehrávače videa",
+  "playerSettingsBackendDesc": "Vyberte si preferovaný přehrávač médií pro optimální zážitek z přehrávání",
+  "playerSettingsReplayGainTitle": "ReplayGain",
+  "playerSettingsReplayGainDesc": "Normalizovat hlasitost hudby pomocí značek ReplayGain.",
+  "playerSettingsReplayGainLevelTitle": "Úroveň ReplayGain",
+  "playerSettingsReplayGainLevelDesc": "Nastavte cílovou úroveň hlasitosti pro normalizaci ReplayGain. Běžný standard je -14 dB, ale můžete si ji upravit podle svých preferencí.",
+  "playerSettingsSmartDownmixTitle": "Chytrý downmix",
+  "playerSettingsSmartDownmixDesc": "Zvýraznit dialogy oproti efektům a zadním kanálům při převodu zvuku 5.1/7.1 na stereo.",
+  "playerSettingsDialogueBoostTitle": "Zvýraznění dialogů",
+  "playerSettingsDialogueBoostDesc": "Zesílit tiché dialogy, aniž by se zesílily hlasité akční scény nebo hudba.",
+  "dialogueBoostOff": "Vypnuto",
+  "dialogueBoostLow": "Nízké",
+  "dialogueBoostMedium": "Střední",
+  "dialogueBoostHigh": "Vysoké",
+  "settingsPlayerCrossfadeTitle": "Prolínání",
+  "settingsPlayerCrossfadeDesc": "Prolínat mezi skladbami, které na sebe v rámci alba nenavazují",
+  "settingsPlayerCrossfadeDurationTitle": "Délka prolínání",
+  "settingsPlayerCrossfadeDurationDesc": "Délka trvání prolínání",
+  "defaultLabel": "Výchozí",
+  "noVideoPlayerOptions": "Vybraný backend nemá žádné možnosti",
+  "mdkExperimental": "MDK je stále v experimentální fázi",
+  "skipButtonLabel": "Přeskočit {segment}",
+  "mediaSegmentUnknown": "Neznámý",
+  "mediaSegmentCommercial": "Reklama",
+  "mediaSegmentPreview": "Náhled",
+  "mediaSegmentRecap": "Shrnutí",
+  "mediaSegmentOutro": "Konec",
   "mediaSegmentIntro": "Začátek",
   "errorLogs": "Protokoly chyb",
+  "external": "Externí",
+  "downloadFile": "Stáhnout {type}",
+  "copyStreamUrl": "Kopírovat URL streamu",
   "settingsLayoutSizesTitle": "Velikosti rozvržení",
+  "settingsLayoutSizesDesc": "Vyberte, které velikosti rozvržení může aplikace použít na základě velikosti okna",
   "settingsLayoutModesTitle": "Režimy rozvržení",
   "settingsLayoutModesDesc": "Určete, zda aplikace může používat rozvržení s jedním nebo dvěma panely",
+  "phone": "Telefon",
   "tablet": "Tablet",
   "desktop": "Počítač",
+  "television": "Televize",
+  "layoutModeSingle": "Jeden",
   "layoutModeDual": "Dvojitý",
+  "copiedToClipboard": "Zkopírováno do schránky",
+  "episodeAvailable": "Dostupná",
+  "episodeUnaired": "Nevysílána",
+  "episodeMissing": "Chybí",
   "internetStreamingQualityTitle": "Kvalita přes internet",
+  "internetStreamingQualityDesc": "Maximální kvalita streamování přes internet (mobilní zařízení)",
+  "homeStreamingQualityTitle": "Kvalita v domácí síti",
+  "homeStreamingQualityDesc": "Maximální kvalita streamování při připojení k domácí síti",
+  "qualityOptionsTitle": "Možnosti kvality",
   "qualityOptionsOriginal": "Originál",
+  "qualityOptionsAuto": "Auto",
+  "advancedVideoOptionsTitle": "Pokročilé možnosti videa",
+  "advancedVideoOptionsDesc": "Povolit HDR, tone mapping a pokročilé zpracování barev (na některých zařízeních nestabilní)",
+  "version": "Verze",
   "mediaSegmentActions": "Akce segmentu médií",
   "segmentActionNone": "Žádný",
+  "segmentActionAskToSkip": "Zeptat se na přeskočení",
+  "segmentActionSkipOnce": "Přeskočit jednou",
+  "segmentActionSkip": "Přeskočit",
   "loading": "Načítání",
   "exitDriftfinTitle": "Ukončit Driftfin",
+  "exitDriftfinDesc": "Opravdu chcete ukončit Driftfin?",
+  "quitMultipleWindowsDesc": "Máte otevřeno {count} oken. Ukončením Driftfinu se zavřou všechna. Chcete pokračovat?",
+  "closeWindow": "Zavřít okno",
+  "castAndCrew": "Obsazení a štáb",
+  "guestActor": "{count, plural, other{Hostující herci} one{Hostující herec/herečka}}",
   "maxConcurrentDownloadsTitle": "Maximální počet souběžných stahování",
   "maxConcurrentDownloadsDesc": "Nastavuje maximální počet stahování, která mohou být spuštěna současně. Nastavením na 0 limit deaktivujete.",
+  "playbackTrackSelection": "Výběr skladby pro přehrávání",
+  "rememberSubtitleSelections": "Nastavení titulkové stopy na základě předchozí položky",
+  "rememberAudioSelections": "Nastavit zvukovou stopu na základě předchozí položky",
+  "rememberSubtitleSelectionsDesc": "Zkusit nastavit titulkovou stopu tak, aby se co nejvíce shodovala s posledním videem.",
+  "rememberAudioSelectionsDesc": "Zkuste nastavit zvukovou stopu tak, aby se co nejvíce shodovala s posledním videem.",
   "similarToRecentlyPlayed": "Podobné položce, kterou jste nedávno viděli",
+  "similarToLikedItem": "Podobné položce, která se vám líbila",
+  "hasDirectorFromRecentlyPlayed": "Stejný/á režisér/ka jako nedávno shlédnutá položka",
   "hasActorFromRecentlyPlayed": "Stejný/á herec/herečka jako nedávno shlédnutá položka",
   "hasLikedDirector": "Oblíbený/á režisér/ka",
   "hasLikedActor": "Oblíbený/á herec/herečka",
-  "recommended": "Doporučeno",
   "latest": "Nejnovější",
+  "recommended": "Doporučeno",
   "playbackType": "Typ přehrávání",
   "playbackTypeDirect": "Přímý",
   "playbackTypeTranscode": "Překódovaný",
   "playbackTypeOffline": "Offline",
+  "playbackTypeTV": "TV",
   "latestReleases": "Nejnovější vydání",
+  "autoCheckForUpdates": "Pravidelně kontrolovat aktualizace",
+  "installUpdate": "Nainstalovat aktualizaci",
+  "installUpdateConfirmTitle": "Nainstalovat {version}?",
+  "installUpdateConfirmBody": "Driftfin stáhne tuto verzi, zavře se, aktualizuje se a automaticky se restartuje. Neuložené přehrávání může být přerušeno.",
+  "downloadingUpdate": "Stahování aktualizace…",
+  "updateInstallFailed": "Aktualizace selhala: {error}",
   "newReleaseFoundTitle": "Aktualizace {newRelease} je k dispozici!",
-  "@newReleaseFoundTitle": {
-    "placeholders": {
-      "newRelease": {
-        "type": "String"
-      }
-    }
-  },
   "newUpdateFoundOnGithub": "Na Githubu je nová aktualizaci",
-  "downloadFile": "Stáhnout {type}",
-  "@downloadFile": {
-    "placeholders": {
-      "type": {
-        "type": "String"
-      }
-    }
-  },
-  "qualityOptionsTitle": "Možnosti kvality",
-  "version": "Verze",
-  "segmentActionAskToSkip": "Zeptat se na přeskočení",
-  "hasDirectorFromRecentlyPlayed": "Stejný/á režisér/ka jako nedávno shlédnutá položka",
-  "internetStreamingQualityDesc": "Maximální kvalita streamování přes internet (mobilní zařízení)",
   "enableBackgroundPostersTitle": "Povolit plakáty na pozadí",
-  "settingsEnableOsMediaControlsDesc": "Povolit ovládání přehrávání pomocí mediálních kláves a ukázat aktuální přehrávané v systému",
   "enableBackgroundPostersDesc": "Zobrazit náhodné plakáty na použitelných obrazovkách",
-  "television": "Televize",
-  "exitDriftfinDesc": "Opravdu chcete ukončit Driftfin?",
   "notificationDownloadingDownloading": "Stahuji",
   "notificationDownloadingPaused": "Stahování pozastaveno",
   "notificationDownloadingFinished": "Stahování dokončeno",
   "notificationDownloadingError": "Chyba při stahování",
   "syncAllItemsTitle": "Sychronizovat všechny položky z {itemName}?",
-  "@syncAllItemsTitle": {
-    "description": "syncAllItemsFrom",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      }
-    }
-  },
+  "syncAllItemsDesc": "To bude synchronizovat ({itemCount}) položky z '{itemName}' do vašeho zařízení.\nTo může chvíli trvat v závislosti na množství položek.",
   "syncDeleteAllItemsTitle": "Smazat všechny synchronizované položky z {itemName}?",
-  "@syncDeleteAllItemsTitle": {
-    "description": "syncDeleteAllitemsFrom",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      }
-    }
-  },
   "syncDeleteAllItemsDesc": "To odstraní všechny synchronizované položky z '{itemName}'.\nJe to trvalé a budete muset znovu synchronizovat všechny ({itemCount}) soubory.",
-  "@syncDeleteAllItemsDesc": {
-    "description": "syncDeleteAllitemsFromDesc",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      },
-      "itemCount": {
-        "type": "int"
-      }
-    }
-  },
   "syncPauseAll": "Pozastavit vše",
   "syncResumeAll": "Pokračovat vše",
   "syncStopAll": "Zastavit vše",
+  "syncDeleteAll": "Smazat všechny soubory",
   "syncAllFiles": "Synchronizovat všechny soubory",
   "usePostersForLibraryIconsTitle": "Zobrazit plakáty pro ikony knihovny",
   "usePostersForLibraryIconsDesc": "Zobrazit plakáty namísto ikon pro knihovny",
   "offline": "Offline",
   "shortCuts": "Zkratky",
+  "keyboardShortCuts": "Klávesové zkratky",
   "skipForwardLength": "Délka přeskočení vpřed",
   "skipBackLength": "Délka přeskočení zpět",
   "playPause": "Play/Pauza",
   "seekForward": "Přetočit dopředu",
   "seekBack": "Přetočit zpět",
+  "seekForwardInstant": "Přetočit vpřed (okamžitě)",
+  "seekBackInstant": "Přetočit zpět (okamžitě)",
+  "stepForward": "Krok vpřed",
+  "stepBack": "Krok zpět",
   "mute": "Ztlumit",
   "volumeUp": "Zvýšit hlasitost",
   "volumeDown": "Snížit hlasitost",
   "speedUp": "Zrychlit",
   "speedDown": "Zpomalit",
+  "nextVideo": "Další video",
+  "prevVideo": "Předchozí video",
+  "nextChapter": "Další kapitola",
+  "prevChapter": "Předchozí kapitola",
+  "fullScreen": "Celá obrazovka",
+  "skipMediaSegment": "Přeskočit mediální Segment",
   "exit": "Konec",
   "shortCutAlreadyAssigned": "Zkratka '{hotKey}' už byla přidělena",
-  "@shortCutAlreadyAssigned": {
-    "placeholders": {
-      "hotKey": {
-        "type": "String"
-      }
-    }
-  },
   "blurred": "Rozmazané",
   "volumeIndicator": "Hlasitost: {volume}",
-  "@volumeIndicator": {
-    "placeholders": {
-      "volume": {
-        "type": "int"
-      }
-    }
-  },
+  "brightnessIndicator": "Jas: {brightness}",
+  "speedIndicator": "Rychlost přehrávání: {speed}",
+  "enableSpeedBoostTitle": "Povolit zrychlení přehrávání",
+  "enableSpeedBoostDesc": "Podržte obrazovku (mobil) nebo mezerník (počítač) pro dočasné zrychlení přehrávání",
+  "speedBoostRateTitle": "Rychlost zrychleného přehrávání",
+  "speedBoostRateDesc": "Rychlost přehrávání při aktivovaném zrychlení",
+  "enableDoubleTapSeekTitle": "Dvojité klepnutí pro přetočení/přehrání/pauzu",
+  "enableDoubleTapSeekDesc": "Dvojitým klepnutím na levou/pravou stranu obrazovky přetočíte zpět/vpřed. Dvojitým klepnutím na střed přehrajete/pozastavíte",
   "quickConnectPostFailed": "Chyba při získání kódu pro rychlé připojení",
+  "quickConnectLoginUsingCode": "Pomocí rychlého připojení",
+  "quickConnectEnterCodeDescription": "Zadejte kód níže pro přihlášení",
+  "openJellyfinQuickConnect": "Otevřít Jellyfin QuickConnect",
+  "showMore": "Zobrazit více",
+  "showLess": "Zobrazit méně",
+  "itemColorsTitle": "Barva položky",
   "itemColorsDesc": "Použijte základní barvu položky na stránku s detaily",
-  "mediaTunnelingTitle": "",
+  "mediaTunnelingTitle": "Tunelování médií",
+  "mediaTunnelingDesc": "Povolit tunelování médií pro nativní přehrávač",
+  "clientSettingsUseSystemIMETitle": "Použití systémové klávesnice",
   "clientSettingsUseSystemIMEDesc": "Použijte vestavěné klávesnice poskytnuté systémem",
   "nextUpInCount": "Další za {seconds}",
-  "@nextUpInCount": {
-    "placeholders": {
-      "seconds": {
-        "type": "int"
-      }
-    }
-  },
   "formattedTime": "{time}",
-  "@formattedTime": {
-    "description": "Formatted time",
-    "placeholders": {
-      "time": {
-        "type": "DateTime",
-        "format": "jm"
-      }
-    }
-  },
+  "takeScreenshot": "Pořídit snímek obrazovky",
+  "takeScreenshotClean": "Pořídit snímek obrazovky (bez titulků)",
+  "toggleSubtitles": "Přepnout titulky",
+  "screenshotTaken": "Snímek obrazovky uložen!",
+  "screenshotCleanTaken": "Snímek obrazovky bez titulků uložen!",
+  "errorTakingScreenshot": "Při pořizování snímku obrazovky došlo k chybě",
   "openImeKeyboard": "Otevřít IME klávesnici",
   "screensaverDvd": "DVD",
   "screensaverLogo": "Logo",
@@ -1044,38 +700,430 @@
   "screensaverBlack": "Černá",
   "playerSettingsScreensaverTitle": "Spořič obrazovky",
   "playerSettingsScreensaverDesc": "Vyberte spořič obrazovky, který bude zobrazen při nečinnosti",
-  "syncAllItemsDesc": "To bude synchronizovat ({itemCount}) položky z '{itemName}' do vašeho zařízení.\nTo může chvíli trvat v závislosti na množství položek.",
-  "@syncAllItemsDesc": {
-    "description": "syncAllitemsFromDesc",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      },
-      "itemCount": {
-        "type": "int"
-      }
-    }
-  },
-  "syncDeleteAll": "Smazat všechny soubory",
-  "keyboardShortCuts": "Klávesové zkratky",
-  "nextVideo": "Další video",
-  "prevVideo": "Předchozí video",
-  "nextChapter": "Další kapitola",
-  "prevChapter": "Předchozí kapitola",
-  "fullScreen": "Celá obrazovka",
-  "skipMediaSegment": "Přeskočit mediální Segment",
-  "speedIndicator": "Rychlost přehrávání: {speed}",
-  "@speedIndicator": {
-    "placeholders": {
-      "speed": {
-        "type": "double"
-      }
-    }
-  },
-  "quickConnectLoginUsingCode": "Pomocí rychlého připojení",
-  "quickConnectEnterCodeDescription": "Zadejte kód níže pro přihlášení",
-  "showMore": "Zobrazit více",
-  "itemColorsTitle": "Barva položky",
-  "clientSettingsUseSystemIMETitle": "Použití systémové klávesnice",
-  "homeBannerTV": "TV"
+  "settingsLocalUrlTitle": "Místní URL adresa Jellyfin",
+  "settingsLocalUrlSetTitle": "Nastavit místní URL adresu Jellyfin",
+  "settingsLocalUrlSetDesc": "Zadejte místní adresu Jellyfin. Driftfin tuto adresu automaticky použije, když je vaše zařízení ve stejné síti.",
+  "regenerateTrickplayImages": "Znovu vygenerovat náhledové obrázky (trickplay)",
+  "controlPanel": "Ovládací panel",
+  "controlPanelDesc": "Server, Aktivita, Uživatelé, Knihovna",
+  "controlDashboard": "Řídicí panel",
+  "serverName": "Název serveru",
+  "serverVersion": "Verze serveru",
+  "webVersion": "Verze webu",
+  "devices": "Zařízení",
+  "used": "Využito",
+  "storagePaths": "Cesty k úložišti",
+  "programData": "Data programu",
+  "web": "Web",
+  "cache": "Mezipaměť",
+  "logs": "Protokoly",
+  "transcodingTemp": "Dočasné soubory překódování",
+  "count": "Počet",
+  "scanAllLibraries": "Prohledat všechny knihovny",
+  "restartServer": "Restartovat server",
+  "shutDownServer": "Vypnout server",
+  "dashboardDesc": "Server, Počet, Zařízení, Úložiště",
+  "lastActivity": "Poslední aktivita",
+  "activeTasks": "Aktivní úlohy",
+  "hours": "{count, plural, one{Hodina} few{Hodiny} other{Hodin}}",
+  "weeks": "{count, plural, one{Týden} few{Týdny} other{Týdnů}}",
+  "months": "{count, plural, one{Měsíc} few{Měsíce} other{Měsíců}}",
+  "years": "{count, plural, one{Rok} few{Roky} other{Let}}",
+  "days": "Dny",
+  "timeAgo": "před {time}",
+  "airsIn": "Vysílá se za {count} {duration}",
+  "lastRunTaking": "Poslední spuštění {date}, trvalo {time}",
+  "lessThenAMinute": "Méně než minuta",
+  "plannedTasks": "Naplánované úlohy",
+  "taskTriggerTypeInterval": "Interval",
+  "taskTriggerTypeDaily": "Denně",
+  "taskTriggerTypeWeekly": "Týdně",
+  "taskTriggerTypeStartup": "Při spuštění",
+  "create": "Vytvořit",
+  "taskTriggerTypeName": "Typ spouštěče",
+  "newTrigger": "Nový spouštěč",
+  "newTaskTrigger": "Nový spouštěč úlohy",
+  "dayOfTheWeek": "Den v týdnu",
+  "time": "Čas",
+  "interval": "Interval",
+  "taskTimeLimitInHours": "Časový limit (hodiny)",
+  "taskTriggerIntervalDesc": "Každých {time}",
+  "taskTriggerDailyDesc": "Denně v {time}",
+  "taskTriggerWeeklyDesc": "Týdně v {day} v {time}",
+  "taskTriggerTimeLimitSub": "Časový limit: {time}",
+  "performance": "Výkon",
+  "serverNameLabel": "Název serveru",
+  "cachePath": "Cesta k mezipaměti",
+  "metadataPath": "Cesta k metadatům",
+  "maxConcurrentLibraryScanLabel": "Max. počet souběžných skenování knihovny",
+  "maxConcurrentLibraryScanDesc": "Maximální počet paralelních úloh při skenování knihovny. Ponecháte-li pole prázdné, limit se zvolí podle počtu jader vašeho systému. VAROVÁNÍ: Nastavení příliš vysokého čísla může způsobit problémy se síťovými souborovými systémy; pokud narazíte na potíže, číslo snižte.",
+  "maxImageDecodingThreadsLabel": "Max. počet vláken pro dekódování obrázků",
+  "maxImageDecodingThreadsDesc": "Maximální počet kódování obrázků, které mohou běžet paralelně. Ponecháte-li pole prázdné, limit se zvolí podle počtu jader vašeho systému.",
+  "controlPanelServerDesc": "Název serveru, Rychlé připojení, Výkon",
+  "deleteUserTitle": "Smazat uživatele {user}?",
+  "deleteUserDesc": "Tímto trvale smažete uživatele {user} a všechna související nastavení.",
+  "userInformation": "Informace o uživateli",
+  "allowManageServer": "Povolit tomuto uživateli spravovat server",
+  "allowCollections": "Povolit tomuto uživateli vytvářet kolekce",
+  "allowEditSubtitles": "Povolit tomuto uživateli upravovat titulky",
+  "featureAccess": "Přístup k funkcím",
+  "allowLiveTVAccess": "Povolit přístup k živé TV",
+  "allowLiveTVRecording": "Povolit správu nahrávání živé TV",
+  "mediaPlayback": "Přehrávání médií",
+  "allowMediaPlayback": "Povolit přehrávání médií",
+  "allowVideoTranscoding": "Povolit přehrávání videa vyžadující překódování",
+  "allowAudioTranscoding": "Povolit přehrávání zvuku vyžadující překódování",
+  "allowMediaConversion": "Povolit přehrávání videa vyžadující konverzi",
+  "forceRemoteTranscoding": "Vynutit překódování vzdáleného zdroje",
+  "syncplay": "Syncplay",
+  "syncplayAccess": "Přístup k Syncplay",
+  "syncplayAccessCreateAndJoinGroups": "Vytvářet a připojovat se ke skupinám",
+  "syncplayAccessJoinGroups": "Připojovat se ke skupinám",
+  "syncplayAccessNone": "Žádný",
+  "allowMediaDeletion": "Povolit mazání médií",
+  "allLibraries": "Všechny knihovny",
+  "libraryAccess": "Přístup ke knihovně",
+  "enableAllLibraries": "Povolit přístup ke všem knihovnám",
+  "enableAllDevices": "Povolit přístup ke všem zařízením",
+  "parentalControl": "Rodičovská kontrola",
+  "blockedItemsNoRating": "Blokovat položky bez hodnocení nebo s nerozpoznaným hodnocením",
+  "maxParentalRating": "Max. rodičovské hodnocení",
+  "allowItemsTags": "Povolit položky se štítky",
+  "blockItemsTags": "Blokovat položky se štítky",
+  "accessSchedules": "Plány přístupu",
+  "addAccessSchedule": "Přidat plán přístupu",
+  "dayOfWeek": "Den v týdnu",
+  "startTime": "Čas začátku",
+  "endTime": "Čas konce",
+  "addTag": "Přidat štítek",
+  "createNewUser": "Vytvořit nového uživatele",
+  "createUser": "Vytvořit uživatele",
+  "users": "Uživatelé",
+  "editUser": "Upravit uživatele",
+  "general": "Obecné",
+  "access": "Přístup",
+  "endTimeMustBeAfter": "Čas konce musí být po čase začátku",
+  "assignLibraries": "Přiřadit knihovny",
+  "enableAccessAllLibraries": "Povolit přístup ke všem knihovnám",
+  "currentPassword": "Současné heslo",
+  "newPassword": "Nové heslo",
+  "confirmPassword": "Potvrdit heslo",
+  "resetPassword": "Obnovit heslo",
+  "passwordResetSuccess": "Heslo bylo úspěšně obnoveno",
+  "passwordResetFailed": "Obnovení hesla se nezdařilo",
+  "passwordMismatch": "Nové heslo a potvrzení hesla se neshodují",
+  "passwordChangeSuccess": "Heslo bylo úspěšně změněno",
+  "savePassword": "Uložit heslo",
+  "deleteLibraryConfirmTitle": "Smazat knihovnu?",
+  "deleteLibraryConfirmMessage": "Opravdu chcete smazat {libraryName}?\nTuto akci nelze vrátit zpět.",
+  "noLibrarySelected": "Nebyla vybrána žádná knihovna",
+  "enabledPhotos": "Povoleny fotografie",
+  "enabledLUFSScan": "Povoleno skenování LUFS",
+  "enabledRealtimeMonitoring": "Povoleno sledování v reálném čase",
+  "automaticallyAddToCollection": "Automaticky přidat do kolekce",
+  "enabledEmbeddedTitles": "Povoleny vložené názvy",
+  "enabledEmbeddedExtrasTitles": "Povoleny vložené názvy bonusů",
+  "automaticRefreshInterval": "Interval automatické obnovy",
+  "autoRefreshIntervalNote": "Povolením této funkce se může prodloužit doba obnovy knihovny.",
+  "preferredDownloadLanguage": "Preferovaný jazyk stahování",
+  "countryRegion": "Země/oblast",
+  "saveMetadata": "Uložit metadata",
+  "metadataFetchers": "Zdroje metadat ({type})",
+  "enableAndRankMetadataFetchers": "Povolte a seřaďte preferované zdroje metadat podle priority.",
+  "enableAndRankImagesFetchers": "Povolte a seřaďte preferované zdroje obrázků podle priority.",
+  "imageFetchers": "Zdroje obrázků ({type})",
+  "mediaSegmentProviders": "Poskytovatelé mediálních segmentů",
+  "enableAndRankMediaSegmentProviders": "Povolte a seřaďte preferované poskytovatele mediálních segmentů podle priority.",
+  "trickplay": "Trickplay",
+  "enableTrickplayImageExtraction": "Povolit extrakci náhledových obrázků (trickplay)",
+  "extractTrickplayImagesDuringLibraryScan": "Extrahovat náhledové obrázky při skenování knihovny",
+  "saveTrickplayImagesNextToMedia": "Ukládat náhledové obrázky vedle médií",
+  "chapterImages": "Obrázky kapitol",
+  "enableChapterImageExtraction": "Povolit extrakci obrázků kapitol",
+  "extractChapterImagesDuringLibraryScan": "Extrahovat obrázky kapitol při skenování knihovny",
+  "subtitleDownloads": "Stahování titulků",
+  "downloadLanguages": "Jazyky ke stažení",
+  "subtitleDownloaders": "Poskytovatelé titulků",
+  "onlyPerfectSubtitleMatch": "Stahovat pouze titulky, které dokonale odpovídají médiu",
+  "perfectSubtitleMatchDescription": "Vyžadování dokonalé shody omezí titulky pouze na ty, které byly otestovány a ověřeny s přesně tímto video souborem. Zrušením zaškrtnutí zvýšíte pravděpodobnost stažení titulků, ale i riziko špatného časování nebo nesprávného textu.",
+  "skipSubtitlesIfAudioMatches": "Přeskočit, pokud výchozí zvuková stopa odpovídá jazyku stahování",
+  "skipSubtitlesIfEmbedded": "Přeskočit, pokud video již obsahuje vložené titulky",
+  "saveSubtitlesNextToMedia": "Ukládat titulky vedle médií",
+  "saveArtWorkNextToMedia": "Ukládat obrázky vedle mediálních souborů",
+  "saveArtWorkNextToMediaDesc": "Uložením obrázků do složek s médii je umístíte na místo, kde je lze snadno upravovat.",
+  "select": "Vybrat",
+  "newLibrary": "Nová knihovna",
+  "contentType": "Typ obsahu",
+  "metadataImageLongPressTouch": "Dlouhým podržením smažete obrázek",
+  "metadataImageLongPressClick": "Kliknutím pravým tlačítkem smažete obrázek",
+  "primary": "Primární",
+  "logo": "{count, plural, one{Logo} few{Loga} other{Log}}",
+  "backdrop": "{count, plural, one{Pozadí} other{Pozadí}}",
+  "selectFolderToAdd": "Vyberte složku k přidání",
+  "systemRootFolder": "Kořenová složka systému",
+  "selectedPath": "Vybraná cesta: {path}",
+  "recentlyAdded": "Nedávno přidané",
+  "recentlyPlayed": "Nedávno přehrané",
+  "recentlyFavorited": "Nedávno oblíbené",
+  "mostPlayed": "Nejpřehrávanější",
+  "recentRequests": "Nedávné žádosti",
+  "trending": "Populární",
+  "popularMovies": "Populární filmy",
+  "popularSeries": "Populární seriály",
+  "expectedMovies": "Očekávané filmy",
+  "expectedSeries": "Očekávané seriály",
+  "requestConfiguration": "Konfigurace žádosti",
+  "qualityProfile": "Profil kvality",
+  "selectProfile": "Vybrat profil",
+  "rootFolder": "Kořenová složka",
+  "selectFolder": "Vybrat složku",
+  "tags": "Štítky",
+  "noTags": "Žádné štítky",
+  "requestAs": "Žádat jako",
+  "requestQuotaStatus": "Zbývá {remaining} z {limit} (obnoví se každých {days} dní)",
+  "requestQuotaLimitReached": "Byl dosažen limit žádostí pro {mediaType}.",
+  "submitRequest": "Odeslat žádost",
+  "noOverviewAvailable": "Přehled není k dispozici.",
+  "downloading": "stahování",
+  "request": "Žádost",
+  "requestMore": "Žádat o více",
+  "viewRequest": "Zobrazit žádost",
+  "email": "E-mail",
+  "username": "Uživatelské jméno",
+  "ok": "OK",
+  "transcodeInfoTitle": "Informace o překódování",
+  "transcodeInfoNoMetadata": "Nejsou k dispozici žádná metadata o překódování.",
+  "transcodeDetailsTitle": "Podrobnosti překódování",
+  "containerLabel": "Kontejner",
+  "videoCodecLabel": "Video kodek",
+  "audioCodecLabel": "Audio kodek",
+  "bitrateLabel": "Bitrate",
+  "kbps": "kb/s",
+  "resolutionLabel": "Rozlišení",
+  "seerr": "Seerr",
+  "seerrNotConfigured": "Nenastaveno",
+  "seerrLoadingUser": "Načítání uživatele",
+  "seerrUnknownUser": "Neznámý uživatel",
+  "loggedInAs": "Přihlášen jako {displayName}",
+  "seerrServer": "Server Seerr",
+  "seerrAuthenticateLocal": "Ověření Seerr (lokální)",
+  "rootFolderDefaultLabel": "{folder} (výchozí)",
+  "seerrAnimeSeriesNote": "* Tento seriál je anime.",
+  "seerrAutoApproveNotice": "Vaše žádosti jsou automaticky schvalovány.",
+  "seerrPermissionDenied": "Nemáte oprávnění žádat o tento typ médií.",
+  "seerrRequestStatusPending": "Čeká na vyřízení",
+  "seerrRequestStatusApproved": "Schváleno",
+  "seerrRequestStatusDeclined": "Zamítnuto",
+  "seerrRequestStatusFailed": "Selhalo",
+  "seerrRequestStatusCompleted": "Dokončeno",
+  "seerrMediaStatusProcessing": "Zpracovává se",
+  "seerrMediaStatusPartiallyAvailable": "Částečně dostupné",
+  "seerrMediaStatusAvailable": "Dostupné",
+  "seerrMediaStatusBlacklisted": "Na černé listině",
+  "seerrMediaStatusDeleted": "Smazáno",
+  "seerrAuthApiKey": "API klíč",
+  "seerrAuthLocal": "Lokální",
+  "seerrAuthJellyfin": "Jellyfin",
+  "seerrUserFetchFailed": "Nepodařilo se načíst uživatele ze Seerr",
+  "seerrEnterServerUrlFirst": "Nejprve zadejte URL adresu serveru Seerr",
+  "seerrUrlSchemeWarning": "Nepodařilo se automaticky rozpoznat schéma URL. Použije se výchozí https://. Pokud váš server nepoužívá HTTPS, uveďte na začátku http://.",
+  "seerrApiKeySaved": "API klíč uložen",
+  "seerrLoggedIn": "Přihlášeno k Seerr",
+  "seerrConnectedToServer": "Připojeno k serveru Seerr: {serverUrl}",
+  "seerrCustomHeaders": "Vlastní hlavičky",
+  "seerrHeader": "Hlavička",
+  "seerrHeaderValue": "Hodnota",
+  "emailUsername": "E-mail/Uživatelské jméno",
+  "discover": "Objevovat",
+  "sponsor": "Sponzor",
+  "sponsorMessage": "Pokud vás Driftfin baví, zvažte sponzorování projektu a podpořte tak jeho další vývoj a vylepšování. Děkujeme za vaši podporu!",
+  "min": "min",
+  "max": "max",
+  "manageRequest": "Spravovat žádost",
+  "requestAll": "Žádat o vše",
+  "openInSeerr": "Otevřít v Seerr",
+  "openInSonarr": "Otevřít v Sonarru",
+  "openInRadarr": "Otevřít v Radarru",
+  "removeFromSonarr": "Odebrat ze Sonarru",
+  "removeFromRadarr": "Odebrat z Radarru",
+  "markAllSeasonsAsAvailable": "Označit všechny sezóny jako dostupné",
+  "markAsAvailable": "Označit jako dostupné",
+  "deleteData": "Smazat data",
+  "removeSeriesFromSonarrConfirm": "Odebrat tento seriál ze Sonarru? Odstraní se veškerá data VČETNĚ souborů.",
+  "removeMovieFromRadarrConfirm": "Odebrat tento film z Radarru? Odstraní se veškerá data VČETNĚ souborů.",
+  "removedFromSonarr": "Odebráno ze Sonarru",
+  "removedFromRadarr": "Odebráno z Radarru",
+  "markAllSeasonsAsAvailableConfirm": "Označit všechny sezóny jako dostupné?",
+  "markAsAvailableConfirm": "Označit jako dostupné?",
+  "markedAsAvailable": "Označeno jako dostupné",
+  "deleteSeerrDataConfirm": "Smazat všechny soubory ze Seerr? Tuto akci nelze vrátit zpět.\nPokud jsou data stále přítomna v {service}, mohou být znovu importována.",
+  "dataDeleted": "Data smazána",
+  "approve": "Schválit",
+  "decline": "Zamítnout",
+  "pendingRequests": "{count, plural, =0{Žádné nevyřízené požadavky} one{{count} nevyřízený požadavek} few{{count} nevyřízené požadavky} other{{count} nevyřízených požadavků}}",
+  "processing": "Zpracovává se",
+  "seerrDetails": "Podrobnosti Seerr",
+  "viewTrailer": "Zobrazit trailer",
+  "watch": "Sledovat",
+  "watchChannel": "Sledovat {channel}",
+  "now": "Nyní",
+  "nowPlaying": "Nyní přehráváno",
+  "upNext": "Další na řadě",
+  "queue": "Fronta",
+  "queueIsEmpty": "Fronta je prázdná",
+  "queueItemCount": "{count} položek",
+  "removeFromQueue": "Odebrat z fronty",
+  "noPrograms": "Nejsou k dispozici žádné pořady",
+  "switchChannel": "Přepnout kanál",
+  "switchChannelDesc": "Chcete sledovat „{programName}“ na {channelName}?",
+  "specialFeature": "{count, plural, one{Bonusová funkce} few{Bonusové funkce} other{Bonusových funkcí}}",
+  "activeTvChannels": "Aktivní TV kanály",
+  "enableNewTVLayout": "Povolit nové rozvržení TV",
+  "liveTV": "Živá TV",
+  "liveTvManageTunersEpg": "Spravovat tunery a poskytovatele EPG",
+  "tunerDevices": "Tunery",
+  "epgGuideProviders": "Poskytovatelé programového průvodce (EPG)",
+  "noTunerDevicesConfigured": "Nejsou nakonfigurovány žádné tunery",
+  "noEpgProvidersConfigured": "Nejsou nakonfigurováni žádní poskytovatelé EPG",
+  "addTunerDevice": "Přidat tuner",
+  "addProvider": "Přidat poskytovatele",
+  "tunerHostAddedSuccessfully": "Tuner byl úspěšně přidán",
+  "failedToAddTunerHost": "Nepodařilo se přidat tuner: {error}",
+  "tunerHostUpdatedSuccessfully": "Tuner byl úspěšně aktualizován",
+  "failedToUpdateTunerHost": "Nepodařilo se aktualizovat tuner: {error}",
+  "deleteTunerHost": "Smazat tuner",
+  "deleteTunerHostConfirm": "Opravdu chcete smazat „{name}“?",
+  "tunerHostDeletedSuccessfully": "Tuner byl úspěšně smazán",
+  "failedToDeleteTunerHost": "Nepodařilo se smazat tuner: {error}",
+  "epgProviderAddedSuccessfully": "Poskytovatel EPG byl úspěšně přidán",
+  "failedToAddEpgProvider": "Nepodařilo se přidat poskytovatele EPG: {error}",
+  "epgProviderUpdatedSuccessfully": "Poskytovatel EPG byl úspěšně aktualizován",
+  "failedToUpdateEpgProvider": "Nepodařilo se aktualizovat poskytovatele EPG: {error}",
+  "deleteEpgProvider": "Smazat poskytovatele EPG",
+  "deleteEpgProviderConfirm": "Opravdu chcete tohoto poskytovatele smazat?",
+  "epgProviderDeletedSuccessfully": "Poskytovatel EPG byl úspěšně smazán",
+  "failedToDeleteEpgProvider": "Nepodařilo se smazat poskytovatele EPG: {error}",
+  "editTunerDevice": "Upravit tuner",
+  "friendlyName": "Zobrazovaný název",
+  "url": "URL",
+  "userAgent": "User Agent",
+  "userAgentOptional": "User Agent (volitelné)",
+  "maxConcurrentStreams": "Max. počet souběžných streamů",
+  "addEpgProvider": "Přidat poskytovatele EPG",
+  "editEpgProvider": "Upravit poskytovatele EPG",
+  "xmltvPathUrl": "Cesta/URL XMLTV",
+  "enableAllTuners": "Povolit pro všechny tunery",
+  "enabledTuners": "Povolené tunery",
+  "selectTuners": "Vybrat tunery",
+  "moviePrefix": "Předpona filmů",
+  "movieCategories": "Kategorie filmů",
+  "newsCategories": "Kategorie zpráv",
+  "sportsCategories": "Kategorie sportu",
+  "kidsCategories": "Dětské kategorie",
+  "fileOrUrl": "Soubor nebo URL",
+  "tunerIpAddress": "IP adresa tuneru",
+  "fallbackMaxBitrate": "Maximální náhradní bitrate (Mb/s)",
+  "concurrentStreams": "Max. počet souběžných streamů",
+  "concurrentStreamsHint": "0 = neomezeno",
+  "allowFmp4Container": "Povolit kontejner fMP4 pro překódování",
+  "allowStreamSharing": "Povolit sdílení streamu",
+  "enableStreamLooping": "Povolit smyčkové opakování streamu",
+  "ignoreDts": "Ignorovat časové značky DTS",
+  "readAtNativeFramerate": "Číst nativní snímkovou frekvencí",
+  "importFavoritesOnly": "Importovat pouze oblíbené kanály",
+  "allowHWTranscoding": "Povolit hardwarové překódování",
+  "detectDevices": "Vyhledat zařízení",
+  "discoveredDevices": "Nalezená zařízení",
+  "noDevicesFound": "Nebyla nalezena žádná zařízení",
+  "failedToDiscoverDevices": "Nepodařilo se vyhledat zařízení: {error}",
+  "path": "Cesta",
+  "maxConcurrentStreamsLabel": "Max. počet souběžných streamů",
+  "noCategories": "Žádné kategorie",
+  "moviePrefixSubLabel": "Pokud jsou na názvy filmů aplikovány předpony, zadejte ji zde, aby ji server mohl správně zpracovat.",
+  "movieCategoriesSubLabel": "Kategorie přiřazené kanálům odpovídajícím předponě filmů",
+  "newsCategoriesSubLabel": "Kategorie přiřazené kanálům odpovídajícím předponě zpráv",
+  "sportsCategoriesSubLabel": "Kategorie přiřazené kanálům odpovídajícím předponě sportu",
+  "kidsCategoriesSubLabel": "Kategorie přiřazené kanálům odpovídajícím dětské předponě",
+  "enableNewTVLayoutDesc": "Zobrazit na řídicím panelu větší bannery ve stylu TV. V budoucí verzi se toto stane výchozím rozvržením.",
+  "notifications": "Oznámení",
+  "showNewItemNotificationTitle": "Oznámení pro položky knihovny",
+  "notificationChannelDescription": "Oznámení o nově přidaných položkách",
+  "seerrRequestNotifications": "Oznámení o žádostech Seerr",
+  "notificationNewEpisodes": "Přidány nové epizody",
+  "notificationNewItems": "{count, plural, one{{count} nová položka} few{{count} nové položky} other{{count} nových položek}}",
+  "notificationNewRequests": "{count, plural, one{{count} nový požadavek} few{{count} nové požadavky} other{{count} nových požadavků}}",
+  "notificationTimerIOSWarning": " Systém iOS rozhoduje, kdy a zda se aktualizace skutečně spustí, oznámení tak mohou být zpožděná nebo se vůbec nezobrazit.",
+  "batteryOptimizationDesc": "Optimalizace baterie mohou zpozdit oznámení Driftfinu na pozadí.\nKlepnutím otevřete systémová nastavení a vypněte optimalizace pro Driftfin, čímž zvýšíte spolehlivost oznámení.",
+  "updateCheckInterval": "Interval kontroly aktualizací",
+  "updateCheckIntervalDesc": "Jak často se spouští úloha na pozadí",
+  "notificationsIntervalClientReminder": "Interval oznámení je nastaven pro všechny uživatele.",
+  "lastUpdateAt": "Naposledy aktualizováno {date} v {time}",
+  "includeHiddenItems": "Zahrnout skryté knihovny",
+  "includeHiddenItemsDesc": "Zahrnout knihovny skryté z řídicího panelu",
+  "settingsBlurEffectsTitle": "Povolit rozmazané efekty",
+  "settingsBlurEffectsDesc": "Povolit rozmazané efekty v uživatelském rozhraní. Vypnutím lze zlepšit výkon na slabších zařízeních.",
+  "profileSettingsOpenAuthAtLaunch": "Zobrazit metodu ověření při zamknutí aplikace",
+  "toggleSidebar": "Přepnout postranní panel",
+  "requestedSuccessForItem": "Úspěšně vyžádáno: {itemName}",
+  "linkData": "Data odkazu",
+  "passwordNotRequired": "Nepovinné, ponechte prázdné, pokud nechcete heslo zahrnout do odkazu",
+  "authLinkButtonToolTip": "Otevřít dialog přihlašovacího odkazu",
+  "connectWithAuthLink": "Připojit pomocí přihlašovacího odkazu",
+  "pasteDriftfinAuthLink": "Vložte přihlašovací odkaz driftfin driftfin:///login?authLink=...",
+  "connect": "Připojit",
+  "authLinkDesc": "Požádejte správce serveru o přihlašovací odkaz. Odkaz obsahuje přihlašovací údaje, proto ho uchovávejte v bezpečí.",
+  "deletedItem": "Smazáno: {itemName}",
+  "libraryOrderTitle": "Pořadí na domovské obrazovce",
+  "libraryOrderDescription": "Přetažením změníte pořadí knihoven na domovské obrazovce. Nezaškrtnuté knihovny nebudou zobrazovat nedávno přidané položky.",
+  "hidePlayedInLatestTitle": "Skrýt zhlédnutý obsah",
+  "hidePlayedInLatestDescription": "Skrýt zhlédnutý obsah z „Nedávno přidaná média“",
+  "groupedFoldersTitle": "Seskupené knihovny",
+  "groupedFoldersDescription": "Automaticky seskupit obsah z následujících knihoven do zobrazení jako „Filmy“, „Hudba“ a „TV“.",
+  "downloadTranscoded": "Stáhnout překódované",
+  "downloadOriginal": "Stáhnout originál",
+  "personBirthday": "Narozeniny: {date}",
+  "personAge": "Věk: {age}",
+  "personBirthPlace": "Narozen(a) v {place}",
+  "seerrMovies": "Objevovat filmy",
+  "seerrSeries": "Objevovat seriály",
+  "today": "Dnes",
+  "musicDashboard": "Hudební panel",
+  "quiet": "Tiché",
+  "loud": "Hlasité",
+  "share": "Sdílet",
+  "setAs": "Nastavit jako",
+  "cast": "Odesílání obrazu",
+  "castTo": "Přehrát na…",
+  "castSearching": "Vyhledávání zařízení…",
+  "castNoDevices": "Nebyla nalezena žádná zařízení ani aktivní relace",
+  "castConnecting": "Připojování…",
+  "castCastingTo": "Odesílání do {device}",
+  "castStop": "Ukončit odesílání",
+  "castFailed": "Nepodařilo se připojit k zařízení pro odesílání obrazu",
+  "castSectionNearby": "Zařízení v okolí",
+  "castSectionSessions": "Vaše další zařízení",
+  "tonight": "Dnes večer",
+  "tonightSubtitle": "Stiskněte přehrát, nemusíte procházet",
+  "tonightEmpty": "Momentálně nic nesedí – zkuste zvětšit časový limit",
+  "tonightAnyLength": "Jakákoli délka",
+  "tonightMinutesOrLess": "{minutes} min nebo méně",
+  "tonightMoodAny": "Jakákoli nálada",
+  "tonightMoodCozy": "Pohodová",
+  "tonightMoodThrilling": "Napínavá",
+  "tonightMoodFunny": "Vtipná",
+  "tonightMoodUplifting": "Povzbuzující",
+  "smartShelves": "Chytré poličky",
+  "addToHomeShelf": "Přidat na domovskou stránku jako chytrou poličku",
+  "removeFromHomeShelf": "Odebrat z domovských poliček",
+  "tastePassport": "Chuťový pas",
+  "tastePassportSubtitle": "Váš profil vkusu na tomto zařízení, sestavený z toho, co jste sledovali",
+  "tastePassportTopGenres": "Žánry, ke kterým inklinujete",
+  "tastePassportTopDirectors": "Režiséři, které milujete",
+  "tastePassportTopActors": "Herci, které milujete",
+  "tastePassportTotalWatchTime": "Celkový čas sledování",
+  "tastePassportItemsWatched": "Zhlédnuté položky",
+  "tastePassportEmpty": "Sledujte pár věcí a váš profil vkusu se zde zobrazí",
+  "livingHomeBecauseYouWatched": "Protože jste sledovali {name}",
+  "livingHomeHiddenGems": "Skryté skvosty, které vlastníte",
+  "livingHomeMoreFromDirector": "Více od {name}"
 }

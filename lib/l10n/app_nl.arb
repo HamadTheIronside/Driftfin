@@ -5,18 +5,76 @@
   "accept": "Accepteren",
   "active": "Actief",
   "actor": "{count, plural, other{Acteurs} one{Acteur}}",
-  "@actor": {
-    "description": "acteur",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "addAsFavorite": "Toevoegen als favoriet",
+  "addShowToFavorites": "Serie toevoegen als favoriet",
+  "addedShowToFavorites": "Serie toegevoegd als favoriet",
+  "removedShowFromFavorites": "Serie verwijderd uit favorieten",
+  "requestEpisodeSonarr": "Aflevering aanvragen (Sonarr)",
+  "sonarrEpisodeRequested": "Aflevering aangevraagd — Sonarr is aan het zoeken",
+  "sonarrSeriesNotFound": "Deze serie staat nog niet in Sonarr — voeg deze eerst toe in Sonarr",
+  "sonarrEpisodeNotFound": "Kan die aflevering niet vinden in Sonarr",
+  "sonarrNotConfigured": "Sonarr is niet ingesteld — voeg het toe in Instellingen",
+  "sonarrRequestFailed": "Sonarr-aanvraag mislukt",
+  "sonarrIntegrationTitle": "Sonarr (aflevering-aanvragen)",
+  "sonarrIntegrationDesc": "Verbind Sonarr rechtstreeks om losse afleveringen aan te vragen (Seerr ondersteunt alleen hele seizoenen). Werkt alleen voor series die al zijn toegevoegd aan Sonarr.",
+  "managedByServerPlugin": "Beheerd door server (Driftfin-plugin)",
+  "sonarrUrlTitle": "Sonarr-URL",
+  "sonarrApiKeyTitle": "Sonarr API-sleutel",
+  "sonarrSaved": "Sonarr-instellingen opgeslagen",
+  "traktTitle": "Trakt",
+  "traktDesc": "Scrobbel wat je bekijkt naar Trakt. Gebruik je eigen Trakt API-app (client-id + secret).",
+  "traktClientId": "Trakt client-ID",
+  "traktClientSecret": "Trakt client secret",
+  "traktConnect": "Verbinden met Trakt",
+  "traktDisconnect": "Verbinding met Trakt verbreken",
+  "traktConnected": "Verbonden",
+  "traktNotConnected": "Niet verbonden",
+  "traktActivateInstructions": "Open {url} op een ander apparaat en voer deze code in:",
+  "traktConnectedSuccess": "Verbonden met Trakt",
+  "traktConnectFailed": "Verbinding met Trakt mislukt of verlopen",
+  "externalPlayerTitle": "Externe speler",
+  "externalPlayerDesc": "Afspelen in je eigen desktopspeler (MPV / VLC / PotPlayer). Let op: de externe speler rapporteert geen voortgang terug, dus hervatten en scrobbelen werken hiermee niet.",
+  "externalPlayerPath": "Pad naar speler",
+  "externalPlayerArgs": "Opstartargumenten",
+  "playInExternalPlayer": "Afspelen in externe speler",
+  "externalPlayerFailed": "Kan de externe speler niet starten",
+  "requestsTitle": "Verzoeken",
+  "requestsScopeMine": "Van mij",
+  "requestsScopeAll": "Alle",
+  "requestFilterAll": "Alle",
+  "requestFilterUnavailable": "Niet beschikbaar",
+  "requestSortAdded": "Datum toegevoegd",
+  "requestSortModified": "Laatst gewijzigd",
+  "approveAllPending": "Alle lopende goedkeuren",
+  "noRequestsFound": "Geen verzoeken",
+  "calendarTitle": "Kalender",
+  "calendarEmpty": "Niets binnenkort",
+  "calendarToday": "Vandaag",
+  "calendarTomorrow": "Morgen",
+  "calendarFilterAll": "Alle",
+  "calendarFilterTv": "TV",
+  "calendarFilterMovies": "Films",
+  "radarrIntegrationTitle": "Radarr (films)",
+  "radarrIntegrationDesc": "Verbind Radarr om aankomende filmreleases in de kalender te tonen en films rechtstreeks aan te vragen.",
+  "radarrUrlTitle": "Radarr-URL",
+  "radarrApiKeyTitle": "Radarr API-sleutel",
+  "addToHome": "Toevoegen aan startpagina",
+  "removeFromHome": "Verwijderen van startpagina",
+  "syncSettingsTitle": "Instellingen synchroniseren naar server",
+  "syncSettingsDesc": "Sla weergave, startschermindeling, vastgezette collecties en je Seerr-URL op de Jellyfin-server op, zodat ze je account volgen op al je apparaten.",
+  "syncNow": "Nu synchroniseren",
+  "crashReportingTitle": "Crashrapporten verzenden",
+  "crashReportingDesc": "Schakel dit in om crash- en foutrapporten automatisch te verzenden en Driftfin te helpen verbeteren. Standaard uitgeschakeld; herstart de app na het wijzigen hiervan. Er worden geen persoonlijke gegevens meegestuurd.",
+  "managePinnedCollections": "Vastgezette startschermcollecties",
+  "managePinnedCollectionsDesc": "Herorden of verwijder de collecties die op je startscherm worden getoond",
+  "noPinnedCollections": "Geen vastgezette collecties. Gebruik \"Toevoegen aan startpagina\" via het menu van een collectie.",
+  "syncedNever": "Nog niet gesynchroniseerd",
+  "syncedAtLabel": "Laatst gesynchroniseerd: {time}",
   "addToCollection": "Toevoegen aan collectie",
   "addToPlaylist": "Toevoegen aan afspeellijst",
+  "addToQueue": "Toevoegen aan wachtrij",
+  "instantMix": "Instant mix",
+  "addedToQueue": "{count, plural, one{{count} track toegevoegd aan wachtrij} other{{count} tracks toegevoegd aan wachtrij}}",
   "advanced": "Geavanceerd",
   "all": "Alles",
   "amoledBlack": "Amoled zwart",
@@ -24,16 +82,15 @@
   "appLockBiometrics": "Biometrie",
   "appLockPasscode": "Pincode",
   "appLockTitle": "Stel de inlogmethode in voor {userName}",
-  "@appLockTitle": {
-    "description": "Pop-up om een inlogmethode te kiezen",
-    "placeholders": {
-      "userName": {
-        "type": "String"
-      }
-    }
-  },
   "ascending": "Oplopend",
   "audio": "{count, plural, one{Audio} other{Audio}}",
+  "audioPlayerPlaybackOptionsTitle": "Afspeelopties",
+  "audioPlayerRepeatAll": "Alles herhalen",
+  "audioPlayerRepeatOff": "Herhalen uit",
+  "audioPlayerRepeatOne": "Eén herhalen",
+  "audioPlayerShuffle": "Shuffle",
+  "showArtist": "Toon artiest",
+  "track": "{count, plural, one{Track} other{Tracks}}",
   "autoPlay": "Automatisch afspelen",
   "backgroundBlur": "Achtergrond vervagen",
   "backgroundOpacity": "Achtergrond doorzichtigheid",
@@ -42,85 +99,42 @@
   "cancel": "Annuleren",
   "change": "Wijzig",
   "chapter": "{count, plural, other{Hoofdstukken} one{Hoofdstuk}}",
-  "@chapter": {
-    "description": "hoofdstuk",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "clear": "Wissen",
   "clearAllSettings": "Alle instellingen wissen",
   "clearAllSettingsQuestion": "Alle instellingen wissen?",
   "clearChanges": "Wijzigingen wissen",
   "clearSelection": "Selectie wissen",
   "close": "Sluiten",
+  "generateLoginLink": "Code voor {userName}",
+  "shareLoginLink": "Deel de login link",
+  "shareQRCode": "Deel de QR code",
+  "copyLoginLink": "Link kopiëren",
+  "includePassword": "Wachtwoord includeren",
+  "invalidAuthLink": "Ongeldige login link",
   "code": "Code",
   "collectionFolder": "{count, plural, one{Collectie map} other{Collectie mappen}}",
   "color": "Kleur",
   "combined": "Gecombineerd",
   "communityRating": "Gemeenschapswaardering",
   "continuePage": "Doorgaan - pagina {page}",
-  "@continuePage": {
-    "description": "Doorgaan - pagina 1",
-    "placeholders": {
-      "page": {
-        "type": "int"
-      }
-    }
-  },
   "controls": "Bediening",
+  "gestures": "Gebaren",
   "dashboard": "Dashboard",
   "dashboardContinue": "Doorgaan",
   "dashboardContinueListening": "Doorgaan met luisteren",
   "dashboardContinueReading": "Doorgaan met lezen",
   "dashboardContinueWatching": "Doorgaan met kijken",
-  "dashboardNextUp": "Volgende",
+  "nextUp": "Volgende",
   "dashboardRecentlyAdded": "Onlangs toegevoegd in {name}",
-  "@dashboardRecentlyAdded": {
-    "description": "Onlangs toegevoegd op startscherm",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
+  "dashboardRecentlyAddedItems": "Onlangs toegevoegd {name}",
   "dateAdded": "Datum toegevoegd",
   "dateLastContentAdded": "Datum laatste inhoud toegevoegd",
   "datePlayed": "Datum afgespeeld",
-  "days": "{count, plural, one{Dag} other{Dagen}}",
   "delete": "Verwijderen",
   "deleteFileFromSystem": "Het verwijderen van dit item {item} zal het zowel uit het bestandssysteem als uit je mediatheek verwijderen. Weet je zeker dat je wilt doorgaan?",
-  "@deleteFileFromSystem": {
-    "description": "Bestand uit systeem verwijderen",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "deleteItem": "{item} verwijderen?",
-  "@deleteItem": {
-    "description": "deleteItem",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "descending": "Aflopend",
   "director": "{count, plural, other{Regisseurs} one{Regisseur}}",
-  "@director": {
-    "description": "regisseur",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "disableFilters": "Filters uitschakelen",
   "disabled": "Uitgeschakeld",
   "discovered": "Ontdekt",
@@ -136,44 +150,17 @@
   "enabled": "Ingeschakeld",
   "endsAt": "eindigt om {date}",
   "episode": "{count, plural, other{Afleveringen} one{Aflevering}}",
-  "@episode": {
-    "description": "aflevering",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "error": "Fout",
   "failedToLoadImage": "Kan afbeelding niet laden",
   "favorite": "Favoriet",
   "favorites": "Favorieten",
   "fetchingLibrary": "Bibliotheek items ophalen…",
   "filter": "{count, plural, other{Filters} one{Filter}}",
-  "@filter": {
-    "description": "filter",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "folders": "Mappen",
   "fontColor": "Letterkleur",
   "fontSize": "Lettergrootte",
   "forceRefresh": "Geforceerd vernieuwen",
   "genre": "{count, plural, other{Genres} one{Genre}}",
-  "@genre": {
-    "description": "genre",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "goTo": "Ga naar",
   "grid": "Raster",
   "group": "Groeperen",
@@ -182,41 +169,18 @@
   "hide": "Verbergen",
   "hideEmpty": "Verberg leeg",
   "home": "Home",
+  "homeBannerSlideshow": "Diavoorstelling",
+  "homeBannerCarousel": "Carrousel",
+  "homeBannerDetailed": "Details",
+  "homeBannerTV": "TV",
   "identify": "Identificeren",
   "immediately": "Direct",
   "incorrectPinTryAgain": "Onjuiste pin, probeer opnieuw.",
   "info": "Info",
   "invalidUrl": "Ongeldige url",
-  "invalidUrlDesc": "Url moet beginnen met http(s)://",
   "itemCount": "Aantal items: {count}",
-  "@itemCount": {
-    "description": "Aantal items",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "label": "{count, plural, other{Labels} one{Label}}",
-  "@label": {
-    "description": "label",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "library": "{count, plural, other{Bibliotheken} one{Bibliotheek}}",
-  "@library": {
-    "description": "meervoud",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "libraryFetchNoItemsFound": "Geen items gevonden, probeer andere instellingen.",
   "libraryPageSizeDesc": "Stel de hoeveelheid in om per keer te laden. 0 schakelt paginering uit.",
   "libraryPageSizeTitle": "Bibliotheek paginagrootte",
@@ -227,26 +191,7 @@
   "login": "Inloggen",
   "logout": "Uitloggen",
   "logoutUserPopupContent": "Dit zal {userName} uitloggen en de gebruiker uit de app verwijderen.\nJe moet opnieuw inloggen op {serverName}.",
-  "@logoutUserPopupContent": {
-    "description": "Pop-up voor uitloggen gebruiker beschrijving",
-    "placeholders": {
-      "userName": {
-        "type": "String"
-      },
-      "serverName": {
-        "type": "String"
-      }
-    }
-  },
   "logoutUserPopupTitle": "Gebruiker {userName} uitloggen?",
-  "@logoutUserPopupTitle": {
-    "description": "Pop-up voor uitloggen gebruiker",
-    "placeholders": {
-      "userName": {
-        "type": "String"
-      }
-    }
-  },
   "loop": "Lus",
   "markAsUnwatched": "Markeer als niet bekeken",
   "markAsWatched": "Markeer als bekeken",
@@ -258,43 +203,20 @@
   "mediaTypeFolder": "{count, plural, one{Folder} other{Folders}}",
   "mediaTypeMovie": "{count, plural, one{Film} other{Films}}",
   "mediaTypePerson": "{count, plural, one{Persoon} other{Personen}}",
+  "mediaTypeArtists": "{count, plural, one{Artiest} other{Artiesten}}",
   "mediaTypePhoto": "{count, plural, one{Foto} other{Fotos}}",
   "mediaTypePhotoAlbum": "{count, plural, one{Foto Album} other{Foto Albums}}",
   "mediaTypePlaylist": "{count, plural, one{Afspeellijst} other{Afspeellijsten}}",
   "mediaTypeSeason": "{count, plural, one{Seizoen} other{Seizoenen}}",
   "mediaTypeSeries": "{count, plural, one{Serie} other{Series}}",
+  "mediaTypeTV": "{count, plural, one{TV Kanaal} other{TV Kanalen}}",
   "metaDataSavedFor": "Metadata opgeslagen voor {item}",
-  "@metaDataSavedFor": {
-    "description": "metadataOpgeslagenVoor",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "metadataRefreshDefault": "Scannen naar nieuwe en bijgewerkte bestanden",
   "metadataRefreshFull": "Alle metadata vervangen",
   "metadataRefreshValidation": "Zoeken naar ontbrekende metadata",
   "minutes": "{count, plural, other{Minuten} one{Minuut}}",
-  "@minutes": {
-    "description": "minuut",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "mode": "Modus",
   "moreFrom": "Meer van {info}",
-  "@moreFrom": {
-    "description": "Meer van",
-    "placeholders": {
-      "info": {
-        "type": "String"
-      }
-    }
-  },
   "moreOptions": "Meer opties",
   "mouseDragSupport": "Slepen met de muis",
   "musicAlbum": "{count, plural, one{Album} other{Albums}}",
@@ -304,7 +226,6 @@
   "navigationFavorites": "Favorieten",
   "navigationSync": "Gesynchroniseerd",
   "never": "Nooit",
-  "nextUp": "Volgende",
   "noItemsSynced": "Geen items gesynchroniseerd",
   "noItemsToShow": "Geen items om te tonen",
   "noRating": "Geen beoordeling",
@@ -316,21 +237,12 @@
   "notPartOfAlbum": "Maakt geen deel uit van een album",
   "openParent": "Bovenliggende map openen",
   "openShow": "Serie openen",
-  "openWebLink": "Weblink openen",
   "options": "Opties",
   "other": "Overig",
   "outlineColor": "Omtreklijnkleur",
   "outlineSize": "Omtreklijn grootte",
   "overview": "Overzicht",
   "page": "Pagina {index}",
-  "@page": {
-    "description": "pagina",
-    "placeholders": {
-      "index": {
-        "type": "int"
-      }
-    }
-  },
   "parentalRating": "Ouderlijk toezicht beoordeling",
   "password": "Wachtwoord",
   "pathClearTitle": "Downloadpad wissen",
@@ -338,35 +250,12 @@
   "pathEditSelect": "Selecteer downloadbestemming",
   "pathEditTitle": "Locatie wijzigen",
   "play": "{item} Afspelen",
-  "@play": {
-    "description": "Speel met",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "playCount": "Aantal keren afgespeeld",
   "playFrom": "Speel vanaf {name}",
-  "@playFrom": {
-    "description": "speel vanaf",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "playFromStart": "{name} Vanaf het begin afspelen",
-  "@playFromStart": {
-    "description": "speel vanaf het begin",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "playLabel": "Afspelen",
-  "playVideos": "Video''s afspelen",
+  "playVideos": "Video's afspelen",
+  "playMusic": "Muziek afspelen",
   "played": "Gespeeld",
   "quickConnectAction": "Voer snelverbind code in voor",
   "quickConnectInputACode": "Voer een code in",
@@ -374,48 +263,18 @@
   "quickConnectWrongCode": "Verkeerde code",
   "random": "Willekeurig",
   "rating": "{count, plural, other{Beoordelingen} one{Beoordeling}}",
-  "@rating": {
-    "description": "beoordeling",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
+  "popularity": "Populariteit",
   "reWatch": "Opnieuw bekijken",
   "read": "{item} Lezen",
-  "@read": {
-    "description": "lezen",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "readFromStart": "{item} vanaf het begin lezen",
-  "@readFromStart": {
-    "description": "Lees boek vanaf het begin",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "recursive": "Recursief",
   "refresh": "Vernieuwen",
   "refreshMetadata": "Metadata vernieuwen",
   "refreshPopup": "Vernieuwen - {name}",
-  "@refreshPopup": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "refreshPopupContentMetadata": "Metadata wordt vernieuwd op basis van instellingen en internetdiensten die zijn ingeschakeld in het Dashboard.",
   "related": "Gerelateerd",
   "releaseDate": "Releasedatum",
+  "contentRating": "Inhoudsclassificatie",
   "removeAsFavorite": "Verwijderen als favoriet",
   "removeFromCollection": "Verwijderen uit collectie",
   "removeFromPlaylist": "Verwijderen uit afspeellijst",
@@ -425,88 +284,32 @@
   "result": "Resultaat",
   "resumable": "Hervatbaar",
   "resume": "{item} Hervatten",
-  "@resume": {
-    "description": "hervatten",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "retrievePublicListOfUsers": "Publieke lijst van gebruikers ophalen",
   "retry": "Opnieuw proberen",
   "runTime": "Looptijd",
+  "runtimeMinutesTitle": "Duur (minuten)",
+  "runtimeRangeMinutes": "{min} - {max} minuten",
+  "minutesShort": "{count} min",
+  "streamingServices": "Streaming ({count})",
   "save": "Opslaan",
   "saved": "Opgeslagen",
   "scanBiometricHint": "Identiteit verifiëren",
   "scanLibrary": "Scan bibliotheek",
-  "scanYourFingerprintToAuthenticate": "Scan je vingerafdruk om {user} te verifiëren",
-  "@scanYourFingerprintToAuthenticate": {
-    "placeholders": {
-      "user": {
-        "type": "String"
-      }
-    }
-  },
+  "authenticateWithBiometrics": "Gebruik biometrie om {user} te verifiëren",
   "scanningName": "Scannen - {name}…",
-  "@scanningName": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "scrollToTop": "Scroll naar boven",
   "search": "Zoeken",
   "season": "{count, plural, other{Seizoenen} one{Seizoen}}",
-  "@season": {
-    "description": "seizoen",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "seconds": "{count, plural, other{Seconden} one{Seconde}}",
-  "@seconds": {
-    "description": "seconde",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "selectAll": "Alles selecteren",
   "selectTime": "Tijd selecteren",
   "selectViewType": "Selecteer weergavetype",
   "selected": "Geselecteerd",
   "selectedWith": "Geselecteerd {info}",
-  "@selectedWith": {
-    "description": "geselecteerd",
-    "placeholders": {
-      "info": {
-        "type": "String"
-      }
-    }
-  },
   "separate": "Gescheiden",
   "server": "Server",
   "set": "Instellen",
-  "@set": {
-    "description": "Gebruik voor het instellen van een bepaalde waarde",
-    "context": "Instellen 'tijd'"
-  },
   "setIdentityTo": "Identiteit instellen op {name}",
-  "@setIdentityTo": {
-    "description": "setIdentityTo",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "settingSecurityApplockTitle": "App vergrendelen",
   "settings": "Instellingen",
   "settingsBlurEpisodesDesc": "Vervaag alle komende afleveringen",
@@ -517,8 +320,11 @@
   "settingsClientTitle": "Driftfin",
   "settingsContinue": "Doorgaan",
   "settingsEnableOsMediaControls": "OS media bediening inschakelen",
-  "settingsHomeCarouselDesc": "Toont een carrousel op het dashboard scherm",
-  "settingsHomeCarouselTitle": "Dashboard carrousel",
+  "settingsEnableOsMediaControlsDesc": "Afspeelbediening via mediatoetsen en toon de huidige afspeelmedia in het besturingssysteem",
+  "settingsHomeBannerDescription": "Weergeven als diavoorstelling, carrousel, of de banner verbergen",
+  "settingsHomeBannerTitle": "Start banner",
+  "settingsHomeBannerInformationDesc": "Informatie om weer te geven in de home-banner",
+  "settingsHomeBannerInformationTitle": "Bannerinformatie",
   "settingsHomeNextUpDesc": "Soort posters getoond op het dashboard scherm",
   "settingsHomeNextUpTitle": "Volgende posters",
   "settingsNextUpCutoffDays": "Volgende cutoff dagen",
@@ -528,24 +334,35 @@
   "settingsPlayerMobileWarning": "Hardwareversnelling en native libass ondertitels inschakelen op Android kan ervoor zorgen dat sommige ondertitels niet worden weergegeven.",
   "settingsPlayerNativeLibassAccelDesc": "Gebruik videospeler libass ondertitel renderer",
   "settingsPlayerNativeLibassAccelTitle": "Native libass ondertiteling",
+  "settingsPlayerBufferSizeTitle": "Video buffer grootte",
+  "settingsPlayerPlayPauseFadeTitle": "Volume-fade bij afspelen/pauzeren",
+  "settingsPlayerPlayPauseFadeDesc": "Vervaag het volume in en uit bij het afspelen of pauzeren",
+  "settingsPlayerBufferSizeDesc": "Configureer de buffergrootte voor het afspelen van video's en bepaal de hoeveelheid vooraf geladen data.",
   "settingsPlayerTitle": "Speler",
   "settingsPlayerVideoHWAccelDesc": "Gebruik de gpu om video weer te geven (aanbevolen)",
   "settingsPlayerVideoHWAccelTitle": "Hardwareversnelling",
   "settingsPosterPinch": "Knijp-zoom om posters te schalen",
   "settingsPosterSize": "Poster grootte",
-  "settingsPosterSlider": "Toon schaal schuifregelaar",
   "settingsProfileDesc": "Vergrendelscherm",
   "settingsProfileTitle": "Profiel",
+  "settingsProfileSubtitleLanguage": "Voorkeursondertiteltaal",
+  "anyLanguage": "Een taal",
+  "settingsProfileSubtitleMode": "Ondertitelmodus",
+  "subtitlePlaybackModeDefault": "Standaard",
+  "subtitlePlaybackModeAlways": "Altijd afspelen",
+  "subtitlePlaybackModeOnlyForced": "Alleen gedwongen",
+  "subtitlePlaybackModeNone": "Geen",
+  "subtitlePlaybackModeSmart": "Slim",
   "settingsQuickConnectTitle": "Snel verbinden",
   "settingsSecurity": "Beveiliging",
   "settingsShowScaleSlider": "Toon posterschaal schuifregelaar",
   "settingsVisual": "Visueel",
   "shadow": "Schaduw",
+  "backgroundColor": "Achtergrond kleur",
   "showAlbum": "Toon album",
   "showDetails": "Toon details",
   "showEmpty": "Toon leeg",
-  "shuffleGallery": "Galerij shuffle",
-  "shuffleVideos": "Video''s shuffle",
+  "shuffleVideos": "Video's shuffle",
   "somethingWentWrong": "Er is iets misgegaan",
   "somethingWentWrongPasswordCheck": "Er is iets misgegaan, controleer je wachtwoord.",
   "sortBy": "Sorteer op",
@@ -553,82 +370,33 @@
   "sortOrder": "Sorteervolgorde",
   "start": "Start",
   "studio": "{count, plural, other{Studio''s} one{Studio}}",
-  "@studio": {
-    "description": "studio",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "subtitleConfigurator": "Ondertitel configurator",
   "subtitleConfiguratorPlaceHolder": "Dit is placeholder tekst, niets te zien hier.",
   "subtitles": "Ondertitels",
   "switchUser": "Wissel gebruiker",
   "sync": "Synchroniseren",
   "syncDeleteItemDesc": "Alle gesynchroniseerde gegevens verwijderen voor {item}?",
-  "@syncDeleteItemDesc": {
-    "description": "Pop-upvenster voor synchronisatie van te verwijderen item",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "syncDeleteItemTitle": "Gesynchroniseerd item verwijderen",
   "syncDeletePopupPermanent": "Deze actie is permanent en verwijdert alle lokaal gesynchroniseerde bestanden",
+  "syncPlaylistDeleteTitle": "Gesynchroniseerde afspeellijst verwijderen",
+  "syncPlaylistDeleteContent": "Wil je ook de tracks verwijderen die vanuit deze afspeellijst zijn gesynchroniseerd?",
+  "syncPlaylistKeepTracks": "Tracks behouden",
+  "syncPlaylistRemoveTracks": "Tracks verwijderen",
   "syncDetails": "Details synchroniseren",
   "syncOpenParent": "Ouder openen",
   "syncRemoveDataDesc": "Gesynchroniseerde videogegevens verwijderen? Dit is permanent en je moet de bestanden opnieuw synchroniseren",
   "syncRemoveDataTitle": "Gesynchroniseerde gegevens verwijderen?",
   "syncedItems": "Gesynchroniseerde items",
   "tag": "{count, plural, one{Label} other{Labels}}",
-  "@tag": {
-    "description": "label",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "theme": "Thema",
   "themeColor": "Thema kleur",
   "themeModeDark": "Donker",
   "themeModeLight": "Licht",
   "themeModeSystem": "Systeem",
   "timeAndAnnotation": "{minutes} en {seconds}",
-  "@timeAndAnnotation": {
-    "description": "timeAndAnnotation",
-    "placeholders": {
-      "minutes": {
-        "type": "String"
-      },
-      "seconds": {
-        "type": "String"
-      }
-    }
-  },
   "timeOut": "Time-out",
   "totalSize": "Totale grootte: {size}",
-  "@totalSize": {
-    "placeholders": {
-      "size": {
-        "type": "String"
-      }
-    }
-  },
   "type": "{count, plural, other{Soorten} one{Soort}}",
-  "@type": {
-    "description": "type",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "unPlayed": "Ongespeeld",
   "unableToConnectHost": "Kan geen verbinding maken met host",
   "unableToReverseAction": "Deze actie kan niet ongedaan worden gemaakt, het verwijdert alle instellingen.",
@@ -643,165 +411,71 @@
   "videoScalingFillScreenDesc": "Vul de navigatie- en statusbalk",
   "videoScalingFillScreenNotif": "Volledig scherm overschrijft videopasvorm, in horizontale rotatie",
   "videoScalingFillScreenTitle": "Vul scherm",
+  "pictureInPictureTitle": "Picture-in-Picture",
+  "pictureInPictureAutoTitle": "Automatische Picture-in-Picture",
+  "pictureInPictureSubtitle": "Schakel automatisch over naar Picture-in-Picture wanneer je de speler verlaat. De PiP-knop in de bediening werkt altijd, ongeacht deze instelling.",
+  "pictureInPictureNotSupported": "Picture-in-Picture is niet beschikbaar op dit apparaat",
   "videoScalingFitHeight": "Pas hoogte aan",
   "videoScalingFitWidth": "Pas breedte aan",
   "videoScalingScaleDown": "Schaal omlaag",
-  "viewPhotos": "Foto''s bekijken",
-  "watchOn": "Kijk op",
+  "viewPhotos": "Foto's bekijken",
   "writer": "{count, plural, other{Schrijvers} one{Schrijver}}",
-  "@writer": {
-    "description": "schrijver",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "year": "{count, plural, other{Jaren} one{Jaar}}",
-  "@year": {
-    "description": "jaar",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "settingsHomeBannerDescription": "Weergeven als diavoorstelling, carrousel, of de banner verbergen",
-  "homeBannerBanner": "Banner",
-  "homeBannerCarousel": "Carrousel",
-  "settingsHomeBannerTitle": "Start banner",
-  "settingsHomeBannerInformationDesc": "Informatie om weer te geven in de home-banner",
-  "settingsHomeBannerInformationTitle": "Bannerinformatie",
+  "addToNewCollection": "Nieuwe collectie",
+  "addItemsToCollection": "Voeg {itemLength} item(s) toe aan collectie",
+  "addedToCollection": "Toegevoegd aan de collectie {collectionName}",
+  "removedFromCollection": "Verwijderd uit de collectie {collectionName}",
+  "addToNewPlaylist": "Nieuwe afspeellijst",
+  "addItemsToPlaylist": "Voeg {itemLength} item(s) toe aan afspeellijst",
+  "addedToPlaylist": "Toegevoegd aan {playlistName} afspeellijst",
+  "removedFromPlaylist": "Verwijderd uit {playlistName} afspeellijst",
   "syncStatusEnqueued": "In wachtrij",
-  "syncStatusComplete": "Voltooid",
-  "syncStatusNotFound": "Niet gevonden",
-  "syncStatusSynced": "Gesynchroniseerd",
-  "syncStatusPartially": "Gedeeltelijk",
-  "syncOverlayDeleting": "Gesynchroniseerd item verwijderen",
-  "syncOverlaySyncing": "Item details synchroniseren",
-  "homeBannerSlideshow": "Diavoorstelling",
   "syncStatusRunning": "Downloaden",
+  "syncStatusNotFound": "Niet gevonden",
   "syncStatusFailed": "Mislukt",
   "syncStatusCanceled": "Geannuleerd",
-  "syncStatusPaused": "Gepauzeerd",
   "syncStatusWaitingToRetry": "Wachten om opnieuw te proberen",
+  "syncStatusPaused": "Gepauzeerd",
+  "syncStatusSynced": "Gesynchroniseerd",
+  "syncOverlayDeleting": "Gesynchroniseerd item verwijderen",
+  "syncOverlaySyncing": "Item details synchroniseren",
   "syncSelectDownloadsFolder": "Selecteer de downloadmap",
   "syncNoFolderSetup": "Geen synchronisatiemap gezet",
   "syncRemoveUnableToDeleteItem": "Kan gesynchroniseerd item niet verwijderen, er is iets misgegaan",
   "syncAddItemForSyncing": "{item} toegevoegd voor synchronisatie",
-  "@syncAddItemForSyncing": {
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "startedSyncingItem": "Begonnen met synchroniseren {item}",
-  "@startedSyncingItem": {
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "unableToSyncItem": "Kan {item} niet synchroniseren, er is iets misgegaan",
-  "@unableToSyncItem": {
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
-  "removedFromCollection": "Verwijderd uit de collectie {collectionName}",
-  "@removedFromCollection": {
-    "placeholders": {
-      "collectionName": {
-        "type": "String"
-      }
-    }
-  },
-  "addItemsToPlaylist": "Voeg {itemLength} item(s) toe aan afspeellijst",
-  "@addItemsToPlaylist": {
-    "placeholders": {
-      "itemLength": {
-        "type": "int"
-      }
-    }
-  },
-  "addToNewCollection": "Nieuwe collectie",
-  "addToNewPlaylist": "Nieuwe afspeellijst",
   "aboutVersion": "Versie: {version}",
-  "@aboutVersion": {
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
-  "aboutCreatedBy": "Gemaakt door DonutWare",
-  "aboutLicenses": "Licenties",
-  "addItemsToCollection": "Voeg {itemLength} item(s) toe aan collectie",
-  "@addItemsToCollection": {
-    "placeholders": {
-      "itemLength": {
-        "type": "int"
-      }
-    }
-  },
-  "addedToPlaylist": "Toegevoegd aan {playlistName} afspeellijst",
-  "@addedToPlaylist": {
-    "placeholders": {
-      "playlistName": {
-        "type": "String"
-      }
-    }
-  },
-  "addedToCollection": "Toegevoegd aan de collectie {collectionName}",
-  "@addedToCollection": {
-    "placeholders": {
-      "collectionName": {
-        "type": "String"
-      }
-    }
-  },
   "aboutBuild": "Iteratie: {buildNumber}",
-  "@aboutBuild": {
-    "placeholders": {
-      "buildNumber": {
-        "type": "String"
-      }
-    }
-  },
+  "aboutCreatedBy": "Gemaakt door DonutWare",
   "aboutSocials": "Sociaal",
+  "aboutLicenses": "Licenties",
   "subtitle": "Ondertitel",
   "subtitleConfiguration": "Ondertitel instellingen",
+  "subtitleSync": "Ondertitelsynchronisatie",
+  "watchTogether": "Samen kijken",
+  "syncPlayInGroup": "In groep",
+  "syncPlayConnecting": "Verbinden…",
+  "syncPlayWaiting": "Wachten op leden…",
+  "syncPlayCreateGroup": "Groep aanmaken",
+  "syncPlayLeave": "Groep verlaten",
+  "syncPlayAvailableGroups": "Beschikbare groepen",
+  "syncPlayNoGroups": "Geen actieve groepen",
+  "syncPlayDifferentItem": "De groep kijkt naar een ander item. Open het om te synchroniseren.",
+  "syncPlayChatHint": "Bericht…",
+  "syncPlayChatEmpty": "Nog geen berichten",
+  "syncPlayMembers": "{count, plural, =0{Geen leden} =1{1 lid} other{{count} leden}}",
+  "syncPlayReact": "Reageren",
+  "syncPlayTyping": "{names} typt…",
+  "syncPlayBufferingMembers": "{names} buffert…",
   "off": "Uit",
   "screenBrightness": "Scherm helderheid",
+  "enableEdgeGesturesTitle": "Schakel randgebaren in",
+  "enableEdgeGesturesDesc": "Regel helderheid en volume door op en neer te schuiven aan de randen van het scherm",
+  "reverseEdgeGesturesTitle": "Wissel randgebaren",
+  "reverseEdgeGesturesDesc": "Wissel de kant voor helderheid en volumeregeling",
   "scale": "Schaal",
   "playBackSettings": "Afspeel instellingen",
-  "removeFilterForLibrary": "Verwijder {filter}?",
-  "@removeFilterForLibrary": {
-    "description": "removeFilterForLibrary",
-    "placeholders": {
-      "filter": {
-        "type": "String"
-      }
-    }
-  },
-  "libraryFiltersLimitReached": "Filterlimiet bereikt (10) verwijder enkele filters",
-  "defaultFilterForLibrary": "Standaardfilter voor bibliotheek",
-  "updateFilterForLibrary": "Filter updaten",
-  "deleteFilterConfirmation": "Weet je zeker dat je deze filter wilt verwijderen?",
-  "libraryFiltersRemoveAll": "Verwijder alle filters",
-  "deviceOrientationPortraitUp": "Portret omhoog",
-  "libraryFiltersRemoveAllConfirm": "Hiermee worden alle opgeslagen filters voor elke bibliotheek verwijderd",
-  "playerSettingsOrientationTitle": "Oriëntatie van de speler",
-  "playerSettingsOrientationDesc": "Forceer de videospeler in een bepaalde richting",
-  "deviceOrientationPortraitDown": "Portret naar beneden",
-  "deviceOrientationLandscapeLeft": "Landschap Links",
-  "deviceOrientationLandscapeRight": "Landschap Rechts",
   "settingsAutoNextTitle": "Volgende preview",
   "settingsAutoNextDesc": "Geeft aan het einde van de video een preview van de volgende video",
   "autoNextOffSmartTitle": "Slim",
@@ -810,61 +484,77 @@
   "autoNextOffStaticDesc": "Toon het volgende scherm als er nog 30 seconden speeltijd over is",
   "playbackRate": "Afspeel snelheid",
   "speed": "Snelheid",
+  "sleepTimer": "Slaaptimer",
+  "sleepTimerEndOfEpisode": "Einde van aflevering",
+  "sleepTimerMinutes": "{count} minuten",
   "unableToPlayMedia": "Er is een fout opgetreden bij het vinden van een compatibel mediatype",
   "errorOpeningMedia": "Er ging iets miss met het afspelen van deze media",
   "unableToPlayBooksOnWeb": "Boeken worden momenteel niet ondersteund in browsers",
-  "schemeSettingsFidelity": "Fideliteit",
-  "schemeSettingsMonochrome": "Monochrome",
-  "schemeSettingsExpressive": "Expressief",
-  "schemeSettingsContent": "Tevreden",
-  "libraryPlayItems": "Items afspelen",
+  "defaultFilterForLibrary": "Standaardfilter voor bibliotheek",
+  "updateFilterForLibrary": "Filter updaten",
+  "removeFilterForLibrary": "Verwijder {filter}?",
+  "deleteFilterConfirmation": "Weet je zeker dat je deze filter wilt verwijderen?",
+  "deleteRequestConfirmation": "Weet je zeker dat je dit vezoek wilt verwijderen?",
+  "libraryFiltersLimitReached": "Filterlimiet bereikt (10) verwijder enkele filters",
+  "libraryFiltersRemoveAll": "Verwijder alle filters",
+  "libraryFiltersRemoveAllConfirm": "Hiermee worden alle opgeslagen filters voor elke bibliotheek verwijderd",
+  "playerSettingsOrientationTitle": "Oriëntatie van de speler",
+  "playerSettingsOrientationDesc": "Forceer de videospeler in een bepaalde richting",
+  "deviceOrientationPortraitUp": "Portret omhoog",
+  "deviceOrientationPortraitDown": "Portret naar beneden",
+  "deviceOrientationLandscapeLeft": "Landschap Links",
+  "deviceOrientationLandscapeRight": "Landschap Rechts",
   "clientSettingsSchemeVariantTitle": "Schema variant",
   "schemeSettingsTonalSpot": "Tonale vlek",
+  "schemeSettingsFidelity": "Fideliteit",
+  "schemeSettingsMonochrome": "Monochrome",
   "schemeSettingsNeutral": "Neutraal",
+  "schemeSettingsVibrant": "Levendig",
+  "schemeSettingsExpressive": "Expressief",
+  "schemeSettingsContent": "Tevreden",
   "schemeSettingsRainbow": "Regenboog",
   "schemeSettingsFruitSalad": "Fruit salade",
-  "libraryShuffleAndPlayItems": "Items willekeurig afpselen",
-  "clientSettingsRequireWifiDesc": "Alleen downloaden wanneer verbonden met een Wi-Fi-netwerk",
   "clientSettingsRequireWifiTitle": "Alleen op Wi-Fi",
-  "schemeSettingsVibrant": "Levendig",
+  "clientSettingsRequireWifiDesc": "Alleen downloaden wanneer verbonden met een Wi-Fi-netwerk",
+  "libraryShuffleAndPlayItems": "Items willekeurig afpselen",
+  "libraryPlayItems": "Items afspelen",
   "clientSettingsShowAllCollectionsTitle": "Toon alle soorten collecties",
   "clientSettingsShowAllCollectionsDesc": "Als deze optie is ingeschakeld, worden alle bibliotheek types weergegeven, inclusief de types die niet door Driftfin worden ondersteund",
+  "stop": "Stop",
+  "resumeVideo": "Video hervatten",
   "closeVideo": "Video sluiten",
   "playNextVideo": "Volgend video afspelen",
-  "resumeVideo": "Video hervatten",
-  "stop": "Stop",
   "playerSettingsBackendTitle": "Videospeler Backend",
-  "noVideoPlayerOptions": "De geselecteerde backend heeft geen instellingen",
   "playerSettingsBackendDesc": "Kies je mediaspeler backend voor een optimale afspeelervaring",
+  "playerSettingsReplayGainTitle": "ReplayGain",
+  "playerSettingsReplayGainDesc": "Normaliseer het volume van muziek met ReplayGain-tags.",
+  "playerSettingsReplayGainLevelTitle": "ReplayGain-niveau",
+  "playerSettingsReplayGainLevelDesc": "Stel het gewenste volumeniveau in voor ReplayGain-normalisatie. Een veelgebruikte standaard is -14 dB, maar je kunt dit naar wens aanpassen.",
+  "playerSettingsSmartDownmixTitle": "Slimme downmix",
+  "playerSettingsSmartDownmixDesc": "Versterk dialoog ten opzichte van effecten en achterkanalen bij het downmixen van 5.1/7.1-audio naar stereo.",
+  "playerSettingsDialogueBoostTitle": "Dialoogversterking",
+  "playerSettingsDialogueBoostDesc": "Versterk zachte dialoog zonder luide actie of muziek harder te maken.",
+  "dialogueBoostOff": "Uit",
+  "dialogueBoostLow": "Laag",
+  "dialogueBoostMedium": "Gemiddeld",
+  "dialogueBoostHigh": "Hoog",
+  "settingsPlayerCrossfadeTitle": "Crossfade",
+  "settingsPlayerCrossfadeDesc": "Vervaag tussen tracks die niet opeenvolgend zijn binnen hetzelfde album",
+  "settingsPlayerCrossfadeDurationTitle": "Crossfade-duur",
+  "settingsPlayerCrossfadeDurationDesc": "Duur van de crossfade",
   "defaultLabel": "Standaard",
-  "@defaultLabel": {
-    "description": "To indicate a default value, default video player backend"
-  },
+  "noVideoPlayerOptions": "De geselecteerde backend heeft geen instellingen",
   "mdkExperimental": "MDK backend is nog experimenteel",
   "skipButtonLabel": "Skip {segment}",
-  "@skipButtonLabel": {
-    "placeholders": {
-      "segment": {
-        "type": "String"
-      }
-    }
-  },
+  "mediaSegmentUnknown": "Onbekend",
+  "mediaSegmentCommercial": "Reclame",
   "mediaSegmentPreview": "Voorvertoning",
   "mediaSegmentRecap": "Samenvatting",
-  "mediaSegmentUnknown": "Onbekend",
   "mediaSegmentOutro": "Uitro",
-  "mediaSegmentCommercial": "Reclame",
   "mediaSegmentIntro": "Inleiding",
   "errorLogs": "Foutlogs",
   "external": "Extern",
   "downloadFile": "Download {type}",
-  "@downloadFile": {
-    "placeholders": {
-      "type": {
-        "type": "String"
-      }
-    }
-  },
   "copyStreamUrl": "Stream-URL kopiëren",
   "settingsLayoutSizesTitle": "Lay-out Formaten",
   "settingsLayoutSizesDesc": "Kies welke lay-outformaten de app mag gebruiken op basis van de venstergrootte",
@@ -873,118 +563,74 @@
   "phone": "Telefoon",
   "tablet": "Tablet",
   "desktop": "Desktop",
+  "television": "Televisie",
   "layoutModeSingle": "Enkel",
   "layoutModeDual": "Twee",
   "copiedToClipboard": "Gekopieerd naar klembord",
   "episodeAvailable": "Beschikbaar",
   "episodeUnaired": "Niet uitgezonden",
   "episodeMissing": "Ontbreekt",
+  "internetStreamingQualityTitle": "Internet kwaliteit",
+  "internetStreamingQualityDesc": "Maximale streamingkwaliteit via internet (mobiel)",
   "homeStreamingQualityTitle": "Thuisnetwerk kwaliteit",
+  "homeStreamingQualityDesc": "Maximale streamingkwaliteit bij verbinding met het thuisnetwerk",
   "qualityOptionsTitle": "Kwaliteit opties",
   "qualityOptionsOriginal": "Origineel",
   "qualityOptionsAuto": "Auto",
+  "advancedVideoOptionsTitle": "Geavanceerde video-opties",
+  "advancedVideoOptionsDesc": "Schakel HDR, toonmapping en geavanceerde kleurverwerking in (onstabiel voor sommige apparaten)",
   "version": "Versie",
-  "segmentActionNone": "Geen",
-  "internetStreamingQualityTitle": "Internet kwaliteit",
   "mediaSegmentActions": "Media segment acties",
+  "segmentActionNone": "Geen",
   "segmentActionAskToSkip": "Vraag om over te slaan",
+  "segmentActionSkipOnce": "Eén keer overslaan",
   "segmentActionSkip": "Overslaan",
   "loading": "Laden",
-  "internetStreamingQualityDesc": "Maximale streamingkwaliteit via internet (mobiel)",
-  "homeStreamingQualityDesc": "Maximale streamingkwaliteit bij verbinding met het thuisnetwerk",
-  "guestActor": "{count, plural, other{Gastacteurs} one{Gastacteur}}",
-  "@guestActor": {
-    "description": "Guest actors",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
+  "exitDriftfinTitle": "Driftfin sluiten",
+  "exitDriftfinDesc": "Weet je zeker dat je Driftfin wilt sluiten?",
+  "quitMultipleWindowsDesc": "Je hebt {count} vensters open staan. Als je Driftfin afsluit, worden ze allemaal gesloten. Wil je doorgaan?",
+  "closeWindow": "Venster sluiten",
   "castAndCrew": "Cast en crew",
-  "settingsPlayerBufferSizeTitle": "Video buffer grootte",
-  "settingsPlayerBufferSizeDesc": "Configureer de buffergrootte voor het afspelen van video's en bepaal de hoeveelheid vooraf geladen data.",
+  "guestActor": "{count, plural, other{Gastacteurs} one{Gastacteur}}",
   "maxConcurrentDownloadsTitle": "Maximum gelijktijdige downloads",
   "maxConcurrentDownloadsDesc": "Stelt het maximumaantal downloads in dat tegelijkertijd kan worden uitgevoerd. Stel in op 0 om de limiet uit te schakelen.",
-  "rememberSubtitleSelections": "Ondertitelspoor instellen op basis van vorig item",
-  "rememberSubtitleSelectionsDesc": "Probeer het ondertitelspoor in te stellen op de best overeenkomende optie van de vorige video.",
   "playbackTrackSelection": "Selectie van afspeeltrack",
+  "rememberSubtitleSelections": "Ondertitelspoor instellen op basis van vorig item",
   "rememberAudioSelections": "Audiotrack instellen op basis van vorig item",
+  "rememberSubtitleSelectionsDesc": "Probeer het ondertitelspoor in te stellen op de best overeenkomende optie van de vorige video.",
   "rememberAudioSelectionsDesc": "Probeer de audiotrack in te stellen op de best overeenkomende optie van de vorige video.",
-  "hasLikedActor": "Heeft dezelfde favorite acteur",
-  "hasDirectorFromRecentlyPlayed": "Heeft regisseur van recent afgespeeld",
+  "similarToRecentlyPlayed": "Vergelijkbaar met recent afgespeeld",
   "similarToLikedItem": "Vergelijkbaar met favoriet",
+  "hasDirectorFromRecentlyPlayed": "Heeft regisseur van recent afgespeeld",
   "hasActorFromRecentlyPlayed": "Heeft acteur van recent afgespeeld",
   "hasLikedDirector": "Heeft dezelfde favoriete regisseur",
-  "recommended": "Aanbevolen",
-  "similarToRecentlyPlayed": "Vergelijkbaar met recent afgespeeld",
+  "hasLikedActor": "Heeft dezelfde favorite acteur",
   "latest": "Laatste",
-  "exitDriftfinTitle": "Driftfin sluiten",
-  "playbackTypeDirect": "Direct",
-  "playbackTypeOffline": "Offline",
+  "recommended": "Aanbevolen",
   "playbackType": "Afspeel type",
+  "playbackTypeDirect": "Direct",
   "playbackTypeTranscode": "Transcoderen",
-  "newUpdateFoundOnGithub": "Nieuwe update gevonden op Github",
-  "autoCheckForUpdates": "Regelmatig controleren op updates",
-  "newReleaseFoundTitle": "Update {newRelease} beschikbaar!",
-  "@newReleaseFoundTitle": {
-    "placeholders": {
-      "newRelease": {
-        "type": "String"
-      }
-    }
-  },
+  "playbackTypeOffline": "Offline",
+  "playbackTypeTV": "TV",
   "latestReleases": "Nieuwste releases",
+  "autoCheckForUpdates": "Regelmatig controleren op updates",
+  "installUpdate": "Update installeren",
+  "installUpdateConfirmTitle": "{version} installeren?",
+  "installUpdateConfirmBody": "Driftfin downloadt deze versie, sluit af, werkt zichzelf bij en start automatisch opnieuw op. Niet-opgeslagen afspeelvoortgang kan worden onderbroken.",
+  "downloadingUpdate": "Update downloaden…",
+  "updateInstallFailed": "Update mislukt: {error}",
+  "newReleaseFoundTitle": "Update {newRelease} beschikbaar!",
+  "newUpdateFoundOnGithub": "Nieuwe update gevonden op Github",
   "enableBackgroundPostersTitle": "Achtergrondposters inschakelen",
-  "settingsEnableOsMediaControlsDesc": "Afspeelbediening via mediatoetsen en toon de huidige afspeelmedia in het besturingssysteem",
   "enableBackgroundPostersDesc": "Toon willekeurige posters in toepasselijke schermen",
   "notificationDownloadingDownloading": "Downloads",
   "notificationDownloadingPaused": "Download gepauzeerd",
   "notificationDownloadingFinished": "Download klaar",
   "notificationDownloadingError": "Download fout",
   "syncAllItemsTitle": "Synchroniseer alle items van {itemName}?",
-  "@syncAllItemsTitle": {
-    "description": "syncAllItemsFrom",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      }
-    }
-  },
   "syncAllItemsDesc": "Hiermee worden ({itemCount}) items van '{itemName}' gesynchroniseerd naar jouw apparaat.\nDit kan even duren, afhankelijk van de hoeveelheid items.",
-  "@syncAllItemsDesc": {
-    "description": "syncAllitemsFromDesc",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      },
-      "itemCount": {
-        "type": "int"
-      }
-    }
-  },
   "syncDeleteAllItemsTitle": "Alle gesynchroniseerde items verwijderen uit {itemName}?",
-  "@syncDeleteAllItemsTitle": {
-    "description": "syncDeleteAllitemsFrom",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      }
-    }
-  },
   "syncDeleteAllItemsDesc": "Hiermee worden alle gesynchroniseerde items van '{itemName}' verwijderd.\nDit is permanent en je moet ({itemCount}) bestanden opnieuw synchroniseren.",
-  "@syncDeleteAllItemsDesc": {
-    "description": "syncDeleteAllitemsFromDesc",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      },
-      "itemCount": {
-        "type": "int"
-      }
-    }
-  },
   "syncPauseAll": "Alles pauzeren",
   "syncResumeAll": "Alles hervatten",
   "syncStopAll": "Alles stoppen",
@@ -994,14 +640,21 @@
   "usePostersForLibraryIconsDesc": "Toon posters in plaats van pictogrammen voor bibliotheken",
   "offline": "Offline",
   "shortCuts": "Sneltoetsen",
+  "keyboardShortCuts": "Toetscombinaties",
   "skipForwardLength": "Duur van vooruit spoelen",
   "skipBackLength": "Duur van terugspoelen",
   "playPause": "Afspelen/Pauzeren",
   "seekForward": "Vooruit zoeken",
   "seekBack": "Terugspoelen",
+  "seekForwardInstant": "Zoek vooruit (Direct)",
+  "seekBackInstant": "Zoek terug (Direct)",
+  "stepForward": "Stap Vooruit",
+  "stepBack": "Stap Terug",
   "mute": "Dempen",
   "volumeUp": "Volume omhoog",
   "volumeDown": "Volume omlaag",
+  "speedUp": "Versnellen",
+  "speedDown": "Vertragen",
   "nextVideo": "Volgende video",
   "prevVideo": "Vorige video",
   "nextChapter": "Volgende hoofdstuk",
@@ -1010,39 +663,22 @@
   "skipMediaSegment": "Media segment overslaan",
   "exit": "Sluiten",
   "shortCutAlreadyAssigned": "Sneltoets '{hotKey}\" al toegewezen",
-  "@shortCutAlreadyAssigned": {
-    "placeholders": {
-      "hotKey": {
-        "type": "String"
-      }
-    }
-  },
   "blurred": "Vervaagd",
   "volumeIndicator": "Volume: {volume}",
-  "@volumeIndicator": {
-    "placeholders": {
-      "volume": {
-        "type": "int"
-      }
-    }
-  },
-  "keyboardShortCuts": "Toetscombinaties",
-  "television": "Televisie",
-  "exitDriftfinDesc": "Weet je zeker dat je Driftfin wilt sluiten?",
-  "speedUp": "Versnellen",
-  "speedDown": "Vertragen",
+  "brightnessIndicator": "Helderheid: {brightness}",
   "speedIndicator": "Afspeel snelheid: {speed}",
-  "@speedIndicator": {
-    "placeholders": {
-      "speed": {
-        "type": "double"
-      }
-    }
-  },
+  "enableSpeedBoostTitle": "Speed boost inschakelen",
+  "enableSpeedBoostDesc": "Houd het scherm (mobiel) of de spatiebalk (desktop) ingedrukt om de afspeelsnelheid tijdelijk te verhogen",
+  "speedBoostRateTitle": "Snelheidsverhoging",
+  "speedBoostRateDesc": "Afspeelsnelheid wanneer de snelheidsboost is geactiveerd",
+  "enableDoubleTapSeekTitle": "Dubbeltik om vooruit/achteruit te spoelen/af te spelen/pauzeren",
+  "enableDoubleTapSeekDesc": "Tik twee keer op de linker- of rechterkant van het scherm om terug/vooruit te spoelen. Tik twee keer op het midden om af te spelen/pauzeren",
   "quickConnectPostFailed": "Fout bij het verkrijgen van connect code",
   "quickConnectLoginUsingCode": "Gebruik quick connect",
   "quickConnectEnterCodeDescription": "Voer de code in om in te loggen",
+  "openJellyfinQuickConnect": "Open Jellyfin QuickConnect",
   "showMore": "Meer laten zien",
+  "showLess": "Minder laten zien",
   "itemColorsTitle": "Item kleuren",
   "itemColorsDesc": "Gebruik de primaire kleuren van het item voor de details pagina",
   "mediaTunnelingTitle": "Mediatunneling",
@@ -1050,26 +686,10 @@
   "clientSettingsUseSystemIMETitle": "Gebruik systeem toetsenbord",
   "clientSettingsUseSystemIMEDesc": "Gebruik het ingebouwde toetsenbord van jouw systeem",
   "nextUpInCount": "Volgende in {seconds}",
-  "@nextUpInCount": {
-    "placeholders": {
-      "seconds": {
-        "type": "int"
-      }
-    }
-  },
   "formattedTime": "{time}",
-  "@formattedTime": {
-    "description": "Formatted time",
-    "placeholders": {
-      "time": {
-        "type": "DateTime",
-        "format": "jm"
-      }
-    }
-  },
   "takeScreenshot": "Schermafdruk maken",
   "takeScreenshotClean": "Schermafdruk maken (zonder ondertitels)",
-  "screenshots": "Schermafdrukken",
+  "toggleSubtitles": "Ondertitels wisselen",
   "screenshotTaken": "Schermafdruk opgeslagen!",
   "screenshotCleanTaken": "Schermafdruk zonder ondertitels opgeslagen!",
   "errorTakingScreenshot": "Er is een fout opgetreden bij het maken van de schermafdruk",
@@ -1106,62 +726,13 @@
   "lastActivity": "Laatste activiteit",
   "activeTasks": "Actieve taken",
   "hours": "{count, plural, one{Uur} other{Uur}}",
-  "@hours": {
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "weeks": "{count, plural, one{Week} other{Weken}}",
-  "@weeks": {
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "months": "{count, plural, one{Maand} other{Maanden}}",
-  "@months": {
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "years": "{count, plural, one{Jaar} other{Jaren}}",
-  "@years": {
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
+  "days": "{count, plural, one{Dag} other{Dagen}}",
   "timeAgo": "{time} geleden",
-  "@timeAgo": {
-    "description": "timeAgo",
-    "placeholders": {
-      "time": {
-        "type": "String"
-      }
-    }
-  },
+  "airsIn": "Zend uit in {count} {duration}",
   "lastRunTaking": "Laatste run {date}, duurt {time}",
-  "@lastRunTaking": {
-    "description": "lastRunTaking",
-    "placeholders": {
-      "date": {
-        "type": "String"
-      },
-      "time": {
-        "type": "String"
-      }
-    }
-  },
   "lessThenAMinute": "Minder dan een minuut",
   "plannedTasks": "Geplande taken",
   "taskTriggerTypeInterval": "Interval",
@@ -1177,40 +748,9 @@
   "interval": "Interval",
   "taskTimeLimitInHours": "Tijdslimiet (uren)",
   "taskTriggerIntervalDesc": "Elke {time}",
-  "@taskTriggerIntervalDesc": {
-    "placeholders": {
-      "time": {
-        "type": "String"
-      }
-    }
-  },
   "taskTriggerDailyDesc": "Dagelijks om {time}",
-  "@taskTriggerDailyDesc": {
-    "placeholders": {
-      "time": {
-        "type": "String"
-      }
-    }
-  },
   "taskTriggerWeeklyDesc": "Wekelijks op {day} om {time}",
-  "@taskTriggerWeeklyDesc": {
-    "placeholders": {
-      "day": {
-        "type": "String"
-      },
-      "time": {
-        "type": "String"
-      }
-    }
-  },
   "taskTriggerTimeLimitSub": "Tijdslimiet: {time}",
-  "@taskTriggerTimeLimitSub": {
-    "placeholders": {
-      "time": {
-        "type": "String"
-      }
-    }
-  },
   "performance": "Prestaties",
   "serverNameLabel": "Servernaam",
   "cachePath": "Cachepad",
@@ -1221,21 +761,7 @@
   "maxImageDecodingThreadsDesc": "Maximum aantal afbeeldingen decoding dat parallel mag worden uitgevoerd. Als je dit leeg laat, wordt een limiet gekozen op basis van het aantal kernen van jouw systeem.",
   "controlPanelServerDesc": "Servernaam, Snel verbinden, Prestaties",
   "deleteUserTitle": "Gebruiker {user} verwijderen?",
-  "@deleteUserTitle": {
-    "placeholders": {
-      "user": {
-        "type": "String"
-      }
-    }
-  },
   "deleteUserDesc": "Hiermee wordt de gebruiker {user} en alle bijbehorende instellingen permanent verwijderd.",
-  "@deleteUserDesc": {
-    "placeholders": {
-      "user": {
-        "type": "String"
-      }
-    }
-  },
   "userInformation": "Gebruikersinformatie",
   "allowManageServer": "Deze gebruiker toestaan de server te beheren",
   "allowCollections": "Deze gebruiker toestaan collecties te beheren",
@@ -1251,10 +777,12 @@
   "forceRemoteTranscoding": "Transcodering van externe bronnen forceren",
   "syncplay": "Sync-play",
   "syncplayAccess": "Syncplay-toegang",
+  "syncplayAccessCreateAndJoinGroups": "Groepen aanmaken en lid worden",
+  "syncplayAccessJoinGroups": "Lid worden",
+  "syncplayAccessNone": "Geen",
   "allowMediaDeletion": "Media verwijdering toestaan",
   "allLibraries": "Alle bibliotheken",
   "libraryAccess": "Bibliotheek toegang",
-  "enableAccessAllLibraries": "Toegang tot alle bibliotheken inschakelen",
   "enableAllLibraries": "Toegang tot alle bibliotheken inschakelen",
   "enableAllDevices": "Toegang tot alle apparaten inschakelen",
   "parentalControl": "Ouderlijk toezicht",
@@ -1262,8 +790,7 @@
   "maxParentalRating": "Max ouderlijk toezicht beoordeling",
   "allowItemsTags": "Items met tags toestaan",
   "blockItemsTags": "Items met tags blokkeren",
-  "accessSchedule": "Toegangsschema",
-  "accessSchedules": "Toegangsschema''s",
+  "accessSchedules": "Toegangsschema's",
   "addAccessSchedule": "Toegangsschema toevoegen",
   "dayOfWeek": "Dag van de week",
   "startTime": "Starttijd",
@@ -1275,9 +802,9 @@
   "editUser": "Gebruiker bewerken",
   "general": "Algemeen",
   "access": "Toegang",
-  "passwordSettingsComing": "Wachtwoordinstellingen komen binnenkort",
   "endTimeMustBeAfter": "Eindtijd moet na starttijd liggen",
   "assignLibraries": "Bibliotheken toewijzen",
+  "enableAccessAllLibraries": "Toegang tot alle bibliotheken inschakelen",
   "currentPassword": "Hudig wachtwoord",
   "newPassword": "Nieuw wachtwoord",
   "confirmPassword": "Wachtwoord bevestigen",
@@ -1286,48 +813,25 @@
   "passwordResetFailed": "Wachtwoord opnieuw instellen mislukt",
   "passwordMismatch": "Nieuw wachtwoord en bevestig wachtwoord komen niet overeen",
   "passwordChangeSuccess": "Wachtwoord met succes gewijzigd",
-  "passwordChangeFailed": "Wachtwoord wijzigen mislukt",
   "savePassword": "Wachtwoord opslaan",
   "deleteLibraryConfirmTitle": "Bibliotheek verwijderen?",
   "deleteLibraryConfirmMessage": "Weet je zeker dat je {libraryName} wilt verwijderen?\nDeze actie kan niet ongedaan worden gemaakt.",
-  "@deleteLibraryConfirmMessage": {
-    "placeholders": {
-      "libraryName": {
-        "type": "String"
-      }
-    }
-  },
   "noLibrarySelected": "Geen bibliotheek geselecteerd",
-  "enabledPhotos": "Foto''s ingeschakeld",
+  "enabledPhotos": "Foto's ingeschakeld",
   "enabledLUFSScan": "LUFS Scan ingeschakeld",
   "enabledRealtimeMonitoring": "Real-time monitoring ingeschakeld",
   "automaticallyAddToCollection": "Automatisch toevoegen aan collectie",
   "enabledEmbeddedTitles": "Ingebouwde titels ingeschakeld",
-  "enabledEmbeddedExtrasTitles": "Ingebouwde extra''s titels ingeschakeld",
+  "enabledEmbeddedExtrasTitles": "Ingebouwde extra's titels ingeschakeld",
   "automaticRefreshInterval": "Automatisch verversen interval",
   "autoRefreshIntervalNote": "Het inschakelen hiervan kan leiden tot langere bibliotheek-vernieuwingstijden.",
   "preferredDownloadLanguage": "Voorkeurstaal voor downloaden",
   "countryRegion": "Land/Regio",
   "saveMetadata": "Metadata opslaan",
   "metadataFetchers": "Metadataophaler ({type})",
-  "@metadataFetchers": {
-    "placeholders": {
-      "type": {
-        "type": "String"
-      }
-    }
-  },
   "enableAndRankMetadataFetchers": "Schakel je voorkeur metadata fetcher in en rangschik deze op prioriteit.",
   "enableAndRankImagesFetchers": "Schakel je voorkeur afbeeldingsophaler in en rangschik deze op prioriteit.",
   "imageFetchers": "Afbeeldingsophaler ({type})",
-  "@imageFetchers": {
-    "placeholders": {
-      "type": {
-        "type": "String"
-      }
-    }
-  },
-  "enableAndRankImageFetchers": "Schakel je voorkeur afbeeldingsophaler in en rangschik deze op prioriteit.",
   "mediaSegmentProviders": "Media segment aanbieders",
   "enableAndRankMediaSegmentProviders": "Schakel je voorkeur mediasegment aanbieders in en rangschik deze op prioriteit.",
   "trickplay": "Trickplay",
@@ -1354,40 +858,18 @@
   "metadataImageLongPressClick": "Klik met de rechtermuisknop om afbeelding te verwijderen",
   "primary": "Primair",
   "logo": "{count, plural, one{Logo} other{Logo''s}}",
-  "@logo": {
-    "description": "logo",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "backdrop": "{count, plural, one{Achtergrond} other{Achtergronden}}",
-  "@backdrop": {
-    "description": "backdrop",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "selectFolderToAdd": "Map selecteren om toe te voegen",
   "systemRootFolder": "Systeemroot map",
   "selectedPath": "Geselecteerd pad: {path}",
-  "@selectedPath": {
-    "placeholders": {
-      "path": {
-        "type": "String"
-      }
-    }
-  },
-  "segmentActionSkipOnce": "Eén keer overslaan",
   "recentlyAdded": "Recent toegevoegd",
+  "recentlyPlayed": "Recent afgespeeld",
+  "recentlyFavorited": "Recent favoriet gemaakt",
+  "mostPlayed": "Meest afgespeeld",
   "recentRequests": "Recente verzoeken",
   "trending": "Trending",
   "popularMovies": "Populaire films",
+  "popularSeries": "Populaire series",
   "expectedMovies": "Verwachte films",
   "expectedSeries": "Verwachte series",
   "requestConfiguration": "Seerr configuratie",
@@ -1398,145 +880,37 @@
   "tags": "Tags",
   "noTags": "Geen tags",
   "requestAs": "Verzoek als",
-  "requestQuotaTitle": "Verzoekquotum",
   "requestQuotaStatus": "{remaining} van {limit} resterend (reset elke {days} dagen)",
-  "@requestQuotaStatus": {
-    "placeholders": {
-      "remaining": {
-        "type": "int"
-      },
-      "limit": {
-        "type": "int"
-      },
-      "days": {
-        "type": "int"
-      }
-    }
-  },
   "requestQuotaLimitReached": "Verzoeklimiet bereikt voor {mediaType}.",
-  "@requestQuotaLimitReached": {
-    "placeholders": {
-      "mediaType": {
-        "type": "String"
-      }
-    }
-  },
   "submitRequest": "Verzoek indienen",
   "noOverviewAvailable": "Geen overzicht beschikbaar.",
   "downloading": "downloaden",
   "request": "Verzoek",
+  "requestMore": "Meer aanvragen",
   "viewRequest": "Verzoek bekijken",
   "email": "Email",
   "username": "Gebruikersnaam",
   "ok": "Ok",
+  "transcodeInfoTitle": "Transcodeer informatie",
+  "transcodeInfoNoMetadata": "Er zijn geen transcodering metadata beschikbaar.",
+  "transcodeDetailsTitle": "Transcodering Details",
+  "containerLabel": "Container",
+  "videoCodecLabel": "Videocodec",
+  "audioCodecLabel": "Audiocodec",
+  "bitrateLabel": "Bitsnelheid",
+  "kbps": "kbps",
+  "resolutionLabel": "Resolutie",
   "seerr": "Seerr",
   "seerrNotConfigured": "Niet geconfigureerd",
   "seerrLoadingUser": "Gebruiker laden",
   "seerrUnknownUser": "Onbekende gebruiker",
   "loggedInAs": "Ingelogd als {displayName}",
-  "@loggedInAs": {
-    "placeholders": {
-      "displayName": {
-        "type": "String"
-      }
-    }
-  },
-  "seerrSetServerFirst": "Stel eerst de Seerr-server in",
-  "seerrLocalLoginTitle": "Seerr Lokale login",
-  "seerrJellyfinLoginTitle": "Seerr Jellyfin login",
-  "seerrSessionSaved": "Seerr sessie opgeslagen",
-  "seerrStatusVersion": "Seerr: {version}",
-  "@seerrStatusVersion": {
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "seerrServer": "Seerr server",
   "seerrAuthenticateLocal": "Seerr inloggen (lokaal)",
-  "seerrAuthenticateJellyfin": "Seerr inloggen (Jellyfin)",
-  "seerrSessionConfigured": "Sessie geconfigureerd",
-  "seerrConfigured": "Geconfigureerd",
-  "seerrTestConnection": "Test Seerr verbinding",
   "rootFolderDefaultLabel": "{folder} (Standaard)",
-  "@rootFolderDefaultLabel": {
-    "placeholders": {
-      "folder": {
-        "type": "String"
-      }
-    }
-  },
   "seerrAnimeSeriesNote": "* Deze serie is een anime.",
   "seerrAutoApproveNotice": "Verzoeken die je indient worden automatisch goedgekeurd.",
   "seerrPermissionDenied": "Je hebt geen toestemming om dit mediatype aan te vragen.",
-  "seerrAuthApiKey": "API-sleutel",
-  "seerrAuthLocal": "Lokaal",
-  "seerrAuthJellyfin": "Jellyfin",
-  "seerrUserFetchFailed": "Kan gebruiker niet ophalen van Seerr",
-  "seerrEnterServerUrlFirst": "Voer eerst een Seerr-server URL in",
-  "seerrApiKeySaved": "API-sleutel opgeslagen",
-  "seerrLoggedIn": "Ingelogd bij Seerr",
-  "seerrConnectedToServer": "Verbonden met Seerr-server: {serverUrl}",
-  "@seerrConnectedToServer": {
-    "placeholders": {
-      "serverUrl": {
-        "type": "String"
-      }
-    }
-  },
-  "emailUsername": "Email/Gebruikersnaam",
-  "discover": "Ontdekken",
-  "deleteRequestConfirmation": "Weet je zeker dat je dit vezoek wilt verwijderen?",
-  "popularity": "Populariteit",
-  "contentRating": "Inhoudsclassificatie",
-  "runtimeMinutesTitle": "Duur (minuten)",
-  "runtimeRangeMinutes": "{min} - {max} minuten",
-  "@runtimeRangeMinutes": {
-    "placeholders": {
-      "min": {
-        "type": "int"
-      },
-      "max": {
-        "type": "int"
-      }
-    }
-  },
-  "minutesShort": "{count} min",
-  "@minutesShort": {
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
-  "streamingServices": "Streaming ({count})",
-  "@streamingServices": {
-    "description": "Streaming providers (Netflix,HBO, etc.)",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
-  "settingsProfileSubtitleLanguage": "Voorkeursondertiteltaal",
-  "settingsProfileSubtitleLanguageTitle": "Stel voorkeursondertiteltaal in",
-  "settingsProfileSubtitleMode": "Ondertitelmodus",
-  "subtitlePlaybackModeDefault": "Standaard",
-  "subtitlePlaybackModeAlways": "Altijd afspelen",
-  "subtitlePlaybackModeOnlyForced": "Alleen gedwongen",
-  "subtitlePlaybackModeNone": "Geen",
-  "subtitlePlaybackModeSmart": "Slim",
-  "syncplayAccessCreateAndJoinGroups": "Groepen aanmaken en lid worden",
-  "syncplayAccessJoinGroups": "Lid worden",
-  "syncplayAccessNone": "Geen",
-  "popularSeries": "Populaire series",
-  "sponsor": "Sponsors",
-  "sponsorMessage": "Als je Driftfin graag gebruikt, overweeg dan om het project te sponsoren ter ondersteuning van voortdurende ontwikkeling en verbeteringen. Bedankt voor je steun!",
-  "min": "min",
-  "max": "max",
   "seerrRequestStatusPending": "In behandeling",
   "seerrRequestStatusApproved": "Goedgekeurd",
   "seerrRequestStatusDeclined": "Afgewezen",
@@ -1547,6 +921,24 @@
   "seerrMediaStatusAvailable": "Beschikbaar",
   "seerrMediaStatusBlacklisted": "Negeren",
   "seerrMediaStatusDeleted": "Verwijderd",
+  "seerrAuthApiKey": "API-sleutel",
+  "seerrAuthLocal": "Lokaal",
+  "seerrAuthJellyfin": "Jellyfin",
+  "seerrUserFetchFailed": "Kan gebruiker niet ophalen van Seerr",
+  "seerrEnterServerUrlFirst": "Voer eerst een Seerr-server URL in",
+  "seerrUrlSchemeWarning": "Het URL-schema kon niet automatisch worden gedetecteerd. Standaard wordt https:// gebruikt. Voeg http:// toe als uw server geen HTTPS gebruikt.",
+  "seerrApiKeySaved": "API-sleutel opgeslagen",
+  "seerrLoggedIn": "Ingelogd bij Seerr",
+  "seerrConnectedToServer": "Verbonden met Seerr-server: {serverUrl}",
+  "seerrCustomHeaders": "Aangepaste headers",
+  "seerrHeader": "Header",
+  "seerrHeaderValue": "Waarde",
+  "emailUsername": "Email/Gebruikersnaam",
+  "discover": "Ontdekken",
+  "sponsor": "Sponsors",
+  "sponsorMessage": "Als je Driftfin graag gebruikt, overweeg dan om het project te sponsoren ter ondersteuning van voortdurende ontwikkeling en verbeteringen. Bedankt voor je steun!",
+  "min": "min",
+  "max": "max",
   "manageRequest": "Verzoek beheren",
   "requestAll": "Alles aanvragen",
   "openInSeerr": "Openen in Seerr",
@@ -1565,99 +957,26 @@
   "markAsAvailableConfirm": "Markeren als beschikbaar?",
   "markedAsAvailable": "Gemarkeerd als beschikbaar",
   "deleteSeerrDataConfirm": "Alle bestanden uit Seerr verwijderen? Deze actie kan niet ongedaan worden gemaakt. \nAls de data nog aanwezig is in {service}, kan deze opnieuw worden geïmporteerd.",
-  "@deleteSeerrDataConfirm": {
-    "description": "Confirmation message for deleting Seerr data",
-    "placeholders": {
-      "service": {
-        "type": "String",
-        "example": "Sonarr/Radarr"
-      }
-    }
-  },
   "dataDeleted": "Data verwijderd",
   "approve": "Goedkeuren",
   "decline": "Weigeren",
   "pendingRequests": "{count, plural, other{Geen lopende verzoeken} one{{count} verzoek} two{{count} verzoeken}}",
-  "@pendingRequests": {
-    "description": "pendingRequests",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "processing": "Verwerken",
   "seerrDetails": "Seerr details",
-  "updateNotifications": "Update notificaties",
-  "notificationChannelDescription": "Notificaties voor nieuw toegevoegde items",
-  "notificationNewEpisodes": "Nieuwe afleveringen toegevoegd",
-  "notificationNewItems": "{count, plural, one{{count} nieuw item} other{{count} nieuwe items}}",
-  "@notificationNewItems": {
-    "description": "Plural for number of new items in a notification",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "homeBannerDetailed": "Details",
-  "homeBannerTV": "TV",
-  "mediaTypeTV": "{count, plural, one{TV Kanaal} other{TV Kanalen}}",
-  "@mediaTypeTV": {
-    "description": "TV Channel (plural)",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "backgroundColor": "Achtergrond kleur",
-  "playbackTypeTV": "TV",
-  "enableSpeedBoostTitle": "Speed boost inschakelen",
-  "enableSpeedBoostDesc": "Houd het scherm (mobiel) of de spatiebalk (desktop) ingedrukt om de afspeelsnelheid tijdelijk te verhogen",
-  "speedBoostRateTitle": "Snelheidsverhoging",
-  "speedBoostRateDesc": "Afspeelsnelheid wanneer de snelheidsboost is geactiveerd",
-  "enableDoubleTapSeekTitle": "Dubbeltik om vooruit/achteruit te spoelen/af te spelen/pauzeren",
-  "enableDoubleTapSeekDesc": "Tik twee keer op de linker- of rechterkant van het scherm om terug/vooruit te spoelen. Tik twee keer op het midden om af te spelen/pauzeren",
-  "showLess": "Minder laten zien",
-  "seerrCustomHeaders": "Aangepaste headers",
-  "seerrHeader": "Header",
-  "seerrHeaderValue": "Waarde",
+  "viewTrailer": "Trailer bekijken",
   "watch": "Bekijken",
   "watchChannel": "{channel} bekijken",
-  "@watchChannel": {
-    "placeholders": {
-      "channel": {
-        "type": "String"
-      }
-    }
-  },
   "now": "Nu",
+  "nowPlaying": "Nu aan het afspelen",
+  "upNext": "Hierna",
+  "queue": "Wachtrij",
+  "queueIsEmpty": "Wachtrij is leeg",
+  "queueItemCount": "{count} items",
+  "removeFromQueue": "Verwijderen uit wachtrij",
   "noPrograms": "Geen programma's beschikbaar",
   "switchChannel": "Kanaal wisselen",
   "switchChannelDesc": "Wil je \"{programName}\" kijken op {channelName}?",
-  "@switchChannelDesc": {
-    "placeholders": {
-      "programName": {
-        "type": "String"
-      },
-      "channelName": {
-        "type": "String"
-      }
-    }
-  },
   "specialFeature": "{count, plural, other{Speciale Features} one{Speciale Feature} }",
-  "@specialFeature": {
-    "description": "special feature",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "activeTvChannels": "Actieve TV kanalen",
   "enableNewTVLayout": "Schakel nieuwe TV-indeling in",
   "liveTV": "Live TV",
@@ -1670,69 +989,20 @@
   "addProvider": "Aanbieder toevoegen",
   "tunerHostAddedSuccessfully": "Tunerhost succesvol toegevoegd",
   "failedToAddTunerHost": "Het toevoegen van de tunerhost is mislukt: {error}",
-  "@failedToAddTunerHost": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "tunerHostUpdatedSuccessfully": "De tunerhost is succesvol bijgewerkt",
   "failedToUpdateTunerHost": "Het bijwerken van de tunerhost is mislukt: {error}",
-  "@failedToUpdateTunerHost": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "deleteTunerHost": "Verwijder tunerhost",
   "deleteTunerHostConfirm": "Weet je zeker dat je \"{name}\" wilt verwijderen?",
-  "@deleteTunerHostConfirm": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "tunerHostDeletedSuccessfully": "Tunerhost succesvol verwijderd",
   "failedToDeleteTunerHost": "Het verwijderen van de tunerhost is mislukt: {error}",
-  "@failedToDeleteTunerHost": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "epgProviderAddedSuccessfully": "EPG-aanbieder succesvol toegevoegd",
   "failedToAddEpgProvider": "Het toevoegen van de EPG-aanbieder is mislukt: {error}",
-  "@failedToAddEpgProvider": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "epgProviderUpdatedSuccessfully": "EPG-aanbieder succesvol bijgewerkt",
   "failedToUpdateEpgProvider": "EPG-provider bijwerken mislukt: {error}",
-  "@failedToUpdateEpgProvider": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "deleteEpgProvider": "EPG-aanbieder verwijderen",
   "deleteEpgProviderConfirm": "Weet je zeker dat je deze provider wilt verwijderen?",
   "epgProviderDeletedSuccessfully": "EPG-aanbieder succesvol verwijderd",
   "failedToDeleteEpgProvider": "Het verwijderen van de EPG-aanbieder is mislukt: {error}",
-  "@failedToDeleteEpgProvider": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "editTunerDevice": "Bewerk tunerapparaat",
   "friendlyName": "Vriendelijke naam",
   "url": "URL",
@@ -1766,13 +1036,6 @@
   "discoveredDevices": "Ontdekte apparaten",
   "noDevicesFound": "Geen apparaten gevonden",
   "failedToDiscoverDevices": "Apparaten konden niet worden gevonden: {error}",
-  "@failedToDiscoverDevices": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "path": "Pad",
   "maxConcurrentStreamsLabel": "Maximaal aantal gelijktijdige streams",
   "noCategories": "Geen categorieën",
@@ -1784,105 +1047,24 @@
   "enableNewTVLayoutDesc": "Toon grotere banners in tv-stijl op het dashboard. Dit wordt de standaardindeling in een toekomstige release.",
   "notifications": "Meldingen",
   "showNewItemNotificationTitle": "Notificaties voor bibliotheek items",
+  "notificationChannelDescription": "Notificaties voor nieuw toegevoegde items",
+  "seerrRequestNotifications": "Notificaties voor Seerr verzoeken",
+  "notificationNewEpisodes": "Nieuwe afleveringen toegevoegd",
+  "notificationNewItems": "{count, plural, one{{count} nieuw item} other{{count} nieuwe items}}",
+  "notificationNewRequests": "{count, plural, one{{count} nieuwe verzoek} other{{count} nieuwe verzoeken}}",
   "notificationTimerIOSWarning": " iOS bepaalt zelf wanneer/of updates daadwerkelijk worden uitgevoerd; meldingen kunnen vertraagd zijn of helemaal niet verschijnen.",
+  "batteryOptimizationDesc": "Batterijoptimalisaties kunnen achtergrondmeldingen voor Driftfin vertragen.\nTik om de systeeminstellingen te openen en optimalisaties voor Driftfin uit te schakelen om de betrouwbaarheid van meldingen te verbeteren.",
   "updateCheckInterval": "Update controle-interval",
   "updateCheckIntervalDesc": "Hoe vaak de achtergrondtaak wordt uitgevoerd",
   "notificationsIntervalClientReminder": "Het meldingsinterval is ingesteld voor alle gebruikers.",
-  "requestMore": "Meer aanvragen",
-  "seerrRequestNotifications": "Notificaties voor Seerr verzoeken",
-  "notificationNewRequests": "{count, plural, one{{count} nieuwe verzoek} other{{count} nieuwe verzoeken}}",
-  "@notificationNewRequests": {
-    "description": "Plural for number of new Seerr requests in a notification",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "batteryOptimizationDesc": "Batterijoptimalisaties kunnen achtergrondmeldingen voor Driftfin vertragen.\nTik om de systeeminstellingen te openen en optimalisaties voor Driftfin uit te schakelen om de betrouwbaarheid van meldingen te verbeteren.",
   "lastUpdateAt": "Laatste update op {date} om {time}",
-  "@lastUpdateAt": {
-    "description": "lastUpdateAt",
-    "placeholders": {
-      "time": {
-        "type": "DateTime",
-        "format": "jm"
-      },
-      "date": {
-        "type": "DateTime",
-        "format": "yMd"
-      }
-    }
-  },
   "includeHiddenItems": "Inclusief verborgen bibliotheken",
   "includeHiddenItemsDesc": "Inclusief bibliotheken verborgen van dashboard scherm",
   "settingsBlurEffectsTitle": "Blur effecten aanzetten",
   "settingsBlurEffectsDesc": "Schakel vervagingseffecten in de gebruikersinterface in. Het uitschakelen hiervan kan de prestaties op minder krachtige apparaten verbeteren.",
   "profileSettingsOpenAuthAtLaunch": "Toon authenticatiemethode bij app-vergrendeling",
-  "generateLoginLink": "Code voor {userName}",
-  "@generateLoginLink": {
-    "description": "Code for a user to share",
-    "placeholders": {
-      "userName": {
-        "type": "String"
-      }
-    }
-  },
-  "shareQRCode": "Deel de QR code",
-  "copyLoginLink": "Link kopiëren",
-  "includePassword": "Wachtwoord includeren",
-  "invalidAuthLink": "Ongeldige login link",
-  "shareLoginLink": "Deel de login link",
-  "gestures": "Gebaren",
-  "enableEdgeGesturesTitle": "Schakel randgebaren in",
-  "enableEdgeGesturesDesc": "Regel helderheid en volume door op en neer te schuiven aan de randen van het scherm",
-  "reverseEdgeGesturesTitle": "Wissel randgebaren",
-  "reverseEdgeGesturesDesc": "Wissel de kant voor helderheid en volumeregeling",
-  "advancedVideoOptionsTitle": "Geavanceerde video-opties",
-  "advancedVideoOptionsDesc": "Schakel HDR, toonmapping en geavanceerde kleurverwerking in (onstabiel voor sommige apparaten)",
-  "brightnessIndicator": "Helderheid: {brightness}",
-  "@brightnessIndicator": {
-    "placeholders": {
-      "brightness": {
-        "type": "int"
-      }
-    }
-  },
-  "airsIn": "Zend uit in {count} {duration}",
-  "@airsIn": {
-    "description": "airsIn",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      },
-      "duration": {
-        "type": "String",
-        "example": "days"
-      }
-    }
-  },
-  "transcodeInfoTitle": "Transcodeer informatie",
-  "transcodeInfoNoMetadata": "Er zijn geen transcodering metadata beschikbaar.",
-  "transcodeDetailsTitle": "Transcodering Details",
-  "containerLabel": "Container",
-  "videoCodecLabel": "Videocodec",
-  "audioCodecLabel": "Audiocodec",
-  "bitrateLabel": "Bitsnelheid",
-  "kbps": "kbps",
-  "resolutionLabel": "Resolutie",
-  "seerrUrlSchemeWarning": "Het URL-schema kon niet automatisch worden gedetecteerd. Standaard wordt https:// gebruikt. Voeg http:// toe als uw server geen HTTPS gebruikt.",
-  "viewTrailer": "Trailer bekijken",
   "toggleSidebar": "Zijbalk schakelen",
   "requestedSuccessForItem": "{itemName} is succesvol aangevraagd",
-  "@requestedSuccessForItem": {
-    "description": "Message shown when a media item is successfully requested",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      }
-    }
-  },
   "linkData": "Link gegevens",
   "passwordNotRequired": "Niet verplicht, laat dit veld leeg om het wachtwoord niet in de link op te nemen",
   "authLinkButtonToolTip": "Open het dialoogvenster voor de authenticatielink",
@@ -1891,14 +1073,6 @@
   "connect": "Verbinden",
   "authLinkDesc": "Vraag de serverbeheerder om de authenticatielink. De link bevat authenticatiegegevens, dus zorg ervoor dat u deze veilig bewaart.",
   "deletedItem": "Verwijderd {itemName}",
-  "@deletedItem": {
-    "description": "Message shown when a item is deleted",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      }
-    }
-  },
   "libraryOrderTitle": "Volgorde startscherm",
   "libraryOrderDescription": "Sleep de bibliotheken om de volgorde te wijzigen op het home scherm. Bibliotheken die niet zijn aangevinkt, worden niet weergegeven als recent toegevoegde items.",
   "hidePlayedInLatestTitle": "Verberg bekeken content",
@@ -1907,39 +1081,49 @@
   "groupedFoldersDescription": "Automatisch content uit de volgende bibliotheken groeperen in weergaven zoals 'Films', 'Muziek' en 'Tv'.",
   "downloadTranscoded": "Getranscodeerd downloaden",
   "downloadOriginal": "Origineel downloaden",
-  "today": "Vandaag",
+  "personBirthday": "Geboortedatum: {date}",
   "personAge": "Leeftijd: {age}",
-  "@personAge": {
-    "description": "Age label with age number",
-    "placeholders": {
-      "age": {
-        "type": "int",
-        "example": "30"
-      }
-    }
-  },
   "personBirthPlace": "Geboren in {place}",
-  "@personBirthPlace": {
-    "placeholders": {
-      "place": {
-        "type": "String"
-      }
-    }
-  },
   "seerrMovies": "Ontdek films",
   "seerrSeries": "Ontdek Series",
-  "seekBackInstant": "Zoek terug (Direct)",
-  "seekForwardInstant": "Zoek vooruit (Direct)",
-  "stepForward": "Stap Vooruit",
-  "stepBack": "Stap Terug",
-  "personBirthday": "Geboortedatum: {date}",
-  "@personBirthday": {
-    "description": "Birthday label with formatted date",
-    "placeholders": {
-      "date": {
-        "type": "String"
-      }
-    }
-  },
-  "anyLanguage": "Een taal"
+  "today": "Vandaag",
+  "musicDashboard": "Muziekdashboard",
+  "quiet": "Stil",
+  "loud": "Luid",
+  "share": "Delen",
+  "setAs": "Instellen als",
+  "cast": "Casten",
+  "castTo": "Afspelen op…",
+  "castSearching": "Apparaten zoeken…",
+  "castNoDevices": "Geen apparaten of actieve sessies gevonden",
+  "castConnecting": "Verbinden…",
+  "castCastingTo": "Aan het casten naar {device}",
+  "castStop": "Casten stoppen",
+  "castFailed": "Kan geen verbinding maken met het cast-apparaat",
+  "castSectionNearby": "Apparaten in de buurt",
+  "castSectionSessions": "Je andere apparaten",
+  "tonight": "Vanavond",
+  "tonightSubtitle": "Druk op play, niet bladeren",
+  "tonightEmpty": "Niets past nu - probeer je tijdsbudget te verruimen",
+  "tonightAnyLength": "Elke lengte",
+  "tonightMinutesOrLess": "{minutes} min of minder",
+  "tonightMoodAny": "Elke stemming",
+  "tonightMoodCozy": "Gezellig",
+  "tonightMoodThrilling": "Spannend",
+  "tonightMoodFunny": "Grappig",
+  "tonightMoodUplifting": "Opbeurend",
+  "smartShelves": "Slimme schappen",
+  "addToHomeShelf": "Toevoegen aan startscherm als slim schap",
+  "removeFromHomeShelf": "Verwijderen uit startschermschappen",
+  "tastePassport": "Smaakpaspoort",
+  "tastePassportSubtitle": "Je smaakprofiel op dit apparaat, opgebouwd uit wat je hebt bekeken",
+  "tastePassportTopGenres": "Genres waar je naar neigt",
+  "tastePassportTopDirectors": "Regisseurs waar je van houdt",
+  "tastePassportTopActors": "Acteurs waar je van houdt",
+  "tastePassportTotalWatchTime": "Totale kijktijd",
+  "tastePassportItemsWatched": "Bekeken items",
+  "tastePassportEmpty": "Bekijk een paar dingen en je smaakprofiel verschijnt hier",
+  "livingHomeBecauseYouWatched": "Omdat je {name} hebt bekeken",
+  "livingHomeHiddenGems": "Verborgen parels die je bezit",
+  "livingHomeMoreFromDirector": "Meer van {name}"
 }

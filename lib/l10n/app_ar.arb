@@ -1,90 +1,147 @@
 {
+  "@@locale": "ar",
   "nativeName": "العربية",
   "about": "حول",
   "accept": "قبول",
   "active": "نشط",
+  "actor": "{count, plural, other{ممثلون} one{ممثل}}",
   "addAsFavorite": "إضافة إلى المفضلة",
+  "addShowToFavorites": "إضافة المسلسل إلى المفضلة",
+  "addedShowToFavorites": "تمت إضافة المسلسل إلى المفضلة",
+  "removedShowFromFavorites": "تمت إزالة المسلسل من المفضلة",
+  "requestEpisodeSonarr": "طلب الحلقة (Sonarr)",
+  "sonarrEpisodeRequested": "تم طلب الحلقة — Sonarr يبحث عنها الآن",
+  "sonarrSeriesNotFound": "هذا المسلسل غير موجود في Sonarr بعد — أضفه في Sonarr أولاً",
+  "sonarrEpisodeNotFound": "تعذر العثور على هذه الحلقة في Sonarr",
+  "sonarrNotConfigured": "لم يتم إعداد Sonarr — أضفه في الإعدادات",
+  "sonarrRequestFailed": "فشل طلب Sonarr",
+  "sonarrIntegrationTitle": "Sonarr (طلبات الحلقات)",
+  "sonarrIntegrationDesc": "اربط Sonarr مباشرة لطلب حلقات منفردة (يدعم Seerr المواسم الكاملة فقط). يعمل هذا فقط مع المسلسلات المضافة بالفعل إلى Sonarr.",
+  "managedByServerPlugin": "تتم إدارته بواسطة الخادم (إضافة Driftfin)",
+  "sonarrUrlTitle": "رابط Sonarr",
+  "sonarrApiKeyTitle": "مفتاح API الخاص بـ Sonarr",
+  "sonarrSaved": "تم حفظ إعدادات Sonarr",
+  "traktTitle": "Trakt",
+  "traktDesc": "سجّل ما تشاهده على Trakt. استخدم تطبيق Trakt API الخاص بك (معرف العميل + السر).",
+  "traktClientId": "معرف عميل Trakt",
+  "traktClientSecret": "سر عميل Trakt",
+  "traktConnect": "الاتصال بـ Trakt",
+  "traktDisconnect": "قطع الاتصال عن Trakt",
+  "traktConnected": "متصل",
+  "traktNotConnected": "غير متصل",
+  "traktActivateInstructions": "على جهاز آخر، افتح {url} وأدخل هذا الرمز:",
+  "traktConnectedSuccess": "تم الاتصال بـ Trakt",
+  "traktConnectFailed": "فشل الاتصال بـ Trakt أو انتهت مهلته",
+  "externalPlayerTitle": "المشغل الخارجي",
+  "externalPlayerDesc": "التشغيل في مشغل سطح المكتب الخاص بك (MPV / VLC / PotPlayer). ملاحظة: لن يُبلغ المشغل الخارجي عن التقدم، لذا لن يتم تتبع الاستئناف والتسجيل.",
+  "externalPlayerPath": "مسار المشغل",
+  "externalPlayerArgs": "معاملات التشغيل",
+  "playInExternalPlayer": "التشغيل في مشغل خارجي",
+  "externalPlayerFailed": "تعذر تشغيل المشغل الخارجي",
+  "requestsTitle": "الطلبات",
+  "requestsScopeMine": "طلباتي",
+  "requestsScopeAll": "الكل",
+  "requestFilterAll": "الكل",
+  "requestFilterUnavailable": "غير متاح",
+  "requestSortAdded": "تاريخ الإضافة",
+  "requestSortModified": "آخر تعديل",
+  "approveAllPending": "الموافقة على جميع الطلبات المعلقة",
+  "noRequestsFound": "لا توجد طلبات",
+  "calendarTitle": "التقويم",
+  "calendarEmpty": "لا يوجد شيء قادم",
+  "calendarToday": "اليوم",
+  "calendarTomorrow": "غداً",
+  "calendarFilterAll": "الكل",
+  "calendarFilterTv": "التلفاز",
+  "calendarFilterMovies": "الأفلام",
+  "radarrIntegrationTitle": "Radarr (الأفلام)",
+  "radarrIntegrationDesc": "اربط Radarr لعرض إصدارات الأفلام القادمة في التقويم وطلب الأفلام مباشرة.",
+  "radarrUrlTitle": "رابط Radarr",
+  "radarrApiKeyTitle": "مفتاح API الخاص بـ Radarr",
+  "addToHome": "إضافة إلى الصفحة الرئيسية",
+  "removeFromHome": "إزالة من الصفحة الرئيسية",
+  "syncSettingsTitle": "مزامنة الإعدادات مع الخادم",
+  "syncSettingsDesc": "تخزين المظهر، تخطيط الصفحة الرئيسية، المجموعات المثبتة، ورابط Seerr الخاص بك على خادم Jellyfin بحيث تتبع حسابك عبر الأجهزة.",
+  "syncNow": "مزامنة الآن",
+  "crashReportingTitle": "إرسال تقارير الأعطال",
+  "crashReportingDesc": "فعّل هذا الخيار لإرسال تقارير الأعطال والأخطاء تلقائياً للمساعدة في تحسين Driftfin. مُعطّل افتراضياً؛ أعد تشغيل التطبيق بعد تغيير هذا الخيار. لا يتم تضمين أي بيانات شخصية.",
+  "managePinnedCollections": "مجموعات الصفحة الرئيسية المثبتة",
+  "managePinnedCollectionsDesc": "إعادة ترتيب أو إزالة المجموعات المعروضة في صفحتك الرئيسية",
+  "noPinnedCollections": "لا توجد مجموعات مثبتة. استخدم \"إضافة إلى الصفحة الرئيسية\" من قائمة إحدى المجموعات.",
+  "syncedNever": "لم تتم المزامنة بعد",
+  "syncedAtLabel": "آخر مزامنة: {time}",
   "addToCollection": "إضافة إلى المجموعة",
   "addToPlaylist": "إضافة إلى قائمة التشغيل",
+  "addToQueue": "الإضافة إلى قائمة الانتظار",
+  "instantMix": "مزيج فوري",
+  "addedToQueue": "{count, plural, one{تمت إضافة {count} مقطع إلى قائمة الانتظار} other{تمت إضافة {count} مقاطع إلى قائمة الانتظار}}",
   "advanced": "متقدم",
   "all": "الكل",
   "amoledBlack": "اللون الأسود العميق",
   "appLockAutoLogin": "تسجيل الدخول التلقائي",
+  "appLockBiometrics": "المصادقة الحيوية",
   "appLockPasscode": "رمز المرور",
+  "appLockTitle": "ضبط طريقة تسجيل الدخول ل {userName}",
   "ascending": "تصاعدي",
   "audio": "{count, plural, one{صوت} other{أصوات}}",
+  "audioPlayerPlaybackOptionsTitle": "خيارات التشغيل",
+  "audioPlayerRepeatAll": "تكرار الكل",
+  "audioPlayerRepeatOff": "إيقاف التكرار",
+  "audioPlayerRepeatOne": "تكرار واحد",
+  "audioPlayerShuffle": "خلط",
+  "showArtist": "عرض الفنان",
+  "track": "{count, plural, one{مقطع} other{مقاطع}}",
   "autoPlay": "تشغيل تلقائي",
   "backgroundBlur": "تمويه الخلفية",
   "backgroundOpacity": "شفافية الخلفية",
-  "appLockBiometrics": "المصادقة الحيوية",
+  "biometricsFailedCheckAgain": "فشلت المصادقة الحيوية. تحقق من الإعدادات وحاول مرة أخرى.",
   "bold": "عريض",
-  "appLockTitle": "ضبط طريقة تسجيل الدخول ل {userName}",
-  "@appLockTitle": {
-    "description": "Pop-up to pick a login method",
-    "placeholders": {
-      "userName": {
-        "type": "String"
-      }
-    }
-  },
   "cancel": "إلغاء",
   "change": "تغيير",
+  "chapter": "{count, plural, other{فصول} one{فصل}}",
   "clear": "مسح",
   "clearAllSettings": "مسح جميع الإعدادات",
   "clearAllSettingsQuestion": "هل تريد مسح جميع الإعدادات؟",
   "clearChanges": "مسح التغييرات",
   "clearSelection": "مسح التحديد",
   "close": "إغلاق",
+  "generateLoginLink": "رمز لـ {userName}",
+  "shareLoginLink": "مشاركة رابط تسجيل الدخول",
+  "shareQRCode": "مشاركة رمز QR",
+  "copyLoginLink": "نسخ الرابط",
+  "includePassword": "تضمين كلمة المرور",
+  "invalidAuthLink": "رابط تسجيل دخول غير صالح",
   "code": "رمز",
   "collectionFolder": "{count, plural, one{مجلد مجموعة} other{مجلدات المجموعات}}",
   "color": "لون",
   "combined": "مُدمج",
   "communityRating": "تقييم المجتمع",
   "continuePage": "متابعة - صفحة {page}",
-  "@continuePage": {
-    "description": "Continue - page 1",
-    "placeholders": {
-      "page": {
-        "type": "int"
-      }
-    }
-  },
   "controls": "عناصر التحكم",
+  "gestures": "الإيماءات",
   "dashboard": "لوحة المعلومات",
   "dashboardContinue": "متابعة",
   "dashboardContinueListening": "متابعة الاستماع",
   "dashboardContinueReading": "متابعة القراءة",
   "dashboardContinueWatching": "متابعة المشاهدة",
   "nextUp": "التالي",
+  "dashboardRecentlyAdded": "تمت إضافته مؤخراً في {name}",
+  "dashboardRecentlyAddedItems": "أُضيف مؤخراً {name}",
+  "dateAdded": "تاريخ الإضافة",
   "dateLastContentAdded": "تاريخ آخر إضافة محتوى",
   "datePlayed": "تاريخ التشغيل",
-  "days": "{count, plural, one{يوم} other{أيام}}",
   "delete": "حذف",
   "deleteFileFromSystem": "سيؤدي حذف هذا العنصر {item} إلى حذفه من كل من نظام الملفات ومكتبة الوسائط الخاصة بك. هل أنت متأكد من رغبتك في المتابعة؟",
-  "@deleteFileFromSystem": {
-    "description": "Delete file from system",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "deleteItem": "هل تريد حذف {item}؟",
-  "@deleteItem": {
-    "description": "deleteItem",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "descending": "تنازلياً",
+  "director": "{count, plural, other{مخرجون} one{مخرج}}",
   "disableFilters": "إيقاف تشغيل الفلاتر",
   "disabled": "معطل",
   "discovered": "تم اكتشافه",
   "displayLanguage": "عرض اللغة",
   "downloadsClearDesc": "هل تريد إزالة جميع البيانات التي تمت مزامنتها، ومسح جميع البيانات لكل مستخدم تمت مزامنته؟",
   "downloadsClearTitle": "مسح البيانات التي تمت مزامنتها",
+  "downloadsPath": "المسار",
   "downloadsSyncedData": "البيانات التي تمت مزامنتها",
   "downloadsTitle": "التنزيلات",
   "dynamicText": "ديناميكي",
@@ -92,24 +149,18 @@
   "empty": "فارغ",
   "enabled": "على",
   "endsAt": "ينتهي في {date}",
-  "@endsAt": {
-    "description": "endsAt",
-    "placeholders": {
-      "date": {
-        "type": "DateTime",
-        "format": "jm"
-      }
-    }
-  },
+  "episode": "{count, plural, other{حلقات} one{حلقة}}",
   "error": "خطأ",
   "failedToLoadImage": "لم يتم تحميل الصورة",
   "favorite": "مفضل",
   "favorites": "المفضلة",
   "fetchingLibrary": "جلب عناصر المكتبة…",
+  "filter": "{count, plural, other{مرشحات} one{مرشح}}",
   "folders": "مجلدات",
   "fontColor": "لون الخط",
   "fontSize": "حجم الخط",
   "forceRefresh": "تحديث إجباري",
+  "genre": "{count, plural, other{أنواع} one{نوع}}",
   "goTo": "الذهاب إلى",
   "grid": "شبكة",
   "group": "مجموعة",
@@ -120,67 +171,52 @@
   "home": "الصفحة الرئيسية",
   "homeBannerSlideshow": "عرض الشرائح",
   "homeBannerCarousel": "كاروسيل",
-  "immediately": "فوراً",
+  "homeBannerDetailed": "تفصيلي",
+  "homeBannerTV": "التلفاز",
   "identify": "تحديد",
+  "immediately": "فوراً",
+  "incorrectPinTryAgain": "رقم PIN غير صحيح. حاول مرة أخرى.",
   "info": "معلومات",
   "invalidUrl": "عنوان URL غير صالح",
   "itemCount": "عدد العناصر: {count}",
-  "@itemCount": {
-    "description": "Item count",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
+  "label": "{count, plural, other{تصنيفات} one{تصنيف}}",
+  "library": "{count, plural, other{مكتبات} one{مكتبة}}",
+  "libraryFetchNoItemsFound": "لم يتم العثور على عناصر. حاول استخدام إعدادات مختلفة.",
+  "libraryPageSizeDesc": "حدد المقدار المراد تحميله في المرة الواحدة. القيمة 0 تُوقف تقسيم الصفحات.",
   "libraryPageSizeTitle": "حجم صفحة المكتبة",
   "light": "فاتح",
   "list": "قائمة",
+  "lockscreen": "شاشة القفل",
   "loggedIn": "تسجيل الدخول",
   "login": "تسجيل دخول",
   "logout": "تسجيل خروج",
   "logoutUserPopupContent": "سيؤدي هذا إلى تسجيل خروج {userName} وحذف المستخدم من التطبيق.\nسيتعين عليك تسجيل الدخول مرة أخرى على {serverName}.",
-  "@logoutUserPopupContent": {
-    "description": "Pop-up for logging out the user description",
-    "placeholders": {
-      "userName": {
-        "type": "String"
-      },
-      "serverName": {
-        "type": "String"
-      }
-    }
-  },
   "logoutUserPopupTitle": "تسجيل خروج {userName}؟",
-  "@logoutUserPopupTitle": {
-    "description": "Pop-up for logging out the user",
-    "placeholders": {
-      "userName": {
-        "type": "String"
-      }
-    }
-  },
   "loop": "تكرار",
   "markAsUnwatched": "وضع علامة كغير مشاهد",
   "markAsWatched": "وضع علامة كمشاهد",
+  "masonry": "تصميم شبكي",
   "mediaTypeBase": "النوع الأساسي",
   "mediaTypeBook": "{count, plural, one{كتاب} other{كتب}}",
+  "mediaTypeBoxset": "{count, plural, one{مجموعة أفلام} other{مجموعات أفلام}}",
   "mediaTypeEpisode": "{count, plural, one{حلقة} other{حلقات}}",
   "mediaTypeFolder": "{count, plural, one{مجلد} other{مجلدات}}",
   "mediaTypeMovie": "{count, plural, one{فيلم} other{أفلام}}",
   "mediaTypePerson": "{count, plural, one{شخص} other{أشخاص}}",
+  "mediaTypeArtists": "{count, plural, one{فنان} other{فنانون}}",
+  "mediaTypePhoto": "{count, plural, one{صورة} other{صور}}",
+  "mediaTypePhotoAlbum": "{count, plural, one{ألبوم صور} other{ألبومات صور}}",
+  "mediaTypePlaylist": "{count, plural, one{قائمة تشغيل} other{قوائم تشغيل}}",
+  "mediaTypeSeason": "{count, plural, one{موسم} other{مواسم}}",
+  "mediaTypeSeries": "{count, plural, one{مسلسل} other{مسلسلات}}",
+  "mediaTypeTV": "{count, plural, one{قناة تلفزيونية} other{قنوات تلفزيونية}}",
+  "metaDataSavedFor": "تم حفظ البيانات الوصفية ل {item}",
+  "metadataRefreshDefault": "مسح بحثاً عن الملفات الجديدة والمحدثة",
   "metadataRefreshFull": "استبدال جميع البيانات الوصفية",
   "metadataRefreshValidation": "البحث عن البيانات الوصفية المفقودة",
+  "minutes": "{count, plural, other{دقائق} one{دقيقة}}",
   "mode": "الوضع",
   "moreFrom": "المزيد من {info}",
-  "@moreFrom": {
-    "description": "More from",
-    "placeholders": {
-      "info": {
-        "type": "String"
-      }
-    }
-  },
   "moreOptions": "المزيد من الخيارات",
   "mouseDragSupport": "السحب باستخدام الماوس",
   "musicAlbum": "{count, plural, one{ألبوم موسيقي} other{ألبومات موسيقية}}",
@@ -195,167 +231,137 @@
   "noRating": "لا يوجد تقييم",
   "noResults": "لا توجد نتائج",
   "noServersFound": "لم يتم العثور على خوادم جديدة",
+  "noSuggestionsFound": "لم يتم العثور على اقتراحات",
+  "none": "لا شيء",
+  "normal": "عادي",
   "notPartOfAlbum": "ليس جزءاً من ألبوم",
   "openParent": "فتح الأصل",
   "openShow": "فتح العرض",
-  "openWebLink": "فتح رابط الويب",
   "options": "خيارات",
   "other": "أخرى",
   "outlineColor": "اللون الخارجي",
   "outlineSize": "حجم الحدود",
   "overview": "نظرة عامة",
   "page": "صفحة {index}",
-  "@page": {
-    "description": "page",
-    "placeholders": {
-      "index": {
-        "type": "int"
-      }
-    }
-  },
   "parentalRating": "تصنيف الرقابة الأبوية",
   "password": "كلمة المرور",
   "pathClearTitle": "مسح مسار التنزيلات",
+  "pathEditDesc": "تم تعيين هذا الموقع لجميع المستخدمين، ولن تكون أي بيانات تمت مزامنتها قابلة للوصول إليها بعد الآن. ستبقى على جهاز التخزين الخاص بك.",
   "pathEditSelect": "تحديد وجهة التنزيلات",
   "pathEditTitle": "تغيير الموقع",
   "play": "تشغيل {item}",
-  "@play": {
-    "description": "Play with",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "playCount": "عدد مرات التشغيل",
   "playFrom": "تشغيل من {name}",
-  "@playFrom": {
-    "description": "playFrom",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
+  "playFromStart": "تشغيل {name} من البداية",
   "playLabel": "تشغيل",
+  "playVideos": "تشغيل الفيديوهات",
+  "playMusic": "تشغيل الموسيقى",
   "played": "تم التشغيل",
   "quickConnectAction": "أدخل رمز الاتصال السريع",
-  "quickConnectTitle": "الاتصال السريع",
-  "playFromStart": "تشغيل {name} من البداية",
-  "@playFromStart": {
-    "description": "speel vanaf het begin",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "playVideos": "تشغيل الفيديوهات",
   "quickConnectInputACode": "إدخال الرمز",
+  "quickConnectTitle": "الاتصال السريع",
+  "quickConnectWrongCode": "رمز خاطئ",
+  "random": "عشوائي",
+  "rating": "{count, plural, other{تقييمات} one{تقييم}}",
+  "popularity": "الشعبية",
   "reWatch": "إعادة مشاهدة",
+  "read": "اقرأ {item}",
   "readFromStart": "اقرأ {item} من البداية",
-  "@readFromStart": {
-    "description": "Read book from start",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
+  "recursive": "تكراري",
   "refresh": "تحديث",
+  "refreshMetadata": "تحديث البيانات الوصفية",
   "refreshPopup": "تحديث - {name}",
-  "@refreshPopup": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "refreshPopupContentMetadata": "يتم تحديث البيانات الوصفية بناءً على الإعدادات وخدمات الإنترنت المُشغّلة في لوحة التحكم.",
+  "related": "ذات صلة",
   "releaseDate": "تاريخ الإصدار",
+  "contentRating": "تصنيف المحتوى",
   "removeAsFavorite": "إزالة من المفضلة",
   "removeFromCollection": "إزالة من المجموعة",
   "removeFromPlaylist": "إزالة من قائمة التشغيل",
   "replaceAllImages": "استبدال جميع الصور",
+  "replaceExistingImages": "استبدال الصور الموجودة",
+  "restart": "إعادة تشغيل",
+  "result": "النتيجة",
+  "resumable": "قابل للاستئناف",
+  "resume": "استئناف {item}",
+  "retrievePublicListOfUsers": "استرجاع قائمة المستخدمين العامة",
+  "retry": "إعادة المحاولة",
+  "runTime": "وقت التشغيل",
+  "runtimeMinutesTitle": "مدة التشغيل (بالدقائق)",
+  "runtimeRangeMinutes": "من {min} إلى {max} دقيقة",
+  "minutesShort": "{count} دقيقه",
+  "streamingServices": "مزودو الخدمة ({count})",
+  "save": "حفظ",
   "saved": "تم الحفظ",
   "scanBiometricHint": "التحقق من الهوية",
   "scanLibrary": "مسح المكتبة",
+  "authenticateWithBiometrics": "استخدم المصادقة الحيوية للتحقق من هوية {user}",
   "scanningName": "جارٍ المسح - {name}…",
-  "@scanningName": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "scrollToTop": "التمرير إلى الأعلى",
   "search": "البحث",
+  "season": "{count, plural, other{مواسم} one{موسم}}",
+  "seconds": "{count, plural, other{ثوانٍ} one{ثانية}}",
   "selectAll": "تحديد الكل",
-  "read": "اقرأ {item}",
-  "@read": {
-    "description": "read",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
-  "scanYourFingerprintToAuthenticate": "مسح بصمتك للتحقق من هوية {user}",
-  "@scanYourFingerprintToAuthenticate": {
-    "placeholders": {
-      "user": {
-        "type": "String"
-      }
-    }
-  },
   "selectTime": "تحديد الوقت",
   "selectViewType": "تحديد نوع العرض",
   "selected": "المحدد",
   "selectedWith": "المحدد {info}",
-  "@selectedWith": {
-    "description": "selected",
-    "placeholders": {
-      "info": {
-        "type": "String"
-      }
-    }
-  },
+  "separate": "فصل",
   "server": "الخادم",
   "set": "تعيين",
-  "@set": {
-    "description": "Use for setting a certain value",
-    "context": "Set 'time'"
-  },
-  "separate": "فصل",
   "setIdentityTo": "تغيير الهوية إلى {name}",
-  "@setIdentityTo": {
-    "description": "setIdentityTo",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "settingSecurityApplockTitle": "قفل التطبيق",
+  "settings": "الإعدادات",
   "settingsBlurEpisodesDesc": "تمويه جميع الحلقات القادمة",
   "settingsBlurEpisodesTitle": "تمويه الحلقات التالية",
+  "settingsBlurredPlaceholderDesc": "عرض خلفية ضبابية عند تحميل الملصقات",
+  "settingsBlurredPlaceholderTitle": "عنصر نائب ضبابي",
+  "settingsClientDesc": "عام، مهلة، تخطيط، سمة",
   "settingsClientTitle": "فلادر",
   "settingsContinue": "متابعة",
   "settingsEnableOsMediaControls": "تمكين عناصر تحكم الوسائط في نظام التشغيل",
-  "settingsBlurredPlaceholderDesc": "عرض خلفية ضبابية عند تحميل الملصقات",
+  "settingsEnableOsMediaControlsDesc": "يرجى السماح بالتحكم في التشغيل باستخدام مفاتيح الوسائط وعرض الوسائط المشغلة حالياً في نظام التشغيل",
   "settingsHomeBannerDescription": "العرض كعرض شرائح، كاروسيل، أو إخفاء البانر",
   "settingsHomeBannerTitle": "البانر الرئيسي",
-  "settingsBlurredPlaceholderTitle": "عنصر نائب ضبابي",
-  "settingsPlayerCustomSubtitlesTitle": "تخصيص الترجمة",
-  "settingsPlayerDesc": "نسبة العرض إلى الارتفاع، متقدم",
+  "settingsHomeBannerInformationDesc": "المعلومات المراد عرضها في البانر الرئيسي",
+  "settingsHomeBannerInformationTitle": "معلومات البانر",
   "settingsHomeNextUpDesc": "نوع الملصقات المعروضة في شاشة لوحة التحكم",
   "settingsHomeNextUpTitle": "الملصقات التالية",
+  "settingsNextUpCutoffDays": "أيام الفاصل الزمني للتشغيل التالي",
+  "settingsPlayerCustomSubtitlesDesc": "تخصيص الحجم، اللون، الموضع، الحدود",
+  "settingsPlayerCustomSubtitlesTitle": "تخصيص الترجمة",
+  "settingsPlayerDesc": "نسبة العرض إلى الارتفاع، متقدم",
+  "settingsPlayerMobileWarning": "قد يؤدي تشغيل تسريع الأجهزة والترجمة الأصلية libass على أندرويد إلى عدم عرض بعض الترجمات.",
+  "settingsPlayerNativeLibassAccelDesc": "استخدام محرك عرض الترجمة libass في مشغل الفيديو",
+  "settingsPlayerNativeLibassAccelTitle": "ترجمات libass الأصلية",
+  "settingsPlayerBufferSizeTitle": "حجم التخزين المؤقت للفيديو",
+  "settingsPlayerPlayPauseFadeTitle": "تلاشي الصوت عند التشغيل/الإيقاف",
+  "settingsPlayerPlayPauseFadeDesc": "تلاشي الصوت تدريجياً عند التشغيل أو الإيقاف المؤقت",
+  "settingsPlayerBufferSizeDesc": "قم بتهيئة حجم ذاكرة التخزين المؤقت لتشغيل الفيديو، مما يحدد كمية البيانات التي يتم تحميلها في الذاكرة المؤقتة.",
   "settingsPlayerTitle": "المشغل",
+  "settingsPlayerVideoHWAccelDesc": "استخدام وحدة معالجة الرسومات لعرض الفيديو (موصى به)",
+  "settingsPlayerVideoHWAccelTitle": "تسريع الأجهزة",
+  "settingsPosterPinch": "التصغير/التكبير لتغيير حجم الملصقات",
+  "settingsPosterSize": "حجم الملصق",
+  "settingsProfileDesc": "شاشة القفل، الرابط المحلي، Seerr",
+  "settingsProfileTitle": "ملف التعريف",
+  "settingsProfileSubtitleLanguage": "اللغة المفضلة للترجمة",
+  "anyLanguage": "أي لغة",
+  "settingsProfileSubtitleMode": "وضع الترجمة",
+  "subtitlePlaybackModeDefault": "افتراضي",
+  "subtitlePlaybackModeAlways": "تشغيل دائم",
+  "subtitlePlaybackModeOnlyForced": "الترجمات الإجبارية فقط",
+  "subtitlePlaybackModeNone": "بدون",
+  "subtitlePlaybackModeSmart": "ذكي",
+  "settingsQuickConnectTitle": "اتصال سريع",
+  "settingsSecurity": "الأمان",
+  "settingsShowScaleSlider": "عرض شريط تمرير حجم الملصق",
+  "settingsVisual": "مرئي",
   "shadow": "الظل",
+  "backgroundColor": "لون الخلفية",
   "showAlbum": "عرض الألبوم",
   "showDetails": "عرض التفاصيل",
   "showEmpty": "عرض فارغ",
-  "shuffleGallery": "خلط المعرض",
   "shuffleVideos": "خلط مقاطع الفيديو",
   "somethingWentWrong": "حدث خطأ ما",
   "somethingWentWrongPasswordCheck": "حدث خطأ ما. تحقق من كلمة المرور الخاصة بك.",
@@ -363,338 +369,207 @@
   "sortName": "الاسم",
   "sortOrder": "ترتيب الفرز",
   "start": "ابدأ",
+  "studio": "{count, plural, other{استوديوهات} one{استوديو}}",
   "subtitleConfigurator": "مُكوّن الترجمة",
   "subtitleConfiguratorPlaceHolder": "هذا نص بديل، لا يوجد شيء هنا.",
   "subtitles": "الترجمات",
   "switchUser": "تبديل المستخدم",
   "sync": "مزامنة",
+  "syncDeleteItemDesc": "حذف جميع البيانات التي تمت مزامنتها ل {item}؟",
   "syncDeleteItemTitle": "حذف العنصر الذي تمت مزامنته",
+  "syncDeletePopupPermanent": "هذا الإجراء دائم وسيزيل جميع الملفات التي تمت مزامنتها محلياً",
+  "syncPlaylistDeleteTitle": "حذف قائمة التشغيل المُزامنة",
+  "syncPlaylistDeleteContent": "هل تريد أيضاً إزالة المقاطع المُزامنة من قائمة التشغيل هذه؟",
+  "syncPlaylistKeepTracks": "الاحتفاظ بالمقاطع",
+  "syncPlaylistRemoveTracks": "إزالة المقاطع",
   "syncDetails": "تفاصيل المزامنة",
+  "syncOpenParent": "فتح المجلد الأصلي",
   "syncRemoveDataDesc": "حذف بيانات الفيديو التي تمت مزامنتها؟ هذا الإجراء دائم وستحتاج إلى إعادة مزامنة الملفات",
   "syncRemoveDataTitle": "إزالة البيانات التي تمت مزامنتها؟",
+  "syncedItems": "العناصر التي تمت مزامنتها",
+  "tag": "{count, plural, one{وسم} other{وسوم}}",
   "theme": "المظهر",
   "themeColor": "لون المظهر",
   "themeModeDark": "داكن",
   "themeModeLight": "فاتح",
   "themeModeSystem": "النظام",
   "timeAndAnnotation": "{minutes} و {seconds}",
-  "@timeAndAnnotation": {
-    "description": "timeAndAnnotation",
-    "placeholders": {
-      "minutes": {
-        "type": "String"
-      },
-      "seconds": {
-        "type": "String"
-      }
-    }
-  },
-  "videoScalingFillScreenDesc": "ملء شريط التنقل وشريط الحالة",
-  "videoScalingFillScreenNotif": "ملء الشاشة يتجاوز ملاءمة الفيديو، في الوضع الأفقي",
-  "videoScalingFillScreenTitle": "ملء الشاشة",
-  "videoScalingFill": "ملء",
-  "videoScalingFitHeight": "ملاءمة الارتفاع",
-  "videoScalingFitWidth": "ملاءمة العرض",
-  "videoScalingScaleDown": "تقليص العرض",
-  "viewPhotos": "عرض الصور",
-  "watchOn": "مشاهدة على",
-  "addedToPlaylist": "تمت الإضافة إلى قائمة تشغيل {playlistName}",
-  "@addedToPlaylist": {
-    "placeholders": {
-      "playlistName": {
-        "type": "String"
-      }
-    }
-  },
-  "addItemsToPlaylist": "إضافة {itemLength} من العناصر إلى قائمة التشغيل",
-  "@addItemsToPlaylist": {
-    "placeholders": {
-      "itemLength": {
-        "type": "int"
-      }
-    }
-  },
-  "syncStatusEnqueued": "في قائمة الانتظار",
-  "syncStatusNotFound": "غير موجود",
-  "syncStatusFailed": "فشل",
-  "syncStatusCanceled": "تم الإلغاء",
-  "syncStatusWaitingToRetry": "في انتظار إعادة المحاولة",
-  "syncStatusPaused": "متوقف مؤقتاً",
-  "syncStatusSynced": "تمت المزامنة",
-  "syncStatusPartially": "جزئياً",
-  "syncOverlayDeleting": "إزالة العنصر الذي تمت مزامنته",
-  "syncOverlaySyncing": "مزامنة تفاصيل العنصر",
-  "syncSelectDownloadsFolder": "تحديد مجلد التنزيلات",
-  "syncNoFolderSetup": "لم يتم إعداد مجلد مزامنة",
-  "syncRemoveUnableToDeleteItem": "تعذر إزالة العنصر الذي تمت مزامنته، حدث خطأ ما",
-  "syncAddItemForSyncing": "تمت إضافة {item} للمزامنة",
-  "@syncAddItemForSyncing": {
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
-  "startedSyncingItem": "بدأت مزامنة {item}",
-  "@startedSyncingItem": {
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
-  "aboutBuild": "رقم البناء: {buildNumber}",
-  "@aboutBuild": {
-    "placeholders": {
-      "buildNumber": {
-        "type": "String"
-      }
-    }
-  },
-  "aboutCreatedBy": "تم إنشاؤه بواسطة DonutWare",
-  "aboutSocials": "وسائل التواصل الاجتماعي",
-  "aboutLicenses": "التراخيص",
-  "unableToSyncItem": "تعذر مزامنة {item}، حدث خطأ ما",
-  "@unableToSyncItem": {
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
-  "aboutVersion": "الإصدار: {version}",
-  "@aboutVersion": {
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
-  "subtitle": "الترجمة",
-  "subtitleConfiguration": "إعدادات الترجمة",
-  "off": "إيقاف",
-  "screenBrightness": "سطوع الشاشة",
-  "scale": "تحجيم",
-  "playBackSettings": "إعدادات التشغيل",
-  "settingsAutoNextTitle": "معاينة التالي",
-  "autoNextOffSmartTitle": "ذكي",
-  "autoNextOffStaticTitle": "ثابت",
-  "autoNextOffStaticDesc": "عرض شاشة العنصر التالي عندما يتبقى 30 ثانية من وقت التشغيل",
-  "playbackRate": "معدل التشغيل",
-  "speed": "السرعة",
-  "autoNextOffSmartDesc": "تظهِر شاشة 'التالي' عندما تبدأ الاعتمادات إذا لم يتبق أكثر من 10 ثوانٍ بعد الاعتمادات. وإلا فإنه يُظهِر شاشة 'التالي' مع 30 ثانية متبقية من وقت التشغيل",
-  "settingsAutoNextDesc": "يعرض معاينة للعرض التالي قرب النهاية إذا كان هناك عرض آخر في قائمة التشغيل",
-  "mediaSegmentOutro": "خاتمة",
-  "mediaSegmentIntro": "مقدمة",
-  "biometricsFailedCheckAgain": "فشلت المصادقة الحيوية. تحقق من الإعدادات وحاول مرة أخرى.",
-  "dateAdded": "تاريخ الإضافة",
-  "dashboardRecentlyAdded": "تمت إضافته مؤخراً في {name}",
-  "@dashboardRecentlyAdded": {
-    "description": "Recently added on home screen",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "downloadsPath": "المسار",
-  "incorrectPinTryAgain": "رقم PIN غير صحيح. حاول مرة أخرى.",
-  "invalidUrlDesc": "يجب أن يبدأ عنوان URL بـ http(s)://",
-  "addToNewPlaylist": "قائمة تشغيل جديدة",
-  "addedToCollection": "تمت الإضافة إلى مجموعة {collectionName}",
-  "@addedToCollection": {
-    "placeholders": {
-      "collectionName": {
-        "type": "String"
-      }
-    }
-  },
-  "syncStatusRunning": "قيد التشغيل",
-  "addToNewCollection": "مجموعة جديدة",
-  "addItemsToCollection": "إضافة {itemLength} من العناصر إلى المجموعة",
-  "@addItemsToCollection": {
-    "placeholders": {
-      "itemLength": {
-        "type": "int"
-      }
-    }
-  },
-  "removedFromCollection": "تمت الإزالة من مجموعة {collectionName}",
-  "@removedFromCollection": {
-    "placeholders": {
-      "collectionName": {
-        "type": "String"
-      }
-    }
-  },
-  "syncStatusComplete": "مكتمل",
-  "libraryFetchNoItemsFound": "لم يتم العثور على عناصر. حاول استخدام إعدادات مختلفة.",
-  "mediaTypePhoto": "{count, plural, one{صورة} other{صور}}",
-  "mediaTypeSeries": "{count, plural, one{مسلسل} other{مسلسلات}}",
-  "retry": "إعادة المحاولة",
-  "lockscreen": "شاشة القفل",
-  "metadataRefreshDefault": "مسح بحثاً عن الملفات الجديدة والمحدثة",
-  "noSuggestionsFound": "لم يتم العثور على اقتراحات",
-  "libraryPageSizeDesc": "حدد المقدار المراد تحميله في المرة الواحدة. القيمة 0 تُوقف تقسيم الصفحات.",
-  "mediaTypePhotoAlbum": "{count, plural, one{ألبوم صور} other{ألبومات صور}}",
-  "mediaTypePlaylist": "{count, plural, one{قائمة تشغيل} other{قوائم تشغيل}}",
-  "retrievePublicListOfUsers": "استرجاع قائمة المستخدمين العامة",
-  "pathEditDesc": "تم تعيين هذا الموقع لجميع المستخدمين، ولن تكون أي بيانات تمت مزامنتها قابلة للوصول إليها بعد الآن. ستبقى على جهاز التخزين الخاص بك.",
-  "resume": "استئناف {item}",
-  "@resume": {
-    "description": "resume",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
-  "quickConnectWrongCode": "رمز خاطئ",
-  "settings": "الإعدادات",
-  "mediaTypeSeason": "{count, plural, one{موسم} other{مواسم}}",
-  "normal": "عادي",
-  "save": "حفظ",
-  "none": "لا شيء",
-  "random": "عشوائي",
-  "result": "النتيجة",
-  "resumable": "قابل للاستئناف",
-  "runTime": "وقت التشغيل",
-  "refreshMetadata": "تحديث البيانات الوصفية",
-  "replaceExistingImages": "استبدال الصور الموجودة",
-  "related": "ذات صلة",
-  "restart": "إعادة تشغيل",
-  "settingsHomeBannerInformationDesc": "المعلومات المراد عرضها في البانر الرئيسي",
-  "settingsHomeBannerInformationTitle": "معلومات البانر",
-  "settingsPosterSize": "حجم الملصق",
-  "metaDataSavedFor": "تم حفظ البيانات الوصفية ل {item}",
-  "@metaDataSavedFor": {
-    "description": "metaDataSavedFor",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
-  "syncDeletePopupPermanent": "هذا الإجراء دائم وسيزيل جميع الملفات التي تمت مزامنتها محلياً",
-  "syncDeleteItemDesc": "حذف جميع البيانات التي تمت مزامنتها ل {item}؟",
-  "@syncDeleteItemDesc": {
-    "description": "Sync delete item pop-up window",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
-  "syncedItems": "العناصر التي تمت مزامنتها",
-  "settingsPlayerMobileWarning": "قد يؤدي تشغيل تسريع الأجهزة والترجمة الأصلية libass على أندرويد إلى عدم عرض بعض الترجمات.",
-  "settingsPlayerNativeLibassAccelTitle": "ترجمات libass الأصلية",
-  "settingsProfileDesc": "شاشة القفل، الرابط المحلي، Seerr",
-  "settingsProfileTitle": "ملف التعريف",
-  "settingsQuickConnectTitle": "اتصال سريع",
-  "settingsSecurity": "الأمان",
-  "settingsShowScaleSlider": "عرض شريط تمرير حجم الملصق",
-  "settingsPosterSlider": "عرض مقياس الشريحة",
   "timeOut": "انتهاء المهلة",
   "totalSize": "الحجم الكلي: {size}",
-  "@totalSize": {
-    "placeholders": {
-      "size": {
-        "type": "String"
-      }
-    }
-  },
+  "type": "{count, plural, one{نوع} other{أنواع}}",
   "unPlayed": "لم تُشغَل",
   "unableToConnectHost": "غير قادر على الاتصال بالمضيف",
   "unableToReverseAction": "لا يمكن التراجع عن هذا الإجراء. سيؤدي إلى إزالة جميع الإعدادات.",
+  "unknown": "مجهول",
   "useDefaults": "الاعدادات الافتراضية",
   "userName": "اسم المستخدم",
   "video": "{count, plural, one{فيديو} other{فيديوهات}}",
   "videoScaling": "تحجيم الفيديو",
   "videoScalingContain": "احتواء",
   "videoScalingCover": "تغطية",
+  "videoScalingFill": "ملء",
+  "videoScalingFillScreenDesc": "ملء شريط التنقل وشريط الحالة",
+  "videoScalingFillScreenNotif": "ملء الشاشة يتجاوز ملاءمة الفيديو، في الوضع الأفقي",
+  "videoScalingFillScreenTitle": "ملء الشاشة",
+  "pictureInPictureTitle": "صورة داخل صورة",
+  "pictureInPictureAutoTitle": "صورة داخل صورة تلقائية",
+  "pictureInPictureSubtitle": "الدخول تلقائياً في وضع الصورة داخل الصورة عند مغادرة المشغل. يعمل زر الصورة داخل الصورة في عناصر التحكم دائماً بغض النظر عن هذا الإعداد.",
+  "pictureInPictureNotSupported": "وضع الصورة داخل الصورة غير متاح على هذا الجهاز",
+  "videoScalingFitHeight": "ملاءمة الارتفاع",
+  "videoScalingFitWidth": "ملاءمة العرض",
+  "videoScalingScaleDown": "تقليص العرض",
+  "viewPhotos": "عرض الصور",
+  "writer": "{count, plural, other{كتاب} two{كاتبان} one{كاتب}}",
+  "year": "{count, plural, other{سنوات} one{سنة}}",
+  "addToNewCollection": "مجموعة جديدة",
+  "addItemsToCollection": "إضافة {itemLength} من العناصر إلى المجموعة",
+  "addedToCollection": "تمت الإضافة إلى مجموعة {collectionName}",
+  "removedFromCollection": "تمت الإزالة من مجموعة {collectionName}",
+  "addToNewPlaylist": "قائمة تشغيل جديدة",
+  "addItemsToPlaylist": "إضافة {itemLength} من العناصر إلى قائمة التشغيل",
+  "addedToPlaylist": "تمت الإضافة إلى قائمة تشغيل {playlistName}",
+  "removedFromPlaylist": "تمت الإزالة من قائمة تشغيل {playlistName}",
+  "syncStatusEnqueued": "في قائمة الانتظار",
+  "syncStatusRunning": "قيد التشغيل",
+  "syncStatusNotFound": "غير موجود",
+  "syncStatusFailed": "فشل",
+  "syncStatusCanceled": "تم الإلغاء",
+  "syncStatusWaitingToRetry": "في انتظار إعادة المحاولة",
+  "syncStatusPaused": "متوقف مؤقتاً",
+  "syncStatusSynced": "تمت المزامنة",
+  "syncOverlayDeleting": "إزالة العنصر الذي تمت مزامنته",
+  "syncOverlaySyncing": "مزامنة تفاصيل العنصر",
+  "syncSelectDownloadsFolder": "تحديد مجلد التنزيلات",
+  "syncNoFolderSetup": "لم يتم إعداد مجلد مزامنة",
+  "syncRemoveUnableToDeleteItem": "تعذر إزالة العنصر الذي تمت مزامنته، حدث خطأ ما",
+  "syncAddItemForSyncing": "تمت إضافة {item} للمزامنة",
+  "startedSyncingItem": "بدأت مزامنة {item}",
+  "unableToSyncItem": "تعذر مزامنة {item}، حدث خطأ ما",
+  "aboutVersion": "الإصدار: {version}",
+  "aboutBuild": "رقم البناء: {buildNumber}",
+  "aboutCreatedBy": "تم إنشاؤه بواسطة DonutWare",
+  "aboutSocials": "وسائل التواصل الاجتماعي",
+  "aboutLicenses": "التراخيص",
+  "subtitle": "الترجمة",
+  "subtitleConfiguration": "إعدادات الترجمة",
+  "subtitleSync": "مزامنة الترجمة",
+  "watchTogether": "المشاهدة معاً",
+  "syncPlayInGroup": "ضمن مجموعة",
+  "syncPlayConnecting": "جارٍ الاتصال…",
+  "syncPlayWaiting": "في انتظار الأعضاء…",
+  "syncPlayCreateGroup": "إنشاء مجموعة",
+  "syncPlayLeave": "مغادرة المجموعة",
+  "syncPlayAvailableGroups": "المجموعات المتاحة",
+  "syncPlayNoGroups": "لا توجد مجموعات نشطة",
+  "syncPlayDifferentItem": "المجموعة تشاهد عنصراً مختلفاً. افتحه للمزامنة.",
+  "syncPlayChatHint": "رسالة…",
+  "syncPlayChatEmpty": "لا توجد رسائل بعد",
+  "syncPlayMembers": "{count, plural, =0{لا يوجد أعضاء} =1{عضو واحد} other{{count} أعضاء}}",
+  "syncPlayReact": "تفاعل",
+  "syncPlayTyping": "{names} يكتب…",
+  "syncPlayBufferingMembers": "{names} يخزن مؤقتًا…",
+  "off": "إيقاف",
+  "screenBrightness": "سطوع الشاشة",
+  "enableEdgeGesturesTitle": "تفعيل إيماءات الحواف",
+  "enableEdgeGesturesDesc": "التحكم في السطوع والصوت عبر السحب لأعلى أو لأسفل على حواف الشاشة",
+  "reverseEdgeGesturesTitle": "تبديل إيماءات الحواف",
+  "reverseEdgeGesturesDesc": "تبديل الجهة للتحكم في السطوع والصوت",
+  "scale": "تحجيم",
+  "playBackSettings": "إعدادات التشغيل",
+  "settingsAutoNextTitle": "معاينة التالي",
+  "settingsAutoNextDesc": "يعرض معاينة للعرض التالي قرب النهاية إذا كان هناك عرض آخر في قائمة التشغيل",
+  "autoNextOffSmartTitle": "ذكي",
+  "autoNextOffSmartDesc": "تظهِر شاشة 'التالي' عندما تبدأ الاعتمادات إذا لم يتبق أكثر من 10 ثوانٍ بعد الاعتمادات. وإلا فإنه يُظهِر شاشة 'التالي' مع 30 ثانية متبقية من وقت التشغيل",
+  "autoNextOffStaticTitle": "ثابت",
+  "autoNextOffStaticDesc": "عرض شاشة العنصر التالي عندما يتبقى 30 ثانية من وقت التشغيل",
+  "playbackRate": "معدل التشغيل",
+  "speed": "السرعة",
+  "sleepTimer": "مؤقت النوم",
+  "sleepTimerEndOfEpisode": "نهاية الحلقة",
+  "sleepTimerMinutes": "{count} دقيقة",
   "unableToPlayMedia": "حدث خطأ في العثور على نوع وسائط متوافق",
+  "errorOpeningMedia": "حدث خطأ ما أثناء محاولة تشغيل هذه الوسائط",
+  "unableToPlayBooksOnWeb": "الكتب غير مدعومة على الويب في الوقت الحالي",
   "defaultFilterForLibrary": "اعدادات الفلتر الافتراضي للمكتبة",
   "updateFilterForLibrary": "تحديث الفلتر",
+  "removeFilterForLibrary": "إزالة {filter}؟",
+  "deleteFilterConfirmation": "هل أنت متأكد من أنك تريد حذف هذا الفلتر؟",
+  "deleteRequestConfirmation": "هل أنت متأكد أنك تريد حذف هذا الطلب؟",
   "libraryFiltersLimitReached": "تم الوصول إلى حد الفلاتر (10) قم بإزالة بعض الفلتره",
   "libraryFiltersRemoveAll": "إزالة جميع الفلاتر",
+  "libraryFiltersRemoveAllConfirm": "سيؤدي ذلك إلى حذف جميع الفلاتر المحفوظة لكل مكتبة",
   "playerSettingsOrientationTitle": "اتجاه المُشغِّل",
   "playerSettingsOrientationDesc": "فرض مُشغِّل الفيديو على اتجاهات مُحددة",
   "deviceOrientationPortraitUp": "عمودي لأعلى",
   "deviceOrientationPortraitDown": "عمودي لأسفل",
   "deviceOrientationLandscapeLeft": "أفقي لليسار",
+  "deviceOrientationLandscapeRight": "أفقي لليمين",
+  "clientSettingsSchemeVariantTitle": "النسق",
+  "schemeSettingsTonalSpot": "بقعة لونية",
+  "schemeSettingsFidelity": "دقة",
   "schemeSettingsMonochrome": "أحادي اللون",
   "schemeSettingsNeutral": "مُحايد",
   "schemeSettingsVibrant": "نابض بالحياة",
-  "schemeSettingsRainbow": "قوس قزح",
-  "clientSettingsRequireWifiDesc": "التنزيل فقط عند الاتصال بشبكة Wi-Fi",
-  "libraryShuffleAndPlayItems": "تشغيل العناصر عشوائياً",
-  "clientSettingsRequireWifiTitle": "يتطلب اتصال Wi-Fi",
-  "unknown": "مجهول",
-  "libraryFiltersRemoveAllConfirm": "سيؤدي ذلك إلى حذف جميع الفلاتر المحفوظة لكل مكتبة",
-  "deleteFilterConfirmation": "هل أنت متأكد من أنك تريد حذف هذا الفلتر؟",
-  "unableToPlayBooksOnWeb": "الكتب غير مدعومة على الويب في الوقت الحالي",
-  "removeFilterForLibrary": "إزالة {filter}؟",
-  "@removeFilterForLibrary": {
-    "description": "removeFilterForLibrary",
-    "placeholders": {
-      "filter": {
-        "type": "String"
-      }
-    }
-  },
-  "errorOpeningMedia": "حدث خطأ ما أثناء محاولة تشغيل هذه الوسائط",
   "schemeSettingsExpressive": "مُعبر",
   "schemeSettingsContent": "محتوى",
-  "deviceOrientationLandscapeRight": "أفقي لليمين",
+  "schemeSettingsRainbow": "قوس قزح",
   "schemeSettingsFruitSalad": "سلطة فواكه",
-  "syncOpenParent": "فتح المجلد الأصلي",
-  "clientSettingsSchemeVariantTitle": "النسق",
-  "schemeSettingsFidelity": "دقة",
+  "clientSettingsRequireWifiTitle": "يتطلب اتصال Wi-Fi",
+  "clientSettingsRequireWifiDesc": "التنزيل فقط عند الاتصال بشبكة Wi-Fi",
+  "libraryShuffleAndPlayItems": "تشغيل العناصر عشوائياً",
   "libraryPlayItems": "تشغيل العناصر",
   "clientSettingsShowAllCollectionsTitle": "عرض جميع أنواع المجموعات",
+  "clientSettingsShowAllCollectionsDesc": "عند التمكين، يتم عرض جميع أنواع المجموعات، بما في ذلك تلك غير المدعومة بواسطة Driftfin",
+  "stop": "توقف",
   "resumeVideo": "استئناف الفيديو",
   "closeVideo": "إغلاق الفيديو",
   "playNextVideo": "تشغيل الفيديو التالي",
-  "playerSettingsBackendDesc": "اختر مشغل الوسائط المفضل لديك لتجربة تشغيل مثالية",
-  "defaultLabel": "افتراضي",
-  "@defaultLabel": {
-    "description": "To indicate a default value, default video player backend"
-  },
-  "mdkExperimental": "MDK لا يزال في مرحلة تجريبية",
-  "noVideoPlayerOptions": "الواجهة الخلفية المختارة ليس لديها خيارات",
   "playerSettingsBackendTitle": "الواجهة الخلفية لمُشغِّل الفيديو",
+  "playerSettingsBackendDesc": "اختر مشغل الوسائط المفضل لديك لتجربة تشغيل مثالية",
+  "playerSettingsReplayGainTitle": "ReplayGain",
+  "playerSettingsReplayGainDesc": "توحيد مستوى صوت الموسيقى باستخدام علامات ReplayGain.",
+  "playerSettingsReplayGainLevelTitle": "مستوى ReplayGain",
+  "playerSettingsReplayGainLevelDesc": "حدد مستوى الصوت المستهدف لتوحيد ReplayGain. المعيار الشائع هو -14 ديسيبل، لكن يمكنك ضبطه حسب تفضيلك.",
+  "playerSettingsSmartDownmixTitle": "الدمج الذكي للقنوات",
+  "playerSettingsSmartDownmixDesc": "تعزيز الحوار مقارنة بالمؤثرات والقنوات الخلفية عند دمج صوت 5.1/7.1 إلى ستيريو.",
+  "playerSettingsDialogueBoostTitle": "تعزيز الحوار",
+  "playerSettingsDialogueBoostDesc": "رفع مستوى الحوار الهادئ دون رفع مستوى الحركة أو الموسيقى الصاخبة.",
+  "dialogueBoostOff": "إيقاف",
+  "dialogueBoostLow": "منخفض",
+  "dialogueBoostMedium": "متوسط",
+  "dialogueBoostHigh": "مرتفع",
+  "settingsPlayerCrossfadeTitle": "التلاشي المتقاطع",
+  "settingsPlayerCrossfadeDesc": "التلاشي بين المقاطع غير المتتالية في نفس الألبوم",
+  "settingsPlayerCrossfadeDurationTitle": "مدة التلاشي المتقاطع",
+  "settingsPlayerCrossfadeDurationDesc": "مدة التلاشي المتقاطع",
+  "defaultLabel": "افتراضي",
+  "noVideoPlayerOptions": "الواجهة الخلفية المختارة ليس لديها خيارات",
+  "mdkExperimental": "MDK لا يزال في مرحلة تجريبية",
   "skipButtonLabel": "تخطي {segment}",
-  "@skipButtonLabel": {
-    "placeholders": {
-      "segment": {
-        "type": "String"
-      }
-    }
-  },
   "mediaSegmentUnknown": "مجهول",
   "mediaSegmentCommercial": "إعلان تجاري",
   "mediaSegmentPreview": "معاينة",
   "mediaSegmentRecap": "ملخص",
+  "mediaSegmentOutro": "خاتمة",
+  "mediaSegmentIntro": "مقدمة",
   "errorLogs": "سجلات الأخطاء",
   "external": "خارجي",
-  "desktop": "سطح المكتب",
-  "layoutModeDual": "مزدوج",
-  "layoutModeSingle": "فردي",
-  "copiedToClipboard": "تم النسخ إلى الحافظة",
   "downloadFile": "تنزيل {type}",
-  "@downloadFile": {
-    "placeholders": {
-      "type": {
-        "type": "String"
-      }
-    }
-  },
   "copyStreamUrl": "نسخ رابط البث",
+  "settingsLayoutSizesTitle": "أحجام التخطيط",
   "settingsLayoutSizesDesc": "اختر أحجام التخطيط التي يمكن للتطبيق استخدامها بناءً على حجم النافذة",
+  "settingsLayoutModesTitle": "أوضاع التخطيط",
   "settingsLayoutModesDesc": "تحكم فيما إذا كان التطبيق يمكنه استخدام تخطيطات اللوحة المفردة أو المزدوجة",
   "phone": "الهاتف",
-  "settingsLayoutSizesTitle": "أحجام التخطيط",
-  "settingsLayoutModesTitle": "أوضاع التخطيط",
+  "tablet": "الجهاز اللوحي",
+  "desktop": "سطح المكتب",
+  "television": "التلفاز",
+  "layoutModeSingle": "فردي",
+  "layoutModeDual": "مزدوج",
+  "copiedToClipboard": "تم النسخ إلى الحافظة",
+  "episodeAvailable": "متاح",
+  "episodeUnaired": "لم يُبث",
+  "episodeMissing": "مفقود",
   "internetStreamingQualityTitle": "جودة الإنترنت",
   "internetStreamingQualityDesc": "أقصى جودة بث عبر الإنترنت (الجوال)",
   "homeStreamingQualityTitle": "جودة المنزل",
@@ -702,293 +577,60 @@
   "qualityOptionsTitle": "خيارات الجودة",
   "qualityOptionsOriginal": "الأصلي",
   "qualityOptionsAuto": "تلقائي",
+  "advancedVideoOptionsTitle": "خيارات الفيديو المتقدمة",
+  "advancedVideoOptionsDesc": "تفعيل HDR، ومعالجة النغمات، وإدارة الألوان المتقدمة (قد تكون غير مستقرة لبعض الأجهزة)",
   "version": "إصدار",
   "mediaSegmentActions": "إجراءات مقاطع الوسائط",
   "segmentActionNone": "لا شيء",
-  "loading": "جارٍ التحميل",
   "segmentActionAskToSkip": "طلب التخطي",
-  "clientSettingsShowAllCollectionsDesc": "عند التمكين، يتم عرض جميع أنواع المجموعات، بما في ذلك تلك غير المدعومة بواسطة Driftfin",
-  "settingsVisual": "مرئي",
-  "stop": "توقف",
+  "segmentActionSkipOnce": "تخط مرة واحدة",
   "segmentActionSkip": "تخطي",
-  "tablet": "الجهاز اللوحي",
-  "settingsPosterPinch": "التصغير/التكبير لتغيير حجم الملصقات",
-  "settingsPlayerVideoHWAccelTitle": "تسريع الأجهزة",
-  "schemeSettingsTonalSpot": "بقعة لونية",
-  "episodeAvailable": "متاح",
-  "episodeUnaired": "لم يُبث",
-  "episodeMissing": "مفقود",
-  "actor": "{count, plural, other{ممثلون} one{ممثل}}",
-  "@actor": {
-    "description": "actor",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "chapter": "{count, plural, other{فصول} one{فصل}}",
-  "@chapter": {
-    "description": "chapter",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "genre": "{count, plural, other{أنواع} one{نوع}}",
-  "@genre": {
-    "description": "genre",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "seconds": "{count, plural, other{ثوانٍ} one{ثانية}}",
-  "@seconds": {
-    "description": "second",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "settingsClientDesc": "عام، مهلة، تخطيط، سمة",
-  "settingsNextUpCutoffDays": "أيام الفاصل الزمني للتشغيل التالي",
-  "settingsPlayerCustomSubtitlesDesc": "تخصيص الحجم، اللون، الموضع، الحدود",
-  "settingsPlayerNativeLibassAccelDesc": "استخدام محرك عرض الترجمة libass في مشغل الفيديو",
-  "studio": "{count, plural, other{استوديوهات} one{استوديو}}",
-  "@studio": {
-    "description": "studio",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "tag": "{count, plural, one{وسم} other{وسوم}}",
-  "@tag": {
-    "description": "tag",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "type": "{count, plural, one{نوع} other{أنواع}}",
-  "@type": {
-    "description": "type",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "mediaTypeBoxset": "{count, plural, one{مجموعة أفلام} other{مجموعات أفلام}}",
-  "minutes": "{count, plural, other{دقائق} one{دقيقة}}",
-  "@minutes": {
-    "description": "minute",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "settingsPlayerVideoHWAccelDesc": "استخدام وحدة معالجة الرسومات لعرض الفيديو (موصى به)",
-  "recursive": "تكراري",
-  "episode": "{count, plural, other{حلقات} one{حلقة}}",
-  "@episode": {
-    "description": "episode",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "year": "{count, plural, other{سنوات} one{سنة}}",
-  "@year": {
-    "description": "year",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "writer": "{count, plural, other{كتاب} two{كاتبان} one{كاتب}}",
-  "@writer": {
-    "description": "writer",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "director": "{count, plural, other{مخرجون} one{مخرج}}",
-  "@director": {
-    "description": "director",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "filter": "{count, plural, other{مرشحات} one{مرشح}}",
-  "@filter": {
-    "description": "filter",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "label": "{count, plural, other{تصنيفات} one{تصنيف}}",
-  "@label": {
-    "description": "label",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "library": "{count, plural, other{مكتبات} one{مكتبة}}",
-  "@library": {
-    "description": "Plural",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "rating": "{count, plural, other{تقييمات} one{تقييم}}",
-  "@rating": {
-    "description": "rating",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "season": "{count, plural, other{مواسم} one{موسم}}",
-  "@season": {
-    "description": "season",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "masonry": "تصميم شبكي",
+  "loading": "جارٍ التحميل",
+  "exitDriftfinTitle": "خروج فلادر",
+  "exitDriftfinDesc": "هل أنت متأكد من أنك تريد إغلاق Driftfin؟",
+  "quitMultipleWindowsDesc": "لديك {count} نوافذ مفتوحة. سيؤدي إنهاء Driftfin إلى إغلاقها جميعاً. هل تريد المتابعة؟",
+  "closeWindow": "إغلاق النافذة",
   "castAndCrew": "طاقم العمل والممثلون",
   "guestActor": "{count, plural, one{ممثل ضيف} other{ممثلون ضيوف}}",
-  "@guestActor": {
-    "description": "Guest actors",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "settingsPlayerBufferSizeTitle": "حجم التخزين المؤقت للفيديو",
-  "settingsPlayerBufferSizeDesc": "قم بتهيئة حجم ذاكرة التخزين المؤقت لتشغيل الفيديو، مما يحدد كمية البيانات التي يتم تحميلها في الذاكرة المؤقتة.",
   "maxConcurrentDownloadsTitle": "الحد الأقصى للتنزيلات المتزامنة",
   "maxConcurrentDownloadsDesc": "يحدد العدد الأقصى للتنزيلات التي يمكن أن تتم في نفس الوقت. اضبطه على 0 لتعطيل الحد.",
   "playbackTrackSelection": "اختيار مسار التشغيل",
   "rememberSubtitleSelections": "تذكر اختيارات الترجمة بناءً على العنصر السابق",
   "rememberAudioSelections": "تذكر اختيارات الصوت بناءً على العنصر السابق",
-  "rememberAudioSelectionsDesc": "حاول ضبط مسار الصوت ليكون الأقرب تطابقاً مع الفيديو الأخير.",
   "rememberSubtitleSelectionsDesc": "حاول ضبط مسار الترجمة ليكون الأقرب تطابقاً مع الفيديو الأخير.",
-  "exitDriftfinTitle": "خروج فلادر",
-  "similarToLikedItem": "مشابه للعنصر المفضل",
-  "hasActorFromRecentlyPlayed": "يحتوي على ممثل من الأفلام المشغلة مؤخراً",
-  "hasLikedActor": "يحتوي على ممثل مفضل",
-  "hasDirectorFromRecentlyPlayed": "يحتوي على مخرج من الأفلام المشغلة مؤخراً",
-  "hasLikedDirector": "يحتوي على مخرج مفضل",
-  "playbackTypeDirect": "مباشر",
-  "latestReleases": "أحدث الإصدارات",
-  "autoCheckForUpdates": "التحقق التلقائي من التحديثات",
-  "newUpdateFoundOnGithub": "تم اكتشاف تحديث جديد على Github",
+  "rememberAudioSelectionsDesc": "حاول ضبط مسار الصوت ليكون الأقرب تطابقاً مع الفيديو الأخير.",
   "similarToRecentlyPlayed": "مشابه لما تم تشغيله مؤخراً",
-  "playbackTypeOffline": "في وضع عدم الاتصال",
+  "similarToLikedItem": "مشابه للعنصر المفضل",
+  "hasDirectorFromRecentlyPlayed": "يحتوي على مخرج من الأفلام المشغلة مؤخراً",
+  "hasActorFromRecentlyPlayed": "يحتوي على ممثل من الأفلام المشغلة مؤخراً",
+  "hasLikedDirector": "يحتوي على مخرج مفضل",
+  "hasLikedActor": "يحتوي على ممثل مفضل",
   "latest": "الأحدث",
-  "playbackTypeTranscode": "تحويل الصيغة",
-  "newReleaseFoundTitle": "تحديث {newRelease} متاح الآن!",
-  "@newReleaseFoundTitle": {
-    "placeholders": {
-      "newRelease": {
-        "type": "String"
-      }
-    }
-  },
   "recommended": "الموصى به",
   "playbackType": "نوع التشغيل",
-  "enableBackgroundPostersDesc": "عرض ملصقات عشوائية في الشاشات المناسبة",
+  "playbackTypeDirect": "مباشر",
+  "playbackTypeTranscode": "تحويل الصيغة",
+  "playbackTypeOffline": "في وضع عدم الاتصال",
+  "playbackTypeTV": "تلفاز",
+  "latestReleases": "أحدث الإصدارات",
+  "autoCheckForUpdates": "التحقق التلقائي من التحديثات",
+  "installUpdate": "تثبيت التحديث",
+  "installUpdateConfirmTitle": "تثبيت {version}؟",
+  "installUpdateConfirmBody": "سيقوم Driftfin بتنزيل هذا الإصدار، ثم الإغلاق، والتحديث الذاتي، وإعادة التشغيل تلقائياً. قد يتم مقاطعة أي تشغيل غير محفوظ.",
+  "downloadingUpdate": "جارٍ تنزيل التحديث…",
+  "updateInstallFailed": "فشل التحديث: {error}",
+  "newReleaseFoundTitle": "تحديث {newRelease} متاح الآن!",
+  "newUpdateFoundOnGithub": "تم اكتشاف تحديث جديد على Github",
   "enableBackgroundPostersTitle": "تفعيل الملصقات الخلفية",
-  "settingsEnableOsMediaControlsDesc": "يرجى السماح بالتحكم في التشغيل باستخدام مفاتيح الوسائط وعرض الوسائط المشغلة حالياً في نظام التشغيل",
+  "enableBackgroundPostersDesc": "عرض ملصقات عشوائية في الشاشات المناسبة",
   "notificationDownloadingDownloading": "جار التنزيل",
   "notificationDownloadingPaused": "تم إيقاف التنزيل مؤقتاً",
   "notificationDownloadingFinished": "اكتمل التنزيل",
   "notificationDownloadingError": "خطأ في التنزيل",
   "syncAllItemsTitle": "هل ترغب في مزامنة جميع العناصر من {itemName}؟",
-  "@syncAllItemsTitle": {
-    "description": "syncAllItemsFrom",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      }
-    }
-  },
   "syncAllItemsDesc": "سيتم مزامنة ({itemCount}) عنصراً من '{itemName}' إلى جهازك.\nقد يستغرق ذلك بعض الوقت حسب عدد العناصر.",
-  "@syncAllItemsDesc": {
-    "description": "syncAllitemsFromDesc",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      },
-      "itemCount": {
-        "type": "int"
-      }
-    }
-  },
   "syncDeleteAllItemsTitle": "هل تريد حذف جميع العناصر المُزامنة من {itemName}؟",
-  "@syncDeleteAllItemsTitle": {
-    "description": "syncDeleteAllitemsFrom",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      }
-    }
-  },
   "syncDeleteAllItemsDesc": "سيتم حذف جميع العناصر المُزامنة من '{itemName}'.\nهذه العملية دائمة، وستحتاج لإعادة مزامنة ({itemCount}) ملفاً لاحقاً.",
-  "@syncDeleteAllItemsDesc": {
-    "description": "syncDeleteAllitemsFromDesc",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      },
-      "itemCount": {
-        "type": "int"
-      }
-    }
-  },
   "syncPauseAll": "إيقاف الكل مؤقتاً",
   "syncResumeAll": "استئناف الكل",
   "syncStopAll": "إيقاف الكل",
@@ -998,14 +640,21 @@
   "usePostersForLibraryIconsDesc": "عرض الملصقات بدلاً من الأيقونات للمكتبات",
   "offline": "غير متصل",
   "shortCuts": "الاختصارات",
+  "keyboardShortCuts": "اختصارات الكيبورد",
   "skipForwardLength": "مدة التقديم",
   "skipBackLength": "مدة الإرجاع",
   "playPause": "تشغيل/إيقاف مؤقت",
   "seekForward": "تقديم",
   "seekBack": "إرجاع",
+  "seekForwardInstant": "تقديم فوري",
+  "seekBackInstant": "رجوع فوري",
+  "stepForward": "التقدم خطوة",
+  "stepBack": "الرجوع خطوة",
   "mute": "كتم الصوت",
   "volumeUp": "رفع الصوت",
   "volumeDown": "خفض الصوت",
+  "speedUp": "تسريع",
+  "speedDown": "‬‬تبطيء",
   "nextVideo": "الفيديو التالي",
   "prevVideo": "الفيديو السابق",
   "nextChapter": "الفصل التالي",
@@ -1014,81 +663,47 @@
   "skipMediaSegment": "تخطي مقطع الوسائط",
   "exit": "خروج",
   "shortCutAlreadyAssigned": "تم تعيين الاختصار '{hotKey}' بالفعل",
-  "@shortCutAlreadyAssigned": {
-    "placeholders": {
-      "hotKey": {
-        "type": "String"
-      }
-    }
-  },
   "blurred": "ضبابي",
   "volumeIndicator": "مستوى الصوت: {volume}",
-  "@volumeIndicator": {
-    "placeholders": {
-      "volume": {
-        "type": "int"
-      }
-    }
-  },
-  "television": "التلفاز",
-  "exitDriftfinDesc": "هل أنت متأكد من أنك تريد إغلاق Driftfin؟",
-  "keyboardShortCuts": "اختصارات الكيبورد",
-  "speedUp": "تسريع",
-  "speedDown": "‬‬تبطيء",
-  "quickConnectEnterCodeDescription": "أدخل الرمز أدناه لتسجيل الدخول",
+  "brightnessIndicator": "السطوع: {brightness}",
+  "speedIndicator": "معدل التشغيل: {speed}",
+  "enableSpeedBoostTitle": "تفعيل تعزيز السرعة",
+  "enableSpeedBoostDesc": "اضغط مطولاً على الشاشة (الهاتف) أو زر المسافة (الحاسوب) لزيادة سرعة التشغيل مؤقتاً",
+  "speedBoostRateTitle": "معدل تعزيز السرعة",
+  "speedBoostRateDesc": "سرعة التشغيل عند تفعيل تعزيز السرعة",
+  "enableDoubleTapSeekTitle": "النقر المزدوج للتقديم/التشغيل/الإيقاف",
+  "enableDoubleTapSeekDesc": "انقر مرتين على يسار/يمين الشاشة للرجوع أو التقديم. انقر مرتين في الوسط للتشغيل أو الإيقاف",
   "quickConnectPostFailed": "فشل الحصول على رمز الاتصال السريع",
   "quickConnectLoginUsingCode": "استخدام الاتصال السريع",
-  "speedIndicator": "معدل التشغيل: {speed}",
-  "@speedIndicator": {
-    "placeholders": {
-      "speed": {
-        "type": "double"
-      }
-    }
-  },
+  "quickConnectEnterCodeDescription": "أدخل الرمز أدناه لتسجيل الدخول",
+  "openJellyfinQuickConnect": "فتح الاتصال السريع لـ Jellyfin",
   "showMore": "عرض المزيد",
+  "showLess": "عرض أقل",
   "itemColorsTitle": "ألوان العناصر",
   "itemColorsDesc": "استخدام اللون الأساسي للعنصر لتنسيق صفحة التفاصيل",
   "mediaTunnelingTitle": "نفق الوسائط",
   "mediaTunnelingDesc": "تمكين نفق الوسائط لمشغل الوسائط الأصلي",
   "clientSettingsUseSystemIMETitle": "استخدام لوحة مفاتيح النظام",
   "clientSettingsUseSystemIMEDesc": "استخدم لوحة المفاتيح المدمجة التي يوفرها نظامك",
-  "formattedTime": "{time}",
-  "@formattedTime": {
-    "description": "Formatted time",
-    "placeholders": {
-      "time": {
-        "type": "DateTime",
-        "format": "jm"
-      }
-    }
-  },
   "nextUpInCount": "التالي في {seconds}",
-  "@nextUpInCount": {
-    "placeholders": {
-      "seconds": {
-        "type": "int"
-      }
-    }
-  },
+  "formattedTime": "{time}",
+  "takeScreenshot": "التقط لقطة شاشة",
+  "takeScreenshotClean": "التقط لقطة شاشة (بدون ترجمات)",
+  "toggleSubtitles": "تبديل الترجمة",
+  "screenshotTaken": "تم حفظ لقطة الشاشة!",
+  "screenshotCleanTaken": "تم حفظ لقطة الشاشة بدون ترجمات!",
+  "errorTakingScreenshot": "حدث خطأ أثناء التقاط لقطة الشاشة",
   "openImeKeyboard": "فتح لوحة مفاتيح IME",
-  "screensaverTime": "الوقت",
   "screensaverDvd": "DVD",
   "screensaverLogo": "الشعار",
+  "screensaverTime": "الوقت",
   "screensaverBlack": "أسود",
   "playerSettingsScreensaverTitle": "شاشة التوقف",
   "playerSettingsScreensaverDesc": "اختر شاشة التوقف التي ستظهر بعد فترة من عدم النشاط في المشغّل",
   "settingsLocalUrlTitle": "رابط Jellyfin المحلي",
   "settingsLocalUrlSetTitle": "إعداد رابط Jellyfin المحلي",
   "settingsLocalUrlSetDesc": "حدّد عنوان Jellyfin المحلي. سيستخدم Driftfin هذا الرابط تلقائيًا عندما يكون جهازك على نفس الشبكة.",
-  "takeScreenshot": "التقط لقطة شاشة",
-  "takeScreenshotClean": "التقط لقطة شاشة (بدون ترجمات)",
-  "screenshots": "لقطات الشاشة",
-  "screenshotTaken": "تم حفظ لقطة الشاشة!",
-  "screenshotCleanTaken": "تم حفظ لقطة الشاشة بدون ترجمات!",
-  "errorTakingScreenshot": "حدث خطأ أثناء التقاط لقطة الشاشة",
   "regenerateTrickplayImages": "إعادة توليد صور المعاينة السريعة",
-  "segmentActionSkipOnce": "تخط مرة واحدة",
   "controlPanel": "لوحة التحكم",
   "controlPanelDesc": "الخادم، النشاط، المستخدمون، المكتبة",
   "controlDashboard": "لوحة معلومات التحكم",
@@ -1111,66 +726,13 @@
   "lastActivity": "آخر نشاط",
   "activeTasks": "المهام النشطة",
   "hours": "{count, plural, one{ساعة} other{ساعات}}",
-  "@hours": {
-    "description": "Pluralization for hours",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "weeks": "{count, plural, one{أسبوع} other{أسابيع}}",
-  "@weeks": {
-    "description": "Pluralization for weeks",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "months": "{count, plural, one{شهر} other{أشهر}}",
-  "@months": {
-    "description": "Pluralization for months",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "years": "{count, plural, one{سنة} other{سنوات}}",
-  "@years": {
-    "description": "Pluralization for years",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
+  "days": "{count, plural, one{يوم} other{أيام}}",
   "timeAgo": "منذ {time}",
-  "@timeAgo": {
-    "description": "timeAgo",
-    "placeholders": {
-      "time": {
-        "type": "String"
-      }
-    }
-  },
+  "airsIn": "يُعرض خلال {count} {duration}",
   "lastRunTaking": "آخر تشغيل في {date}، استغرق {time}",
-  "@lastRunTaking": {
-    "description": "lastRunTaking",
-    "placeholders": {
-      "date": {
-        "type": "String"
-      },
-      "time": {
-        "type": "String"
-      }
-    }
-  },
   "lessThenAMinute": "أقل من دقيقة",
   "plannedTasks": "المهام المجدولة",
   "taskTriggerTypeInterval": "فاصل زمني",
@@ -1186,44 +748,9 @@
   "interval": "الفاصل الزمني",
   "taskTimeLimitInHours": "الحد الزمني (بالساعات)",
   "taskTriggerIntervalDesc": "كل {time}",
-  "@taskTriggerIntervalDesc": {
-    "description": "Task trigger interval desc",
-    "placeholders": {
-      "time": {
-        "type": "String"
-      }
-    }
-  },
   "taskTriggerDailyDesc": "يوميًا في {time}",
-  "@taskTriggerDailyDesc": {
-    "description": "taskTriggerDailyDesc",
-    "placeholders": {
-      "time": {
-        "type": "String"
-      }
-    }
-  },
   "taskTriggerWeeklyDesc": "أسبوعياً في يوم {day} الساعة {time}",
-  "@taskTriggerWeeklyDesc": {
-    "description": "taskTriggerWeeklyDesc",
-    "placeholders": {
-      "day": {
-        "type": "String"
-      },
-      "time": {
-        "type": "String"
-      }
-    }
-  },
   "taskTriggerTimeLimitSub": "الحد الزمني: {time}",
-  "@taskTriggerTimeLimitSub": {
-    "description": "taskTriggerTimeLimit",
-    "placeholders": {
-      "time": {
-        "type": "String"
-      }
-    }
-  },
   "performance": "الأداء",
   "serverNameLabel": "اسم الخادم",
   "cachePath": "مسار التخزين المؤقت",
@@ -1234,23 +761,7 @@
   "maxImageDecodingThreadsDesc": "الحد الأقصى لعمليات ترميز الصور المسموح بتشغيلها بالتوازي. ترك هذا الحقل فارغاً سيؤدي إلى اختيار حد تلقائي بناءً على عدد أنوية النظام لديك.",
   "controlPanelServerDesc": "اسم الخادم، الاتصال السريع، الأداء",
   "deleteUserTitle": "حذف المستخدم {user}؟",
-  "@deleteUserTitle": {
-    "description": "deleteUserTitle",
-    "placeholders": {
-      "user": {
-        "type": "String"
-      }
-    }
-  },
   "deleteUserDesc": "سيتم حذف المستخدم {user} وجميع إعداداته نهائياً.",
-  "@deleteUserDesc": {
-    "description": "deleteUserDesc",
-    "placeholders": {
-      "user": {
-        "type": "String"
-      }
-    }
-  },
   "userInformation": "معلومات المستخدم",
   "allowManageServer": "السماح لهذا المستخدم بإدارة الخادم",
   "allowCollections": "السماح لهذا المستخدم بإدارة المجموعات",
@@ -1266,6 +777,9 @@
   "forceRemoteTranscoding": "فرض تحويل الترميز من المصدر البعيد",
   "syncplay": "التشغيل المتزامن",
   "syncplayAccess": "الوصول إلى التشغيل المتزامن",
+  "syncplayAccessCreateAndJoinGroups": "إنشاء والانضمام إلى مجموعات",
+  "syncplayAccessJoinGroups": "الانضمام إلى مجموعات",
+  "syncplayAccessNone": "بدون",
   "allowMediaDeletion": "السماح بحذف الوسائط",
   "allLibraries": "جميع المكتبات",
   "libraryAccess": "الوصول إلى المكتبة",
@@ -1276,7 +790,6 @@
   "maxParentalRating": "الحد الأقصى لتقييم الرقابة الأبوية",
   "allowItemsTags": "السماح بالعناصر التي تحتوي على وسوم",
   "blockItemsTags": "حظر العناصر التي تحتوي على وسوم",
-  "accessSchedule": "جدول الوصول",
   "accessSchedules": "جداول الوصول",
   "addAccessSchedule": "إضافة جدول وصول",
   "dayOfWeek": "يوم من أيام الأسبوع",
@@ -1289,7 +802,6 @@
   "editUser": "تعديل المستخدم",
   "general": "عام",
   "access": "الوصول",
-  "passwordSettingsComing": "إعدادات كلمة المرور قادمة قريباً",
   "endTimeMustBeAfter": "يجب أن يكون وقت الانتهاء بعد وقت البدء",
   "assignLibraries": "تعيين المكتبات",
   "enableAccessAllLibraries": "تمكين الوصول إلى جميع المكتبات",
@@ -1301,17 +813,9 @@
   "passwordResetFailed": "فشل في إعادة تعيين كلمة المرور",
   "passwordMismatch": "كلمة المرور الجديدة وتأكيدها غير متطابقين",
   "passwordChangeSuccess": "تم تغيير كلمة المرور بنجاح",
-  "passwordChangeFailed": "فشل في تغيير كلمة المرور",
   "savePassword": "حفظ كلمة المرور",
   "deleteLibraryConfirmTitle": "حذف المكتبة؟",
   "deleteLibraryConfirmMessage": "هل أنت متأكد أنك تريد حذف {libraryName}؟\nلا يمكن التراجع عن هذا الإجراء.",
-  "@deleteLibraryConfirmMessage": {
-    "placeholders": {
-      "libraryName": {
-        "type": "String"
-      }
-    }
-  },
   "noLibrarySelected": "لم يتم اختيار مكتبة",
   "enabledPhotos": "تمكين الصور",
   "enabledLUFSScan": "تمكين فحص LUFS",
@@ -1325,24 +829,9 @@
   "countryRegion": "الدولة / المنطقة",
   "saveMetadata": "حفظ البيانات الوصفية",
   "metadataFetchers": "أدوات جلب البيانات الوصفية ({type})",
-  "@metadataFetchers": {
-    "placeholders": {
-      "type": {
-        "type": "String"
-      }
-    }
-  },
   "enableAndRankMetadataFetchers": "تمكين وترتيب أدوات جلب البيانات الوصفية حسب الأولوية.",
   "enableAndRankImagesFetchers": "تمكين وترتيب أدوات جلب الصور حسب الأولوية.",
   "imageFetchers": "أدوات جلب الصور ({type})",
-  "@imageFetchers": {
-    "placeholders": {
-      "type": {
-        "type": "String"
-      }
-    }
-  },
-  "enableAndRankImageFetchers": "تمكين وترتيب أدوات جلب الصورة حسب الأولوية.",
   "mediaSegmentProviders": "موفرو مقاطع الوسائط",
   "enableAndRankMediaSegmentProviders": "تمكين وترتيب موفري مقاطع الوسائط حسب الأولوية.",
   "trickplay": "التشغيل السريع (Trickplay)",
@@ -1369,40 +858,18 @@
   "metadataImageLongPressClick": "انقر بزر الفأرة الأيمن لحذف الصورة",
   "primary": "أساسي",
   "logo": "{count, plural, one{شعار} other{شعارات}}",
-  "@logo": {
-    "description": "logo",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "backdrop": "{count, plural, one{خلفية} other{خلفيات}}",
-  "@backdrop": {
-    "description": "backdrop",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "selectFolderToAdd": "اختر المجلد لإضافته",
   "systemRootFolder": "مجلد النظام الجذري",
   "selectedPath": "المسار المحدد: {path}",
-  "@selectedPath": {
-    "placeholders": {
-      "path": {
-        "type": "String"
-      }
-    }
-  },
-  "deleteRequestConfirmation": "هل أنت متأكد أنك تريد حذف هذا الطلب؟",
   "recentlyAdded": "تمت إضافته مؤخراً",
+  "recentlyPlayed": "تم تشغيله مؤخراً",
+  "recentlyFavorited": "أُضيف إلى المفضلة مؤخراً",
+  "mostPlayed": "الأكثر تشغيلاً",
   "recentRequests": "الطلبات الأخيرة",
   "trending": "الشائع الآن",
   "popularMovies": "الأفلام الأكثر شهرة",
+  "popularSeries": "المسلسلات الأكثر شهرة",
   "expectedMovies": "الأفلام المرتقبة",
   "expectedSeries": "المسلسلات المرتقبة",
   "requestConfiguration": "إعدادات الطلب",
@@ -1413,139 +880,37 @@
   "tags": "الوسوم",
   "noTags": "لا توجد وسوم",
   "requestAs": "طلب باسم",
-  "requestQuotaTitle": "حصة الطلبات",
   "requestQuotaStatus": "متبقي {remaining} من أصل {limit} (تُعاد كل {days} يوماً)",
-  "@requestQuotaStatus": {
-    "placeholders": {
-      "remaining": {
-        "type": "int"
-      },
-      "limit": {
-        "type": "int"
-      },
-      "days": {
-        "type": "int"
-      }
-    }
-  },
   "requestQuotaLimitReached": "تم الوصول إلى الحد الأقصى للطلبات لـ {mediaType}.",
-  "@requestQuotaLimitReached": {
-    "placeholders": {
-      "mediaType": {
-        "type": "String"
-      }
-    }
-  },
   "submitRequest": "إرسال الطلب",
   "noOverviewAvailable": "لا توجد نظرة عامة متاحة.",
   "downloading": "جارٍ التنزيل",
   "request": "طلب",
+  "requestMore": "طلب المزيد",
   "viewRequest": "عرض الطلب",
   "email": "البريد الإلكتروني",
   "username": "اسم المستخدم",
   "ok": "موافق",
+  "transcodeInfoTitle": "معلومات التحويل",
+  "transcodeInfoNoMetadata": "لا تتوفر بيانات وصفية للتحويل.",
+  "transcodeDetailsTitle": "تفاصيل التحويل",
+  "containerLabel": "الحاوية",
+  "videoCodecLabel": "ترميز الفيديو",
+  "audioCodecLabel": "ترميز الصوت",
+  "bitrateLabel": "معدل البث",
+  "kbps": "كيلوبت/ثانية",
+  "resolutionLabel": "الدقة",
   "seerr": "سيير (Seerr)",
   "seerrNotConfigured": "غير مُهيأ",
   "seerrLoadingUser": "جارٍ تحميل المستخدم",
   "seerrUnknownUser": "مستخدم غير معروف",
   "loggedInAs": "تم تسجيل الدخول باسم {displayName}",
-  "@loggedInAs": {
-    "placeholders": {
-      "displayName": {
-        "type": "String"
-      }
-    }
-  },
-  "seerrSetServerFirst": "قم بتعيين خادم Seerr أولاً",
-  "seerrLocalLoginTitle": "تسجيل الدخول المحلي لـ Seerr",
-  "seerrJellyfinLoginTitle": "تسجيل الدخول عبر Jellyfin لـ Seerr",
-  "seerrSessionSaved": "تم حفظ جلسة Seerr",
-  "seerrStatusVersion": "Seerr: الإصدار {version}",
-  "@seerrStatusVersion": {
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "seerrServer": "خادم Seerr",
   "seerrAuthenticateLocal": "مصادقة Seerr (محلية)",
-  "seerrAuthenticateJellyfin": "مصادقة Seerr عبر Jellyfin",
-  "seerrSessionConfigured": "تم تهيئة الجلسة",
-  "seerrConfigured": "تم التهيئة",
-  "seerrTestConnection": "اختبار اتصال Seerr",
   "rootFolderDefaultLabel": "{folder} (افتراضي)",
-  "@rootFolderDefaultLabel": {
-    "placeholders": {
-      "folder": {
-        "type": "String"
-      }
-    }
-  },
   "seerrAnimeSeriesNote": "* هذه السلسلة من نوع أنمي.",
   "seerrAutoApproveNotice": "الطلبات التي ترسلها يتم الموافقة عليها تلقائياً.",
   "seerrPermissionDenied": "ليس لديك صلاحية لطلب هذا النوع من الوسائط.",
-  "seerrAuthApiKey": "مفتاح API",
-  "seerrAuthLocal": "محلي",
-  "seerrAuthJellyfin": "جيلي فين (Jellyfin)",
-  "seerrUserFetchFailed": "فشل في جلب المستخدم من Seerr",
-  "seerrEnterServerUrlFirst": "أدخل عنوان خادم Seerr أولاً",
-  "seerrApiKeySaved": "تم حفظ مفتاح API",
-  "seerrLoggedIn": "تم تسجيل الدخول إلى Seerr",
-  "seerrConnectedToServer": "تم الاتصال بخادم Seerr: {serverUrl}",
-  "@seerrConnectedToServer": {
-    "placeholders": {
-      "serverUrl": {
-        "type": "String"
-      }
-    }
-  },
-  "emailUsername": "البريد الإلكتروني / اسم المستخدم",
-  "discover": "اكتشف",
-  "popularity": "الشعبية",
-  "contentRating": "تصنيف المحتوى",
-  "runtimeMinutesTitle": "مدة التشغيل (بالدقائق)",
-  "runtimeRangeMinutes": "من {min} إلى {max} دقيقة",
-  "@runtimeRangeMinutes": {
-    "placeholders": {
-      "min": {
-        "type": "int"
-      },
-      "max": {
-        "type": "int"
-      }
-    }
-  },
-  "minutesShort": "{count} دقيقه",
-  "@minutesShort": {
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
-  "streamingServices": "مزودو الخدمة ({count})",
-  "@streamingServices": {
-    "description": "Streaming providers (Netflix,HBO, etc.)",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
-  "settingsProfileSubtitleLanguage": "اللغة المفضلة للترجمة",
-  "settingsProfileSubtitleMode": "وضع الترجمة",
-  "subtitlePlaybackModeDefault": "افتراضي",
-  "subtitlePlaybackModeAlways": "تشغيل دائم",
-  "subtitlePlaybackModeOnlyForced": "الترجمات الإجبارية فقط",
-  "subtitlePlaybackModeNone": "بدون",
-  "subtitlePlaybackModeSmart": "ذكي",
-  "syncplayAccessCreateAndJoinGroups": "إنشاء والانضمام إلى مجموعات",
-  "syncplayAccessJoinGroups": "الانضمام إلى مجموعات",
-  "syncplayAccessNone": "بدون",
-  "popularSeries": "المسلسلات الأكثر شهرة",
   "seerrRequestStatusPending": "قيد الانتظار",
   "seerrRequestStatusApproved": "تم القبول",
   "seerrRequestStatusDeclined": "تم الرفض",
@@ -1556,6 +921,20 @@
   "seerrMediaStatusAvailable": "متوفر",
   "seerrMediaStatusBlacklisted": "محظور",
   "seerrMediaStatusDeleted": "محذوف",
+  "seerrAuthApiKey": "مفتاح API",
+  "seerrAuthLocal": "محلي",
+  "seerrAuthJellyfin": "جيلي فين (Jellyfin)",
+  "seerrUserFetchFailed": "فشل في جلب المستخدم من Seerr",
+  "seerrEnterServerUrlFirst": "أدخل عنوان خادم Seerr أولاً",
+  "seerrUrlSchemeWarning": "لم يتمكن من اكتشاف بروتوكول الرابط تلقائيًا. سيتم استخدام https:// افتراضيًا. أضف http:// إذا كان الخادم لا يستخدم HTTPS.",
+  "seerrApiKeySaved": "تم حفظ مفتاح API",
+  "seerrLoggedIn": "تم تسجيل الدخول إلى Seerr",
+  "seerrConnectedToServer": "تم الاتصال بخادم Seerr: {serverUrl}",
+  "seerrCustomHeaders": "رؤوس مخصصة",
+  "seerrHeader": "رأس",
+  "seerrHeaderValue": "قيمة",
+  "emailUsername": "البريد الإلكتروني / اسم المستخدم",
+  "discover": "اكتشف",
   "sponsor": "راعٍ",
   "sponsorMessage": "إذا كنت تستمتع باستخدام Driftfin، فكر في رعاية المشروع لدعم تطويره وتحسينه المستمر. شكراً لدعمك!",
   "min": "الحد الأدنى",
@@ -1578,90 +957,29 @@
   "markAsAvailableConfirm": "تحديد كمُتاح؟",
   "markedAsAvailable": "تم التحديد كمُتاح",
   "deleteSeerrDataConfirm": "هل تريد حذف جميع الملفات من Seerr؟ لا يمكن التراجع عن هذا الإجراء.\nإذا كانت البيانات لا تزال موجودة في {service}، يمكن إعادة استيرادها.",
-  "@deleteSeerrDataConfirm": {
-    "description": "Confirmation message for deleting Seerr data",
-    "placeholders": {
-      "service": {
-        "type": "String",
-        "example": "Sonarr/Radarr"
-      }
-    }
-  },
   "dataDeleted": "تم حذف البيانات",
   "approve": "اعتماد",
   "decline": "رفض",
   "pendingRequests": "{count, plural, one{{count} طلب قيد الانتظار} two{{count} طلبان قيد الانتظار} other{لا توجد طلبات قيد الانتظار}}",
-  "@pendingRequests": {
-    "description": "pendingRequests",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "processing": "جاري المعالجة",
   "seerrDetails": "تفاصيل Seerr",
-  "specialFeature": "{count, plural, one{ميزة خاصة} other{ميزات خاصة}}",
-  "@specialFeature": {
-    "description": "special feature",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "mediaTypeTV": "{count, plural, one{قناة تلفزيونية} other{قنوات تلفزيونية}}",
-  "@mediaTypeTV": {
-    "description": "TV Channel (plural)",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
-  "playbackTypeTV": "تلفاز",
-  "seerrCustomHeaders": "رؤوس مخصصة",
-  "seerrHeader": "رأس",
-  "seerrHeaderValue": "قيمة",
+  "viewTrailer": "مشاهدة الإعلان التشويقي",
   "watch": "شاهد",
   "watchChannel": "شاهد {channel}",
-  "@watchChannel": {
-    "placeholders": {
-      "channel": {
-        "type": "String"
-      }
-    }
-  },
   "now": "الآن",
+  "nowPlaying": "قيد التشغيل الآن",
+  "upNext": "التالي",
+  "queue": "قائمة الانتظار",
+  "queueIsEmpty": "قائمة الانتظار فارغة",
+  "queueItemCount": "{count} عنصر",
+  "removeFromQueue": "إزالة من قائمة الانتظار",
   "noPrograms": "لا توجد برامج متاحة",
   "switchChannel": "غيّر القناة",
   "switchChannelDesc": "هل تريد مشاهدة \"{programName}\" على {channelName}؟",
-  "@switchChannelDesc": {
-    "placeholders": {
-      "programName": {
-        "type": "String"
-      },
-      "channelName": {
-        "type": "String"
-      }
-    }
-  },
-  "homeBannerDetailed": "تفصيلي",
-  "homeBannerTV": "التلفاز",
-  "enableSpeedBoostTitle": "تفعيل تعزيز السرعة",
-  "enableSpeedBoostDesc": "اضغط مطولاً على الشاشة (الهاتف) أو زر المسافة (الحاسوب) لزيادة سرعة التشغيل مؤقتاً",
-  "speedBoostRateTitle": "معدل تعزيز السرعة",
-  "speedBoostRateDesc": "سرعة التشغيل عند تفعيل تعزيز السرعة",
-  "enableDoubleTapSeekTitle": "النقر المزدوج للتقديم/التشغيل/الإيقاف",
-  "enableDoubleTapSeekDesc": "انقر مرتين على يسار/يمين الشاشة للرجوع أو التقديم. انقر مرتين في الوسط للتشغيل أو الإيقاف",
-  "showLess": "عرض أقل",
+  "specialFeature": "{count, plural, one{ميزة خاصة} other{ميزات خاصة}}",
   "activeTvChannels": "القنوات التلفزيونية النشطة",
   "enableNewTVLayout": "تفعيل تصميم التلفاز الجديد",
-  "enableNewTVLayoutDesc": "عرض لافتات أكبر بأسلوب التلفاز في لوحة التحكم. سيصبح هذا التصميم الافتراضي في إصدار لاحق",
-  "backgroundColor": "لون الخلفية",
+  "liveTV": "البث التلفزيوني المباشر",
   "liveTvManageTunersEpg": "إدارة أجهزة الاستقبال ومزودي دليل البرامج (EPG)",
   "tunerDevices": "أجهزة الاستقبال",
   "epgGuideProviders": "مزودو دليل البرامج (EPG)",
@@ -1671,70 +989,20 @@
   "addProvider": "إضافة مزود",
   "tunerHostAddedSuccessfully": "تمت إضافة جهاز الاستقبال بنجاح",
   "failedToAddTunerHost": "فشل في إضافة جهاز الاستقبال: {error}",
-  "@failedToAddTunerHost": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "tunerHostUpdatedSuccessfully": "تم تحديث جهاز الاستقبال بنجاح",
   "failedToUpdateTunerHost": "فشل في تحديث جهاز الاستقبال: {error}",
-  "@failedToUpdateTunerHost": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "deleteTunerHost": "حذف جهاز الاستقبال",
   "deleteTunerHostConfirm": "هل أنت متأكد أنك تريد حذف \"{name}\"؟",
-  "@deleteTunerHostConfirm": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "tunerHostDeletedSuccessfully": "تم حذف جهاز الاستقبال بنجاح",
   "failedToDeleteTunerHost": "فشل في حذف جهاز الاستقبال: {error}",
-  "@failedToDeleteTunerHost": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "epgProviderAddedSuccessfully": "تمت إضافة مزود دليل البرامج بنجاح",
   "failedToAddEpgProvider": "فشل في إضافة مزود دليل البرامج: {error}",
-  "@failedToAddEpgProvider": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "epgProviderUpdatedSuccessfully": "تم تحديث مزود دليل البرامج بنجاح",
   "failedToUpdateEpgProvider": "فشل في تحديث مزود دليل البرامج: {error}",
-  "@failedToUpdateEpgProvider": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
-  "liveTV": "البث التلفزيوني المباشر",
   "deleteEpgProvider": "حذف مزود دليل البرامج (EPG)",
   "deleteEpgProviderConfirm": "هل أنت متأكد أنك تريد حذف هذا المزود؟",
   "epgProviderDeletedSuccessfully": "تم حذف مزود دليل البرامج بنجاح",
   "failedToDeleteEpgProvider": "فشل في حذف مزود دليل البرامج: {error}",
-  "@failedToDeleteEpgProvider": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "editTunerDevice": "تعديل جهاز الاستقبال",
   "friendlyName": "الاسم المعرّف",
   "url": "الرابط (URL)",
@@ -1768,13 +1036,6 @@
   "discoveredDevices": "الأجهزة المكتشفة",
   "noDevicesFound": "لم يتم العثور على أجهزة",
   "failedToDiscoverDevices": "فشل في اكتشاف الأجهزة: {error}",
-  "@failedToDiscoverDevices": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "path": "المسار",
   "maxConcurrentStreamsLabel": "الحد الأقصى للتدفقات المتزامنة",
   "noCategories": "لا توجد فئات",
@@ -1783,81 +1044,27 @@
   "newsCategoriesSubLabel": "الفئات المخصصة للقنوات التي تطابق بادئة الأخبار",
   "sportsCategoriesSubLabel": "الفئات المخصصة للقنوات التي تطابق بادئة الرياضة",
   "kidsCategoriesSubLabel": "الفئات المخصصة للقنوات التي تطابق بادئة الأطفال",
+  "enableNewTVLayoutDesc": "عرض لافتات أكبر بأسلوب التلفاز في لوحة التحكم. سيصبح هذا التصميم الافتراضي في إصدار لاحق",
   "notifications": "الإشعارات",
   "showNewItemNotificationTitle": "إشعارات لعناصر المكتبة",
   "notificationChannelDescription": "إشعارات للعناصر المضافة حديثاً",
+  "seerrRequestNotifications": "إشعارات لطلبات Seerr",
   "notificationNewEpisodes": "تمت إضافة حلقات جديدة",
   "notificationNewItems": "{count, plural, one{{count} عنصر جديد} other{{count} عناصر جديدة}}",
-  "@notificationNewItems": {
-    "description": "Plural for number of new items in a notification",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
+  "notificationNewRequests": "{count, plural, one{{count} طلب جديد} other{{count} طلبات جديدة}}",
   "notificationTimerIOSWarning": " نظام iOS يقرر متى/إذا كانت التحديثات ستعمل فعلياً، قد تتأخر الإشعارات أو لا تظهر إطلاقاً.",
+  "batteryOptimizationDesc": "تحسينات البطارية قد تؤخر إشعارات الخلفية لتطبيق Driftfin.\nاضغط لفتح إعدادات النظام وتعطيل تحسينات Driftfin لتحسين موثوقية الإشعارات.",
   "updateCheckInterval": "فترة التحقق من التحديثات",
   "updateCheckIntervalDesc": "عدد مرات تشغيل المهمة في الخلفية",
   "notificationsIntervalClientReminder": "فترة الإشعارات محددة لجميع المستخدمين.",
-  "requestMore": "طلب المزيد",
-  "seerrRequestNotifications": "إشعارات لطلبات Seerr",
-  "notificationNewRequests": "{count, plural, one{{count} طلب جديد} other{{count} طلبات جديدة}}",
-  "@notificationNewRequests": {
-    "description": "Plural for number of new Seerr requests in a notification",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "batteryOptimizationDesc": "تحسينات البطارية قد تؤخر إشعارات الخلفية لتطبيق Driftfin.\nاضغط لفتح إعدادات النظام وتعطيل تحسينات Driftfin لتحسين موثوقية الإشعارات.",
   "lastUpdateAt": "آخر تحديث في {date} عند {time}",
-  "@lastUpdateAt": {
-    "description": "lastUpdateAt",
-    "placeholders": {
-      "time": {
-        "type": "DateTime",
-        "format": "jm"
-      },
-      "date": {
-        "type": "DateTime",
-        "format": "yMd"
-      }
-    }
-  },
   "includeHiddenItems": "تضمين المكتبات المخفية",
   "includeHiddenItemsDesc": "تضمين المكتبات المخفية من لوحة التحكم",
   "settingsBlurEffectsTitle": "تفعيل تأثيرات التمويه",
   "settingsBlurEffectsDesc": "تفعيل تأثيرات التمويه في واجهة المستخدم. تعطيلها قد يحسن الأداء على الأجهزة منخفضة الإمكانيات.",
   "profileSettingsOpenAuthAtLaunch": "عرض طريقة المصادقة عند قفل التطبيق",
   "toggleSidebar": "تبديل الشريط الجانبي",
-  "generateLoginLink": "رمز لـ {userName}",
-  "@generateLoginLink": {
-    "description": "Code for a user to share",
-    "placeholders": {
-      "userName": {
-        "type": "String"
-      }
-    }
-  },
-  "shareLoginLink": "مشاركة رابط تسجيل الدخول",
-  "shareQRCode": "مشاركة رمز QR",
-  "copyLoginLink": "نسخ الرابط",
-  "includePassword": "تضمين كلمة المرور",
-  "invalidAuthLink": "رابط تسجيل دخول غير صالح",
-  "advancedVideoOptionsTitle": "خيارات الفيديو المتقدمة",
-  "advancedVideoOptionsDesc": "تفعيل HDR، ومعالجة النغمات، وإدارة الألوان المتقدمة (قد تكون غير مستقرة لبعض الأجهزة)",
-  "seerrUrlSchemeWarning": "لم يتمكن من اكتشاف بروتوكول الرابط تلقائيًا. سيتم استخدام https:// افتراضيًا. أضف http:// إذا كان الخادم لا يستخدم HTTPS.",
   "requestedSuccessForItem": "تم طلب {itemName} بنجاح",
-  "@requestedSuccessForItem": {
-    "description": "Message shown when a media item is successfully requested",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      }
-    }
-  },
   "linkData": "بيانات الرابط",
   "passwordNotRequired": "غير مطلوب، اتركه فارغاً لعدم تضمين كلمة المرور في الرابط",
   "authLinkButtonToolTip": "فتح نافذة رابط المصادقة",
@@ -1866,92 +1073,57 @@
   "connect": "اتصال",
   "authLinkDesc": "اطلب من مدير الخادم تزويدك برابط المصادقة. يحتوي الرابط على معلومات المصادقة، لذا تأكد من الحفاظ على أمانه.",
   "deletedItem": "تم حذف {itemName}",
-  "@deletedItem": {
-    "description": "Message shown when a item is deleted",
-    "placeholders": {
-      "itemName": {
-        "type": "String"
-      }
-    }
-  },
   "libraryOrderTitle": "ترتيب الشاشة الرئيسية",
   "libraryOrderDescription": "اسحب لإعادة ترتيب المكتبات على الشاشة الرئيسية. المكتبات غير المحددة لن تعرض العناصر المضافة حديثاً.",
   "hidePlayedInLatestTitle": "إخفاء المحتوى المُشاهد",
   "hidePlayedInLatestDescription": "إخفاء المحتوى المُشاهد من قسم \"الوسائط المضافة حديثاً\"",
   "groupedFoldersTitle": "المكتبات المجمّعة",
   "groupedFoldersDescription": "تجميع المحتوى تلقائياً من المكتبات التالية في أقسام مثل \"الأفلام\"، \"الموسيقى\"، و\"التلفاز\".",
-  "transcodeInfoTitle": "معلومات التحويل",
-  "transcodeInfoNoMetadata": "لا تتوفر بيانات وصفية للتحويل.",
-  "transcodeDetailsTitle": "تفاصيل التحويل",
-  "containerLabel": "الحاوية",
-  "videoCodecLabel": "ترميز الفيديو",
-  "audioCodecLabel": "ترميز الصوت",
-  "bitrateLabel": "معدل البث",
-  "kbps": "كيلوبت/ثانية",
-  "resolutionLabel": "الدقة",
   "downloadTranscoded": "تنزيل النسخة المحوّلة",
   "downloadOriginal": "تنزيل النسخة الأصلية",
-  "airsIn": "يُعرض خلال {count} {duration}",
-  "@airsIn": {
-    "description": "airsIn",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      },
-      "duration": {
-        "type": "String",
-        "example": "days"
-      }
-    }
-  },
-  "today": "اليوم",
-  "gestures": "الإيماءات",
-  "anyLanguage": "أي لغة",
-  "enableEdgeGesturesTitle": "تفعيل إيماءات الحواف",
-  "enableEdgeGesturesDesc": "التحكم في السطوع والصوت عبر السحب لأعلى أو لأسفل على حواف الشاشة",
-  "reverseEdgeGesturesTitle": "تبديل إيماءات الحواف",
-  "reverseEdgeGesturesDesc": "تبديل الجهة للتحكم في السطوع والصوت",
-  "brightnessIndicator": "السطوع: {brightness}",
-  "@brightnessIndicator": {
-    "placeholders": {
-      "brightness": {
-        "type": "int"
-      }
-    }
-  },
-  "viewTrailer": "مشاهدة الإعلان التشويقي",
   "personBirthday": "تاريخ الميلاد: {date}",
-  "@personBirthday": {
-    "description": "Birthday label with formatted date",
-    "placeholders": {
-      "date": {
-        "type": "String"
-      }
-    }
-  },
   "personAge": "العمر: {age}",
-  "@personAge": {
-    "description": "Age label with age number",
-    "placeholders": {
-      "age": {
-        "type": "int",
-        "example": "30"
-      }
-    }
-  },
   "personBirthPlace": "وُلد في {place}",
-  "@personBirthPlace": {
-    "placeholders": {
-      "place": {
-        "type": "String"
-      }
-    }
-  },
   "seerrMovies": "استكشاف الأفلام",
   "seerrSeries": "استكشاف المسلسلات",
-  "stepForward": "التقدم خطوة",
-  "stepBack": "الرجوع خطوة",
-  "seekForwardInstant": "تقديم فوري",
-  "seekBackInstant": "رجوع فوري"
+  "today": "اليوم",
+  "musicDashboard": "لوحة معلومات الموسيقى",
+  "quiet": "هادئ",
+  "loud": "صاخب",
+  "share": "مشاركة",
+  "setAs": "تعيين كـ",
+  "cast": "البث",
+  "castTo": "تشغيل على…",
+  "castSearching": "جارٍ البحث عن أجهزة…",
+  "castNoDevices": "لم يتم العثور على أجهزة أو جلسات نشطة",
+  "castConnecting": "جارٍ الاتصال…",
+  "castCastingTo": "جارٍ البث إلى {device}",
+  "castStop": "إيقاف البث",
+  "castFailed": "تعذر الاتصال بجهاز البث",
+  "castSectionNearby": "الأجهزة القريبة",
+  "castSectionSessions": "أجهزتك الأخرى",
+  "tonight": "الليلة",
+  "tonightSubtitle": "اضغط تشغيل، لا تتصفح",
+  "tonightEmpty": "لا يوجد شيء مناسب الآن - جرّب توسيع ميزانية الوقت",
+  "tonightAnyLength": "أي مدة",
+  "tonightMinutesOrLess": "{minutes} دقيقة أو أقل",
+  "tonightMoodAny": "أي مزاج",
+  "tonightMoodCozy": "دافئ",
+  "tonightMoodThrilling": "مثير",
+  "tonightMoodFunny": "مضحك",
+  "tonightMoodUplifting": "مُلهم",
+  "smartShelves": "الأرفف الذكية",
+  "addToHomeShelf": "إضافة إلى الصفحة الرئيسية كرف ذكي",
+  "removeFromHomeShelf": "إزالة من أرفف الصفحة الرئيسية",
+  "tastePassport": "جواز سفر الذوق",
+  "tastePassportSubtitle": "ملف تعريف ذوقك المحلي، مبني على ما شاهدته",
+  "tastePassportTopGenres": "الأنواع التي تميل إليها",
+  "tastePassportTopDirectors": "المخرجون الذين تحبهم",
+  "tastePassportTopActors": "الممثلون الذين تحبهم",
+  "tastePassportTotalWatchTime": "إجمالي وقت المشاهدة",
+  "tastePassportItemsWatched": "العناصر المشاهدة",
+  "tastePassportEmpty": "شاهد بعض العناصر وسيظهر ملف تعريف ذوقك هنا",
+  "livingHomeBecauseYouWatched": "لأنك شاهدت {name}",
+  "livingHomeHiddenGems": "كنوز مخفية تملكها",
+  "livingHomeMoreFromDirector": "المزيد من {name}"
 }
