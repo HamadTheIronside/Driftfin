@@ -85,5 +85,74 @@ void main() {
       expect(identical(shared.chat, s1.chat), true);
       expect(s1 == const SyncPlayState().copyWith(chat: msg), true);
     });
+
+    test('reactions are compared by identity too, same rationale as chat', () {
+      final reaction = [SyncReactionEvent(sender: 'a', emoji: '👍', at: DateTime(2024), mine: false)];
+      final s1 = const SyncPlayState().copyWith(reactions: reaction);
+      final s2 = const SyncPlayState().copyWith(reactions: List.of(reaction));
+      expect(s1 == s2, false);
+      expect(s1 == const SyncPlayState().copyWith(reactions: reaction), true);
+    });
+
+    test('presence is compared by value (a small, low-churn map)', () {
+      const a = SyncPlayState(presence: {'alice': SyncPresenceInfo(typing: true)});
+      const b = SyncPlayState(presence: {'alice': SyncPresenceInfo(typing: true)});
+      expect(a, b);
+      expect(a.hashCode, b.hashCode);
+      const c = SyncPlayState(presence: {'alice': SyncPresenceInfo(typing: false)});
+      expect(a == c, false);
+    });
+  });
+
+  group('SyncPresenceInfo', () {
+    test('defaults to neither typing nor buffering', () {
+      const info = SyncPresenceInfo();
+      expect(info.typing, false);
+      expect(info.buffering, false);
+    });
+
+    test('copyWith overrides only the named field', () {
+      const info = SyncPresenceInfo(typing: true, buffering: false);
+      final next = info.copyWith(buffering: true);
+      expect(next.typing, true);
+      expect(next.buffering, true);
+    });
+
+    test('value equality', () {
+      expect(const SyncPresenceInfo(typing: true), const SyncPresenceInfo(typing: true));
+      expect(const SyncPresenceInfo(typing: true), isNot(const SyncPresenceInfo(typing: false)));
+    });
+  });
+
+  group('SyncPlayState.typingMembers / bufferingMembers', () {
+    test('derives the member lists from presence flags', () {
+      const s = SyncPlayState(presence: {
+        'alice': SyncPresenceInfo(typing: true),
+        'bob': SyncPresenceInfo(buffering: true),
+        'carol': SyncPresenceInfo(typing: true, buffering: true),
+        'dave': SyncPresenceInfo(),
+      });
+      expect(s.typingMembers, unorderedEquals(['alice', 'carol']));
+      expect(s.bufferingMembers, unorderedEquals(['bob', 'carol']));
+    });
+
+    test('empty presence yields empty lists', () {
+      expect(const SyncPlayState().typingMembers, isEmpty);
+      expect(const SyncPlayState().bufferingMembers, isEmpty);
+    });
+  });
+
+  group('clearGroup also resets reactions and presence', () {
+    test('wipes reactions/presence along with the rest of the group fields', () {
+      final joined = SyncPlayState(
+        inGroup: true,
+        groupId: 'g1',
+        reactions: [SyncReactionEvent(sender: 'a', emoji: '🎉', at: DateTime(2024), mine: true)],
+        presence: const {'alice': SyncPresenceInfo(typing: true)},
+      );
+      final left = joined.copyWith(clearGroup: true);
+      expect(left.reactions, isEmpty);
+      expect(left.presence, isEmpty);
+    });
   });
 }

@@ -39,6 +39,10 @@ migrate_working_dir/
 # they're meant to override pubspec.yaml for one machine, not the team.
 pubspec_overrides.yaml
 
+# .NET build output
+jellyfin-plugin/**/bin/
+jellyfin-plugin/**/obj/
+
 # Symbolication related
 app.*.symbols
 

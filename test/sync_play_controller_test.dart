@@ -8,23 +8,26 @@ import 'package:driftfin/providers/syncplay/sync_play_controller.dart';
 // to reach without wiring a live JellyfinSocket/API/player:
 //
 //   - The guard clauses at the top of the public, player/network-facing
-//     methods (userTogglePlayPause/sendChat/userSeek) return immediately when
-//     `state.inGroup` is false, *before* touching `ref`, the Jellyfin API, or
-//     the player wrapper. A freshly constructed controller starts with
-//     `const SyncPlayState()` (inGroup: false), so calling these is safe with
-//     a bare ProviderContainer and never triggers `_ensureWired()` / a real
-//     socket connection.
+//     methods (userTogglePlayPause/sendChat/sendReaction/setTyping/userSeek)
+//     return immediately when `state.inGroup` is false, *before* touching
+//     `ref`, the Jellyfin API, the relay HTTP client, or the player wrapper.
+//     A freshly constructed controller starts with `const SyncPlayState()`
+//     (inGroup: false), so calling these is safe with a bare
+//     ProviderContainer and never triggers `_ensureWired()` / a real socket
+//     connection or HTTP request.
 //
 // Everything else of substance in this file is either:
 //   - private top-level ticks<->Duration helpers and the private
 //     _participants/_defaultGroupName/_onMessage/_onGroupUpdate/_onCommand/
-//     _applyCommand routing, all unreachable from a test without either
-//     modifying lib/ visibility (out of scope here) or driving them via
-//     _ensureWired(), which opens a real WebSocket with no injection seam; or
+//     _applyCommand/_onGeneralCommand/_onRelayMessage/_setPresence routing,
+//     all unreachable from a test without either modifying lib/ visibility
+//     (out of scope here) or driving them via _ensureWired(), which opens a
+//     real WebSocket with no injection seam; or
 //   - already covered by test/sync_play_state_test.dart (SyncPlayState /
-//     copyWith / equality) and test/sync_play_models_test.dart
+//     copyWith / equality), test/sync_play_models_test.dart
 //     (SyncGroupState.parse, SyncGroupUpdateType.parse,
-//     SyncPlayGroupUpdate.fromJson, parseSyncCommand).
+//     SyncPlayGroupUpdate.fromJson, parseSyncCommand, SyncRelayMessage), and
+//     test/sync_play_relay_test.dart (postSyncPlayRelayMessage).
 
 /// A test-local provider so we can obtain a real `Ref` for
 /// `SyncPlayController`'s constructor without pulling in the app's
@@ -74,6 +77,22 @@ void main() {
     test('sendChat no-ops for a whitespace-only message', () async {
       await expectLater(controller.sendChat('   '), completes);
       expect(controller.state.chat, isEmpty);
+    });
+
+    test('sendReaction no-ops without touching the API or player', () async {
+      await expectLater(controller.sendReaction('👍'), completes);
+      expect(controller.state.reactions, isEmpty);
+      expect(controller.state, const SyncPlayState());
+    });
+
+    test('sendReaction no-ops for a whitespace-only emoji', () async {
+      await expectLater(controller.sendReaction('   '), completes);
+      expect(controller.state.reactions, isEmpty);
+    });
+
+    test('setTyping no-ops without touching the API or player', () async {
+      await expectLater(controller.setTyping(true), completes);
+      expect(controller.state, const SyncPlayState());
     });
   });
 
