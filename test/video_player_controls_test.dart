@@ -8,6 +8,7 @@ import 'package:driftfin/models/media_playback_model.dart';
 import 'package:driftfin/models/playback/playback_model.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
 import 'package:driftfin/screens/home_screen.dart';
+import 'package:driftfin/screens/video_player/components/adaptive_action_bar.dart';
 import 'package:driftfin/screens/video_player/video_player_controls.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout_model.dart';
@@ -27,10 +28,28 @@ const _adaptiveModel = AdaptiveLayoutModel(
   topBarHeight: 0,
 );
 
+// A landscape phone during fullscreen playback - the realistic narrow case
+// the bottom bar's old horizontally-scrolling left cluster was built to
+// survive. Chapters + screenshot + cast no longer all fit inline here.
+const _narrowPhoneModel = AdaptiveLayoutModel(
+  viewSize: ViewSize.phone,
+  layoutMode: LayoutMode.single,
+  inputDevice: InputDevice.touch,
+  platform: TargetPlatform.android,
+  isDesktop: false,
+  posterDefaults: PosterDefaults(size: 100, ratio: 0.66),
+  controller: <HomeTabs, ScrollController>{},
+  sideBarWidth: 0,
+  topBarHeight: 0,
+);
+const _narrowPhoneSize = Size(560, 320);
+
 Future<ProviderContainer> _pumpControls(
   WidgetTester tester, {
   PlaybackModel? playbackModel,
   MediaPlaybackModel? mediaPlayback,
+  AdaptiveLayoutModel adaptiveModel = _adaptiveModel,
+  Size physicalSize = const Size(1280, 800),
 }) async {
   final container = ProviderContainer(
     overrides: [
@@ -49,7 +68,7 @@ Future<ProviderContainer> _pumpControls(
   // (stop/quality/volume/fullscreen) overflows its Flexible. Use a realistic
   // desktop window size instead, matching what the ViewSize.desktop layout
   // used by this test actually assumes.
-  tester.view.physicalSize = const Size(1280, 800);
+  tester.view.physicalSize = physicalSize;
   tester.view.devicePixelRatio = 1.0;
   addTearDown(tester.view.resetPhysicalSize);
   addTearDown(tester.view.resetDevicePixelRatio);
@@ -57,12 +76,12 @@ Future<ProviderContainer> _pumpControls(
   await tester.pumpWidget(
     UncontrolledProviderScope(
       container: container,
-      child: const MaterialApp(
+      child: MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         home: AdaptiveLayout(
-          data: _adaptiveModel,
-          child: Scaffold(
+          data: adaptiveModel,
+          child: const Scaffold(
             body: DesktopControls(),
           ),
         ),
@@ -142,5 +161,42 @@ void main() {
     await tester.tap(find.byType(DesktopControls));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
+  });
+
+  testWidgets('collapses secondary actions into one overflow menu on a narrow phone without overflowing',
+      (tester) async {
+    final item = testItem(id: 'a', name: 'Movie A');
+    final model = testPlaybackModel(item: item, chapters: testChapters(5));
+
+    await _pumpControls(
+      tester,
+      playbackModel: model,
+      adaptiveModel: _narrowPhoneModel,
+      physicalSize: _narrowPhoneSize,
+    );
+
+    // A RenderFlex overflow (the bug this widget replaces) surfaces as an
+    // exception during layout - if the adaptive bar collapsed correctly none
+    // should have been thrown.
+    expect(tester.takeException(), isNull);
+    expect(find.byType(DesktopControls), findsOneWidget);
+    expect(find.byType(PopupMenuButton<PlayerBarAction>), findsOneWidget);
+  });
+
+  testWidgets('overflow menu on the bottom bar surfaces the chapters action', (tester) async {
+    final item = testItem(id: 'a', name: 'Movie A');
+    final model = testPlaybackModel(item: item, chapters: testChapters(5));
+
+    await _pumpControls(
+      tester,
+      playbackModel: model,
+      adaptiveModel: _narrowPhoneModel,
+      physicalSize: _narrowPhoneSize,
+    );
+
+    await tester.tap(find.byType(PopupMenuButton<PlayerBarAction>));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Chapters'), findsOneWidget);
   });
 }

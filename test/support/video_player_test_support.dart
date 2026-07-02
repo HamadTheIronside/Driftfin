@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 import 'package:driftfin/models/item_base_model.dart';
+import 'package:driftfin/models/items/chapters_model.dart';
 import 'package:driftfin/models/items/item_shared_models.dart';
 import 'package:driftfin/models/items/overview_model.dart';
 import 'package:driftfin/models/playback/direct_playback_model.dart';
@@ -170,10 +171,24 @@ ItemBaseModel testItem({
       jellyType: null,
     );
 
-PlaybackModel testPlaybackModel({ItemBaseModel? item, List<ItemBaseModel> queue = const []}) {
+PlaybackModel testPlaybackModel({
+  ItemBaseModel? item,
+  List<ItemBaseModel> queue = const [],
+  List<Chapter>? chapters,
+}) {
   return DirectPlaybackModel(
     item: item ?? testItem(),
     media: const Media(url: 'https://example.com/video.mp4'),
     queue: queue,
+    chapters: chapters,
   );
 }
+
+List<Chapter> testChapters(int count) => List.generate(
+      count,
+      (index) => Chapter(
+        name: 'Chapter $index',
+        imageUrl: '',
+        startPosition: Duration(minutes: index * 10),
+      ),
+    );
