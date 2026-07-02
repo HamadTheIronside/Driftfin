@@ -16,6 +16,7 @@ import 'package:driftfin/models/items/media_streams_model.dart';
 import 'package:driftfin/models/media_playback_model.dart';
 import 'package:driftfin/models/playback/playback_model.dart';
 import 'package:driftfin/models/settings/video_player_settings.dart';
+import 'package:driftfin/providers/cast_provider.dart';
 import 'package:driftfin/providers/pip_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
@@ -23,9 +24,11 @@ import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
 import 'package:driftfin/screens/shared/default_title_bar.dart';
 import 'package:driftfin/screens/shared/media/components/item_logo.dart';
+import 'package:driftfin/screens/video_player/components/adaptive_action_bar.dart';
 import 'package:driftfin/screens/video_player/components/cast_button.dart';
 import 'package:driftfin/screens/video_player/components/video_playback_information.dart';
 import 'package:driftfin/screens/video_player/components/video_player_brightness_indicator.dart';
+import 'package:driftfin/screens/video_player/components/video_player_chapters.dart';
 import 'package:driftfin/screens/video_player/components/video_player_controls_extras.dart';
 import 'package:driftfin/screens/video_player/components/video_player_options_sheet.dart';
 import 'package:driftfin/screens/video_player/components/video_player_quality_controls.dart';
@@ -366,76 +369,21 @@ class _DesktopControlsState extends ConsumerState<DesktopControls> {
                 children: [
                   Flexible(
                     flex: 2,
-                    // Horizontal scroll so the left cluster (chapter prev/list/next
-                    // buttons + Cast + PiP) never RenderFlex-overflows on narrow phones.
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: <Widget>[
-                          IconButton(
-                              onPressed: () => showVideoPlayerOptions(context, () => minimizePlayer(context)),
-                              icon: const Icon(IconsaxPlusLinear.more)),
-                          ChapterButton(position: ref.read(videoPlayerProvider).lastState?.position ?? Duration.zero),
-                          const ScreenshotButton(),
-                          const CastButton(),
-                          if (pipPlatformSupported && MediaQuery.orientationOf(context) == Orientation.landscape)
-                            IconButton(
-                              tooltip: context.localized.pictureInPictureTitle,
-                              onPressed: () async {
-                                final ok = await ref.read(pipManagerProvider).enter();
-                                if (!ok && context.mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text(context.localized.pictureInPictureNotSupported)),
-                                  );
-                                }
-                              },
-                              icon: const Icon(IconsaxPlusLinear.screenmirroring),
-                            ),
-                          if (AdaptiveLayout.layoutOf(context) == ViewSize.tablet) ...[
-                            IconButton(
-                              onPressed: () => showSubSelection(context),
-                              icon: const Icon(IconsaxPlusLinear.subtitle),
-                            ),
-                            IconButton(
-                              onPressed: () => showAudioSelection(context),
-                              icon: const Icon(IconsaxPlusLinear.audio_square),
-                            ),
-                          ],
-                          if (AdaptiveLayout.layoutOf(context) >= ViewSize.desktop) ...[
-                            // Note: these buttons intentionally do NOT use Flexible/Expanded.
-                            // They sit inside a horizontally-scrolling SingleChildScrollView
-                            // (see above), which gives its child Row unbounded width - a
-                            // flex widget there throws "RenderFlex children have non-zero
-                            // flex but incoming width constraints are unbounded".
-                            ElevatedButton.icon(
-                              onPressed: () => showSubSelection(context),
-                              icon: const Icon(IconsaxPlusLinear.subtitle),
-                              label: Text(
-                                ref.watch(playBackModel.select((value) {
-                                      final language = value?.mediaStreams?.currentSubStream?.language;
-                                      return language?.isEmpty == true ? context.localized.off : language;
-                                    }))?.capitalize() ??
-                                    "",
-                                maxLines: 1,
-                              ),
-                            ),
-                            ElevatedButton.icon(
-                              onPressed: () => showAudioSelection(context),
-                              icon: const Icon(IconsaxPlusLinear.audio_square),
-                              label: Text(
-                                ref.watch(playBackModel.select((value) {
-                                      final language = value?.mediaStreams?.currentAudioStream?.language;
-                                      return language?.isEmpty == true ? context.localized.off : language;
-                                    }))?.capitalize() ??
-                                    "",
-                                maxLines: 1,
-                              ),
-                            )
-                          ],
-                        ].addInBetween(const SizedBox(
-                          width: 4,
-                        )),
-                      ),
+                    // Only the "more options" sheet is always pinned; every other
+                    // secondary action (cast, chapters, screenshot, PiP, subtitle/audio
+                    // quick toggles) lives in the adaptive bar below, which shows as many
+                    // as fit and collapses the rest into a single overflow menu instead of
+                    // growing the row indefinitely.
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () => showVideoPlayerOptions(context, () => minimizePlayer(context)),
+                          icon: const Icon(IconsaxPlusLinear.more),
+                        ),
+                        Expanded(
+                          child: AdaptiveActionBar(actions: _secondaryActions(context, ref)),
+                        ),
+                      ],
                     ),
                   ),
                   previousButton,
@@ -493,6 +441,72 @@ class _DesktopControlsState extends ConsumerState<DesktopControls> {
         ),
       );
     });
+  }
+
+  /// Secondary controls shown in the adaptive bar between the "more options"
+  /// button and the transport controls. Each entry is a plain icon action, so
+  /// [AdaptiveActionBar] can collapse whichever don't fit into one overflow
+  /// menu rather than requiring bespoke per-button breakpoint handling.
+  List<PlayerBarAction> _secondaryActions(BuildContext context, WidgetRef ref) {
+    final chapters = ref.watch(playBackModel.select((value) => value?.chapters));
+    final mediaStreams = ref.watch(playBackModel.select((value) => value?.mediaStreams));
+    final supportsScreenshots = ref.watch(videoPlayerProvider.select((value) => value.capabilities.screenshots));
+    final isCasting = ref.watch(castProvider.select((value) => value.isCasting));
+    final showSubtitleAudio = AdaptiveLayout.viewSizeOf(context) >= ViewSize.tablet;
+
+    String streamTooltip(String label, String? language) {
+      final value = language?.isNotEmpty == true ? language!.capitalize() : context.localized.off;
+      return "$label: $value";
+    }
+
+    return [
+      PlayerBarAction(
+        icon: isCasting ? Icons.cast_connected_rounded : Icons.cast_rounded,
+        tooltip: context.localized.castTo,
+        onPressed: () => showCastSheet(context, ref),
+      ),
+      if (chapters?.isNotEmpty == true)
+        PlayerBarAction(
+          icon: Icons.video_collection_rounded,
+          tooltip: context.localized.chapter(chapters!.length),
+          onPressed: () => showPlayerChapterDialogue(
+            context,
+            chapters: chapters,
+            currentPosition: ref.read(videoPlayerProvider).lastState?.position ?? Duration.zero,
+            onChapterTapped: (chapter) => ref.read(videoPlayerProvider).seek(chapter.startPosition),
+          ),
+        ),
+      PlayerBarAction(
+        icon: Icons.camera_alt_outlined,
+        tooltip: context.localized.takeScreenshot,
+        onPressed: supportsScreenshots ? () => ref.read(videoPlayerProvider.notifier).takeScreenshot() : null,
+      ),
+      if (pipPlatformSupported && MediaQuery.orientationOf(context) == Orientation.landscape)
+        PlayerBarAction(
+          icon: IconsaxPlusLinear.screenmirroring,
+          tooltip: context.localized.pictureInPictureTitle,
+          onPressed: () async {
+            final ok = await ref.read(pipManagerProvider).enter();
+            if (!ok && context.mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(context.localized.pictureInPictureNotSupported)),
+              );
+            }
+          },
+        ),
+      if (showSubtitleAudio) ...[
+        PlayerBarAction(
+          icon: IconsaxPlusLinear.subtitle,
+          tooltip: streamTooltip(context.localized.subtitles, mediaStreams?.currentSubStream?.language),
+          onPressed: mediaStreams?.subStreams.isNotEmpty == true ? () => showSubSelection(context) : null,
+        ),
+        PlayerBarAction(
+          icon: IconsaxPlusLinear.audio_square,
+          tooltip: streamTooltip(context.localized.audio(1), mediaStreams?.currentAudioStream?.language),
+          onPressed: mediaStreams?.audioStreams.isNotEmpty == true ? () => showAudioSelection(context) : null,
+        ),
+      ],
+    ];
   }
 
   Widget progressBar(MediaPlaybackModel mediaPlayback) {
