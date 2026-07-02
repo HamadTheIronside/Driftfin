@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
+
+import 'package:driftfin/models/settings/settings_entry.dart';
+import 'package:driftfin/providers/settings/settings_persistence_provider.dart';
 import 'package:driftfin/screens/shared/flat_button.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
+import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/widgets/shared/ensure_visible.dart';
 import 'package:driftfin/widgets/shared/enum_selection.dart';
 import 'package:driftfin/widgets/shared/item_actions.dart';
@@ -12,17 +18,20 @@ class SettingsListTileCheckbox extends StatelessWidget {
   final Widget? subLabel;
   final Function(bool?)? onChanged;
   final bool value;
+  final SettingId? id;
   const SettingsListTileCheckbox({
     required this.label,
     this.subLabel,
     this.onChanged,
     required this.value,
+    this.id,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return SettingsListTile(
+      id: id,
       label: label,
       subLabel: subLabel,
       onTap: onChanged != null
@@ -50,6 +59,7 @@ class SettingsListTileEnum extends StatelessWidget {
   final Widget? leading;
   final bool trailingInlineWithLabel;
   final Color? contentColor;
+  final SettingId? id;
 
   const SettingsListTileEnum({
     required this.label,
@@ -63,6 +73,7 @@ class SettingsListTileEnum extends StatelessWidget {
     this.leading,
     this.trailingInlineWithLabel = false,
     this.contentColor,
+    this.id,
     super.key,
   }) : assert(
           current != null || currentWidget != null,
@@ -91,6 +102,7 @@ class SettingsListTileEnum extends StatelessWidget {
     }
 
     return SettingsListTile(
+      id: id,
       label: label,
       subLabel: subLabel,
       selected: selected,
@@ -121,6 +133,11 @@ class SettingsListTile extends StatelessWidget {
   final bool trailingInlineWithLabel;
   final Color? contentColor;
   final Function()? onTap;
+
+  /// When set, renders a small persistence-tier badge ("Syncs across your
+  /// devices" / "Saved on the server" / "Stays on this device") beneath
+  /// [subLabel], driven by [settingsPersistenceTierProvider] — see issue #50.
+  final SettingId? id;
   const SettingsListTile({
     required this.label,
     this.subLabel,
@@ -132,6 +149,7 @@ class SettingsListTile extends StatelessWidget {
     this.trailingInlineWithLabel = false,
     this.contentColor,
     this.onTap,
+    this.id,
     super.key,
   });
 
@@ -236,6 +254,7 @@ class SettingsListTile extends StatelessWidget {
                                 ),
                             child: subLabel,
                           ),
+                        if (id != null) _SettingsPersistenceBadge(id: id!),
                       ],
                     ),
                   ),
@@ -257,5 +276,44 @@ class SettingsListTile extends StatelessWidget {
         ),
       );
     });
+  }
+}
+
+class _SettingsPersistenceBadge extends ConsumerWidget {
+  final SettingId id;
+  const _SettingsPersistenceBadge({required this.id});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final tier = ref.watch(settingsPersistenceTierProvider(id));
+    final (icon, label) = switch (tier) {
+      SettingsPersistenceTier.syncsAcrossDevices => (
+          IconsaxPlusLinear.cloud_change,
+          context.localized.settingsSyncsAcrossDevices,
+        ),
+      SettingsPersistenceTier.savedOnServer => (IconsaxPlusLinear.data, context.localized.managedByServerPlugin),
+      SettingsPersistenceTier.staysOnDevice => (
+          IconsaxPlusLinear.mobile,
+          context.localized.settingsStaysOnDevice,
+        ),
+    };
+    final color = Theme.of(context).colorScheme.onSurfaceVariant;
+    return Padding(
+      padding: const EdgeInsets.only(top: 2),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 12, color: color),
+          const SizedBox(width: 4),
+          Flexible(
+            child: Text(
+              label,
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(color: color),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (에피소드 요청)",
   "sonarrIntegrationDesc": "Sonarr에 직접 연결하여 개별 에피소드를 요청해요 (Seerr는 시즌 단위만 지원해요). Sonarr에 이미 추가된 쇼에서만 작동해요.",
   "managedByServerPlugin": "서버에서 관리됨 (Driftfin 플러그인)",
+  "settingsSyncsAcrossDevices": "모든 기기에서 동기화됩니다",
+  "settingsStaysOnDevice": "이 기기에만 저장됩니다",
   "sonarrUrlTitle": "Sonarr URL",
   "sonarrApiKeyTitle": "Sonarr API 키",
   "sonarrSaved": "Sonarr 설정을 저장했어요",

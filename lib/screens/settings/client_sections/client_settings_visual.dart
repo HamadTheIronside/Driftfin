@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:driftfin/l10n/generated/app_localizations.dart';
 import 'package:driftfin/models/settings/client_settings_model.dart';
+import 'package:driftfin/models/settings/settings_entry.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/screens/settings/settings_list_tile.dart';
 import 'package:driftfin/screens/settings/widgets/settings_label_divider.dart';
@@ -27,6 +28,7 @@ List<Widget> buildClientSettingsVisual(
     SettingsLabelDivider(label: context.localized.settingsVisual),
     [
       SettingsListTileEnum(
+        id: SettingId.displayLanguage,
         label: Text(context.localized.displayLanguage),
         currentWidget: Localizations.override(
           context: context,
@@ -58,6 +60,7 @@ List<Widget> buildClientSettingsVisual(
         },
       ),
       SettingsListTile(
+        id: SettingId.blurredPlaceholders,
         label: Text(context.localized.settingsBlurredPlaceholderTitle),
         subLabel: Text(context.localized.settingsBlurredPlaceholderDesc),
         onTap: () => ref.read(clientSettingsProvider.notifier).setBlurPlaceholders(!clientSettings.blurPlaceHolders),
@@ -67,6 +70,7 @@ List<Widget> buildClientSettingsVisual(
         ),
       ),
       SettingsListTile(
+        id: SettingId.blurEffects,
         label: Text(context.localized.settingsBlurEffectsTitle),
         subLabel: Text(context.localized.settingsBlurEffectsDesc),
         onTap: () => ref.read(clientSettingsProvider.notifier).setBlurEffects(!clientSettings.enableBlurEffects),
@@ -105,6 +109,7 @@ List<Widget> buildClientSettingsVisual(
           ),
         ),
       SettingsListTileEnum(
+        id: SettingId.backgroundPosters,
         label: Text(context.localized.enableBackgroundPostersTitle),
         subLabel: Text(context.localized.enableBackgroundPostersDesc),
         current: clientSettings.backgroundImage.label(context),
@@ -118,6 +123,7 @@ List<Widget> buildClientSettingsVisual(
             .toList(),
       ),
       SettingsListTile(
+        id: SettingId.usePostersForLibraryIcons,
         label: Text(context.localized.usePostersForLibraryIconsTitle),
         subLabel: Text(context.localized.usePostersForLibraryIconsDesc),
         onTap: () => ref
@@ -171,6 +177,7 @@ List<Widget> buildClientSettingsVisual(
       Column(
         children: [
           SettingsListTile(
+            id: SettingId.posterSize,
             label: Text(context.localized.settingsPosterSize),
             trailing: Text(
               clientSettings.posterSize.toString(),

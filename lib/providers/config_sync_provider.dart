@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:driftfin/models/account_model.dart';
 import 'package:driftfin/models/settings/client_settings_model.dart';
 import 'package:driftfin/models/settings/home_settings_model.dart';
+import 'package:driftfin/models/settings/settings_entry.dart';
 import 'package:driftfin/providers/server_integration_config_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
@@ -12,6 +13,34 @@ import 'package:driftfin/providers/shared_provider.dart';
 import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/util/custom_color_themes.dart';
 import 'package:driftfin/util/debouncer.dart';
+
+/// Single source of truth for the "syncs across your devices" badge (see
+/// [SettingsListTile]'s `id` param). Every [SettingId] this set contains
+/// corresponds to a field [ConfigSync._buildFrom]/[ConfigSync._apply]
+/// actually reads/writes — the two must be kept in lockstep by hand (there's
+/// a coverage test in settings_registry_test.dart), because a
+/// [UserSettings] field with no matching entry here would sync silently with
+/// no badge telling the user it does.
+const Set<SettingId> syncedSettingIds = {
+  SettingId.homeBanner,
+  SettingId.homeBannerInformation,
+  SettingId.homeNextUp,
+  SettingId.managePinnedCollections,
+  SettingId.themeMode,
+  SettingId.themeColor,
+  SettingId.schemeVariant,
+  SettingId.amoledBlack,
+  SettingId.deriveColorsFromItem,
+  SettingId.backgroundPosters,
+  SettingId.blurEffects,
+  SettingId.blurredPlaceholders,
+  SettingId.posterSize,
+  SettingId.displayLanguage,
+  SettingId.showAllCollectionTypes,
+  SettingId.usePostersForLibraryIcons,
+  SettingId.seerrIntegration,
+  SettingId.seerrRequestNotifications,
+};
 
 /// Device-local toggle: whether this device syncs settings to the Jellyfin
 /// server. Never itself synced.
@@ -107,7 +136,8 @@ class ConfigSync {
   }
 
   /// Builds the synced payload from current local state, preserving fields the
-  /// sync service does not own (e.g. skip durations).
+  /// sync service does not own (e.g. skip durations). The fields written here
+  /// must match [syncedSettingIds] above.
   UserSettings _buildFrom(UserSettings current) {
     final client = ref.read(clientSettingsProvider);
     final home = ref.read(homeSettingsProvider);

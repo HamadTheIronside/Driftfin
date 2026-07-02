@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (sol·licituds d'episodis)",
   "sonarrIntegrationDesc": "Connecteu Sonarr directament per sol·licitar episodis individuals (Seerr només admet temporades senceres). Només funciona amb sèries ja afegides a Sonarr.",
   "managedByServerPlugin": "Gestionat pel servidor (connector de Driftfin)",
+  "settingsSyncsAcrossDevices": "Se sincronitza als teus dispositius",
+  "settingsStaysOnDevice": "Es queda en aquest dispositiu",
   "sonarrUrlTitle": "URL de Sonarr",
   "sonarrApiKeyTitle": "Clau API de Sonarr",
   "sonarrSaved": "Ajustos de Sonarr desats",

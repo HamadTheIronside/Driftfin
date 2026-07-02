@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (žádosti o epizody)",
   "sonarrIntegrationDesc": "Připojte Sonarr přímo a žádejte o jednotlivé epizody (Seerr podporuje pouze celé sezóny). Funguje pouze u seriálů, které už jsou v Sonarru přidané.",
   "managedByServerPlugin": "Spravováno serverem (plugin Driftfin)",
+  "settingsSyncsAcrossDevices": "Synchronizuje se mezi vašimi zařízeními",
+  "settingsStaysOnDevice": "Zůstává v tomto zařízení",
   "sonarrUrlTitle": "URL adresa Sonarru",
   "sonarrApiKeyTitle": "API klíč Sonarru",
   "sonarrSaved": "Nastavení Sonarru uloženo",

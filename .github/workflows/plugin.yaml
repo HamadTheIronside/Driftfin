@@ -31,6 +31,14 @@ jobs:
       - name: Build
         run: dotnet build jellyfin-plugin/Jellyfin.Plugin.Driftfin/Jellyfin.Plugin.Driftfin.csproj -c Release --no-restore
 
+      - name: Test
+        run: dotnet test jellyfin-plugin/Jellyfin.Plugin.Driftfin.Tests/Jellyfin.Plugin.Driftfin.Tests.csproj
+
+      - name: Test manifest script
+        run: |
+          pip install --quiet pyyaml
+          python3 -m unittest discover -s jellyfin-plugin/scripts -p "test_*.py" -v
+
       - name: Package
         run: |
           mkdir -p dist

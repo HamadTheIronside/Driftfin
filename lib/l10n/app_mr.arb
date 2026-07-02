@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (भाग विनंत्या)",
   "sonarrIntegrationDesc": "एकेरी भागांची विनंती करण्यासाठी Sonarr थेट जोडा (Seerr फक्त संपूर्ण सीझनला समर्थन देतो). हे फक्त आधीच Sonarr मध्ये जोडलेल्या मालिकांसाठी काम करते.",
   "managedByServerPlugin": "सर्व्हरद्वारे व्यवस्थापित (Driftfin प्लगइन)",
+  "settingsSyncsAcrossDevices": "तुमच्या सर्व डिव्हाइसवर सिंक होते",
+  "settingsStaysOnDevice": "फक्त या डिव्हाइसवर राहते",
   "sonarrUrlTitle": "Sonarr यूआरएल",
   "sonarrApiKeyTitle": "Sonarr API की",
   "sonarrSaved": "Sonarr सेटिंग सेव्ह केले",

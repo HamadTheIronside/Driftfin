@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:driftfin/jellyfin/jellyfin_open_api.enums.swagger.dart' as enums;
 import 'package:driftfin/models/seerr_credentials_model.dart';
+import 'package:driftfin/models/settings/settings_entry.dart';
 import 'package:driftfin/providers/connectivity_provider.dart';
 import 'package:driftfin/providers/cultures_provider.dart';
 import 'package:driftfin/providers/home_preferences_provider.dart';
@@ -337,12 +338,14 @@ class _UserSettingsPageState extends ConsumerState<ProfileSettingsPage> with Wid
           const SettingsLabelDivider(label: "Seerr"),
           [
             SettingsListTile(
+              id: SettingId.seerrIntegration,
               label: Text(context.localized.seerr),
               subLabel: Text(_seerrStatusLabel(context, user?.seerrCredentials, seerrUser)),
               onTap: () => showSeerrConnectionDialog(context),
             ),
             if (seerrUser?.canManageRequests ?? false)
               SettingsListTileCheckbox(
+                id: SettingId.seerrRequestNotifications,
                 label: Text(context.localized.seerrRequestNotifications),
                 value: user?.seerrRequestsEnabled ?? false,
                 onChanged: (val) async {

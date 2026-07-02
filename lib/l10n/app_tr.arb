@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (bölüm istekleri)",
   "sonarrIntegrationDesc": "Tek bölüm istemek için Sonarr'a doğrudan bağlanın (Seerr yalnızca tüm sezonları destekler). Yalnızca Sonarr'a zaten eklenmiş diziler için çalışır.",
   "managedByServerPlugin": "Sunucu tarafından yönetiliyor (Driftfin eklentisi)",
+  "settingsSyncsAcrossDevices": "Cihazlarınız arasında senkronize edilir",
+  "settingsStaysOnDevice": "Yalnızca bu cihazda kalır",
   "sonarrUrlTitle": "Sonarr URL",
   "sonarrApiKeyTitle": "Sonarr API anahtarı",
   "sonarrSaved": "Sonarr ayarları kaydedildi",

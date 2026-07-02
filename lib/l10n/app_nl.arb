@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (aflevering-aanvragen)",
   "sonarrIntegrationDesc": "Verbind Sonarr rechtstreeks om losse afleveringen aan te vragen (Seerr ondersteunt alleen hele seizoenen). Werkt alleen voor series die al zijn toegevoegd aan Sonarr.",
   "managedByServerPlugin": "Beheerd door server (Driftfin-plugin)",
+  "settingsSyncsAcrossDevices": "Synchroniseert op al je apparaten",
+  "settingsStaysOnDevice": "Blijft op dit apparaat",
   "sonarrUrlTitle": "Sonarr-URL",
   "sonarrApiKeyTitle": "Sonarr API-sleutel",
   "sonarrSaved": "Sonarr-instellingen opgeslagen",

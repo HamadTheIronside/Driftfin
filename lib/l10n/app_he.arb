@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (בקשות פרקים)",
   "sonarrIntegrationDesc": "חברו את Sonarr ישירות כדי לבקש פרקים בודדים (Seerr תומך רק בעונות שלמות). עובד רק עבור סדרות שכבר נוספו ל-Sonarr.",
   "managedByServerPlugin": "מנוהל על ידי השרת (תוסף Driftfin)",
+  "settingsSyncsAcrossDevices": "מסתנכרן בין המכשירים שלך",
+  "settingsStaysOnDevice": "נשאר במכשיר הזה בלבד",
   "sonarrUrlTitle": "כתובת URL של Sonarr",
   "sonarrApiKeyTitle": "מפתח API של Sonarr",
   "sonarrSaved": "הגדרות Sonarr נשמרו",

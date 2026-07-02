@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (αιτήματα επεισοδίων)",
   "sonarrIntegrationDesc": "Συνδέστε απευθείας το Sonarr για να ζητάτε μεμονωμένα επεισόδια (το Seerr υποστηρίζει μόνο ολόκληρους κύκλους). Λειτουργεί μόνο για σειρές που έχουν ήδη προστεθεί στο Sonarr.",
   "managedByServerPlugin": "Διαχειρίζεται από τον διακομιστή (πρόσθετο Driftfin)",
+  "settingsSyncsAcrossDevices": "Συγχρονίζεται σε όλες τις συσκευές σας",
+  "settingsStaysOnDevice": "Παραμένει σε αυτήν τη συσκευή",
   "sonarrUrlTitle": "Διεύθυνση URL Sonarr",
   "sonarrApiKeyTitle": "Κλειδί API Sonarr",
   "sonarrSaved": "Οι ρυθμίσεις Sonarr αποθηκεύτηκαν",

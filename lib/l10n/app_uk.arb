@@ -18,6 +18,8 @@
   "sonarrIntegrationTitle": "Sonarr (запити епізодів)",
   "sonarrIntegrationDesc": "Підключіть Sonarr напряму, щоб запитувати окремі епізоди (Seerr підтримує лише цілі сезони). Працює тільки для серіалів, вже доданих у Sonarr.",
   "managedByServerPlugin": "Керується сервером (плагін Driftfin)",
+  "settingsSyncsAcrossDevices": "Синхронізується на всіх ваших пристроях",
+  "settingsStaysOnDevice": "Залишається лише на цьому пристрої",
   "sonarrUrlTitle": "URL-адреса Sonarr",
   "sonarrApiKeyTitle": "API-ключ Sonarr",
   "sonarrSaved": "Налаштування Sonarr збережено",

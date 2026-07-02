@@ -13,6 +13,7 @@ import 'package:driftfin/routes/auto_router.gr.dart';
 import 'package:driftfin/screens/settings/quick_connect_window.dart';
 import 'package:driftfin/screens/settings/settings_list_tile.dart';
 import 'package:driftfin/screens/settings/settings_scaffold.dart';
+import 'package:driftfin/screens/settings/widgets/settings_search_field.dart';
 import 'package:driftfin/screens/shared/default_alert_dialog.dart';
 import 'package:driftfin/screens/shared/fladder_icon.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
@@ -127,6 +128,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           showBackButtonNested: AdaptiveLayout.inputDeviceOf(context) != InputDevice.dPad,
           showUserIcon: true,
           items: [
+            const SettingsSearchField(),
+            const SizedBox(height: 8),
             if (hasNewUpdate && newRelease != null) ...[
               Card(
                 color: context.colors.secondaryContainer,
