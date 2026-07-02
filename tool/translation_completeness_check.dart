@@ -3,11 +3,7 @@ import 'dart:io';
 
 /// Completeness report for a single non-template ARB locale file.
 class TranslationReport {
-  const TranslationReport({
-    required this.fileName,
-    required this.missingKeys,
-    required this.emptyKeys,
-  });
+  const TranslationReport(this.fileName, this.missingKeys, this.emptyKeys);
 
   final String fileName;
   final List<String> missingKeys;
@@ -23,27 +19,36 @@ class TranslationReport {
 /// only the template needs them.
 List<TranslationReport> checkTranslationCompleteness(Directory l10nDir) {
   final templateFile = File('${l10nDir.path}/app_en.arb');
-  final template =
-      jsonDecode(templateFile.readAsStringSync()) as Map<String, dynamic>;
-  final templateKeys =
-      template.keys.where((key) => !key.startsWith('@')).toList()..sort();
+  final String templateText = templateFile.readAsStringSync();
+  final Map<String, dynamic> template = jsonDecode(templateText);
+  final templateKeys = <String>[];
+  for (final key in template.keys) {
+    if (!key.startsWith('@')) {
+      templateKeys.add(key);
+    }
+  }
+  templateKeys.sort();
 
-  final arbFiles =
-      l10nDir
-          .listSync()
-          .whereType<File>()
-          .where(
-            (file) =>
-                file.path.endsWith('.arb') && file.path != templateFile.path,
-          )
-          .toList()
-        ..sort((a, b) => a.path.compareTo(b.path));
+  final arbFiles = <File>[];
+  for (final entity in l10nDir.listSync()) {
+    final isArb = entity is File && entity.path.endsWith('.arb');
+    final isTemplate = entity.path == templateFile.path;
+    if (isArb && !isTemplate) {
+      arbFiles.add(entity as File);
+    }
+  }
+  arbFiles.sort((a, b) => a.path.compareTo(b.path));
 
-  return [for (final file in arbFiles) _checkFile(file, templateKeys)];
+  final reports = <TranslationReport>[];
+  for (final file in arbFiles) {
+    reports.add(_checkFile(file, templateKeys));
+  }
+  return reports;
 }
 
 TranslationReport _checkFile(File file, List<String> templateKeys) {
-  final data = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
+  final String fileText = file.readAsStringSync();
+  final Map<String, dynamic> data = jsonDecode(fileText);
   final missingKeys = <String>[];
   final emptyKeys = <String>[];
 
@@ -58,9 +63,6 @@ TranslationReport _checkFile(File file, List<String> templateKeys) {
     }
   }
 
-  return TranslationReport(
-    fileName: file.uri.pathSegments.last,
-    missingKeys: missingKeys,
-    emptyKeys: emptyKeys,
-  );
+  final fileName = file.uri.pathSegments.last;
+  return TranslationReport(fileName, missingKeys, emptyKeys);
 }

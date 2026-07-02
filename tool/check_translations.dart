@@ -8,23 +8,26 @@ import 'translation_completeness_check.dart';
 void main() {
   final l10nDir = Directory('lib/l10n');
   final reports = checkTranslationCompleteness(l10nDir);
-  final incomplete = reports.where((report) => !report.isComplete).toList();
+
+  final incomplete = <TranslationReport>[];
+  for (final report in reports) {
+    if (!report.isComplete) {
+      incomplete.add(report);
+    }
+  }
 
   if (incomplete.isEmpty) {
-    stdout.writeln(
-      'All ${reports.length} translation files are 100% complete.',
-    );
+    final count = reports.length;
+    stdout.writeln('All $count translation files are 100% complete.');
     return;
   }
 
-  stderr.writeln(
-    'Incomplete translations found in ${incomplete.length} file(s):',
-  );
+  final fileCount = incomplete.length;
+  stderr.writeln('Incomplete translations in $fileCount file(s):');
   for (final report in incomplete) {
-    stderr.writeln(
-      '  ${report.fileName}: ${report.missingKeys.length} missing, '
-      '${report.emptyKeys.length} empty',
-    );
+    final missing = report.missingKeys.length;
+    final empty = report.emptyKeys.length;
+    stderr.writeln('  ${report.fileName}: $missing missing, $empty empty');
     for (final key in report.missingKeys) {
       stderr.writeln('    missing: $key');
     }
