@@ -30,12 +30,12 @@ const _adaptiveModel = AdaptiveLayoutModel(
 Widget _harness(SharedPreferences prefs) {
   return ProviderScope(
     overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
-    child: MaterialApp(
+    child: const MaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: AdaptiveLayout(
         data: _adaptiveModel,
-        child: const Scaffold(body: SingleChildScrollView(child: SettingsSearchField())),
+        child: Scaffold(body: SingleChildScrollView(child: SettingsSearchField())),
       ),
     ),
   );

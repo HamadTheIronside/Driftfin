@@ -74,10 +74,10 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
-        child: MaterialApp(
+        child: const MaterialApp(
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
-          home: const AdaptiveLayout(
+          home: AdaptiveLayout(
             data: _adaptiveModel,
             child: Scaffold(body: SettingsListTile(label: Text('No badge here'))),
           ),
