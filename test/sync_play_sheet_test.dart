@@ -14,7 +14,7 @@ import 'package:driftfin/providers/syncplay/sync_play_controller.dart';
 import 'package:driftfin/screens/video_player/components/sync_play_sheet.dart';
 
 class _FakeSyncPlayController extends SyncPlayController {
-  _FakeSyncPlayController(Ref ref) : super(ref);
+  _FakeSyncPlayController(super.ref);
 
   int reactionSentCount = 0;
   String? lastReactionEmoji;
