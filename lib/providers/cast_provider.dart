@@ -50,15 +50,14 @@ List<CastTarget> sessionCastTargets(List<SessionInfoDto> sessions, {String? myDe
       .where((s) => myDeviceId == null || s.deviceId != myDeviceId)
       .where((s) => s.supportsRemoteControl == true)
       .map((s) {
-        final label = [s.deviceName, s.userName].nonNulls.where((e) => e.isNotEmpty).join(' · ');
-        return CastTarget(
-          id: 'session:${s.id}',
-          name: label.isNotEmpty ? label : s.id!,
-          backend: CastBackend.jellyfinSession,
-          session: s,
-        );
-      })
-      .toList();
+    final label = [s.deviceName, s.userName].nonNulls.where((e) => e.isNotEmpty).join(' · ');
+    return CastTarget(
+      id: 'session:${s.id}',
+      name: label.isNotEmpty ? label : s.id!,
+      backend: CastBackend.jellyfinSession,
+      session: s,
+    );
+  }).toList();
 }
 
 /// The `/Sessions/{id}/Playing` handoff request built from the currently
@@ -344,8 +343,7 @@ class CastController extends StateNotifier<CastState> {
     String? mediaSourceId,
     int? audioStreamIndex,
     int? subtitleStreamIndex,
-  })?
-  _currentMedia() {
+  })? _currentMedia() {
     final model = ref.read(playBackModel);
     final url = model?.media?.url;
     if (model == null || url == null) return null;
@@ -477,9 +475,7 @@ class CastController extends StateNotifier<CastState> {
         audioStreamIndex: media.audioStreamIndex,
         subtitleStreamIndex: media.subtitleStreamIndex,
       );
-      await ref
-          .read(jellyApiProvider)
-          .sessionsSessionIdPlayingPost(
+      await ref.read(jellyApiProvider).sessionsSessionIdPlayingPost(
             sessionId: request.sessionId,
             itemIds: request.itemIds,
             startPositionTicks: request.startPositionTicks,
