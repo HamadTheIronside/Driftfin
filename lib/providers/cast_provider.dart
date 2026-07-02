@@ -1,26 +1,36 @@
 import 'dart:async';
 
 import 'package:cast_plus/cast.dart';
+import 'package:collection/collection.dart';
 import 'package:dlna_dart/dlna.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 
+import 'package:driftfin/jellyfin/jellyfin_open_api.enums.swagger.dart' as enums;
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart' show SessionInfoDto;
+import 'package:driftfin/providers/api_provider.dart';
 import 'package:driftfin/providers/image_provider.dart';
+import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
+import 'package:driftfin/util/duration_extensions.dart';
 
-/// Which casting protocol a target speaks.
-enum CastBackend { chromecast, dlna }
+/// Which target protocol a "Play on…" destination speaks. `jellyfinSession`
+/// is another logged-in Jellyfin client, driven via the Sessions API instead
+/// of a casting protocol.
+enum CastBackend { chromecast, dlna, jellyfinSession }
 
 /// Connection lifecycle for a cast session.
 enum CastStatus { disconnected, discovering, connecting, connected, error }
 
-/// A discovered cast destination, abstracting over Chromecast and DLNA.
+/// A discovered "Play on…" destination — a Chromecast, a DLNA renderer, or
+/// another active Jellyfin session (Beam & Handoff).
 class CastTarget {
   final String id;
   final String name;
   final CastBackend backend;
   final CastDevice? chromecast;
   final DLNADevice? dlna;
+  final SessionInfoDto? session;
 
   const CastTarget({
     required this.id,
@@ -28,7 +38,56 @@ class CastTarget {
     required this.backend,
     this.chromecast,
     this.dlna,
+    this.session,
   });
+}
+
+/// Builds "Play on…" targets from the sessions the current user may remote
+/// control, excluding the caller's own session. Pure — unit-tested.
+List<CastTarget> sessionCastTargets(List<SessionInfoDto> sessions, {String? myDeviceId}) {
+  return sessions
+      .where((s) => s.id != null)
+      .where((s) => myDeviceId == null || s.deviceId != myDeviceId)
+      .where((s) => s.supportsRemoteControl == true)
+      .map((s) {
+    final label = [s.deviceName, s.userName].nonNulls.where((e) => e.isNotEmpty).join(' · ');
+    return CastTarget(
+      id: 'session:${s.id}',
+      name: label.isNotEmpty ? label : s.id!,
+      backend: CastBackend.jellyfinSession,
+      session: s,
+    );
+  }).toList();
+}
+
+/// The `/Sessions/{id}/Playing` handoff request built from the currently
+/// playing item — the exact position + track selection to hand to [sessionId].
+/// Pure — unit-tested.
+typedef SessionPlayRequest = ({
+  String sessionId,
+  List<String> itemIds,
+  int startPositionTicks,
+  String? mediaSourceId,
+  int? audioStreamIndex,
+  int? subtitleStreamIndex,
+});
+
+SessionPlayRequest buildSessionPlayRequest({
+  required String sessionId,
+  required String itemId,
+  required Duration startAt,
+  String? mediaSourceId,
+  int? audioStreamIndex,
+  int? subtitleStreamIndex,
+}) {
+  return (
+    sessionId: sessionId,
+    itemIds: [itemId],
+    startPositionTicks: startAt.toRuntimeTicks,
+    mediaSourceId: mediaSourceId,
+    audioStreamIndex: audioStreamIndex,
+    subtitleStreamIndex: subtitleStreamIndex,
+  );
 }
 
 /// Immutable view of the current cast state for the UI.
@@ -99,7 +158,7 @@ Map<String, dynamic> buildLoadMessage({
         'title': title,
         if (imageUrl != null)
           'images': [
-            {'url': imageUrl}
+            {'url': imageUrl},
           ],
       },
     },
@@ -174,14 +233,20 @@ class CastController extends StateNotifier<CastState> {
 
   List<CastTarget> _chromecastTargets = const [];
   List<CastTarget> _dlnaTargets = const [];
+  List<CastTarget> _sessionTargets = const [];
   Timer? _discoveryTimer;
+
+  // Jellyfin session handoff.
+  String? _sessionId;
+  Timer? _sessionPollTimer;
 
   void _publishDevices() {
     if (state.isCasting) return; // don't disturb the controls view while casting
-    state = state.copyWith(devices: [..._chromecastTargets, ..._dlnaTargets]);
+    state = state.copyWith(devices: [..._chromecastTargets, ..._dlnaTargets, ..._sessionTargets]);
   }
 
-  /// Discover cast devices on the local network (Chromecast + DLNA in parallel).
+  /// Discover "Play on…" targets: Chromecast + DLNA on the local network, and
+  /// other Jellyfin sessions the user may remote-control, in parallel.
   Future<void> discover() async {
     if (state.status == CastStatus.discovering) return; // already searching
     state = state.copyWith(status: CastStatus.discovering, clearError: true);
@@ -195,19 +260,29 @@ class CastController extends StateNotifier<CastState> {
       }
     });
     _discoverDlna();
+    unawaited(_discoverSessions());
     await _discoverChromecast();
+  }
+
+  Future<void> _discoverSessions() async {
+    try {
+      final myDeviceId = ref.read(userProvider)?.credentials.deviceId;
+      final response = await ref.read(jellyApiProvider).getControllableSessions();
+      _sessionTargets = sessionCastTargets(response.body ?? const [], myDeviceId: myDeviceId);
+      _publishDevices();
+    } catch (e, s) {
+      _log.warning('Jellyfin session discovery failed', e, s);
+    }
   }
 
   Future<void> _discoverChromecast() async {
     try {
       final devices = await CastDiscoveryService().search();
       _chromecastTargets = devices
-          .map((d) => CastTarget(
-                id: 'cc:${d.name}:${d.host}',
-                name: d.name,
-                backend: CastBackend.chromecast,
-                chromecast: d,
-              ))
+          .map(
+            (d) =>
+                CastTarget(id: 'cc:${d.name}:${d.host}', name: d.name, backend: CastBackend.chromecast, chromecast: d),
+          )
           .toList();
       _publishDevices();
     } catch (e, s) {
@@ -223,12 +298,14 @@ class CastController extends StateNotifier<CastState> {
       _dlna!.start().then((manager) {
         _dlnaDevicesSub = manager.devices.stream.listen((deviceMap) {
           _dlnaTargets = deviceMap.entries
-              .map((e) => CastTarget(
-                    id: 'dlna:${e.key}',
-                    name: e.value.info.friendlyName,
-                    backend: CastBackend.dlna,
-                    dlna: e.value,
-                  ))
+              .map(
+                (e) => CastTarget(
+                  id: 'dlna:${e.key}',
+                  name: e.value.info.friendlyName,
+                  backend: CastBackend.dlna,
+                  dlna: e.value,
+                ),
+              )
               .toList();
           _publishDevices();
         });
@@ -251,19 +328,37 @@ class CastController extends StateNotifier<CastState> {
         await _connectChromecast(target);
       case CastBackend.dlna:
         await _connectDlna(target);
+      case CastBackend.jellyfinSession:
+        await _connectSession(target);
     }
   }
 
-  ({String url, String title, String? image, Duration startAt})? _currentMedia() {
+  ({
+    String url,
+    String title,
+    String? image,
+    Duration startAt,
+    Duration duration,
+    String itemId,
+    String? mediaSourceId,
+    int? audioStreamIndex,
+    int? subtitleStreamIndex,
+  })? _currentMedia() {
     final model = ref.read(playBackModel);
     final url = model?.media?.url;
     if (model == null || url == null) return null;
     final image = ref.read(imageUtilityProvider).getItemsImageUrl(model.item.id);
+    final lastState = ref.read(videoPlayerProvider).lastState;
     return (
       url: url,
       title: model.item.name,
       image: image.isNotEmpty ? image : null,
-      startAt: ref.read(videoPlayerProvider).lastState?.position ?? Duration.zero,
+      startAt: lastState?.position ?? Duration.zero,
+      duration: lastState?.duration ?? Duration.zero,
+      itemId: model.item.id,
+      mediaSourceId: model.mediaStreams?.currentVersionStream?.id,
+      audioStreamIndex: model.mediaStreams?.defaultAudioStreamIndex,
+      subtitleStreamIndex: model.mediaStreams?.defaultSubStreamIndex,
     );
   }
 
@@ -359,6 +454,81 @@ class CastController extends StateNotifier<CastState> {
     }
   }
 
+  // --- Jellyfin session (Beam & Handoff) ----------------------------------
+
+  Future<void> _connectSession(CastTarget target) async {
+    final sessionId = target.session?.id;
+    final media = _currentMedia();
+    if (sessionId == null || media == null) {
+      state = state.copyWith(status: CastStatus.error, error: 'No media to cast', clearDevice: true);
+      return;
+    }
+    try {
+      _connected = CastBackend.jellyfinSession;
+      _sessionId = sessionId;
+      ref.read(videoPlayerProvider).pause();
+      final request = buildSessionPlayRequest(
+        sessionId: sessionId,
+        itemId: media.itemId,
+        startAt: media.startAt,
+        mediaSourceId: media.mediaSourceId,
+        audioStreamIndex: media.audioStreamIndex,
+        subtitleStreamIndex: media.subtitleStreamIndex,
+      );
+      await ref.read(jellyApiProvider).sessionsSessionIdPlayingPost(
+            sessionId: request.sessionId,
+            itemIds: request.itemIds,
+            startPositionTicks: request.startPositionTicks,
+            mediaSourceId: request.mediaSourceId,
+            audioStreamIndex: request.audioStreamIndex,
+            subtitleStreamIndex: request.subtitleStreamIndex,
+          );
+      state = state.copyWith(status: CastStatus.connected, playing: true, duration: media.duration);
+      _sessionPollTimer?.cancel();
+      _sessionPollTimer = Timer.periodic(const Duration(seconds: 2), (_) => _pollSession());
+    } catch (e, s) {
+      _log.warning('Session handoff failed', e, s);
+      state = state.copyWith(status: CastStatus.error, error: e.toString(), clearDevice: true);
+      await _teardown();
+    }
+  }
+
+  /// Polls the handed-off session's reported play state, since Jellyfin
+  /// sessions push updates over WebSocket rather than back to us directly.
+  Future<void> _pollSession() async {
+    final sessionId = _sessionId;
+    if (sessionId == null) return;
+    try {
+      final response = await ref.read(jellyApiProvider).getControllableSessions();
+      final session = (response.body ?? const []).firstWhereOrNull((s) => s.id == sessionId);
+      if (session == null) {
+        await disconnect(); // remote ended playback / logged out
+        return;
+      }
+      final playState = session.playState;
+      state = state.copyWith(
+        status: CastStatus.connected,
+        playing: playState?.isPaused == false,
+        position: playState?.positionTicks?.fromRuntimeTicks ?? state.position,
+      );
+    } catch (e, s) {
+      _log.warning('Session poll failed', e, s);
+    }
+  }
+
+  void _sessionCommand(enums.SessionsSessionIdPlayingCommandPostCommand command, {int? seekPositionTicks}) {
+    final sessionId = _sessionId;
+    if (sessionId == null) return;
+    ref
+        .read(jellyApiProvider)
+        .sessionsSessionIdPlayingCommandPost(
+          sessionId: sessionId,
+          command: command,
+          seekPositionTicks: seekPositionTicks,
+        )
+        .ignore();
+  }
+
   // --- Unified controls ---------------------------------------------------
 
   // DLNA control calls are SOAP POSTs that can throw if the renderer drops;
@@ -375,6 +545,9 @@ class CastController extends StateNotifier<CastState> {
       case CastBackend.dlna:
         _dlnaFireForget(_dlnaDevice?.play());
         state = state.copyWith(playing: true);
+      case CastBackend.jellyfinSession:
+        _sessionCommand(enums.SessionsSessionIdPlayingCommandPostCommand.unpause);
+        state = state.copyWith(playing: true);
       case null:
         break;
     }
@@ -387,6 +560,9 @@ class CastController extends StateNotifier<CastState> {
       case CastBackend.dlna:
         _dlnaFireForget(_dlnaDevice?.pause());
         state = state.copyWith(playing: false);
+      case CastBackend.jellyfinSession:
+        _sessionCommand(enums.SessionsSessionIdPlayingCommandPostCommand.pause);
+        state = state.copyWith(playing: false);
       case null:
         break;
     }
@@ -398,6 +574,9 @@ class CastController extends StateNotifier<CastState> {
         _chromecastMedia('SEEK', {'currentTime': to.inSeconds});
       case CastBackend.dlna:
         _dlnaFireForget(_dlnaDevice?.seek(formatClockTime(to)));
+      case CastBackend.jellyfinSession:
+        _sessionCommand(enums.SessionsSessionIdPlayingCommandPostCommand.seek, seekPositionTicks: to.toRuntimeTicks);
+        state = state.copyWith(position: to);
       case null:
         break;
     }
@@ -417,6 +596,8 @@ class CastController extends StateNotifier<CastState> {
         try {
           await _dlnaDevice?.stop();
         } catch (_) {}
+      case CastBackend.jellyfinSession:
+        _sessionCommand(enums.SessionsSessionIdPlayingCommandPostCommand.stop);
       case null:
         break;
     }
@@ -447,6 +628,10 @@ class CastController extends StateNotifier<CastState> {
     _dlnaPosSub = null;
     _dlnaDevice?.positionPoller.stop();
     _dlnaDevice = null;
+
+    _sessionPollTimer?.cancel();
+    _sessionPollTimer = null;
+    _sessionId = null;
 
     _connected = null;
   }

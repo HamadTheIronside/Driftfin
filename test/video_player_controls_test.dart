@@ -232,7 +232,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect((container.read(castProvider.notifier) as FakeCastController).discoverCallCount, 1);
-    expect(find.text('Cast to TV'), findsOneWidget);
+    expect(find.text('Play on…'), findsOneWidget);
   });
 
   testWidgets('tapping the chapters action opens the chapter dialogue', (tester) async {

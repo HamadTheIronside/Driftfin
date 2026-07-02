@@ -54,6 +54,9 @@ class _CastSheet extends ConsumerWidget {
       return _CastControls(state: state, notifier: notifier);
     }
 
+    final nearby = state.devices.where((d) => d.backend != CastBackend.jellyfinSession).toList();
+    final sessions = state.devices.where((d) => d.backend == CastBackend.jellyfinSession).toList();
+
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -76,17 +79,16 @@ class _CastSheet extends ConsumerWidget {
                   ? context.localized.castSearching
                   : context.localized.castNoDevices),
             )
-          else
-            ...state.devices.map(
-              (device) => ListTile(
-                leading: const Icon(Icons.tv_rounded),
-                title: Text(device.name),
-                onTap: () {
-                  notifier.connect(device);
-                  Navigator.of(context).pop();
-                },
-              ),
-            ),
+          else ...[
+            if (sessions.isNotEmpty) ...[
+              _CastSectionHeader(title: context.localized.castSectionSessions),
+              ...sessions.map((device) => _CastTargetTile(device: device, notifier: notifier)),
+            ],
+            if (nearby.isNotEmpty) ...[
+              _CastSectionHeader(title: context.localized.castSectionNearby),
+              ...nearby.map((device) => _CastTargetTile(device: device, notifier: notifier)),
+            ],
+          ],
           if (state.error != null) ...[
             const SizedBox(height: 8),
             Text(context.localized.castFailed,
@@ -94,6 +96,37 @@ class _CastSheet extends ConsumerWidget {
           ],
         ],
       ),
+    );
+  }
+}
+
+class _CastSectionHeader extends StatelessWidget {
+  final String title;
+  const _CastSectionHeader({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 4, bottom: 4),
+      child: Text(title, style: Theme.of(context).textTheme.labelMedium),
+    );
+  }
+}
+
+class _CastTargetTile extends StatelessWidget {
+  final CastTarget device;
+  final CastController notifier;
+  const _CastTargetTile({required this.device, required this.notifier});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(device.backend == CastBackend.jellyfinSession ? Icons.devices_rounded : Icons.tv_rounded),
+      title: Text(device.name),
+      onTap: () {
+        notifier.connect(device);
+        Navigator.of(context).pop();
+      },
     );
   }
 }

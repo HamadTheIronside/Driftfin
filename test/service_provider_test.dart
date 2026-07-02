@@ -1,5 +1,7 @@
+import 'package:chopper/chopper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:driftfin/jellyfin/jellyfin_open_api.enums.swagger.dart' as enums;
 import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
@@ -308,9 +310,133 @@ void main() {
       expect(query['audioStreamIndex'], '0');
     });
   });
+
+  group('JellyService session-handoff wrappers (Beam & Handoff, #46)', () {
+    test('getControllableSessions passes the current account id as controllableByUserId', () async {
+      final container = _containerWith(user: _accountWithUrl('http://server.local'));
+      addTearDown(container.dispose);
+      final rawApi = _FakeRawSessionsApi()..sessions = [const SessionInfoDto(id: 's1')];
+      final service = JellyService(_refOf(container), rawApi);
+
+      final response = await service.getControllableSessions();
+
+      expect(rawApi.capturedControllableByUserId, 'user-id');
+      expect(response.body, hasLength(1));
+      expect(response.body!.single.id, 's1');
+    });
+
+    test('sessionsSessionIdPlayingPost hands off with a hardcoded PlayNow command', () async {
+      final container = _containerWith(user: _accountWithUrl('http://server.local'));
+      addTearDown(container.dispose);
+      final rawApi = _FakeRawSessionsApi();
+      final service = JellyService(_refOf(container), rawApi);
+
+      await service.sessionsSessionIdPlayingPost(
+        sessionId: 's1',
+        itemIds: const ['item-1'],
+        startPositionTicks: 12345,
+        mediaSourceId: 'src1',
+        audioStreamIndex: 1,
+        subtitleStreamIndex: 2,
+      );
+
+      expect(rawApi.playingPostCalls, hasLength(1));
+      final call = rawApi.playingPostCalls.single;
+      expect(call['sessionId'], 's1');
+      expect(call['playCommand'], enums.SessionsSessionIdPlayingPostPlayCommand.playnow);
+      expect(call['itemIds'], ['item-1']);
+      expect(call['startPositionTicks'], 12345);
+      expect(call['mediaSourceId'], 'src1');
+      expect(call['audioStreamIndex'], 1);
+      expect(call['subtitleStreamIndex'], 2);
+    });
+
+    test('sessionsSessionIdPlayingCommandPost forwards the command/seek and stamps the controlling user id', () async {
+      final container = _containerWith(user: _accountWithUrl('http://server.local'));
+      addTearDown(container.dispose);
+      final rawApi = _FakeRawSessionsApi();
+      final service = JellyService(_refOf(container), rawApi);
+
+      await service.sessionsSessionIdPlayingCommandPost(
+        sessionId: 's1',
+        command: enums.SessionsSessionIdPlayingCommandPostCommand.seek,
+        seekPositionTicks: 999,
+      );
+
+      final call = rawApi.playingCommandCalls.single;
+      expect(call['sessionId'], 's1');
+      expect(call['command'], enums.SessionsSessionIdPlayingCommandPostCommand.seek);
+      expect(call['seekPositionTicks'], 999);
+      expect(call['controllingUserId'], 'user-id');
+    });
+  });
 }
 
 /// `buildVideoStreamUrl` is a pure function that never touches `api`, so any
 /// [JellyfinOpenApi] instance works here; `.create()` just wires up a chopper
 /// client without performing any network I/O.
 JellyfinOpenApi fakeJellyfinOpenApiStub() => JellyfinOpenApi.create();
+
+/// Fakes the raw Sessions endpoints below `JellyService`'s wrappers, so the
+/// wrapper methods themselves (param forwarding, the hardcoded PlayNow
+/// command, stamping the controlling user id) can be exercised without any
+/// network I/O.
+class _FakeRawSessionsApi extends JellyfinOpenApi {
+  @override
+  Type get definitionType => throw UnimplementedError();
+
+  List<SessionInfoDto> sessions = const [];
+  String? capturedControllableByUserId;
+
+  final List<Map<String, dynamic>> playingPostCalls = [];
+  final List<Map<String, dynamic>> playingCommandCalls = [];
+
+  @override
+  Future<Response<List<SessionInfoDto>>> sessionsGet({
+    String? controllableByUserId,
+    String? deviceId,
+    int? activeWithinSeconds,
+  }) async {
+    capturedControllableByUserId = controllableByUserId;
+    return Response(http.Response('', 200), sessions);
+  }
+
+  @override
+  Future<Response> sessionsSessionIdPlayingPost({
+    required String? sessionId,
+    required enums.SessionsSessionIdPlayingPostPlayCommand? playCommand,
+    required List<String>? itemIds,
+    int? startPositionTicks,
+    String? mediaSourceId,
+    int? audioStreamIndex,
+    int? subtitleStreamIndex,
+    int? startIndex,
+  }) async {
+    playingPostCalls.add({
+      'sessionId': sessionId,
+      'playCommand': playCommand,
+      'itemIds': itemIds,
+      'startPositionTicks': startPositionTicks,
+      'mediaSourceId': mediaSourceId,
+      'audioStreamIndex': audioStreamIndex,
+      'subtitleStreamIndex': subtitleStreamIndex,
+    });
+    return Response(http.Response('', 200), null);
+  }
+
+  @override
+  Future<Response> sessionsSessionIdPlayingCommandPost({
+    required String? sessionId,
+    required enums.SessionsSessionIdPlayingCommandPostCommand? command,
+    int? seekPositionTicks,
+    String? controllingUserId,
+  }) async {
+    playingCommandCalls.add({
+      'sessionId': sessionId,
+      'command': command,
+      'seekPositionTicks': seekPositionTicks,
+      'controllingUserId': controllingUserId,
+    });
+    return Response(http.Response('', 200), null);
+  }
+}
