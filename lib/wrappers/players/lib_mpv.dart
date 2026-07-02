@@ -605,6 +605,13 @@ class LibMPV extends BasePlayer {
   }
 }
 
+@visibleForTesting
+bool shouldHideOverlay({required bool isLibassEnabled, required String text}) {
+  if (isLibassEnabled) return true;
+  if (text.isEmpty) return true;
+  return false;
+}
+
 class _VideoSubtitles extends ConsumerStatefulWidget {
   final VideoController controller;
   final bool showOverlay;
@@ -663,11 +670,7 @@ class _VideoSubtitlesState extends ConsumerState<_VideoSubtitles> {
 
     final bool isLibassEnabled = widget.controller.player.platform?.configuration.libass ?? false;
 
-    if (isLibassEnabled) {
-      // When libass is enabled, mpv burns subtitles of all formats into the video frame.
-      // Hide the Flutter overlay to avoid rendering duplicates.
-      return const SizedBox.shrink();
-    } else if (text.isEmpty) {
+    if (shouldHideOverlay(isLibassEnabled: isLibassEnabled, text: text)) {
       return const SizedBox.shrink();
     }
 
