@@ -9,7 +9,30 @@ import tempfile
 import unittest
 
 SCRIPT = os.path.join(os.path.dirname(__file__), "update_manifest.py")
-BUILD_YAML = os.path.join(os.path.dirname(__file__), "..", "build.yaml")
+
+# Fixed fixture content, independent of the real build.yaml, so bumping the
+# plugin's actual version doesn't break these tests.
+BUILD_YAML_CONTENT = """\
+name: "Driftfin"
+guid: "a3b1e7c4-1d2f-4b8a-9c6e-7f0d2e5a9b11"
+version: "1.0.0.0"
+targetAbi: "10.10.0.0"
+framework: "net8.0"
+owner: "hamadtheironside"
+overview: "Test overview."
+description: "Test description."
+category: "General"
+artifacts:
+  - "Jellyfin.Plugin.Driftfin.dll"
+changelog: "Test changelog."
+"""
+
+
+def write_build_yaml(tmpdir, filename="build.yaml", version="1.0.0.0"):
+    path = os.path.join(tmpdir, filename)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(BUILD_YAML_CONTENT.replace('version: "1.0.0.0"', f'version: "{version}"'))
+    return path
 
 
 def run_update(tmpdir, build_yaml, existing=None, version_suffix=""):
@@ -40,7 +63,8 @@ def run_update(tmpdir, build_yaml, existing=None, version_suffix=""):
 class UpdateManifestTests(unittest.TestCase):
     def test_creates_new_entry_from_build_yaml(self):
         with tempfile.TemporaryDirectory() as tmpdir:
-            manifest = run_update(tmpdir, BUILD_YAML)
+            build_yaml = write_build_yaml(tmpdir)
+            manifest = run_update(tmpdir, build_yaml)
 
         self.assertEqual(len(manifest), 1)
         entry = manifest[0]
@@ -56,17 +80,13 @@ class UpdateManifestTests(unittest.TestCase):
 
     def test_appends_new_version_to_existing_manifest_preserving_history(self):
         with tempfile.TemporaryDirectory() as tmpdir:
-            first = run_update(tmpdir, BUILD_YAML)
+            build_yaml = write_build_yaml(tmpdir)
+            first = run_update(tmpdir, build_yaml)
             existing_path = os.path.join(tmpdir, "existing.json")
             with open(existing_path, "w", encoding="utf-8") as f:
                 json.dump(first, f)
 
-            bumped_yaml = os.path.join(tmpdir, "build-v2.yaml")
-            with open(BUILD_YAML, encoding="utf-8") as f:
-                content = f.read()
-            content = content.replace('version: "1.0.0.0"', 'version: "1.0.1.0"')
-            with open(bumped_yaml, "w", encoding="utf-8") as f:
-                f.write(content)
+            bumped_yaml = write_build_yaml(tmpdir, "build-v2.yaml", version="1.0.1.0")
 
             second = run_update(tmpdir, bumped_yaml, existing=existing_path, version_suffix="2")
 
@@ -76,19 +96,20 @@ class UpdateManifestTests(unittest.TestCase):
 
     def test_rerunning_same_version_replaces_rather_than_duplicates(self):
         with tempfile.TemporaryDirectory() as tmpdir:
-            first = run_update(tmpdir, BUILD_YAML)
+            build_yaml = write_build_yaml(tmpdir)
+            first = run_update(tmpdir, build_yaml)
             existing_path = os.path.join(tmpdir, "existing.json")
             with open(existing_path, "w", encoding="utf-8") as f:
                 json.dump(first, f)
 
-            second = run_update(tmpdir, BUILD_YAML, existing=existing_path, version_suffix="2")
+            second = run_update(tmpdir, build_yaml, existing=existing_path, version_suffix="2")
 
         self.assertEqual(len(second[0]["versions"]), 1)
         self.assertEqual(second[0]["versions"][0]["checksum"], "checksum2")
 
     def test_output_is_valid_json_array_at_top_level(self):
         with tempfile.TemporaryDirectory() as tmpdir:
-            manifest = run_update(tmpdir, BUILD_YAML)
+            manifest = run_update(tmpdir, write_build_yaml(tmpdir))
         self.assertIsInstance(manifest, list)
 
 
