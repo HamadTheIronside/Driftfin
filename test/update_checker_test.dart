@@ -39,12 +39,12 @@ void main() {
   });
 
   group('UpdateChecker.fetchRecentReleases', () {
-    test('filters out prereleases (nightlies) even when they are most recent', () async {
-      // Regression test: this repo tags nightlies several times a day, so the
-      // most-recent-releases page is normally dominated by them. A stable
-      // 0.10.5 user must not be nagged to "update" to 0.10.5-nightly.*, since
-      // nightly suffixes always compareVersions() as newer than the same base
-      // stable version — that notification would never clear on its own.
+    test('lists nightlies (for the releases page) but never flags them as an update', () async {
+      // This repo tags nightlies several times a day. They MUST appear in the
+      // releases list (so users can see/download them), but a stable 0.10.5
+      // user must not be nagged to "update" to 0.10.6-nightly.* — nightly
+      // suffixes always compareVersions() as newer than the same base stable
+      // version, so a notification off them would never clear on its own.
       final client = MockClient((request) async {
         return http.Response(
           jsonEncode([
@@ -59,12 +59,17 @@ void main() {
 
       final releases = await UpdateChecker(client: client).fetchRecentReleases(count: 5);
 
-      expect(releases.map((r) => r.version), ['0.10.5', '0.10.4']);
-      expect(releases.every((r) => !r.isNewerThanCurrent), isTrue,
-          reason: 'the running version is 0.10.5, so neither stable release in the fixture is newer');
+      // Nightlies are still listed (the releases page shows them)...
+      expect(releases.map((r) => r.version),
+          ['0.10.6-nightly.20260703.1', '0.10.6-nightly.20260702.2', '0.10.5', '0.10.4']);
+      expect(releases.where((r) => r.isPrerelease).map((r) => r.version),
+          ['0.10.6-nightly.20260703.1', '0.10.6-nightly.20260702.2']);
+      // ...but none is flagged as a newer update (nightlies excluded by rule,
+      // and the two stables are not newer than the running 0.10.5).
+      expect(releases.every((r) => !r.isNewerThanCurrent), isTrue);
     });
 
-    test('a genuinely newer stable release is reported as an update', () async {
+    test('a genuinely newer stable release is reported as an update; its nightly is not', () async {
       final client = MockClient((request) async {
         return http.Response(
           jsonEncode([
@@ -77,15 +82,34 @@ void main() {
 
       final releases = await UpdateChecker(client: client).fetchRecentReleases(count: 5);
 
-      expect(releases, hasLength(1));
-      expect(releases.single.version, '0.11.0');
-      expect(releases.single.isNewerThanCurrent, isTrue);
+      expect(releases, hasLength(2));
+      final nightly = releases.firstWhere((r) => r.isPrerelease);
+      final stable = releases.firstWhere((r) => !r.isPrerelease);
+      expect(nightly.version, '0.11.0-nightly.20260703.1');
+      expect(nightly.isNewerThanCurrent, isFalse, reason: 'a prerelease is never an "update"');
+      expect(stable.version, '0.11.0');
+      expect(stable.isNewerThanCurrent, isTrue);
     });
 
     test('non-200 response returns an empty list', () async {
       final client = MockClient((request) async => http.Response('', 500));
       final releases = await UpdateChecker(client: client).fetchRecentReleases();
       expect(releases, isEmpty);
+    });
+  });
+
+  group('UpdateChecker.isUpToDate', () {
+    test('true when only nightlies are newer than the running stable', () async {
+      final client = MockClient((_) async => http.Response(
+            jsonEncode([_release('v0.10.6-nightly.20260703.1', prerelease: true), _release('v0.10.5')]),
+            200,
+          ));
+      expect(await UpdateChecker(client: client).isUpToDate(), isTrue);
+    });
+
+    test('false when a newer stable release exists', () async {
+      final client = MockClient((_) async => http.Response(jsonEncode([_release('v0.11.0')]), 200));
+      expect(await UpdateChecker(client: client).isUpToDate(), isFalse);
     });
   });
 }

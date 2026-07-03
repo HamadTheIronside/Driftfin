@@ -118,6 +118,53 @@ void main() {
     });
   });
 
+  group('fetchServerIntegrationConfigDiagnostic reports the specific reason', () {
+    const url = 'http://server/Driftfin/Config';
+
+    test('ok on 200 with a config', () async {
+      final client = MockClient((_) async => http.Response(
+          jsonEncode({
+            'sonarr': {'enabled': true}
+          }),
+          200));
+      final result = await fetchServerIntegrationConfigDiagnostic(url, const {}, client);
+      expect(result.status, ServerIntegrationConfigStatus.ok);
+      expect(result.config, isNotNull);
+    });
+
+    test('noPlugin on 404', () async {
+      final client = MockClient((_) async => http.Response('', 404));
+      final result = await fetchServerIntegrationConfigDiagnostic(url, const {}, client);
+      expect(result.status, ServerIntegrationConfigStatus.noPlugin);
+    });
+
+    test('httpError with the status code as detail on a 500 (the Jellyfin 10.11 auth bug)', () async {
+      final client = MockClient((_) async => http.Response('Error processing request.', 500));
+      final result = await fetchServerIntegrationConfigDiagnostic(url, const {}, client);
+      expect(result.status, ServerIntegrationConfigStatus.httpError);
+      expect(result.detail, '500');
+    });
+
+    test('httpError on an empty 200 body', () async {
+      final client = MockClient((_) async => http.Response('', 200));
+      final result = await fetchServerIntegrationConfigDiagnostic(url, const {}, client);
+      expect(result.status, ServerIntegrationConfigStatus.httpError);
+    });
+
+    test('invalidResponse when the body is valid JSON but not an object', () async {
+      final client = MockClient((_) async => http.Response('123', 200));
+      final result = await fetchServerIntegrationConfigDiagnostic(url, const {}, client);
+      expect(result.status, ServerIntegrationConfigStatus.invalidResponse);
+    });
+
+    test('requestFailed with the error text on a network/timeout failure', () async {
+      final client = MockClient((_) async => throw Exception('boom'));
+      final result = await fetchServerIntegrationConfigDiagnostic(url, const {}, client);
+      expect(result.status, ServerIntegrationConfigStatus.requestFailed);
+      expect(result.detail, contains('boom'));
+    });
+  });
+
   group('managed flag is transient (survives plugin removal)', () {
     test('Sonarr/Radarr settings never serialize the managed flag', () {
       const sonarr = SonarrSettings(baseUrl: 'u', apiKey: 'k', enabled: true, managed: true);
