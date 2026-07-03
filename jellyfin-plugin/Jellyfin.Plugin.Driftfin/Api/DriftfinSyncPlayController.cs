@@ -68,10 +68,12 @@ namespace Jellyfin.Plugin.Driftfin.Api
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>No content on success.</returns>
         [HttpPost("{groupId}/Messages")]
-        // "DefaultAuthorization" = any logged-in Jellyfin user — this is the fix
-        // for issue #4, which otherwise requires "RequiresElevation"-equivalent
-        // remote-control rights on every recipient session.
-        [Authorize(Policy = "DefaultAuthorization")]
+        // Any logged-in Jellyfin user — this is the fix for issue #4, which
+        // otherwise requires "RequiresElevation"-equivalent remote-control
+        // rights on every recipient session. Jellyfin 10.11 removed the named
+        // "DefaultAuthorization" policy (referencing it 500s), so plain
+        // [Authorize] is the portable way to require an authenticated user.
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
