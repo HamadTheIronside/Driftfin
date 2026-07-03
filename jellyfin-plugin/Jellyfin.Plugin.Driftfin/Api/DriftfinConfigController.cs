@@ -20,8 +20,11 @@ namespace Jellyfin.Plugin.Driftfin.Api
         /// <summary>Returns the current integration config. Any authenticated user may read it.</summary>
         /// <returns>The integration config.</returns>
         [HttpGet("Config")]
-        // "DefaultAuthorization" = any logged-in Jellyfin user.
-        [Authorize(Policy = "DefaultAuthorization")]
+        // Any logged-in Jellyfin user may read it. Jellyfin 10.11 removed the
+        // named "DefaultAuthorization" policy (referencing it throws
+        // "AuthorizationPolicy ... was not found" -> HTTP 500), so plain
+        // [Authorize] is the portable way to require an authenticated user.
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<DriftfinConfigDto> GetConfig()
         {
