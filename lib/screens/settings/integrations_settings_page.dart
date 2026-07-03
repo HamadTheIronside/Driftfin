@@ -39,17 +39,35 @@ class _IntegrationsSettingsPageState extends ConsumerState<IntegrationsSettingsP
     // The optional Driftfin server plugin's config (which of these are
     // "Saved on the server") is otherwise only re-fetched on login or the
     // dashboard's 120s poll — this lets a user pull it on demand right after
-    // an admin changes it, and reports *why* if it comes back empty instead
-    // of failing silently.
-    final status = await ref.read(serverIntegrationConfigProvider.notifier).loadWithDiagnostics();
+    // an admin changes it, and reports the *specific* reason it failed
+    // (not installed / server error / unreachable) instead of a generic
+    // "no response".
+    final result = await ref.read(serverIntegrationConfigProvider.notifier).loadWithDiagnostics();
     if (mounted) {
       setState(() => _refreshing = false);
-      FladderSnack.show(
-        status == ServerIntegrationConfigStatus.ok
-            ? context.localized.traktConnected
-            : context.localized.settingsIntegrationsPluginUnavailable,
-        context: context,
-      );
+      FladderSnack.show(_statusMessage(context, result.status, result.detail), context: context);
+    }
+  }
+
+  /// Maps a diagnostic status to a specific, user-facing message so a 404
+  /// (plugin not installed), a 500/4xx (server error, with the code), and a
+  /// timeout/network failure (unreachable) each read differently.
+  String _statusMessage(BuildContext context, ServerIntegrationConfigStatus status, String? detail) {
+    final l10n = context.localized;
+    switch (status) {
+      case ServerIntegrationConfigStatus.ok:
+        return l10n.settingsIntegrationsRefreshSuccess;
+      case ServerIntegrationConfigStatus.noPlugin:
+        return l10n.settingsIntegrationsPluginNotInstalled;
+      case ServerIntegrationConfigStatus.httpError:
+        return detail == null
+            ? l10n.settingsIntegrationsServerError
+            : '${l10n.settingsIntegrationsServerError} ($detail)';
+      case ServerIntegrationConfigStatus.requestFailed:
+        return l10n.settingsIntegrationsUnreachable;
+      case ServerIntegrationConfigStatus.invalidResponse:
+      case ServerIntegrationConfigStatus.notLoggedIn:
+        return l10n.somethingWentWrong;
     }
   }
 

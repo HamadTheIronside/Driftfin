@@ -89,19 +89,20 @@ class ServerIntegrationConfigNotifier extends StateNotifier<ServerIntegrationCon
     state = await fetchServerIntegrationConfig(url, credentials.header(ref), _client);
   }
 
-  /// Same as [load], but returns *why* there's no config instead of only ever
+  /// Same as [load], but returns *why* there's no config (with an optional
+  /// [detail] such as the HTTP status code or error text) instead of only ever
   /// logging it — used by the manual "Refresh" action in Settings >
-  /// Integrations so a failure is visible to the user instead of silent.
-  Future<ServerIntegrationConfigStatus> loadWithDiagnostics() async {
+  /// Integrations so the specific failure is visible to the user.
+  Future<({ServerIntegrationConfigStatus status, String? detail})> loadWithDiagnostics() async {
     final url = buildServerUrl(ref, pathSegments: ['Driftfin', 'Config']);
     final credentials = ref.read(userProvider)?.credentials;
     if (url.isEmpty || credentials == null) {
       state = null;
-      return ServerIntegrationConfigStatus.notLoggedIn;
+      return (status: ServerIntegrationConfigStatus.notLoggedIn, detail: null);
     }
     final result = await fetchServerIntegrationConfigDiagnostic(url, credentials.header(ref), _client);
     state = result.config;
-    return result.status;
+    return (status: result.status, detail: result.detail);
   }
 
   void clear() => state = null;
