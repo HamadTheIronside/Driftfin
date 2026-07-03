@@ -11,6 +11,7 @@ namespace Jellyfin.Plugin.Driftfin.Tests
         {
             var config = new PluginConfiguration
             {
+                LocalUrl = "http://192.168.1.10:8096",
                 SeerrEnabled = true,
                 SeerrUrl = "https://seerr.example.com",
                 SeerrApiKey = "seerr-key",
@@ -26,6 +27,8 @@ namespace Jellyfin.Plugin.Driftfin.Tests
             };
 
             var dto = DriftfinConfigDto.FromConfiguration(config);
+
+            Assert.Equal("http://192.168.1.10:8096", dto.LocalUrl);
 
             Assert.True(dto.Seerr.Enabled);
             Assert.Equal("https://seerr.example.com", dto.Seerr.Url);
@@ -49,6 +52,7 @@ namespace Jellyfin.Plugin.Driftfin.Tests
         {
             var original = new PluginConfiguration
             {
+                LocalUrl = "http://192.168.1.10:8096",
                 SeerrEnabled = true,
                 SeerrUrl = "https://seerr.example.com",
                 SeerrApiKey = "seerr-key",
@@ -68,6 +72,7 @@ namespace Jellyfin.Plugin.Driftfin.Tests
             var target = new PluginConfiguration();
             dto.ApplyTo(target);
 
+            Assert.Equal(original.LocalUrl, target.LocalUrl);
             Assert.Equal(original.SeerrEnabled, target.SeerrEnabled);
             Assert.Equal(original.SeerrUrl, target.SeerrUrl);
             Assert.Equal(original.SeerrApiKey, target.SeerrApiKey);
@@ -87,6 +92,7 @@ namespace Jellyfin.Plugin.Driftfin.Tests
         {
             var dto = DriftfinConfigDto.FromConfiguration(new PluginConfiguration());
 
+            Assert.Equal(string.Empty, dto.LocalUrl);
             Assert.False(dto.Seerr.Enabled);
             Assert.Equal(string.Empty, dto.Seerr.Url);
             Assert.False(dto.Sonarr.Enabled);

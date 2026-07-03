@@ -99,7 +99,8 @@ class SeerrRequestsNotifier extends StateNotifier<SeerrRequestsState> {
   }
 
   void toggleSortDirection() {
-    state = state.copyWith(sortDirection: state.sortDirection == SortDirection.desc ? SortDirection.asc : SortDirection.desc);
+    state = state.copyWith(
+        sortDirection: state.sortDirection == SortDirection.desc ? SortDirection.asc : SortDirection.desc);
     load();
   }
 
@@ -159,7 +160,8 @@ class SeerrRequestsNotifier extends StateNotifier<SeerrRequestsState> {
       );
       final results = response.body?.results ?? const <SeerrMediaRequest>[];
       final totalPages = response.body?.pageInfo?.pages ?? 1;
-      final entries = await Future.wait(results.map((request) async => SeerrRequestEntry(request, await _poster(request))));
+      final entries =
+          await Future.wait(results.map((request) async => SeerrRequestEntry(request, await _poster(request))));
       return (entries: entries, totalPages: totalPages, ok: true);
     } catch (_) {
       return (entries: const <SeerrRequestEntry>[], totalPages: state.totalPages, ok: false);
@@ -181,13 +183,19 @@ class SeerrRequestsNotifier extends StateNotifier<SeerrRequestsState> {
   Future<void> approve(int requestId) async {
     await ref.read(seerrApiProvider).approveRequest(requestId: requestId);
     await load();
+    _refreshPendingBadge();
   }
 
   /// Declines/removes a request (Seerr deletes the request for both).
   Future<void> decline(int requestId) async {
     await ref.read(seerrApiProvider).deleteRequest(requestId: requestId);
     await load();
+    _refreshPendingBadge();
   }
+
+  /// Recomputes the nav "Discover" pending badge after a request mutation so its
+  /// count doesn't go stale until the screen is reopened.
+  void _refreshPendingBadge() => ref.invalidate(pendingRequestsCountProvider);
 
   /// Bulk-approves every pending request currently loaded.
   Future<void> approveAllPending() async {
@@ -207,6 +215,7 @@ class SeerrRequestsNotifier extends StateNotifier<SeerrRequestsState> {
     if (!mounted) return;
     state = state.copyWith(processing: false);
     await load();
+    _refreshPendingBadge();
   }
 }
 

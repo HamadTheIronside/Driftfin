@@ -9,7 +9,6 @@ import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart';
 import 'package:driftfin/l10n/generated/app_localizations.dart';
 import 'package:driftfin/models/account_model.dart';
 import 'package:driftfin/models/credentials_model.dart';
-import 'package:driftfin/providers/config_sync_provider.dart';
 import 'package:driftfin/seerr/seerr_models.dart';
 import 'package:driftfin/providers/cultures_provider.dart';
 import 'package:driftfin/providers/home_collections_provider.dart';
@@ -226,15 +225,7 @@ void main() {
     await tester.pump();
     expect(container.read(clientSettingsProvider).mouseDragSupport, isTrue);
 
-    // Turn on settings-sync; this reveals the "Sync now" action.
-    expect(container.read(syncSettingsEnabledProvider), isFalse);
-    final syncSwitch = find.descendant(
-      of: find.ancestor(of: find.text(l10n.syncSettingsTitle), matching: find.byType(SettingsListTile)),
-      matching: find.byType(Switch),
-    );
-    tester.widget<Switch>(syncSwitch).onChanged!(true);
-    await tester.pump();
-    expect(container.read(syncSettingsEnabledProvider), isTrue);
+    // Sync is always on now (no toggle), so the "Sync now" action is present.
     expect(find.text(l10n.syncNow), findsOneWidget);
 
     // Flush the client-settings (1s) and config-sync push (2s) debounce timers.

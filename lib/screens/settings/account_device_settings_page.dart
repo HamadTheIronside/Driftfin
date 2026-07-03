@@ -501,28 +501,17 @@ class _AccountDeviceSettingsPageState extends ConsumerState<AccountDeviceSetting
           SettingsLabelDivider(label: context.localized.settingsSyncBackupSectionTitle),
           [
             SettingsListTile(
-              id: SettingId.syncSettingsToServer,
-              label: Text(context.localized.syncSettingsTitle),
-              subLabel: Text(context.localized.syncSettingsDesc),
-              onTap: () => ref.read(syncSettingsEnabledProvider.notifier).set(!ref.read(syncSettingsEnabledProvider)),
-              trailing: Switch(
-                value: ref.watch(syncSettingsEnabledProvider),
-                onChanged: (value) => ref.read(syncSettingsEnabledProvider.notifier).set(value),
-              ),
+              label: Text(context.localized.syncNow),
+              subLabel: Builder(builder: (context) {
+                final syncedAt = ref.watch(userProvider.select((value) => value?.userSettings?.syncedAt));
+                final parsed = syncedAt == null ? null : DateTime.tryParse(syncedAt);
+                return Text(parsed == null
+                    ? context.localized.syncedNever
+                    : context.localized.syncedAtLabel(DateFormat.yMd().add_jm().format(parsed.toLocal())));
+              }),
+              onTap: () => ref.read(configSyncProvider).syncNow(),
+              trailing: const Icon(Icons.cloud_sync_outlined),
             ),
-            if (ref.watch(syncSettingsEnabledProvider))
-              SettingsListTile(
-                label: Text(context.localized.syncNow),
-                subLabel: Builder(builder: (context) {
-                  final syncedAt = ref.watch(userProvider.select((value) => value?.userSettings?.syncedAt));
-                  final parsed = syncedAt == null ? null : DateTime.tryParse(syncedAt);
-                  return Text(parsed == null
-                      ? context.localized.syncedNever
-                      : context.localized.syncedAtLabel(DateFormat.yMd().add_jm().format(parsed.toLocal())));
-                }),
-                onTap: () => ref.read(configSyncProvider).syncNow(),
-                trailing: const Icon(Icons.cloud_sync_outlined),
-              ),
             Builder(builder: (context) => buildCrashReportingTile(context, ref)),
             const SettingsBackupActions(),
           ],

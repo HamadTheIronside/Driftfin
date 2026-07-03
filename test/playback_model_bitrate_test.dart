@@ -29,6 +29,7 @@ final _refProvider = Provider<Ref>((ref) => ref);
 Future<ProviderContainer> _container({
   required VideoPlayerSettingsModel settings,
   required ConnectionState connection,
+  bool localConnection = false,
 }) async {
   SharedPreferences.setMockInitialValues({});
   final prefs = await SharedPreferences.getInstance();
@@ -38,6 +39,7 @@ Future<ProviderContainer> _container({
       sharedPreferencesProvider.overrideWithValue(prefs),
       videoPlayerSettingsProvider.overrideWith((ref) => _FakeVideoPlayerSettingsNotifier(ref, settings)),
       connectivityStatusProvider.overrideWith(() => _FakeConnectivityStatus(connection)),
+      localConnectionAvailableProvider.overrideWith((ref) => localConnection),
     ],
   );
   addTearDown(container.dispose);
@@ -50,10 +52,11 @@ Future<ProviderContainer> _container({
 
 void main() {
   group('PlaybackModelHelper.resolveVideoQualityOptions', () {
-    test('uses maxHomeBitrate on a home connection', () async {
+    test('uses maxHomeBitrate when connected over the local URL', () async {
       final container = await _container(
         settings: VideoPlayerSettingsModel(maxHomeBitrate: Bitrate.b4Mbps, maxInternetBitrate: Bitrate.b1_5Mbps),
         connection: ConnectionState.wifi,
+        localConnection: true,
       );
       final helper = PlaybackModelHelper(ref: container.read(_refProvider));
 
@@ -61,10 +64,11 @@ void main() {
       expect(options[Bitrate.b4Mbps], isTrue);
     });
 
-    test('uses maxInternetBitrate on a cellular connection', () async {
+    test('uses maxInternetBitrate when not on the local URL', () async {
       final container = await _container(
         settings: VideoPlayerSettingsModel(maxHomeBitrate: Bitrate.b4Mbps, maxInternetBitrate: Bitrate.b1_5Mbps),
-        connection: ConnectionState.mobile,
+        connection: ConnectionState.wifi,
+        localConnection: false,
       );
       final helper = PlaybackModelHelper(ref: container.read(_refProvider));
 

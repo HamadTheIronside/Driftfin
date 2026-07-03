@@ -31,7 +31,7 @@ _VideoPlayerSettingsModel _$VideoPlayerSettingsModelFromJson(
               Bitrate.original,
       maxInternetBitrate:
           $enumDecodeNullable(_$BitrateEnumMap, json['maxInternetBitrate']) ??
-              Bitrate.original,
+              Bitrate.auto,
       audioDevice: json['audioDevice'] as String?,
       segmentSkipSettings:
           (json['segmentSkipSettings'] as Map<String, dynamic>?)?.map(

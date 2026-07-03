@@ -414,7 +414,7 @@ class _SeerrConnectionDialogState extends ConsumerState<SeerrConnectionDialog> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FilledButton(
-              onPressed: (processing || _seerrManaged) ? null : _logout,
+              onPressed: processing ? null : _logout,
               child: Text(context.localized.logout),
             ),
           ],
@@ -578,7 +578,7 @@ class _SeerrConnectionDialogState extends ConsumerState<SeerrConnectionDialog> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FilledButton(
-                  onPressed: (processing || _seerrManaged) ? null : _loginLocal,
+                  onPressed: processing ? null : _loginLocal,
                   child: processing
                       ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator())
                       : Text(context.localized.login),
@@ -616,7 +616,7 @@ class _SeerrConnectionDialogState extends ConsumerState<SeerrConnectionDialog> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FilledButton(
-                  onPressed: (processing || _seerrManaged) ? null : _loginJellyfin,
+                  onPressed: processing ? null : _loginJellyfin,
                   child: processing
                       ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator())
                       : Text(context.localized.login),

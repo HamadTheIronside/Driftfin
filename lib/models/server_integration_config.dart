@@ -8,12 +8,17 @@
 /// Plain hand-written model (no codegen) to match the [SonarrSettings] /
 /// [RadarrSettings] / [TraktSettings] style and avoid build_runner output.
 class ServerIntegrationConfig {
+  /// Server-wide local (LAN) URL for reaching this Jellyfin server. Configured
+  /// once by an admin in the plugin; every client on the server adopts it. Empty
+  /// when unset, in which case the client keeps its own per-device local URL.
+  final String localUrl;
   final SeerrServerConfig seerr;
   final ArrServerConfig sonarr;
   final ArrServerConfig radarr;
   final TraktServerConfig trakt;
 
   const ServerIntegrationConfig({
+    this.localUrl = '',
     this.seerr = const SeerrServerConfig(),
     this.sonarr = const ArrServerConfig(),
     this.radarr = const ArrServerConfig(),
@@ -23,6 +28,7 @@ class ServerIntegrationConfig {
   bool get anyManaged => seerr.isManaged || sonarr.isManaged || radarr.isManaged || trakt.isManaged;
 
   factory ServerIntegrationConfig.fromJson(Map<String, dynamic> json) => ServerIntegrationConfig(
+        localUrl: json['localUrl'] as String? ?? '',
         seerr: SeerrServerConfig.fromJson(_obj(json['seerr'])),
         sonarr: ArrServerConfig.fromJson(_obj(json['sonarr'])),
         radarr: ArrServerConfig.fromJson(_obj(json['radarr'])),
@@ -30,6 +36,7 @@ class ServerIntegrationConfig {
       );
 
   Map<String, dynamic> toJson() => {
+        'localUrl': localUrl,
         'seerr': seerr.toJson(),
         'sonarr': sonarr.toJson(),
         'radarr': radarr.toJson(),

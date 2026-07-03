@@ -162,7 +162,7 @@ class PlaybackModelHelper {
   JellyService get api => ref.read(jellyApiProvider);
 
   /// Connection-aware quality options for [streamModel]: picks maxHomeBitrate
-  /// vs maxInternetBitrate based on the current connection state before
+  /// (when reaching the server over its local URL) vs maxInternetBitrate before
   /// computing the available bitrate tiers.
   Map<Bitrate, bool> resolveVideoQualityOptions(MediaStreamsModel? streamModel) {
     return getVideoQualityOptions(
@@ -170,7 +170,7 @@ class PlaybackModelHelper {
         maxBitRate: resolveMaxBitrate(
           maxHomeBitrate: ref.read(videoPlayerSettingsProvider.select((value) => value.maxHomeBitrate)),
           maxInternetBitrate: ref.read(videoPlayerSettingsProvider.select((value) => value.maxInternetBitrate)),
-          homeInternet: ref.read(connectivityStatusProvider.select((value) => value.homeInternet)),
+          useLocalConnection: ref.read(localConnectionAvailableProvider),
         ),
         videoBitRate: streamModel?.videoStreams.firstOrNull?.bitRate ?? 0,
         videoCodec: streamModel?.videoStreams.firstOrNull?.codec,

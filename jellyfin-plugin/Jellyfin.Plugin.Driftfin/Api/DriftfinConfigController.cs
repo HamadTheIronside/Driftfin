@@ -61,6 +61,10 @@ namespace Jellyfin.Plugin.Driftfin.Api
     /// <summary>Wire DTO mirroring the Driftfin client's ServerIntegrationConfig.</summary>
     public class DriftfinConfigDto
     {
+        /// <summary>Gets or sets the server-wide local (LAN) URL for reaching this Jellyfin server.</summary>
+        [JsonPropertyName("localUrl")]
+        public string LocalUrl { get; set; } = string.Empty;
+
         /// <summary>Gets or sets the Jellyseerr config.</summary>
         [JsonPropertyName("seerr")]
         public SeerrConfigDto Seerr { get; set; } = new();
@@ -82,6 +86,7 @@ namespace Jellyfin.Plugin.Driftfin.Api
         /// <returns>The DTO.</returns>
         public static DriftfinConfigDto FromConfiguration(PluginConfiguration c) => new()
         {
+            LocalUrl = c.LocalUrl,
             Seerr = new SeerrConfigDto { Enabled = c.SeerrEnabled, Url = c.SeerrUrl, ApiKey = c.SeerrApiKey },
             Sonarr = new ArrConfigDto { Enabled = c.SonarrEnabled, Url = c.SonarrUrl, ApiKey = c.SonarrApiKey },
             Radarr = new ArrConfigDto { Enabled = c.RadarrEnabled, Url = c.RadarrUrl, ApiKey = c.RadarrApiKey },
@@ -97,6 +102,7 @@ namespace Jellyfin.Plugin.Driftfin.Api
         /// <param name="c">The plugin configuration to mutate.</param>
         public void ApplyTo(PluginConfiguration c)
         {
+            c.LocalUrl = LocalUrl;
             c.SeerrEnabled = Seerr.Enabled;
             c.SeerrUrl = Seerr.Url;
             c.SeerrApiKey = Seerr.ApiKey;

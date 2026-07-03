@@ -15,20 +15,20 @@ void main() {
   });
 
   group('resolveMaxBitrate', () {
-    test('uses maxHomeBitrate on a home connection (Wi-Fi/Ethernet)', () {
+    test('uses maxHomeBitrate when reached over the local URL', () {
       final result = resolveMaxBitrate(
         maxHomeBitrate: Bitrate.original,
         maxInternetBitrate: Bitrate.b4Mbps,
-        homeInternet: true,
+        useLocalConnection: true,
       );
       expect(result, Bitrate.original);
     });
 
-    test('uses maxInternetBitrate on a non-home connection (cellular/offline)', () {
+    test('uses maxInternetBitrate when not on the local URL', () {
       final result = resolveMaxBitrate(
         maxHomeBitrate: Bitrate.original,
         maxInternetBitrate: Bitrate.b4Mbps,
-        homeInternet: false,
+        useLocalConnection: false,
       );
       expect(result, Bitrate.b4Mbps);
     });
