@@ -79,10 +79,22 @@ class User extends _$User {
   /// themselves). A missing plugin leaves everything on local settings.
   Future<void> _loadServerIntegrationConfig() async {
     await ref.read(serverIntegrationConfigProvider.notifier).load();
-    final seerr = ref.read(serverIntegrationConfigProvider)?.seerr;
+    final config = ref.read(serverIntegrationConfigProvider);
+
+    // A server-wide local URL from the plugin applies to every user on the
+    // server, so adopt it as this device's local URL when present.
+    final pluginLocalUrl = config?.localUrl.trim() ?? '';
+    if (pluginLocalUrl.isNotEmpty) {
+      setLocalURL(pluginLocalUrl);
+    }
+
+    final seerr = config?.seerr;
     if (seerr != null && seerr.isManaged) {
+      // Adopt only the server-provided URL. Injecting the shared admin API key
+      // here authenticated every user as the admin; instead each user signs in
+      // to Seerr as themselves (Jellyfin/local login yields a per-user session
+      // cookie), so we leave the credentials for the connection dialog to set.
       setSeerrServerUrl(seerr.url);
-      setSeerrApiKey(seerr.apiKey);
     }
   }
 

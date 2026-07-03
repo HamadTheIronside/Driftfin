@@ -241,7 +241,10 @@ class _NavigationScaffoldState extends ConsumerState<NavigationScaffold> {
             ),
           ),
           if (showAudioOverlay) audioOverlay,
-          if (!AdaptiveLayout.of(context).isDesktop)
+          // Only build the offline banner while actually offline. Otherwise the
+          // faded (opacity 0) overlay would still hit-test and silently swallow
+          // taps on content beneath it (notably on web).
+          if (!AdaptiveLayout.of(context).isDesktop && isOffline)
             Align(
               alignment: Alignment.topCenter,
               child: AnimatedOpacity(

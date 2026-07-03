@@ -11,4 +11,11 @@ class Debouncer {
     }
     _timer = Timer(duration, action);
   }
+
+  /// Cancels any pending action. Call when the owner is disposed so a queued
+  /// callback can't fire against torn-down state.
+  void dispose() {
+    _timer?.cancel();
+    _timer = null;
+  }
 }

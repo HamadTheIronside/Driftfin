@@ -1,10 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+/// Driftfin brand colour — the red anchoring the logo's red→gold fin gradient
+/// (`rgb(232, 55, 73)`). Used as the default theme seed.
+const Color kDriftfinBrandColor = Color(0xFFE83749);
+
 enum ColorThemes {
   fladder(
     name: 'Fladder',
-    color: kDebugMode ? Colors.purpleAccent : Colors.orange,
+    color: kDebugMode ? Colors.purpleAccent : kDriftfinBrandColor,
   ),
   deepOrange(
     name: 'Deep Orange',

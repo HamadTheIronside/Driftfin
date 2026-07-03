@@ -205,12 +205,6 @@ List<SettingsEntry> buildSettingsRegistry() {
     ),
     // Account & Device › Sync & Backup
     SettingsEntry(
-      id: SettingId.syncSettingsToServer,
-      label: (l10n) => l10n.syncSettingsTitle,
-      synonyms: (l10n) => [l10n.syncSettingsDesc],
-      route: () => const AccountDeviceSettingsRoute(),
-    ),
-    SettingsEntry(
       id: SettingId.crashReporting,
       label: (l10n) => l10n.crashReportingTitle,
       synonyms: (_) => ['sentry', 'crash reports'],

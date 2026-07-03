@@ -47,7 +47,6 @@ enum SettingId {
   // Client › Controls
   mouseDragSupport,
   // Client › Advanced
-  syncSettingsToServer,
   crashReporting,
   layoutSizes,
   layoutModes,

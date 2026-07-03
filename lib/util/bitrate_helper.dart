@@ -38,14 +38,16 @@ enum Bitrate {
       };
 }
 
-/// Picks which configured bitrate cap applies for the current connection.
-/// Wi-Fi/Ethernet (`homeInternet`) uses [maxHomeBitrate]; cellular/offline uses [maxInternetBitrate].
+/// Picks which configured bitrate cap applies. When the server is reached over
+/// its local URL ([useLocalConnection]) the LAN-oriented [maxHomeBitrate] applies
+/// (defaults to Original); otherwise the remote [maxInternetBitrate] is used
+/// (defaults to Auto).
 Bitrate resolveMaxBitrate({
   required Bitrate maxHomeBitrate,
   required Bitrate maxInternetBitrate,
-  required bool homeInternet,
+  required bool useLocalConnection,
 }) =>
-    homeInternet ? maxHomeBitrate : maxInternetBitrate;
+    useLocalConnection ? maxHomeBitrate : maxInternetBitrate;
 
 class VideoQualitySettings {
   final Bitrate? maxBitRate;

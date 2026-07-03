@@ -11,6 +11,7 @@ import 'package:driftfin/routes/auto_router.gr.dart';
 import 'package:driftfin/screens/seerr/widgets/download_status_label.dart';
 import 'package:driftfin/screens/seerr/widgets/seerr_user_label.dart';
 import 'package:driftfin/seerr/seerr_models.dart';
+import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 import 'package:driftfin/util/fladder_image.dart';
 import 'package:driftfin/util/localization_helper.dart';
 
@@ -66,96 +67,99 @@ class _SeerrRequestsScreenState extends ConsumerState<SeerrRequestsScreen> {
     final canManage = ref.watch(seerrUserProvider.select((user) => user?.canManageRequests ?? false));
     final hasPending = state.entries.any((e) => e.request.requestStatus == SeerrRequestStatus.pending);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(context.localized.requestsTitle),
-        actions: [
-          IconButton(
-            tooltip: state.sortDirection == SortDirection.desc ? 'Descending' : 'Ascending',
-            icon: Icon(state.sortDirection == SortDirection.desc ? Icons.arrow_downward : Icons.arrow_upward),
-            onPressed: notifier.toggleSortDirection,
-          ),
-          PopupMenuButton<RequestSort>(
-            icon: const Icon(Icons.sort),
-            initialValue: state.sort,
-            onSelected: notifier.setSort,
-            itemBuilder: (context) =>
-                RequestSort.values.map((s) => PopupMenuItem(value: s, child: Text(_sortLabel(context, s)))).toList(),
-          ),
-        ],
-      ),
-      floatingActionButton: (canManage && hasPending)
-          ? FloatingActionButton.extended(
-              onPressed: state.processing ? null : notifier.approveAllPending,
-              icon: state.processing
-                  ? const SizedBox.square(dimension: 18, child: CircularProgressIndicator(strokeWidth: 2))
-                  : const Icon(Icons.done_all),
-              label: Text(context.localized.approveAllPending),
-            )
-          : null,
-      body: Column(
-        children: [
-          if (canManage)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: SegmentedButton<bool>(
-                segments: [
-                  ButtonSegment(value: false, label: Text(context.localized.requestsScopeAll)),
-                  ButtonSegment(value: true, label: Text(context.localized.requestsScopeMine)),
+    return Padding(
+      padding: EdgeInsetsDirectional.only(start: AdaptiveLayout.maybeOf(context)?.data.sideBarWidth ?? 0),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(context.localized.requestsTitle),
+          actions: [
+            IconButton(
+              tooltip: state.sortDirection == SortDirection.desc ? 'Descending' : 'Ascending',
+              icon: Icon(state.sortDirection == SortDirection.desc ? Icons.arrow_downward : Icons.arrow_upward),
+              onPressed: notifier.toggleSortDirection,
+            ),
+            PopupMenuButton<RequestSort>(
+              icon: const Icon(Icons.sort),
+              initialValue: state.sort,
+              onSelected: notifier.setSort,
+              itemBuilder: (context) =>
+                  RequestSort.values.map((s) => PopupMenuItem(value: s, child: Text(_sortLabel(context, s)))).toList(),
+            ),
+          ],
+        ),
+        floatingActionButton: (canManage && hasPending)
+            ? FloatingActionButton.extended(
+                onPressed: state.processing ? null : notifier.approveAllPending,
+                icon: state.processing
+                    ? const SizedBox.square(dimension: 18, child: CircularProgressIndicator(strokeWidth: 2))
+                    : const Icon(Icons.done_all),
+                label: Text(context.localized.approveAllPending),
+              )
+            : null,
+        body: Column(
+          children: [
+            if (canManage)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                child: SegmentedButton<bool>(
+                  segments: [
+                    ButtonSegment(value: false, label: Text(context.localized.requestsScopeAll)),
+                    ButtonSegment(value: true, label: Text(context.localized.requestsScopeMine)),
+                  ],
+                  selected: {state.mineOnly},
+                  onSelectionChanged: (s) => notifier.setMineOnly(s.first),
+                ),
+              ),
+            SizedBox(
+              height: 48,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                children: [
+                  for (final filter in RequestFilter.values)
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: ChoiceChip(
+                        label: Text(_filterLabel(context, filter)),
+                        selected: state.filter == filter,
+                        onSelected: (_) => notifier.setFilter(filter),
+                      ),
+                    ),
                 ],
-                selected: {state.mineOnly},
-                onSelectionChanged: (s) => notifier.setMineOnly(s.first),
               ),
             ),
-          SizedBox(
-            height: 48,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              children: [
-                for (final filter in RequestFilter.values)
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: ChoiceChip(
-                      label: Text(_filterLabel(context, filter)),
-                      selected: state.filter == filter,
-                      onSelected: (_) => notifier.setFilter(filter),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: RefreshIndicator(
-              onRefresh: notifier.load,
-              child: state.loading && state.entries.isEmpty
-                  ? const Center(child: CircularProgressIndicator())
-                  : state.entries.isEmpty
-                      ? ListView(children: [
-                          const SizedBox(height: 120),
-                          Center(child: Text(context.localized.noRequestsFound)),
-                        ])
-                      : ListView.builder(
-                          controller: _scroll,
-                          itemCount: state.entries.length + (state.canLoadMore ? 1 : 0),
-                          itemBuilder: (context, index) {
-                            if (index >= state.entries.length) {
-                              return const Padding(
-                                padding: EdgeInsets.all(16),
-                                child: Center(child: CircularProgressIndicator()),
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: notifier.load,
+                child: state.loading && state.entries.isEmpty
+                    ? const Center(child: CircularProgressIndicator())
+                    : state.entries.isEmpty
+                        ? ListView(children: [
+                            const SizedBox(height: 120),
+                            Center(child: Text(context.localized.noRequestsFound)),
+                          ])
+                        : ListView.builder(
+                            controller: _scroll,
+                            itemCount: state.entries.length + (state.canLoadMore ? 1 : 0),
+                            itemBuilder: (context, index) {
+                              if (index >= state.entries.length) {
+                                return const Padding(
+                                  padding: EdgeInsets.all(16),
+                                  child: Center(child: CircularProgressIndicator()),
+                                );
+                              }
+                              return _RequestTile(
+                                entry: state.entries[index],
+                                canManage: canManage,
+                                onApprove: (id) => notifier.approve(id),
+                                onDecline: (id) => notifier.decline(id),
                               );
-                            }
-                            return _RequestTile(
-                              entry: state.entries[index],
-                              canManage: canManage,
-                              onApprove: (id) => notifier.approve(id),
-                              onDecline: (id) => notifier.decline(id),
-                            );
-                          },
-                        ),
+                            },
+                          ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

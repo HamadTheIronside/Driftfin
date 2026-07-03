@@ -103,8 +103,11 @@ class _SideNavigationRail extends ConsumerState<SideNavigationRail> {
       children: [
         AdaptiveLayout(
           data: AdaptiveLayout.of(context).copyWith(
-            // -0.1 offset to fix single visible pixel line
-            sideBarWidth: (fullyExpanded ? expandedWidth : collapsedWidth) - 0.1,
+            // Snap to a whole logical pixel. Content edges (banner, poster rows,
+            // section titles) are all inset by this width; a fractional value
+            // puts them on a sub-pixel boundary, and the anti-aliased edges read
+            // as a faint vertical hairline down the sidebar/content seam.
+            sideBarWidth: (fullyExpanded ? expandedWidth : collapsedWidth).floorToDouble(),
           ),
           child: widget.child,
         ),

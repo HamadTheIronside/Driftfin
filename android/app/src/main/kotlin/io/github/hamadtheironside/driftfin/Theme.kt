@@ -28,7 +28,7 @@ fun VideoPlayerTheme(
     val themeColor by PlayerSettingsObject.themeColor.collectAsState(null)
 
     val generatedScheme = rememberDynamicColorScheme(
-        seedColor = themeColor ?: Color(0xFFFF9800),
+        seedColor = themeColor ?: Color(0xFFE83749),
         isDark = true,
         specVersion = ColorSpec.SpecVersion.SPEC_2025,
         style = PaletteStyle.Expressive,

@@ -9,7 +9,6 @@ import 'package:driftfin/models/settings/settings_entry.dart';
 import 'package:driftfin/providers/server_integration_config_provider.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/home_settings_provider.dart';
-import 'package:driftfin/providers/shared_provider.dart';
 import 'package:driftfin/providers/user_provider.dart';
 import 'package:driftfin/util/custom_color_themes.dart';
 import 'package:driftfin/util/debouncer.dart';
@@ -42,27 +41,11 @@ const Set<SettingId> syncedSettingIds = {
   SettingId.seerrRequestNotifications,
 };
 
-/// Device-local toggle: whether this device syncs settings to the Jellyfin
-/// server. Never itself synced.
-final syncSettingsEnabledProvider = StateNotifierProvider<SyncSettingsEnabledNotifier, bool>((ref) {
-  return SyncSettingsEnabledNotifier(ref);
-});
-
-class SyncSettingsEnabledNotifier extends StateNotifier<bool> {
-  SyncSettingsEnabledNotifier(this.ref) : super(ref.read(sharedUtilityProvider).syncSettingsEnabled);
-  final Ref ref;
-
-  void set(bool value) {
-    state = value;
-    ref.read(sharedUtilityProvider).syncSettingsEnabled = value;
-  }
-}
-
 /// Wires cross-platform settings sync. Construct once at app start (watched in
-/// the root widget). It:
+/// the root widget). Sync is always on — there is no device-local opt-out. It:
 ///  - applies the server-stored config to the local providers when it loads
-///    on login (and adopts it when the user turns sync on),
-///  - pushes local changes back to the server (debounced) while sync is on.
+///    on login,
+///  - pushes local changes back to the server (debounced).
 ///
 /// Synced config lives in Jellyfin's per-user DisplayPreferences.customPrefs via
 /// [UserSettings] (see service_provider get/setCustomConfig). Device-local
@@ -80,12 +63,13 @@ class ConfigSync {
   final Debouncer _debouncer = Debouncer(const Duration(seconds: 2));
   bool _applying = false;
 
-  bool get _enabled => ref.read(syncSettingsEnabledProvider);
-
   void init() {
+    // Stop the debounced push from firing against a disposed container.
+    ref.onDispose(_debouncer.dispose);
+
     // Server config loaded (login) or changed -> apply locally.
     ref.listen(userProvider.select((account) => account?.userSettings), (previous, next) {
-      if (next != null && _enabled && !_applying) _apply(next);
+      if (next != null && !_applying) _apply(next);
     });
 
     // Local changes -> push (debounced).
@@ -93,29 +77,15 @@ class ConfigSync {
     ref.listen(homeSettingsProvider, (_, __) => _schedulePush());
     ref.listen(userProvider.select((account) => account?.seerrCredentials?.serverUrl), (_, __) => _schedulePush());
     ref.listen(userProvider.select((account) => account?.seerrRequestsEnabled), (_, __) => _schedulePush());
-
-    // Turning sync on -> adopt server config if present, else seed it.
-    ref.listen(syncSettingsEnabledProvider, (previous, next) {
-      if (next == true) _onEnabled();
-    });
-  }
-
-  void _onEnabled() {
-    final settings = ref.read(userProvider)?.userSettings;
-    if (settings != null && settings.syncedAt != null) {
-      _apply(settings);
-    } else {
-      _schedulePush();
-    }
   }
 
   void _schedulePush() {
-    if (_applying || !_enabled) return;
+    if (_applying) return;
     _debouncer.run(_pushNow);
   }
 
-  /// Forces an immediate upload of the current local config, regardless of the
-  /// enabled flag or whether anything changed. Used by the manual "Sync now".
+  /// Forces an immediate upload of the current local config, regardless of
+  /// whether anything changed. Used by the manual "Sync now".
   Future<void> syncNow() => _pushNow(force: true);
 
   /// Builds the current local settings as a portable, serializable payload —
@@ -135,7 +105,7 @@ class ConfigSync {
 
   Future<void> _pushNow({bool force = false}) async {
     final account = ref.read(userProvider);
-    if (account == null || (!_enabled && !force)) return;
+    if (account == null) return;
     final current = account.userSettings ?? UserSettings();
     final built = _buildFrom(current);
     // Nothing actually changed -> skip (also breaks the apply -> push loop).

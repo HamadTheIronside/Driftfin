@@ -121,8 +121,8 @@ void main() {
     await tester.pumpAndSettle();
 
     final l10n = await AppLocalizations.delegate.load(const Locale('en'));
-    expect(find.byTooltip(l10n.tonight), findsOneWidget);
-    expect(find.byTooltip(l10n.tastePassport), findsOneWidget);
+    expect(find.text(l10n.tonight), findsOneWidget);
+    expect(find.text(l10n.tastePassport), findsOneWidget);
   });
 
   testWidgets('refreshes living home rails once on mount (PullToRefresh refreshOnStart)', (tester) async {

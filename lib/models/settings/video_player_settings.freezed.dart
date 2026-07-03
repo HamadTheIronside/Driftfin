@@ -679,7 +679,7 @@ class _VideoPlayerSettingsModel extends VideoPlayerSettingsModel
       final Set<DeviceOrientation>? allowedOrientations,
       this.nextVideoType = AutoNextType.smart,
       this.maxHomeBitrate = Bitrate.original,
-      this.maxInternetBitrate = Bitrate.original,
+      this.maxInternetBitrate = Bitrate.auto,
       this.audioDevice,
       final Map<MediaSegmentType, SegmentSkip> segmentSkipSettings =
           defaultSegmentSkipValues,

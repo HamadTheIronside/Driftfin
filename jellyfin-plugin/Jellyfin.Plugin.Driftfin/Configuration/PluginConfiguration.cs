@@ -9,6 +9,9 @@ namespace Jellyfin.Plugin.Driftfin.Configuration
     /// </summary>
     public class PluginConfiguration : BasePluginConfiguration
     {
+        /// <summary>Gets or sets the server-wide local (LAN) URL for reaching this Jellyfin server.</summary>
+        public string LocalUrl { get; set; } = string.Empty;
+
         /// <summary>Gets or sets a value indicating whether Jellyseerr is provided server-side.</summary>
         public bool SeerrEnabled { get; set; }
 

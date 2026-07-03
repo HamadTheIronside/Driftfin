@@ -169,21 +169,27 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                 ),
               },
               SliverToBoxAdapter(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                      tooltip: context.localized.tastePassport,
-                      icon: const Icon(IconsaxPlusLinear.medal_star),
-                      onPressed: () => const TastePassportRoute().navigate(context),
-                    ),
-                    IconButton(
-                      tooltip: context.localized.tonight,
-                      icon: const Icon(IconsaxPlusLinear.moon),
-                      onPressed: () => const TonightRoute().navigate(context),
-                    ),
-                    if (AdaptiveLayout.of(context).isDesktop) const PosterSizeWidget(),
-                  ],
+                child: Padding(
+                  padding: AdaptiveLayout.adaptivePadding(context, horizontalPadding: 8),
+                  child: Wrap(
+                    alignment: WrapAlignment.end,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 8,
+                    runSpacing: 4,
+                    children: [
+                      TextButton.icon(
+                        icon: const Icon(IconsaxPlusLinear.medal_star),
+                        label: Text(context.localized.tastePassport),
+                        onPressed: () => const TastePassportRoute().navigate(context),
+                      ),
+                      TextButton.icon(
+                        icon: const Icon(IconsaxPlusLinear.moon),
+                        label: Text(context.localized.tonight),
+                        onPressed: () => const TonightRoute().navigate(context),
+                      ),
+                      if (AdaptiveLayout.of(context).isDesktop) const PosterSizeWidget(),
+                    ],
+                  ),
                 ),
               ),
               ...[

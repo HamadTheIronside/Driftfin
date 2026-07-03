@@ -94,7 +94,7 @@ abstract class VideoPlayerSettingsModel with _$VideoPlayerSettingsModel {
     Set<DeviceOrientation>? allowedOrientations,
     @Default(AutoNextType.smart) AutoNextType nextVideoType,
     @Default(Bitrate.original) Bitrate maxHomeBitrate,
-    @Default(Bitrate.original) Bitrate maxInternetBitrate,
+    @Default(Bitrate.auto) Bitrate maxInternetBitrate,
     String? audioDevice,
     @Default(defaultSegmentSkipValues) Map<MediaSegmentType, SegmentSkip> segmentSkipSettings,
     @Default({}) Map<VideoHotKeys, KeyCombination> hotKeys,
