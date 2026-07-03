@@ -97,4 +97,19 @@ void main() {
       expect(releases, isEmpty);
     });
   });
+
+  group('UpdateChecker.isUpToDate', () {
+    test('true when only nightlies are newer than the running stable', () async {
+      final client = MockClient((_) async => http.Response(
+            jsonEncode([_release('v0.10.6-nightly.20260703.1', prerelease: true), _release('v0.10.5')]),
+            200,
+          ));
+      expect(await UpdateChecker(client: client).isUpToDate(), isTrue);
+    });
+
+    test('false when a newer stable release exists', () async {
+      final client = MockClient((_) async => http.Response(jsonEncode([_release('v0.11.0')]), 200));
+      expect(await UpdateChecker(client: client).isUpToDate(), isFalse);
+    });
+  });
 }
