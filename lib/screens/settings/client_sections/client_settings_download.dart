@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
+import 'package:driftfin/models/settings/settings_entry.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/sync/background_download_provider.dart';
 import 'package:driftfin/providers/sync_provider.dart';
@@ -140,7 +141,8 @@ List<Widget> buildClientSettingsDownload(BuildContext context, WidgetRef ref, Fu
             ),
           ),
           SettingsListTile(
-            label: const Text("Quality"),
+            id: SettingId.downloadsVideoQuality,
+            label: Text(context.localized.downloadsVideoQualityTitle),
             subLabel: Text(clientSettings.transcodeDownloadModel.label(context)),
             onTap: () => showTranscodeSettingsPopup(
               context: context,
@@ -153,7 +155,8 @@ List<Widget> buildClientSettingsDownload(BuildContext context, WidgetRef ref, Fu
             ),
           ),
           SettingsListTile(
-            label: const Text("Music Quality"),
+            id: SettingId.downloadsMusicQuality,
+            label: Text(context.localized.downloadsMusicQualityTitle),
             subLabel: Text(clientSettings.transcodeMusicDownloadModel.label(context)),
             onTap: () => showTranscodeMusicSettingsPopup(
               context: context,

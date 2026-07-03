@@ -79,7 +79,7 @@ class _FloatingSearchBarState extends ConsumerState<FloatingSearchBar> {
                   ),
                   IconButton(
                     onPressed: () {
-                      context.router.push(const ProfileSettingsRoute());
+                      context.router.push(const AccountDeviceSettingsRoute());
                     },
                     icon: ClipRRect(
                       borderRadius: BorderRadius.circular(200),

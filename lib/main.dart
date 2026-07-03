@@ -87,6 +87,7 @@ class _FladderApp extends ConsumerWidget {
     final themeMode = ref.watch(clientSettingsProvider.select((value) => value.themeMode));
     final amoledBlack = ref.watch(clientSettingsProvider.select((value) => value.amoledBlack));
     final mouseDrag = ref.watch(clientSettingsProvider.select((value) => value.mouseDragSupport));
+    final reduceAnimations = ref.watch(clientSettingsProvider.select((value) => value.reduceAnimations));
     final language = ref.watch(clientSettingsProvider
         .select((value) => value.selectedLocale ?? WidgetsBinding.instance.platformDispatcher.locale));
     final scrollBehaviour = const MaterialScrollBehavior();
@@ -120,12 +121,24 @@ class _FladderApp extends ConsumerWidget {
 
             return matchByLanguage;
           },
-          builder: (context, child) => MediaQueryScaler(
-            child: LocalizationContextWrapper(
-              child: PipLifecycleController(child: child ?? Container()),
-              currentLocale: language,
+          builder: (context, child) => MediaQuery(
+            // "Reduce animations" for low-end devices (issue #50) — most
+            // Flutter widgets (AnimatedContainer, page transitions,
+            // AnimatedSwitcher, ...) already check MediaQuery.disableAnimations
+            // and skip/short-circuit their animation when it's set, so this
+            // single override reaches them without touching each widget.
+            // Combined with the OS's own reduce-motion setting, not
+            // overriding it.
+            data: MediaQuery.of(context).copyWith(
+              disableAnimations: MediaQuery.of(context).disableAnimations || reduceAnimations,
             ),
-            enable: ref.read(argumentsStateProvider).leanBackMode,
+            child: MediaQueryScaler(
+              child: LocalizationContextWrapper(
+                child: PipLifecycleController(child: child ?? Container()),
+                currentLocale: language,
+              ),
+              enable: ref.read(argumentsStateProvider).leanBackMode,
+            ),
           ),
           debugShowCheckedModeBanner: false,
           darkTheme: darkTheme.copyWith(

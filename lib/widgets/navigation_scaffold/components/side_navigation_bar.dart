@@ -410,7 +410,7 @@ class _SideNavigationRail extends ConsumerState<SideNavigationRail> {
                               if (AdaptiveLayout.layoutModeOf(context) == LayoutMode.single) {
                                 context.router.push(const SettingsRoute());
                               } else {
-                                context.router.push(const ClientSettingsRoute());
+                                context.router.push(const PlayerSettingsRoute());
                               }
                             },
                           ),

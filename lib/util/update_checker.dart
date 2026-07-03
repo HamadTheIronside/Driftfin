@@ -68,22 +68,32 @@ extension DownloadLabelFormatter on String {
 }
 
 class UpdateChecker {
+  UpdateChecker({http.Client? client}) : _client = client ?? http.Client();
+
   final String owner = 'HamadTheIronside';
   final String repo = 'Driftfin';
+  final http.Client _client;
 
   Future<List<ReleaseInfo>> fetchRecentReleases({int count = 5}) async {
     final info = await PackageInfo.fromPlatform();
     final currentVersion = info.version;
 
-    final url = Uri.parse('https://api.github.com/repos/$owner/$repo/releases?per_page=$count');
-    final response = await http.get(url);
+    // This repo tags nightly prereleases multiple times a day, so the most
+    // recent page of releases is usually dominated by them. Fetch a wider
+    // page and filter prereleases out below — otherwise an end user on a
+    // stable build gets nagged to "update" to a nightly, and since nightlies
+    // always compareVersions() as newer than the same base stable version,
+    // that notification never clears on its own as newer nightlies ship.
+    final url = Uri.parse('https://api.github.com/repos/$owner/$repo/releases?per_page=${count * 6}');
+    final response = await _client.get(url);
 
     if (response.statusCode != 200) {
       print('Failed to fetch releases: ${response.statusCode}');
       return [];
     }
 
-    final List<dynamic> releases = jsonDecode(response.body);
+    final List<dynamic> allReleases = jsonDecode(response.body);
+    final releases = allReleases.where((json) => json['prerelease'] != true).take(count);
     return releases.map((json) {
       final tag = (json['tag_name'] as String?)?.replaceFirst(RegExp(r'^v'), '');
       final changelog = json['body'] as String? ?? '';
@@ -135,7 +145,6 @@ class UpdateChecker {
     if (releases.isEmpty) return true;
     return !releases.first.isNewerThanCurrent;
   }
-
 }
 
 /// Compares dot-separated versions, tolerating pre-release suffixes by using

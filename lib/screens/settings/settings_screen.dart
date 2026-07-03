@@ -87,22 +87,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     });
   }
 
-  IconData get deviceIcon {
-    if (AdaptiveLayout.of(context).isDesktop) {
-      return IconsaxPlusLinear.monitor;
-    }
-    switch (AdaptiveLayout.viewSizeOf(context)) {
-      case ViewSize.phone:
-        return IconsaxPlusLinear.mobile;
-      case ViewSize.tablet:
-        return IconsaxPlusLinear.monitor;
-      case ViewSize.desktop:
-        return IconsaxPlusLinear.monitor;
-      case ViewSize.television:
-        return IconsaxPlusLinear.mirroring_screen;
-    }
-  }
-
   Widget _leftPane(BuildContext context) {
     void navigateTo(PageRouteInfo route) => context.tabsRouter.navigate(route);
 
@@ -143,12 +127,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               const SizedBox(height: 8),
             ],
             SettingsListTile(
-              label: Text(context.localized.settingsClientTitle),
-              subLabel: Text(context.localized.settingsClientDesc),
+              label: Text(context.localized.settingsPlaybackTitle),
+              subLabel: Text(context.localized.settingsPlaybackDesc),
               autoFocus: true,
-              selected: containsRoute(const ClientSettingsRoute()),
-              icon: deviceIcon,
-              onTap: () => navigateTo(const ClientSettingsRoute()),
+              selected: containsRoute(const PlayerSettingsRoute()),
+              icon: IconsaxPlusLinear.video_play,
+              onTap: () => navigateTo(const PlayerSettingsRoute()),
             ),
             if (isAdmin)
               SettingsListTile(
@@ -159,18 +143,39 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 onTap: () => const ControlPanelSelectionRoute().navigate(context),
               ),
             SettingsListTile(
-              label: Text(context.localized.settingsProfileTitle),
-              subLabel: Text(context.localized.settingsProfileDesc),
-              selected: containsRoute(const ProfileSettingsRoute()),
+              label: Text(context.localized.settingsAccountDeviceTitle),
+              subLabel: Text(context.localized.settingsAccountDeviceDesc),
+              selected: containsRoute(const AccountDeviceSettingsRoute()),
               icon: IconsaxPlusLinear.security_user,
-              onTap: () => navigateTo(const ProfileSettingsRoute()),
+              onTap: () => navigateTo(const AccountDeviceSettingsRoute()),
             ),
             SettingsListTile(
-              label: Text(context.localized.settingsPlayerTitle),
-              subLabel: Text(context.localized.settingsPlayerDesc),
-              selected: containsRoute(const PlayerSettingsRoute()),
-              icon: IconsaxPlusLinear.video_play,
-              onTap: () => navigateTo(const PlayerSettingsRoute()),
+              label: Text(context.localized.settingsAppearanceTitle),
+              subLabel: Text(context.localized.settingsAppearanceDesc),
+              selected: containsRoute(const AppearanceSettingsRoute()),
+              icon: IconsaxPlusLinear.brush_2,
+              onTap: () => navigateTo(const AppearanceSettingsRoute()),
+            ),
+            SettingsListTile(
+              label: Text(context.localized.settingsHomeLibraryTitle),
+              subLabel: Text(context.localized.settingsHomeLibraryDesc),
+              selected: containsRoute(const HomeLibrarySettingsRoute()),
+              icon: IconsaxPlusLinear.home_1,
+              onTap: () => navigateTo(const HomeLibrarySettingsRoute()),
+            ),
+            SettingsListTile(
+              label: Text(context.localized.settingsDownloadsOfflineTitle),
+              subLabel: Text(context.localized.settingsDownloadsOfflineDesc),
+              selected: containsRoute(const DownloadsSettingsRoute()),
+              icon: IconsaxPlusLinear.document_download,
+              onTap: () => navigateTo(const DownloadsSettingsRoute()),
+            ),
+            SettingsListTile(
+              label: Text(context.localized.settingsIntegrationsTitle),
+              subLabel: Text(context.localized.settingsIntegrationsDesc),
+              selected: containsRoute(const IntegrationsSettingsRoute()),
+              icon: IconsaxPlusLinear.link_2,
+              onTap: () => navigateTo(const IntegrationsSettingsRoute()),
             ),
             SettingsListTile(
               label: Text(context.localized.about),

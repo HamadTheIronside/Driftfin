@@ -120,5 +120,15 @@ List<Widget> buildClientSettingsTheme(BuildContext context, WidgetRef ref) {
         onChanged: (value) => ref.read(clientSettingsProvider.notifier).setDerivedColorsFromItem(value),
       ),
     ),
+    SettingsListTile(
+      id: SettingId.reduceAnimations,
+      label: Text(context.localized.reduceAnimationsTitle),
+      subLabel: Text(context.localized.reduceAnimationsDesc),
+      onTap: () => ref.read(clientSettingsProvider.notifier).setReduceAnimations(!clientSettings.reduceAnimations),
+      trailing: Switch(
+        value: clientSettings.reduceAnimations,
+        onChanged: (value) => ref.read(clientSettingsProvider.notifier).setReduceAnimations(value),
+      ),
+    ),
   ]);
 }

@@ -1,57 +1,65 @@
-import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:driftfin/providers/settings/subtitle_settings_provider.dart';
 import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
 import 'package:driftfin/util/color_extensions.dart';
 
-class SubtitleSettingsModel {
-  final double fontSize;
-  final FontWeight fontWeight;
-  final double verticalOffset;
-  final Color color;
-  final Color outlineColor;
-  final double outlineSize;
-  final Color backGroundColor;
-  final double shadow;
-  const SubtitleSettingsModel({
-    this.fontSize = 60,
-    this.fontWeight = FontWeight.normal,
-    this.verticalOffset = 0.10,
-    this.color = Colors.white,
-    this.outlineColor = const Color.fromRGBO(0, 0, 0, 0.85),
-    this.outlineSize = 4,
-    this.backGroundColor = const Color.fromARGB(0, 0, 0, 0),
-    this.shadow = 0.5,
-  });
+part 'subtitle_settings_model.freezed.dart';
+part 'subtitle_settings_model.g.dart';
 
-  SubtitleSettingsModel copyWith({
-    double? fontSize,
-    FontWeight? fontWeight,
-    double? verticalOffset,
-    Color? color,
-    Color? outlineColor,
-    double? outlineSize,
-    Color? backGroundColor,
-    double? shadow,
-  }) {
-    return SubtitleSettingsModel(
-      fontSize: fontSize ?? this.fontSize,
-      fontWeight: fontWeight ?? this.fontWeight,
-      verticalOffset: verticalOffset ?? this.verticalOffset,
-      color: color ?? this.color,
-      outlineColor: outlineColor ?? this.outlineColor,
-      outlineSize: outlineSize ?? this.outlineSize,
-      backGroundColor: backGroundColor ?? this.backGroundColor,
-      shadow: shadow ?? this.shadow,
-    );
-  }
+/// Serializes a [Color] to/from the historical `{alpha, red, green, blue}`
+/// map (see [ColorExtensions.toMap]/[colorFromJson]). Kept identical to the
+/// pre-freezed hand-rolled format so persisted subtitle settings keep loading
+/// after the migration (issue #50 Phase 4). [colorFromJson] also still reads
+/// the even-older integer color format.
+class SubtitleColorConverter implements JsonConverter<Color, Object?> {
+  const SubtitleColorConverter();
+
+  @override
+  Color fromJson(Object? json) => colorFromJson(json) ?? Colors.white;
+
+  @override
+  Object toJson(Color color) => color.toMap;
+}
+
+/// Serializes a [FontWeight] as its numeric weight (100–900) — the same
+/// `fontWeight.value` the hand-rolled `toMap` wrote. The old `fromMap` looked
+/// the weight up by `.index` (0–8) instead, so any non-default weight silently
+/// reverted to normal on reload; matching by `.value` here reads that same
+/// persisted JSON and now restores the weight the user actually chose.
+class FontWeightConverter implements JsonConverter<FontWeight, int> {
+  const FontWeightConverter();
+
+  @override
+  FontWeight fromJson(int json) =>
+      FontWeight.values.firstWhere((weight) => weight.value == json, orElse: () => FontWeight.normal);
+
+  @override
+  int toJson(FontWeight object) => object.value;
+}
+
+@Freezed(copyWith: true)
+abstract class SubtitleSettingsModel with _$SubtitleSettingsModel {
+  const SubtitleSettingsModel._();
+
+  const factory SubtitleSettingsModel({
+    @Default(60.0) double fontSize,
+    @FontWeightConverter() @Default(FontWeight.normal) FontWeight fontWeight,
+    @Default(0.10) double verticalOffset,
+    @SubtitleColorConverter() @Default(Colors.white) Color color,
+    @SubtitleColorConverter() @Default(Color.fromRGBO(0, 0, 0, 0.85)) Color outlineColor,
+    @Default(4.0) double outlineSize,
+    @SubtitleColorConverter() @Default(Color.fromARGB(0, 0, 0, 0)) Color backGroundColor,
+    @Default(0.5) double shadow,
+  }) = _SubtitleSettingsModel;
+
+  factory SubtitleSettingsModel.fromJson(Map<String, dynamic> json) => _$SubtitleSettingsModelFromJson(json);
 
   TextStyle get backGroundStyle {
     return style.copyWith(
@@ -88,46 +96,15 @@ class SubtitleSettingsModel {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'fontSize': fontSize,
-      'fontWeight': fontWeight.value,
-      'verticalOffset': verticalOffset,
-      'color': color.toMap,
-      'outlineColor': outlineColor.toMap,
-      'outlineSize': outlineSize,
-      'backGroundColor': backGroundColor.toMap,
-      'shadow': shadow,
-    };
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory SubtitleSettingsModel.fromJson(String source) => SubtitleSettingsModel.fromMap(json.decode(source));
-
-  factory SubtitleSettingsModel.fromMap(Map<String, dynamic> map) {
-    return const SubtitleSettingsModel().copyWith(
-      fontSize: map['fontSize'] as double?,
-      fontWeight: FontWeight.values.firstWhereOrNull((element) => element.index == map['fontWeight'] as int?),
-      verticalOffset: map['verticalOffset'] as double?,
-      color: colorFromJson(map['color']),
-      outlineColor: colorFromJson(map['outlineColor']),
-      outlineSize: map['outlineSize'] as double?,
-      backGroundColor: colorFromJson(map['backGroundColor']),
-      shadow: map['shadow'] as double?,
-    );
-  }
-
+  // freezed is configured with `equal: false` repo-wide (see build.yaml), so
+  // value equality is defined here to preserve the pre-migration behavior —
+  // the StateNotifier and its listeners rely on two identical settings
+  // comparing equal (otherwise every assignment would notify).
   @override
-  String toString() {
-    return 'SubtitleSettingsModel(fontSize: $fontSize, fontWeight: $fontWeight, verticalOffset: $verticalOffset, color: $color, outlineColor: $outlineColor, outlineSize: $outlineSize, backGroundColor: $backGroundColor, shadow: $shadow)';
-  }
-
-  @override
-  bool operator ==(covariant SubtitleSettingsModel other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
-    return other.fontSize == fontSize &&
+    return other is SubtitleSettingsModel &&
+        other.fontSize == fontSize &&
         other.fontWeight == fontWeight &&
         other.verticalOffset == verticalOffset &&
         other.color == color &&
@@ -138,16 +115,16 @@ class SubtitleSettingsModel {
   }
 
   @override
-  int get hashCode {
-    return fontSize.hashCode ^
-        fontWeight.hashCode ^
-        verticalOffset.hashCode ^
-        color.hashCode ^
-        outlineColor.hashCode ^
-        outlineSize.hashCode ^
-        backGroundColor.hashCode ^
-        shadow.hashCode;
-  }
+  int get hashCode => Object.hash(
+        fontSize,
+        fontWeight,
+        verticalOffset,
+        color,
+        outlineColor,
+        outlineSize,
+        backGroundColor,
+        shadow,
+      );
 }
 
 class SubtitleText extends ConsumerWidget {
