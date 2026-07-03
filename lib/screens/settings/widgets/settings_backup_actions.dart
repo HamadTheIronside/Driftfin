@@ -40,14 +40,22 @@ class SettingsBackupActions extends ConsumerWidget {
       return;
     }
 
+    // `bytes` is *required* on Android & iOS — saveFile throws an ArgumentError
+    // without it — and there the picker writes the file itself. On desktop
+    // saveFile only returns the chosen path, so we persist the bytes ourselves
+    // below. Passing bytes on every platform keeps one code path that works on
+    // mobile, desktop and web alike.
     final path = await FilePicker.platform.saveFile(
       dialogTitle: context.localized.settingsExportSettingsTitle,
       fileName: _fileName(),
       type: FileType.custom,
       allowedExtensions: const ['json'],
+      bytes: bytes,
     );
     if (path == null) return;
-    await File(path).writeAsBytes(bytes);
+    if (Platform.isMacOS || Platform.isWindows || Platform.isLinux) {
+      await File(path).writeAsBytes(bytes);
+    }
     if (context.mounted) FladderSnack.show(context.localized.saved, context: context);
   }
 
