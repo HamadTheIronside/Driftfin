@@ -61,43 +61,43 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
     return Padding(
       padding: EdgeInsetsDirectional.only(start: AdaptiveLayout.of(context).sideBarWidth),
       child: Scaffold(
-      appBar: AppBar(
-        title: Text(context.localized.calendarTitle),
-        actions: [
-          PopupMenuButton<_CalFilter>(
-            icon: const Icon(Icons.filter_list),
-            initialValue: _filter,
-            onSelected: (f) => setState(() => _filter = f),
-            itemBuilder: (context) => [
-              PopupMenuItem(value: _CalFilter.all, child: Text(context.localized.calendarFilterAll)),
-              PopupMenuItem(value: _CalFilter.tv, child: Text(context.localized.calendarFilterTv)),
-              PopupMenuItem(value: _CalFilter.movies, child: Text(context.localized.calendarFilterMovies)),
-            ],
-          ),
-          IconButton(
-            tooltip: _monthView ? 'Agenda' : 'Month',
-            icon: Icon(_monthView ? Icons.view_agenda_outlined : Icons.calendar_view_month_outlined),
-            onPressed: () => setState(() => _monthView = !_monthView),
-          ),
-        ],
-      ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          refreshCalendar();
-          ref.invalidate(calendarProvider);
-          await ref.read(calendarProvider.future);
-        },
-        child: calendar.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (_, __) => _empty(context),
-          data: (raw) {
-            final byDay = _applyFilter(raw);
-            if (byDay.isEmpty) return _empty(context);
-            return _monthView ? _buildMonth(context, byDay) : _buildAgenda(context, byDay);
+        appBar: AppBar(
+          title: Text(context.localized.calendarTitle),
+          actions: [
+            PopupMenuButton<_CalFilter>(
+              icon: const Icon(Icons.filter_list),
+              initialValue: _filter,
+              onSelected: (f) => setState(() => _filter = f),
+              itemBuilder: (context) => [
+                PopupMenuItem(value: _CalFilter.all, child: Text(context.localized.calendarFilterAll)),
+                PopupMenuItem(value: _CalFilter.tv, child: Text(context.localized.calendarFilterTv)),
+                PopupMenuItem(value: _CalFilter.movies, child: Text(context.localized.calendarFilterMovies)),
+              ],
+            ),
+            IconButton(
+              tooltip: _monthView ? 'Agenda' : 'Month',
+              icon: Icon(_monthView ? Icons.view_agenda_outlined : Icons.calendar_view_month_outlined),
+              onPressed: () => setState(() => _monthView = !_monthView),
+            ),
+          ],
+        ),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            refreshCalendar();
+            ref.invalidate(calendarProvider);
+            await ref.read(calendarProvider.future);
           },
+          child: calendar.when(
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (_, __) => _empty(context),
+            data: (raw) {
+              final byDay = _applyFilter(raw);
+              if (byDay.isEmpty) return _empty(context);
+              return _monthView ? _buildMonth(context, byDay) : _buildAgenda(context, byDay);
+            },
+          ),
         ),
       ),
-    ),
     );
   }
 
@@ -312,7 +312,8 @@ class _DayHeader extends StatelessWidget {
                 Text(DateFormat('EEE').format(date).toUpperCase(),
                     style: theme.textTheme.labelSmall?.copyWith(color: badgeFg.withValues(alpha: 0.8), height: 1)),
                 Text('${date.day}',
-                    style: theme.textTheme.titleLarge?.copyWith(color: badgeFg, fontWeight: FontWeight.bold, height: 1.1)),
+                    style:
+                        theme.textTheme.titleLarge?.copyWith(color: badgeFg, fontWeight: FontWeight.bold, height: 1.1)),
               ],
             ),
           ),
@@ -324,8 +325,7 @@ class _DayHeader extends StatelessWidget {
                 style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
           ),
           if (count > 0)
-            Text('$count',
-                style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+            Text('$count', style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
         ],
       ),
     );
@@ -368,7 +368,17 @@ class _CalendarTile extends StatelessWidget {
     final statusText = entry.hasFile ? '✓' : DateFormat.jm().format(entry.airDate);
     final subtitle = entry.isMovie
         ? context.localized.calendarFilterMovies
-        : [entry.codeLabel, if (entry.episodeTitle.isNotEmpty) entry.episodeTitle].where((s) => s.isNotEmpty).join(' · ');
+        : [entry.codeLabel, if (entry.episodeTitle.isNotEmpty) entry.episodeTitle]
+            .where((s) => s.isNotEmpty)
+            .join(' · ');
+
+    final imagePlaceholder = Container(
+      color: theme.colorScheme.surfaceContainerHighest,
+      child: Icon(
+        entry.isMovie ? Icons.movie_outlined : Icons.live_tv_outlined,
+        color: theme.colorScheme.onSurfaceVariant,
+      ),
+    );
 
     return InkWell(
       onTap: entry.item == null ? null : () => entry.item!.navigateTo(context),
@@ -384,13 +394,8 @@ class _CalendarTile extends StatelessWidget {
                 height: 48,
                 child: FladderImage(
                   image: entry.image,
-                  placeHolder: Container(
-                    color: theme.colorScheme.surfaceContainerHighest,
-                    child: Icon(
-                      entry.isMovie ? Icons.movie_outlined : Icons.live_tv_outlined,
-                      color: theme.colorScheme.onSurfaceVariant,
-                    ),
-                  ),
+                  placeHolder: imagePlaceholder,
+                  imageErrorBuilder: (context, error, stackTrace) => imagePlaceholder,
                 ),
               ),
             ),
@@ -412,8 +417,10 @@ class _CalendarTile extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              decoration: BoxDecoration(color: statusColor.withValues(alpha: 0.18), borderRadius: BorderRadius.circular(6)),
-              child: Text(statusText, style: theme.textTheme.labelMedium?.copyWith(color: statusColor, fontWeight: FontWeight.w700)),
+              decoration:
+                  BoxDecoration(color: statusColor.withValues(alpha: 0.18), borderRadius: BorderRadius.circular(6)),
+              child: Text(statusText,
+                  style: theme.textTheme.labelMedium?.copyWith(color: statusColor, fontWeight: FontWeight.w700)),
             ),
           ],
         ),

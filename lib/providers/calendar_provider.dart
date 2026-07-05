@@ -4,6 +4,7 @@ import 'package:driftfin/models/item_base_model.dart';
 import 'package:driftfin/models/items/episode_model.dart';
 import 'package:driftfin/models/items/images_models.dart';
 import 'package:driftfin/providers/api_provider.dart';
+import 'package:driftfin/providers/image_provider.dart';
 import 'package:driftfin/providers/radarr_provider.dart';
 import 'package:driftfin/providers/sonarr_provider.dart';
 import 'package:driftfin/util/item_query_fields.dart';
@@ -35,7 +36,31 @@ class CalendarEntry {
   });
 
   String get codeLabel => (season != null && episode != null) ? 'S${season}E$episode' : '';
-  String get dedupeKey => isMovie ? 'movie|${seriesTitle.toLowerCase()}' : '${seriesTitle.toLowerCase()}|$season|$episode';
+  String get dedupeKey =>
+      isMovie ? 'movie|${seriesTitle.toLowerCase()}' : '${seriesTitle.toLowerCase()}|$season|$episode';
+}
+
+/// Poster for a calendar episode: prefer the episode's own still image, then
+/// fall back to the parent series poster. When the upcoming response omits
+/// `seriesPrimaryImageTag` (so `getPosters` has no primary) we build the series
+/// primary URL directly from its id — the cache tag is optional per the
+/// Jellyfin API, so this still resolves the series poster.
+ImageData? calendarEpisodeImage(EpisodeModel item, Ref ref) {
+  final ownPrimary = item.images?.primary;
+  if (ownPrimary != null) return ownPrimary;
+
+  final parent = item.getPosters;
+  final parentImage = parent?.primary ?? parent?.backDrop?.firstOrNull;
+  if (parentImage != null) return parentImage;
+
+  final seriesId = item.parentId;
+  if (seriesId != null && seriesId.isNotEmpty) {
+    return ImageData(
+      path: ref.read(imageUtilityProvider).getItemsImageUrl(seriesId),
+      key: '${seriesId}_primary',
+    );
+  }
+  return null;
 }
 
 /// Groups entries by local calendar day, each day's list sorted by air time.
@@ -78,7 +103,7 @@ final calendarProvider = FutureProvider.autoDispose<Map<DateTime, List<CalendarE
           episodeTitle: item.name,
           hasFile: false,
           item: item,
-          image: item.images?.primary ?? item.getPosters?.primary,
+          image: calendarEpisodeImage(item, ref),
         );
         if (seen.add(entry.dedupeKey)) entries.add(entry);
       }

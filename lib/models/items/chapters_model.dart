@@ -46,7 +46,12 @@ class Chapter {
     return chapters
         .mapIndexed((index, element) => Chapter(
             name: element.name ?? "",
-            imageUrl: ref.read(imageUtilityProvider).getChapterUrl(itemId, index),
+            // A chapter only has an image when the server reports an ImageTag;
+            // build the URL (with that tag) only then, so chapters without an
+            // extracted image fall back to a placeholder instead of a broken load.
+            imageUrl: element.imageTag != null
+                ? ref.read(imageUtilityProvider).getChapterUrl(itemId, index, tag: element.imageTag)
+                : "",
             startPosition: Duration(milliseconds: (element.startPositionTicks ?? 0) ~/ 10000)))
         .toList();
   }
