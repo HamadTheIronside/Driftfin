@@ -138,17 +138,21 @@ class _SeerrRequestsScreenState extends ConsumerState<SeerrRequestsScreen> {
                             const SizedBox(height: 120),
                             Center(child: Text(context.localized.noRequestsFound)),
                           ])
-                        : ListView.builder(
+                        : GridView.builder(
                             controller: _scroll,
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                              maxCrossAxisExtent: 480,
+                              mainAxisExtent: 170,
+                              crossAxisSpacing: 8,
+                              mainAxisSpacing: 8,
+                            ),
                             itemCount: state.entries.length + (state.canLoadMore ? 1 : 0),
                             itemBuilder: (context, index) {
                               if (index >= state.entries.length) {
-                                return const Padding(
-                                  padding: EdgeInsets.all(16),
-                                  child: Center(child: CircularProgressIndicator()),
-                                );
+                                return const Center(child: CircularProgressIndicator());
                               }
-                              return _RequestTile(
+                              return _RequestCard(
                                 entry: state.entries[index],
                                 canManage: canManage,
                                 onApprove: (id) => notifier.approve(id),
@@ -165,13 +169,15 @@ class _SeerrRequestsScreenState extends ConsumerState<SeerrRequestsScreen> {
   }
 }
 
-class _RequestTile extends StatelessWidget {
+/// A request rendered as a rich grid card: poster, title, year, status/4K/download
+/// badges, a multi-line description, requested-by, and inline approve/decline.
+class _RequestCard extends StatelessWidget {
   final SeerrRequestEntry entry;
   final bool canManage;
   final void Function(int requestId) onApprove;
   final void Function(int requestId) onDecline;
 
-  const _RequestTile({
+  const _RequestCard({
     required this.entry,
     required this.canManage,
     required this.onApprove,
@@ -180,15 +186,19 @@ class _RequestTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final poster = entry.poster;
     final request = entry.request;
     final status = request.requestStatus;
     final image = poster?.images.primary ?? poster?.images.backDrop?.lastOrNull;
     final isPending = status == SeerrRequestStatus.pending;
     final requestId = request.id;
+    final overview = poster?.overview.trim() ?? '';
+    final year = poster?.releaseYear;
 
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      margin: EdgeInsets.zero,
+      clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: poster == null
             ? null
@@ -200,31 +210,62 @@ class _RequestTile extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 12,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(6),
                 child: SizedBox(
-                  width: 60,
-                  height: 90,
+                  width: 96,
                   child: FladderImage(
                     image: image,
-                    placeHolder: Container(color: Theme.of(context).colorScheme.surfaceContainer),
+                    placeHolder: Container(
+                      color: theme.colorScheme.surfaceContainer,
+                      child: Icon(
+                        poster?.type == SeerrMediaType.tvshow ? Icons.live_tv_outlined : Icons.movie_outlined,
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
                   ),
                 ),
               ),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 6,
                   children: [
-                    Text(
-                      poster?.title ?? '#${request.id}',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            poster?.title ?? '#${request.id}',
+                            style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        if (canManage && isPending && requestId != null) ...[
+                          _CompactIconButton(
+                            tooltip: context.localized.approve,
+                            icon: IconsaxPlusLinear.tick_circle,
+                            color: Colors.green,
+                            onPressed: () => onApprove(requestId),
+                          ),
+                          _CompactIconButton(
+                            tooltip: context.localized.decline,
+                            icon: IconsaxPlusLinear.close_circle,
+                            color: Colors.red,
+                            onPressed: () => onDecline(requestId),
+                          ),
+                        ],
+                      ],
                     ),
+                    if (year != null && year.isNotEmpty)
+                      Text(
+                        year,
+                        style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                      ),
+                    const SizedBox(height: 6),
                     Wrap(
                       spacing: 8,
                       runSpacing: 4,
@@ -235,10 +276,10 @@ class _RequestTile extends StatelessWidget {
                           decoration: BoxDecoration(color: status.color, borderRadius: BorderRadius.circular(6)),
                           child: Text(
                             status.label(context),
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
                         if (request.is4k == true)
@@ -246,37 +287,60 @@ class _RequestTile extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
-                              border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
+                              border: Border.all(color: theme.colorScheme.outlineVariant),
                             ),
                             child: const Text('4K', style: TextStyle(fontWeight: FontWeight.w700)),
                           ),
                         if (poster != null) DownloadStatusLabel(poster: poster),
                       ],
                     ),
+                    if (overview.isNotEmpty) ...[
+                      const SizedBox(height: 6),
+                      Expanded(
+                        child: Text(
+                          overview,
+                          maxLines: 4,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                        ),
+                      ),
+                    ] else
+                      const Spacer(),
                     if (request.requestedBy != null) SeerrUserLabel(user: request.requestedBy),
                   ],
                 ),
               ),
-              if (canManage && isPending && requestId != null)
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      tooltip: context.localized.approve,
-                      icon: const Icon(IconsaxPlusLinear.tick_circle, color: Colors.green),
-                      onPressed: () => onApprove(requestId),
-                    ),
-                    IconButton(
-                      tooltip: context.localized.decline,
-                      icon: const Icon(IconsaxPlusLinear.close_circle, color: Colors.red),
-                      onPressed: () => onDecline(requestId),
-                    ),
-                  ],
-                ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+/// A tight, borderless icon button so the approve/decline pair fits in a card header.
+class _CompactIconButton extends StatelessWidget {
+  final String tooltip;
+  final IconData icon;
+  final Color color;
+  final VoidCallback onPressed;
+
+  const _CompactIconButton({
+    required this.tooltip,
+    required this.icon,
+    required this.color,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      tooltip: tooltip,
+      visualDensity: VisualDensity.compact,
+      constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
+      padding: EdgeInsets.zero,
+      icon: Icon(icon, color: color),
+      onPressed: onPressed,
     );
   }
 }

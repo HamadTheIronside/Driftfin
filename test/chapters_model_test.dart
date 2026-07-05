@@ -1,5 +1,10 @@
+import 'package:driftfin/jellyfin/jellyfin_open_api.swagger.dart' as dto;
 import 'package:driftfin/models/items/chapters_model.dart';
+import 'package:driftfin/providers/api_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+final _refCaptureProvider = Provider<Ref>((ref) => ref);
 
 Chapter _chapter({String name = '', String imageUrl = '', int startMs = 0}) => Chapter(
       name: name,
@@ -8,6 +13,63 @@ Chapter _chapter({String name = '', String imageUrl = '', int startMs = 0}) => C
     );
 
 void main() {
+  group('Chapter.chaptersFromInfo', () {
+    late ProviderContainer container;
+    late Ref ref;
+
+    setUp(() {
+      container = ProviderContainer(
+        overrides: [serverUrlProvider.overrideWith((ref) => 'http://server')],
+      );
+      ref = container.read(_refCaptureProvider);
+    });
+
+    tearDown(() => container.dispose());
+
+    test('builds a tagged chapter image URL when the chapter has an ImageTag', () {
+      final chapters = Chapter.chaptersFromInfo(
+        'item1',
+        const [dto.ChapterInfo(name: 'Intro', imageTag: 'tag1', startPositionTicks: 0)],
+        ref,
+      );
+      expect(chapters.single.imageUrl, contains('/Items/item1/Images/Chapter/0'));
+      expect(chapters.single.imageUrl, contains('tag=tag1'));
+    });
+
+    test('leaves imageUrl empty when the chapter has no ImageTag (no extracted image)', () {
+      final chapters = Chapter.chaptersFromInfo(
+        'item1',
+        const [dto.ChapterInfo(name: 'Intro', startPositionTicks: 0)],
+        ref,
+      );
+      expect(chapters.single.imageUrl, isEmpty);
+    });
+
+    test('uses the chapter index in the image path and passes each chapter its own tag', () {
+      final chapters = Chapter.chaptersFromInfo(
+        'item1',
+        const [
+          dto.ChapterInfo(name: 'a', imageTag: 't0'),
+          dto.ChapterInfo(name: 'b', imageTag: 't1'),
+        ],
+        ref,
+      );
+      expect(chapters[0].imageUrl, contains('/Images/Chapter/0'));
+      expect(chapters[0].imageUrl, contains('tag=t0'));
+      expect(chapters[1].imageUrl, contains('/Images/Chapter/1'));
+      expect(chapters[1].imageUrl, contains('tag=t1'));
+    });
+
+    test('preserves start position regardless of image tag', () {
+      final chapters = Chapter.chaptersFromInfo(
+        'item1',
+        const [dto.ChapterInfo(name: 'Intro', startPositionTicks: 50000000)],
+        ref,
+      );
+      expect(chapters.single.startPosition, const Duration(milliseconds: 5000));
+    });
+  });
+
   group('Chapter.fromMap', () {
     test('defaults name/imageUrl to empty string when missing', () {
       final chapter = Chapter.fromMap({'startPosition': 1000});

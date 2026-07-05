@@ -80,6 +80,21 @@ void main() {
     expect(find.byType(CircularProgressIndicator), findsWidgets);
   });
 
+  testWidgets('grid: lays entries out in a GridView and shows the description', (tester) async {
+    final entries = [
+      SeerrRequestEntry(_request(id: 1, status: 1), _poster(id: '1', title: 'A Movie')),
+    ];
+    final state = SeerrRequestsState(entries: entries, loadedPages: 1);
+
+    await tester.pumpWidget(_harness(state, const SeerrUserModel(id: 1, permissions: 16)));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(GridView), findsOneWidget);
+    expect(find.text('A Movie'), findsOneWidget);
+    // The overview/description is surfaced on the card (the old list tile hid it).
+    expect(find.text('overview'), findsOneWidget);
+  });
+
   testWidgets('populated: shows entries, pending approve/decline actions and FAB for managers', (tester) async {
     final entries = [
       SeerrRequestEntry(_request(id: 1, status: 1), _poster(id: '1', title: 'Pending Movie')),

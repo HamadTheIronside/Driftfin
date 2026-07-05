@@ -57,10 +57,13 @@ class VideoPlayerChapters extends ConsumerWidget {
               child: Stack(
                 children: [
                   Center(
-                    child: CachedNetworkImage(
-                      imageUrl: chapter.imageUrl,
-                      fit: BoxFit.fitWidth,
-                    ),
+                    child: chapter.imageUrl.isEmpty
+                        ? const Icon(Icons.image_outlined)
+                        : CachedNetworkImage(
+                            imageUrl: chapter.imageUrl,
+                            fit: BoxFit.fitWidth,
+                            errorWidget: (context, url, error) => const Icon(Icons.image_outlined),
+                          ),
                   ),
                   Align(
                     alignment: Alignment.bottomRight,

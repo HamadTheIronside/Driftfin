@@ -102,15 +102,15 @@ class ImageNotifier {
   }
 
   String getChapterUrl(String itemId, int index,
-      {ImageType type = ImageType.primary,
-      int maxHeight = _defaultHeight,
-      int maxWidth = _defaultWidth,
-      int quality = _defaultQuality}) {
+      {String? tag, int maxHeight = _defaultHeight, int maxWidth = _defaultWidth, int quality = _defaultQuality}) {
     try {
       return buildServerUrl(
         ref,
         pathSegments: ['Items', itemId, 'Images', 'Chapter', index.toString()],
         queryParameters: {
+          // The Jellyfin web client always sends the chapter's ImageTag; chapter
+          // images can 404 without it, so pass it through when we have one.
+          if (tag != null) 'tag': tag,
           'fillHeight': maxHeight.toString(),
           'fillWidth': maxWidth.toString(),
           'quality': quality.toString(),
