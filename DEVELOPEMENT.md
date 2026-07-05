@@ -64,6 +64,48 @@ Format files to spec:
 dart format --line-length 120 ./lib/
 ```
 
+## 📦 Building a release APK (Android)
+
+Debug builds run Dart in the JIT debug VM and feel sluggish. Release builds are
+AOT-compiled and fast. To build a release APK:
+
+```bash
+flutter build apk --release --split-per-abi --flavor production
+```
+
+Output lands in `build/app/outputs/flutter-apk/app-<abi>-production-release.apk`
+(one per ABI: `armeabi-v7a`, `arm64-v8a`, `x86_64`). Install the one matching your
+device. This works with **no extra setup** — without a keystore the release build
+is signed with the debug key (installable for personal use, just not publishable to
+the Play Store).
+
+### Signing with your own key (optional)
+
+A keystore is a free, offline, self-signed file — no account or payment needed. Create
+one once with the JDK's `keytool` (bundled with Android Studio / any JDK):
+
+```bash
+keytool -genkey -v -keystore android/app/keystore.jks \
+  -keyalg RSA -keysize 2048 -validity 10000 -alias driftfin
+```
+
+Then create `android/app/key.properties` (both files are gitignored — never commit
+them, and back up the keystore: updates must reuse the same key):
+
+```properties
+storePassword=<the store password you set>
+keyPassword=<the key password you set>
+keyAlias=driftfin
+```
+
+With those present, `flutter build apk --release` signs with your key automatically.
+For CI signing, see the `KEYSTORE_BASE_64` secrets in [CLAUDE.md](CLAUDE.md) → Releases.
+
+> R8/resource shrinking is disabled by default (see `android/app/build.gradle`) — the
+> speedup is from AOT, not minification. To shrink the APK, flip `minifyEnabled` and
+> `shrinkResources` to `true` and test on-device; keep rules live in
+> `android/app/proguard-rules.pro`.
+
 ## 🐞 Crash Reporting (optional)
 
 Driftfin ships with opt-in [Sentry](https://sentry.io) crash reporting, off by default. It stays fully inert — no SDK

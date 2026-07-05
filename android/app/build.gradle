@@ -77,20 +77,33 @@ android {
         kotlinCompilerExtensionVersion '1.6.4'
     }
 
+    // Release signing. Drop android/app/keystore.jks + android/app/key.properties
+    // (both gitignored — see keytool instructions in DEVELOPEMENT.md) to sign with
+    // your own key. Without them, release builds fall back to the debug key so
+    // `flutter build apk --release` still works with zero setup: the APK is
+    // installable for personal/testing use, it just can't be published to Play.
+    def hasReleaseKeystore = keystorePropertiesFile.exists()
     signingConfigs {
         release {
-            storeFile file('keystore.jks')
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storePassword keystoreProperties['storePassword']
+            if (hasReleaseKeystore) {
+                storeFile file('keystore.jks')
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storePassword keystoreProperties['storePassword']
+            }
         }
     }
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
+            // R8 / resource shrinking is off by default. The release speedup comes
+            // from AOT compilation, not minification, and R8 without verified keep
+            // rules can strip native/reflection classes (media3, media_kit, Sentry)
+            // and crash at runtime. To shrink the APK, flip both to true, then test
+            // on a device — starter keep rules live in proguard-rules.pro.
+            minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
+            signingConfig hasReleaseKeystore ? signingConfigs.release : signingConfigs.debug
 
             packagingOptions {
                 resources {
