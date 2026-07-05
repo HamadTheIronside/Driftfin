@@ -136,8 +136,12 @@ jobs:
           name: ios
           path: Driftfin-iOS-*.ipa
 
-  # Debug APK: verifies the Android package rename compiles without needing the
-  # release keystore secrets. Debug-signed, so it's installable for testing.
+  # Ships two APK sets per ABI:
+  #  - release (AOT, fast) — the download most users want. Signed with your own key
+  #    when the KEYSTORE_BASE_64 secret + passwords are set; otherwise app/build.gradle
+  #    falls back to the debug key so the build still succeeds (debug-signed release).
+  #  - debug (`-debug` suffix) — slower, but has Flutter assertions on and readable
+  #    logs; handy for reproducing/diagnosing bug reports. Doubles this job's runtime.
   android:
     needs: version
     runs-on: ubuntu-latest
@@ -151,7 +155,30 @@ jobs:
         with:
           flutter-version-file: .fvmrc
           cache: true
+      - name: Configure release signing (if secrets present)
+        env:
+          KEYSTORE_BASE_64: ${{ secrets.KEYSTORE_BASE_64 }}
+          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+          RELEASE_KEYSTORE_ALIAS: ${{ secrets.RELEASE_KEYSTORE_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+        run: |
+          if [ -n "$KEYSTORE_BASE_64" ]; then
+            echo "$KEYSTORE_BASE_64" | base64 -d > android/app/keystore.jks
+            printf 'storePassword=%s\nkeyPassword=%s\nkeyAlias=%s\n' \
+              "$RELEASE_KEYSTORE_PASSWORD" "$RELEASE_KEY_PASSWORD" "$RELEASE_KEYSTORE_ALIAS" \
+              > android/app/key.properties
+            echo "Release keystore configured — APKs will be release-signed."
+          else
+            echo "No KEYSTORE_BASE_64 secret set — release APKs will be debug-signed."
+          fi
       - run: flutter pub get
+      - name: Build Android APKs (release)
+        # checkProductionReleaseDuplicateClasses (Jetifier) flakes intermittently; retry once.
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 30
+          max_attempts: 2
+          command: flutter build apk --release --split-per-abi --flavor production --build-number=${{ github.run_number }}
       - name: Build Android APKs (debug)
         # checkProductionDebugDuplicateClasses (Jetifier) flakes intermittently; retry once.
         uses: nick-fields/retry@v3
@@ -163,8 +190,10 @@ jobs:
         run: |
           mkdir -p dist-apk
           for abi in armeabi-v7a arm64-v8a x86_64; do
-            cp "build/app/outputs/flutter-apk/app-${abi}-production-debug.apk" \
+            cp "build/app/outputs/flutter-apk/app-${abi}-production-release.apk" \
                "dist-apk/Driftfin-Android-${{ needs.version.outputs.version }}-${abi}.apk" || true
+            cp "build/app/outputs/flutter-apk/app-${abi}-production-debug.apk" \
+               "dist-apk/Driftfin-Android-${{ needs.version.outputs.version }}-${abi}-debug.apk" || true
           done
       - uses: actions/upload-artifact@v4
         with:
@@ -244,6 +273,7 @@ jobs:
             - **Windows installer** (`Driftfin-Windows-*-Setup.exe`) — recommended; installs to your user profile with Start Menu shortcuts.
             - **Windows portable** (`Driftfin-Windows-*.zip`) — unzip and run `driftfin.exe`; supports in-app self-update.
             - **iOS** (`Driftfin-iOS-*-unsigned.ipa`) — **unsigned** (no Apple Developer cert in CI); sideload with AltStore / Sideloadly or re-sign yourself.
-            - **Android** (`Driftfin-Android-*.apk`) — **debug-signed** build (no release keystore in CI); install the APK matching your device's ABI.
+            - **Android** (`Driftfin-Android-*.apk`) — **release** build (AOT-optimized); the recommended download. Install the APK matching your device's ABI. Signed with the project release key when configured, otherwise debug-signed.
+            - **Android debug** (`Driftfin-Android-*-debug.apk`) — slower debug build with assertions and verbose logs; only grab this if you're reproducing a bug for a report.
             - **macOS** (`Driftfin-macOS-*.zip`) — unsigned `.app`; unzip and run (you may need to allow it in Gatekeeper).
             - **Linux** (`Driftfin-Linux-*.zip`) — portable bundle; needs `libmpv` (`sudo apt install libmpv-dev`). Unzip and run `driftfin`.
