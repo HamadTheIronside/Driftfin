@@ -12,7 +12,7 @@ class SyncedItemUsage {
     required this.fileSizeBytes,
     required this.played,
     this.lastPlayed,
-  });
+  }) : assert(fileSizeBytes >= 0, 'fileSizeBytes must not be negative');
 }
 
 class SmartDownloadPolicyResult {
@@ -34,14 +34,17 @@ class SmartDownloadPolicyResult {
 ///
 /// Conservative by design (per the epic's "auto-delete must be conservative"
 /// requirement): only watched items are ever reclaim candidates, oldest
-/// watched first (LRU by `lastPlayed`). Unwatched items are never touched,
+/// watched first (LRU by `lastPlayed`). Items without a playback timestamp are
+/// reclaimed only after items with known history, and equal timestamps are
+/// ordered by ID for deterministic results. Unwatched items are never touched,
 /// even if the budget stays exceeded after reclaiming everything watched —
 /// that case is surfaced via [SmartDownloadPolicyResult.bytesUsedAfterReclaim]
 /// rather than solved by evicting something the user hasn't seen yet.
 class SmartDownloadPolicy {
   final int? storageBudgetBytes;
 
-  const SmartDownloadPolicy({this.storageBudgetBytes});
+  const SmartDownloadPolicy({this.storageBudgetBytes})
+      : assert(storageBudgetBytes == null || storageBudgetBytes >= 0, 'storageBudgetBytes must not be negative');
 
   SmartDownloadPolicyResult evaluate(List<SyncedItemUsage> items) {
     final bytesUsed = items.fold<int>(0, (sum, item) => sum + item.fileSizeBytes);
@@ -55,10 +58,11 @@ class SmartDownloadPolicy {
       ..sort((a, b) {
         final aDate = a.lastPlayed;
         final bDate = b.lastPlayed;
-        if (aDate == null && bDate == null) return 0;
-        if (aDate == null) return -1;
-        if (bDate == null) return 1;
-        return aDate.compareTo(bDate);
+        if (aDate == null && bDate == null) return a.id.compareTo(b.id);
+        if (aDate == null) return 1;
+        if (bDate == null) return -1;
+        final dateComparison = aDate.compareTo(bDate);
+        return dateComparison != 0 ? dateComparison : a.id.compareTo(b.id);
       });
 
     final reclaimIds = <String>[];
