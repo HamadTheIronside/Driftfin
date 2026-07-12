@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, one{Καλεσμένος ηθοποιός} other{Καλεσμένοι ηθοποιοί}}",
   "maxConcurrentDownloadsTitle": "Μέγιστες ταυτόχρονες λήψεις",
   "maxConcurrentDownloadsDesc": "Ορίζει τον μέγιστο αριθμό λήψεων που μπορούν να εκτελούνται ταυτόχρονα. Ορίστε το σε 0 για απενεργοποίηση του ορίου.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Επιλογή κομματιών αναπαραγωγής",
   "rememberSubtitleSelections": "Ορισμός υποτίτλου βάσει προηγούμενου στοιχείου",
   "rememberAudioSelections": "Ορισμός κομματιού ήχου βάσει προηγούμενου στοιχείου",

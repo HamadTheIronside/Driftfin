@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{पाहुणे कलाकार} one{पाहुणा कलाकार}}",
   "maxConcurrentDownloadsTitle": "कमाल समवर्ती डाउनलोड",
   "maxConcurrentDownloadsDesc": "एकाच वेळी चालणाऱ्या डाउनलोडची कमाल संख्या सेट करते. मर्यादा बंद करण्यासाठी 0 सेट करा.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "प्लेबॅक ट्रॅक निवड",
   "rememberSubtitleSelections": "आधीच्या वस्तूनुसार सबटायटल ट्रॅक सेट करा",
   "rememberAudioSelections": "आधीच्या वस्तूनुसार ऑडियो ट्रॅक सेट करा",

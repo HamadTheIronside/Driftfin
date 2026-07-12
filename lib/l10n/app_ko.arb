@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{게스트 배우}}",
   "maxConcurrentDownloadsTitle": "최대 동시 다운로드 수",
   "maxConcurrentDownloadsDesc": "동시에 실행할 수 있는 최대 다운로드 개수를 지정해요. 0으로 설정하면 제한 없이 다운로드할 수 있어요.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "재생 트랙 설정",
   "rememberSubtitleSelections": "이전 항목을 기준으로 자막 트랙을 설정해요",
   "rememberAudioSelections": "이전 항목을 기준으로 오디오 트랙을 설정해요",

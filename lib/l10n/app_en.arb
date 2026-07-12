@@ -1783,6 +1783,8 @@
   },
   "maxConcurrentDownloadsTitle": "Max concurrent downloads",
   "maxConcurrentDownloadsDesc": "Sets the maximum number of downloads that can run at the same time. Set to 0 to disable the limit.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Playback track selection",
   "@playbackTrackSelection": {},
   "rememberSubtitleSelections": "Set subtitle track based on previous item",

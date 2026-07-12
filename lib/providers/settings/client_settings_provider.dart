@@ -103,6 +103,9 @@ class ClientSettingsNotifier extends StateNotifier<ClientSettingsModel> {
 
   void setRequireWifi(bool value) => state = state.copyWith(requireWifi: value);
 
+  void setSmartDownloadBudget(int? bytes) =>
+      state = state.copyWith(smartDownloadBudgetBytes: bytes != null && bytes > 0 ? bytes : null);
+
   void setShortcuts(MapEntry<GlobalHotKeys, KeyCombination> newEntry) =>
       state = state.copyWith(shortcuts: state.shortcuts.setOrRemove(newEntry, state.defaultShortCuts));
 

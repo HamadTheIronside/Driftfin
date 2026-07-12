@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{Atturi Mistiedna} one{Attur Mistieden}}",
   "maxConcurrentDownloadsTitle": "Massimu ta’ tniżżil fl-istess ħin",
   "maxConcurrentDownloadsDesc": "Jistabbilixxi n-numru massimu ta’ tniżżil li jista’ jaħdem fl-istess ħin. Issettja għal 0 biex tneħħi l-limitu.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Għażla tat-trekk tad-daqq",
   "rememberSubtitleSelections": "Issettja t-trekk tas-sottotitlu bbażat fuq l-oġġett preċedenti",
   "rememberAudioSelections": "Issettja t-trekk tal-awdjo bbażat fuq l-oġġett preċedenti",

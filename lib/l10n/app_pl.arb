@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, one{Gość-Aktor} few{Goście-Aktorzy} many{Gości-Aktorów} other{Gości-Aktorów}}",
   "maxConcurrentDownloadsTitle": "Maksymalne współbieżne pobierania",
   "maxConcurrentDownloadsDesc": "Ustawia maksymalną liczbę pobrań, które mogą być uruchamiane jednocześnie. Ustaw 0 aby wyłączyć limit.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Wybór ścieżki odtwarzania",
   "rememberSubtitleSelections": "Ustaw ścieżkę napisów na podstawie poprzedniego elementu",
   "rememberAudioSelections": "Ustaw ścieżkę audio na podstawie poprzedniego elementu",

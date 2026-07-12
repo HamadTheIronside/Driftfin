@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{Gjesteskuespillere} one{Gjesteskuespiller}}",
   "maxConcurrentDownloadsTitle": "Maks samtidige nedlastinger",
   "maxConcurrentDownloadsDesc": "Angir det maksimale antallet nedlastinger som kan kjøre samtidig. Sett til 0 for å fjerne grensen.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Sporvalg for avspilling",
   "rememberSubtitleSelections": "Sett undertekstspor basert på forrige element",
   "rememberAudioSelections": "Sett lydspor basert på forrige element",

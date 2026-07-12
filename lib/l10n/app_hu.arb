@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{Vendégszereplők} one{Vendégszereplő}}",
   "maxConcurrentDownloadsTitle": "Egyidejű letöltések maximális száma",
   "maxConcurrentDownloadsDesc": "Beállítja az egyidejűleg futtatható letöltések maximális számát. A 0 érték kikapcsolja a korlátot.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Lejátszási sáv kiválasztása",
   "rememberSubtitleSelections": "Feliratsáv beállítása az előző elem alapján",
   "rememberAudioSelections": "Hangsáv beállítása az előző elem alapján",

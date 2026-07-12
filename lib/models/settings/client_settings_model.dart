@@ -88,6 +88,7 @@ abstract class ClientSettingsModel with _$ClientSettingsModel {
     @Default(false) bool expandSideBar,
     @Default(false) bool showAllCollectionTypes,
     @Default(2) int maxConcurrentDownloads,
+    int? smartDownloadBudgetBytes,
     @Default(DynamicSchemeVariant.rainbow) DynamicSchemeVariant schemeVariant,
     @Default(BackgroundType.blurred) BackgroundType backgroundImage,
     @Default(false) bool enableBlurEffects,

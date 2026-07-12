@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{นักแสดงรับเชิญ}}",
   "maxConcurrentDownloadsTitle": "จำนวนการดาวน์โหลดพร้อมกันสูงสุด",
   "maxConcurrentDownloadsDesc": "กำหนดจำนวนการดาวน์โหลดสูงสุดที่ทำงานพร้อมกันได้ ตั้งเป็น 0 เพื่อไม่จำกัด",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "การเลือกแทร็กการเล่น",
   "rememberSubtitleSelections": "ตั้งค่าแทร็กซับไตเติลตามรายการก่อนหน้า",
   "rememberAudioSelections": "ตั้งค่าแทร็กเสียงตามรายการก่อนหน้า",

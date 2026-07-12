@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, one{Actor invitat} few{Actori invitați} other{Actori invitați}}",
   "maxConcurrentDownloadsTitle": "Descărcări simultane maxime",
   "maxConcurrentDownloadsDesc": "Setează numărul maxim de descărcări care pot rula simultan. Setează 0 pentru a dezactiva limita.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Selecția pistelor de redare",
   "rememberSubtitleSelections": "Setează pista de subtitrare în funcție de titlul anterior",
   "rememberAudioSelections": "Setează pista audio în funcție de titlul anterior",

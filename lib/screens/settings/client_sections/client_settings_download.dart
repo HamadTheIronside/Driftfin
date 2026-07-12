@@ -189,6 +189,25 @@ List<Widget> buildClientSettingsDownload(BuildContext context, WidgetRef ref, Fu
               ),
             ),
           ),
+          SettingsListTile(
+            label: Text(context.localized.smartDownloadBudgetTitle),
+            subLabel: Text(context.localized.smartDownloadBudgetDesc),
+            trailing: SizedBox(
+              width: 150,
+              child: IntInputField(
+                controller: TextEditingController(
+                  text: clientSettings.smartDownloadBudgetBytes != null
+                      ? (clientSettings.smartDownloadBudgetBytes! ~/ (1024 * 1024)).toString()
+                      : "",
+                ),
+                onSubmitted: (value) {
+                  ref
+                      .read(clientSettingsProvider.notifier)
+                      .setSmartDownloadBudget(value != null ? value * 1024 * 1024 : null);
+                },
+              ),
+            ),
+          ),
         ],
       ),
       const SizedBox(height: 12),

@@ -30,6 +30,7 @@ import 'package:driftfin/models/items/season_model.dart';
 import 'package:driftfin/models/items/series_model.dart';
 import 'package:driftfin/models/syncing/database_item.dart';
 import 'package:driftfin/models/syncing/download_stream.dart';
+import 'package:driftfin/models/syncing/smart_download_policy.dart';
 import 'package:driftfin/models/syncing/sync_item.dart';
 import 'package:driftfin/models/syncing/sync_settings_model.dart';
 import 'package:driftfin/models/syncing/transcode_download_model.dart';
@@ -251,6 +252,30 @@ class SyncNotifier extends StateNotifier<SyncSettingsModel> {
   }
 
   Future<void> refresh() async => state = state.copyWith(items: _rootSyncItems(await _db.getAllItems.get()));
+
+  /// Reclaims watched Smart Downloads (oldest-first) until on-disk usage is
+  /// back within the user's configured storage budget. No-ops when no budget
+  /// is set. See [SmartDownloadPolicy] for the (conservative) selection rules.
+  Future<void> checkAndReclaimStorage() async {
+    final budget = ref.read(clientSettingsProvider.select((value) => value.smartDownloadBudgetBytes));
+    if (budget == null) return;
+
+    final allItems = await _db.getAllItems.get();
+    final downloadedItems = allItems.where((item) => !item.syncing && !item.markedForDelete && item.hasVideoFile);
+
+    final result =
+        SmartDownloadPolicy(storageBudgetBytes: budget).evaluate(downloadedItems.map((item) => item.usage).toList());
+
+    if (result.reclaimItemIds.isEmpty) return;
+
+    for (final id in result.reclaimItemIds) {
+      final item = await getSyncedItem(id);
+      if (item == null) continue;
+      await _deleteSyncedItemAndFiles(item);
+    }
+
+    await refresh();
+  }
 
   Future<List<SyncedItem>> getNestedChildren(SyncedItem item) async {
     if (item.itemModel?.type == FladderItemType.playlist) {
@@ -848,6 +873,10 @@ class SyncNotifier extends StateNotifier<SyncSettingsModel> {
             .toList();
       }
       await _db.insertMultipleEntries([updatedItem, ...children]);
+
+      if (played) {
+        await checkAndReclaimStorage();
+      }
     });
   }
 

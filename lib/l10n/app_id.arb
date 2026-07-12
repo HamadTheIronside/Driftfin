@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{Aktor Tamu} one{Aktor Tamu}}",
   "maxConcurrentDownloadsTitle": "Jumlah maksimum unduhan bersamaan",
   "maxConcurrentDownloadsDesc": "Menetapkan jumlah maksimum unduhan yang dapat dijalankan secara bersamaan. Atur ke 0 untuk menonaktifkan batasan.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Pemilihan trek pemutaran",
   "rememberSubtitleSelections": "Atur trek subtitle berdasarkan item sebelumnya",
   "rememberAudioSelections": "Atur trek audio berdasarkan item sebelumnya",

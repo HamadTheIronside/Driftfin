@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, one{بازیگر مهمان} other{بازیگران مهمان}}",
   "maxConcurrentDownloadsTitle": "دانلود آهنگ Max همزمان",
   "maxConcurrentDownloadsDesc": "حداکثر تعداد دانلودهایی که می توانند در همان زمان اجرا شوند را تنظیم کنید. 0 را برای غیرفعال کردن محدودیت تنظیم کنید.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "انتخاب مسیر Playback",
   "rememberSubtitleSelections": "مسیر Subtitle را بر اساس آیتم قبلی تنظیم کنید",
   "rememberAudioSelections": "تنظیم مسیر صوتی بر اساس آیتم قبلی",
