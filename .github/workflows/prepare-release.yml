@@ -12,8 +12,8 @@ jobs:
         id: generate-token
         uses: actions/create-github-app-token@v3.1.1
         with:
-          app-id: ${{ secrets.DRIFTFIN_BOT_APP_ID }}
-          private-key: ${{ secrets.DRIFTFIN_BOT_APP_PRIVATE_KEY }}
+          app-id: ${{ secrets.FLADDER_BOT_APP_ID }}
+          private-key: ${{ secrets.FLADDER_BOT_APP_PRIVATE_KEY }}
 
       - name: Checkout repository
         uses: actions/checkout@v4.1.1
@@ -67,8 +67,8 @@ jobs:
       - name: Commit, Merge and Tag
         if: steps.version.outputs.is_new_version == 'true'
         run: |
-          git config user.name "Driftfin Bot"
-          git config user.email "driftfin-bot[bot]@users.noreply.github.com"
+          git config user.name "Fladder Bot"
+          git config user.email "fladder-bot[bot]@users.noreply.github.com"
 
           VERSION="v${{ steps.version.outputs.version }}"
 
