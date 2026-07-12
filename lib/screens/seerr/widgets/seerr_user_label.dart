@@ -21,7 +21,7 @@ class SeerrUserLabel extends StatelessWidget {
     final placeholder = CircleAvatar(
       radius: 18,
       child: Icon(
-        FladderItemType.person.icon,
+        DriftfinItemType.person.icon,
         color: Theme.of(context).colorScheme.onSurfaceVariant,
       ),
     );

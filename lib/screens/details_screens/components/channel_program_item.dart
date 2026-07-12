@@ -9,7 +9,7 @@ import 'package:driftfin/models/items/channel_program.dart';
 import 'package:driftfin/screens/details_screens/components/overview_header.dart';
 import 'package:driftfin/theme.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
-import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/driftfin_image.dart';
 import 'package:driftfin/util/focus_provider.dart';
 import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/widgets/shared/ensure_visible.dart';
@@ -113,9 +113,9 @@ class _ChannelProgramItemState extends State<ChannelProgramItem> with SingleTick
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Theme.of(context).colorScheme.primaryContainer.withAlpha(175),
-                                borderRadius: FladderTheme.defaultPosterDecoration.borderRadius,
+                                borderRadius: DriftfinTheme.defaultPosterDecoration.borderRadius,
                               ),
-                              foregroundDecoration: FladderTheme.defaultPosterDecoration,
+                              foregroundDecoration: DriftfinTheme.defaultPosterDecoration,
                             ),
                           ),
                         ),
@@ -164,11 +164,11 @@ class _ChannelProgramItemState extends State<ChannelProgramItem> with SingleTick
                                 SizedBox(
                                   width: 100,
                                   child: Container(
-                                    decoration: FladderTheme.defaultPosterDecoration,
+                                    decoration: DriftfinTheme.defaultPosterDecoration,
                                     clipBehavior: Clip.hardEdge,
                                     child: AspectRatio(
                                       aspectRatio: 0.75,
-                                      child: FladderImage(
+                                      child: DriftfinImage(
                                         image: program.images?.primary,
                                         fit: BoxFit.cover,
                                       ),

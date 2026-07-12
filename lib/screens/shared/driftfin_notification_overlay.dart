@@ -8,10 +8,10 @@ import 'package:driftfin/theme.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 import 'package:driftfin/util/localization_helper.dart';
 
-class FladderSnack {
-  static final FladderSnack _instance = FladderSnack._internal();
-  factory FladderSnack() => _instance;
-  FladderSnack._internal();
+class DriftfinSnack {
+  static final DriftfinSnack _instance = DriftfinSnack._internal();
+  factory DriftfinSnack() => _instance;
+  DriftfinSnack._internal();
 
   static BuildContext? _storedContext;
 
@@ -44,12 +44,12 @@ class FladderSnack {
   }) {
     final effectiveContext = context ?? _storedContext;
     if (effectiveContext == null || !effectiveContext.mounted) {
-      debugPrint('FladderNotificationManager: No valid context available');
+      debugPrint('DriftfinNotificationManager: No valid context available');
       return;
     }
 
     final overlay = Overlay.of(effectiveContext);
-    final instance = FladderSnack();
+    final instance = DriftfinSnack();
     final id = instance._nextId++;
 
     final effectiveDuration = duration ?? const Duration(seconds: 5);
@@ -253,7 +253,7 @@ class _NotificationOverlayWidgetState extends State<_NotificationOverlayWidget> 
       curve: Curves.easeOutCubic,
     ));
 
-    final manager = FladderSnack();
+    final manager = DriftfinSnack();
     final currentIndex = manager._getIndexById(widget.id);
     final totalNotifications = manager._notificationCount;
     final verticalOffset = (totalNotifications - 1 - currentIndex) * 30.0;
@@ -400,7 +400,7 @@ class _NotificationCard extends StatelessWidget {
 
     final dismissDirection = isPhone ? DismissDirection.vertical : DismissDirection.horizontal;
 
-    final radius = FladderTheme.defaultShape.borderRadius;
+    final radius = DriftfinTheme.defaultShape.borderRadius;
 
     final backgroundColor = Theme.of(context).colorScheme.primary;
     final foregroundColor = Theme.of(context).colorScheme.onPrimary;
@@ -481,7 +481,7 @@ class NotificationManagerInitializer extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (context.mounted) {
-        FladderSnack.setContext(context);
+        DriftfinSnack.setContext(context);
       }
     });
 

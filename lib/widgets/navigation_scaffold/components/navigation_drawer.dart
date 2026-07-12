@@ -13,7 +13,7 @@ import 'package:driftfin/screens/metadata/refresh_metadata.dart';
 import 'package:driftfin/screens/shared/animated_fade_size.dart';
 import 'package:driftfin/theme.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
-import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/driftfin_image.dart';
 import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/widgets/navigation_scaffold/components/adaptive_fab.dart';
 import 'package:driftfin/widgets/navigation_scaffold/components/destination_model.dart';
@@ -99,10 +99,10 @@ class NestedNavigationDrawer extends ConsumerWidget {
             var selected = context.router.currentUrl.contains(library.id);
             final Widget? posterIcon = useLibraryPosters
                 ? ClipRRect(
-                    borderRadius: FladderTheme.smallShape.borderRadius,
+                    borderRadius: DriftfinTheme.smallShape.borderRadius,
                     child: AspectRatio(
                       aspectRatio: 1.0,
-                      child: FladderImage(
+                      child: DriftfinImage(
                         image: library.imageData?.primary,
                         placeHolder: Card(
                           child: Icon(

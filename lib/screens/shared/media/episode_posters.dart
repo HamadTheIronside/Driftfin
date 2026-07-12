@@ -11,7 +11,7 @@ import 'package:driftfin/providers/sync/sync_provider_helpers.dart';
 import 'package:driftfin/screens/syncing/sync_button.dart';
 import 'package:driftfin/theme.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
-import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/driftfin_image.dart';
 import 'package:driftfin/util/focus_provider.dart';
 import 'package:driftfin/util/item_base_model/item_base_model_extensions.dart';
 import 'package:driftfin/util/list_padding.dart';
@@ -279,10 +279,10 @@ class EpisodePoster extends ConsumerWidget {
                 tag: heroTag ?? UniqueKey(),
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: FladderTheme.smallShape.borderRadius,
+                    borderRadius: DriftfinTheme.smallShape.borderRadius,
                     color: Theme.of(context).colorScheme.surfaceContainer,
                   ),
-                  child: FladderImage(
+                  child: DriftfinImage(
                     image: !episodeAvailable ? episode.parentImages?.primary : episode.images?.primary,
                     placeHolder: placeHolder,
                     blurOnly: !episodeAvailable

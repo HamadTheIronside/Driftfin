@@ -38,7 +38,7 @@ import 'package:driftfin/util/refresh_state.dart';
 import 'package:driftfin/util/router_extension.dart';
 import 'package:driftfin/widgets/navigation_scaffold/components/background_image.dart';
 import 'package:driftfin/widgets/navigation_scaffold/components/settings_user_icon.dart';
-import 'package:driftfin/widgets/shared/fladder_scrollbar.dart';
+import 'package:driftfin/widgets/shared/driftfin_scrollbar.dart';
 import 'package:driftfin/widgets/shared/hide_on_scroll.dart';
 import 'package:driftfin/widgets/shared/item_actions.dart';
 import 'package:driftfin/widgets/shared/modal_bottom_sheet.dart';
@@ -54,7 +54,7 @@ class LibrarySearchScreen extends ConsumerStatefulWidget {
   final List<String>? folderId;
   final SortingOrder? sortOrder;
   final SortingOptions? sortingOptions;
-  final Map<FladderItemType, bool>? types;
+  final Map<DriftfinItemType, bool>? types;
   final Map<String, bool>? genres;
   final Map<Studio, bool>? studios;
   final Map<String, bool>? tags;
@@ -248,7 +248,7 @@ class _LibrarySearchScreenState extends ConsumerState<LibrarySearchScreen> {
                 : null,
             body: PinchPosterZoom(
               scaleDifference: (difference) => ref.read(clientSettingsProvider.notifier).addPosterSize(difference),
-              child: FladderScrollbar(
+              child: DriftfinScrollbar(
                 visible: AdaptiveLayout.inputDeviceOf(context) != InputDevice.pointer,
                 controller: scrollController,
                 child: PullToRefresh(

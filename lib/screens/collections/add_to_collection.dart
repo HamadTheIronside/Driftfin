@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:driftfin/models/item_base_model.dart';
 import 'package:driftfin/providers/collections_provider.dart';
 import 'package:driftfin/screens/shared/adaptive_dialog.dart';
-import 'package:driftfin/screens/shared/fladder_notification_overlay.dart';
+import 'package:driftfin/screens/shared/driftfin_notification_overlay.dart';
 import 'package:driftfin/screens/shared/outlined_text_field.dart';
 import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/widgets/shared/alert_content.dart';
@@ -107,7 +107,7 @@ class _AddToCollectionState extends ConsumerState<AddToCollection> {
                               .read(provider.notifier)
                               .toggleCollection(boxSet: e.key, value: value == true, item: widget.items.first);
                           if (context.mounted) {
-                            FladderSnack.show(
+                            DriftfinSnack.show(
                                 response.isSuccessful
                                     ? value == true
                                         ? context.localized.addedToCollection(e.key.name)
@@ -138,7 +138,7 @@ class _AddToCollectionState extends ConsumerState<AddToCollection> {
                                     final response =
                                         await ref.read(provider.notifier).addToCollection(boxSet: e.key, add: true);
                                     if (context.mounted) {
-                                      FladderSnack.show(
+                                      DriftfinSnack.show(
                                           response.isSuccessful
                                               ? context.localized.addedToCollection(e.key.name)
                                               : '${context.localized.somethingWentWrong} - (${response.statusCode}) - ${response.base.reasonPhrase}',

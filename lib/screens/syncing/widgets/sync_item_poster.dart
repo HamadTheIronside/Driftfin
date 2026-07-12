@@ -30,7 +30,7 @@ class SyncItemPoster extends ConsumerWidget {
             margin: const EdgeInsets.all(2),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surfaceContainer.withAlpha(225),
-              borderRadius: FladderTheme.smallShape.borderRadius,
+              borderRadius: DriftfinTheme.smallShape.borderRadius,
             ),
             child: IconButton.outlined(
               icon: Icon(

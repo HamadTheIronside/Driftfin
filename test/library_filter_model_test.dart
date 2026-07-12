@@ -125,13 +125,13 @@ void main() {
         sortingOption: SortingOptions.communityRating,
         sortOrder: SortingOrder.descending,
         groupBy: GroupBy.genres,
-        types: {FladderItemType.movie: true},
+        types: {DriftfinItemType.movie: true},
       );
       final cleared = model.clear();
       expect(cleared.sortingOption, SortingOptions.communityRating);
       expect(cleared.sortOrder, SortingOrder.descending);
       expect(cleared.groupBy, GroupBy.genres);
-      expect(cleared.types, {FladderItemType.movie: true});
+      expect(cleared.types, {DriftfinItemType.movie: true});
     });
   });
 

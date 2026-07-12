@@ -7,13 +7,13 @@ import 'package:driftfin/models/items/album_model.dart';
 import 'package:driftfin/providers/items/album_details_provider.dart';
 import 'package:driftfin/providers/video_player_provider.dart';
 import 'package:driftfin/screens/shared/detail_scaffold.dart';
-import 'package:driftfin/screens/shared/fladder_notification_overlay.dart';
+import 'package:driftfin/screens/shared/driftfin_notification_overlay.dart';
 import 'package:driftfin/screens/shared/media/poster_row.dart';
 import 'package:driftfin/screens/shared/media/track_list.dart';
 import 'package:driftfin/theme.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 import 'package:driftfin/util/duration_extensions.dart';
-import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/driftfin_image.dart';
 import 'package:driftfin/util/item_base_model/item_base_model_extensions.dart';
 import 'package:driftfin/util/item_base_model/play_item_helpers.dart';
 import 'package:driftfin/util/localization_helper.dart';
@@ -50,7 +50,7 @@ class _AlbumDetailScreenState extends ConsumerState<AlbumDetailScreen> {
       if (durationText != null) durationText,
     ].join(' • ');
 
-    final radius = FladderTheme.smallShape.borderRadius;
+    final radius = DriftfinTheme.smallShape.borderRadius;
 
     final smallScreen = AdaptiveLayout.viewSizeOf(context) <= ViewSize.phone;
 
@@ -122,7 +122,7 @@ class _AlbumDetailScreenState extends ConsumerState<AlbumDetailScreen> {
                               ),
                               clipBehavior: Clip.hardEdge,
                               margin: EdgeInsets.zero,
-                              child: FladderImage(
+                              child: DriftfinImage(
                                 image: current.images?.primary ?? current.images?.backDrop?.firstOrNull,
                                 fit: BoxFit.cover,
                               ),
@@ -235,7 +235,7 @@ class _AlbumDetailScreenState extends ConsumerState<AlbumDetailScreen> {
                       onAddToQueueSelected: (selected) async {
                         await ref.read(videoPlayerProvider.notifier).addToTemporaryQueue(selected);
                         if (detailsContext.mounted) {
-                          FladderSnack.show(
+                          DriftfinSnack.show(
                             detailsContext.localized.addedToQueue(selected.length),
                             context: detailsContext,
                           );

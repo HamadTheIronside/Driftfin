@@ -11,7 +11,7 @@ import 'package:driftfin/screens/live_tv/live_tv_guide.dart';
 import 'package:driftfin/screens/shared/default_alert_dialog.dart';
 import 'package:driftfin/screens/video_player/tv_player_controls.dart';
 import 'package:driftfin/theme.dart';
-import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/driftfin_image.dart';
 import 'package:driftfin/util/focus_provider.dart';
 import 'package:driftfin/util/localization_helper.dart';
 
@@ -137,7 +137,7 @@ class _GuideOverviewState extends ConsumerState<_GuideOverview> {
                   children: [
                     SizedBox(
                       height: 125,
-                      child: FladderImage(
+                      child: DriftfinImage(
                         image: currentChanel?.images?.primary,
                         fit: BoxFit.contain,
                       ),
@@ -160,11 +160,11 @@ class _GuideOverviewState extends ConsumerState<_GuideOverview> {
                                 aspectRatio: 0.75,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: FladderTheme.defaultPosterDecoration.borderRadius,
+                                    borderRadius: DriftfinTheme.defaultPosterDecoration.borderRadius,
                                   ),
-                                  foregroundDecoration: FladderTheme.defaultPosterDecoration,
+                                  foregroundDecoration: DriftfinTheme.defaultPosterDecoration,
                                   clipBehavior: Clip.hardEdge,
-                                  child: FladderImage(
+                                  child: DriftfinImage(
                                     image: currentProgram?.images?.primary,
                                     fit: BoxFit.fill,
                                   ),

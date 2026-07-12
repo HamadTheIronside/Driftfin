@@ -16,7 +16,7 @@ import 'package:driftfin/providers/views_provider.dart';
 import 'package:driftfin/routes/auto_router.gr.dart';
 import 'package:driftfin/screens/dashboard/music_playlist_row.dart';
 import 'package:driftfin/screens/home_screen.dart';
-import 'package:driftfin/screens/shared/fladder_notification_overlay.dart';
+import 'package:driftfin/screens/shared/driftfin_notification_overlay.dart';
 import 'package:driftfin/screens/shared/media/poster_row.dart';
 import 'package:driftfin/screens/shared/media/track_list.dart';
 import 'package:driftfin/screens/shared/nested_scaffold.dart';
@@ -146,7 +146,7 @@ class _MusicDashboardScreenState extends ConsumerState<MusicDashboardScreen> {
                     playlists:
                         musicDashboard.playlists.map((playlist) => playlist.copyWith(canDownload: true)).toList(),
                     contentPadding: padding,
-                    label: FladderItemType.playlist.label(context.localized, count: musicDashboard.playlists.length),
+                    label: DriftfinItemType.playlist.label(context.localized, count: musicDashboard.playlists.length),
                     onPlaylistPlayTap: (playlist) => playlist.play(context, ref),
                   ),
                 if (musicDashboard.recentlyAddedAlbums.isNotEmpty)
@@ -154,11 +154,11 @@ class _MusicDashboardScreenState extends ConsumerState<MusicDashboardScreen> {
                     tvMode: useTVExpandedLayout,
                     contentPadding: padding,
                     label: context.localized.dashboardRecentlyAddedItems(
-                      FladderItemType.musicAlbum
+                      DriftfinItemType.musicAlbum
                           .label(context.localized, count: musicDashboard.recentlyAddedAlbums.length)
                           .toLowerCase(),
                     ),
-                    collectionAspectRatio: FladderItemType.musicAlbum.aspectRatio,
+                    collectionAspectRatio: DriftfinItemType.musicAlbum.aspectRatio,
                     posters: musicDashboard.recentlyAddedAlbums,
                   ),
                 if (activeRecentTrackSection != null)
@@ -210,11 +210,11 @@ class _MusicDashboardScreenState extends ConsumerState<MusicDashboardScreen> {
                     tvMode: useTVExpandedLayout,
                     contentPadding: padding,
                     label: context.localized.dashboardRecentlyAddedItems(
-                      FladderItemType.musicArtist
+                      DriftfinItemType.musicArtist
                           .label(context.localized, count: musicDashboard.recentlyAddedArtists.length)
                           .toLowerCase(),
                     ),
-                    collectionAspectRatio: FladderItemType.musicAlbum.aspectRatio,
+                    collectionAspectRatio: DriftfinItemType.musicAlbum.aspectRatio,
                     posters: musicDashboard.recentlyAddedArtists,
                   ),
                 if (musicDashboard.mostPlayed.isNotEmpty)
@@ -222,7 +222,7 @@ class _MusicDashboardScreenState extends ConsumerState<MusicDashboardScreen> {
                     tvMode: useTVExpandedLayout,
                     contentPadding: padding,
                     label: context.localized.mostPlayed,
-                    collectionAspectRatio: FladderItemType.musicAlbum.aspectRatio,
+                    collectionAspectRatio: DriftfinItemType.musicAlbum.aspectRatio,
                     posters: musicDashboard.mostPlayed,
                   ),
               ]
@@ -269,7 +269,7 @@ class _MusicDashboardScreenState extends ConsumerState<MusicDashboardScreen> {
 
     if (model == null) {
       if (mounted) {
-        FladderSnack.show(context.localized.unableToPlayMedia, context: context);
+        DriftfinSnack.show(context.localized.unableToPlayMedia, context: context);
       }
       return;
     }

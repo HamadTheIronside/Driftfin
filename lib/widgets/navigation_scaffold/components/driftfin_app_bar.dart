@@ -6,12 +6,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:driftfin/screens/shared/default_title_bar.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 
-class FladderAppBar extends StatelessWidget implements PreferredSize {
+class DriftfinAppBar extends StatelessWidget implements PreferredSize {
   final double height;
   final String? label;
   final bool automaticallyImplyLeading;
   final bool isDesktop;
-  const FladderAppBar({
+  const DriftfinAppBar({
     this.height = 35,
     this.automaticallyImplyLeading = false,
     this.label,

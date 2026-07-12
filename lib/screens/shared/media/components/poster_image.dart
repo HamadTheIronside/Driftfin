@@ -11,7 +11,7 @@ import 'package:driftfin/screens/shared/media/components/poster_placeholder.dart
 import 'package:driftfin/screens/syncing/sync_button.dart';
 import 'package:driftfin/theme.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
-import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/driftfin_image.dart';
 import 'package:driftfin/util/focus_provider.dart';
 import 'package:driftfin/util/item_base_model/item_base_model_extensions.dart';
 import 'package:driftfin/util/localization_helper.dart';
@@ -55,7 +55,7 @@ class PosterImage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final radius = FladderTheme.smallShape.borderRadius;
+    final radius = DriftfinTheme.smallShape.borderRadius;
     final padding = const EdgeInsets.all(5);
     final myKey = key ?? UniqueKey();
 
@@ -86,7 +86,7 @@ class PosterImage extends ConsumerWidget {
             borderRadius: radius,
             border: Border.all(width: 1, color: Colors.white.withAlpha(45)),
           ),
-          child: FladderImage(
+          child: DriftfinImage(
             image: primaryPosters
                 ? poster.images?.primary
                 : poster.getPosters?.primary ?? poster.getPosters?.backDrop?.lastOrNull,

@@ -64,7 +64,7 @@ class Main extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return PlatformAppWrapper(
       builder: (context, autoRouter) {
-        return _FladderApp(
+        return _DriftfinApp(
           autoRouter: autoRouter,
         );
       },
@@ -72,8 +72,8 @@ class Main extends ConsumerWidget {
   }
 }
 
-class _FladderApp extends ConsumerWidget {
-  const _FladderApp({
+class _DriftfinApp extends ConsumerWidget {
+  const _DriftfinApp({
     required this.autoRouter,
   });
 
@@ -105,7 +105,7 @@ class _FladderApp extends ConsumerWidget {
               mouseDrag ? PointerDeviceKind.mouse : null,
             }.nonNulls.toSet(),
           ),
-          localizationsDelegates: FladderLocalizations.localizationsDelegates,
+          localizationsDelegates: DriftfinLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           locale: language,
           localeResolutionCallback: (locale, supportedLocales) {

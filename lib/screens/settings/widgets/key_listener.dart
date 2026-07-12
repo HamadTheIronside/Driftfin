@@ -7,7 +7,7 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:driftfin/models/settings/key_combinations.dart';
 import 'package:driftfin/providers/settings/client_settings_provider.dart';
 import 'package:driftfin/providers/settings/video_player_settings_provider.dart';
-import 'package:driftfin/screens/shared/fladder_notification_overlay.dart';
+import 'package:driftfin/screens/shared/driftfin_notification_overlay.dart';
 import 'package:driftfin/theme.dart';
 import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/widgets/shared/ensure_visible.dart';
@@ -162,7 +162,7 @@ class KeyListenerWidgetState extends ConsumerState<KeyListenerWidget> {
               _stopListening();
             } else {
               if (context.mounted) {
-                FladderSnack.show(context.localized.shortCutAlreadyAssigned(currentHotKey.label), context: context);
+                DriftfinSnack.show(context.localized.shortCutAlreadyAssigned(currentHotKey.label), context: context);
               }
               _stopListening();
             }
@@ -209,7 +209,7 @@ class KeyListenerWidgetState extends ConsumerState<KeyListenerWidget> {
         onEnter: (event) => showClearButton(true),
         onExit: (event) => showClearButton(false),
         child: ClipRRect(
-          borderRadius: FladderTheme.smallShape.borderRadius,
+          borderRadius: DriftfinTheme.smallShape.borderRadius,
           child: InkWell(
             focusNode: buttonFocus,
             canRequestFocus: false,
@@ -223,7 +223,7 @@ class KeyListenerWidgetState extends ConsumerState<KeyListenerWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primaryContainer,
-                borderRadius: FladderTheme.smallShape.borderRadius,
+                borderRadius: DriftfinTheme.smallShape.borderRadius,
                 border: BoxBorder.all(
                   width: 2.0,
                   strokeAlign: BorderSide.strokeAlignInside,

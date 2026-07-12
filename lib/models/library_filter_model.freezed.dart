@@ -21,7 +21,7 @@ mixin _$LibraryFilterModel implements DiagnosticableTreeMixin {
   Map<String, bool> get tags;
   Map<int, bool> get years;
   Map<String, bool> get officialRatings;
-  Map<FladderItemType, bool> get types;
+  Map<DriftfinItemType, bool> get types;
   SortingOptions get sortingOption;
   SortingOrder get sortOrder;
   bool? get favourites;
@@ -34,8 +34,7 @@ mixin _$LibraryFilterModel implements DiagnosticableTreeMixin {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $LibraryFilterModelCopyWith<LibraryFilterModel> get copyWith =>
-      _$LibraryFilterModelCopyWithImpl<LibraryFilterModel>(
-          this as LibraryFilterModel, _$identity);
+      _$LibraryFilterModelCopyWithImpl<LibraryFilterModel>(this as LibraryFilterModel, _$identity);
 
   /// Serializes this LibraryFilterModel to a JSON map.
   Map<String, dynamic> toJson();
@@ -67,8 +66,7 @@ mixin _$LibraryFilterModel implements DiagnosticableTreeMixin {
 
 /// @nodoc
 abstract mixin class $LibraryFilterModelCopyWith<$Res> {
-  factory $LibraryFilterModelCopyWith(
-          LibraryFilterModel value, $Res Function(LibraryFilterModel) _then) =
+  factory $LibraryFilterModelCopyWith(LibraryFilterModel value, $Res Function(LibraryFilterModel) _then) =
       _$LibraryFilterModelCopyWithImpl;
   @useResult
   $Res call(
@@ -78,7 +76,7 @@ abstract mixin class $LibraryFilterModelCopyWith<$Res> {
       Map<String, bool> tags,
       Map<int, bool> years,
       Map<String, bool> officialRatings,
-      Map<FladderItemType, bool> types,
+      Map<DriftfinItemType, bool> types,
       SortingOptions sortingOption,
       SortingOrder sortOrder,
       bool? favourites,
@@ -88,8 +86,7 @@ abstract mixin class $LibraryFilterModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LibraryFilterModelCopyWithImpl<$Res>
-    implements $LibraryFilterModelCopyWith<$Res> {
+class _$LibraryFilterModelCopyWithImpl<$Res> implements $LibraryFilterModelCopyWith<$Res> {
   _$LibraryFilterModelCopyWithImpl(this._self, this._then);
 
   final LibraryFilterModel _self;
@@ -142,7 +139,7 @@ class _$LibraryFilterModelCopyWithImpl<$Res>
       types: null == types
           ? _self.types
           : types // ignore: cast_nullable_to_non_nullable
-              as Map<FladderItemType, bool>,
+              as Map<DriftfinItemType, bool>,
       sortingOption: null == sortingOption
           ? _self.sortingOption
           : sortingOption // ignore: cast_nullable_to_non_nullable
@@ -271,7 +268,7 @@ extension LibraryFilterModelPatterns on LibraryFilterModel {
             Map<String, bool> tags,
             Map<int, bool> years,
             Map<String, bool> officialRatings,
-            Map<FladderItemType, bool> types,
+            Map<DriftfinItemType, bool> types,
             SortingOptions sortingOption,
             SortingOrder sortOrder,
             bool? favourites,
@@ -325,7 +322,7 @@ extension LibraryFilterModelPatterns on LibraryFilterModel {
             Map<String, bool> tags,
             Map<int, bool> years,
             Map<String, bool> officialRatings,
-            Map<FladderItemType, bool> types,
+            Map<DriftfinItemType, bool> types,
             SortingOptions sortingOption,
             SortingOrder sortOrder,
             bool? favourites,
@@ -377,7 +374,7 @@ extension LibraryFilterModelPatterns on LibraryFilterModel {
             Map<String, bool> tags,
             Map<int, bool> years,
             Map<String, bool> officialRatings,
-            Map<FladderItemType, bool> types,
+            Map<DriftfinItemType, bool> types,
             SortingOptions sortingOption,
             SortingOrder sortOrder,
             bool? favourites,
@@ -411,8 +408,7 @@ extension LibraryFilterModelPatterns on LibraryFilterModel {
 
 /// @nodoc
 @JsonSerializable()
-class _LibraryFilterModel extends LibraryFilterModel
-    with DiagnosticableTreeMixin {
+class _LibraryFilterModel extends LibraryFilterModel with DiagnosticableTreeMixin {
   const _LibraryFilterModel(
       {final Map<String, bool> genres = const {},
       final Map<ItemFilter, bool> itemFilters = const {
@@ -424,21 +420,21 @@ class _LibraryFilterModel extends LibraryFilterModel
       final Map<String, bool> tags = const {},
       final Map<int, bool> years = const {},
       final Map<String, bool> officialRatings = const {},
-      final Map<FladderItemType, bool> types = const {
-        FladderItemType.audio: false,
-        FladderItemType.boxset: false,
-        FladderItemType.book: false,
-        FladderItemType.collectionFolder: false,
-        FladderItemType.episode: false,
-        FladderItemType.folder: false,
-        FladderItemType.movie: false,
-        FladderItemType.musicAlbum: false,
-        FladderItemType.musicVideo: false,
-        FladderItemType.photo: false,
-        FladderItemType.person: false,
-        FladderItemType.photoAlbum: false,
-        FladderItemType.series: false,
-        FladderItemType.video: false
+      final Map<DriftfinItemType, bool> types = const {
+        DriftfinItemType.audio: false,
+        DriftfinItemType.boxset: false,
+        DriftfinItemType.book: false,
+        DriftfinItemType.collectionFolder: false,
+        DriftfinItemType.episode: false,
+        DriftfinItemType.folder: false,
+        DriftfinItemType.movie: false,
+        DriftfinItemType.musicAlbum: false,
+        DriftfinItemType.musicVideo: false,
+        DriftfinItemType.photo: false,
+        DriftfinItemType.person: false,
+        DriftfinItemType.photoAlbum: false,
+        DriftfinItemType.series: false,
+        DriftfinItemType.video: false
       },
       this.sortingOption = SortingOptions.sortName,
       this.sortOrder = SortingOrder.ascending,
@@ -454,8 +450,7 @@ class _LibraryFilterModel extends LibraryFilterModel
         _officialRatings = officialRatings,
         _types = types,
         super._();
-  factory _LibraryFilterModel.fromJson(Map<String, dynamic> json) =>
-      _$LibraryFilterModelFromJson(json);
+  factory _LibraryFilterModel.fromJson(Map<String, dynamic> json) => _$LibraryFilterModelFromJson(json);
 
   final Map<String, bool> _genres;
   @override
@@ -512,10 +507,10 @@ class _LibraryFilterModel extends LibraryFilterModel
     return EqualUnmodifiableMapView(_officialRatings);
   }
 
-  final Map<FladderItemType, bool> _types;
+  final Map<DriftfinItemType, bool> _types;
   @override
   @JsonKey()
-  Map<FladderItemType, bool> get types {
+  Map<DriftfinItemType, bool> get types {
     if (_types is EqualUnmodifiableMapView) return _types;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_types);
@@ -581,10 +576,8 @@ class _LibraryFilterModel extends LibraryFilterModel
 }
 
 /// @nodoc
-abstract mixin class _$LibraryFilterModelCopyWith<$Res>
-    implements $LibraryFilterModelCopyWith<$Res> {
-  factory _$LibraryFilterModelCopyWith(
-          _LibraryFilterModel value, $Res Function(_LibraryFilterModel) _then) =
+abstract mixin class _$LibraryFilterModelCopyWith<$Res> implements $LibraryFilterModelCopyWith<$Res> {
+  factory _$LibraryFilterModelCopyWith(_LibraryFilterModel value, $Res Function(_LibraryFilterModel) _then) =
       __$LibraryFilterModelCopyWithImpl;
   @override
   @useResult
@@ -595,7 +588,7 @@ abstract mixin class _$LibraryFilterModelCopyWith<$Res>
       Map<String, bool> tags,
       Map<int, bool> years,
       Map<String, bool> officialRatings,
-      Map<FladderItemType, bool> types,
+      Map<DriftfinItemType, bool> types,
       SortingOptions sortingOption,
       SortingOrder sortOrder,
       bool? favourites,
@@ -605,8 +598,7 @@ abstract mixin class _$LibraryFilterModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$LibraryFilterModelCopyWithImpl<$Res>
-    implements _$LibraryFilterModelCopyWith<$Res> {
+class __$LibraryFilterModelCopyWithImpl<$Res> implements _$LibraryFilterModelCopyWith<$Res> {
   __$LibraryFilterModelCopyWithImpl(this._self, this._then);
 
   final _LibraryFilterModel _self;
@@ -659,7 +651,7 @@ class __$LibraryFilterModelCopyWithImpl<$Res>
       types: null == types
           ? _self._types
           : types // ignore: cast_nullable_to_non_nullable
-              as Map<FladderItemType, bool>,
+              as Map<DriftfinItemType, bool>,
       sortingOption: null == sortingOption
           ? _self.sortingOption
           : sortingOption // ignore: cast_nullable_to_non_nullable

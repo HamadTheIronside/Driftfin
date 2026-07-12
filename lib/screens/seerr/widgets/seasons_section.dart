@@ -8,7 +8,7 @@ import 'package:driftfin/providers/seerr/seerr_request_provider.dart';
 import 'package:driftfin/screens/seerr/widgets/season_download_progress_widget.dart';
 import 'package:driftfin/seerr/seerr_models.dart';
 import 'package:driftfin/theme.dart';
-import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/driftfin_image.dart';
 import 'package:driftfin/util/focus_provider.dart';
 import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/widgets/shared/ensure_visible.dart';
@@ -66,7 +66,7 @@ class SeerrSeasonsSection extends ConsumerWidget {
                     color: selected
                         ? Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.3)
                         : Theme.of(context).colorScheme.tertiaryContainer.withValues(alpha: 0.3),
-                    borderRadius: FladderTheme.smallShape.borderRadius,
+                    borderRadius: DriftfinTheme.smallShape.borderRadius,
                   ),
                   padding: const EdgeInsets.all(8),
                   child: Row(
@@ -130,12 +130,12 @@ class SeerrSeasonsSection extends ConsumerWidget {
                       ),
                       if (season.posterUrl != null)
                         ClipRRect(
-                          borderRadius: FladderTheme.smallShape.borderRadius,
+                          borderRadius: DriftfinTheme.smallShape.borderRadius,
                           child: SizedBox(
                             height: 100,
                             child: AspectRatio(
                               aspectRatio: 0.67,
-                              child: FladderImage(
+                              child: DriftfinImage(
                                 image: season.posterUrl == null
                                     ? null
                                     : ImageData(path: season.posterUrl!, key: 'id${season.id}_season$seasonNumber'),

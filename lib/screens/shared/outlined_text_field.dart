@@ -198,7 +198,7 @@ class _OutlinedTextFieldState extends ConsumerState<OutlinedTextField> {
           duration: const Duration(milliseconds: 175),
           decoration: BoxDecoration(
             color: widget.decoration == null ? widget.fillColor ?? getColor() : null,
-            borderRadius: FladderTheme.smallShape.borderRadius,
+            borderRadius: DriftfinTheme.smallShape.borderRadius,
             border: BoxBorder.all(
               width: 2,
               color: hasFocus || keyboardFocus ? Theme.of(context).colorScheme.primaryFixed : Colors.transparent,

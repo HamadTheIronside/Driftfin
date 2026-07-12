@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:driftfin/models/item_base_model.dart';
 import 'package:driftfin/theme.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
-import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/driftfin_image.dart';
 
 Future<void> showBottomSheetPill({
   ItemBaseModel? item,
@@ -34,7 +34,7 @@ Future<void> showBottomSheetPill({
           padding: const EdgeInsets.symmetric(horizontal: 8).add(MediaQuery.paddingOf(context)),
           child: Card(
             shape: RoundedRectangleBorder(
-              borderRadius: FladderTheme.largeShape.borderRadius,
+              borderRadius: DriftfinTheme.largeShape.borderRadius,
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -47,7 +47,7 @@ Future<void> showBottomSheetPill({
                       width: 35,
                       decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.onSurface,
-                        borderRadius: FladderTheme.largeShape.borderRadius,
+                        borderRadius: DriftfinTheme.largeShape.borderRadius,
                       ),
                     ),
                   )
@@ -94,7 +94,7 @@ class ItemBottomSheetPreview extends ConsumerWidget {
                 height: 90,
                 child: AspectRatio(
                   aspectRatio: 1,
-                  child: FladderImage(
+                  child: DriftfinImage(
                     image: item.images?.primary,
                     fit: BoxFit.contain,
                   ),
