@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{Hostující herci} one{Hostující herec/herečka}}",
   "maxConcurrentDownloadsTitle": "Maximální počet souběžných stahování",
   "maxConcurrentDownloadsDesc": "Nastavuje maximální počet stahování, která mohou být spuštěna současně. Nastavením na 0 limit deaktivujete.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Výběr skladby pro přehrávání",
   "rememberSubtitleSelections": "Nastavení titulkové stopy na základě předchozí položky",
   "rememberAudioSelections": "Nastavit zvukovou stopu na základě předchozí položky",

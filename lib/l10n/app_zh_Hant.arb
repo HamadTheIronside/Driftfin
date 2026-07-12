@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{客串演員} one{客串演員}}",
   "maxConcurrentDownloadsTitle": "最大同時下載數",
   "maxConcurrentDownloadsDesc": "設定可同時執行的最大下載數量。設定為 0 則停用限制。",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "播放軌道選擇",
   "rememberSubtitleSelections": "根據上一個項目設定字幕軌",
   "rememberAudioSelections": "根據上一個項目設定音軌",

@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, one{ممثل ضيف} other{ممثلون ضيوف}}",
   "maxConcurrentDownloadsTitle": "الحد الأقصى للتنزيلات المتزامنة",
   "maxConcurrentDownloadsDesc": "يحدد العدد الأقصى للتنزيلات التي يمكن أن تتم في نفس الوقت. اضبطه على 0 لتعطيل الحد.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "اختيار مسار التشغيل",
   "rememberSubtitleSelections": "تذكر اختيارات الترجمة بناءً على العنصر السابق",
   "rememberAudioSelections": "تذكر اختيارات الصوت بناءً على العنصر السابق",

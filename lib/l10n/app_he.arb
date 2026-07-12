@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, one{שחקן אורח} other{שחקני אורח}}",
   "maxConcurrentDownloadsTitle": "מספר הורדות מקסימלי במקביל",
   "maxConcurrentDownloadsDesc": "קובע את מספר ההורדות המרבי שיכולות לפעול בו-זמנית. הגדר ל-0 כדי לבטל את המגבלה.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "בחירת רצועת ניגון",
   "rememberSubtitleSelections": "הגדר רצועת כתוביות בהתבסס על הפריט הקודם",
   "rememberAudioSelections": "הגדר רצועת שמע בהתבסס על הפריט הקודם",

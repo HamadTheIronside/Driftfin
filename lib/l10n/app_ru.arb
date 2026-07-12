@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{Приглашенных актеров} two{Приглашенных актёра} one{Приглашенный актёр}}",
   "maxConcurrentDownloadsTitle": "Максимальное количество одновременных загрузок",
   "maxConcurrentDownloadsDesc": "Устанавливает максимальное количество загрузок, которые могут выполняться одновременно. Установите значение 0, чтобы отключить ограничение.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Выбор дорожки воспроизведения",
   "rememberSubtitleSelections": "Установка дорожки субтитров на основе предыдущего элемента",
   "rememberAudioSelections": "Установка звуковой дорожки на основе предыдущего элемента",

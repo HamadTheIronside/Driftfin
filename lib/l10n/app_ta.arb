@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{கௌரவ நடிகர்கள்} one{கௌரவ நடிகர்}}",
   "maxConcurrentDownloadsTitle": "அதிகபட்ச ஒரே நேர பதிவிறக்கங்கள்",
   "maxConcurrentDownloadsDesc": "ஒரே நேரத்தில் இயங்கக்கூடிய அதிகபட்ச பதிவிறக்கங்களின் எண்ணிக்கையை அமைக்கிறது. வரம்பை முடக்க 0 என அமைக்கவும்.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "பிளேபேக் டிராக் தேர்வு",
   "rememberSubtitleSelections": "முந்தைய உருப்படியின் அடிப்படையில் வசன டிராக்கை அமை",
   "rememberAudioSelections": "முந்தைய உருப்படியின் அடிப்படையில் ஆடியோ டிராக்கை அமை",

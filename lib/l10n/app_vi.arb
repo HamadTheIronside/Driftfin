@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{Diễn viên khách mời} one{Diễn viên khách mời}}",
   "maxConcurrentDownloadsTitle": "Số lượt tải đồng thời tối đa",
   "maxConcurrentDownloadsDesc": "Đặt số lượt tải tối đa có thể chạy cùng lúc. Đặt 0 để bỏ giới hạn.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Chọn bản phát lại",
   "rememberSubtitleSelections": "Đặt phụ đề dựa trên mục trước đó",
   "rememberAudioSelections": "Đặt âm thanh dựa trên mục trước đó",

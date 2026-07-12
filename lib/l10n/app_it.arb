@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{Attori ospiti} one{Attore ospite}}",
   "maxConcurrentDownloadsTitle": "Numero massimo di download contemporanei",
   "maxConcurrentDownloadsDesc": "Imposta il numero massimo di download che possono essere eseguiti contemporaneamente. Imposta su 0 per disabilitare il limite.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Selezione della traccia di riproduzione",
   "rememberSubtitleSelections": "Imposta la traccia dei sottotitoli in base all'elemento precedente",
   "rememberAudioSelections": "Imposta la traccia audio in base all'elemento precedente",

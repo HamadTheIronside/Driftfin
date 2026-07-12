@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, one{Konuk Oyuncu} other{Konuk Oyuncular}}",
   "maxConcurrentDownloadsTitle": "Maksimum eşzamanlı indirme",
   "maxConcurrentDownloadsDesc": "Aynı anda çalışabilecek maksimum indirme sayısını ayarlar. Limiti devre dışı bırakmak için 0 olarak ayarlayın.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Oynatma kanalı seçimi",
   "rememberSubtitleSelections": "Altyazı kanalını önceki öğeye göre ayarla",
   "rememberAudioSelections": "Ses kanalını önceki öğeye göre ayarla",

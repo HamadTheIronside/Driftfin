@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{Gastacteurs} one{Gastacteur}}",
   "maxConcurrentDownloadsTitle": "Maximum gelijktijdige downloads",
   "maxConcurrentDownloadsDesc": "Stelt het maximumaantal downloads in dat tegelijkertijd kan worden uitgevoerd. Stel in op 0 om de limiet uit te schakelen.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Selectie van afspeeltrack",
   "rememberSubtitleSelections": "Ondertitelspoor instellen op basis van vorig item",
   "rememberAudioSelections": "Audiotrack instellen op basis van vorig item",

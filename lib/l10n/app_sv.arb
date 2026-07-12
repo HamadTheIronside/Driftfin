@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{Gästskådespelare} one{Gästskådespelare}}",
   "maxConcurrentDownloadsTitle": "Max samtidiga nedladdningar",
   "maxConcurrentDownloadsDesc": "Anger det högsta antalet nedladdningar som kan köras samtidigt. Ange 0 för att inaktivera gränsen.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Val av uppspelningsspår",
   "rememberSubtitleSelections": "Välj undertextspår baserat på föregående objekt",
   "rememberAudioSelections": "Välj ljudspår baserat på föregående objekt",

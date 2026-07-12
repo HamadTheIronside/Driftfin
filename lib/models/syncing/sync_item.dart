@@ -18,6 +18,7 @@ import 'package:driftfin/models/items/item_shared_models.dart';
 import 'package:driftfin/models/items/media_segments_model.dart';
 import 'package:driftfin/models/items/media_streams_model.dart';
 import 'package:driftfin/models/items/trick_play_model.dart';
+import 'package:driftfin/models/syncing/smart_download_policy.dart';
 import 'package:driftfin/models/syncing/transcode_download_model.dart';
 import 'package:driftfin/util/localization_helper.dart';
 
@@ -168,6 +169,17 @@ abstract class SyncedItem with _$SyncedItem {
       userData: userData,
     );
   }
+}
+
+/// Maps a downloaded item to the minimal view [SmartDownloadPolicy] reasons
+/// about, so the policy itself never needs to know about `SyncedItem`.
+extension SyncedItemUsageMapping on SyncedItem {
+  SyncedItemUsage get usage => SyncedItemUsage(
+        id: id,
+        fileSizeBytes: fileSize ?? 0,
+        played: userData?.played ?? false,
+        lastPlayed: userData?.lastPlayed,
+      );
 }
 
 extension StatusExtension on TaskStatus {

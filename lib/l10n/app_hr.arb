@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, one{Gostujući glumac} few{Gostujući glumci} many{Gostujućih glumaca} other{Gostujućih glumaca}}",
   "maxConcurrentDownloadsTitle": "Maksimalan broj istovremenih preuzimanja",
   "maxConcurrentDownloadsDesc": "Postavlja maksimalan broj preuzimanja koja mogu biti aktivna istovremeno. Postavi na 0 za neograničeno.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Odabir zapisa za reprodukciju",
   "rememberSubtitleSelections": "Postavi titlove prema prethodnoj stavci",
   "rememberAudioSelections": "Postavi zvučni zapis prema prethodnoj stavci",

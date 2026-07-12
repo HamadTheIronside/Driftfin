@@ -622,6 +622,8 @@
   "guestActor": "{count, plural, other{Aktor kouviet} one{Aktor kouviet}}",
   "maxConcurrentDownloadsTitle": "Niver uhelañ a bellgargadennoù war un dro",
   "maxConcurrentDownloadsDesc": "Termeniñ a ra an niver uhelañ a bellgargadennoù a c'hell erounit war un dro. Lakait 0 evit diweredekaat ar bevenn.",
+  "smartDownloadBudgetTitle": "Smart Downloads storage budget (MB)",
+  "smartDownloadBudgetDesc": "Automatically reclaims watched downloads, oldest first, to stay under this storage limit. Unwatched downloads are never removed. Leave empty to disable.",
   "playbackTrackSelection": "Diuzañ ar roudoù lenn",
   "rememberSubtitleSelections": "Lakaat ar roud istitloù hervez an elfenn kent",
   "rememberAudioSelections": "Lakaat ar roud kleved hervez an elfenn kent",
