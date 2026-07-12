@@ -25,7 +25,7 @@ class AutoApproveBanner extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.tertiaryContainer,
-        borderRadius: FladderTheme.smallShape.borderRadius,
+        borderRadius: DriftfinTheme.smallShape.borderRadius,
       ),
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -59,7 +59,7 @@ class PermissionDeniedWarning extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.errorContainer,
-            borderRadius: FladderTheme.smallShape.borderRadius,
+            borderRadius: DriftfinTheme.smallShape.borderRadius,
           ),
           child: Padding(
             padding: const EdgeInsets.all(12),
@@ -111,7 +111,7 @@ class QuotaLimitCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.75),
-        borderRadius: FladderTheme.smallShape.borderRadius,
+        borderRadius: DriftfinTheme.smallShape.borderRadius,
       ),
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -145,7 +145,7 @@ class QuotaLimitCard extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.onPrimaryContainer.withValues(alpha: 0.15),
-                borderRadius: FladderTheme.defaultShape.borderRadius,
+                borderRadius: DriftfinTheme.defaultShape.borderRadius,
               ),
               padding: const EdgeInsets.all(4),
               child: Stack(

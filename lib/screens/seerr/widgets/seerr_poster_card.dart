@@ -13,7 +13,7 @@ import 'package:driftfin/screens/seerr/widgets/seerr_request_popup.dart';
 import 'package:driftfin/seerr/seerr_models.dart';
 import 'package:driftfin/theme.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
-import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/driftfin_image.dart';
 import 'package:driftfin/util/focus_provider.dart';
 import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/widgets/shared/clickable_text.dart';
@@ -34,7 +34,7 @@ class SeerrPosterCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final radius = FladderTheme.smallShape.borderRadius;
+    final radius = DriftfinTheme.smallShape.borderRadius;
 
     ImageData? image = poster.images.primary;
     image ??= poster.images.backDrop?.lastOrNull;
@@ -100,7 +100,7 @@ class SeerrPosterCard extends ConsumerWidget {
                 border: Border.all(width: 1, color: Colors.white.withAlpha(45)),
               ),
               clipBehavior: Clip.hardEdge,
-              child: FladderImage(
+              child: DriftfinImage(
                 image: image,
                 placeHolder: Center(
                   child: Text(

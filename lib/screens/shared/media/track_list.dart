@@ -11,7 +11,7 @@ import 'package:driftfin/screens/syncing/sync_button.dart';
 import 'package:driftfin/theme.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 import 'package:driftfin/util/duration_extensions.dart';
-import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/driftfin_image.dart';
 import 'package:driftfin/util/focus_provider.dart';
 import 'package:driftfin/util/item_base_model/item_base_model_extensions.dart';
 import 'package:driftfin/util/localization_helper.dart';
@@ -421,7 +421,7 @@ class _TrackListItemState extends ConsumerState<_TrackListItem> {
     final durationText = widget.track.overview.runTime?.readAbleDuration;
     final playCountText = widget.track.userData.playCount > 0 ? 'x${widget.track.userData.playCount}' : '-';
 
-    final radius = FladderTheme.smallShape.borderRadius;
+    final radius = DriftfinTheme.smallShape.borderRadius;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 150),
@@ -493,7 +493,7 @@ class _TrackListItemState extends ConsumerState<_TrackListItem> {
                                     border: Border.all(width: 1, color: Colors.white.withAlpha(45)),
                                   ),
                                   clipBehavior: Clip.hardEdge,
-                                  child: FladderImage(
+                                  child: DriftfinImage(
                                     image: widget.track.images?.primary,
                                     fit: BoxFit.cover,
                                   ),

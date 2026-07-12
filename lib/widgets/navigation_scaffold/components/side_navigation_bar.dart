@@ -15,7 +15,7 @@ import 'package:driftfin/screens/metadata/refresh_metadata.dart';
 import 'package:driftfin/screens/shared/animated_fade_size.dart';
 import 'package:driftfin/theme.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
-import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/driftfin_image.dart';
 import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/widgets/navigation_scaffold/components/adaptive_fab.dart';
 import 'package:driftfin/widgets/navigation_scaffold/components/background_image.dart';
@@ -252,7 +252,7 @@ class _SideNavigationRail extends ConsumerState<SideNavigationRail> {
                                                 ? null
                                                 : Container(
                                                     decoration: BoxDecoration(
-                                                      borderRadius: FladderTheme.smallShape.borderRadius,
+                                                      borderRadius: DriftfinTheme.smallShape.borderRadius,
                                                       color: Theme.of(context).colorScheme.surface,
                                                     ),
                                                     child: Padding(
@@ -286,12 +286,12 @@ class _SideNavigationRail extends ConsumerState<SideNavigationRail> {
                                               customIcon: usePostersForLibrary
                                                   ? Container(
                                                       decoration: BoxDecoration(
-                                                        borderRadius: FladderTheme.smallShape.borderRadius,
+                                                        borderRadius: DriftfinTheme.smallShape.borderRadius,
                                                       ),
                                                       clipBehavior: Clip.hardEdge,
                                                       child: SizedBox.square(
                                                         dimension: 45,
-                                                        child: FladderImage(
+                                                        child: DriftfinImage(
                                                           image: view.imageData?.primary,
                                                           placeHolder: Card(
                                                             child: Icon(
@@ -314,7 +314,7 @@ class _SideNavigationRail extends ConsumerState<SideNavigationRail> {
                                             ? null
                                             : Container(
                                                 decoration: BoxDecoration(
-                                                  borderRadius: FladderTheme.smallShape.borderRadius,
+                                                  borderRadius: DriftfinTheme.smallShape.borderRadius,
                                                   color: Theme.of(context).colorScheme.surface,
                                                 ),
                                                 child: Padding(
@@ -338,7 +338,7 @@ class _SideNavigationRail extends ConsumerState<SideNavigationRail> {
                                               expanded: shouldExpand,
                                               customIcon: usePostersForLibrary
                                                   ? ClipRRect(
-                                                      borderRadius: FladderTheme.smallShape.borderRadius,
+                                                      borderRadius: DriftfinTheme.smallShape.borderRadius,
                                                       child: const SizedBox.square(
                                                         dimension: 50,
                                                         child: Card(
@@ -362,10 +362,10 @@ class _SideNavigationRail extends ConsumerState<SideNavigationRail> {
                                                           ? Padding(
                                                               padding: const EdgeInsets.symmetric(vertical: 4),
                                                               child: ClipRRect(
-                                                                borderRadius: FladderTheme.smallShape.borderRadius,
+                                                                borderRadius: DriftfinTheme.smallShape.borderRadius,
                                                                 child: SizedBox.square(
                                                                   dimension: 45,
-                                                                  child: FladderImage(
+                                                                  child: DriftfinImage(
                                                                     image: e.imageData?.primary,
                                                                     placeHolder: Card(
                                                                       child: Icon(

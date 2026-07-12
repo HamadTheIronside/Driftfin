@@ -14,7 +14,7 @@ import 'package:driftfin/screens/seerr/widgets/seerr_request_popup.dart';
 import 'package:driftfin/screens/seerr/widgets/seerr_user_label.dart';
 import 'package:driftfin/seerr/seerr_models.dart';
 import 'package:driftfin/theme.dart';
-import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/driftfin_image.dart';
 import 'package:driftfin/util/focus_provider.dart';
 import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/widgets/shared/item_actions.dart';
@@ -32,7 +32,7 @@ class SeerrRequestBannerCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final radius = FladderTheme.smallShape.borderRadius;
+    final radius = DriftfinTheme.smallShape.borderRadius;
 
     ImageData? backgroundImage = poster.images.backDrop?.firstOrNull;
     backgroundImage ??= poster.images.backDrop?.lastOrNull;
@@ -108,7 +108,7 @@ class SeerrRequestBannerCard extends ConsumerWidget {
             fit: StackFit.expand,
             children: [
               if (backgroundImage != null)
-                FladderImage(
+                DriftfinImage(
                   image: backgroundImage,
                   fit: BoxFit.cover,
                 )
@@ -201,7 +201,7 @@ class SeerrRequestBannerCard extends ConsumerWidget {
                           aspectRatio: 0.65,
                           child: SizedBox(
                             width: 105,
-                            child: FladderImage(
+                            child: DriftfinImage(
                               image: posterImage,
                               fit: BoxFit.cover,
                               disableBlur: false,

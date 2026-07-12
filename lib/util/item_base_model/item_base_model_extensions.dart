@@ -28,7 +28,7 @@ import 'package:driftfin/screens/metadata/identifty_screen.dart';
 import 'package:driftfin/screens/metadata/info_screen.dart';
 import 'package:driftfin/screens/metadata/refresh_metadata.dart';
 import 'package:driftfin/screens/playlists/add_to_playlists.dart';
-import 'package:driftfin/screens/shared/fladder_notification_overlay.dart';
+import 'package:driftfin/screens/shared/driftfin_notification_overlay.dart';
 import 'package:driftfin/screens/syncing/sync_button.dart';
 import 'package:driftfin/screens/syncing/sync_item_details.dart';
 import 'package:driftfin/seerr/seerr_models.dart';
@@ -43,10 +43,10 @@ import 'package:driftfin/widgets/pop_up/delete_file.dart';
 import 'package:driftfin/widgets/shared/item_actions.dart';
 
 extension ItemBaseModelsBooleans on List<ItemBaseModel> {
-  Map<FladderItemType, List<ItemBaseModel>> get groupedItems {
-    Map<FladderItemType, List<ItemBaseModel>> groupedItems = {};
+  Map<DriftfinItemType, List<ItemBaseModel>> get groupedItems {
+    Map<DriftfinItemType, List<ItemBaseModel>> groupedItems = {};
     for (int i = 0; i < length; i++) {
-      FladderItemType type = this[i].type;
+      DriftfinItemType type = this[i].type;
       if (!groupedItems.containsKey(type)) {
         groupedItems[type] = [this[i]];
       } else {
@@ -56,9 +56,9 @@ extension ItemBaseModelsBooleans on List<ItemBaseModel> {
     return groupedItems;
   }
 
-  FladderItemType get getMostCommonType {
-    if (isEmpty) return FladderItemType.movie;
-    final Map<FladderItemType, int> counts = {};
+  DriftfinItemType get getMostCommonType {
+    if (isEmpty) return DriftfinItemType.movie;
+    final Map<DriftfinItemType, int> counts = {};
 
     for (final item in this) {
       final type = item.type;
@@ -155,21 +155,21 @@ extension ItemBaseModelExtensions on ItemBaseModel {
     final ItemAction? parentAction = switch (this) {
       EpisodeModel _ => !exclude.contains(ItemActions.openShow)
           ? ItemActionButton(
-              icon: Icon(FladderItemType.series.icon),
+              icon: Icon(DriftfinItemType.series.icon),
               action: () => parentBaseModel.navigateTo(context),
               label: Text(context.localized.openShow),
             )
           : null,
       AudioModel _ => !exclude.contains(ItemActions.openParent)
           ? ItemActionButton(
-              icon: Icon(FladderItemType.musicAlbum.icon),
+              icon: Icon(DriftfinItemType.musicAlbum.icon),
               action: () => parentBaseModel.navigateTo(context),
               label: Text(context.localized.showAlbum),
             )
           : null,
       AlbumModel album => !exclude.contains(ItemActions.openParent)
           ? ItemActionButton(
-              icon: Icon(FladderItemType.musicArtist.icon),
+              icon: Icon(DriftfinItemType.musicArtist.icon),
               action: () => album.parentBaseModel.navigateTo(context),
               label: Text(context.localized.showArtist),
             )
@@ -177,7 +177,7 @@ extension ItemBaseModelExtensions on ItemBaseModel {
       SeriesModel _ => null,
       _ => !exclude.contains(ItemActions.openParent) && !galleryItem
           ? ItemActionButton(
-              icon: Icon(FladderItemType.folder.icon),
+              icon: Icon(DriftfinItemType.folder.icon),
               action: () => parentBaseModel.navigateTo(context),
               label: Text(context.localized.openParent),
             )
@@ -199,7 +199,7 @@ extension ItemBaseModelExtensions on ItemBaseModel {
             action: () async {
               final launched = await ref.read(externalPlayerProvider.notifier).launch(this);
               if (!launched && context.mounted) {
-                FladderSnack.show(context.localized.externalPlayerFailed);
+                DriftfinSnack.show(context.localized.externalPlayerFailed);
               }
             },
           ),
@@ -236,7 +236,7 @@ extension ItemBaseModelExtensions on ItemBaseModel {
         )
       else if (!exclude.contains(ItemActions.showAlbum) && galleryItem)
         ItemActionButton(
-          icon: Icon(FladderItemType.photoAlbum.icon),
+          icon: Icon(DriftfinItemType.photoAlbum.icon),
           action: () => parentBaseModel.navigateTo(context),
           label: Text(context.localized.showAlbum),
         ),
@@ -267,7 +267,7 @@ extension ItemBaseModelExtensions on ItemBaseModel {
           ),
       ItemActionDivider(),
       if (!exclude.contains(ItemActions.addCollection) && isAdmin)
-        if (type != FladderItemType.boxset)
+        if (type != DriftfinItemType.boxset)
           ItemActionButton(
             icon: const Icon(IconsaxPlusLinear.archive_add),
             action: () async {
@@ -279,7 +279,7 @@ extension ItemBaseModelExtensions on ItemBaseModel {
             label: Text(context.localized.addToCollection),
           ),
       if (!exclude.contains(ItemActions.addPlaylist))
-        if (type != FladderItemType.playlist)
+        if (type != DriftfinItemType.playlist)
           ItemActionButton(
             icon: const Icon(IconsaxPlusLinear.archive_add),
             action: () async {
@@ -344,7 +344,7 @@ extension ItemBaseModelExtensions on ItemBaseModel {
               final currentlyFavourite = series.body?.userData.isFavourite ?? false;
               await ref.read(userProvider.notifier).setAsFavorite(!currentlyFavourite, seriesId);
               if (context.mounted) {
-                FladderSnack.show(currentlyFavourite
+                DriftfinSnack.show(currentlyFavourite
                     ? context.localized.removedShowFromFavorites
                     : context.localized.addedShowToFavorites);
               }
@@ -354,10 +354,10 @@ extension ItemBaseModelExtensions on ItemBaseModel {
           },
           label: Text(context.localized.addShowToFavorites),
         ),
-      if ((type == FladderItemType.boxset ||
-              type == FladderItemType.folder ||
-              type == FladderItemType.collectionFolder ||
-              type == FladderItemType.baseType) &&
+      if ((type == DriftfinItemType.boxset ||
+              type == DriftfinItemType.folder ||
+              type == DriftfinItemType.collectionFolder ||
+              type == DriftfinItemType.baseType) &&
           !exclude.contains(ItemActions.addToHome))
         ItemActionButton(
           icon: Icon(ref.read(homeSettingsProvider).pinnedCollectionIds.contains(id)
@@ -463,7 +463,7 @@ extension ItemBaseModelExtensions on ItemBaseModel {
             ),
           ),
           action: () async {
-            final response = await FladderSnack.showResponse(
+            final response = await DriftfinSnack.showResponse(
               showDeleteDialog(context, this, ref),
               successTitle: context.localized.deletedItem(name),
             );

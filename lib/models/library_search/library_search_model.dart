@@ -73,12 +73,12 @@ extension LibrarySearchModelX on LibrarySearchModel {
     if (totalItemCount == 0) return false;
     if (activePosters.isNotEmpty) {
       return activePosters.any(
-        (element) => {...FladderItemType.playable, FladderItemType.folder}.contains(element.type),
+        (element) => {...DriftfinItemType.playable, DriftfinItemType.folder}.contains(element.type),
       );
     }
     return filters.types.included.isEmpty ||
         filters.types.included.containsAny(
-          {...FladderItemType.playable, FladderItemType.folder},
+          {...DriftfinItemType.playable, DriftfinItemType.folder},
         );
   }
 
@@ -86,13 +86,13 @@ extension LibrarySearchModelX on LibrarySearchModel {
     if (totalItemCount == 0) return false;
     if (activePosters.isNotEmpty) {
       return activePosters.any(
-        (element) =>
-            {...FladderItemType.galleryItem, FladderItemType.photoAlbum, FladderItemType.folder}.contains(element.type),
+        (element) => {...DriftfinItemType.galleryItem, DriftfinItemType.photoAlbum, DriftfinItemType.folder}
+            .contains(element.type),
       );
     }
     return filters.types.included.isEmpty ||
         filters.types.included.containsAny(
-          {...FladderItemType.galleryItem, FladderItemType.photoAlbum, FladderItemType.folder},
+          {...DriftfinItemType.galleryItem, DriftfinItemType.photoAlbum, DriftfinItemType.folder},
         );
   }
 
@@ -100,12 +100,12 @@ extension LibrarySearchModelX on LibrarySearchModel {
     if (totalItemCount == 0) return false;
     if (activePosters.isNotEmpty) {
       return activePosters.any(
-        (element) => {...FladderItemType.musicPlayable, FladderItemType.folder}.contains(element.type),
+        (element) => {...DriftfinItemType.musicPlayable, DriftfinItemType.folder}.contains(element.type),
       );
     }
     return filters.types.included.isEmpty ||
         filters.types.included.containsAny(
-          {...FladderItemType.musicPlayable, FladderItemType.folder},
+          {...DriftfinItemType.musicPlayable, DriftfinItemType.folder},
         );
   }
 

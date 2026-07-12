@@ -14,7 +14,7 @@ import 'package:driftfin/screens/syncing/sync_widgets.dart';
 import 'package:driftfin/screens/syncing/widgets/sync_progress_builder.dart';
 import 'package:driftfin/theme.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
-import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/driftfin_image.dart';
 import 'package:driftfin/util/focus_provider.dart';
 import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/util/size_formatting.dart';
@@ -35,7 +35,7 @@ class SyncListItem extends ConsumerWidget {
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surfaceDim,
-          borderRadius: FladderTheme.defaultShape.borderRadius,
+          borderRadius: DriftfinTheme.defaultShape.borderRadius,
         ),
         child: Dismissible(
           key: Key(syncedItem.id),
@@ -50,7 +50,7 @@ class SyncListItem extends ConsumerWidget {
           ),
           direction: DismissDirection.startToEnd,
           confirmDismiss: (direction) async {
-            if (baseItem?.type == FladderItemType.playlist) {
+            if (baseItem?.type == DriftfinItemType.playlist) {
               await _showPlaylistDeleteDialog(context, ref, syncedItem);
             } else {
               await showDefaultAlertDialog(
@@ -85,11 +85,11 @@ class SyncListItem extends ConsumerWidget {
                   children: [
                     Container(
                       height: 150,
-                      decoration: FladderTheme.defaultPosterDecoration,
+                      decoration: DriftfinTheme.defaultPosterDecoration,
                       clipBehavior: Clip.hardEdge,
                       child: AspectRatio(
                           aspectRatio: baseItem?.primaryRatio ?? 0.67,
-                          child: FladderImage(
+                          child: DriftfinImage(
                             image: baseItem?.getPosters?.primary,
                             fit: BoxFit.cover,
                           )),

@@ -58,16 +58,16 @@ void main() {
 
   group('CollectionTypeExtension.itemKinds', () {
     test('maps each collection type to its expected item kinds', () {
-      expect(CollectionType.music.itemKinds, {FladderItemType.musicAlbum});
-      expect(CollectionType.movies.itemKinds, {FladderItemType.movie});
-      expect(CollectionType.tvshows.itemKinds, {FladderItemType.series});
+      expect(CollectionType.music.itemKinds, {DriftfinItemType.musicAlbum});
+      expect(CollectionType.movies.itemKinds, {DriftfinItemType.movie});
+      expect(CollectionType.tvshows.itemKinds, {DriftfinItemType.series});
       expect(CollectionType.homevideos.itemKinds, {
-        FladderItemType.photoAlbum,
-        FladderItemType.folder,
-        FladderItemType.photo,
-        FladderItemType.video,
+        DriftfinItemType.photoAlbum,
+        DriftfinItemType.folder,
+        DriftfinItemType.photo,
+        DriftfinItemType.video,
       });
-      expect(CollectionType.livetv.itemKinds, {FladderItemType.tvchannel});
+      expect(CollectionType.livetv.itemKinds, {DriftfinItemType.tvchannel});
     });
 
     test('unmapped types (and null) return an empty set', () {

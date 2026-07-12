@@ -9,17 +9,17 @@ import 'package:intl/intl.dart' as intl;
 
 import 'package:driftfin/l10n/generated/app_localizations.dart';
 
-class FladderLocalizations {
+class DriftfinLocalizations {
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     AppLocalizations.delegate,
-    FladderMaterialLocalizationsDelegate(),
-    FladderCupertinoLocalizationsDelegate(),
-    FladderWidgetsLocalizationsDelegate(),
+    DriftfinMaterialLocalizationsDelegate(),
+    DriftfinCupertinoLocalizationsDelegate(),
+    DriftfinWidgetsLocalizationsDelegate(),
   ];
 }
 
-class FladderMaterialLocalizationsDelegate extends LocalizationsDelegate<MaterialLocalizations> {
-  const FladderMaterialLocalizationsDelegate();
+class DriftfinMaterialLocalizationsDelegate extends LocalizationsDelegate<MaterialLocalizations> {
+  const DriftfinMaterialLocalizationsDelegate();
 
   @override
   bool isSupported(Locale locale) => true;
@@ -108,14 +108,14 @@ class FladderMaterialLocalizationsDelegate extends LocalizationsDelegate<Materia
   }
 
   @override
-  bool shouldReload(FladderMaterialLocalizationsDelegate old) => false;
+  bool shouldReload(DriftfinMaterialLocalizationsDelegate old) => false;
 
   @override
   String toString() => 'GlobalMaterialLocalizations.delegate(${kMaterialSupportedLanguages.length} locales)';
 }
 
-class FladderWidgetsLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
-  const FladderWidgetsLocalizationsDelegate();
+class DriftfinWidgetsLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
+  const DriftfinWidgetsLocalizationsDelegate();
 
   @override
   bool isSupported(Locale locale) => true;
@@ -138,8 +138,8 @@ class FladderWidgetsLocalizationsDelegate extends LocalizationsDelegate<WidgetsL
   bool shouldReload(covariant LocalizationsDelegate<WidgetsLocalizations> old) => false;
 }
 
-class FladderCupertinoLocalizationsDelegate extends LocalizationsDelegate<CupertinoLocalizations> {
-  const FladderCupertinoLocalizationsDelegate();
+class DriftfinCupertinoLocalizationsDelegate extends LocalizationsDelegate<CupertinoLocalizations> {
+  const DriftfinCupertinoLocalizationsDelegate();
 
   @override
   bool isSupported(Locale locale) => true;
@@ -214,7 +214,7 @@ class FladderCupertinoLocalizationsDelegate extends LocalizationsDelegate<Cupert
   }
 
   @override
-  bool shouldReload(FladderCupertinoLocalizationsDelegate old) => false;
+  bool shouldReload(DriftfinCupertinoLocalizationsDelegate old) => false;
 
   @override
   String toString() => 'GlobalCupertinoLocalizations.delegate(${kCupertinoSupportedLanguages.length} locales)';

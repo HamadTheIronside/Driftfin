@@ -18,7 +18,7 @@ import 'package:driftfin/screens/syncing/sync_item_details.dart';
 import 'package:driftfin/shaders/fade_edges.dart';
 import 'package:driftfin/theme.dart';
 import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
-import 'package:driftfin/util/fladder_image.dart';
+import 'package:driftfin/util/driftfin_image.dart';
 import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/util/refresh_state.dart';
 import 'package:driftfin/util/router_extension.dart';
@@ -188,7 +188,7 @@ class _DetailScaffoldState extends ConsumerState<DetailScaffold> {
                     SizedBox(
                       height: maxHeight,
                       width: size.width,
-                      child: FladderImage(
+                      child: DriftfinImage(
                         image: backgroundImage,
                         blurOnly: !widget.posterFillsContent,
                       ),
@@ -301,7 +301,7 @@ class _DetailScaffoldState extends ConsumerState<DetailScaffold> {
                           duration: const Duration(milliseconds: 250),
                           child: Container(
                             decoration: BoxDecoration(
-                                color: backGroundColor, borderRadius: FladderTheme.defaultShape.borderRadius),
+                                color: backGroundColor, borderRadius: DriftfinTheme.defaultShape.borderRadius),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
