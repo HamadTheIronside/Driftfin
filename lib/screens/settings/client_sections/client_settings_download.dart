@@ -21,6 +21,15 @@ import 'package:driftfin/util/adaptive_layout/adaptive_layout.dart';
 import 'package:driftfin/util/localization_helper.dart';
 import 'package:driftfin/util/size_formatting.dart';
 
+/// Renders the current Smart Downloads budget (bytes) as whole MB for the
+/// input field; empty when unset (no budget/unlimited).
+String smartDownloadBudgetFieldText(int? budgetBytes) =>
+    budgetBytes != null ? (budgetBytes ~/ (1024 * 1024)).toString() : "";
+
+/// Converts the user-entered MB value back to bytes for storage; null (no
+/// budget) when the field is empty or cleared.
+int? smartDownloadBudgetBytesFromMb(int? megaBytes) => megaBytes != null ? megaBytes * 1024 * 1024 : null;
+
 List<Widget> buildClientSettingsDownload(BuildContext context, WidgetRef ref, Function setState) {
   final clientSettings = ref.watch(clientSettingsProvider);
   final currentFolder = ref.watch(syncProvider.notifier).savePath;
@@ -196,14 +205,12 @@ List<Widget> buildClientSettingsDownload(BuildContext context, WidgetRef ref, Fu
               width: 150,
               child: IntInputField(
                 controller: TextEditingController(
-                  text: clientSettings.smartDownloadBudgetBytes != null
-                      ? (clientSettings.smartDownloadBudgetBytes! ~/ (1024 * 1024)).toString()
-                      : "",
+                  text: smartDownloadBudgetFieldText(clientSettings.smartDownloadBudgetBytes),
                 ),
                 onSubmitted: (value) {
                   ref
                       .read(clientSettingsProvider.notifier)
-                      .setSmartDownloadBudget(value != null ? value * 1024 * 1024 : null);
+                      .setSmartDownloadBudget(smartDownloadBudgetBytesFromMb(value));
                 },
               ),
             ),
